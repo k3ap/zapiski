@@ -1,0 +1,10 @@
+auto/
+*.pdf
+*.aux
+*.log
+*.out
+*.gnuplot
+*.toc
+zbt-templates
+ksl-*.tex
+zapiski-*.tex
