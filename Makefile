@@ -1,4 +1,4 @@
-predmeti := testnipredmet
+predmeti := testnipredmet verjetnost mehanika analiza3 uvodvnumericnemetode
 ksl := testniksl
 
 latex-cmd := lualatex --shell-escape
@@ -14,7 +14,7 @@ zbt-templates: $(wildcard templates/*.tex)
 $(predmeti-filenames): zapiski-%.pdf: zapiski-%.tex
 	$(latex-cmd) $^
 
-zapiski-%.tex: zbt-templates $(wildcard predmeti/%/*.tex)
+zapiski-%.tex: zbt-templates predmeti/%/*.tex
 	cat templates/predmet-1.tex > $@
 	cat templates/skupno.tex >> $@
 	cat predmeti/$*/predmet.tex >> $@

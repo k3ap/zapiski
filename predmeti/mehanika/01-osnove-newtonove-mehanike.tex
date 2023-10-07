@@ -1,0 +1,156 @@
+\naslov{Osnove Newtonove mehanike}
+
+\begin{definicija}
+  \pojem{Afin prostor} $\affin$ nad vektorskim prostorom $V$ je množica z
+  binarno operacijo $+: \affin \times V \to \affin$, za katero velja:
+  \begin{itemize}
+  \item Za poljuben $A \in \affin$ ter $\mb{a},\mb{b} \in V$ velja $(A +
+    \mb{a}) + \mb{b} = A + (\mb{a} + \mb{b})$
+  \item Za poljubna $A, B \in \affin$ obstaja natanko določen $\mb{a} \in
+    V$, da je $B = A + \mb{a}$.
+  \end{itemize}
+  \pojem{Dimenzija} afinega prostora je enaka dimenziji vektorskega prostora
+  $V$.
+\end{definicija}
+
+\begin{definicija}
+  Naj bo $\affin$ afin prostor nad vektorskih prostorom $V$.
+  Definiramo operacijo odštevanja $\affin \times \affin \to V$ s
+  predpisom
+  \[
+    B - A = \mb{a} \nt B = A + \mb{a}.
+  \]
+\end{definicija}
+
+\begin{trditev}
+  V afinem prostoru veljajo naslednje zveze:
+  \begin{itemize}
+  \item $A - A = \mb{0}$.
+  \item $(A - B) + (B - A) = \mb{0}$.
+  \item $(A - B) + (B - C) + (C - A) = \mb{0}$.
+  \item $(A - B) + \mb{a} = (A + \mb{a}) - B$.
+  \item $(A - B) + C = (C - B) + A$.
+  \end{itemize}
+\end{trditev}
+
+\begin{definicija}
+  Preslikava $g : \affin \to \affin'$ med afinima prostoroma je
+  \pojem{afina}, če obstaja $dg \in L(V, V')$, da za vsaka $A, B \in
+  \affin$ velja $g(A) - g(B) = dg(A - B)$.
+\end{definicija}
+
+Za afino preslikavo $g$ si lahko izberemo \pojem{pol} $O$, ter izpeljemo
+\[
+  g(A) = g(O) + dg(A - O).
+\]
+Vrednosti funkcije seveda niso odvisne od izbire pola.
+
+\vprasanje{Definiraj afin prostor in afino preslikavo.}
+
+\newcommand{\cas}{\mathfrak{t}}
+\begin{definicija}
+  \pojem{Galilejeva struktura} je trojica $\mathcal{G} = (\affin,
+  \cas, \rho)$, kjer je $\affin$ štirirazsežni afin prostor nad $V$, $\cas \in
+  L(V, \R)$ in $\rho$ ekvlidska metrika na $\jedro \cas$, porojena z normo
+  $\norm{\cdot}$.
+  Funkciji $\cas$ pravimo \pojem{časovnost}, elementom $\affin$ pa pravimo
+  \pojem{dogodki}.
+  Pretečeni čas med dogodkoma $A$ in $B$ označimo s $\cas(A, B)$.
+  Dogodka sta \pojem{istočasna}, če je $\cas(A, B) = 0$.
+  Za istočasne dogodke lahko definiramo razdaljo $\rho(A, B) = \norm{B - A}$
+  (uporabimo isto oznako kot za metriko v $\jedro\cas$).
+\end{definicija}
+
+\begin{definicija}
+  Galilejevi strukturi $\mathcal{G} = (\affin, \cas, \rho)$ in $\mathcal{G}' =
+  (\affin', \cas', \rho')$ sta \pojem{ekvivalentni}, če obstaja afina bijekcija
+  $g: \affin \to \affin'$, ki ohranja časovnost in razdaljo med istočasnimi
+  dogodki;
+  \begin{align*}
+    \cas'(g(A) - g(B)) = \cas(A, B),
+    &&
+       \rho'(g(A), g(B)) = \rho(A, B).
+  \end{align*}
+  Taki transformaciji pravimo \pojem{Galilejeva transformacija}.
+\end{definicija}
+
+\vprasanje{Definiraj Galilejevo strukturo in Galilejeve transformacije.}
+
+\newcommand{\galileo}{\R\times\mathbb{E}}
+Modelni primer je naravna Galilejeva struktura na $\affin = \galileo$, kjer je
+$\mathbb{E}$ trirazsežni Evklidski prostor.
+Za elemente $A_i = (t_i, \mb{P}_i) \in \affin$ naravne strukture velja
+\begin{itemize}
+\item $\cas(A_1 - A_2) = t_1 - t_2$,
+\item $\rho(A_1, A_2) = \norm{\mb{P}_1 - \mb{P}_2}$.
+\end{itemize}
+
+\begin{definicija}
+  \pojem{Koordinatni sistem} na $\affin$ je bijekcija $\phi : \affin \to
+  \galileo$ s komponentami $\phi(A) = (\tau \phi(A), \pi \phi(A))$, in pri
+  kateri je $\tau \circ \phi$ linearna preslikava.
+\end{definicija}
+
+\begin{opomba}
+  Če sta $\phi$ in $\phi'$ koordinatna sistema, je preslikava $\phi' \circ
+  \phi^{-1}: \galileo \to \galileo$ bijekcija.
+\end{opomba}
+
+\vprasanje{Kaj je koordinantni sistem?}
+
+\begin{izrek}
+  Galilejeva transformacija $g: \galileo \to \galileo$ je oblike
+  \[
+    g(t, \mb{P}) = (t_0' + t, \mb{P}_0' + \vec{c} t + \mb{Q}(\mb{P} -
+    \mb{P}_0)),
+  \]
+  kjer je $\mb{Q} \in O(3)$ ortogonalna transformacija.
+\end{izrek}
+
+\begin{proof}
+  Ker je $g$ afina preslikava, jo lahko zapišemo kot
+  \[
+    g(t, \mb{P}) = g(t_0, \mb{P}_0) + dg(t - t_0, \mb{P} - \mb{P}_0),
+  \]
+  kjer je $dg \in L(\R^4, \R^4)$.
+  Če označimo $g(t_0, \mb{P}_0) = (t_0', \mb{P}_0')$, in zapišemo $dg$ kot
+  bločno matriko, dobimo
+  \[
+    g(t, \mb{P})
+    =
+    (t_0', \mb{P}_0')
+    +
+    \begin{bmatrix}
+      \alpha & \vec{a}^T \\
+      \vec{c} & \mb{Q}
+    \end{bmatrix}
+    \begin{bmatrix}
+      t - t_0 \\ \mb{P} - \mb{P}_0
+    \end{bmatrix}
+    =
+    (t_0', \mb{P}_0')
+    +
+    \begin{bmatrix}
+      \alpha (t - t_0) + \vec{a} \cdot (\mb{P} - \mb{P}_0) \\
+      (t - t_0).\vec{c} + \mb{Q} (\mb{P} - \mb{P}_0)
+    \end{bmatrix}.
+  \]
+  Za dogodka $(t_1, \mb{P}_1)$ in $(t_2, \mb{P}_2)$ zahtevamo
+  \[
+    t_2 - t_1 = \tau(g(t_2, \mb{P}_2) - g(t_1, \mb{P}_1)).
+  \]
+  Če razvijemo desno stran zahteve po izpeljani formuli, dobimo pogoj
+  \[
+    t_2 - t_1 = \alpha (t_2 - t_1) + \vec{a} \cdot (\mb{P}_2 - \mb{P}_1).
+  \]
+  Iz tega sledi $\alpha = 1$ in $\vec{a} = \vec{0}$.
+  Drug pogoj je, da se mora razdalja med istočasnimi dogodki ohranjati.
+  Iz spodnjega dela bločne matrike dobimo pogoj
+  \[
+    \norm{\mb{P}_2 - \mb{P}_1} = \norm{ \mb{Q} (\mb{P}_2 - \mb{P}_1)},
+  \]
+  torej mora biti $\mb{Q}$ ortogonalna.
+\end{proof}
+
+\vprasanje{Kakšno obliko imajo Galilejeve transformacije $\galileo \to
+  \galileo$? Dokaži.}

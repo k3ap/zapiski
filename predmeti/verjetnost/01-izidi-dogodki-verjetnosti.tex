@@ -1,0 +1,131 @@
+\naslov{Izidi, dogodki, verjetnosti}
+
+\begin{vo}{Kaj je množica $\Omega$ vseh možnih izidov? Povej nekaj primerov.}
+  To je množica, ki hrani vse možne rezultate nekega poskusa.
+  Pri mešanju kupa $n$ kart velja $\Omega = S_n$, pri $n$-kratnem metu kovanca
+  je to $\Omega = \{G, S\}^n$, itd.
+\end{vo}
+
+\begin{definicija}
+  Družina $\mathcal{F}$ podmnožic množice $\Omega$ je \pojem{$\sigma$-algebra},
+  če velja:
+  \begin{itemize}
+  \item $\Omega \in \mathcal{F}$,
+  \item $A \in \mathcal{F} \implies A\complement \in \mathcal{F}$,
+  \item $A_1, A_2, \ldots \in \mathcal{F} \implies \bigcup_{i} A_i \in \mathcal{F}$.
+  \end{itemize}
+\end{definicija}
+
+\begin{definicija}
+  Naj bo $\Omega$ množica možnih izidov, in $\mathcal{F}$ $\sigma$-algebra nad
+  $\Omega$.
+  \pojem{Verjetnost} je preslikava $P: \mathcal{F} \to [0,1]$, za katero velja
+  $P(\Omega) = 1$, in kjer za disjunktne dogodke $A_1, A_2, \ldots \in
+  \mathcal{F}$ velja $P(\bigcup_i A_i) = \sum_i P(A_i)$.
+\end{definicija}
+
+\begin{opomba}
+  To sta \emph{aksioma Kolmogorova}.
+\end{opomba}
+
+\vprasanje{Kaj je verjetnost?}
+
+\begin{izrek}[Formula za vključitve in izključitve]
+  Naj bodo $A_1, \ldots, A_n$ dogodki.
+  Potem velja
+  \[
+    P(\bigcup_{i=1}^n A_i) = \sum_{i=1}^n P(A_i) - \sum_{1 \le i < j \le n}
+    P(A_i \presek A_j) + \ldots + (-1)^{n-1} P(\bigcap_{i=1}^n A_i).
+  \]
+\end{izrek}
+
+\begin{proof}
+  Definirajmo dogodke
+  \[
+    B_r = \{\omega \in \Omega \such \text{$\omega$ je vsebovan v natanko $r$
+      množicah $A_i$} \}.
+  \]
+  To so disjunktni dogodki, za katere velja $\bigcup_i A_i = \bigcup_r B_r$.
+  Sledi
+  \[
+    P(\bigcup_{i=1}^n A_i) = \sum_{r=1}^n P(B_r).
+  \]
+  Poglejmo si, kolikokrat smo v formuli v izreku šteli vsako izmed množic $B_r$.
+  Ta množica je vsebovana v preseku do $r$ dogodkov, torej se v prvem členu
+  pojavi $r$-krat, v drugem $\binom{r}{2}$, v tretjem $\binom{r}{3}$, itd.
+  Vsota je tedaj
+  \[
+    \binom{r}{1} - \binom{r}{2} + \binom{r}{3} - \ldots + (-1)^r \binom{r}{r} = 1,
+  \]
+  kar lahko izpeljemo iz razvoja izraza $0 = (1 - 1)^r$.
+\end{proof}
+
+\vprasanje{Povej formulo za izključitve in izključitve. Kaj je ideja dokaza?}
+
+\begin{lema}
+  Naj bodo $A_1, A_2, \ldots$ dogodki.
+  Če je $A_1 \subseteq A_2 \subseteq A_3 \subseteq \cdots$, je verjetnost unije
+  \[
+    P(\bigcup_{i=1}^\infty A_i) = \lim_{n \to \infty} P(A_n).
+  \]
+  Če namesto tega velja $A_1 \supseteq A_2 \supseteq A_3 \supseteq \cdots$, je
+  \[
+    P(\bigcap_{i=1}^\infty A_i) = \lim_{n \to \infty} P(A_n).
+  \]
+\end{lema}
+
+\begin{proof}
+  Druga formula sledi iz De Morganovih pravil, dokažemo samo prvo.
+  Zapišemo
+  \[
+    \bigcup_{i=1}^\infty A_i = A_1 \unija (A_2 \brez A_1) \unija (A_3 \brez (A_1
+    \unija A_2)) \unija \ldots
+  \]
+  To so disjunktni dogodki, torej zanje velja
+  \begin{align*}
+    P(\bigcup_{i=1}^\infty A_i) &= P(A_1) + \sum_{k=2}^\infty P(A_k \brez (A_1 \unija \ldots \unija A_{k-1})) \\
+                                &= \lim_{n \to \infty} (P(A_1) + \sum_{k=2}^n P(A_k \brez (A_1 \unija \ldots \unija A_{k-1}))) \\
+                                &= \lim_{n \to \infty} P(\bigcup_{k=1}^n A_k \brez (A_1 \unija \ldots \unija A_{k-1})) \\
+                                &= \lim_{n \to \infty} P(A_n).
+  \end{align*}
+\end{proof}
+
+\begin{lema}[Prva Borel-Cantorjeva lema]
+  Naj bodo $A_1, A_2, \ldots$ dogodki, za katere velja $\sum_i P(A_i) < \infty$.
+  Definiramo $\cl{A} = \{\omega \in \Omega \such \text{ \(\omega\) je vsebovan v
+    neskončno mnogo \(A_k\) }\}$.
+  Tedaj velja $P(\cl{A}) = 0$.
+\end{lema}
+
+\begin{proof}
+  Prepričamo se lahko, da velja $\cl{A} = \bigcap_{n=1}^\infty
+  \bigcup_{m=n}^\infty A_m$.
+  Te unije so padajoče za $n \to \infty$, zatorej po prejšnji lemi velja
+  \[
+    P(\cl{A}) = \lim_{n \to \infty} P(\bigcup_{m=n}^\infty A_m).
+  \]
+  Iz dokaza prešnje leme vidimo, da velja sklep
+  \[
+    P(\bigcup_{k=1}^n A_k) \le \sum_{k=1}^n P(A_k)
+    \implies P(\bigcup_{k=1}^\infty) \le \sum_{k=1}^\infty P(A_k).
+  \]
+  Torej velja
+  \[
+    P(\cl{A}) \le \lim_{n \to \infty} \sum_{k=n}^\infty P(A_k).
+  \]
+  Izraz na desni pa je rep konvergenčne vrste, torej je limita enaka $0$.
+\end{proof}
+
+\vprasanje{Povej in dokaži prvo Borel-Cantorjevo lemo.}
+
+\podnaslov{Pogojna verjetnost in neodvisnost}
+
+\begin{definicija}
+  Naj bo $B$ dogodek s $P(B) > 0$.
+  \pojem{Pogojna verjetnost} dogodka $A$ glede na $B$ je
+  \[
+    P(A \such B) = \frac{P(A \presek B)}{P(B)}.
+  \]
+\end{definicija}
+
+\vprasanje{Kaj je pogojna verjetnost?}

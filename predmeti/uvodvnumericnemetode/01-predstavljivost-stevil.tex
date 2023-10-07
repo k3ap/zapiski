@@ -1,0 +1,76 @@
+\naslov{Računske napake}
+
+Kadar z numerično metodo nekaj izračunamo, ne dobimo točne vrednosti, vendar nek
+približek.
+\pojem{Absolutno napako} definiramo kot razliko med približkom in točno
+vrednostjo:
+\[
+  d_a = \hat{x} - x.
+\]
+Po drugi strani je \pojem{relativna napaka} kvocient
+\[
+  d_r = \frac{\hat{x} - x}{x}.
+\]
+Približek lahko izrazimo kot $\hat{x} = x (1 + d_r)$.
+
+\vprasanje{Definiraj absolutno in relativno napako.}
+
+Števila predstavljamo s plavajočo vejico, ki je pravzaprav eksponentni zapis
+\[
+  x = \pm m \cdot b^e,
+\]
+kjer je $m$ \pojem{mantisa}, zapisana kot $m = 0.c_1c_2\ldots c_t$ za $c_i \in
+\{0, \ldots, b-1\}$, število $b$ je \pojem{baza} zapisa, $e$ pa
+\pojem{eksponent} v mejah $L \le e \le U$.
+Števila običajno zapišemo \pojem{normalizirana}, torej s $c_1 \ne 0$.
+V primeru najnižje možne potence dovoljujemo tudi \pojem{subnormalizirana}
+števila, kjer je $c_1 = 0$.
+Predstavljiva števila v takšnem zapisu označujemo s $P(b, t, L, U)$.
+
+V standardu IEEE imamo dve števili:
+\begin{itemize}
+\item Enojni zapis: $P(2, 24, -125, 128)$,
+\item Dvojni zapis: $P(2, 53, -1021, 1023)$.
+\end{itemize}
+
+\vprasanje{Kaj je $P(b, t, L, U)$? Kakšne vrednosti imata \texttt{float} in
+  \texttt{double}?}
+
+Pri zaokoževanju številu odrežemo decimalke za neko vrednostjo, in po potrebi
+prištejemo $b^{-t}$.
+Boljšega od teh približkov označimo s $\fl(x)$.
+
+\begin{izrek}
+  Če za $x$ velja, da $\abs{x}$ leži na intervalu med najmanjšim in največjim
+  pozitivnim predstavljivim normaliziranim številom, potem velja
+  \[
+    \frac{\abs{\fl(x) - x}}{\abs{x}} \le u,
+  \]
+  za \pojem{osnovno zaokrožitveno napako} $u = \pol b^{1-t}$.
+\end{izrek}
+
+\vprasanje{Kaj je osnovna zaokrožitvena napaka? Povej izrek.}
+
+Standard IEEE zagotovlja omejeno napako tudi pri osnovnih operacijah:
+\begin{itemize}
+\item $\fl(x \oplus y) = (x \oplus y) (1 + \delta)$ za $\abs{\delta} \le u$ za
+  osnovne operacije $+, -, \cdot, /$,
+\item $\fl(\sqrt{x}) = \sqrt{x} (1 + \delta)$ za $\abs{\delta} \le u$.
+\end{itemize}
+
+Drug vir napak je občutljivost problema, ki ni povezana z numeriko.
+Obravanavamo vprašanje, kako se pri majhni spremembi v vhodnih podatkih spremeni
+pravilni odgovor.
+Za zvezno odvedljivo $f$ lahko absolutno občutljivost merimo z odvodom
+\[
+  \abs{f(x+\delta x) - f(x)} \approx \abs{f'(x)} \abs{\delta x}.
+\]
+
+Poznamo tri vrste napak, ki skupaj sestavljajo celotno napako:
+\begin{itemize}
+\item Neodstranljiva napaka: napaka zaradi zaokroževanja podatkov
+\item Napaka metode: nenatančnost metode
+\item Zaokrožitvena napaka: napaka zaradi zaokroževanja znotraj metode
+\end{itemize}
+
+\vprasanje{Katere vrste napak poznamo?}
