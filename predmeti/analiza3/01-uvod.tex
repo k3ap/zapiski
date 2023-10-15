@@ -1,0 +1,72 @@
+\begin{definicija}
+  Naj bo $F: I \times \R \times \R \to \R$ zvezna funkcija in $I$ interval v
+  $\R$.
+  \pojem{Navadna diferencialna enačba prvega reda} je enačba oblike $F(x, y(x),
+  y'(x)) = 0$, kjer je $y(x)$ neka funkcija.
+  Rešitev enačbe je vsaka funkcija $y_r(x) : I \to \R$, za katero velja enačba.
+\end{definicija}
+
+\begin{opomba}
+  NDE $n$-tega reda definiramo podobno kot enačbo oblike
+  \[
+    F(x, y, y', y'', \ldots, y^{(n)}) = 0.
+  \]
+\end{opomba}
+
+\begin{opomba}
+  Smiselno je opazovati tudi enačbe, kjer je $F = (F_1, \ldots, F_m)$ vektorska
+  funkcija.
+  Temu pravimo \pojem{sistem NDE}.
+\end{opomba}
+
+\begin{opomba}
+  Naj bo $y^{(n)} = F(x, y, y', \ldots, y^{(n-1)})$ enačba reda $n$.
+  Ta enačba je ekvivalentna primernemu sistemu $n \times n$ prvega reda;
+  definirajmo $y_1 = y$, $y_2 = y'$, \ldots, $y_{n-1} = y^{n-2}$.
+  Tedaj dobimo enačbo $y_n' = F(x, y_1, \ldots, y_n)$.
+\end{opomba}
+
+\begin{definicija}
+  \pojem{Integralska krivulja} $\gamma$ vektorskega polja $F: \Omega \subseteq
+  \R^n \to \R^n$ skozi točko $x_0 \in \Omega$ je krivulja $\gamma : [0, b) \to
+  \Omega$, za katero velja
+  \begin{itemize}
+  \item v vsaki točki $t$ je $\dot{\gamma}(t) = F(\gamma(t))$,
+  \item $\gamma(0) = x_0$.
+  \end{itemize}
+\end{definicija}
+
+\vprasanje{Definiraj integralske krivulje.}
+
+Če prvi pogoj iz definicije zapišemo v koordinatah,
+\[
+  \begin{bmatrix}
+    \dot{x}_1 \\ \vdots \\ \dot{x}_n
+  \end{bmatrix} (t)
+  =
+  \begin{bmatrix}
+    F_1(x_1, \ldots, x_n) \\ \vdots \\ F_n(x_1, \ldots, x_n)
+  \end{bmatrix},
+\]
+dobimo sistem $n$ NDE prvega reda z $n$ neznankami.
+Ta sistem ni eksplicitno odvisen od $t$; takim sistemom pravimo \pojem{avtonomni
+sistemi}.
+Pokazali bomo, da za vsako izbiro $x_0$ obstajata interval $[0, a)$ in krivulja
+$\gamma$, za katero veljata pogoja v definiciji.
+
+Vsak neavtonomen sistem lahko prepišemo v avtonomnega, z uvedbo nove odvisne
+spremenljivke $v(t) = t$.
+Dobimo nov sistem
+\begin{gather*}
+  \dot{v} = 1, \\
+  \dot{x}_1 = F_1(v, x_1, \ldots, x_n), \\
+  \vdots \\
+  \dot{x}_n = F_n(v, x_1, \ldots, x_n).
+\end{gather*}
+Partikularna rešitev tega sistema je tedaj integralska krivulja vektorskega
+polja $\vec{F}(v, \vec{x})$ v \pojem{razširjenem faznem prostoru} $\R \times
+\Omega$ ($\Omega$ je običajen fazni prostor), ki ustreza primernemu začetnemu
+pogoju.
+
+\vprasanje{Kako spremenimo neavtonomni sistem v avtonomnega?}
+

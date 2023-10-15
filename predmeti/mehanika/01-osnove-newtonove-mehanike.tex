@@ -101,10 +101,10 @@ Za elemente $A_i = (t_i, \mb{P}_i) \in \affin$ naravne strukture velja
 \begin{izrek}
   Galilejeva transformacija $g: \galileo \to \galileo$ je oblike
   \[
-    g(t, \mb{P}) = (t_0' + t, \mb{P}_0' + \vec{c} t + \mb{Q}(\mb{P} -
+    g(t, \mb{P}) = (t_0' + t, \mb{P}_0' + \vec{c} t + Q(\mb{P} -
     \mb{P}_0)),
   \]
-  kjer je $\mb{Q} \in O(3)$ ortogonalna transformacija.
+  kjer je $Q \in O(3)$ ortogonalna transformacija.
 \end{izrek}
 
 \begin{proof}
@@ -122,7 +122,7 @@ Za elemente $A_i = (t_i, \mb{P}_i) \in \affin$ naravne strukture velja
     +
     \begin{bmatrix}
       \alpha & \vec{a}^T \\
-      \vec{c} & \mb{Q}
+      \vec{c} & Q
     \end{bmatrix}
     \begin{bmatrix}
       t - t_0 \\ \mb{P} - \mb{P}_0
@@ -132,7 +132,7 @@ Za elemente $A_i = (t_i, \mb{P}_i) \in \affin$ naravne strukture velja
     +
     \begin{bmatrix}
       \alpha (t - t_0) + \vec{a} \cdot (\mb{P} - \mb{P}_0) \\
-      (t - t_0).\vec{c} + \mb{Q} (\mb{P} - \mb{P}_0)
+      (t - t_0).\vec{c} + Q (\mb{P} - \mb{P}_0)
     \end{bmatrix}.
   \]
   Za dogodka $(t_1, \mb{P}_1)$ in $(t_2, \mb{P}_2)$ zahtevamo
@@ -147,10 +147,188 @@ Za elemente $A_i = (t_i, \mb{P}_i) \in \affin$ naravne strukture velja
   Drug pogoj je, da se mora razdalja med istočasnimi dogodki ohranjati.
   Iz spodnjega dela bločne matrike dobimo pogoj
   \[
-    \norm{\mb{P}_2 - \mb{P}_1} = \norm{ \mb{Q} (\mb{P}_2 - \mb{P}_1)},
+    \norm{\mb{P}_2 - \mb{P}_1} = \norm{ Q (\mb{P}_2 - \mb{P}_1)},
   \]
-  torej mora biti $\mb{Q}$ ortogonalna.
+  torej mora biti $Q$ ortogonalna.
 \end{proof}
 
 \vprasanje{Kakšno obliko imajo Galilejeve transformacije $\galileo \to
   \galileo$? Dokaži.}
+
+Če definiramo $\vec{v} = \dot{\mb{P}}$ in $\vec{a} = \dot{\vec{v}}$, lahko
+opazujemo, kako se ti količini obnašata pri Galilejevi transformaciji.
+V koordinatnem sistemu $\phi'(t', \mb{P}')$ velja $\pvec{v}' = \partial_{t'}
+\mb{P}' = \dot{\mb{P}}'$ in $\pvec{a}' = \dot{\pvec{v}}'$.
+Izpeljemo $\pvec{v}' = \vec{c} + Q \dot{\mb{P}}(t' - t_0') = \vec{c} + Q
+\dot{\mb{P}}(t)$ in $\pvec{a}' = Q \ddot{\mb{P}}(t)$.
+
+\newcommand{\umb}[1]{\underline{\mb{#1}}}
+
+Za sistem materialnih točk $\mathcal{P} = \{\mb{P}_1, \ldots, \mb{P}_n\}$ lahko
+definiramo
+\begin{gather*}
+  \umb{P} = (\mb{P}_1, \ldots, \mb{P}_n) \\
+  \umb{P}_0' = (\mb{P}_0', \ldots, \mb{P}_0') \\
+  \underline{\vec{c}} = (\vec{c}, \ldots, \vec{c}) \\
+  \umb{P}' = (\mb{P}_1', \ldots, \mb{P}_n') = \umb{P}_0' + \underline{\vec{c}} t
+  + \underline{Q} (\umb{P} - \umb{P}_0)
+\end{gather*}
+Gibanje lahko tedaj zapišemo s tremi principi.
+\begin{itemize}
+\item \emph{Princip determiniranosti}: Trajektorija sistema materialnih točk
+  $\mathcal{P}$ je v danem koordinantnem sistemu natanko določena z začetnim
+  položajem in hitrostjo.
+  To pomeni, da obstaja funkcija interakcije $\underline{\vec{f}}$, da velja
+  \[
+    \ddot{\umb{P}} = \underline{\vec{f}}(t, \umb{P}, \dot{\umb{P}}).
+  \]
+\item \emph{Princip relativnosti}: Obstaja tak razred koordinatnih sistemov, v
+  katerem je funkcija interakcije invariantna na Galilejeve transformacije.
+  Temu razredu pravimo \pojem{razred inercialnih koordinatnih sistemov}.
+  To pomeni, da je funkcija interakcije invariantna v tem razredu,
+  \[
+    \ddot{\umb{P}}' = \underline{\vec{f}}(t', \umb{P}', \dot{\umb{P}}').
+  \]
+\item \emph{Princip o sorazmernosti}: Obstajajo pozitivne konstante
+  $\alpha_{ij}$, da za vsako interakcijo med materialnimi točkami sistema
+  $\mathcal{P} = (\mb{P}_1, \ldots, \mb{P}_n)$ velja
+  \[
+    \vec{f}_i = - \sum_{j \ne i} \alpha_{ji} \vec{f}_{j}.
+  \]
+  Te konstante so enake za vse možne interakcije v sistemu.
+\end{itemize}
+
+\vprasanje{Kateri so principi gibanja?}
+
+Z ozirom na princip relativnosti izpeljemo $\underline{Q} \ddot{\umb{P}} =
+\underline{Q} \underline{\vec{f}}(t, \umb{P}, \dot{\umb{P}})$.
+Če v to enakost vstavimo vrednosti $t' = t_0' + t$, $\vec{c} = \vec{0}$, $Q = I$
+ter $\mb{P}_0' = \mb{P}_0$, dobimo $\underline{\vec{f}}(t_0' + t, \umb{P},
+\dot{\umb{P}}) = \underline{\vec{f}}(t, \umb{P}, \umb{P}_0)$, kar mora veljati
+za vsak $t_0'$.
+Sledi, da funkcija $\vec{f}$ ne mora biti eksplicitno odvisna od časa.
+Tej ugotovitvi pravimo \pojem{homogenost časa}.
+
+Če sedaj vstavimo $\vec{c} = \vec{0}$, $Q = I$ in $\mb{P}_0' = \mb{P}_0 +
+\vec{a}$, kjer je $\vec{a}$ poljuben vektor (in ne pospešek), izpeljemo
+$\mb{P}' = \mb{P} + \vec{a}$, in sledi $\underline{\vec{f}}(\umb{P} +
+\underline{\vec{a}}, \dot{\umb{P}}) = \underline{\vec{f}}(\umb{P},
+\dot{\umb{P}})$, torej $\vec{f}$ ne more biti odvisna od absolutnih položajev.
+Seveda je še vedno lahko odvisna od relativnih položajev (v tem primeru se
+$\vec{a}$ odšeteje).
+Tej lastnosti pravimo \pojem{homogenost prostora}.
+
+S poljubno izbiro vektorja $\vec{c}$ in $Q = I$ lahko podobno izpeljemo, da je
+$\underline{\vec{f}}$ lahko odvisna le od relativnih hitrosti, čemur pravimo
+\pojem{homogenost prostora hitrosti}.
+
+Če nenazadnje relaksiramo še pogoj na $Q$, dobimo
+\[
+  \underline{\vec{f}}(Q(\mb{P}_i - \mb{P}_j), Q(\dot{\mb{P}}_i, \dot{\mb{P}}_j))
+  = \underline{Q} \underline{\vec{f}}(\mb{P}_i - \mb{P}_j, \dot{\mb{P}}_i -
+  \dot{\mb{P}}_j).
+\]
+Funkcijam, ki zadoščajo ta pogoj, pravimo \pojem{izotropične funkcije}.
+
+V posebnem primeru za $n = 1$ je $\vec{f}$ konstantna funkcija (ker ne more biti
+odvisna od ničesar).
+Ker za vsak $Q \in O(3)$ velja $\vec{f} = Q \vec{f}$, mora biti $\vec{f} =
+\vec{0}$.
+Torej se prosta materialna točka v inercialnem koordinantem sistemu premika
+premočrtno s konstantno hitrostjo.
+To je ena od implikacij v prvem Newtonovem zakonu.
+
+\vprasanje{Izpelji homogenost časa in faznega prostora iz principov gibanja.}
+
+\begin{definicija}
+  Interakcija $\vec{f}$ je \pojem{parska}, če lahko zapišemo
+  \[
+    \vec{f}_i = \sum_{j \ne i} \vec{f}_{ji}(\mb{P}_i - \mb{P}_i, \dot{\mb{P}}_j
+    - \dot{\mb{P}}_i)
+  \]
+  za vse indekse $i$.
+\end{definicija}
+
+\begin{definicija}
+  Interakcija $\vec{f}$ je \pojem{lokalna}, če je parska in če velja
+  \[
+    \lim_{\mb{P}_i - \mb{P}_j \to \infty} \vec{f}_{ji} = \vec{0}.
+  \]
+\end{definicija}
+
+\vprasanje{Definiraj parske in lokalne interakcije.}
+
+\begin{lema}
+  Za števila $\alpha_{ij}$ iz principa sorazmernosti velja
+  \begin{itemize}
+  \item $\alpha_{ij} \alpha_{ji} = 1$,
+  \item $\alpha_{ij} \alpha_{jk} \alpha_{kj} = 1$.
+  \end{itemize}
+\end{lema}
+
+\begin{proof}
+  Prva točka:
+  Izberemo si take interakcije $\vec{f}_k$, ki so parske in lokalne in ki so
+  neodvisne od relativnih hitrosti.
+  Vse točke razen $i$ in $j$ pošljemo v neskončnost, da je njihov vpliv ničeln.
+  Tedaj velja $\vec{f}_i = - \alpha_{ji} \vec{f}_j$ in $\vec{f}_j = -\alpha_{ij}
+  \vec{f}_i$, torej $\vec{f}_i = \alpha_{ij} \alpha_{ji} \vec{f}_i$.
+
+  Druga točka:
+  Izberemo si indekse $i, j, k$ in podobno kot prej pošljemo druge točke v
+  neskončnost.
+  Ob predpostavki parske in lokalne interakcije tako dobimo
+  \begin{gather*}
+    \vec{f}_i = - \alpha_{ji} \vec{f}_j - \alpha_{ki} \vec{f}_k, \\
+    \vec{f}_j = - \alpha_{ij} \vec{f}_i - \alpha_{kj} \vec{f}_k.
+  \end{gather*}
+  Če vstavimo drugo enačbo v prvo,
+  \[
+    \vec{f}_i = \alpha_{ji} \alpha_{ij} \vec{f}_i + \alpha_{ji} \alpha_{kj}
+    \vec{f}_k - \alpha_{ki} \vec{f}_k,
+  \]
+  nam člen na levi in prvi člen na desni po prvi točki odpadeta.
+  Dobljeno enačbo še pomnožimo z $\alpha_{ik}$ in nam ostane
+  \[
+    \vec{f}_k = \alpha_{ji} \alpha_{kj} \alpha_{ik} \vec{f}_k.
+  \]
+\end{proof}
+
+\begin{lema}
+  Naj za pozitivna števila $\alpha_{ij}$ velja ugotovitev prejšnje leme.
+  Potem obstajajo števila $m_i$, da je $\alpha_{ji} = \nicefrac{m_j}{m_i}$.
+\end{lema}
+
+\begin{proof}
+  Števila $\alpha_{ij}$ so definirana le za $i \ne j$.
+  Definicijo lahko razširimo, da je $\alpha_{ii} = 1$.
+  Definiramo $l_{ij} = \log \alpha_{ij}$.
+  Velja $l_{ii} = 0$ in $L_{ij} = - l_{ji}$, poleg tega pa tudi $l_{ij} + l_{jk}
+  + l_{ki} = 0$.
+
+  Izberemo si indeks $i_0$, ki nam bo definiral enoto mase.
+  Velja $l_{i_0 j} + l_{jk} + l_{k i_0} = 0$, kar odštejemo od prejšnje vsote
+  treh členov in dobimo
+  \[
+    l_{ij} - l_{i_0 j} + l_{ki} - l_{k i_0} = 0.
+  \]
+  Od tu izpeljemo, da za poljubna $j$ in $k$ velja
+  \[
+    l_{ij} - l_{i_0 j} = l_{ik} - l_{i_0 k},
+  \]
+  torej je $n_{i i_0} = l_{ij} - l_{i_0 j}$ dobro definirana količina.
+  Opazimo, da za $i = j$ velja $n_{i i_0} = l_{i i_0}$.
+
+  Definiramo $m_i = \exp n_{i i_0}$.
+  Sledi
+  \[
+    \log \alpha_{ij} = l_{ij} = l_{i_0 j} + n_{i i_0} = - l_{ji} + n_{i i_0} =
+    -n_{j i_0} + n_{i i_0} = \log m_i - \log m_j = \log \frac{m_i}{m_j}.
+  \]
+\end{proof}
+
+\begin{opomba}
+  Številom $m_i$ pravimo \pojem{inercijske mase}.
+\end{opomba}
+
+\vprasanje{Kaj so inercijske mase? Dokaži, da res obstajajo.}

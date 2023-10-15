@@ -129,3 +129,113 @@
 \end{definicija}
 
 \vprasanje{Kaj je pogojna verjetnost?}
+
+\begin{primer}[Bertrandov paradoks]
+  Imamo tri škatle.
+  V prvi sta dva zlatnika, v drugi zlatnik in srebrnik, in v zadnji dva
+  srebrnika.
+  Izberemo eno škatlo tako, da ima vsaka verjetnost $\nicefrac{1}{3}$.
+  Iz izbrane škatle tedaj naključno izberemo kovanec.
+  Definiramo dogodka $A$, drugi kovanec v škatli je zlatnik, in $B$, izbrani
+  kovanec je zlatnik.
+  Z izpisom izidov izračunamo $P(A \such B) = \nicefrac{2}{3}$.
+\end{primer}
+
+\begin{definicija}
+  Družina dogodkov $\{H_1, \ldots, H_n, \ldots\}$ je \pojem{particija} $\Omega$,
+  če je njihova unija enaka $\Omega$ in če so paroma disjunktni.
+\end{definicija}
+
+\begin{vo}{Kaj je družina dogodkov? Izpelji formulo za popolno verjetnost.}
+  Za definicijo glej zgoraj.
+  Naj bo $A$ dogodek.
+  Računamo
+  \begin{align*}
+    P(A) &= P(A \presek \Omega) \\
+         &= P(A \presek \bigcup_i H_i) \\
+         &= P(\bigcup_i A \presek H_i) \\
+         &= \sum_i P(A \presek H_i) \\
+         &= \sum_i \frac{P(A \presek H_i)}{P(H_i)} P(H_i) \\
+         &= \sum_i P(A \such H_i) P(H_i).
+  \end{align*}
+  Če je $P(H_i) = 0$, lahko člen izpustimo.
+\end{vo}
+
+\podnaslov{Neodvisnost dogodkov}
+
+\begin{definicija}
+  Dogodki $\{A_i\}_{i \in I}$ so \pojem{neodvisni}, če za vsako končno
+  poddružino $A_1, A_2, \ldots, A_n$ velja
+  \[
+    P(A_1 \presek \ldots \presek A_n) = P(A_1) \ldots P(A_n).
+  \]
+\end{definicija}
+
+\vprasanje{Kdaj so dogodki neodvisni?}
+
+\begin{definicija}
+  Družina dogodkov $\mathcal{P} = \{A_1, \ldots, A_n\}$ je \pojem{$\pi$-sistem},
+  če za vsaka $A_i, A_j \in \mathcal{P}$ velja $A_i \presek A_j \in
+  \mathcal{P}$.
+\end{definicija}
+
+\begin{opomba}
+  Če $\pi$-sistemu dodamo $\varnothing$ in $\Omega$, spet dobimo $\pi$-sistem.
+\end{opomba}
+
+\begin{izrek}
+  Če je $\mathcal{P} = \{B_1, \ldots, B_n\}$ $\pi$-sistem in je $A$ neodvisen od
+  vseh $B_k$, je $A$ neodvisen od vseh dogodkov, ki jih lahko sestavimo iz
+  dogodkov v $\mathcal{P}$ s komplementiranjem, preseki in unijami.
+\end{izrek}
+
+\begin{proof}
+  S preprostim izračunom lahko pokažemo, da če je $A$ neodvisen od dogodkov
+  $C_1, \ldots, C_m$, ki so vsi disjunktni od $A$, je $A$ neodvisen tudi od
+  njihove unije.
+  Poleg tega opazimo, da so vsi dogodki, ki jih sestavimo v izreku, končne unije
+  dogodkov $B_1^* \presek \ldots \presek B_m^*$, kjer je $B_i^*$ bodisi enak
+  $B_i$ bodisi $B_i\complement$.
+
+  V luči teh ugotovitev je dovolj dokazati, da je $A$ neodvisen od vsakega
+  dogodka $B_1^* \presek \ldots \presek B_m^*$.
+  Če izberemo vse dogodke, kjer ni komplementa, je presek v $\mathcal{P}$, zato
+  jih lahko nadomestimo z enim samim.
+  Brez škode za splošnost se torej omejimo na dogodke oblike $B_1\complement
+  \presek \ldots \presek B_m\complement \presek B_{m+1}$.
+  Velja
+  \[
+    P\!\left(A \presek \left( \bigcup_i B_i \right)\complement \presek B_{m+1}\right)
+    = P(A \presek B_{m+1}) - P\!\left(\left( \bigcup_i B_i \right) \presek A \presek
+    B_{m+1}\right),
+  \]
+  kjer smo uporabili pomožni sklep $P(A \presek B\complement) = P(A) - P(A
+  \presek B)$, ki ga izpeljemo iz dejstva $P(A) = P(A \presek B) + P(A \presek
+  B\complement)$.
+  Zgornji izraz je nadalje enak
+  \[
+    P(A) P(B_{m+1}) - P\!\left( \bigcup_i A \presek B_i \presek B_{m+1} \right),
+  \]
+  ker sta $A$ in $B_{m+1}$ neodvisna.
+  Drugi člen razvijemo po formuli za vključitve in izključitve in dobimo
+  \[
+    P(A) P(B_{m+1}) - \sum_i P(A \presek B_i \presek B_{m+1}) + \sum_{i,j} P(A
+    \presek B_i \presek B_j \presek B_{m+1}) - \ldots + (-1)^m P(A \presek B_1
+    \presek \ldots \presek B_{m+1}).
+  \]
+  V vseh členih dobimo presek $A$ z dogodkom v $\mathcal{P}$, torej lahko
+  izpostavimo $P(A)$;
+  \[
+    P(A) \left( P(B_{m+1}) - \sum_i P(B_i \presek B_{m+1}) + \ldots \right).
+  \]
+  V drugem členu produkta smo dobili razvoj dogodka po formuli za vključitve in
+  izključitve, ki ga lahko skrčimo v
+  \[
+    P(A) \left( P(B_{m+1}) - P\!\left( \bigcup_i B_i \presek B_{m+1} \right) \right).
+  \]
+  Nazadnje še uporabimo zgornji sklep v drugo smer in dobimo
+  \[
+    P(A) P\!\left( B_{m+1} \left( \bigcup_i B_i \right)\complement \right),
+  \]
+  kar zaključi dokaz.
+\end{proof}
