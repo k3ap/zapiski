@@ -1,0 +1,52 @@
+\naslov{Nelinearne enačbe}
+
+Iščemo rešitve enačbe $f(x) = 0$ za nek $f : \R \to \R$.
+Pri tem lahko pridemo do več različnih situacij glede obstoja in enoličnosti
+rešitve; možnost je, da rešitev obstaja in je ena sama, da je rešitev več, ampak
+končno mnogo, da jih je neskončno mnogo, ali pa da rešitve sploh ni.
+
+Naj bo $\alpha$ ničla za zvezno odvedljivo $f$.
+Ničla je enostavna natanko tedaj, ko je $f'(\alpha) \ne 0$.
+Če ni enostavna, je $m$-kratna natanko tedaj, ko je prvi neničelni odvod v
+$\alpha$ reda $m$.
+V primeru enostavne ničle lokalno obstaja inverzna funkcija, da je $\alpha =
+f^{-1}(0)$.
+Absolutna občutljivost problema je tedaj enaka $\abs{(f^{-1})'(0)} =
+\inv{\abs{f'(\alpha)}}$.
+Če je $\alpha$ dvojna ničla, uporabimo Taylorjev približek druge stopnje
+\[
+  f(x) \approx
+  \underbrace{f(\alpha)}_{=0} + \underbrace{f'(\alpha)}_{=0} (x-\alpha) +
+  \inv{2} f''(\alpha) {(x-\alpha)}^2,
+\]
+torej za $\abs{f(x)} \le \varepsilon$ velja
+\[
+  \abs{x - \alpha} \le \sqrt{ \frac{2 \varepsilon}{\abs{f''(\alpha)}} }.
+\]
+Višje kot so ničle, bolj občutljiv je problem iskanja.
+Za večkratno ničlo v splošnem velja
+\[
+  \abs{x - \alpha} \le {\left( \frac{m! \varepsilon}{\abs{f^{(m)}(\alpha)}}
+	\right)}^{1/m}
+\]
+
+\vprasanje{Analiziraj problem iskanja ničel.}
+
+\podnaslov{Bisekcija}
+
+Pri implementaciji bisekcije si hranimo zaporedja ${(a_n)}_n$ levih mej,
+${(b_n)}_n$ desnih mej, ${(c_n)}_n$ sredinskih približkov, in ${(e_n)}_n$
+polovičnih velikosti intervala.
+Nove člene izračunamo po predpisih
+\begin{gather*}
+  e_{n+1} = e_n / 2, \\
+  a_n = a_{n-1}\ \text{ali}\ c_{n-1}, \\
+  b_n = b_{n-1}\ \text{ali}\ c_{n-1}, \\
+  c_n = a_n + e_n. \\
+\end{gather*}
+Pri tem zmanjšamo število računskih operacij, se izognemo problemom glede možnih
+nepredvidenih zaokrožitev, skokov izven območja ali računskih napak.
+Bisekcija nam lahko poišče liho ničlo, ne pa sode, prav tako lahko poišče lih
+pol (ne pa sodega).
+
+\vprasanje{Opiši delovanje bisekcije.}
