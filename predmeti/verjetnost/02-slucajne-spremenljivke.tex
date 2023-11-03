@@ -1,0 +1,207 @@
+\naslov{Slučajne spremenljivke in porazdelitve}
+
+\begin{definicija}
+  \pojem{Slučajna spremenljivka} $X$ je funkcija $\Omega \to \R$, da je za $a <
+  b$ množica $X^{-1}((a, b])$ dogodek v $\sigma$-algebri dogodkov $\mathcal{F}$.
+\end{definicija}
+
+\begin{opomba}
+  Ekvivalentno definicijo dobimo, če namesto polodprtih intervalov vzamemo
+  odprte ali zaprte.
+  Izbiro je predpisal ISO standard.
+\end{opomba}
+
+\begin{opomba}
+  Funkcija sama po sebi je popolnoma deterministična, naključna je izbira
+  argumenta.
+\end{opomba}
+
+\begin{definicija}
+  Slučajna spremenljivka je \pojem{diskretna}, če je njena zaloga vrednosti
+  števna ali končna množica.
+\end{definicija}
+
+\begin{definicija}
+  \pojem{Porazdelitev} diskretne slučajne spremenljivke $X$ z vrednostmi
+  $(x_i)_i$ je dana z verjetnostmi $P(X^{-1}(x_i))$.
+\end{definicija}
+
+\vprasanje{Definiraj slučajne spremenljivke. Kdaj je slučajna spremenljivka
+  diskretna? Kaj je porazdelitev?}
+
+Obstaja nekaj standardnih diskretnih porazdelitev.
+
+\begin{primer}[Hipergeometrijska porazdelitev]
+  Imamo posodo z $B$ belimi in $R$ rdečimi kroglicami.
+  Označimo $N = B+R$ in naključno izberemo $n \le N$ kroglic tako, da so vse
+  podmnožice enako verjetne.
+  Če z $X$ označimo število izbranih belih kroglic, dobimo slučajno
+  spremenljivko.
+  Za $\max\{0, n-R\} \le k \le \min\{n, B\}$ je
+  \[
+	P(X = k) = \frac{\binom{B}{k} \binom{R}{n-k}}{\binom{N}{k}}.
+  \]
+  Na kratko označimo $X \sim \operatorname{HiperGeom}(n, B, N)$.
+\end{primer}
+
+\vprasanje{Opiši hipergeometrijsko porazdelitev.}
+
+\begin{primer}[Binomska porazdelitev]
+  Kovanec z maso $m$ vržemo $n$-krat zaporedoma, pri čemer so vsi meti
+  medsebojno neodvisni, verjetnost grba pa je $p \in (0,1)$.
+  Naj bo $X$ število grbov v teh $n$ metih.
+  Tedaj za $k = 0, \ldots, n$ velja
+  \[
+	P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}.
+  \]
+  Označimo $X \sim \operatorname{Bin}(n, p)$.
+\end{primer}
+
+\vprasanje{Opiši binomsko porazdelitev.}
+
+\begin{primer}[Geometrijska porazdelitev]
+  Naj bo $X$ število metov kovanca, potrebnih, da pade prvi grb.
+  Pri tem so meti neodvisni, kovanec pade na grb z verjetnostjo $p$.
+  Možne vrednosti za $X$ so vsi $k \in \N$, velja
+  \[
+	P(X = k) = (1-p)^{k-1} p.
+  \]
+  Na kratko označimo $X \sim \operatorname{Geom}(p)$.
+\end{primer}
+
+\vprasanje{Opiši geometrijsko porazdelitev.}
+
+\begin{primer}[Negativna binomska porazdelitev]
+  Mečemo kovanec in čakamo na $m$ grbov; naj bo $X$ število potrebnih metov.
+  Možne vrednosti $X$ so tedaj $k = m, m+1, \ldots$, pri čemer velja
+  \[
+	P(X=k) = \binom{k-1}{m-1} p^m (1-p)^{k-m}.
+  \]
+  Oznaka je $X \sim \operatorname{NegBin}(m, p)$.
+\end{primer}
+
+\vprasanje{Opiši negativno binomsko porazdelitev.}
+
+\begin{definicija}
+  \pojem{Pochhammerjev simbol} $(a)_n$ je definiran kot
+  \[
+	(a)_n = a (a+1) \ldots (a+n-1).
+  \]
+\end{definicija}
+
+\begin{opomba}
+  Izračunamo ga lahko tudi kot
+  \[
+	(a)_n = \frac{\Gamma(a+n)}{\Gamma(a)}.
+  \]
+\end{opomba}
+
+\begin{primer}[Poissonova porazdelitev]
+  Oglejmo si dogajanje binomske porazdelitve, ko velja $np = \lambda$ konstanta,
+  in ko $n \to \infty$.
+  Tedaj
+  \[
+	\lim_{n \to \infty} \binom{n}{k} \left( \frac{\lambda}{n} \right)^k
+	\left( 1 - \frac{\lambda}{n} \right)^{n-k}
+	= \lim_{n \to \infty} \frac{\lambda^k}{k!} \frac{n(n-1) \ldots (n-k+1)}{n^k}
+	\left( 1 - \frac{\lambda}{n} \right)^n \left( 1 - \frac{\lambda}{n}
+	\right)^{-k}
+	= \frac{\lambda^k}{k!} e^{-\lambda}.
+  \]
+  Če je za $k = 0, 1, \ldots$ verjetnost
+  \[
+	P(X = k) = e^{-\lambda} \frac{\lambda^k}{k!},
+  \]
+  pravimo, da ima $X$ Poissonovo porazdelitev, in označimo $X \sim
+  \operatorname{Po}(\lambda)$.
+\end{primer}
+
+\vprasanje{Opiši Poissonovo porazdelitev.}
+
+\begin{definicija}
+  Porazdelitev zvezne slučajne spremenljivke je podana z verjetnostmi
+  $P(X \in (a, b])$ za $a < b$.
+\end{definicija}
+
+\begin{opomba}
+  Pogosto želimo izračunati $P(X \in A)$, kjer $A \subseteq \R$ ni interval.
+  V tem primeru lahko verjetnost izračunamo, če je $A$ sestavljena iz števnih
+  unij, števnih presekov in komplementov polodprtih intervalov.
+  Taki družini pravimo \pojem{Borelove množice}, in jo označimo z $B(\R)$.
+  Tehnično so to najmanjša $\sigma$-algebra na $\R$, ki vsebuje vse polodprte
+  intervale.
+\end{opomba}
+
+\begin{definicija}
+  Slučajna spremenljivka $X$ ima \pojem{zvezno porazdelitev}, če obstaja
+  nenegativna funkcija $f_X : \R \to [0, \infty)$, da je
+  \[
+	P(X \in (a,b]) = \int_a^b f_X(x) dx.
+  \]
+  Funkciji $f_X$ pravimo \pojem{gostota porazdelitve}.
+\end{definicija}
+
+\vprasanje{Definiraj zvezno porazdelitev in gostoto porazdelitve.}
+
+\begin{primer}[Normalna porazdelitev]
+  Pravimo, da ima $X$ normalno porazdelitev s parametroma $\mu$ in $\sigma^2$,
+  če je gostota enaka
+  \[
+	f_X(x) = \inv{\sqrt{2\pi} \sigma} \exp{-\frac{(x-\mu)^2}{2 \sigma^2}}.
+  \]
+  Pri tem je $\sigma$ razdalja od $\mu$ do prevoja, $\mu$ pa središče
+  porazdelitve.
+\end{primer}
+
+\vprasanje{Opiši normalno porazdelitev.}
+
+\begin{primer}[Eksponentna porazdelitev]
+  Pravimo, da ima $X$ eksponentno porazdelitev s parametrom $\lambda$, če velja
+  \[
+	f_X(x) =
+	\begin{cases}
+	  \lambda e^{-\lambda x} & x \ge 0, \\
+	  0 & x < 0.
+	\end{cases}
+  \]
+  Označimo z $X \sim \operatorname{exp}(\lambda)$.
+\end{primer}
+
+\begin{primer}[Gama porazdelitev]
+  Slučajna spremenljivka $X$ ima gama porazdelitev s parametroma $a, \lambda >
+  0$, če je gostota enaka
+  \[
+	f_X(x) =
+	\begin{cases}
+	  \frac{\lambda^a}{\gamma(a)} x^{a-1} e^{-\lambda x} & x \ge 0, \\
+	  0 & x < 0.
+	\end{cases}
+  \]
+  Oznaka: $X \sim \Gamma(a, \lambda)$.
+\end{primer}
+
+\begin{primer}[Enakomerna porazdelitev]
+  Predvidljivo je
+  \[
+	f_X(x) =
+	\begin{cases}
+	  \inv{b-a} & a \le x \le b, \\
+	  0 & \text{sicer.}
+	\end{cases}
+  \]
+  Oznaka: $X \sim \operatorname{U}(a,b)$.
+\end{primer}
+
+\begin{primer}[Beta porazdelitev]
+  Spremenljivka $X$ ima beta porazdelitev, če je
+  \[
+	f_X(x) =
+	\begin{cases}
+	  \inv{B(a, b)} x^{a-1} (1-x)^{b-1} & 0 < x < 1, \\
+	  0 & \text{sicer.}
+	\end{cases}
+  \]
+  Oznaka: $X \sim \operatorname{Beta}(a, b)$.
+\end{primer}
+
+\vprasanje{Opiši eksponentno, gama, enakomerno in beta porazdelitev.}

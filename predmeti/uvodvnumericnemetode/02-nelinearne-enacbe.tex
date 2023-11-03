@@ -50,3 +50,131 @@ Bisekcija nam lahko poišče liho ničlo, ne pa sode, prav tako lahko poišče l
 pol (ne pa sodega).
 
 \vprasanje{Opiši delovanje bisekcije.}
+
+\podnaslov{Navadna iteracija}
+
+Pri navadni iteraciji iskanje rešitve enačbe $f(x) = 0$ prevedemo na iskanje
+rešitve enačbe $x = g(x)$ za ustrezno izbrano funkcijo $g$.
+Splošna primerna izbira je recimo $g(x) = x - f(x)$, ali pa $g(x) = x - h(x)
+f(x)$ za neničelno funkcijo $h$.
+Da postopek $x_{r+1} = g(x_r)$ konvergira, mora biti $g$ v okolici $\alpha$
+skrčitev.
+
+\begin{izrek}
+  Naj bo $\alpha = g(\alpha)$ in naj $g$ na intervalu $I = [\alpha - \delta,
+  \alpha + \delta]$ za nek $\delta > 0$ zadošča Lipschitzovem pogoju $\abs{g(x)
+	- g(y)} \le m \abs{x - y}$ za nek $m \in [0, 1)$, in poljubna $x, y \in I$.
+  Potem za vsak $x_0 \in I$ zaporedje $x_{r+1} = g(x_r)$ konvergira k $\alpha$,
+  in velja
+  \begin{itemize}
+  \item $\abs{x_r - \alpha} \le m^r \abs{x_0 - \alpha}$,
+  \item $\abs{x_{r+1} - \alpha} \le \frac{m}{1-m} \abs{x_{r+1} - x_r}$.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Dokažimo prvo, da zaporedje ne zapusti intervala $I$;
+  če velja $x_r \in I$, je $\abs{x_r - \alpha} \le \delta$, torej
+  \[
+	\abs{x_{r+1} - \alpha} = \abs{g(x_r) - g(\alpha)}
+	\le m \abs{x_r - \alpha} < \abs{x_r - \alpha}
+	\le \delta,
+  \]
+  torej je tudi $x_{r+1} \in I$.
+  S ponavljanjem tega postopka tudi dokažemo prvo točko, za drugo točko pa
+  ocenimo
+  \[
+	\abs{x_{r+1} - \alpha}
+	= \abs{x_{r+1} - x_{r+2} + x_{r+2} - x_{r+3} + x_{r+3} - \ldots - \alpha}
+	\le \abs{x_{r+1} - x_{r+2}} + \abs{x_{r+2} - x_{r+3}} + \ldots
+	\le (m + m^2 + m^3 + \ldots) \abs{x_{r+1} - x_r}
+	= \frac{m}{1-m} \abs{x_{r+1} - x_r}.
+  \]
+\end{proof}
+
+\begin{posledica}
+  Če je $\alpha = g(\alpha)$, če je $g$ zvezno odvedljiva in če velja
+  $\abs{g'(\alpha)} < 1$, potem obstaja nek $\delta > 0$, da za vsak $x_0$,
+  $\abs{x_0 - \alpha} < \delta$, zaporedje $x_{r+1} = g(x_r)$ konvergira k
+  $\alpha$.
+\end{posledica}
+
+\vprasanje{Povej in dokaži izrek o navadni iteraciji.}
+
+\begin{definicija}
+  Naj bo $\lim x_r = \alpha$.
+  Pravimo, da ${(x_r)}_r$ \pojem{konvergira k $\alpha$ z redom $p$}, če velja
+  \[
+	\lim_{r \to \infty} \frac{\abs{x_{r+1} - \alpha}}{\abs{x_r - \alpha}^p} = C
+  \]
+  za neko konstanto $C > 0$.
+\end{definicija}
+
+\begin{izrek}
+  Naj bo $\alpha = g(\alpha)$ za $p$-krat zvezno odvedljivo funkcijo $g$ in naj
+  velja $g'(\alpha) = \ldots = g^{(p-1)}(\alpha) = 0$ ter $g^{(p)}(\alpha) \ne
+  0$.
+  Tedaj v bližini $\alpha$ zaporedje $x_{r+1} = g(x_r)$ konvergira k $\alpha$ z
+  redom $p$.
+\end{izrek}
+
+\begin{proof}
+  Izraz $x_{r+1} = g(x_r)$ v okolici $\alpha$ razvijemo v Taylorjevo vrsto:
+  \[
+	x_{r+1} = g(\alpha) + g'(\alpha) (x_r - \alpha) + \ldots +
+	\frac{g^{(p-1)}(\alpha)}{(p-1)!}(x_r - \alpha)^{p-1}
+	+ \frac{g^{(p)}(\xi)}{p!} (x_r - \alpha)^p
+  \]
+  za nek $\xi$ v bližini $\alpha$.
+  Sledi
+  \[
+	\frac{x_{r+1}-\alpha}{(x_r - \alpha)^p} = \frac{g^{(p)}(\xi)}{p!}.
+  \]
+\end{proof}
+
+\vprasanje{Kaj je red konvergence zaporedja? Kako ga poiščeš z odvodom?}
+
+Če vzamemo $\alpha = x_r + \Delta x_r$, in razvijemo dva člena Taylorjeve vrste
+\[
+  0 = f(x_r + \Delta x_r) = f(x_r) + f'(x_r) \Delta x_r + \pol f''(\xi_r) \Delta x_r^2,
+\]
+ter nato zanemarimo zadnji člen, dobimo
+\[
+  \Delta x_r = \frac{- f(x_r)}{f'(x_r)},
+\]
+s čimer smo izpeljali tangentno metodo, ki je pravzaprav poseben primer naravne
+iteracije.
+Če je $\alpha$ enostavna ničla, lahko izračunamo, da ima $g(x) = x - f(x) /
+f'(x)$ ničelni odvod v $\alpha$ (ob predpostavki $f \in \zvodvi{2}$), in je
+torej konvergenca vsaj kvadratična.
+V primeru $m$-kratne ničle za $m \ge 2$ pa po dolgopisni izpeljavi dobimo, da je
+konvergenca zagotovljena, a linearna.
+Za dvakrat zvezno odvedljive funkcije je vsaka ničla $f$ torej privlačna negibna
+točka.
+
+\vprasanje{Izpelji tangentno metodo in pokaži, kakšen red konvergence ima.}
+
+\begin{izrek}
+  Naj bo $f$ na $I = [0, \infty)$ dvakrat zvezno odvedljiva, strogo naraščajoča,
+  konveksna in naj ima na $I$ ničlo $\alpha$.
+  Potem za vsak $x_0 \in I$ tangenta metoda konvergira k $\alpha$.
+\end{izrek}
+
+\begin{proof}
+  Velja $f'(x) > 0$ in $f''(x) > 0$.
+  Z oceno
+  \[
+	x_1 - \alpha = \frac{f''(\xi)}{2f'(x_0)} (x_0 - \alpha)^2 \ge 0
+  \]
+  pokažemo, da je ne glede na $x_0$ točka $x_1$ vedno desno od $\alpha$.
+  Dokažimo še, da je $x_{r+1}$ nujno med $\alpha$ in $x_r$:
+  \[
+	x_{r+1} = x_r - \frac{f(x_r)}{f'(x_r)} < x_r,
+  \]
+  vedno pa velja $x_r > \alpha$.
+  To je torej strogo padajoče omejeno zaporedje, ki mora nekam konvergirati; to
+  bo seveda $\alpha$.
+\end{proof}
+
+\vprasanje{Za kakšne funkcije lahko globalno zagotoviš konvergenco tangentne
+  metode? Dokaži.}
