@@ -1,0 +1,132 @@
+\naslov{Linearna NDE prvega reda}
+
+\pojem{Linearna NDE prvega reda} je enačba oblike
+\[
+  y' = f(x) y + g(x),
+\]
+kjer sta $f(x)$ in $g(x)$ znani funkciji.
+Ta enačba je \pojem{nehomogena} z \pojem{nehomogenostjo} $g(x)$.
+Njena \pojem{homogenizacija} je enačba
+\[
+  y' = f(x) y.
+\]
+Predpostavimo, da je $y(x) \in \zvodv{1}{[a, b]}$.
+Oglejmo si operator $A : \zvodv{1}{[a, b]} \to \zvezne{[a, b]}$,
+definiran kot
+\[
+  A y(x) = y'(x) - f(x) y.
+\]
+
+\begin{trditev}
+  Preslikava $A$ je linearen operator.
+\end{trditev}
+Dokaz je trivialen, in zato izpuščen.
+Vidimo, da je $y$ rešitev homogene enačbe natanko tedaj, ko je $A(y) = 0$.
+Rešitev homogene enačbe je torej jedro preslikave $A$.
+Homogena enačba je enačba z ločljivimi spremenljivkami, torej jo znamo rešiti.
+Rešitve so oblike
+\[
+  y(x) = C \exp\left( \int_a^x f(\xi) d\xi \right)
+\]
+za $C \in \R$.
+Množico teh rešitev označimo z $R_h$.
+
+\begin{trditev}
+  Naj bosta $y_1, y_2$ rešitvi nehomogene enačbe.
+  Tedaj je $y(x) = y_1(x) - y_2(x)$ rešitev homogene enačbe.
+\end{trditev}
+
+\begin{proof}
+  Izračun odvoda nam da
+  \[
+	(y_1(x) - y_2(x))' = f(x) y_1(x) + g(x) - (f(x) y_2(x) + g(x)) = f(x)
+	(y_1(x) - y_2(x)).
+  \]
+\end{proof}
+
+\begin{definicija}
+  Naj bo $V$ nek vektorski prostor in $W \subseteq V$.
+  Če obstaja tak vektorski podprostor $H \subseteq V$, da za poljubna $w_1, w_2
+  \in W$ velja $w_1 - w_2 \in H$, je $W$ \pojem{afin podprostor} v $V$,
+  modeliran z vektorskim podprostorom $H$.
+\end{definicija}
+
+Rešitve nehomogene enačbe so torej afin prostor, modeliran s prostorom $R_h$
+rešitev homogene enačbe.
+Če želimo poiskati splošno rešitev, poiščemo rešitev homogenega sistema, in neko
+partikularno rešitev.
+Partikularno rešitev dobimo z nastavkom
+\[
+  y_p(x) = C(x) \exp\left( \int_a^x f(\xi) d\xi \right),
+\]
+temu postopku pravimo \pojem{variacija konstante}.
+
+\vprasanje{Kako rešiš linearno NDE prvega reda? Utemelji postopek.}
+
+S tem znanjem lahko rešimo še dve posebni NDE.
+Prva je Bernoulijeva enačba
+\[
+  p(x) y' + q(x) y = r(x) y^\alpha(x)
+\]
+za $\alpha \in \R$.
+V primeru $\alpha = 0$ ali $\alpha = 1$, je to nehomogena linearna enačba prvega
+reda.
+Sicer vpeljemo $z(x) = (y(x))^{1-\alpha}$ in računamo
+\[
+  p(x) z'(x) \inv{1-\alpha} + q(x) z(x) = r(x)
+\]
+oziroma
+\[
+  z'(x) + \frac{q(x)}{p(x)} (1-\alpha) z(x) = \frac{r(x)}{p(x)} (1-\alpha).
+\]
+To je nehomogena linearna NDE prvega reda, torej jo znamo rešiti.
+
+\vprasanje{Kako rešiš Bernoulijevo enačbo?}
+
+Druga taka enačba je Riccatijeva enačba
+\[
+  y'(x) = a(x) y^2(x) + b(x) y(x) + c(x),
+\]
+ki je v splošnem ne znamo rešiti.
+Poznamo pa dva načina obravnave, ki nas lahko včasih pripeljeta do rešitve.
+Denimo, da uganemo neko partikularno rešitev $y_p(x)$.
+Enačbo tedaj rešujemo z nastavkom $y(x) = y_p(x) + z(x)$ za neko neznano
+funkcijo $z$.
+Če to vstavimo v enačbo, dobimo
+\[
+  y_p' + z' = a y_p^2 + 2 a y_p z + a z^2 + b y_p + bz + c,
+\]
+členi $y_p'$, $a y_p^2$, $b y_p$ in $c$ odpadejo, ker tvorijo rešitev enačbe.
+Ostane torej
+\[
+  z' = (2a y_p + b) z + a z^2,
+\]
+kar je Bernoulijeva enačba, ki jo znamo rešiti.
+
+Drug način za reševanje Riccatijeve enačbe je s pretvorbo na linearni sistem
+prvega reda.
+Vpeljemo $y = \nicefrac{u}{v}$, s čimer dobimo
+\[
+  u'v - uv' = au^2 + buv + cv^2.
+\]
+Ker imamo dve neznanki, potrebujemo še eno enačbo.
+Izberemo $u'v = buv + cv^2$.
+Iz tega izpeljemo $v' = - a u$ in $u' = bu + cv$.
+Zapisano matrično
+\[
+  \begin{bmatrix}
+	v' \\ u'
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	0 & -a \\
+	c & b
+  \end{bmatrix}
+  \begin{bmatrix}
+	v \\ u
+  \end{bmatrix}
+\]
+Sistema v splošnem ne znamo rešiti, ker funkcije $a, b, c$ niso konstantne.
+Lahko pa rešitev zapišemo v obliki neskončne vrste.
+
+\vprasanje{Kako rešiš Riccatijevo enačbo?}

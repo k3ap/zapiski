@@ -1,3 +1,5 @@
+\naslov{Splošno}
+
 \begin{definicija}
   Naj bo $F: I \times \R \times \R \to \R$ zvezna funkcija in $I$ interval v
   $\R$.
@@ -70,3 +72,31 @@ pogoju.
 
 \vprasanje{Kako spremenimo neavtonomni sistem v avtonomnega?}
 
+V nekaterih primerih poznamo rešitev NDE.
+Če imamo enačbo z ločljivima spremenljivkama
+\[
+  \dot{x} = f(t) g(x),
+\]
+lahko enačbo delimo z $g(x)$, in definiramo $h(x) = 1 / g(x)$.
+Dobimo
+\[
+  h(x) \dot{x} = f(t).
+\]
+Sedaj definiramo $H(x)$ kot primitivno funkcijo $h(x)$, in $F(t)$ kot primitivno
+funkcijo $f(t)$.
+Velja $\dot{H}(x) = \dot{F}(t)$, torej je $x(t) = H^{-1}(F(t) + C)$.
+
+\vprasanje{Kako rešiš enačbo z ločljivima spremenljivkama?}
+
+Če imamo enačbo s homogeno desno stranjo, torej $\dot{x} = f(t, x)$, kjer velja
+$f(t,x) = f(\lambda t, \lambda x)$ za $\lambda \in \R \brez \{0\}$,
+potem velja $f(t, x) = f(1, \nicefrac{x}{t})$.
+Vpeljemo novo spremenljivko $v = \nicefrac{x}{t}$, in s kratkim računom pridemo
+do $\dot{x} = t \dot{v} + v$.
+Po drugi strani velja $\dot{x} = f(1, v)$, torej
+\[
+  \dot{v} = \inv{t} \left(f(1, v) - v\right).
+\]
+To je enačba z ločljivima spremenljivkama, ki jo znamo rešiti.
+
+\vprasanje{Kako rešiš enačbo s homogeno desno stranjo?}

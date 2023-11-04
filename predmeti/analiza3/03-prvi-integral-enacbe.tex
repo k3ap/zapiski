@@ -1,0 +1,77 @@
+\naslov{Prvi integral enačbe}
+
+Splošna rešitev enačbe $y' = f(x, y)$ je enoparametrična družina funkcij $y =
+\phi(x, C)$.
+Denimo, da obstaja taka funkcija $u(x, y) : [a, b] \times M \to \R$ na
+razširjenem faznem prostoru, da zanjo velja $u(x) y(x, C) = \text{konst.}$ za
+vsak $C$ (konstanta je lahko drugačna za različne $C$).
+Taki funkciji pravimo \pojem{prvi integral enačbe}.
+Recimo, da velja $\partial_y u \ne 0$.
+Potem lahko iz enakosti izračunamo funkcijo $y(x, D)$, da velja $u(x, y(x, D)) =
+D$.
+
+\begin{trditev}
+  Vsaka krivulja $y(x)$, ki je implicitno podana z enačbo $u(x, y) = D$, kjer je
+  $u$ prvi integral enačbe $y' = f(x, y)$, je rešitev te enačbe.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $y_0(x)$ dana krivulja.
+  Tedaj velja $u(x, y_0(x)) = D$.
+  Če odvajamo po $x$, dobimo
+  \[
+	\partial_x u + y_0' \partial_y u = 0,
+  \]
+  torej
+  \[
+	y_0' = - \frac{\partial_x u}{\partial_y u}.
+  \]
+  Po drugi strani za vsako rešitev velja $y' = f(x, y)$,
+  iz česar izpeljemo
+  \[
+	f(x, y) = -\frac{\partial_x u}{\partial_y u}.
+  \]
+  Sledi, da je $y_0$ res rešitev enačbe.
+\end{proof}
+
+Vsaka diferencialna enačba ima neskončno mnogo prvih integralov, vsakega lahko
+še transformiramo s poljubno $\psi: \R \to \R$.
+
+\vprasanje{Kaj je prvi integral enačbe? Kako iz njega dobiš rešitev enačbe?}
+
+Imejmo dano vektorsko polje $F: \Omega \subseteq \R^2 \to \R^2$, podano z
+\[
+  F(x, y) =
+  \begin{bmatrix}
+	P(x, y) \\ Q(x, y)
+  \end{bmatrix}
+\]
+Poiščimo družino krivulj, ortogonalnih na polje $F(x, y)$, in jih
+parametrizirajmo z $\gamma(x) = (x, y(x))$.
+Izpeljemo lahko pogoj
+\[
+  y'(x) = - \frac{P(x, y)}{Q(x, y)},
+\]
+kar je diferencialna enačba prvega reda.
+Recimo, da je polje potencialno.
+Tedaj obstaja taka funkcija $u: [a, b] \times \R \to \R$, da velja $\partial_x u
+= P$ in $\partial_y u = Q$.
+Krivulje, ki so ortogonalne na $\grad u$, so natanko izohipse ploskve $(x, y,
+u(x, y))$. Za izohipso velja $u(x, y(x)) = C$, iz česar z odvajanjem izpeljemo
+\[
+  y' = - \frac{\partial_x u}{\partial_y u}.
+\]
+Potencial $u$ je torej prvi integral zgornje enačbe.
+Ker lahko potencial poiščemo z integralom, enačbo v tem primeru znamo rešiti.
+
+Če polje ni potencialno, imamo še vedno ortogonalne krivulje, torej še vedno
+velja $y' = -\nicefrac{P}{Q}$.
+Denimo, da je $y(x, C)$ splošna rešitev.
+Če lahko poiščemo prvi integral $u$, mora obstajati funkcija $\lambda(x, y)$, za
+katero je polje $(\lambda P, \lambda Q)$ potencialno, oziroma $\partial_x u =
+\lambda P$ in $\partial_y u = \lambda Q$.
+Taki funkciji pravimo \pojem{integrirujoči množitelj}.
+Če ga lahko najdemo, lahko rešimo enačbo; tega pa v splošnem ne znamo.
+
+\vprasanje{Kako poiščeš družino krivulj, pravokotnih na dano vektorsko polje
+  $F$? Kaj je integrirujoči množitelj?}
