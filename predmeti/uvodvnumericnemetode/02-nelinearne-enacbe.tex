@@ -134,6 +134,8 @@ skrčitev.
 
 \vprasanje{Kaj je red konvergence zaporedja? Kako ga poiščeš z odvodom?}
 
+\podnaslov{Tangentna metoda}
+
 Če vzamemo $\alpha = x_r + \Delta x_r$, in razvijemo dva člena Taylorjeve vrste
 \[
   0 = f(x_r + \Delta x_r) = f(x_r) + f'(x_r) \Delta x_r + \pol f''(\xi_r) \Delta x_r^2,
@@ -178,3 +180,56 @@ točka.
 
 \vprasanje{Za kakšne funkcije lahko globalno zagotoviš konvergenco tangentne
   metode? Dokaži.}
+
+\podnaslov{Sekantna metoda}
+
+Če je izračun odvoda zahteven, ga lahko aproksimiramo z diferenčnim kvocientom.
+Namesto tangente na $f$ v točki $x_r$ tako uporabimo sekanto skozi točki $(x_r,
+f(x_r))$ in $(x_{r-1}, f(x_{r-1}))$.
+Dobljena metoda tehnično ni navadna iteracija, ker uporablja zadnja dva
+približka, vendar se obnaša sorodno.
+Naslednji približek izračunamo s predpisom
+\[
+  x_{r+1} = x_r - \frac{f(x_r) (x_r - x_{r-1})}{f(x_r) - f(x_{r-1})}.
+\]
+Analiza sekantne metode je težja kot analiza metod navadne iteracije.
+Izkaže se, da velja
+\[
+  \abs{e_{r+1}} \approx c \abs{e_r} \abs{e_{r-1}}
+\]
+za neko konstanto $c$, ki je pravzaprav enaka
+\[
+  c = \frac{\abs{f''(\alpha)}}{2 \abs{f'(\alpha)}}.
+\]
+
+Označimo red sekantne metode s $p$.
+Obstaja konstanta $D > 0$, da je $\abs{e_{r+1}} \approx D \abs{e_r}^p$,
+torej
+\[
+  \abs{e_{r+1}} \approx C D \abs{e_{r-1}}^{p+1} = D^{p+1} \abs{e_{r-1}}^{p^2},
+\]
+iz česar sledi $p^2 = p+1$ oziroma $p = \phi$, torej je konvergenca
+superlinearna.
+
+\vprasanje{Razloži sekantno metodo in izpelji njen red konvergence.}
+
+\podnaslov{Ostale metode}
+
+Pri \emph{Mullerjevi metodi} uporabimo tri približke $x_r$, $x_{r-1}$ in
+$x_{r-2}$, ter skozi točke $(x_r, f(x_r))$, $(x_{r-1}, f(x_{r-1}))$, $(x_{r-2},
+f(x_{r-2}))$ potegnemo polinom stopnje 2.
+Za naslednji približek vzamemo tisto izmed dveh ničel polinoma, ki je bližnja
+$x_r$.
+Ena od prednosti te metode je, da lahko išče kompleksne ničle tudi z realnimi
+začetnimi približki.
+Izkaže se, da je red konvergence približno $1.84$.
+
+\vprasanje{Razloži Mullerjevo metodo.}
+
+Če zamenjamo vlogi $x$ in $y$, in najdemo polinom $p(y)$, ki poteka skozi točke
+$(f(x_r), x_r)$, $(f(x_{r-1}), x_{r-1})$, $(f(x_{r-2}), x_{r-2})$, dobimo približek
+za $f^{-1}$, in lahko za naslednji približek vzamemo $x_{r+1} = p(0)$.
+Metodo imenujemo \emph{inverzna interpolacija}, ima pa isti red konvergence kot
+Mullerjeva metoda.
+
+\vprasanje{Razloži metodo inverzne interpolacije.}
