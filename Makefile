@@ -1,5 +1,5 @@
 predmeti := testnipredmet verjetnost mehanika analiza3 uvodvnumericnemetode
-ksl := testniksl
+ksl := testniksl mehanika
 
 latex-cmd := lualatex --shell-escape
 
@@ -28,7 +28,7 @@ zapiski.pdf: zapiski.tex $(predmeti-filenames)
 $(ksl-filenames): ksl-%.pdf: ksl-%.tex
 	$(latex-cmd) $^
 
-ksl-%.tex: zbt-templates $(wildcard ksl/%/*.tex)
+ksl-%.tex: zbt-templates ksl/%/*.tex
 	cat templates/kslt-1.tex > $@
 	cat templates/skupno.tex >> $@
 	cat ksl/$*/ksl.tex >> $@

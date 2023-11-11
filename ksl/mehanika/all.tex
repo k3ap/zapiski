@@ -1,0 +1,76 @@
+Praktično vse naloge v mehaniki vsebujejo obravnavo gibanja nekega telesa.
+Da to naredimo, analiziramo sile na telo, in zapišemo drugi Newtonov zakon
+\[
+  m \ddot{\vec{x}} = \sum \vec{F}.
+\]
+Ker je sila $\vec{F}$ lahko odvisna od časa $t$, položaja telesa $\vec{x}$ ter
+od njegove hitrosti $\dot{\vec{x}}$, dobimo diferencialno enačbo drugega reda.
+Te rešujemo z običajnimi triki za reševanje diferencialnih enačb.
+
+Če za silo $\vec{F}$ obstaja funkcija $U: \R^3 \to \R$, da je $\vec{F} = - \grad
+U$, pravimo, da je $\vec{F}$ \pojem{potencialna} ali \pojem{konzervativna} sila.
+Delo take sile je odvisno le od začetnega in končnega položaja točke; velja
+$W + U = E_0$, kjer je $W$ kinetična energija in $E_0$ neka konstanta.
+Pri obravnavi premočrtnega gibanja pod vplivom potencialne sile naredimo dve
+stvari.
+Najprej narišemo graf danega potenciala $U(x)$, s katerim naredimo kvalitativno
+analizo gibanja.
+Če k grafu narišemo še horizontalno črto za $E_0$, lahko povemo, kaj se bo
+zgodilo z delcem na tem energijskem nivoju;
+\begin{itemize}
+\item Če je $E_0$ popolnoma nad grafom $U(x)$, bo gibanje neomejeno.
+  Tukaj lahko dodatno povemo, če dosežemo točko v neskončnosti v končnem ali
+  neskončnem času, kar je odvisno od grafa $U(x)$; razlika med $E_0$ in $U(x)$
+  pove kinetično energijo, ki jo bo delec imel v $x$.
+\item Če $E_0$ seka graf $U(x)$ v dveh točkah, bo gibanje omejeno (in
+  periodično).
+  V tem primeru lahko izračunamo periodo gibanja, kot piše spodaj.
+\item Če se $E_0$ dotika grafa v lokalnem maksimumu, bo gibanje v to smer
+  omejeno, ker v točko dotika ne moramo priti v končnem času.
+\item Če se $E_0$ dotika grafa v lokalnem minimumu, smo v stabilnem ravnovesju,
+  in se ne bomo nikdar premaknili iz te točke.
+\end{itemize}
+Pri reševanju naloge zapišemo vse možnosti za gibanje v odvisnosti od $E_0$.
+
+Pogosto moramo izračunati tudi periodo nihanja v primeru druge točke, kar lahko
+naredimo direktno, ali pa z eno od dveh aproksimacij.
+Recimo, da se gibljemo med točkama $a < b$.
+Tedaj lahko periodo izračunamo kot
+\[
+  T = \sqrt{2m} \int_a^b \frac{dx}{\sqrt{E_0 - U(x)}}.
+\]
+To ni le integral, pač pa celo posplošen integral (ker je $U(x) = E_0$ v
+krajiščih).
+Sicer je vedno končen, a ga je pogosto težko (nemogoče) izračunati.
+Pri računu si lahko pomagamo z integralom
+\[
+  \int_a^b \frac{dx}{\sqrt{(b-x)(x-a)}} = \pi,
+\]
+kjer pazimo, da sta vrednosti v ulomku enaki mejam integrala.
+
+V posebnem primeru harmoničnega oscilatorja velja $U = \pol k x^2$ za neko
+konstanto $k$.
+Tedaj so vsa gibanja periodična s periodo $T = 2 \pi \sqrt{\nicefrac{m}{k}}$.
+Če je perioda gibanja neodvisna od $E_0$, kakor je tu, pravimo, da je gibanje
+\pojem{izhronično}.
+Izkaže se, da je edini potencial, ki je hkrati izohroničen in simetričen glede
+na svoj minimum, harmonični.
+Naj bo potencial $U$ sedaj neharmonični.
+Če v lokalnem minimumu $x_0$ velja $E_0 - U(x) \ll 1$, se lahko poslužimo
+harmonične aproksimacije.
+Pri njej se predstavljamo, da je potencial kvadratna funkcija v tej točki, in
+izračunamo približek
+\[
+  T \doteq 2 \pi \sqrt{\frac{m}{U''(x_0)}}.
+\]
+
+Druga možna aproksimacija je \pojem{libracijska}, kjer prvo zapišemo
+\[
+  E_0 - U(x) = (b-x)(x-a) \chi(x),
+\]
+in ocenimo integral po trapezni formuli, tako da dobimo približek
+\[
+  T \doteq \pi \sqrt{\frac{m}{2}} \left( \inv{\sqrt{\chi(a)}} +
+	\inv{\sqrt{\chi(b)}} \right),
+\]
+kar je natančna ocena v primeru, da je funkcija ${(\chi(z))}^{-1/2}$ afina.
