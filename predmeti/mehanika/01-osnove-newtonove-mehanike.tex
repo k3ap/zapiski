@@ -332,3 +332,98 @@ To je ena od implikacij v prvem Newtonovem zakonu.
 \end{opomba}
 
 \vprasanje{Kaj so inercijske mase? Dokaži, da res obstajajo.}
+
+Produktu $m \vec{f} = \vec{F}$ pravimo \pojem{sila}.
+Iz parskosti sledi
+\[
+  \vec{F}_i = \sum_{j \ne i} \vec{F}_{ji}(\mb{P}_i - \mb{P}_j, \dot{\mb{P}}_i -
+  \dot{\mb{P}}_j).
+\]
+Naj velja $\sum_{i \ne j} \vec{F}_{ji} = \vec{0}$.
+Predpostavimo, da so sile lokalne, in fiksiramo indeksa $k \ne l$.
+Če vsa ostala telesa pošljemo v neskončnost, ostane
+\[
+  \vec{F}_{kl} + \vec{F}_{lk} = \vec{0}.
+\]
+S tem smo dokazali tretji Newtonov zakon.
+
+\begin{trditev}[tretji Newtonov zakon]
+  Če so vse sile parske in lokalne, velja $\vec{F}_{kl} = - \vec{F}_{lk}$.
+\end{trditev}
+
+Za nadaljevanje potrebujemo še dodaten princip gibanja, ki ga imenujemo
+\emph{princip o masi}.
+Pravi, da je inercijska masa enaka v vseh koordinatnih sistemih.
+
+\vprasanje{Kaj je princip o masi?}
+
+Najpreprostejši primer sile je gravitacija.
+Med točkama $(m_1, \mb{P}_1)$ in $(m_2, \mb{P}_2)$ deluje sila
+\[
+  \vec{F}_{21} =  \frac{\kappa M_1 M_2}{\abs{\mb{P}_1 - \mb{P}_2}^2}
+  \frac{\mb{P}_2 - \mb{P}_1}{\abs{\mb{P}_2 - \mb{P}_1}}.
+\]
+Številoma $M_1$ in $M_2$ pravimo \pojem{gravitacijski masi}.
+Z eksperimentiranjem je Newton ugotovil, da so pravzaprav enake inercijskim
+masam.
+
+\begin{definicija}
+  Zunanja sila $\vec{F} = \vec{F}(t, \mb{P}, \dot{\mb{P}})$ je
+  \pojem{potencialna}, če obstaja potencial $U$, da je $\vec{F} = -
+  \grad_{\mb{P}} U$.
+\end{definicija}
+
+\begin{definicija}
+  \pojem{Delo} sile $\vec{F}$ pri gibanju materialne točke od $\mb{P}_1$ do
+  $\mb{P}_2$ je krivuljni integral
+  \[
+	A = \int_{\mb{P}_1}^{\mb{P}_2} \vec{F} \cdot d\mb{P}
+	= \int_{t_1}^{t_2} \vec{F} \cdot \dot{\mb{P}} dt,
+  \]
+  kjer smo pot parametrizirali s $\mb{P}(t)$.
+  Produktu $\vec{F} \cdot \dot{\mb{P}}$ pravimo \pojem{moč}.
+\end{definicija}
+
+\begin{definicija}
+  \pojem{Kinetična energija} $T$ je enaka $\pol m \abs{\dot{\mb{P}}}^2$.
+\end{definicija}
+
+Za rezultanto vseh sil $\vec{F}$ na telo $m$ lahko izpeljemo
+\[
+  A = \int_{t_1}^{t_2} \vec{F} \cdot \dot{\mb{P}} dt
+  = \int_{t_1}^{t_2} m \ddot{\mb{P}} \cdot \dot{\mb{P}} ddt
+  = m \int_{t_1}^{t_2} \partial_t (\pol \dot{\mb{P}} \cdot \dot{\mb{P}}) dt
+  = T_2 - T_1,
+\]
+kar lahko zapišemo v izrek.
+
+\begin{izrek}[izrek o delu]
+  Delo rezultante vseh sil je enako razliki kinetične energije telesa.
+\end{izrek}
+
+\vprasanje{Povej in dokaži izrek o delu.}
+
+\begin{definicija}
+  Sila je \pojem{konzervativna} v danem razredu inercialnih koordinatnih
+  sistemov, če obstaja inercialni koordinatni sistem, v katerem je $\vec{F}$
+  potencialna in odvisna samo od položaja.
+\end{definicija}
+
+Tedaj je $\vec{F}$ potencialna, torej velja $\vec{F} = - \grad U$ za nek
+potencial $U$, ki mu pravimo \pojem{potencialna energija}.
+Velja
+\[
+  A = \int_{t_1}^{t_2} \vec{F} \cdot \dot{\mb{P}} dt
+  = - \int_{t_1}^{t_2} \grad U \cdot \dot{\mb{P}} dt
+  = U(\mb{P}_1) - U(\mb{P}_2).
+\]
+Vidimo, da je delo odvisno le od začetnega in končnega položaja.
+Sledi $T_2 - T_1 = U_1 - U_2$, torej je $T_1 + U_1 = T_2 + U_2 = E_0$ konstantna
+vrednost.
+
+\begin{izrek}[izrek o energiji]
+  Če je rezultanta vseh sil konzervativna, je vsota kinetične in potencialne
+  energije konstanta gibanja.
+\end{izrek}
+
+\vprasanje{Povej in dokaži izrek o energiji.}

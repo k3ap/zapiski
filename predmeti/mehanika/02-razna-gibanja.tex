@@ -1,0 +1,34 @@
+\naslov{Premočrtno gibanje}
+
+\begin{definicija}
+  Gibanje je \pojem{premočrtno}, če ima pospešek konstantno smer.
+\end{definicija}
+
+Primer takega gibanja je poševni met.
+Opazimo, da lahko vedno izberemo koordinatni sistem, v katerem tir poti leži na
+premici:
+Če je $\vec{a} = a \vec{e}$, kjer je $\vec{e}$ konstanten vektor, velja
+\[
+  \vec{v} = \vec{e} \int_{t_0}^t a dt + \vec{v}_0.
+\]
+Izberemo lahko sistem, kjer je $\vec{v}_0$ enak $\vec{0}$, in bo torej $\vec{v}$
+vzporeden $\vec{e}$.
+
+Če gibanje poteka pod vplivom konzervativne sile, lahko zapišemo potencial $U$,
+in velja izrek o energiji
+\[
+  \pol m \dot{x}^2 + U(x) = E_0.
+\]
+Od tod izpeljemo
+\[
+  \dot{x} = \pm \sqrt{\frac{2}{m} \left( E_0 - U(x) \right) }.
+\]
+Enačbo z ločljivimi spremenljivkami tedaj integriramo in dobimo
+\[
+  \pm \int_{x_0}^{x} \frac{dx}{\sqrt{ \frac{2}{m} \left( E_0 - U(x) \right) } }
+  = \int_{t_0}^t dt = t - t_0.
+\]
+Dobimo funkcijo $t = t(x)$.
+Če se na poti ne ustavimo, po izreku o inverzni preslikavi obstaja funkcija $x
+= x(t)$.
+Pravimo, da je premočrtno gibanje \pojem{integrabilno}.
