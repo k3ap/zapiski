@@ -32,3 +32,123 @@ Dobimo funkcijo $t = t(x)$.
 Če se na poti ne ustavimo, po izreku o inverzni preslikavi obstaja funkcija $x
 = x(t)$.
 Pravimo, da je premočrtno gibanje \pojem{integrabilno}.
+
+Če v kvalitativni analizi ugotovimo, da je neko gibanje periodično med točkama
+$a$ in $b$, lahko periodo izračunamo kot
+\begin{align*}
+  T &= \int_{x_0}^b \frac{dx}{\sqrt{ \frac{2}{m} \left( E_0 - U(x) \right) }}
+  - \int_a^b \frac{dx}{\sqrt{ \frac{2}{m} \left( E_0 - U(x) \right) }}
+  + \int_a^{x_0} \frac{dx}{\sqrt{ \frac{2}{m} \left( E_0 - U(x) \right) }} \\
+  &= \sqrt{2 m} \int_a^b \frac{dx}{ \sqrt{ E_0 - U(x) } }.
+\end{align*}
+Ker je $E = U(x)$ v krajiščih, je to posplošen integral.
+Situacija v obeh krajiščih je simetrična, torej preverimo le za levo krajišče,
+da integral res konvergira.
+V prvem koraku razvijemo preslikavo $U$ v Taylorjev polinom prve stopnje v točki
+$a$, kjer se pojavi vrednost odvoda $U$ v neki točki $\xi$ blizu $a$.
+Ker je odvod zvezen, obstaja tak $\delta > 0$, da za $\xi \in [a, a + \delta)$
+velja $2 \partial_x U(a) < \partial_x U(\xi) < \pol \partial_x U(a)$, torej
+\[
+  \int_a^{a + \delta} \frac{dx}{\sqrt{E_0 - U(x)}}
+  = \int_a^{a + \delta} \frac{dx}{\sqrt{ - \partial_x U(\xi) (x-a) }}
+  \le \int_a^{a + \delta} \inv{\sqrt{ -\pol \partial_x U(a) }} \inv{\sqrt{x -
+	  a}} dx
+  < \infty.
+\]
+
+\vprasanje{Izpelji izraz za periodo premočrtnega potencialnega gibanja.}
+
+\begin{lema}
+  Za $a < b$ velja
+  \[
+	\int_a^b \frac{dx}{\sqrt{(b-x) (x-a)}} = \pi.
+  \]
+\end{lema}
+
+\begin{proof}
+  Uvedemo novo spremenljivko $x = \pol (a+b) + \pol (b-a) z$, s čimer se
+  integral spremeni v
+  \[
+	\int_{-1}^1 \frac{dz}{\sqrt{(1-z)(1+z)}}
+	= \pi.
+  \]
+\end{proof}
+
+\begin{primer}
+  Oglejmo si harmonični oscilator, ki deluje pod potencialom $U = \pol k x^2$.
+  Tedaj velja $F = - \partial_x U = -kx$, torej $m\ddot{x} = -kx$.
+  Rešitev tega sistema je $x = A \cos \omega t + B \sin \omega t$ za
+  $\omega = \sqrt{k/m}$.
+  Iz tega lahko kar direktno preberemo $T = 2 \pi / \omega$.
+  Posebnost harmoničnega oscilatorja je, da je $T$ neodvisen od $E_0$.
+  Takemu gibanju pravimo \pojem{izohronično}, harmonični potencial je edini
+  primer izohroničnega potenciala, ki je simetričen glede na svoj minimum.
+\end{primer}
+
+Če ima potencial lokalni minimum v $x_0$, lahko za določanje potenciala
+uporabimo harmonično aproksimacijo.
+Zapišemo
+\[
+  \hat{U}(x) = U(x_0) + \partial_x U(x_0) (x-x_0) + \pol \partial_{x^2}
+  U(x_0) (x - x_0)^2,
+\]
+kar je harmonični potencial s periodo
+\[
+  T = 2 \pi \sqrt{\frac{m}{\partial_{x^2} U(x_0)}}.
+\]
+Ta aproksimacija je dobra, če velja $E_0 - U(x) \ll 1$.
+
+\vprasanje{Izpelji harmonično aproksimacijo.}
+
+Druga vrsta aproksimacije, ki jo lahko uporabimo, je \pojem{libracijska}.
+Računamo
+\[
+  t = \sgn \dot{x} \int_{x_0}^x \frac{dx}{\sqrt{ \frac{2}{m} (E_0 - U(x)) }}
+  = \sqrt{\frac{m}{2}} \sgn \dot{x}
+  \int_{\theta_0}^{\theta} \frac{\pol (b-a) (-\sin \theta) d\theta}{\pol (b-a)
+	\sqrt{\chi(\theta)} \sqrt{1 - \cos^2 \theta}}
+\]
+za substitucijo $x = \pol (a+b) + \pol (b-a) \cos\theta$.
+Pri tem smo si $x$ predstavljali kot kosinus kota v krožnici, ki poteka skozi
+točki $a$ in $b$ in ima središče na njuni zveznici.
+Če računamo dalje, dobimo
+\[
+  t = \sqrt{\frac{m}{2}} \int_{\theta_0}^{\theta} \inv{\sqrt{\chi(\theta)}}
+  d\theta.
+\]
+Če želimo dobiti periodo gibanja, bo $\theta$ tekel od $0$ do $\pi$.
+\[
+  T = 2 \sqrt{\frac{m}{2}} \int_0^\pi \frac{d\theta}{\sqrt{\chi(\theta)}}.
+\]
+Ta integral aproksimiramo s trapezno formulo, ki je natančna v primeru, da je
+funkcija v integralu afina.
+Rešitev je tedaj
+\[
+  T \doteq \pi \sqrt{\frac{m}{2}} \left( \inv{\sqrt{\chi(a)}} +
+	\inv{\sqrt{\chi(b)}} \right).
+\]
+
+\vprasanje{Izpelji libracijsko aproksimacijo.}
+
+\begin{trditev}
+  Za premočrtno potencialno periodično gibanje velja $\frac{dA}{dE_0} =
+  \frac{T}{m}$ na poti med robnima točkama energijskega nivoja.
+\end{trditev}
+
+\begin{proof}
+  Velja $A = 2 \sqrt{\frac{m}{2}} \int_a^b \sqrt{E_0 - U} dx$, torej
+  \[
+	\frac{dA}{dE_0} = 2 \sqrt{\frac{m}{2}} \left(
+	  b' \sqrt{E_0 - U(b)} - a' \sqrt{E_0 - U(a)} + \int_a^b
+	  \frac{dx}{2\sqrt{E_0 - U}}
+	\right).
+  \]
+  Ker je $U(a) = U(b) = E_0$, sta prva dva člena v oklepaju enaka $0$, torej
+  \[
+	\frac{dA}{dE_0} = \sqrt{\frac{m}{2}} \int_a^b \frac{dx}{\sqrt{E_0-U}}
+	= \frac{m}{T}.
+  \]
+\end{proof}
+
+\vprasanje{Kako se opravljeno delo v nihaju spreminja z energijskim nivojem
+  $E_0$?}
