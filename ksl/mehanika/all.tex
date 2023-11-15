@@ -1,3 +1,5 @@
+\naslov{Splošno}
+
 Praktično vse naloge v mehaniki vsebujejo obravnavo gibanja nekega telesa.
 Da to naredimo, analiziramo sile na telo, in zapišemo drugi Newtonov zakon
 \[
@@ -74,3 +76,96 @@ in ocenimo integral po trapezni formuli, tako da dobimo približek
 	\inv{\sqrt{\chi(b)}} \right),
 \]
 kar je natančna ocena v primeru, da je funkcija ${(\chi(z))}^{-1/2}$ afina.
+
+\naslov{Vezano gibanje}
+
+Če je gibanje vezano na neko krivuljo $\tau \to \vec{\gamma}(\tau)$, na telo
+poleg ostalih sil deluje tudi vezna sila, ki ga drži na krivulji.
+Za obravnavo takega sistema vedno prvo napišemo drugi Newtonov zakon
+$\vec{F} + \vec{F}_v = m \vec{a}$, kjer je $\vec{F}_v$ neznana sila vezi.
+Vektorsko enačbo tokrat razpišemo v ortonormirani bazi krivulje.
+Bazne vektorje lahko izračunamo kot
+\begin{align*}
+  \vec{e}_t = \normiran{\pvec{\gamma}'(\tau)},
+  && \vec{e}_n = \normiran{\pvec{e}_t(\tau)},
+  && \vec{e}_b = \vec{e}_t \times \vec{e}_n.
+\end{align*}
+Pri tem ne pozabimo, da
+\[
+  \partial_s \vec{e}_t = \kappa \vec{e}_n
+\]
+velja le v primeru, da je $s$ naravni parameter.
+
+Če je krivulja gladka (brez trenja), je pospešek vedno v smeri tangente in
+normale na krivuljo, komponenta binormale je ničelna; poleg tega je hitrost
+vedno le v smeri tangente.
+Vrednost vseh komponent pospeška pravzaprav točno poznamo:
+\begin{align*}
+  a_t = \dot{v}, && a_n = \kappa v^2, && a_b = 0.
+\end{align*}
+V primeru gladke krivulje sila vezi deluje le v normalni in binormalni
+komponenti, in ne prispeva nič k velikosti hitrosti (le k smeri).
+Iz drugega Newtonovega zakona izrazimo predpis za $\vec{F}_v$.
+Če iščemo trenutek, ko se telo odklopi od predpisanega tira, bo to ravno
+trenutek, ko velja $\vec{F}_v = \vec{0}$.
+Veliko ostalih vprašanj se da rešiti s pomočjo energijskega zakona.
+Ker je sila vezi vedno pravokotna na smer premika, namreč ne opravi nobenega
+dela.
+
+\naslov{Gibanje v polju centralne sile}
+
+\podnaslov{Polarne koordinate}
+
+V polju centralne sile so najbolj smiselne polarne koordinate s središčem v viru
+sile.
+Seveda jih lahko uporabljamo tudi drugje, če je to lažje.
+Bazna vektorja sta v tem primeru
+\begin{align*}
+  \vec{e}_r = \cos \theta\,\vec{i} + \sin \theta\,\vec{j},
+  && \vec{e}_\theta = \partial_\theta \vec{e}_r
+	 = - \sin \theta\,\vec{i} + \cos \theta\,\vec{j}.
+\end{align*}
+Za vektorje položaja, hitrosti in pospeška velja
+\begin{gather*}
+  \vec{r} = r \vec{e}_r, \\
+  \vec{v} = \dot{r} \vec{e}_r + r \dot{\theta} \vec{e}_\theta, \\
+  \vec{a} = (\ddot{r} - r \dot{\theta}^2) \vec{e}_r
+  + (r \ddot{\theta} + 2 \dot{r} \dot{\theta}) \vec{e}_\theta.
+\end{gather*}
+Hitrost in pospešek imata pri tem \pojem{radialno} in \pojem{obodno} komponento.
+Za vrtilno količino velja
+\[
+  \vec{l} = \vec{r} \times m \vec{v} = m r^2 \dot{\theta} \vec{k},
+\]
+kjer je $\vec{k}$ normala na ploskev.
+
+\podnaslov{Centralna sila}
+
+Sila je centralna, če obstaja pol sile, t.j.\ taka točka, da sila deluje v smeri
+zveznice med telesom in polom, njena velikost pa je odvisna le od razdalje
+telesa do pola.
+Gibanje v polju centralne sile je ravninsko, vrtilna količina telesa okoli pola
+je konstantna (in podaja normalo ravnine).
+Poleg tega so zvezne centralne sile konzervativne, torej je tudi energija
+konstanta gibanja.
+
+V takem gibanju je smiselno gledati tudi ploščino, ki jo vektor $\vec{r}$ obarva
+med premikom.
+Velja namreč, da je ploščinska hitrost konstantna, in jo lahko kdaj uporabimo za
+merjenje časa.
+Za \pojem{dvojno ploščinsko hitrost}
+\[
+  C_0 = r^2 \dot{\theta}
+\]
+velja $\dot{A} = \pol C_0$ in $l = m C_0$.
+Pomagamo si lahko tudi z Binetovo formulo; če je $u = 1 / r$, velja
+\[
+  a_r = - C_0^2 u^2 (u'' + u),
+\]
+kjer je $u''$ drugi odvod po $\theta$.
+
+
+% list s formulami:
+% - integriranje v polarnih koordinatah
+% - bolj komplicirani integrali
+% - formule iz tu
