@@ -1,0 +1,156 @@
+\section{Pojmi, splošno}
+
+\pojem{Izid} je en od možnih rezultatov nekega verjetnostnega poskusa (met
+kovanca, met kocke, mešanje kupa kart, ipd.).
+Množico vseh izidov običajno označimo z $\Omega$.
+Množica nekih izidov se imenuje \pojem{dogodek}.
+Dogodkom pripisujemo verjetnosti s preslikavo $P: 2^\Omega \to [0,1]$,
+kjer velja $P(\varnothing) = 0$, $P(\Omega) = 1$.
+Za števno družino disjunktnih dogodkov velja
+\[
+  P\left( \bigcup_i A_i \right) = \sum_i P(A_i).
+\]
+Dodatno velja $P(A\complement) = 1 - P(A)$ in formula za vključitve in
+izključitve
+\[
+  P\!\left(\,\bigcup_{i=1}^n A_i \right)
+  = \sum_{k = 1}^n {(-1)}^{k-1} \sum_{i_1, i_2, \ldots, i_k}
+    P\!\left( \bigcap_j A_{i_j} \right)
+\]
+
+\pojem{Pogojna verjetnost} dogodka $A$ glede na dogodek $B$ je
+\[
+  P(A \such B) = \frac{P(A \presek B)}{P(B)}.
+\]
+Dogodka sta neodvisna, če velja $P(A \such B) = P(A)$, oziroma
+$P(A \presek B) = P(A) P(B)$.
+Če je družina dogodkov $H_i$ particija množice $\Omega$, lahko uporabimo formulo
+za popolno verjetnost
+\[
+  P(A) = \sum_i P(A \such H_i) P(H_i).
+\]
+Poleg tega velja Bayesova formula
+\[
+  P(A \such B) = \frac{P(A) P(B \such A)}{P(B)}.
+\]
+
+\pojem{Slučajna spremenljiva} $X$ je funkcija $\Omega \to \R$.
+Pri tem si mislimo, da krempelj našega Velikega Škampa, Boga Vsemogočnega,
+izbere en izid, ki ga vstavi kot argument v funkcijo $X$; na funkciji sami po
+sebi ni ničesar naključnega.
+Pišemo
+\[
+  P(X = k) = P(X^{-1}(\{k\})).
+\]
+Najpomembnejše pri slučajnih spremenljivkah so njihove porazdelitve, t.j.
+vrednosti $P(X = k)$ za vse možne $k$.
+Porazdelitve so naštete v Bronštejnu na strani 602 in v
+razdelku~\ref{sec:porazdelitve} spodaj.
+Poseben tip spremenljivk so slučajni vektorji; namesto $\Omega \to \R$ so to
+funkcije $\Omega \to \R^k$.
+Označimo $\underline{X} = (X_1, \ldots, X_k)$ in pišemo
+\[
+  P(\underline{X} = \underline{x}) = P(X_1 = x_1, \ldots, X_k = x_k).
+\]
+
+\section{Reševanje nalog}
+
+Najpomembnejši korak pri vsaki nalogi je določitev množice možnih izidov
+$\Omega$.
+Običajno je to neko zaporedje ali urejena $k$-terica.
+Neurejenih $k$-teric se izogibaj, razen če znaš utemeljiti, zakaj ti da pravi
+odgovor.
+Vsakemu izidu potem prirediš verjetnost --- običajno kar vsem enako, ne pa
+nujno.
+
+\section{Verjetnostne porazdelitve}%
+\label{sec:porazdelitve}
+
+\subsection{Diskretne porazdelitve}
+
+\begin{itemize}
+\item \pojem{Binomska porazdelitev}:
+  $n$-krat vržemo kovanec z verjetnostjo grba $p$.
+  Če je $X$ število grbov v $n$ metih, je
+  \[
+	P(X = k) = \binom{n}{k} p^k q^{n-k}
+	\sim \operatorname{Bin}(n, p).
+  \]
+\item \pojem{Negativna binomska porazdelitev}:
+  Mečemo kovanec in čakamo na $m$ grbov.
+  Naj bo $X$ potrebno število metov.
+  Velja
+  \[
+	P(X=k) = \binom{k-1}{m-1} p^m q^{k-m} \sim \operatorname{NegBin}(m, p).
+  \]
+\item \pojem{Geometrijska porazdelitev}:
+  Mečemo kovanec in čakamo na prvi grb. Če je $X$ število potrebnih metov, je
+  \[
+	P(X = k) = q^{k-1}p \sim \operatorname{Geom}(p).
+  \]
+\item \pojem{Hipergeometrijska porazdelitev}:
+  Imamo posodo z $B$ belimi in $R$ rdečimi kroglicami, naključno izberemo $n \le
+  N = B+R$ kroglic iz posode.
+  Če je $X$ število izbranih belih kroglic, dobimo
+  \[
+	P(X = k) = \frac{\binom{B}{k} \binom{N-B}{n-k}}{\binom{N}{n}}
+	\sim \operatorname{HiperGeom}(n, B, N).
+  \]
+\item \pojem{Poissonova porazdelitev}:
+  Tu je
+  \[
+	P(X = k) = e^{-\lambda} \frac{\lambda^k}{k!} \sim \operatorname{Po}(\lambda).
+  \]
+\end{itemize}
+
+\subsection{Porazdelitve slučajnih vektorjev}
+
+\begin{itemize}
+\item \pojem{Multinomska porazdelitev}:
+  Imamo $r$ škatel, v katere mečemo $n$ kroglic.
+  Vsako škatlo zadenemo z verjetnostjo $p_i$, kjer je $\sum_i p_i = 1$.
+  Naj bo $X_i$ število kroglic v $i$-ti škatli na koncu metov.
+  Tedaj
+  \[
+	P(X_1 = k_1, X_2 = k_2, \ldots, X_r = k_r)
+	= p_1^{k_1} \ldots p_r^{k_r} \binom{n}{k_1, k_2, \ldots, k_r}.
+	\sim \operatorname{Multinom}(n, \underline{p}).
+  \]
+\end{itemize}
+
+\subsection{Zvezne porazdelitve}
+
+Slučajna spremenljivka ima zvezno porazdelitev, če obstaja taka funkcija $f_X:\R
+\to [0, \infty)$, da je
+\[
+  P(X \in (a, b])
+  = \int_a^b f_X(x) dx.
+\]
+Taki funkciji pravimo \pojem{gostota porazdelitve}.
+Znane zvezne porazdelitve so naslednje:
+\begin{itemize}
+\item \pojem{Normalna porazdelitev}:
+  \[
+	f_X(x) = \inv{\sigma \sqrt{2 \pi}} \exp\left( - \frac{{(x - \mu)}^2}{2
+		\sigma^2} \right)
+  \]
+\item \pojem{Eksponentna porazdelitev}:
+  \[
+	f_X(x) = \lambda \exp(-\lambda x)
+  \]
+  za $x \ge 0$.
+\item \pojem{Gama porazdelitev}:
+  \[
+	f_X(x) = \frac{\lambda^a}{\Gamma(a)} x^{a-1} \exp(-\lambda x)
+  \]
+  za $x \ge 0$.
+\item \pojem{Enakomerna porazdelitev}:
+  \[
+	f_X(x) = \inv{b-a}.
+  \]
+\item \pojem{Beta porazdelitev}:
+  \[
+	f_X(x) = \inv{B(a, b)} x^{a-1} (1-x)^{b-1}
+  \]
+  za $0 < x < 1$.
+\end{itemize}

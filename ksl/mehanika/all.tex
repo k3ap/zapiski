@@ -87,7 +87,7 @@ Vektorsko enačbo tokrat razpišemo v ortonormirani bazi krivulje.
 Bazne vektorje lahko izračunamo kot
 \begin{align*}
   \vec{e}_t = \normiran{\pvec{\gamma}'(\tau)},
-  && \vec{e}_n = \normiran{\pvec{e}_t(\tau)},
+  && \vec{e}_n = \normiran{\pvec{e}'_t(\tau)},
   && \vec{e}_b = \vec{e}_t \times \vec{e}_n.
 \end{align*}
 Pri tem ne pozabimo, da
@@ -95,6 +95,11 @@ Pri tem ne pozabimo, da
   \partial_s \vec{e}_t = \kappa \vec{e}_n
 \]
 velja le v primeru, da je $s$ naravni parameter.
+Parameter $\kappa$ najlažje izračunamo kot
+\[
+  \kappa = \frac{\abs{x' y'' - y' x''}}{{(x'^2 + y'^2)}^{3/2}},
+\]
+kjer je $p \mapsto (x(p), y(p))$ regularna parametrizacija krivulje.
 
 Če je krivulja gladka (brez trenja), je pospešek vedno v smeri tangente in
 normale na krivuljo, komponenta binormale je ničelna; poleg tega je hitrost
@@ -155,9 +160,10 @@ Velja namreč, da je ploščinska hitrost konstantna, in jo lahko kdaj uporabimo
 merjenje časa.
 Za \pojem{dvojno ploščinsko hitrost}
 \[
-  C_0 = r^2 \dot{\theta}
+  C_0 = r^2 \dot{\theta} = r v_{\theta}
 \]
-velja $\dot{A} = \pol C_0$ in $l = m C_0$.
+velja $\dot{A} = \pol C_0$ in $l = m C_0$, kjer je $v_\theta = \vec{v} \cdot
+\vec{e}_\theta$.
 Pomagamo si lahko tudi z Binetovo formulo; če je $u = 1 / r$, velja
 \[
   a_r = - C_0^2 u^2 (u'' + u),
