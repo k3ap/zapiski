@@ -1,4 +1,4 @@
-\naslov{Splošno}
+\naslov{Potencialno gibanje}
 
 Praktično vse naloge v mehaniki vsebujejo obravnavo gibanja nekega telesa.
 Da to naredimo, analiziramo sile na telo, in zapišemo drugi Newtonov zakon
@@ -97,9 +97,11 @@ Pri tem ne pozabimo, da
 velja le v primeru, da je $s$ naravni parameter.
 Parameter $\kappa$ najlažje izračunamo kot
 \[
-  \kappa = \frac{\abs{x' y'' - y' x''}}{{(x'^2 + y'^2)}^{3/2}},
+  \kappa = \frac{\norm{\vec{\gamma'} \times
+	  \vec{\gamma''}}}{\norm{\vec{\gamma'}^3}}
+  = \frac{\abs{x' y'' - y' x''}}{{(x'^2 + y'^2)}^{3/2}},
 \]
-kjer je $p \mapsto (x(p), y(p))$ regularna parametrizacija krivulje.
+če je $\vec{\gamma}: \tau \mapsto (x(\tau), y(\tau))$ regularna parametrizacija krivulje.
 
 Če je krivulja gladka (brez trenja), je pospešek vedno v smeri tangente in
 normale na krivuljo, komponenta binormale je ničelna; poleg tega je hitrost
@@ -174,9 +176,30 @@ Dodatno velja
   u' = - \frac{\dot{r}}{C_0},
 \]
 iz česar lahko izračunamo $\dot{r}$, radialno komponento hitrosti.
+Če želimo določiti tir poti, lahko uporabljamo bodisi preslikavo $\vec{r}(t)$
+bodisi $r(\theta)$; tu je dovolj, da znaš tir narisati.
+Za trajektorijo pa moraš nujno izračunati $\vec{r}(t)$, bodisi v običajnih
+bodisi v polarnih koordinatah, torej $(r(t), \theta(t))$.
 
-
-% list s formulami:
-% - integriranje v polarnih koordinatah
-% - bolj komplicirani integrali
-% - formule iz tu
+Vsako gibanje pod vplivom centralne sile je potencialno.
+Efektivni potencial je funkcija $r$, ki jo lahko izračunaš tako, da prvo
+integriraš nasprotno predznačeno silo po $r$
+\[
+  V(r) = - \int F(r) dr,
+\]
+in nato temu prišteješ člen $\nicefrac{l^2}{2 m r^2}$:
+\[
+  U(r) = \frac{l^2}{2 m r^2} + V(r).
+\]
+Pri tem je treba paziti, da je to potencial le po $r$; stacionarne točke ne
+ustrezajo mirovanju, pač pa enakomernemu kroženju okoli centra sil na konstantni
+razdalji.
+Poleg tega za kinetično energijo upoštevamo le radialno komponento hitrosti:
+\[
+  E_0 = \pol m \dot{r}^2 + U(r) = \text{konst}.
+\]
+Če imaš določen potencial, lahko z njim določiš tudi tir poti, s pomočjo
+\[
+  \theta - \theta_0 = \sgn(\dot{r}) \frac{l}{\sqrt{2 m}}
+  \int_{r_0}^{r} \frac{dr}{r^2 \sqrt{E_0 - U(r)}}.
+\]
