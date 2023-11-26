@@ -1,0 +1,126 @@
+\pojem{Navadna diferencialna enačba $k$-tega reda} je enačba oblike
+\[
+  \vec{F}(t, x(t), x'(t), \ldots, x^{(k)}(t)) = 0,
+\]
+kjer je $x: \R^n \to \R^n$ funkcija, ki reši enačbo.
+Če je $x$ vektorska funkcija ($n > 1$), enačbi pravimo \pojem{sistem NDE}.
+Za enačbo pravimo, da je \pojem{avtonomna}, če $F$ ni eksplicitno odvisna od
+$t$.
+Neavtonomen sistem lahko spravimo v avtonomnega tako, da uvedemo še eno odvisno
+spremenljivko $v(t)$, ter enačbo $\dot{v} = 1$.
+
+Splošna rešitev enačbe $y' = f(x, y)$ je enoparametrična družina funkcij $y =
+y(x, C)$.
+Če obstaja funkcija $u(x, y)$, za katero velja $u(x, y(x, C)) = \text{konst.}$
+za vsak $C$, jo imenujemo \pojem{prvi integral enačbe}.
+
+
+\section{Enačba z ločljivima spremenljivkama}%
+\label{sec:locljive-spremenljivke}
+
+Če imamo enačbo oblike
+\[
+  \dot{x} = f(t) g(x),
+\]
+jo predelamo v
+\[
+  \frac{\dot{x}}{g(x)} = f(t),
+\]
+in integriramo obe strani.
+Če je $H$ primitivna funkcija $\nicefrac{1}{g}$, in $F$ primitivna funkcija $f$,
+velja
+\[
+  x(t) = H^{-1}(F(t) + C)
+\]
+za poljubno konstanto $C \in \R$.
+
+\section{Enačba s homogeno desno stranjo}%
+\label{sec:homogena-desna-stran}
+
+Če je $\dot{x} = f(t, x)$, kjer velja $f(t, x) = f(\lambda t, \lambda x)$ za vse
+$\lambda \in \R\brez\{0\}$, vpeljemo spremenljivko
+\begin{align*}
+  v = \frac{x}{t} && \dot{x} = t \dot{v} + v.
+\end{align*}
+Ker velja $\dot{x} = f(1, v)$, dobimo enačbo
+\[
+  \dot{v} = \inv{t} (f(1, v) - v),
+\]
+to je enačba z ločljivima spremenljivkama, nadaljuješ kot v
+razdelku~\ref{sec:locljive-spremenljivke}.
+
+\section{Linearna NDE prvega reda}%
+\label{sec:linearna-prvega-reda}
+
+Linearna NDE prvega reda je enačba oblike
+\[
+  y' = f(x) y + g(x).
+\]
+Rešiš jo tako, da prvo rešiš homogeno enačbo
+\[
+  y' = f(x) y,
+\]
+ki je enačba z ločljivimi spremenljivkami, rešitev poiščeš kot v
+razdelku~\ref{sec:locljive-spremenljivke}.
+Vedno dobiš
+\[
+  y_h = C \exp\left( \int_a^x f(\xi) d\xi \right).
+\]
+Splošna rešitev bo enaka vsoti homogene in partikularne rešitve.
+Slednjo poiščemo z nastavkom
+\[
+  y_p = C(x) \exp\left( \int_a^x f(\xi) d\xi \right),
+\]
+postopku pravimo \pojem{variacija konstante}.
+Če nastavek vstavimo v originalno diferencialno enačbo, dobimo
+\[
+  C'(x) \exp\left(\int_a^x f(\xi) d\xi \right) = g(x).
+\]
+Ko to integriramo, dobimo preslikavo $C(x)$, in rešitev
+\[
+  y = C(x) \exp\left( \int_a^x f(\xi) d\xi \right)
+  + D \exp\left( \int_a^x f(\xi) d\xi \right),
+\]
+kjer je $D \in \R$ poljuben parameter (ki pride od homogene rešitve).
+
+\section{Bernoullijeva enačba}%
+\label{sec:bernoullijeva-enaba}
+
+Bernoullijeva enačba je enačba oblike
+\[
+  p(x) y' + q(x) y = r(x) y^\alpha(x)
+\]
+za nek $\alpha \in \R$.
+Če je $\alpha = 0$ ali $\alpha = 1$, sistem rešimo po
+razdelku~\ref{sec:linearna-prvega-reda}.
+V nasprotnem primeru vpeljemo
+\begin{align*}
+  z(x) = {(y(x))}^{1 - \alpha}, && z'(x) = (1 - \alpha) y^{-\alpha}(x) y'(x).
+\end{align*}
+Če začetno enačbo delimo z $y^{-\alpha}$, dobimo
+\[
+  p y' y^{-\alpha} + q y^{1 - \alpha} = r,
+\]
+oziroma
+\[
+  z' + \frac{q}{p} (1 - \alpha) z = \frac{r}{p}(1 - \alpha),
+\]
+kar je nehomogena NDE prvega reda, ki jo rešimo po
+razdelku~\ref{sec:linearna-prvega-reda}.
+
+\section{Riccatijeva enačba}%
+\label{sec:riccatijeva-enacba}
+
+Riccatijeva enačba je enačba oblike
+\[
+  y' = a(x) y^2 + b(x) y + c(x),
+\]
+ki je v splošnem ne znamo rešiti.
+Če uganemo neko partikularno rešitev $y_p$, lahko uporabimo nastavek $y = y_p +
+z$, ki nam enačbo reducira na
+\[
+  z' = (2 a y_p + b) z + a z^2,
+\]
+kar je Bernoullijeva enačba za $p = 1$, $q = (-2a y_p + b)$, $r = a$ in $\alpha
+= 2$.
+Rešimo jo po postopku v razdelku~\ref{sec:bernoullijeva-enaba}.
