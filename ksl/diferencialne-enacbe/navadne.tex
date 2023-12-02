@@ -9,13 +9,146 @@ $t$.
 Neavtonomen sistem lahko spravimo v avtonomnega tako, da uvedemo še eno odvisno
 spremenljivko $v(t)$, ter enačbo $\dot{v} = 1$.
 
+\section{Prvi integral}%
+
 Splošna rešitev enačbe $y' = f(x, y)$ je enoparametrična družina funkcij $y =
 y(x, C)$.
 Če obstaja funkcija $u(x, y)$, za katero velja $u(x, y(x, C)) = \text{konst.}$
 za vsak $C$, jo imenujemo \pojem{prvi integral enačbe}.
+Vsaka implicitno podana krivulja $y(x)$ z enačbo $u(x, y) = D$, kjer je $u$ prvi
+integral neke diferencialne enačbe, je rešitev te diferencialne enačbe.
+Iskanje prvega integrala je torej kvečjemu močnejše od reševanja diferencialne
+enačbe.
+
+Če imamo dano vektorsko polje $F = (P, Q): \R^2 \to \R^2$, lahko poiščemo
+ortogonalne krivulje nanj z diferencialno enačbo
+\[
+  y' = - \frac{P}{Q}.
+\]
+Če je polje potencialno s potencialom $u$, iste krivulje poiščemo z
+\[
+  y' = - \frac{\partial_x u}{\partial_y u},
+\]
+torej je $u$ prvi integral te enačbe.
+Ker potencial načeloma znamo poiskati z integralom, lahko enačbo rešimo.
+Če pa polje ni potencialno, mora obstajati funkcija $\lambda = \lambda(x, y)$,
+ki jo imenujemo \pojem{integrirujoči množitelj}, za katero je polje $(\lambda P,
+\lambda Q)$ potencialno.
+Če nam tako funkcijo uspe najti, smo enačbo rešili, njen prvi integral je enak
+\[
+  u(x, y) = \int_{(x_0, y_0)}^{(x, y)} \lambda P dx + \lambda Q dy.
+\]
+Ko iščemo $\lambda$, si lahko pomagamo z enakostjo $\partial_x (\lambda Q) =
+\partial_y (\lambda P)$.
+
+Včasih dobimo enačbo oblike $P dx + Q dy = 0$.
+Če velja $P_y = Q_x$, je enačba \pojem{eksaktna}, s prvih integralom $u$, za
+katerega velja $u_x = P, u_y = Q$.
+Rešitev je potem implicitno podana z nivojnico $u = C$.
+Če ni eksaktna, poskušamo najti integrirujoči množitelj.
+
+\section{Parametrično reševanje}%
+
+Če imamo implicitno podano NDE prvega reda $F(x, y, y') = 0$, lahko nanjo
+gledamo kot na ploskev v $\R^3$ s substitucijo $p = y'$.
+Potem lahko enačbo obravnavamo na tri načine:
+\begin{itemize}
+\item Če $y$ ne nastopa v $F$, parametriziramo nastalo krivuljo z $x = x(t)$ in
+  $p = p(t)$.
+  Parametrizacijo odvajamo in uporabimo dejstvo $dy = p dx$.
+  Iz tega dobimo krivuljo $x \mapsto (x, y(x))$, ki je rešitev enačbe.
+\item Če $x$ ne nastopa v $F$, spet parametriziramo $y = y(t)$ in $p = p(t)$,
+  ter uporabimo $dy = p dx$.
+  Iz tega lahko izračunaš krivuljo $t \mapsto (x(t), y(t))$, ki je rešitev DE\@.
+\item Če lahko enega od $x, y, p$ eksplicitno izraziš, ta predpis direktno
+  vstaviš v $dy = p dx$, in rešitev izraziš parametrično.
+\end{itemize}
+
+\section{Tok}
+
+Naj bo dano vektorsko polje $V$.
+\pojem{Tokovnica} tega polja je taka krivulja $\gamma$, da velja
+$\dot{\gamma}(t) = V(\gamma(t))$.
+\pojem{Tok} je preslikava $(x, t) \mapsto \phi_t(x) \in \R^n$, da je $t \mapsto
+\phi_t(x)$ tokovnica za vsak $x$, in $\phi_0(x) = x$ za vse $x$.
+
+Če imamo dano polje v polarnih koordinatah $(\dot(r), \dot(\varphi)) = W(r,
+\varphi)$, ga lahko transformiramo v kartezične koordinate z
+\[
+  V = (\dot{x}, \dot{y}) = D_\psi (\eta(t)) (\dot{r}, \dot{\varphi}),
+\]
+kjer je $\eta(t) = (r(t), \varphi(t))$ in $\psi(r, \varphi) = (x, y)$.
+
+\section{Enačbe drugega reda}
+
+Naj bo dan sistem
+\begin{gather*}
+  \dot{\vec{q}} = \vec{G}(\vec{q}, \vec{p}), \\
+  \dot{\vec{p}} = \vec{F}(\vec{q}, \vec{p}).
+\end{gather*}
+Če obstaja taka funkcija $H: M \subseteq \R^{2n} \to \R$, da je
+\begin{gather*}
+  \partial_{\vec{q}} H = -\vec{F}, \\
+  \partial_{\vec{p}} H = \vec{G},
+\end{gather*}
+potem pravimo, da je sistem \pojem{hamiltonski}, funkciji $H$ pa pravimo
+\pojem{Hamiltonian}.
+Tedaj je $H$ tudi prvi integral enačbe.
+Da je sistem hamiltonski, mora biti vektorsko polje $(-\vec{F}, \vec{G})$
+potencialno.
+
+\section{Cauchyjeve naloge}
+
+\pojem{Cauchyjeva naloga} ali \pojem{začetni problem} je sistem enačb
+\begin{gather*}
+  y' = f(x, y), \\
+  y(x_0) = y_0.
+\end{gather*}
+
+\begin{izrek}[Eksistenčni izrek]
+  Dana je Cauchyjeva naloga $y' = f(x, y)$, $y(x_0) = y_0$.
+  Če je $f: C_{a,b} \to \R$ zvezna in Lipscitzova v spremenljivki $y$, kjer je
+  \[
+	C_{a,b} = [x_0 - a, x_0 + a] \times [y_0 - b, y_0 + b],
+  \]
+  obstaja enolična rešitev $\tilde{y}$, definirana na $(x_0 - \alpha, x_0 +
+  \alpha)$, kjer je
+  \begin{gather*}
+	\alpha = \min\{a, \frac{b}{M}, \inv{L}\}, \\
+	M = \max_{C_{a,b}} \abs{f(x, y)}.
+  \end{gather*}
+  Če je $f \in \zvodvi{k}$, je tok tudi $\zvodvi{k}$.
+\end{izrek}
+
+Lipscitzov pogoj lahko zamenjamo s pogojem, da je $f$ zvezno odvedljiva.
+Izrek je pomemben, ker poleg obstoja zagotavlja tudi enoličnost rešitve.
+Če moramo dokazati, da je rešitev tudi globalno enolična, lahko uporabo izreka
+verižimo od začetne točke; če dobimo, da je rešitev enolična na razdalji
+$\alpha$ od začetne točke, se postavimo v točko $\pol \alpha$, tam uporabimo
+izrek, in (pod predpostavko, da se maksimalna razdalja ne zmanjša) dobimo obstoj
+in enoličnost do $\frac{3}{2} \alpha$.
+Postopek lahko potem nadaljujemo.
+Obstoj globalne rešitve pa lahko pokažemo tudi z naslednjo lemo:
+
+\begin{lema}
+  Naj rešitev Cauchyjeve naloge obstaja na nekem intervalu $(\sigma, \omega)$ za
+  $\sigma, \omega \in [-\infty, \infty]$.
+  \begin{itemize}
+  \item Če je $\omega < \infty$, potem
+	\[
+	  \lim_{x \to \omega} \abs{y(x)} = \infty.
+	\]
+  \item Če je $\sigma > \omega$, potem
+	\[
+	  \lim_{x \to \sigma} \abs{y(x)} = \infty.
+	\]
+  \end{itemize}
+\end{lema}
 
 
-\section{Enačba z ločljivima spremenljivkama}%
+\section{Pogosti postopki reševanja}%
+
+\subsection{Enačba z ločljivima spremenljivkama}%
 \label{sec:locljive-spremenljivke}
 
 Če imamo enačbo oblike
@@ -34,7 +167,7 @@ velja
 \]
 za poljubno konstanto $C \in \R$.
 
-\section{Enačba s homogeno desno stranjo}%
+\subsection{Enačba s homogeno desno stranjo}%
 \label{sec:homogena-desna-stran}
 
 Če je $\dot{x} = f(t, x)$, kjer velja $f(t, x) = f(\lambda t, \lambda x)$ za vse
@@ -49,7 +182,20 @@ Ker velja $\dot{x} = f(1, v)$, dobimo enačbo
 to je enačba z ločljivima spremenljivkama, nadaljuješ kot v
 razdelku~\ref{sec:locljive-spremenljivke}.
 
-\section{Linearna NDE prvega reda}%
+\subsection{Enačbe višjega reda}%
+\label{sec:enacbe-visjega-reda}
+
+Dana je enačba $F(x, y, y', \ldots, y^{(n)}) = 0$.
+Imamo tri pristope:
+\begin{itemize}
+\item Če $F$ ni odvisna od $y$, znižamo red z $z = y'$.
+\item Če $F$ ni odvisna od $x$, znižamo red z $z(x) = y'(y)$; pri tem velja
+  $\partial_y z = \nicefrac{y''}{y'}$.
+\item Če je $F(x, \lambda y, \ldots, \lambda y^{(n)}) = \lambda^k F(x, y,
+  \ldots, y^{(n)})$, znižamo red z $z = \nicefrac{y'}{y}$.
+\end{itemize}
+
+\subsection{Linearna NDE prvega reda}%
 \label{sec:linearna-prvega-reda}
 
 Linearna NDE prvega reda je enačba oblike
@@ -83,7 +229,7 @@ Ko to integriramo, dobimo preslikavo $C(x)$, in rešitev
 \]
 kjer je $D \in \R$ poljuben parameter (ki pride od homogene rešitve).
 
-\section{Bernoullijeva enačba}%
+\subsection{Bernoullijeva enačba}%
 \label{sec:bernoullijeva-enaba}
 
 Bernoullijeva enačba je enačba oblike
@@ -108,7 +254,7 @@ oziroma
 kar je nehomogena NDE prvega reda, ki jo rešimo po
 razdelku~\ref{sec:linearna-prvega-reda}.
 
-\section{Riccatijeva enačba}%
+\subsection{Riccatijeva enačba}%
 \label{sec:riccatijeva-enacba}
 
 Riccatijeva enačba je enačba oblike
@@ -124,3 +270,35 @@ z$, ki nam enačbo reducira na
 kar je Bernoullijeva enačba za $p = 1$, $q = (-2a y_p + b)$, $r = a$ in $\alpha
 = 2$.
 Rešimo jo po postopku v razdelku~\ref{sec:bernoullijeva-enaba}.
+
+\subsection{Clairontova enačba}%
+\label{sec:clairontova-enacba}
+
+Clairontova enačba je enačba oblike
+\[
+  y = xy' + \psi(y').
+\]
+Rešujemo jo parametrično, torej zapišemo $p = y'$ in uporabimo $dy = p dx$.
+Ko dobimo splošno rešitev $y = Cx + \psi(C)$, zapišemo $G(x, y, C) = y - Cx -
+\psi(C)$, izračunamo še singularno rešitev z enačbama $G = 0$ in $\partial_C G =
+0$.
+
+\subsection{Lagrangeova enačba}%
+\label{sec:lagrangeova-enacba}
+
+Lagrangeova enačba je enačba oblike
+\[
+  y = x \phi(y') + \psi(y').
+\]
+Rešujemo jo parametrično, torej zapišemo $p = y'$ in uporabimo $dy = p dx$.
+S tem se enačba prevede na linearno, ki jo rešimo kot v
+razdelku~\ref{sec:linearna-prvega-reda}.
+
+\section{Razno}%
+
+\subsection{Iskanje ortogonalnih krivulj}
+
+Če imamo dano krivuljo $y(x)$, in iščemo nanjo pravokotne krivulje, prvo
+odvajamo predpis za to krivuljo, da dobimo enačbo $y = f(x, y')$.
+V tej enačbi nato zamenjamo pojavitve $y'$ z $\nicefrac{-1}{y'}$, da dobimo
+enačbo za ortogonalne trajektorije.
