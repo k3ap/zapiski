@@ -233,3 +233,108 @@ Metodo imenujemo \emph{inverzna interpolacija}, ima pa isti red konvergence kot
 Mullerjeva metoda.
 
 \vprasanje{Razloži metodo inverzne interpolacije.}
+
+\podnaslov{Ničle polinomov}
+
+Ničle polinomov lahko iščemo na več načinov:
+\begin{itemize}
+\item Poiščeš eno ničlo in reduciraš polinom.
+\item Računaš vse ničle hkrati.
+\item Prevedeš problem na problem iskanja lastnih vrednosti.
+\end{itemize}
+Za redukcijo na problem lastnih vrednosti uporabljamo \emph{spremljevalno
+  matriko} polinoma $p(x) = a_0 x^n + \ldots + a_n$
+\[
+  C_p =
+  \begin{bmatrix}
+	0 & 1 &  & \\
+	& 0 & 1 & \\
+	&  & \ddots & \ddots &  \\
+	& &  & 0 & 1 \\
+	- \frac{a_n}{a_0} & - \frac{a_{n-1}}{a_0} & \ldots & -\frac{a_2}{a_0} & -\frac{a_1}{a_0}
+  \end{bmatrix}
+\]
+
+\vprasanje{Kako izgleda spremljevalna matrika polinoma?}
+
+Ena od metod, ki računa vse ničle hkrati, je \emph{Laguerrova metoda}.
+Za polinom $p(x) = a_0 x^n + \ldots + a_n$ z ničlami $\alpha_1, \ldots,
+\alpha_n$ definiramo
+\begin{gather*}
+  S_1(x) = \sum_{i=1}^n \inv{x-\alpha_i} = \frac{p'(x)}{p(x)}, \\
+  S_2(x) = \sum_{i=1}^n \inv{{(x-\alpha_i)}^2} = -S_1'(x) = \frac{(p'(x))^2 -
+	p(x) p''(x)}{p^2(x)}, \\
+  a(x) = \inv{x - \alpha_n}, \\
+  b(x) = \inv{n-1} \sum_{i=1}^{n-1} \inv{x - \alpha_i},
+\end{gather*}
+da velja $S_1(x) = a(x) + (n-1) b(x)$.
+Tedaj za
+\begin{gather*}
+  d_i(x) = \inv{x-\alpha_i} - b(x), \\
+  d(x) = \sum_{i=1}^{n-1} d_i^2(x)
+\end{gather*}
+dobimo $S_2 = a^2 + (n-1) b^2 + d$, ker je $\sum_i d_i = 0$.
+Dobili smo sistem enačb v spremenljivkah $a, b$, ki ga lahko rešimo in dobimo
+\[
+  a_{1, 2} = \inv{n} \left( S_1 \pm \sqrt{(n-1) (n S_2 - S_1^2 - n d)} \right).
+\]
+Če $x$ obravnavamo kot približek za ničlo $\alpha_n$, bo člen $nd$ v bližini
+$\alpha_n$ majhen, zato ga zanemarimo.
+Iz tega izrazimo
+\[
+  \alpha_n = x - \frac{n}{S_1 \pm \sqrt{ (n-1)(n S_2 - S_1^2) }}.
+\]
+Laguerrova metoda nam torej da postopek za izračun približka ničle
+\[
+  x_{r+1} = x_r -
+  \frac{n p(x_r)}{
+	p'(x_r) \pm
+	\sqrt{ (n-1) \left[ (n-1) (p'(x_r))^2 - n p(x_r) p''(x_r) \right] }
+  }.
+\]
+Za odločitev, kateri predznak pripišemo korenu v imenovalcu, imamo tri možnosti:
+\begin{itemize}
+\item Vedno izberemo plus,
+\item Vedno izberemo minus,
+\item \emph{Stabilna varianta}: izbereš tistega, ki ti v imenovalcu da večjo
+  absolutno vrednost.
+\end{itemize}
+V prvih dveh primerih fiksno iščemo v eni smeri od začetnega približka, v
+tretjem pa to ni zagotovljeno.
+
+\begin{izrek}
+  Če ima polinom $p$ same realne ničle, potem za vsak začetni približek $x_0$
+  stabilna verzija Laguerrove metode konvergira proti najbližji desni oz. levi
+  ničli, pri čemer si mislimo, da sta kraka realne osi pri $+\infty$ in
+  $-\infty$ združena.
+  Konvergenca v bližini enostavne ničle je kubična.
+\end{izrek}
+
+Če ima polinom kompleksne ničle, metoda konvergira za skoraj vse začetne
+približke.
+
+\vprasanje{Izpelji Laguerrovo metodo in razloži, kako delujejo vse možnosti za
+  izbiro naslednjega približka.}
+
+\podnaslov{Durand-Kernerjeva metoda}
+
+Izberimo približke $x_1, \ldots, x_n$ za ničle polinoma $p(x)$ z vodilnih
+koeficientom $1$.
+Iščemo popravke $\Delta x_1, \ldots, \Delta x_n$, da bodo $x_i + \Delta x_i$
+točne ničle.
+Velja
+\[
+  p(x)
+  = (x - (x_1 + \Delta x_1)) (x - (x_2 + \Delta x_2)) \ldots (x - (x_n
+  + \Delta x_n))
+  = \prod_{i=1}^n (x-x_i) - \sum_{j=1}^n \Delta x_j \prod{i \ne j} (x - x_i)
+  + \ldots,
+\]
+člene drugega in večjega reda pa zanemarimo (torej vse, kar je v tropičju).
+Če s $q(x)$ označimo nezanemarjen del, velja
+\[
+  q(x_l) = - \Delta x_l \prod_{i \ne l} (x_l - x_i),
+\]
+iz česar lahko izračunamo $\Delta x_l$.
+
+\vprasanje{Razloži Durand-Kernerjevo metodo.}

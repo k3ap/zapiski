@@ -1,0 +1,196 @@
+\naslov{Sistemi linearnih enačb}
+
+\begin{definicija}
+  Preslikava $\norm{\cdot} : \C^n \to \R$ je \pojem{vektorska norma}, če velja
+  \begin{itemize}
+  \item $\norm{x} \ge 0$ za vse $x$, in $\norm{x} = 0 \nt x = 0$,
+  \item $\norm{\alpha x} = \abs{\alpha} \norm{x}$,
+  \item $\norm{x + y} \le \norm{x} + \norm{y}$.
+  \end{itemize}
+\end{definicija}
+
+Vse vektorske norme so ekvivalentne, za poljubni normi $\norm{x}_A$ in
+$\norm{x}_B$ obstajata konstanti $C_1, C_2$, da velja
+\[
+  C_1 \norm{x}_A \le \norm{x}_B \le C_2 \norm{x}_A.
+\]
+Konkretno za 1-normo, 2-normo in supremum normo veljajo ocene
+\begin{gather*}
+  \norm{x}_2 \le \norm{x}_1 \le \sqrt{n} \norm{x}_2 \\
+  \norm{x}_\infty \le \norm{x}_1 \le \sqrt{n} \norm{x}_\infty \\
+  \norm{x}_\infty \le \norm{x}_2 \le \sqrt{n} \norm{x}_\infty
+\end{gather*}
+
+\vprasanje{Definiraj vektorsko normo. V kakšnem razmerju so znane vektorske
+  norme?}
+
+\begin{definicija}
+  Preslikava $\norm{\cdot} : \C^{n \times n} \to \R$ je \pojem{matrična norma},
+  če velja
+  \begin{itemize}
+  \item $\norm{A} \ge 0$ in $\norm{A} = 0 \nt A = 0$,
+  \item $\norm{\alpha A} = \abs{\alpha} \norm{A}$,
+  \item $\norm{A + B} \le \norm{A} + \norm{B}$,
+  \item $\norm{A B} \le \norm{A} \norm{B}$ (submultiplikativnost).
+  \end{itemize}
+\end{definicija}
+
+Matrika je tudi vektor, na njej so tudi definirane običajne vektorske norme.
+Definiramo funkcije
+\begin{gather*}
+  N_1(A) = \sum_{i,j} \abs{a_{ij}}, \\
+  N_2(A) = \sqrt{\sum_{i,j} \abs{a_{ij}}^2}, \\
+  N_\infty(A) = \max_{i,j} \abs{a_{ij}}.
+\end{gather*}
+Te funkcije ustrezajo prvim trem točkam definicije matrične norme, to pa še ni
+dovolj.
+Za matriki
+\[
+  A = B =
+  \begin{bmatrix}
+	1 & 1 \\ 1 & 1
+  \end{bmatrix}
+\]
+velja $N_\infty(A) = N_\infty(B) = 1$, ampak $N_\infty(AB) = 2$, torej
+$N_\infty$ ni matrična norma.
+V nasprotju $N_1$ in $N_2$ dejansko sta matrični normi.
+Funkcijo $N_2$ imenujemo \pojem{Frobeniusova norma} in označimo z $N_2(A) =
+\norm{A}_F$.
+
+\vprasanje{Dokaži, da $N_\infty$ ni matrična norma. Kaj je Frobeniusova norma?}
+
+\begin{izrek}
+  Naj bo $\norm{\cdot}_v$ vektorska norma na $\C^n$.
+  Potem je
+  \[
+	\norm{A}_m = \max_{x \ne 0} \frac{\norm{A x}_v}{\norm{x}_v}
+  \]
+  matrična norma.
+  Taki normi pravimo \pojem{operatorska norma}.
+\end{izrek}
+
+\begin{proof}
+  Prve tri točke so očitne, preverimo samo submultiplikativnost.
+  Za vsak $x \ne 0$ velja $\norm{A x}_v \le \norm{A}_m \norm{x}_v$ po
+  definiciji, torej
+  \[
+	\norm{AB}
+	= \max_{x \ne 0} \frac{\norm{ABx}_v}{\norm{x}_v}
+	\le \max_{x \ne 0} \frac{\norm{A}_m \norm{Bx}_v}{\norm{x}_v}
+	= \norm{A}_m \norm{B}_m.
+  \]
+\end{proof}
+
+\vprasanje{Dokaži, da so operatorske norme res matrične norme.}
+
+Za matrično normo $\norm{\cdot}_m$ in vektorsko normo $\norm{\cdot}_v$ pravimo,
+da sta \pojem{usklajeni}, če za vsako matriko $A$ in vektor $x$ velja
+\[
+  \norm{Ax}_v \le \norm{A}_m \norm{x}_v.
+\]
+
+\begin{lema}
+  Za vsako matrično normo obstaja usklajena vektorska norma.
+\end{lema}
+
+\begin{proof}
+  Za vektor $x$ definiramo
+  \[
+	\norm{x}_v =
+	\norm{
+	  \begin{bmatrix}
+		x & 0 & \ldots & 0
+	  \end{bmatrix}
+	}_m,
+  \]
+  kjer smo vektor dopolnili do kvadratne matrike.
+  To je očitno vektorska norma, normi sta očitno usklajeni.
+\end{proof}
+
+\vprasanje{Dokaži, da ima vsaka matrična norma usklajeno vektorsko normo.}
+
+\begin{posledica}
+  Za vsako matrično normo in poljubno lastno vrednost $\lambda$ matrike $A$
+  velja $\abs{\lambda} \le \norm{A}$.
+\end{posledica}
+
+\begin{proof}
+  Naj bo $Ax = \lambda x$ za nek $x \ne 0$.
+  Velja
+  \[
+	\abs{\lambda} \norm{x}_v = \norm{\lambda x}_v = \norm{Ax}_v \le \norm{A}
+	\norm{x}_v.
+  \]
+\end{proof}
+
+\vprasanje{Kakšna je povezava med lastnimi vrednostmi in matrično normo?
+  Dokaži.}
+
+\begin{lema}
+  Norma $\norm{A}_1$ je enaka največji 1-normi stolpca matrike $A$.
+\end{lema}
+
+\begin{proof}
+  Naj bo $x$ vektor.
+  Velja
+  \[
+	\norm{Ax}_1
+	= \norm{\sum_i x_i a_i}_1
+	\le \sum_i \abs{x_i} \norm{a_i}_1
+	\le \max_{j=1, \ldots, n} \sum_i \abs{x_i} \norm{a_j}_1
+	= \max_j \norm{x}_1 \norm{a_j}_1.
+  \]
+  Sledi
+  \[
+	\frac{\norm{Ax}_1}{\norm{x}_1} \le \max_j \norm{a_j}_1.
+  \]
+  Enakost dobimo, če za $x$ vzamemo $e_k$, kjer je $k$ stolpec z največjo
+  1-normo.
+\end{proof}
+
+Podobno pokažemo, da je $\norm{A}_\infty$ enaka največji 1-normi vrstice.
+
+\vprasanje{Čemu sta enaki normi $\norm{A}_1$ in $\norm{A}_\infty$? Dokaži za
+  eno.}
+
+\begin{lema}
+  Velja $\norm{A}_2 = \max_j \sqrt{\lambda_j}$, kjer so $\lambda_j$ lastne
+  vrednosti matrike $A^H A$.
+\end{lema}
+
+\begin{proof}
+  Matrika $A^H A$ je hermitska, torej so vse njene lastne vrednosti realne.
+  Velja
+  \[
+	x^H A^H A x = (Ax)^H Ax = \norm{Ax}_2 \ge 0,
+  \]
+  torej je $A^H A$ pozitivno semidefinitna, in ima nenegativne lastne vrednosti.
+  Izraz je torej res dobro definiran.
+
+  Naj bodo $\sigma_1^2 \le \sigma_2^2 \le \ldots \le \sigma_n^2$ singularne
+  vrednosti matrike $A$ (lastne vrednosti $A^H A$).
+  Ker je $A^H A$ hermitska, lahko lastne vektorje izberemo tako, da so
+  ortonormirani.
+  Naj za $v_i$ torej velja $A^H A v_i = \sigma_i^2 v_i$.
+  Za poljuben $x$ velja
+  \[
+	x = \sum_i \alpha_i v_i,
+  \]
+  torej
+  \[
+	\norm{Ax}_2^2
+	= (Ax)^H (Ax)
+	= x^H A^H A x
+	= \sum_i \abs{\alpha_i}^2 \sigma_i^2
+	\le \sigma_n^2 \sum_i \abs{\alpha_i}^2
+	= \sigma_n^2 \norm{x}_2^2.
+  \]
+  Sledi neenakost
+  \[
+	\frac{\norm{Ax}_2}{\norm{x}_2} \le \sigma_n,
+  \]
+  kjer dobimo enačaj, če vzamemo $x = v_n$.
+\end{proof}
+
+\vprasanje{Čemu je enaka 2-norma matrike? Dokaži.}
+
