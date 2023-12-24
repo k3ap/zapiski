@@ -1,5 +1,7 @@
 \naslov{Sistemi linearnih enačb}
 
+\podnaslov{Matrične norme}
+
 \begin{definicija}
   Preslikava $\norm{\cdot} : \C^n \to \R$ je \pojem{vektorska norma}, če velja
   \begin{itemize}
@@ -193,4 +195,406 @@ Podobno pokažemo, da je $\norm{A}_\infty$ enaka največji 1-normi vrstice.
 \end{proof}
 
 \vprasanje{Čemu je enaka 2-norma matrike? Dokaži.}
+
+Frobeniusova norma ni operatorska, ker za vse operatorske norme velja $\norm{I}
+= 1$, ampak $\norm{I}_F = \sqrt{n}$.
+Kljub temu pa so vse matrične norme ekvivalentne.
+Za konkretne primere velja
+\begin{gather*}
+  \inv{\sqrt{n}} \norm{A}_F \le \norm{A}_2 \le \norm{A}_F, \\
+  \inv{\sqrt{n}} \norm{A}_1 \le \norm{A}_2 \le \sqrt{n} \norm{A}_1, \\
+  \inv{\sqrt{n}} \norm{A}_\infty \le \norm{A}_2 \le \sqrt{n} \norm{A}_\infty.
+\end{gather*}
+Velja tudi $\norm{A}_2 \le \sqrt{\norm{A}_1 \norm{A}_\infty}$ in $N_\infty(A)
+\le \norm{A}_2 \le n N_\infty(A)$.
+
+\vprasanje{Kako oceniš 2-normo matrike?}
+
+\begin{lema}
+  Normi $\norm{\cdot}_2$ in $\norm{\cdot}_F$ sta invariantni na množenje z
+  unitarno matriko.
+\end{lema}
+
+\begin{proof}
+  Za $x \in \C$ velja $\norm{Ux}_2 = \norm{x}_2$.
+  Pri 2-normi torej
+  \[
+	\norm{U A}_2
+	= \max_x \frac{\norm{UAx}_2}{\norm{x}_2}
+	= \max_x \frac{\norm{Ax}_2}{\norm{x}_2}
+	= \norm{A}_2,
+  \]
+  za Frobeniusovo normo po
+  \[
+	\norm{UA}_F^2
+	= \norm{U [a_1 \ldots a_n]}_F^2
+	= \sum_i \norm{U a_i}_2^2
+	= \sum_i \norm{a_i}_2^2
+	= \norm{A}_F^2.
+  \]
+  V drugo smer uporabimo dejstvi $\norm{A^H}_2 = \norm{A}_2$ in $\norm{A^H}_F =
+  \norm{A}_F$.
+\end{proof}
+
+\vprasanje{Dokaži, da sta 2-norma in Frobeniusova norma invariantni na množenje
+  z unitarno matriko.}
+
+\begin{lema}
+  Naj bo $\norm{X} < 1$.
+  Potem je $I-X$ nesingularna, inverz je enak
+  \[
+	(I-X)^{-1} = \sum_{k=0}^\infty X^k,
+  \]
+  in če je $\norm{I} = 1$, velja
+  \[
+	\norm{(I-X)^{-1}} \le \frac{1}{1 - \norm{X}}.
+  \]
+\end{lema}
+
+\begin{proof}
+  Recimo, da je $I-X$ singularna.
+  Tedaj obstaja vektor $w \ne 0$, da je $(I-X)w = 0$, torej $X w = w$ in je $w$
+  lastni vektor za lastno vrednost $1$.
+  To je protislovje, ker mora biti norma večja od lastne vrednosti.
+
+  Računamo
+  \[
+	(I-X) \sum_{k=0}^m X^k = I - X^{m+1} \xrightarrow[m \to \infty]{} I,
+  \]
+  ker je $\norm{X} < 1$ in $\norm{X}^{m+1} \ge \norm{X^{m+1}}$.
+  Dodatno velja
+  \[
+	\norm{ \sum_{k=0}^\infty X^k } \le \norm{I} + \norm{X} + \norm{X}^2 + \ldots
+	= \frac{1}{1 - \norm{X}}.
+  \]
+\end{proof}
+
+\vprasanje{Povej predpostavke in dokaži formulo za inverz matrike $I - X$.}
+
+\podnaslov{Občutljivost sistema linearnih enačb}
+
+Imejmo sistem $Ax = b$, kjer je $A$ nesingularna matrika.
+Denimo, da $A$ in $b$ zmotimo v $A + \Delta A$ ni $b + \Delta b$, kjer je $A +
+\Delta A$ še vedno nesingularna.
+Nov sistem ima potem obliko
+\[
+  (A + \Delta A) (x + \Delta x) = b + \Delta b.
+\]
+
+\begin{lema}
+  Če je $A$ nesingularna in $\norm{\Delta A} < \inv{\norm{A^{-1}}}$, je $A +
+  \Delta A$ nesingularna.
+\end{lema}
+
+\begin{proof}
+  Računamo
+  \[
+	A + \Delta A = A(I + A^{-1} \Delta A),
+  \]
+  in ocenimo normo
+  \[
+	\norm{A^{-1} \Delta A} \le \norm{A^{-1}} \norm{\Delta A} < 1,
+  \]
+  torej velja po prejšnji lemi.
+\end{proof}
+
+Naj torej velja ta pogoj za eno izmed znanih operatorskih norm.
+Računamo
+\begin{gather*}
+  (A + \Delta A) \Delta x = \Delta b - \Delta A x, \\
+  \Delta x = (I + A^{-1} \Delta A)^{-1} (\Delta b - \Delta A x), \\
+  \frac{\norm{\Delta x}}{\norm{x}}
+  \le \frac{\norm{A} \norm{A^{-1}}}{1 - \norm{A^{-1}} \norm{\Delta A}}
+  \left( \frac{\norm{\Delta b}}{\norm{b}} + \frac{\norm{\Delta A}}{\norm{A}}
+  \right),
+\end{gather*}
+kjer smo v zadnjem delu uporabili sklep $\norm{b} \le \norm{A} \norm{x}$.
+Kvaliteta ocene je odvisna od vrednosti
+\[
+  \kappa(A) = \norm{A^{-1}} \norm{A},
+\]
+ki ji pravimo \pojem{občutljivost matrike} ali \pojem{pogojenostno število}.
+
+Za 2-normo velja
+\[
+  \norm{A^{-1}}_2
+  = \max_{x \ne 0} \frac{\norm{A^{-1} x}_2}{\norm{x}_2}
+  = \max_{y \ne 0} \frac{\norm{y}_2}{\norm{Ay}_2}
+  = \left( \min_{y \ne 0} \frac{\norm{Ay}_2}{\norm{y}_2} \right)^{-1}
+  = \inv{\sigma_n(A)},
+\]
+kjer je $\sigma_n(A)$ najmanjša singularna vrednost.
+Dobimo torej
+\[
+  \kappa_2(A) = \frac{\sigma_1(A)}{\sigma_n(A)}.
+\]
+
+\vprasanje{Kaj je občutljivost matrike? Kako jo uporabiš za oceno občutljivosti
+  sistema linearnih enačb?}
+
+\podnaslov{LU razcep}
+
+Naj bo dan vektor $w \in \R^n$ in naj velja $w_k \ne 0$.
+Definiramo \pojem{eliminacijsko matriko}
+\[
+  L_k =
+  \begin{bmatrix}
+	1 &   &        &           &        &        & \\
+	  & 1 &        &           &        &        & \\
+	  &   & \ddots &           &        &        & \\
+	  &   &        & 1         &        &        & \\
+	  &   &        & -l_{k+1,k} & 1 &        & \\
+	  &   &        & \vdots    &        & \ddots &  \\
+	  &   &        & -l_{n,k}  &         &        & 1
+  \end{bmatrix}
+\]
+za $l_{i,k} = \frac{w_i}{w_k}$.
+Velja
+\[
+  L_k w =
+  \begin{bmatrix}
+	w_1 \\ w_2 \\ \vdots \\ w_k \\ 0 \\ \vdots \\ 0
+  \end{bmatrix}.
+\]
+Če je $L_k = I - l_k e_k^T$, lahko izračunamo $L_k^{-1} = I + l_k e_k^T$.
+Če množimo matriko $A$ z leve z $L_1$, uničimo prvi stolpec, razen prvega
+elementa.
+Če to matriko množimo z $L_2$ z leve, uničimo poddiagonalne elemente v drugem
+stolpcu ($L_2$ gradimo iz elementom te druge matrike).
+Tako lahko nadaljujemo in pridemo do
+\[
+  L_{n-1} L_{n-2} \ldots L_2 L_1 A =
+  \begin{bmatrix}
+	a_{11} & a_{12} & \cdots & a_{1n} \\
+	0 & a_{22}^{(1)} & \cdots & a_{2n}^{(1)} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	0 & 0 & \cdots & a_{nn}^{(n-1)}
+  \end{bmatrix}
+  = U
+\]
+Za matriko $L = L_1^{-1} L_2^{-1} \ldots L_{n-1}^{-1}$ tedaj velja $A = LU$.
+Izračunamo lahko
+\[
+  L = I + \sum_k l_k^T e_k,
+\]
+iz česar vidimo, da je $L$ spodnje trikotna z enicami na diagonali.
+Da LU razcep lahko naredimo, morajo biti elementi $a_{11}, a_{22}^{(1)}, \ldots,
+a_{nn}^{(n-1)}$ na diagonali neničelni.
+Pravimo jim \pojem{pivoti}.
+
+\vprasanje{Izpelji in razloži osnovni LU razcep. Kaj so pivoti?}
+
+\begin{algorithm}
+  \caption{LU razcep brez pivotiranja}%
+  \label{alg:lubrezpivotiranja}
+  \begin{algorithmic}
+	\For{$j=1, \ldots, n-1$}
+	\For{$i=j+1, \ldots, n$}
+	\State $l_{ij} = \nicefrac{a_{ij}}{a_{jj}}$
+	\For{$k=j+1, \ldots, n$}
+	\State $a_{ik} = a_{ik} - l_{ij} a_{jk}$
+	\EndFor
+	\EndFor
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+Osnovni postopek za izračun LU razcepa je prikazan v
+algoritmu~\ref{alg:lubrezpivotiranja}.
+S tem dobimo elemente matrike $L$, razen enic na diagonali, ter elemente matrike
+$U$ nad diagonalo.
+Algoritem deluje v $O(n^3)$ s predfaktorjem $\nicefrac{2}{3}$.
+
+Sistem $Ax = b$ rešimo tako, da prvo razcepimo $A = LU$, nato s premo
+substitucijo rešimo trikotni sistem $L y = b$, in nazadnje z obratno
+substitucijo rešimo še $Ux = y$.
+
+\vprasanje{Zapiši osnovni algoritem za LU razcep. Kakšno časovno zahtevnost
+  ima?}
+
+\begin{izrek}
+  Za matriko $A$ je ekvivalentno
+  \begin{itemize}
+  \item Obstaja enoličen LU razcep $A = LU$, kjer je $L$ spodnje trikotna z
+	enicami na diagonali, in $U$ zgornje trikotna nesingularna.
+  \item Vse vodilne podmatrike $A$ so nesingularne.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  V desno: $A_k$ je produkt ustreznih vodilnih podmatrik $L_k$ in $U_k$.
+  V levo:
+  Indukcija na $n$.
+  Za matrike velikosti $1$ ni nič za dokazati.
+  Naj sedaj velja za $n$, dokažimo da velja tudi za $n+1$.
+  Definiramo
+  \[
+	\tilde{A} =
+	\begin{bmatrix}
+	  A & b \\ c^T & \delta
+	\end{bmatrix}.
+  \]
+  Po indukcijski predpostavki lahko matriko $A$ razcepimo v $A = LU$.
+  Določimo lahko torej $u = L^{-1} b$, $l = U^{-T} c$ in $\xi = \delta - l^T u$,
+  da dobimo
+  \[
+	\tilde{A} =
+	\begin{bmatrix}
+	  L & 0 \\ l^T & 1
+	\end{bmatrix}
+	\cdot
+	\begin{bmatrix}
+	  U & u \\ 0^T & \xi
+	\end{bmatrix}.
+  \]
+  Po predpostavki sta $\xi$ in $\det U$ različni od $0$, torej je $\det
+  \tilde{U} = \xi \det U \ne 0$.
+\end{proof}
+
+\vprasanje{Kdaj je LU razcep enoličen? Dokaži.}
+
+Ničle in majhni elementi na diagonali so problem za LU razcep.
+Rešimo ga tako, da uvedemo delno oz.~kompletno pivotiranje.
+Pri delnem pivotiranju na vsakem koraku namesto elementa v diagonali vzamemo
+element pod diagonalo, ki je največji po absolutni vrednosti, ter ga z menjavo
+vrstic postavimo na pivotno mesto.
+Rezultat tega je razcep $PA = LU$, kjer je $P$ permutacijska matrika, ki ustreza
+menjavi vrstic.
+
+\begin{lema}
+  Če je $A$ nesingularna, obstaja taka permutacijska matrika $P$, da za $PA$
+  obstaja LU razcep brez pivotiranja.
+\end{lema}
+
+\begin{proof}
+  Vmesne matrike so oblike $L_{j-1} P_{j-1} \ldots L_2 P_2 L_1 P_1 A$.
+  Ker so vse naštete matrike nesingularne, mora biti tudi produkt nesingularen,
+  torej obstaja neničelni element v ostanku stolpca.
+\end{proof}
+
+\vprasanje{Kako deluje LU razcep z delnim pivotiranjem? Pod katerim pogojem ga
+  lahko naredimo?}
+
+Pri kompletnem pivotiranju poiščemo največji element v neobdelani podmatriki, in
+ga postavimo na pivotno mesto z zamenjavo stolpcev in vrstic.
+Dobimo razcep $PAQ = LU$, kjer $P$ permutira vrstice in $Q$ stolpce.
+V algoritmu dobimo $O(n^3)$ dodatnih primerjanj.
+
+\vprasanje{Opiši LU razcep s kompletnim pivotiranjem.}
+
+Sistem $Ax = b$ rešimo numerično z eno izmed variant LU razcepa, in dobimo
+rešitev $\hat{x}$.
+Zanima nas ocena obratne stabilnosti $\norm{\Delta A}$, kjer je $(A + \Delta A)
+\hat{x} = b$.
+Za analizo si mislimo, da smo pivotiranje že naredili, tako da lahko analiziramo
+le osnovni LU razcep.
+
+\begin{lema}
+  Naj bo $L \in \R^{n \times n}$ nesingularna spodnje trikotna matrika.
+  Če sistem $Ly = b$ numerično rešimo s premo substitucijo, potem za izračunani
+  $\hat{y}$ velja $(L+\Delta L)\hat{y} = b$, kjer je $\abs{\Delta L} \le n u
+  \abs{L}$ po elementih.
+\end{lema}
+
+\begin{proof}
+  V $i$-tem koraku nastavimo
+  \[
+	\hat{y}_i = \inv{l_{ii} (1 + \alpha_i) (1 + \beta_i)}
+	\left( b_i - \sum_{k=1}^{i-1} l_{ik} \hat{y}_k (1 + \gamma_{ik}) \right),
+  \]
+  kjer so $\alpha_i, \beta_i, \gamma_{ik}$ manjše od osnovne računske napake
+  $u$.
+  Za $\gamma_{ii} = (1 + \alpha_i) (1 + \beta_i)$ velja $\abs{\gamma_{ii}} \le
+  2u$, in $\abs{\gamma_{ik}} \le (i-1) u$, torej za poljubna $j,l$ velja
+  $\abs{\gamma_{jl}} \le nu$.
+\end{proof}
+
+\begin{lema}
+  Če je $U$ nesingularna zgornje trikotna matrika, in če sistem $Ux = y$
+  numerično rešimo z obratno substitucijo, izračunani $\hat{x}$ zadošča enačbi
+  $(U + \Delta U) \hat{x} = y$, kjer je $\abs{\Delta U} \le nu \abs{U}$.
+\end{lema}
+
+\begin{lema}
+  Naj bo $A$ taka matrika, da se izvede LU razcep brez pivotiranja.
+  Za izračunani matriki $\hat{L}$ in $\hat{U}$ tedaj velja $\hat{L} \hat{U} = A
+  + E$, kjer je $\abs{E} \le nu \abs{\hat{L}} \abs{\hat{U}}$.
+\end{lema}
+
+\begin{izrek}
+  Če sistem $Ax = b$ rešimo z LU razcepom, potem za izračunani $\hat{x}$ velja
+  $(A+\Delta A) \hat{x} = b$, kjer je $\abs{\Delta A} \le 3 nu \abs{L} \abs{U} +
+  O(u^2)$.
+\end{izrek}
+
+Posledica tega je, da velja $\norm{\Delta A}_\infty \le 3nu \norm{L}_\infty
+\norm{U}_\infty$, to pa nam ne pomaga zares, ker je lahko produkt norm $L$ in
+$U$ poljubno velik v primerjavi z normo $A$.
+
+Če ne pivotiramo, postopek ni obratno stabilen, če pa pivotiramo, pa je
+$\abs{l_{ij}} \le 1$, torej je $\norm{L}_\infty \le n$.
+Če vpeljemo \pojem{pivotno rast}
+\[
+  g = \frac{\max_{ij} \abs{u}_{ij}}{\max_{ij} \abs{a_{ij}}},
+\]
+velja $\norm{U}_\infty \le ng \norm{A}_\infty$, in $\norm{\Delta A}_\infty \le 3
+n^3 gu \norm{A}_\infty$.
+Pri delnem pivotiranju velja $g \le 2^{n-1}$, kar se v splošnem tudi lahko kdaj
+zgodi, recimo za matriko
+\[
+  \begin{bmatrix}
+	1      &        &        &        &    & 1 \\
+	-1     & 1      &        &        &    & 1 \\
+	-1     & -1     & 1      &        &    & 1 \\
+	\vdots & \vdots & \vdots & \ddots &    & \vdots \\
+	-1     & -1     & -1     & \cdots & 1  & 1 \\
+	-1     & -1     & -1     & \cdots & -1 & 1
+  \end{bmatrix},
+\]
+torej LU razcep z delnim pivotiranjem tudi ni obratno stabilen, v praksi pa se
+to redko zgodi.
+
+Točne ocene za LU razcep s kompletnim pivotiranjem ne poznamo, smatramo pa, da
+je obratno stabilno.
+
+\vprasanje{Analiziraj obratno stabilnost LU razcepa. Kaj je pivotna rast?}
+
+\podnaslov{Razcep Choleskega}
+
+\begin{izrek}
+  Veljajo naslednje točke:
+  \begin{itemize}
+  \item Če je $A$ simetrična pozitivno definitna matrika, je vsaka vodilna
+	podmatrika simetrično pozitivno definitna.
+  \item Če je $A$ simetrična pozitivno definitna, obstaja enoličen razcep $A =
+	LU$, kjer je $L$ spodnje trikotna matrika z enicami na diagonali in $U$
+	zgornje trikotna matrika s pozitivnimi diagonalnimi elementi.
+  \item $A$ je simetrična pozitivno definitna natanko tedaj, ko je $A = V V^T$
+	za neko spodnje trikotno matriko $V$, ki ima pozitivne diagonalne elemente.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Prva točka:
+  Velja $x^T A_k x = \tilde{x}^T A \tilde{x}$, kjer je $\tilde{x}$ vektor $x$,
+  dopolnjen z ničlami.
+
+  Druga točka:
+  Vse vodilne podmatrike so simetrične pozitivno definitne, torej nesingularne
+  in obstaja enoličen LU razcep.
+  Če je $A = LU$, je $\det A_k = u_{11} u_{22} \ldots u_{kk}$, torej so $u_{ii}
+  > 0$.
+
+  Tretja točka:
+  Razcepimo $A = LU$ in to dodatno razcepimo v $A = L D W$, kjer je $D$
+  diagonalna matrika z elementi $u_{11}, \ldots, u_{nn}$, in $W = D^{-1} U$
+  zgornje trikotna matrika z enicami na diagonali.
+
+  Ker je $A = A^T$, je $W^T D L^T$ LU razcep matrike $A$ (če združimo desni dve
+  matriki) in velja $W^T = L$ ter $D L^T = U$.
+  Torej je $A = LDL^T$, in lahko definiramo $V = L \sqrt{D}$.
+\end{proof}
+
+\vprasanje{Karakteriziraj pozitivno definitnost matrike z razcepom Choleskega in
+  dokaži karakterizacijo.}
 
