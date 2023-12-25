@@ -205,3 +205,124 @@ Obstaja nekaj standardnih diskretnih porazdelitev.
 \end{primer}
 
 \vprasanje{Opiši eksponentno, gama, enakomerno in beta porazdelitev.}
+
+Če je $X$ slučajna spremenljivka, kakšna mora biti funkcija $f: \R \to \R$, da
+bo $Y = f(X)$ tudi slučajna spremenljivka?
+Za poljubna $a < b$ mora biti $X^{-1}(f^{-1}((a, b)))$ dogodek.
+Če je funkcija (odsekoma) zvezna, že zadošča; potreben in zadosten pogoj pa je,
+da je $f$ merljiva, torej da je $f^{-1}(A)$ dogodek za vse $A \in B(\R)$.
+
+\begin{definicija}
+  \pojem{Porazdelitvena funkcija} slučajne spremenljivke $X$ je funkcija $F_X :
+  \R \to \R$, podana z $F_X(x) = P(X \le x)$.
+\end{definicija}
+Če ima $X$ gostoto $f_X$, je
+\[
+  F_X(x) = \int_{-\infty}^x f_X(u) du.
+\]
+
+\begin{izrek}
+  Naj bo $F_X$ porazdelitvena funkcija slučajne spremenljivke $X$.
+  Tedaj velja
+  \begin{itemize}
+  \item $F_X$ je nepadajoča,
+  \item $\lim_{x \to \infty} F_X(x) = 1$ in $\lim_{x \to -\infty} F_X(x) = 0$,
+  \item $F_X$ je desno zvezna.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Prva točka:
+  za $x < y$ velja $F_X(y) - F_X(x) = P(X \in (x, y]) \ge 0$.
+
+  Druga točka:
+  Definiramo $A_n = \{X \le n\}$.
+  Tedaj velja
+  \[
+	\bigcup_{n=1}^\infty A_n = \Omega,
+  \]
+  in ti dogodki so naraščajoči.
+  Potem je
+  \[
+	1 = P(\Omega) = P\left( \bigcup_n A_n \right) = \lim_{n \to \infty} P(A_n)
+	= \lim_{n \to \infty} F_x(n).
+  \]
+  Ker je $F_X$ nepadajoča, velja tudi $\lim_{x \to \infty} F_X(x) = 1$ zvezno.
+  Za drugo formulo podobno definiramo $B_n = \{X \le -n\}$, kar je padajoče
+  zaporedje dogodkov s praznim presekom.
+  Za limito velja podoben sklep kot prej.
+
+  Tretja točka:
+  Naj bo $x_n \downarrow x$.
+  Definiramo $C_n = \{X \le x_n\}$, velja
+  \[
+	\bigcap_{n=1}^{\infty} C_n = \{X \le x\}.
+  \]
+  Ker so $C_n$ padajoči, je
+  \[
+	F_X(x) = P\left( \bigcap_{n=1}^\infty C_n \right) = \lim_{n \to \infty} P(X
+	\le x_n) = \lim_{n \to \infty} F_X(x_n),
+  \]
+  torej je $F_X$ res desno zvezna.
+\end{proof}
+
+\vprasanje{Definiraj porazdelitveno funkcijo slučajne spremenljivke. Kakšne
+  lastnosti ima?}
+
+\begin{vo}{Naj velja $X \sim N(\mu, \sigma^2)$ in $Y = aX+b$. Kakšna je gostota
+	$Y$?}
+  Računamo
+  \[
+	F_Y(y) = P(Y \le y)
+	= P(X \le \frac{y-b}{a})
+	= \inv{\sqrt{2\pi} \sigma} \int_{-\infty}^{(y-b)/a} \exp\left( - \frac{(u -
+		\mu)^2}{2 \sigma^2} \right) du.
+  \]
+  Ker je $F_X$ zvezno odvedljiva, je
+  \[
+	f_Y(y) = F_Y'(y) = \inv{\sqrt{2 \pi} \sigma a} \exp\left( - \frac{(y-b-a
+		\mu)^2}{2 a^2 \sigma^2} \right),
+  \]
+  torej $Y \sim N(a \mu + b, a^2 \sigma^2)$.
+\end{vo}
+
+\begin{definicija}
+  Če je $Z \sim N(0, 1)$, rečemo, da ima $Z$ \pojem{standardizirano normalno
+	porazdelitev}.
+  Porazdelitveno funkcijo $Z$ označimo s $\phi$, torej
+  \[
+	\phi(z) = \inv{\sqrt{2 \pi}} \int_{-\infty}^z \exp\left( -\pol u^2 \right) du.
+  \]
+\end{definicija}
+
+Če je $X \sim N(\mu, \sigma^2)$, je torej
+\[
+  F_X(x) = \phi(\frac{x-\mu}{\sigma}).
+\]
+
+\vprasanje{Kaj je standardizirana normalna porazdelitev?}
+
+\begin{vo}{Kaj je verjetnostna transformacija?}
+  Naj bo $X$ zvezno porazdeljena s porazdelitveno funkcijo $F_X$, za katero
+  predpostavimo, da je zvezna.
+  Definiramo $Y = F_X(X)$ in računamo za $y \in (0,1)$
+  \[
+	P(Y \le y)
+	= P(X \in F^{-1}((-\infty, y]))
+	= F_X(\sup\{x \such F_X(x) \le y\})
+	= y,
+  \]
+  torej $Y \sim U(0,1)$.
+\end{vo}
+
+\begin{definicija}
+  Naj bo $p \in (0,1)$.
+  Vsakemu številu $x_p$, za katerega je $P(X \le x_p) = p$, rečemo \pojem{$p$-ti
+	kvantil} porazdelitve slučajne spremenljivke $X$.
+\end{definicija}
+
+\begin{opomba}
+  $p$-ti kvantil \poudarjenanegacija{ni} enolično določen.
+\end{opomba}
+
+\vprasanje{Kaj je $p$-ti kvantil porazdelitve slučajne spremenljivke?}
