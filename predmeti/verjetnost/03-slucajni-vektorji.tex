@@ -1,0 +1,21 @@
+\naslov{Slučajni vektorji}
+
+\newcommand{\sv}[1]{\underline{#1}}
+
+\podnaslov{Diskretni slučajni vektorji}
+
+\begin{primer}[Multinomska porazdelitev]
+  Imamo $r$ škatel, vanje mečemo $n$ kroglic.
+  Meti so neodvisni, škatlo $k$ zadenemo z verjetnostjo $p_k$.
+  Velja $\sum_{k} p_k = 1$.
+  V vsaki škatli je pristalo slučajno število kroglic $X_k \sim
+  \operatorname{Bin}(n, p_k)$.
+  Te spremenljivke zložimo v vektor $\sv{X} = (X_1, \ldots, X_r)$, ki ima
+  porazdelitev
+  \[
+	P(X_1 = k_1, \ldots, X_r = k_r) = p_1^{k_1} \ldots p_r^{k_r} \binom{n}{k_1,
+	  \ldots, k_r}.
+  \]
+  Pravimo, da ima $\sv{X}$ multinomsko porazdelitev s parametroma $n$ in
+  $\sv{p}$, ter označimo $\sv{X} \sim \operatorname{Multinom}(n, \sv{p})$.
+\end{primer}
