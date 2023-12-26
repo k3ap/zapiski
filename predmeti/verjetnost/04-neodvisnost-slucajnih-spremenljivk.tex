@@ -20,3 +20,33 @@
 
 \vprasanje{Definiraj neodvisnost slučajnih spremenljivk.}
 
+\begin{izrek}
+  Naj za diskretni slučajni spremenljivki $X$ in $Y$ velja $P(X = x, Y = y) =
+  f(x) g(y)$ za funkciji $f : R(X) \to \R$ in $g: R(Y) \to \R$ ($R$ je zaloga
+  vrednosti).
+  Potem sta $X$ in $Y$ neodvisni.
+\end{izrek}
+
+\begin{proof}
+  Po formuli za robne porazdelitve je
+  \[
+	P(X = x) = f(x) \sum_y g(y) = f(x) C_1.
+  \]
+  Podobno $P(Y = y) = C_2 g(y)$.
+  Predpišemo
+  \[
+	P(X = x, Y = y) = P(X = x) P(Y = y) C_1^{-1} C_2^{-1}.
+  \]
+  Dokazati moramo še, da velja $C_1 C_2 = 1$.
+  Seštejmo
+  \begin{align*}
+	1 &= \sum_{x, y} P(X = x, Y = y) \\
+	&= \inv{C_1 C_2} \sum_{x, y} P(X = x) P(Y = y)  \\
+	&= \inv{C_1 C_2} \left( \sum_x P(X = x) \right) \left( \sum_y P(Y = y)
+	\right) \\
+	&= \inv{C_1 C_2}.
+  \end{align*}
+\end{proof}
+
+\vprasanje{Kako še lahko določiš, da sta slučajni spremenljivki neodvisni?
+  Dokaži.}
