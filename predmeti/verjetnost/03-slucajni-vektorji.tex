@@ -19,3 +19,33 @@
   Pravimo, da ima $\sv{X}$ multinomsko porazdelitev s parametroma $n$ in
   $\sv{p}$, ter označimo $\sv{X} \sim \operatorname{Multinom}(n, \sv{p})$.
 \end{primer}
+
+\vprasanje{Kaj je multinomska porazdelitev?}
+
+\begin{definicija}
+  \pojem{Slučajni vektor} $\sv{X}$ s komponentami $X_1, \ldots, X_r$ je funkcija
+  $\sv{X}: \Omega \to \R^r$, da je
+  \[
+	\sv{X}^{-1}\left( \prod_{k=1}^r (a_k, b_k] \right)
+  \]
+  dogodek za vse $a_k < b_k$.
+\end{definicija}
+
+\begin{definicija}
+  Slučajni vektor je \pojem{diskreten}, če ima vrednosti v končni ali števni
+  množici.
+\end{definicija}
+
+\vprasanje{Definiraj slučajne vektorje.}
+
+\begin{izrek}
+  Naj bosta $\sv{X}$ in $\sv{Y}$ diskretna slučajna vektorja.
+  Za vse možne vrednosti $\sv{x}$ vektorja $\sv{X}$ velja
+  \[
+	P(\sv{X} = \sv{x}) = \sum_{\sv{y}} P(\sv{X} = \sv{x}, \sv{Y} = \sv{y}).
+  \]
+  Formuli pravimo \pojem{formula za robno porazdelitev}.
+\end{izrek}
+
+\vprasanje{Povej formulo za robno porazdelitev.}
+
