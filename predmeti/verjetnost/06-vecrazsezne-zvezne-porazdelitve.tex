@@ -65,3 +65,22 @@
 
 Dokaz je praktično enak kot pri podobnem izreku za diskretne spremenljivke, le
 da pišemo integrale namesto vsot.
+
+\podnaslov{Funkcije slučajnih vektorjev}
+
+\begin{izrek}
+  Naj bo $\sv{X}$ slučajni vektor z gostoto $f_{\sv{X}}(\sv{x})$.
+  Predpostavimo $P(\sv{X} \in U) = 1$ za neko odprto množico $U \subseteq \R^n$.
+  Naj bo $\phi : U \to V$ difeomorfizem in $\sv{Y} = \phi(\sv{X})$.
+  Velja $P(\sv{Y} \in V) = 1$ in
+  \[
+	f_{\sv{Y}}(\sv{y}) =
+	\begin{cases}
+	  f_{\sv{X}}\left( \phi^{-1}(\sv{y}) \right) \abs{ \det D\phi^{-1}(\sv{y}) }
+	  & \sv{y} \in V \\
+	  0 & \sv{y} \notin V
+	\end{cases}
+  \]
+\end{izrek}
+
+\vprasanje{Povej transformacijsko formulo.}
