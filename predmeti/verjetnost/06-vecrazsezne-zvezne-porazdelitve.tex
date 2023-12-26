@@ -11,3 +11,57 @@
 
 \vprasanje{Definiraj gostoto porazdelitve.}
 
+\begin{izrek}
+  Naj bo $f_{\sv{X}}(\sv{x})$ gostota vektorja $\sv{X}$ in $m < n$.
+  Privzemimo, da je funkcija
+  \[
+	(x_1, \ldots, x_n) \mapsto \int_{\R^{n-m}} f_{\sv{X}}(x_1, \ldots, x_n)
+	dx_{m+1} \ldots d_{x_n}
+  \]
+  Riemannovo integrabilna (lahko tudi v izlimitiranem smislu) po vseh Jordanovo
+  izmerljivih množicah.
+  Potem je to funkcija gostote vektorja $\sv{X}' = (x_1, \ldots, x_m)$.
+\end{izrek}
+
+\begin{izrek}
+  Slučajna vektorja $\sv{X}, \sv{Y}$ sta neodvisna natanko tedaj, ko je
+  \[
+	f_{\sv{X}, \sv{Y}}(\sv{x}, \sv{y}) = f_{\sv{X}}(\sv{x}) f_{\sv{Y}}(\sv{y})
+  \]
+  skoraj povsod.
+\end{izrek}
+
+\begin{proof}
+  V desno:
+  Velja
+  \begin{gather*}
+	P(X \in A, Y \in B) = \int_{A \times B} f_{\sv{X}, \sv{Y}}(\sv{x}, \sv{y})
+	d\sv{x} d\sv{y}, \\
+	P(X \in A) P(Y \in B)
+	= \int_A f_{\sv{X}}(\sv{x}) d\sv{x} \int_B f_{\sv{Y}}(\sv{y}) d\sv{y}
+	= \int_{A \times B} f_{\sv{X}} f_{\sv{Y}}.
+  \end{gather*}
+  Ker sta vektorja neodvisna, sta ti količini enaki, torej sta integrirani
+  funkciji enaki skoraj povsod.
+
+  V levo:
+  Velja
+  \begin{align*}
+	P(\sv{X} \in A, \sv{Y} \in B)
+	&= \int_{A \times B} f_{\sv{X}}(\sv{x}) f_{\sv{Y}}(\sv{y}) d\sv{x} d\sv{y} \\
+	&= \int_A f_{\sv{X}}(\sv{x}) d\sv{x} \int_B f_{\sv{Y}}(\sv{y}) d\sv{y} \\
+	&= P(\sv{X} \in A) P(\sv{Y} \in B).
+  \end{align*}
+\end{proof}
+
+\vprasanje{Karakteriziraj neodvisnost zvezno porazdeljenih slučajnih vektorjev
+  in dokaži karakterizacijo.}
+
+\begin{izrek}
+  Naj bo $f_{\sv{X}, \sv{Y}}(\sv{x}, \sv{y}) = f(\sv{x}) g(\sv{y})$ za
+  nenegativni $f, g$.
+  Potem sta $\sv{X}$ in $\sv{Y}$ neodvisni.
+\end{izrek}
+
+Dokaz je praktično enak kot pri podobnem izreku za diskretne spremenljivke, le
+da pišemo integrale namesto vsot.
