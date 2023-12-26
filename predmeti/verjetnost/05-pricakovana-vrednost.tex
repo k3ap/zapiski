@@ -7,3 +7,30 @@
 	E(X) = \sum_i x_i P(X = x_i).
   \]
 \end{definicija}
+
+Če slučajno spremenljivko $X$ vstavimo v funkcijo, spet dobimo slučajno
+spremenljivko $Y = f(X)$.
+Če je $X$ diskretna, je taka tudi $Y$, torej
+\[
+  E(Y) = \sum_y y P(Y = y) = \sum_x f(x) P(X = x).
+\]
+
+\vprasanje{Definiraj pričakovano vrednost diskretne spremenljivke. Kako se
+  preslika s funkcijo?}
+
+\begin{izrek}
+  Naj bodo $X_1, \ldots, X_n$ slučajne spremenljivke in $\alpha_1, \ldots,
+  \alpha_n$ konstante.
+  Če obstaja $E(X_i)$ za $i = 1, \ldots, n$, obstaja tudi
+  \[
+	E\left( \sum_i \alpha_i X_i \right) = \sum_i \alpha_i E(X_i).
+  \]
+\end{izrek}
+
+\begin{definicija}
+  Slučajna spremenljivka $I$ ima \pojem{Bernoullijevo porazdelitev}, če je
+  njena zaloga vrednosti enaka $\{0, 1\}$.
+  Če označimo $p = P(I = 1)$, pišemo $I \sim \operatorname{Bernoulli}(p)$.
+\end{definicija}
+
+\vprasanje{Kaj je Bernoullijeva porazdelitev?}
