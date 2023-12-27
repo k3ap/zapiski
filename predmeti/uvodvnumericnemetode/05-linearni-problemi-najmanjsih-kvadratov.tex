@@ -126,3 +126,123 @@ Gram-Schmittovem postopkom, kar je numerično bolje.
 
 \vprasanje{Kaj je modificiran Gram-Schmittov postopek? Kako ga pravilno uporabiš
   za reševanje sistema najmanjših kvadratov?}
+
+\podnaslov{Givensove rotacije}
+
+Če je $c = \cos \varphi$ in $s = \sin \varphi$, matrika
+\[
+  R_{ik}^T(\varphi)
+  =
+  \begin{bmatrix}
+	1 &  &  &  &  &  &  &  &  &  &  \\
+	  & \ddots &  &  &  &  &  &  &  &  &  \\
+	  &  & 1 &  &  &  &  &  &  &  &  \\
+	  &  &  & c &  &  &  & s &  &  &  \\
+	  &  &  &  & 1 &  &  &  &  &  &  \\
+	  &  &  &  &  & \ddots &  &  &  &  &  \\
+	  &  &  &  &  &  & 1 &  &  &  &  \\
+	  &  &  & -s &  &  &  & c &  &  &  \\
+	  &  &  &  &  &  &  &  & 1 &  &  \\
+	  &  &  &  &  &  &  &  &  & \ddots &  \\
+	  &  &  &  &  &  &  &  &  &  & 1
+  \end{bmatrix},
+\]
+ki ima elemente na diagonali in v stolpcih in vrsticah $i, k$, predstavlja
+rotacijo za $\varphi$ v ravnini, ki jo razpenjata $e_i$ in $e_k$ v $\R^m$.
+Z ustrezno izbiro $c$ in $s$ lahko slikamo $(x_i, x_k)$ v $(y_i, 0)$.
+Če je $r = \sqrt{x_i^2 + x_k^2}$, je taka izbira $c = x_i/r$ in $s = x_k/r$.
+Če te rotacije ustrezno kombiniramo, dobimo QR razcep, kakor je prikazano v
+algoritmu~\ref{alg:qr-givens}, ki ima zahtevnost $3 mn^2 - n^3$ če ne računamo
+$Q$, za računanje $Q$ pa porabimo še $6 m^2 n - 3 mn^2$ operacij.
+
+\begin{algorithm}
+  \caption{QR razcep z Givensonovimi rotacijami}
+  \label{alg:qr-givens}
+  \begin{algorithmic}
+	\State $Q = I_m$
+	\For{$i=1, \ldots, n$}
+	\For{$k=i+1, \ldots, m$}
+	\State $r = \sqrt{a_{ii}^2 + a_{ki}^2}$
+	\State $c = \nicefrac{a_{ii}}{r}$
+	\State $s = \nicefrac{a_{ik}}{r}$
+	\State Izračunaj
+	\begin{gather*}
+	  A([i,k], i:n) =
+	  \begin{bmatrix}
+		c & s \\ -s & c
+	  \end{bmatrix}
+	  \cdot
+	  A([i, k], i:n)
+	  \\
+	  b([i, k]) =
+	  \begin{bmatrix}
+		c & s \\ -s & c
+	  \end{bmatrix}
+	  \cdot b([i, k])
+	  \\
+	  Q([i, k], :) =
+	  \begin{bmatrix}
+		c & s \\ -s & c
+	  \end{bmatrix}
+	  \cdot Q([i, k], :)
+	\end{gather*}
+	\EndFor
+	\EndFor
+	\State $Q = Q^T$
+  \end{algorithmic}
+\end{algorithm}
+
+\vprasanje{Izpelji QR razcep z Givensonovimi rotacijami. Kakšna je njegova
+  časovna zahtevnost?}
+
+\naslov{Hausholderjeva zrcaljenja}
+
+Vzemimo $w \in \R^m$, ki je različen od $0$, in definirajmo
+\[
+  P = I - \frac{2}{w^T w} w w^T.
+\]
+Velja $P = P^T$ in $P^2 = I$, poleg tega pa je $w$ lastni vektor za $P$ z lastno
+vrednostjo $-1$.
+Če je $u \bot w$, je $Pu = u$.
+Preslikavo lahko torej obravnavamo kot zrcaljenje čez ravnino, katere normala je
+$w$.
+
+Če imamo dana dva enako dolga vektorja $x, y$, lahko z izbiro $w = x-y$ dobimo
+$y = Px$.
+Z izbiro $w = x \mp \norm{x}_2 e_1$ se $x$ preslika v
+\[
+  P
+  \cdot
+  \begin{bmatrix}
+	x_1 \\ x_2 \\ \vdots \\ x_n
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	\pm \norm{x}_2 \\ 0 \\ \vdots \\ 0
+  \end{bmatrix}.
+\]
+Za numerično stabilnost si izberemo, da prištevamo, če je $x_1$ pozitiven, sicer
+odštevamo; $w = x + \sgn x_1 \norm{x}_2 e_1$, kjer je $\sgn 0 \ne 0$.
+Z zrcaljenjem na enem koraku uničimo celoten stolpec matrike.
+Postopek izračuna QR razcepa je prikazan v algoritmu~\ref{alg:qr-householder}.
+Algoritem ima časovno zahtevnost $2 mn^2 - \frac{2}{3} n^3$, če nas ne zanima
+$Q$.
+
+\begin{algorithm}
+  \caption{QR razcep s Householderjevimi zrcaljenji}
+  \label{alg:qr-householder}
+  \begin{algorithmic}
+	\State $Q = I_m$
+	\For{$i=1, \ldots, n$}
+	\State Določi $w_i \in \R^{m-i+1}$ iz $A(i:m, i)$
+	\State $A(i:m, i:n) = P_i A(i:m, i:n)$
+	\State $b(i:m) = P_i b(i:m)$
+	\State $Q(i:m, :) = P_i Q(i:m, i)$
+	\EndFor
+	\State $Q = Q^T$
+  \end{algorithmic}
+\end{algorithm}
+
+\vprasanje{Izpelji QR razcep s Householderjevimi zrcaljenji.}
+
+% LocalWords:  QR
