@@ -11,5 +11,118 @@ Velja $Ax - b \bot Az$ za vse $z \in \R^n$ natanko tedaj, ko je za vsak $z$
 \]
 Sledi $A^T (Ax - b) = 0$ oziroma $A^T A x = A^T b$, čemur pravimo
 \pojem{normalni sistem}.
+Pri tem smo tiho predpostavili, da je $\rang A = n$, sicer sistem nebi bil
+enolično rešljiv.
 
-\vprasanje{Izpelji normalni sistem.}
+Velja $w^T A^T A w = \norm{Aw}_2^2 > 0$ za $w \ne 0$, torej je \pojem{Gramova
+  matrika} $A^T A$ simetrična pozitivno definitna, in zanjo obstaja razcep
+Choleskega.
+Pri reševanju sistema seveda uporabimo ta razcep.
+
+\vprasanje{Izpelji normalni sistem. Kaj je Gramova matrika?}
+
+\podnaslov{QR razcep}
+
+\begin{izrek}
+  Naj bo $A \in \R^{m \times n}$ za $m \ge n$ polnega ranga.
+  Potem obstaja enoličen razcep $A = QR$, kjer je $Q \in \R^{m \times n}$ z
+  ortonormiranimi stolpci ($Q^T Q = I_n$) in $R \in \R^{n \times n}$ zgornje
+  trikotna s pozitivnimi diagonalnimi elementi.
+\end{izrek}
+
+\begin{proof}
+  Če bi veljalo $A = QR$, je $A^T A = R^T Q^T Q R = R^T R$.
+  Matrika $A^T A$ je simetrična pozitivno definitna, torej je $R^T R$ njen
+  razcep Choleskega, in velja $R = V^T$.
+  Iz $A = QR$ sledi $Q = A R^{-1}$.
+\end{proof}
+
+\vprasanje{Povej in dokaži izrek o obstoju in enoličnosti QR razcepa.}
+
+Če poznamo $A = QR$, je $\im A = \im Q$.
+V drugem primeru bo vsakršno delo stabilnejše, ker so stolpci ortonormirani.
+Normalni sistem se tedaj prevede na $Rx = Q^T b$, ki ga lahko rešimo s premo
+substitucijo.
+
+\podnaslov{Gram-Schmittova ortogonalizacija}
+
+Poznamo tri načine za izračun QR razcepa.
+Najenostavnejši pristop je Gram-Schmittova ortogonalizacija.
+Velja
+\[
+  a_k = \sum_{i=1}^{k-1} r_{ik} q_i + r_{kk} q_k.
+\]
+Če to enačbo množimo z leve s $q_j^T$, nam ostane
+\[
+  r_{jk} = q_j^T a_k.
+\]
+Celoten postopek je prikazan v algoritmu~\ref{alg:qr-gram-schmitt}, ki ima
+računsko zahtevnost $2 mn^2$.
+
+\begin{algorithm}
+  \caption{QR razcep s klasičnim Gram-Schmittovim postopkom}
+  \label{alg:qr-gram-schmitt}
+  \begin{algorithmic}
+	\For{$k = 1, \ldots, n$}
+	\State $q_k = a_k$
+	\For{$i=1, \ldots, k-1$}
+	\State $r_{ik} = q_i^T a_k$
+	\State $q_k = q_k - r_{ik} q_i$
+	\EndFor
+	\State $r_{kk} = \norm{q_k}_2$
+	\State $q_k = \inv{r_{kk}} q_k$
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\vprasanje{Izpelji in zapiši klasični Gram-Schmittov postopek za izračun QR
+  razcepa.}
+
+V algoritmu naredimo še popravek, ki bo povečal stabilnost; pri računanju
+$r_{ik}$ namesto formule $r_{ik} = q_i^T a_k$ uporabimo $r_{ik} = q_i^T q_k$.
+Novemu postopku pravimo \pojem{modificiran Gram-Schmitt}, in je v teoriji
+ekvivalenten klasičnemu.
+Modificiran postopek moramo tudi bolj pametno uporabiti; izračunamo QR razcep
+razširjene matrike
+\[
+  \begin{bmatrix}
+	Q & q_{n+1}
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	R & z \\ 0 & \rho
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	A & b
+  \end{bmatrix},
+\]
+in dobimo
+\[
+  Ax - b =
+  \begin{bmatrix}
+	Q & q_{n+1}
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	R & z \\ 0 & \rho
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	x \\ -1
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	Q & q_{n+1}
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	Rx - z \\ -\rho
+  \end{bmatrix}.
+\]
+Najboljšo rešitev dobimo, ko je $Rx = z$.
+Dejansko je $z = Q^T b$, le da smo ga v tem postopku izračunali z modificiranem
+Gram-Schmittovem postopkom, kar je numerično bolje.
+
+\vprasanje{Kaj je modificiran Gram-Schmittov postopek? Kako ga pravilno uporabiš
+  za reševanje sistema najmanjših kvadratov?}
