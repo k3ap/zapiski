@@ -598,3 +598,59 @@ je obratno stabilno.
 \vprasanje{Karakteriziraj pozitivno definitnost matrike z razcepom Choleskega in
   dokaži karakterizacijo.}
 
+Če imamo izračunan razcep Choleskega, za $j < k$ velja
+\[
+  a_{jk} = \sum_{i=1}^{k-1} v_{ji} v_{ki} + v_{jk} v_{kk},
+\]
+pri $j=k$ pa dobimo
+\[
+  a_{kk} = \sum_{i=1}^{k-1} v_{ki}^2 + v_{kk}^2.
+\]
+Vidimo, da če poznamo vse elemente $V$ pred $v_{jk}$, ga lahko direktno
+izračunamo.
+Iz tega dobimo algoritem~\ref{alg:razcep-choleskega}.
+Ta porabi $\inv{3} n^3$ operacij za račun razcepa, pri čemer pa računamo $n$
+korenov.
+
+\begin{algorithm}
+  \caption{Razcep Choleskega}
+  \label{alg:razcep-choleskega}
+  \begin{algorithmic}
+	\For{$k=1, \ldots, n$}
+	\State Nastavi
+	\[
+	  v_{kk} = \sqrt{ a_{kk} - \sum_{i=1}^{k-1} v_{ki}^2 }
+	\]
+	\For{$j=k+1, \ldots, n$}
+	\State Nastavi
+	\[
+	  v_{jk} = \inv{v_{kk}} \left( a_{jk} - \sum_{i=1}^{k-1} v_{ji} v_{ki} \right)
+	\]
+	\EndFor
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\vprasanje{Zapiši algoritem za izračun razcepa Choleskega.}
+
+Če rešujemo sistem z razcepom Choleskega, izračunamo rešitev $\hat{x}$.
+Tedaj vemo $(A + \Delta A) \hat{x} = b$, kjer velja $\abs{\Delta A} \le 3 nu
+\abs{V} \abs{V^T}$.
+Ocenimo lahko
+\[
+  [ \abs{V} \abs{V^T} ]_{jk} = \sum_{i=1}^{\min(j,k)} \abs{v_{ji}} \abs{v_{ki}}
+  \le \sqrt{ \sum_{i=1}^j \abs{v_{ji}}^2 } \sqrt{ \sum_{i=1}^k \abs{v_{ki}}^2 }
+\]
+po Cauchy-Schwarzu.
+To je nadalje enako
+\[
+  \le \sqrt{a_{jj}} \sqrt{a_{kk}} \le \norm{A}_\infty.
+\]
+Reševanje sistema z razcepom Choleskega je torej obratno stabilno, in velja
+\[
+  \norm{\Delta A}_\infty \le 3 n^2 u \norm{A}_\infty,
+\]
+kjer dodaten $n$ na desni pride od tega, da smo na levi vzeli normo namesto
+absolutne vrednosti.
+
+\vprasanje{Analiziraj stabilnost razcepa Choleskega.}

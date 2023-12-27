@@ -1,0 +1,15 @@
+\naslov{Linearni problemi najmanjših kvadratov}
+
+\podnaslov{Normalni sistem}
+
+Dana je matrika $A \in \R^{m \times n}$ za $m > n$ in vektor $b \in \R^m$.
+Iščemo $x \in \R^n$, ki minimizira napako $\norm{Ax-b}_2$.
+Ta napaka bo minimalna, ko bo $Ax$ pravokotna projekcija $b$ na sliko $\im A$.
+Velja $Ax - b \bot Az$ za vse $z \in \R^n$ natanko tedaj, ko je za vsak $z$
+\[
+  z^T A^T (Ax - b) = 0.
+\]
+Sledi $A^T (Ax - b) = 0$ oziroma $A^T A x = A^T b$, čemur pravimo
+\pojem{normalni sistem}.
+
+\vprasanje{Izpelji normalni sistem.}

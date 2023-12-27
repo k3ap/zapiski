@@ -1,0 +1,111 @@
+\naslov{Sistemi nelineranih enačb}
+
+Rešujemo sistem
+\begin{align*}
+  f_1(x_1, \ldots, x_n) &= 0 \\
+  \vdots& \\
+  f_n(x_1, \ldots, x_n) &= 0
+\end{align*}
+za $f_i : \R \to \R$ ali $\C \to \C$.
+Ekvivalentno $F(x) = 0$ za $F: \R^n \to \R^n$ (ali $\C^n \to \C^n$).
+
+Prvi možni pristop reševanja je navadna iteracija.
+Sistem $F(x)=0$ zapišemo v ekvivalenti obliki $x = G(x)$, izberemo $x^{(0)}$ ter
+iteriramo.
+
+\begin{izrek}
+  Naj bo $G: \R^n \to \R^n$ zvezno odvedljiva na zaprti množici $\Omega
+  \subseteq \R^n$.
+  Če za $x \in \Omega$ velja
+  \begin{itemize}
+  \item $G(x) \in \Omega$,
+  \item $\rho(JG(x)) \le m < 1$,
+  \end{itemize}
+  kjer je $JG$ Jacobijeva matrika, $\rho$ pa spektralni radij (po absolutni
+  vrednosti največja lastna vrednost), potem ima $G$ na $\Omega$ natanko eno
+  negibno točko $\alpha$, in za vsak $x^{(0)} \in \Omega$ zaporedje $x^{(r+1)}
+  = g(x^{(r)})$ konvergira k $\alpha$.
+\end{izrek}
+
+Zadosten pogoj za konvergenco je že, da je $\norm{JG(\alpha)} < 1$ v neki
+matrični normi.
+Za kvadratično konvergenco mora biti $JG(\alpha) = 0$ po komponentah.
+
+\vprasanje{Kako poiščeš rešitev sistema nelinearnih enačb z navadno iteracijo?
+  Povej izrek.}
+
+Podobno kot v enodimenzionalnem primeru lahko uporabimo razvoj v Taylorjevo
+vrsto in zanemarimo višje člene.
+Dobimo izraz za popravek
+\[
+  x^{(r+1)} = x^{(r)} - (JF(x^{(r)}))^{-1} F(x^{(r)}).
+\]
+V praksi raje uporabimo algoritem~\ref{alg:newtonova-metoda}.
+
+\begin{algorithm}
+  \caption{Newtonova metoda}
+  \label{alg:newtonova-metoda}
+  \begin{algorithmic}
+	\State Izberi $x^{(0)}$.
+	\For{$r = 0, 1, 2, \ldots$}
+	\State Reši sistem $JF(x^{(r)}) \Delta x^{(r)} = -F(x^{(r)})$.
+	\State $x^{(r+1)} = x^{(r)} + \Delta x^{(r)}$.
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\vprasanje{Razloži Newtonovo metodo za rešitev sistema nelinearnih enačb.}
+
+Ker je računanje Jacobijeve matrike zahtevno, se lahko poslužimo kakšne
+kvazi-Newtonove metode.
+Pri taki metodi na različne načine aproksimiramo Jacobijevo matriko in zmanjšamo
+zahtevnost enega koraka.
+S tem običajno pade red konvergence na superlinearno.
+Najbolj znana kvazi-Newtonova metoda je \pojem{Broydnova metoda}, kjer približek
+Jacobijeve matrike $B_{r+1}$ določimo kot najbližjo matriko, ki zadošča
+t.i.~\emph{sekantnemu pogoju}
+\[
+  B_{r+1} (x^{(r+1)} - x^{(r)}) = F(x^{(r+1)}) - F(x^{(r)}).
+\]
+Ker je $B_r \Delta x^{(r)} = - F(x^{(r)})$, mora torej veljati
+\[
+  \Delta B_r \Delta x^{(r)} = F(x^{(r+1)}),
+\]
+matrika $\Delta B_r$ pa je taka, da je $\norm{\Delta B_r}_2$ minimalna.
+
+\begin{lema}
+  Dana sta neničelna vektorja $x, y$.
+  Matrika $A$ z minimalno normo, ki preslika $x$ v $y$, je
+  \[
+	A = \frac{y^T x}{\norm{x}_2^2}.
+  \]
+\end{lema}
+
+\begin{proof}
+  Očitno je $Ax = y$.
+  Če za matriko $B$ velja $Bx = y$, je $\norm{y}_2 = \norm{Bx}_2 \le \norm{B}_2
+  \norm{x}_2$, torej
+  \[
+	\norm{B}_2 \ge \frac{\norm{y}_2}{\norm{x}_2}.
+  \]
+  Po drugi strani se da preveriti, da za matrike ranga 1 velja $\norm{y x^T}_2 =
+  \norm{y}_2 \norm{x}_2$.
+\end{proof}
+
+\begin{algorithm}
+  \caption{Broydnova metoda}
+  \label{alg:broydnova-metoda}
+  \begin{algorithmic}
+	\State Določi $x^{(0)}$ in $B_0$.
+	\For{$r=0, 1, \ldots$}
+	\State Reši $B_r \Delta x^{(r)} = - F(x^{(r)})$.
+	\State Izračunaj
+	\[
+	  B_{r+1} = B_r + \frac{F(x^{(r+1)}) (\Delta x^{(r)})^T}{\norm{\Delta
+		  x^{(r)}}_2^2}.
+	\]
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\vprasanje{Izpelji Broydnovo metodo.}
