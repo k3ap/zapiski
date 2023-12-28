@@ -1,0 +1,97 @@
+\naslov{Relativno gibanje}
+
+\begin{definicija}
+  Koordinatni sistem $\varphi(t, \mb{P})$ se \pojem{giblje} glede na koordinatni
+  sistem $\varphi'(t', \mb{P}')$, če obstaja trojica $(\mb{P}_0, \mb{P}_0', Q)$,
+  kjer je $\mb{P}_0 \in \mathbb{E}$, $\mb{P}_0' : \R \to \mathbb{E}$, in $Q: \R
+  \to SO(3)$, da velja $t = t'$ in
+  \[
+	\mb{P}'(t) = \mb{P}_0'(t) + Q(t) (\mb{P} - \mb{P}_0).
+  \]
+\end{definicija}
+
+Predpostavimo, da je $\varphi'$ inercialen, in ga imenujmo \pojem{absolutni
+  koordinatni sistem}, $\varphi$ pa je \pojem{relativni koordinatni sistem}.
+
+\begin{trditev}
+  Rotacijski del gibanja je neodvisen od izbire trojice.
+\end{trditev}
+
+\begin{proof}
+  Recimo
+  \[
+	\mb{P}' = \mb{P}_0' + Q (\mb{P} - \mb{P}_0)
+	= \tilde{\mb{P}}_0' + \tilde{Q} (\mb{P} - \tilde{\mb{P}}_0).
+  \]
+  Za $\mb{P} = \mb{P}_0$ dobimo
+  \[
+	\mb{P}_0' = \tilde{\mb{P}}_0' + \tilde{Q} (\mb{P}_0 - \tilde{\mb{P}}_0).
+  \]
+  Če to vstavimo nazaj gor, pridemo do
+  \[
+	Q(\mb{P} - \mb{P}_0) = \tilde{Q}(\mb{P} - \mb{P}_0),
+  \]
+  torej $Q = \tilde{Q}$.
+\end{proof}
+
+\vprasanje{Kdaj se koordinatni sistem giblje glede na nek drugi koordinatni
+  sistem? Dokaži, da je rotacijski del neodvisen od izbire trojice.}
+
+Za odvod velja
+\[
+  \pvec{v}' = \dot{\mb{P}}_0' + \dot{Q} (\mb{P} - \mb{P}_0) + Q \dot{\mb{P}}
+  = Q(Q^T \pvec{v}_0' + Q^T \dot{Q} (\mb{P} - \mb{P}_0) + \vec{v}_{\text{rel}}).
+\]
+Prvemu členu pravimo \pojem{translatorna hitrost}, drugemu \pojem{rotacijska
+  hitrost}, tretjemu pa \pojem{relativna hitrost}.
+
+\begin{trditev}
+  $Q^T \dot{Q}$ je poševno simetrični tenzor.
+\end{trditev}
+
+\begin{proof}
+  Velja $Q^T Q = I$.
+  Če to odvajamo, dobimo
+  \[
+	\partial_t (Q^T) Q + Q^T \dot{Q} = 0.
+  \]
+\end{proof}
+
+\begin{izrek}
+  Naj bo $W$ poševno simetričen na trirazsežnem evklidskem prostoru.
+  Potem obstaja vektor $\vec{\omega}$ tako, da je $W \vec{a} = \vec{\omega}
+  \times \vec{a}$ za vsak $\vec{a}$.
+\end{izrek}
+
+\begin{proof}
+  Vemo, da obstaja lastna vrednost $W \vec{p} = \lambda \vec{p}$.
+  Ker je
+  \[
+	\lambda \abs{\vec{p}}^2 = \vec{p} \cdot W \vec{p}
+	= W^T \vec{p} \cdot \vec{p} = - \lambda \abs{\vec{p}}^2,
+  \]
+  torej $\lambda = 0$.
+
+  BŠS je $\abs{\vec{p}} = 1$.
+  Dopolnimo ga lahko do ortonormirane baze prostora $\{\vec{p}, \vec{q},
+  \vec{r}\}$, kjer je $\vec{r} = \vec{p} \times \vec{q}$.
+  Ker je $\vec{a} W \vec{a} = 0$, dobimo
+  \begin{align*}
+	W \vec{q} = W \vec{q} \cdot \vec{r} . \vec{r},
+	&& W \vec{r} = W \vec{r} \cdot \vec{q} . \vec{q}.
+  \end{align*}
+  Za poljuben $\vec{a}$ je
+  \[
+	W \vec{a} = \vec{a} \cdot \vec{q} . W \vec{q} \cdot \vec{r} . \vec{r}
+	+ \vec{a} \cdot \vec{r} . W \vec{r} \cdot \vec{q} . \vec{q}
+  \]
+  Velja $\vec{q} \times \vec{r} = \vec{p}$ in $\vec{r} \times \vec{p} =
+  \vec{q}$, torej
+  \[
+	W \vec{a} = W \vec{q} \cdot \vec{r} . (\vec{a} \cdot \vec{q} . \vec{p}
+	\times \vec{q} + \vec{a} \cdot \vec{r} . \vec{p} \times \vec{r})
+	= W \vec{q} \cdot \vec{r} . \vec{p} \times \vec{a}.
+  \]
+\end{proof}
+
+\vprasanje{Dokaži, da poševno simetričen tenzor deluje kot vektorski produkt.}

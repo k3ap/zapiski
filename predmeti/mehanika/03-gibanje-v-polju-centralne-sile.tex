@@ -183,3 +183,70 @@ $U(r)$, smo reducirali gibanje na premočrtno s potencialom.
 Pravimo, da je gibanje v polju centralne sile \pojem{integrabilno}.
 
 \vprasanje{Pokaži, da je gibanje v polju centralne sile integrabilno.}
+
+V primeru gravitacije integral žal ni zaprte oblike.
+Dobimo pa lahko enačbo trajektorije:
+\[
+  \frac{dr}{d\theta} = \frac{dr}{dt} \frac{dt}{d\theta}
+  = \dot{r} \inv{\dot{\theta}}
+  = \pm \inv{c_0} r^2 \sqrt{\frac{2}{m} (E_0 - U(r))}.
+\]
+Za $c_0 = l/m$ po integraciji dobimo
+\[
+  \theta - \theta_0
+  = \pm \frac{l}{\sqrt{2m}} \int_{r_0}^r \frac{dr}{r^2 \sqrt{E_0 - U(r)}}.
+\]
+Za gravitacijsko silo in $\gamma = \kappa m M$ velja
+\[
+  U(r) = \frac{l^2}{2 m r^2} - \frac{\gamma}{r}.
+\]
+Po integriranju dobimo
+\begin{align*}
+  p = \frac{l^2}{m \gamma},
+  && \varepsilon = \sqrt{\frac{2 l^2}{m \gamma^2} E_0 + 1}.
+\end{align*}
+Za $E_0 < 0$ je $\varepsilon < 1$, in dobimo elipso, pri $E_0 = 0$ dobimo
+parabolo $\varepsilon = 1$ in pri $E_0 > 0$ imamo hiperbolo za $\varepsilon >
+1$.
+
+\vprasanje{Kakšna je oblika tira planeta glede na energijo? Izpelji.}
+
+Če je gibanje periodično glede na efektivni potencial, se točka giblje med
+krožnica med dvema \pojem{apsidnima radijema}.
+Tir točke se dotika teh krožnic.
+Manjšemu od radijev pravimo \pojem{pericenter}, večjemu pa \pojem{apocenter}.
+
+\begin{trditev}
+  Tir je simetričen glede na apsidni radij.
+\end{trditev}
+
+\begin{proof}
+  Velja
+  \begin{gather*}
+	\theta^+ - \theta_0 = \frac{l}{\sqrt{2m}} \int_{r_a}^r \frac{dr}{r^2
+	  \sqrt{E_0 - U(r)}} \\
+	\theta^- - \theta_0 = - \frac{l}{\sqrt{2m}} \int_{r_a}^r \frac{dr}{r^2
+	  \sqrt{E_0 - U(r)}}
+  \end{gather*}
+  Sledi $\theta^+ - \theta_0 = \theta_0 - \theta^-$.
+\end{proof}
+
+Izračunamo lahko \pojem{ovojno število}
+\[
+  \Delta \theta = \frac{l}{\sqrt{2m}} \int_{r_a}^{r_b} \frac{dr}{r^2 \sqrt{E_0 -
+	U(r)}}.
+\]
+Tir gibanja bo zaprt takrat, ko je $\frac{\Delta \theta}{\pi} \in \Q$.
+
+\begin{trditev}
+  Tir je zaprt ali pa je gosta množica v kolobarju $K(0, r_a, r_b)$.
+\end{trditev}
+
+\begin{izrek}[Bertrand]
+  Vsi tiri v okolici krožnega tira so zaprti natanko tedaj, ko je $V$
+  gravitacijski ali Hookov potencial.
+\end{izrek}
+
+\vprasanje{Kakšen je tir gibanja točke v polju centralne sile?}
+
+% LocalWords:  apsidnima
