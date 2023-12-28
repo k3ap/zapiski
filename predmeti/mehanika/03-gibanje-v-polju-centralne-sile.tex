@@ -54,3 +54,132 @@
 \end{proof}
 
 \vprasanje{Dokaži: zvezna centralna sila je konzervativna.}
+
+\begin{trditev}
+  Gibanje v polju centralne sile je ravninsko.
+  Dogaja se na ravnini, ki vsebuje center sile in ima normalo v smeri $\vec{l}$.
+\end{trditev}
+
+\begin{proof}
+  Računamo
+  \[
+	(\mb{P} - \mb{P}_0) \cdot \vec{l} = (\mb{P} -\mb{O}) \cdot \vec{l} + (\mb{O}
+	- \mb{P}_0) \cdot \vec{l}_0 = 0 + 0 = 0,
+  \]
+  upoštevaje definicijo $\vec{l}$.
+\end{proof}
+
+\vprasanje{Dokaži, da je gibanje v polju centralne sile ravninsko.}
+
+Izpeljimo kinematiko v polarnem koordinatnem sistemu.
+Definiramo
+\begin{gather*}
+  \vec{e}_r = \cos \theta \vec{i} + \sin \theta \vec{j}, \\
+  \vec{e}_\theta = \partial_\theta \vec{e}_r = - \sin \theta \vec{i} + \cos
+  \theta \vec{j},
+\end{gather*}
+in izračunamo
+\begin{gather*}
+  \vec{r} = r \vec{e}_r, \\
+  \vec{v} = \dot{r} \vec{e}_r + r \dot{\theta} \vec{e}_\theta,
+  \vec{a} = (\ddot{r} - r \dot{\theta}^2) \vec{e}_r + (r \ddot{\theta} + 2
+  \dot{r} \dot{\theta}) \vec{e}_\theta.
+\end{gather*}
+Prvi komponenti hitrosti pravimo \pojem{radialna hitrost}, drugi \pojem{obodna
+  hitrost}.
+Podobno prvi komponenti pospeška pravimo \pojem{radialni pospešek}, drugi pa
+\pojem{obodni pospešek}.
+
+Za vrtilno količino velja
+\[
+  \vec{l} = \vec{r} \times m \vec{v} = m r^2 \dot{\theta} \vec{k}.
+\]
+Pogledamo lahko tudi ploščinsko hitrost
+\[
+  \dot{\vec{A}} = \pol \vec{r} \times \vec{v},
+\]
+iz česar dobimo $\vec{l} = 2 m \dot{\vec{A}}$ oziroma $\dot{\vec{A}} = \pol r^2
+\dot{\theta} \vec{k}$.
+Za gibanje v polju centralne sile je $\vec{l}$ konstantna, torej sta konstantni
+tudi ploščinska hitrost in \pojem{dvojna ploščinska hitrost}
+\[
+  c_0 = r^2 \dot{\theta}.
+\]
+
+\vprasanje{Izpelji kinematiko v polarnem koordinatnem sistemu. Kaj je dvojna
+  ploščinska hitrost?}
+
+Računamo lahko
+\[
+  \dot{r} = \frac{dr}{d\theta} \dot{\theta} = \frac{dr}{d\theta} \frac{c_0}{r^2}
+  = - c_0 \partial_\theta \left( \inv{r} \right),
+\]
+iz česar s spremenljivko $u = 1/r$, $u' = \partial_\theta u$ izpeljemo
+\[
+  \ddot{r} = - c_0 u'' \dot{\theta} = -c_0^2 u^2 u''.
+\]
+To uporabimo v \pojem{Binetovi formuli}
+\[
+  a_r = \ddot{r} - r \dot{\theta}^2 = -c_0^2 u^2 (u + u'').
+\]
+
+\vprasanje{Izpelji Binetovo formulo.}
+
+Prvi Keplerjev zakon pravi, da se planeti gibljejo okoli Sonca v elipsah.
+Elipso lahko parametriziramo kot
+\[
+  r = \frac{p}{1 + \varepsilon \cos \theta}.
+\]
+Z uporabo Binetove formule dobimo
+\[
+  a_r = - c_0^2 \inv{p r^2}.
+\]
+Za silo gravitacije $\vec{F} = - \kappa mM u^2 \vec{e}_r$ bo potem veljalo
+\[
+  \frac{c_0^2}{p} = \kappa M = \text{konst.}
+\]
+Za tako parametrizacijo elipse velja
+\begin{gather*}
+  a = \frac{p}{1 - \varepsilon^2} \\
+  b = \frac{p}{\sqrt{1 - \varepsilon^2}}
+\end{gather*}
+Če je $T$ perioda gibanja, je
+\[
+  A = \pol c_0 T,
+\]
+torej
+\[
+  T = \frac{2 \pi a b}{c_0}.
+\]
+Drugi Keplerjev zakon pravi, da je kvadrat periode gibanja sorazmeren kubu večje
+polosi elipse, $T^2 = k a^3$, torej
+\[
+  \frac{p}{c_0^2} = \frac{k}{4 \pi^2} = \inv{\kappa M}.
+\]
+Dobimo, da je $k$ konstanten za vse planete.
+
+\vprasanje{Povej drugi Keplerjev zakon. Pokaži, da je koeficient enak za vse
+  planete.}
+
+Centralna sila je potencialna, $\vec{F} = -\grad V$.
+Velja energijska enačba
+\[
+  \pol m v^2 + V(r) = E_0,
+\]
+ki jo lahko predelamo v
+\[
+  \pol m \dot{r}^2 + \pol m r^2 \dot{\theta}^2 + V(r) = E_0.
+\]
+Upoštevaje $r^2 \dot{\theta} = c_0$ dobimo
+\[
+  \pol m \dot{r}^2 + \frac{l^2}{2 m r^2} + V(r) = E_0.
+\]
+Če zadnja dva člena na levi strani pospravimo v \pojem{efektivni potencial}
+$U(r)$, smo reducirali gibanje na premočrtno s potencialom.
+Če to razrešimo na $r = r(t)$, lahko zapišemo
+\[
+  \theta(t) = \int_{t_0}^t \frac{c_0}{r^2(t)} dt.
+\]
+Pravimo, da je gibanje v polju centralne sile \pojem{integrabilno}.
+
+\vprasanje{Pokaži, da je gibanje v polju centralne sile integrabilno.}
