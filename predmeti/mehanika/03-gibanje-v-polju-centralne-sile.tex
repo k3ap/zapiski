@@ -1,0 +1,56 @@
+\naslov{Gibanje v polju centralne sile}
+
+\begin{definicija}
+  Sila $\vec{F} = \vec{F}(\mb{P})$ je \pojem{centralna}, če obstaja točka
+  $\mb{O}$ (pol sile), da $\vec{F}$ deluje v smeri zveznice med $\mb{P}$ in
+  $\mb{O}$, in da je njena velikost odvisna le od razdalje.
+\end{definicija}
+
+\begin{trditev}
+  Konzervativna sila $\vec{F}$ je centralna natanko tedaj, ko obstaja pol, okoli
+  katerega je vrtilna količina konstantna.
+\end{trditev}
+
+\begin{proof}
+  Recimo, da je $\vec{F}$ centralna.
+  Tedaj za vrtilno količino okoli $\mb{O}$, velja
+  \begin{gather*}
+	\vec{l}(\mb{O}, \mb{P}) = (\mb{P}-\mb{O}) \times m \dot{\mb{P}} \\
+	\partial_t \vec{l} = \dot{\mb{P}} \times m \dot{\mb{P}}
+	+ (\mb{P} - \mb{O}) \times m \ddot{\mb{P}}
+	= (\mb{P} - \mb{O}) \times \vec{F}
+  \end{gather*}
+  Če je $\vec{F}$ centralna, je vzporedna $\mb{P} - \mb{O}$, in se izniči tudi
+  drugi člen.
+
+  Recimo, da je vrtilna količina konstantna.
+  Po zgornjem izračunu $\dot{\vec{l}} = (\mb{P} - \mb{O}) \times \vec{F} = 0$,
+  torej je $\vec{F}$ vzporedna zveznici.
+  Pokazati moramo še, da je velikost sile odvisna le od razdalje.
+  Po predpostavki je sila konzervativna, torej $\vec{F} = -\grad U$ in
+  \[
+	\vec{F} = - \left(
+	  \partial_r U \vec{e}_r + \inv{r} \partial_\theta U \vec{e}_\theta + \inv{r
+		\sin \theta} \partial_\varphi U \vec{e}_\varphi
+	\right)
+  \]
+  v sferičnih koordinatah.
+  Ker je sila vzporedna zveznici $\vec{e}_r$, mora veljati $U = U(r)$.
+\end{proof}
+
+\vprasanje{Definiraj centralno silo in jo karakteriziraj ob predpostavki, da je
+  konzervativna. Dokaži karakterizacijo.}
+
+\begin{trditev}
+  Zvezna centralna sila je konzervativna.
+\end{trditev}
+
+\begin{proof}
+  Definiramo
+  \[
+	U = \int_{\abs{\mb{P}_0 - \mb{O}}}^{\abs{\mb{P}- \mb{O}}} F(r) dr +
+	U(\mb{P}_0).
+  \]
+\end{proof}
+
+\vprasanje{Dokaži: zvezna centralna sila je konzervativna.}

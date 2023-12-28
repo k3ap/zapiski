@@ -152,3 +152,83 @@ Rešitev je tedaj
 
 \vprasanje{Kako se opravljeno delo v nihaju spreminja z energijskim nivojem
   $E_0$?}
+
+\naslov{Gibanje po krivulji}
+
+Dana je krivulja $\vec{r} = \vec{r}(s(t))$, kjer je $s$ naravni parameter.
+Če s $\mb{P}$ označimo trenutno lokacijo, velja
+\[
+  \vec{v} = \frac{d\mb{P}}{dt} = \frac{d\mb{P}}{ds} \frac{ds}{dt} = \vec{e}_t
+  \dot{s},
+\]
+kjer je $\vec{e}_t$ enotski vektor, tangenten na krivuljo, in
+\[
+  \vec{a} = \ddot{s} \vec{e}_t + \dot{s} \frac{d \vec{e}_t}{dt}
+  = \ddot{s} \vec{e}_t + \dot{s}^2 \kappa \vec{e}_n.
+\]
+V enačbi $\kappa$ predstavlja ukrivljenost, $\vec{e}_n$ pa normalo na krivuljo.
+Tretji Newtonov zakon poleg rezultante vseh sil vsebuje tudi silo vezi
+$\vec{S}$.
+Razpisan v smereh krivuljnega koordinatnega sistema ima obliko
+\begin{gather*}
+  m \ddot{s} = \vec{F} \cdot \vec{e}_t + \vec{S} \cdot \vec{e}_t \\
+  m \kappa \dot{s}^2 = \vec{F} \cdot \vec{e}_n + \vec{S} \cdot \vec{e}_n \\
+  0 = \vec{F} \cdot \vec{e}_b + \vec{S} \cdot \vec{e}_b
+\end{gather*}
+Tu imamo štiri neznanke ($s, \vec{S}$) ter tri enačbe, torej potrebujemo še
+dodatno konstitutivno relacijo za silo vezi.
+Če se omejimo na gladke krivulje (take, kjer ni trenja), dobimo dodatno enačbo
+\[
+  \vec{S} \cdot \vec{e}_t = 0.
+\]
+Delo take sile vezi je enako $0$.
+Če je $\vec{F}$ konzervativna sila, $\vec{F} = - \grad U$, dobimo
+\[
+  m \ddot{s} = - \frac{dU}{ds},
+\]
+iz česar lahko izpeljemo energijsko enačbo
+\[
+  \pol m \dot{s}^2 + U(s) = E_0.
+\]
+Torej je gibanje po gladki krivulji pod vplivom konzervativne sile reducibilno
+na premočrtno gibanje v ločni dolžini.
+
+\vprasanje{Na kaj se reducira gibanje po gladki krivulji pod vplivom
+  konzervativne sile? Izpelji.}
+
+\begin{vo}{Obravnavaj matematično nihalo kot gibanje po gladki krožnici.}
+  Če je $l$ polmer krožnice, velja $s = l \theta$.
+  Na točko poleg sile vezi deluje tudi teža, ki ima potencial
+  \[
+	U = - m \vec{g} \vec{r} = - m g l \cos \frac{s}{l}.
+  \]
+  Za dovolj majhen $E_0$ je gibanje periodično, in velja
+  \[
+	T = \sqrt{2m} \int_{-s_0}^{s_0} \frac{ds}{\sqrt{E_0 + mgl \cos
+		\frac{s}{l}}}.
+  \]
+  Če uporabimo substitucijo $s = l \theta$ in začetno energijo zapišemo z
+  začetnim odklonom, dobimo
+  \[
+	T = \sqrt{2m} l \int_{-\theta_0}^{\theta_0} \frac{d\theta}{mgl(\cos \theta -
+	  \cos \theta_0)}.
+  \]
+  Na tej točki upoštevamo, da je funkcija soda, in uporabimo $\cos \theta = 1 -
+  2 \sin^2 \frac{\theta}{2}$;
+  \[
+	T = 2 \sqrt{\frac{l}{g}} \int_0^{\theta_0} \frac{d\theta}{\sqrt{ \sin^2
+		\frac{\theta_0}{2} - \sin^2 \frac{\theta}{2} }},
+  \]
+  kar se s substitucijo $\sin \frac{\theta}{2} = u \sin{\theta_0}{2}$ končno
+  predela na
+  \[
+	 T = 4 \sqrt{\frac{l}{g}} \int_0^1 \frac{du}{\sqrt{ (1-u^2) (1 - u^2 \sin^2
+		\frac{\theta_0}{2}) }}.
+  \]
+  To je eliptični integral, odgovor je
+  \[
+	T = 4 \sqrt{\frac{l}{g}} K\left( \sin^2 \frac{\theta_0}{2} \right)
+  \]
+\end{vo}
+
+% LocalWords:  reducibilno
