@@ -95,3 +95,190 @@ Prvemu členu pravimo \pojem{translatorna hitrost}, drugemu \pojem{rotacijska
 \end{proof}
 
 \vprasanje{Dokaži, da poševno simetričen tenzor deluje kot vektorski produkt.}
+
+\begin{definicija}
+  $[W_1, W_2] = W_1 W_2 - W_2 W_1$
+\end{definicija}
+
+Prostor poševno simetričnih tenzorjev z operacijama $+$ in $[,]$ je algebra.
+
+\begin{trditev}
+  Preslikava $W \mapsto \vec{\omega}(W)$ je homomorfizem.
+\end{trditev}
+
+\begin{proof}
+  Pokazati želimo $\vec{\omega}([W_1, W_2]) = \vec{\omega}(W_1) \times
+  \vec{\omega}(W_2)$.
+  Velja
+  \[
+	W_1 W_2 \vec{a} = \vec{\omega}_1 \times (\vec{\omega}_2 \times \vec{a})
+	= (\vec{\omega}_1 \cdot \vec{a}). \vec{\omega}_2 - (\vec{\omega}_1 \cdot
+	\vec{\omega}_2) . \vec{a},
+  \]
+  torej dobimo
+  \[
+	[W_1, W_2] \vec{a} = W_1 W_2 \vec{a} - W_2 W_1 \vec{a}
+	= (\vec{\omega}_1 \times \vec{\omega}_2) \times \vec{a}.
+  \]
+\end{proof}
+
+\begin{trditev}
+  $(A \vec{a}) \times (A \vec{b}) = A^*(\vec{a} \times \vec{b})$
+\end{trditev}
+
+\begin{proof}
+  Če so $\vec{a}, \vec{b}, \vec{c}$ linearno neodvisni, velja
+  \[
+	\det A = \frac{[A\vec{a}, A\vec{b}, A\vec{c}]}{[\vec{a}, \vec{b}, \vec{c}]}.
+  \]
+  Tudi če niso neodvisni, velja
+  \[
+	(A\vec{a} \times A\vec{b}) \cdot \vec{c}
+	= [A \vec{a}, A \vec{b}, \vec{c}].
+  \]
+  Za začetek predpostavimo, da je $A$ obrnljiva.
+  Tedaj
+  \begin{align*}
+	(A\vec{a} \times A\vec{b}) \cdot \vec{c}
+	&= [A \vec{a}, A \vec{b}, A A^{-1} \vec{c}] \\
+	&= \det A \cdot [\vec{a}, \vec{b}, A^{-1} \vec{c}] \\
+	&= \det A \cdot (\vec{a} \times \vec{b}) \cdot A^{-1} \vec{c} \\
+	&= \det A^{-T} \cdot (\vec{a} \times \vec{b}) \cdot \vec{c}.
+  \end{align*}
+  Torej je $A \vec{a} \times A \vec{b} = \det A^{-T} (\vec{a} \times \vec{b})$.
+  Upoštevaje $A^{-1} = (A^*)^T / \det A$ je to nadalje enako $A^*(\vec{a} \times
+  \vec{b})$.
+  Če $A$ ni obrnljiva, pa obstaja $A_\varepsilon$, da je $\abs{A -
+	A_\varepsilon} < \varepsilon$, torej v limiti velja za vse matrike.
+\end{proof}
+
+\begin{posledica}
+  Če je $Q \in SO(3)$, je $Q(\vec{a} \times \vec{b}) = Q\vec{a} \times Q\vec{b}$.
+\end{posledica}
+
+\vprasanje{Dokaži: če je $Q \in SO(3)$, je $Q(\vec{a} \times \vec{b}) = Q\vec{a}
+  \times Q\vec{b}$.}
+
+\begin{definicija}
+  Vektor kotne hitrosti rotacije $Q$ je vektor $\pvec{\omega}' = Q
+  \vec{\omega}$, kjer je $\vec{\omega}$ osni vektor poševno simetričnega
+  tenzorja $W = Q^T \dot{Q}$.
+\end{definicija}
+
+\begin{trditev}
+  Osni vektor poševno simetričnega tenzorja $\dot{Q} Q^T$ je vektor kotne
+  hitrosti rotacije $Q$.
+\end{trditev}
+
+\begin{proof}
+  Računamo
+  \begin{align*}
+	\dot{Q} Q^T \vec{a}
+	&= Q Q^T \dot{Q} Q^T \vec{a} \\
+	&= Q \vec{\omega} \times (Q^T \vec{a}) \\
+	&= Q \vec{\omega} \times (Q Q^T \vec{a}) \\
+	&= (Q \vec{\omega}) \times \vec{a}.
+  \end{align*}
+\end{proof}
+
+\begin{trditev}
+  Vektor kotne hitrosti rotacije $R(\vec{e}, \varphi)$ okoli stalne osi
+  $\vec{e}$ za kot $\varphi$ je $\pvec{\omega}' = \dot{\varphi} \vec{e}$.
+\end{trditev}
+
+\begin{proof}
+  Imenujmo to rotacijo $Q$.
+  Velja $Q \vec{e} = \vec{e}$; če to odvajamo po času, dobimo $\dot{Q} \vec{e} =
+  0$.
+  Če to množimo z leve s $Q^T$, pridemo do $Q^T \dot{Q} \vec{e} = \vec{\omega}
+  \times \vec{e} = 0$, torej je $\vec{\omega}$ vzporeden $\vec{e}$.
+
+  Dokazati moramo še, da je $\omega = \dot{\varphi}$.
+  Naj bo $\vec{f}$ poljuben vektor dolžine $1$.
+  Velja $\vec{f} \cdot Q \vec{f} = \cos \varphi$.
+  Če to odvajamo po času, dobimo
+  \[
+	\vec{f} \cdot \dot{Q} \vec{f} = - \sin \varphi \dot{\varphi}
+  \]
+  oziroma
+  \[
+	Q^T \vec{f} \cdot Q^T \dot{Q} \vec{f} = - \dot{\varphi} \sin \varphi.
+  \]
+  Levo stran enakosti lahko razpišemo v
+  \[
+	Q^T \vec{f} \cdot Q^T \dot{Q} \vec{f}
+	= Q^T \vec{f} \cdot (\vec{\omega} \times \vec{f})
+	= \vec{\omega} \cdot (\vec{f} \times Q^T \vec{f})
+	= \vec{\omega} \cdot (- \sin \varphi \vec{e}).
+  \]
+  Sledi $\omega = \dot{\varphi}$.
+\end{proof}
+
+\vprasanje{Kaj je vektor kotne hitrosti rotacije? Kako ga izrazimo?}
+
+\begin{trditev}
+  Naj bo $W$ poševno simetričen tenzor z enotskim osnim vektorjem $\vec{e}$.
+  Potem je $e^{\theta W}$ rotacija okoli $\vec{e}$ za kot $\theta$.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $A = e^{\theta W}$.
+  Prvo dokažimo, da je $A \in SO(3)$.
+  Če označimo $B = A^T A$ in to enakost odvajamo po $\theta$, dobimo $B' = 0$,
+  torej je $B$ konstanta.
+  Za $\theta = 0$ dobimo $B = I$.
+  Pokazati moramo še, da je determinanta $A$ enaka $1$.
+  Za to prvo pokažimo $\det e^{\theta W} = e^{\operatorname{sl} W}$.
+  Če je $f(\theta) = \det e^{\theta W}$, je
+  \[
+	f'
+	= \frac{\partial \det A}{\partial \theta} * WA
+	= A^* * WA
+	= I * WA (A^*)^T
+	= I * WA A^{-1} \det A = \det A \operatorname{sl} W,
+  \]
+  kjer $*$ predstavlja skalarni produkt, če matrike vektoriziramo.
+  Sledi $f' = \operatorname{sl} W \cdot f$, rešitev diferencialne enačbe je
+  $f(\theta) = e^{\theta \operatorname{sl} W}$.
+  Ker je $W^T = -W$, je $\operatorname{sl} W = 0$ in $\det A = 1$.
+
+  Razpis $A$ v Taylorjevo vrsto pokaže $A \vec{e} = \vec{e}$.
+  Če definiramo $Q(t) = e^{t \theta W}$, lahko izračunamo $Q^T \dot{Q} = \theta
+  W$, iz česar dobimo osni vektor $\vec{\omega} = \theta \vec{e}$.
+  To je enak osni vektor kot za rotacijo $R(\vec{e}, \theta)$.
+\end{proof}
+
+\begin{izrek}
+  $R(\vec{e}, \varphi) = \cos \varphi I + (1 - \cos \varphi) \vec{e} \otimes
+  \vec{e} + \sin \varphi W(\vec{e})$
+\end{izrek}
+
+\begin{proof}
+  V izrazu nastopa tenzorski produkt $(\vec{a} \otimes \vec{b}) \vec{c} =
+  (\vec{b} \cdot \vec{c}) . \vec{a}$.
+
+  Velja $R(\vec{e}, \varphi) = e^{\varphi W(\vec{e})}$.
+  Kratek račun pokaže
+  \[
+	W^k =
+	\begin{cases}
+	  (-1)^{n+1} (\vec{e} \otimes \vec{e} - I) & k = 2n, n \ge 1 \\
+	  (-1)^n W & k = 2n+1
+	\end{cases}
+  \]
+  Če rotacijsko matriko razvijemo v Taylorjevo vrsto in zberemo lihe in sode
+  člene, dobimo natanko želeno obliko.
+\end{proof}
+
+\vprasanje{Kako izrazimo rotacijo?}
+
+Iz vse te izražave lahko končno izračunamo
+\begin{align*}
+  \dot{\mb{P}}'
+  &= \dot{\mb{P}}_0' + \dot{Q} (\mb{P} - \mb{P}_0) + Q \dot{\mb{P}} \\
+  &= \dot{\mb{P}}_0' + Q Q^T \dot{Q} (\mb{P} - \mb{P}_0) + Q \dot{\mb{P}} \\
+  &= \dot{\mb{P}}_0' + Q (\vec{\omega} (\mb{P} - \mb{P}_0)) + Q \dot{\mb{P}} \\
+  &= \pvec{v}_0' + \pvec{\omega}' \times Q(\mb{P} - \mb{P}_0) + Q \vec{v}_{\text{rel}} \\
+  &= \pvec{v}_0' + \pvec{\omega}' \times \pvec{\zeta}' + \pvec{v}'_{\text{rel}}
+\end{align*}
+Za $\zeta = \mb{P} - \mb{P}_0$.
