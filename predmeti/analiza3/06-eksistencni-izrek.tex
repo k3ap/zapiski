@@ -206,3 +206,39 @@ To je konec dokaza eksistenčnega izreka.
 
 \vprasanje{Dokaži, da je zvezno odvedljiva funkcija na konveksnem kompaktu
   Lipschitzova.}
+
+Imejmo NDE $\dot{x} = F(t,x)$.
+\pojem{Tok} te enačbe je preslikava
+\[
+  \phi: (a,b) \times (\alpha, \beta) \times U \to \R^n,
+\]
+definirana s predpisom
+\[
+  \phi(t, t_0, x) = \gamma(t),
+\]
+kjer je $\gamma$ rešitev začetnega problema $\dot{\gamma}(t) = F(t, \gamma(t)),
+\gamma(t_0) = x$.
+
+\begin{trditev}
+  Za tok enačbe velja
+  \begin{itemize}
+  \item Za vsak $t_0$, za katerega rešitve začetnih problemov $\gamma(t_0) = x$
+	obstajajo, in za vsak $t$ dovolj blizu $t_0$, je $x \mapsto \phi(t, t_0, x)$
+	difeomorfizem $U$ na svojo sliko.
+  \item Za $t_1, t_2$ dovolj blizu $t_0$ velja
+	\[
+	  \phi(t_2, t_1, \phi(t_1, t_0, x)) = \phi(t_2, t_0, x).
+	\]
+  \end{itemize}
+\end{trditev}
+
+\begin{proof}
+  Prva točka:
+  Uporabimo izrek o inverzni preslikavi na $\phi(t, t_0, \cdot)$.
+  Ker je $\phi(t_0, t_0, x) = x$, obstaja okolica $t_0$, v kateri je $\det
+  D_x(t, t_0,x) \ne 0$, in dobimo difeomorfizem.
+
+  Druga točka sledi iz edinosti, ki nam jo da eksistenčni izrek.
+\end{proof}
+
+\vprasanje{Kaj je tok enačbe? Kakšne lastnosti ima?}
