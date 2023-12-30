@@ -61,3 +61,36 @@ Taki funkciji pravimo \pojem{Hamiltonian}.
   \end{gather*}
   je \pojem{hamiltonski sistem} s \pojem{hamiltonsko funkcijo} $H$.
 \end{definicija}
+
+Da bo sistem $\dot{q} = G(q, p), \dot{p} = F(q, p)$ Hamiltonski, mora obstajati
+funkcija $H$, za katero velja $\partial_p H = G$ in $\partial_q H = -F$.
+Zapisano v drugačni obliki
+\[
+  \begin{bmatrix}
+	\dot{q} \\ \dot{p}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	0 & I \\ -I & 0
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	\partial_q H \\ \partial_p H
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	0 & I \\ -I & 0
+  \end{bmatrix}
+  \grad H,
+\]
+torej
+\[
+  \grad H
+  =
+  \begin{bmatrix}
+	-F \\ G
+  \end{bmatrix}.
+\]
+Da bo sistem hamiltonski, mora biti torej polje $[-F, G]^T$ potencialno.
+
+\vprasanje{Pod katerim pogojem je sistem hamiltonski? Dokaži.}
