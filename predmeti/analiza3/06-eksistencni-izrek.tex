@@ -82,3 +82,127 @@ Velja
 \end{gather*}
 Torej je $h$ pri vsakem $x$ rešitev začetnega problema $\dot{h} = F(t,
 x+h(t,x)), h(t_0, x) = 0$.
+
+Definiramo
+\[
+  M = \{ h(t, x) : \mathcal{C}_{a',b'} \to \R^n \such h \text{zvezna},
+  \norm{h(t,x)} \le C \abs{t-t_0} \}.
+\]
+Te preslikave zavzemajo vrednosti v stožcu $K_0$.
+
+\vprasanje{Povej postopek konstrukcije funkcijskega prostora v dokazu
+  eksistenčnega izreka.}
+
+Opremimo $M$ z maksimum normo (in s tem z metriko in topologijo)
+\[
+  \norm{h} = \max_{(t,x) \in \mathcal{C}_{a',b'}} \norm{h(t,x)}.
+\]
+
+\begin{trditev}
+  Prostor $M$ je poln metrični prostor.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $\{h_n(t, x)\}_n$ Cauchyjevo zaporedje v $M$.
+  Ker je $\R^n$ poln, obstaja limita $\lim_{n \to \infty} h_n(t, x)$ za poljubna
+  $t, x$.
+  Ker je norma definirana z maksimumom, je konvergenca glede na to normo
+  enakomerna, torej je
+  \[
+	h(t, x) = \lim_{n \to \infty} h_n(t, x)
+  \]
+  zvezna.
+  Če je $h_n \in M$, velja $\norm{h_n(t,x)} \le C \abs{t-t_0}$.
+  To očitno velja tudi v limiti.
+\end{proof}
+
+\vprasanje{Dokaži, da je ta funkcijski prostor poln.}
+
+Našo rešitev poiščemo kot limito iteracij Picardove preslikave.
+Označimo
+\[
+  h_n(t, x) = A^n(h_0(t,x))
+\]
+za $h_0 = 0$.
+Dokazati moramo, da za vsak $n \in \N$ velja $\norm{h_n(t,x)} \le C
+\abs{t-t_0}$.
+To naredimo z indukcijo na $n$.
+Pri $n = 0$ to očitno velja, indukcijski korak pa pokažemo z računom
+\[
+  \norm{h_{n+1}(t,x)}
+  = \norm{ \int_{t-0}^t F(\tau, x+h_n(\tau,x)) d\tau }
+  \le \int_{t_0}^t \norm{F(\tau, x+h_n(\tau,x))} d\tau.
+\]
+Po indukcijski predpostavki vemo, da točka $h_n(t,x)$ leži v $K_0$ za vsak
+$(t,x)$, zato $x+h_n(t,x)$ leži v $K_x \subseteq \mathcal{C}_{a',b'} \subseteq
+\mathcal{C}_{a,b}$.
+Sledi
+\[
+  \norm{F(\tau, x+h_n(\tau, x))} \le C,
+\]
+zato
+\[
+  \norm{h_{n+1}(t,x)}
+  \le \abs{\int_{t_0}^t C d\tau} = C \abs{t-t_0}.
+\]
+Pokazali smo, da je $h_n \in M$ za vsak $n$.
+Ker je $M$ poln, je tudi limita v $M$, če obstaja.
+
+Pokazati moramo še, da je $A$ na $M$ skrčitev.
+Naj bosta $h_1, h_2 \in M$ poljubni.
+Oglejmo si
+\begin{align*}
+  \norm{A h_1(t,x) - A h_2(t,x)}
+  &= \norm{ \int_{t_0}^t F(\tau, x+h_1(\tau,x)) - F(\tau, x+h_2(\tau,x)) d\tau } \\
+  &\le \int_{t_0}^t \norm{ F(\tau, x+h_1(\tau, x)) - F(\tau, x+h_2(\tau,x)) } d\tau.
+\end{align*}
+Ker je $F$ Lipschitzova glede na $x$, velja
+\begin{align*}
+  \norm{A h_1(t,x) - A h_2(t,x)}
+  &\le \int_{t_0}^t L \norm{h_1(\tau, x) - h_2(\tau,x)} d\tau \\
+  &\le \int_{t_0}^t L \norm{h_1 - h_2} d\tau \\
+  &= L \norm{h_1 - h_2} \abs{t-t_0} \\
+  &\le L \norm{h_1 - h_2} a'
+\end{align*}
+Po potrebi še zmanjšamo $a'$, da bo $La' < 1$.
+
+Ker je $A$ skrčitev, limita zaporedja $h_n$ obstaja in je fiksna točka
+preslikave $A$.
+Torej je rešitev začetnega problema
+\begin{align*}
+  \partial_t h = F(t, x + h(t,x)) && h(t_0, x) = 0,
+\end{align*}
+iz katere dobimo preslikavo $g(t,x) = x + h(t,x)$.
+Naša limita je po konstrukciji zvezna (ker leži v $M$), torej je tudi $g$ zvezna
+glede na oba argumenta.
+
+To je konec dokaza eksistenčnega izreka.
+
+\vprasanje{Dokaži eksistenčni izrek.}
+
+\begin{trditev}
+  Naj bo $f: U \subseteq \R^n \to \R^m$ zvezno odvedljiva na konveksnem kompaktu
+  $M \subseteq U$.
+  Potem je na $M$ Lipschitzova.
+\end{trditev}
+
+\begin{proof}
+  Naj bosta $x, y \in M$ poljubni točki.
+  Definiramo $z(t) = x + t(y-x)$ kot daljico med $x$ in $y$.
+  Velja
+  \[
+	f(y) - f(x) = \int_0^1 \partial_\tau f(z(\tau)) d\tau
+	= \int_0^1 Df(z(\tau)) (y-x) d\tau.
+  \]
+  Ker je $f$ zvezno odvedljiva na kompaktu, norma Jacobijeve matrike doseže
+  maksimum, torej velja
+  \[
+	\norm{f(x) - f(y)}
+	= \norm{\int_0^1 Df(z(\tau)) (y-x) d\tau}
+	\le \int_0^1 \norm{Df} \norm{y-x} d\tau
+	= \norm{Df} \norm{y-x}.
+  \]
+\end{proof}
+
+\vprasanje{Dokaži, da je zvezno odvedljiva funkcija na konveksnem kompaktu
+  Lipschitzova.}
