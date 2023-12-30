@@ -60,4 +60,92 @@ Dobili smo eksplicitno enačbo prvega reda v spremenljivki $u = u(v)$.
 
 \vprasanje{Kako parametrično rešiš $F(x, y, y') = 0$?}
 
+\podnaslov{Lagrangeova in Clairontova enačba}
+
+Lagrangeova enačba je enačba oblike
+\[
+  y = x \varphi(y') + \psi(y').
+\]
+Rešujemo jo parametrično; $x = u$, $y' = v$ in $y = u \varphi(v) + \psi(v)$.
+Velja $dy = y' dx$, iz česar izpeljemo
+\[
+  (\varphi(v) - v) du + (u \varphi'(v) + \psi'(v)) dv = 0.
+\]
+Če je $\varphi(v) \ne v$, dobimo
+\[
+  (\phi(v) - v) \frac{du}{dv} + u \varphi'(v) + \psi'(v) = ,
+\]
+kar je linearna diferencialna enačba prvega reda, če pa je $\varphi(v) = v$, pa
+imamo Clairontovo enačbo
+\[
+  y = x y' + \psi(y').
+\]
+To predelamo v
+\[
+  (u + \psi'(v)) dv = 0,
+\]
+in obravnavamo dva primera.
+Če je $dv = 0$, je $y'$ konstanta, torej dobimo družino rešitev $y = Cx +
+\psi(C)$ (to vstavimo v enačbo; ni nujno vsak $C$ dober).
+Če pa je $u + \psi'(v) = 0$, pa dobimo še eno rešitev.
+
+\vprasanje{Kaj sta Lagrangeova in Clairontova enačba? Kako ju rešimo?}
+
+\podnaslov{Ovojnice družin krivulj}
+
+Imejmo družino krivulj, podano implicitno z enačbo $F(x, y, C) = 0$.
+Denimo, da je družina taka, da obstaja krivulja, ki se v vsaki svoji točki
+dotika natanko enega člana družine.
+Taki krivulji pravimo \pojem{ovojnica} družine.
+Smiselno jo je parametrizirati z $C \mapsto (x(C), y(C))$, pri čemer se ovojnica
+v točki $(x(C), y(C))$ dotika člana družine s tem $C$.
+Denimo, da je parametrizacija regularna, torej za vsak $C$
+\[
+  (\partial_C x)^2 + (\partial_C y)^2 \ne 0.
+\]
+Definirajmo
+\[
+  \phi(C) = F(x(C), y(C), C).
+\]
+Ker funkcija izračuna $F$ v točki na krivulji, je $\phi = 0$.
+Torej
+\[
+  \phi'(C) = \partial_x F \partial_C x + \partial_y F \partial_C y + \partial_C
+  F = 0.
+\]
+
+Če je $t \mapsto (x(t), y(t))$ parametrizacija $C_0$-tega člana družine, velja
+\[
+  \partial_t F(x(t), y(t), C_0)
+  = \partial_x F \dot{x} + \partial_y F \dot{y} = 0
+\]
+v točki dotika z ovojnico.
+Vektor $[\dot{x}, \dot{y}]^T$ je vzporeden z $[\partial_C x, \partial_C y]^T$ v
+tej točki, torej je
+\[
+  \begin{bmatrix}
+	\partial_x F \\ \partial_y F
+  \end{bmatrix}
+  \bot
+  \begin{bmatrix}
+	\dot{x} \\ \dot{y}
+  \end{bmatrix}
+  \bot
+  \begin{bmatrix}
+	\partial_C x \\ \partial_C y
+  \end{bmatrix}
+\]
+in zato
+\[
+  \partial_x F \partial_C x + \partial_y F \partial_C y = 0.
+\]
+Torej v točki dotika velja
+\[
+  \partial_C F = 0.
+\]
+Iz para enačb $F(x, y, C) = 0$ in $\partial_C F = 0$ dobimo vse točke na
+ovojnici.
+
+\vprasanje{Kaj je ovojnica družine krivulj? Kako jo izračunaš? Izpelji.}
+
 % LocalWords:  nepriraven
