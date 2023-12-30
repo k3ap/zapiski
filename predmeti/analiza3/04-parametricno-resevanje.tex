@@ -1,0 +1,63 @@
+\naslov{Parametrično reševanje}
+
+Naj bo NDE prvega reda podana implicitno,
+\[
+  F(x, y, y') = 0.
+\]
+Denimo, da $y'$ ne moramo eksplicitno izraziti z $x, y$, ali pa je ekspliciten
+izraz nepriraven.
+Na $F$ poglejmo nekoliko drugače; vsaka dovolj lepa funkcija treh spremenljivk
+podaja družino ploskev, $F(\xi, \eta, \zeta) = C$ je implicitna enačba ploskve v
+$\R^3$ za vsak $C \in \R$.
+Tako podano ploskev lahko parametriziramo.
+Naj bo $(u, v) \mapsto (\varphi(u,v), \psi(u,v), \chi(u,v))$ neka
+parametrizacija.
+Imamo tri pristope za reševanje, v odvisnosti od $F$.
+
+Če $y$ ne nastopa eksplicitno, torej $F(x, y') = 0$, nam enačba definira
+krivuljo.
+Parametriziramo jo z $\xi = \varphi(t)$ in $\eta = \psi(t)$, da velja
+$F(\varphi, \psi) = 0$.
+Za poljubno rešitev $t \mapsto (x(t), y(t))$ velja $\dot{y} = y' \dot{x}$, torej
+za $\varphi(t) = x(t)$ in $\psi(t) = y'(t)$ dobimo $\dot{y} = \chi
+\dot{\varphi}$, oziroma
+\[
+  y(t) = \int_0^t \chi(\tau) \dot{\varphi(\tau)} d\tau.
+\]
+Dobimo parametrično izraženo rešitev $t \mapsto (\varphi(t), y(t))$.
+
+\vprasanje{Kako parametrično rešiš enačbo $F(x, y') = 0$?}
+
+Če $x$ ne nastopa eksplicitno, torej $F(y, y') = 0$, dobimo enačbo krivulje
+$F(\xi, \eta) = 0$, ki jo parametriziramo s $t \mapsto (\chi(t), \psi(t))$.
+Če označimo $\psi = y$ in $\chi = y'$, velja $\dot{\psi} = \chi \dot{x}$ oziroma
+\[
+  x(t) = \int_0^t \frac{\dot{\psi}(\tau)}{\chi(\tau)} d\tau,
+\]
+torej je $t \mapsto (x(t), \psi(t))$ parametrično podana rešitev.
+
+\vprasanje{Kako parametrično rešiš enačbo $F(y, y') = 0$?}
+
+V splošnem nam $F(x, y, y') = 0$ definira ploskev.
+Parametriziramo jo kot zgoraj z
+\begin{align*}
+  x = \varphi(u, v) && y = \psi(u, v) && y' = \chi(u,v)
+\end{align*}
+Naj bo $t \mapsto (x(u(t), v(t)), y(u(t), v(t)))$ neka rešitev naše enačbe.
+Potem je $t \mapsto (\varphi, \psi, \chi)$ krivulja na ploskvi.
+V nadaljevanju predpostavimo, da je preslikava $(u,v) \mapsto (x, y)$ obrnljiva,
+in izračunajmo
+\begin{gather*}
+  \dot{y} = y_u \dot{u} + y_v \dot{v} = \psi_u \dot{u} + \psi_v \dot{v}, \\
+  \dot{x} = \varphi_u \dot{u} + \varphi_v \dot{v}.
+\end{gather*}
+Ker tudi tu velja $\dot{y} = y' \dot{x}$, izrazimo
+\[
+  u' = \frac{\dot{u}}{\dot{v}} = - \frac{\psi_v - \chi \varphi_v}{\psi_u - \chi
+	\varphi_u}.
+\]
+Dobili smo eksplicitno enačbo prvega reda v spremenljivki $u = u(v)$.
+
+\vprasanje{Kako parametrično rešiš $F(x, y, y') = 0$?}
+
+% LocalWords:  nepriraven
