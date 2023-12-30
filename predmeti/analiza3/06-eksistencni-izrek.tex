@@ -28,3 +28,57 @@
 \end{izrek}
 
 \vprasanje{Formuliraj eksistenčni izrek.}
+
+Začetni problem $\dot{x} = F(t,x), x(t_0) = x_0$ je ekvivalenten integralski
+enačbi
+\[
+  x(t) = x_0 + \int_{t_0}^t F(\tau, x(\tau)) d\tau.
+\]
+Dokaz bo uporabil Picardov operator
+\[
+  Af(x) = x_0 + \int_{x_0}^t F(\tau, f(\tau)) d\tau
+\]
+na posebnem funkcijskem prostoru.
+
+Naj bo
+\[
+  \mathcal{C}_{a, b}
+  = \{(t, x) \such \abs{t-t_0} \le a, \norm{x - x_0} \le b \}.
+\]
+Predpostavimo, da $F$ ustreza predpostavkam izreka.
+Naj bo $L$ Lipschitzova konstanta za $F$ na $\mathcal{C}_{a,b}$ in
+\[
+  C = \max_{(t, x) \in \mathcal{C}_{a,b}} \norm{F(t,x)}.
+\]
+Velikokrat lahko za $L$ vzamemo kar maksimum norme Jacobijeve matrike na
+$\mathcal{C}_{a,b}$.
+Označimo s $K_0$ stožec
+\[
+  K_0
+  = \{(t, x) \such \abs{t-t_0} \le a', \norm{x - x_0} \le C \abs{t-t_0} \},
+\]
+kjer je $a'$ dovolj majhen, da velja $K_0 \subseteq \mathcal{C}_{a,b}$.
+Sedaj sprostimo začetno vrednost $x_0$.
+Naj bo $\norm{\hat{x} - x_0} < b'$, $K_{\hat{x}} = K_0 + (\hat{x}-x_0)$ premik
+prostora in
+\[
+  K = \bigcup_{\norm{\hat{x} - x_0} < b'} K_{\hat{x}},
+\]
+kjer je $b'$ dovolj majhen, da je $K \subseteq \mathcal{C}_{a,b}$.
+Za nas bo pomemben nov prostor $\mathcal{C}_{a', b'}$.
+
+Začetni problem zapišimo nekoliko drugače.
+Spomnimo se:
+Iščemo $g(t, \hat{x})$, da bo $\partial_t g = F(t, g)$ in $g(t_0, \hat{x}) =
+\hat{x}$.
+Vpeljimo novo funkcijo $h(t, x) : \mathcal{C}_{a,b} \to \R^n$,
+\[
+  g(t, x) = x + h(t, x).
+\]
+Velja
+\begin{gather*}
+  \partial_t h(t, x) = F(t, g(t, x)) \\
+  h(t_0, x) = g(t_0, x) - x = 0.
+\end{gather*}
+Torej je $h$ pri vsakem $x$ rešitev začetnega problema $\dot{h} = F(t,
+x+h(t,x)), h(t_0, x) = 0$.
