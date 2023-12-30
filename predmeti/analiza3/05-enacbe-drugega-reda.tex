@@ -94,3 +94,39 @@ torej
 Da bo sistem hamiltonski, mora biti torej polje $[-F, G]^T$ potencialno.
 
 \vprasanje{Pod katerim pogojem je sistem hamiltonski? Dokaži.}
+
+\begin{definicija}
+  \pojem{Eliptični integral prve vrste} z modulom $m$ je funkcija, podana s
+  predpisom
+  \[
+	F(x;m) = \int_0^x \left( 1 - m \sin^2 \xi \right)^{-1/2} d\xi.
+  \]
+  Inverzna funkcija te funkcije se imenuje \pojem{Jacobijeva amplituda}, velja
+  \[
+	y = F(x;m) \nt x = \operatorname{am}(y;m).
+  \]
+\end{definicija}
+
+\begin{vo}{Obravnavaj gravitacijsko nihalo.}
+  Gravitacijsko nihalo je oblike
+  \[
+	\ddot{q} = - \sin q.
+  \]
+  Temu sistemu pripada hamiltonska funkcija
+  \[
+	H(q, p) = \pol p^2 - (\cos q - 1).
+  \]
+  Vzdolž neke rešitve $t \mapsto (q(t), p(t))$ je to konstanta, in velja
+  \[
+	\pol \dot{q}^2 - \cos q + 1 = E.
+  \]
+  Enačbo lahko prevedemo v
+  \[
+	\frac{dq}{\sqrt{1 - \frac{2}{E} \sin^2 \nicefrac{q}{2}}}
+	= \sqrt{2E} dt.
+  \]
+  Rešitev je
+  \[
+	q = 2 \operatorname{am}\left( \sqrt{\frac{E}{2}} t + C; \frac{2}{E} \right).
+  \]
+\end{vo}

@@ -1,0 +1,30 @@
+\naslov{Eksistenčni izrek}
+
+\begin{izrek}[Eksistenčni]
+  Naj bo vektorsko polje $F(t, x)$ podano na valju
+  \[
+	\mathcal{C}_{a, b}
+	= \{(t, x) \such \abs{t-t_0} \le a, \norm{x - x_0} \le b \}
+  \]
+  za neki par $t_0, x_0$ in $a, b \in \R^+$.
+  Naj bo $F(t, x)$ na $\mathcal{C}_{a,b}$ zvezno in naj bo $F(t,x) :
+  \mathcal{C}_{a,b} \to \R^n$ Lipschitzova glede na $x$ pri vsakem $t$.
+  Alternativno je lahko preslikava $F(t, x)$ odvedljiva po $x$ pri vsakem $t$ in
+  $\norm{D_x F}$ na $\mathcal{C}_{a,b}$ omejeno število.
+  Potem obstaja natanko ena rešitev začetnega problema
+  \begin{align*}
+	\dot{x} = F(t, x) && x(t_0) = x_0
+  \end{align*}
+  za vsak $x_0$.
+  Rešitev $\varphi(t)$ obstaja na $[t_0 - a', t_0 + a']$ za nek $a' \le a$.
+  Še več: za družino začetnih problemov $\dot{x} = F(t, x), x(t_0) = \hat{x}$,
+  kjer je $\norm{x_0 - \hat{x}}$ dovolj majhno, obstajata $0 < a'' \le a$ in
+  funkcija $g(t, x) : \mathcal{C}_{a,b} \to \R^n$, za katero velja
+  \begin{itemize}
+  \item je zvezna na obe spremenljivki,
+  \item $\partial_t g(t, x) = F(t, x)$,
+  \item $g(t_0, \hat{x}) = \hat{x}$.
+  \end{itemize}
+\end{izrek}
+
+\vprasanje{Formuliraj eksistenčni izrek.}
