@@ -1,0 +1,63 @@
+\naslov{Enačbe drugega reda}
+
+Najpomembnejša enačba drugega reda je drugi Newtonov zakon.
+Malce posplošeno ima obliko
+\[
+  \ddot{x}_i = F_i(x_1, \ldots, x_n)
+\]
+za $i = 1, \ldots, n$.
+Če vpeljemo $p = \dot{x}$ in $q = x$, dobimo sistem prvega reda
+\begin{gather*}
+  \dot{q}_i = p_i \\
+  \dot{p}_i = F_i(q_1, \ldots, q_n)
+\end{gather*}
+Sistem lahko še posplošimo.
+Naj bosta $F, G : M \subseteq \R^{2n} \to \R^n$ preslikavi iz faznega prostora
+$M$.
+Zanima nas časovni razvoj sistema, ki je podan z enačbami
+\begin{gather*}
+  \dot{q} = G(q, p), \\
+  \dot{p} = F(q, p).
+\end{gather*}
+
+Posebej pomembni so sistemi, za katere obstaja funkcija $H : M \to \R$, za
+katero velja
+\begin{gather*}
+  \frac{\partial H}{\partial q_i} = -F_i, \\
+  \frac{\partial H}{\partial p_i} = G_i.
+\end{gather*}
+Taki funkciji pravimo \pojem{Hamiltonian}.
+
+\begin{izrek}
+  Če Hamiltonian obstaja, potem je prvi integral sistema.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $t \mapsto (q(t), p(t))$ neka rešitev sistema.
+  Potem imamo
+  \[
+	\partial_t H(q, p)
+	= \partial_q H \dot{q} + \partial_p H \dot{p}
+	=
+	\begin{bmatrix}
+	  - F & F
+	\end{bmatrix}
+	\cdot
+	\begin{bmatrix}
+	  G \\ G
+	\end{bmatrix}
+	= 0
+  \]
+\end{proof}
+
+\vprasanje{Kaj je Hamiltonian? Dokaži, da je prvi integral.}
+
+\begin{definicija}
+  Naj bo podana funkcija $H : M \subseteq \R^{2n} \to \R$.
+  Sistem enačb
+  \begin{gather*}
+	\dot{q} = \partial_p H \\
+	\dot{p} = -\partial_q H
+  \end{gather*}
+  je \pojem{hamiltonski sistem} s \pojem{hamiltonsko funkcijo} $H$.
+\end{definicija}
