@@ -270,3 +270,85 @@ V tem primeru se Dysonova matrika glasi
 	= \inv{n!} \left( \int_0^t A(\tau) d\tau \right)^n.
   \]
 \end{proof}
+
+\vprasanje{Kakšna je fundamentalna matrika, če $A(t_1)$ komutira z $A(t_2)$ za
+  vsaka $t_1, t_2$? Dokaži.}
+
+\begin{trditev}[Liouvilloeva formula]
+  Za fundamentalno matriko $\phi(t)$ sistema $\dot{x} = Ax + b$ velja
+  \[
+	\det \phi(t) = \exp\left( \int_0^t \operatorname{sl}(A(\tau)) d\tau \right)
+  \]
+\end{trditev}
+
+\begin{proof}
+  Naj bo
+  \[
+	\phi(t) =
+	\begin{bmatrix}
+	  x_{11} & \cdots & x_{1n} \\
+	  \vdots & \ddots & \vdots \\
+	  x_{n1} & \cdots & x_{nn}
+	\end{bmatrix}.
+  \]
+  Če definicijo determinante odvajamo, dobimo
+  \[
+	\partial_t \det \phi(t)
+	= \sum_{\pi \in S_n} (-1)^{s(\pi)} \sum_{i=1}^n x_{1,\pi(1)} \ldots
+	\dot{x}_{i,\pi(i)} \ldots x_{n,\pi(n)}.
+  \]
+  Velja $\dot{\phi} = A \phi$, torej
+  \[
+	\begin{bmatrix}
+	  \dot{x}_{11} & \cdots & \dot{x}_{1n} \\
+	  \vdots & \ddots & \vdots \\
+	  \dot{x}_{n1} & \cdots & \dot{x}_{nn} \\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	  \sum_i a_{1i} x_{i1} & \cdots & \sum_i a_{1i} x_{in} \\
+	  \vdots & \ddots & \vdots \\
+	  \sum_i a_{ni} x_{i1} & \cdots & \sum_i a_{ni} x_{in} \\
+	\end{bmatrix},
+  \]
+  iz česar dobimo $\dot{x}_{ij} = \sum_k a_{ik} x_{kj}$.
+  To vstavimo v prejšnji zapis
+  \[
+	\partial_t \det \phi(t)
+	= \sum_{\pi \in S_n} (-1)^{s(\pi)} \sum_{i=1}^n x_{1,\pi(1)} \ldots \left(
+	  \sum_{j=1}^n a_{ij} x_{j,\pi(j)}
+	\right) \ldots x_{n,\pi(n)},
+  \]
+  ki ga prvo seštejemo po $\pi$.
+  Pri vsakem $i$ dobimo determinanto
+  \[
+	\begin{vmatrix}
+	  x_{11} & \cdots & x_{1n} \\
+	  \vdots & \ddots & \vdots \\
+	  \sum_j a_{ij} x_{j1} & \cdots & \sum_j a_{ij} x_{jn} \\
+	  \vdots & \ddots & \vdots \\
+	  x_{n1} & \cdots & x_{nn}
+	\end{vmatrix}
+	=
+	\begin{vmatrix}
+	  x_{11} & \cdots & x_{1n} \\
+	  \vdots & \ddots & \vdots \\
+	  a_{ii} x_{i1} & \cdots & a_{ii} x_{in} \\
+	  \vdots & \ddots & \vdots \\
+	  x_{n1} & \cdots & x_{nn}
+	\end{vmatrix}
+	= a_{ii} \det \phi
+  \]
+  Torej
+  \[
+	\partial_t \det \phi(t)
+	= a_{11} \det \phi + a_{22} \det \phi + \ldots + a_{nn} \det \phi
+	= \operatorname{sl} A \det \phi.
+  \]
+  To je diferencialna enačba, katere rešitev je
+  \[
+	\det \phi = \exp\left( \int_0^t \operatorname{sl} A d\tau \right).
+  \]
+\end{proof}
+
+\vprasanje{Povej in dokaži Liouvilloevo formulo.}
