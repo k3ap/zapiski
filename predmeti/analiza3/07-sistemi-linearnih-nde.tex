@@ -224,3 +224,49 @@ V tem primeru se Dysonova matrika glasi
 \]
 
 \vprasanje{Kakšna je Dysonova vrsta, če je matrika koeficientov konstanta?}
+
+\begin{trditev}
+  Naj bo $A: [0, T] \to \R^{n \times n}$ matrična funkcija, za katero velja
+  $A(t_1) A(t_2) = A(t_2) A(t_1)$ za vsaka $t_1, t_2 \in [0, T]$.
+  Potem velja
+  \[
+	\phi(t) = \exp\left( \int_0^t A(\tau) d\tau \right).
+  \]
+\end{trditev}
+
+\begin{proof}
+  Označimo $\square_n(t) = [0, t]^n$.
+  Oglejmo si
+  \[
+	\int_{\square_n(t)} A(\tau_1) \ldots A(\tau_n) d\tau.
+  \]
+  Za skoraj vsak $\tau \in \square_n(t)$ obstaja natanko ena permutacija $\sigma
+  \in S_n$, da velja $\sigma \cdot \tau \in \Delta_n(t)$.
+  Označimo
+  \[
+	\Delta^\sigma(t)
+	= \{ \tau \in \square_n(t) \such \sigma \cdot \tau \in \Delta_n(t) \}.
+  \]
+  Razen na množici z mero $0$ velja
+  \[
+	\square_n(t) = \bigcup_{\sigma \in S_n} \Delta^\sigma(t),
+  \]
+  zato za vsako funkcijo $\mathcal{A}: \square_n(t) \to \R^{n \times n}$ velja
+  \[
+	\int_{\square_n(t)} \mathcal{A}(\tau) d\tau
+	= \sum_{\sigma \in S_n} \int_{\Delta^\sigma(t)} \mathcal{A}(\tau) d\tau
+	= \sum_{\sigma \in S_n} \int_{\Delta_n(t)} \mathcal{A}(\tau_{\sigma(1)},
+	\ldots, \tau_{\sigma(n)}) \underbrace{\abs{\det \sigma}}_{= 1} d\tau.
+  \]
+  Če matrike komutirajo, torej velja
+  \[
+	\int_{\square_n(t)} A(\tau_1) \ldots A(\tau_n) d\tau
+	= n! \int_{\Delta_n(t)} A(\tau_1) \ldots A(\tau_n) d\tau.
+  \]
+  Torej je
+  \[
+	\int_{\Delta_n(t)} A(\tau_1) \ldots A(\tau_n) d\tau
+	= \inv{n!} \int_0^t A(\tau_1) d\tau_1 \ldots \int_0^t A(\tau_n) d\tau_n
+	= \inv{n!} \left( \int_0^t A(\tau) d\tau \right)^n.
+  \]
+\end{proof}
