@@ -1,0 +1,121 @@
+\naslov{Sistemi linearnih NDE}
+
+Naj bodo podane funkcije $a_{ij} : [a,b] \to \R$ in $b_k: [a,b] \to \R$, ki so
+na $[a,b]$ omejene.
+Sistem NDE prvega reda s koeficienti $a_{ij}(t)$ in desno stranjo $b_k(t)$ je
+sistem
+\begin{align*}
+  \dot{x}_1 &= a_{11} x_1 + \ldots + a_{1n} x_n \\
+   & \vdots \\
+  \dot{x}_n &= a_{n1} x_1 + \ldots + a_{nn} x_n \\
+\end{align*}
+Naj bo matrika $A(t)$ podana s koeficienti $a_{ij}$ in $b$ vektor podan s
+komponentami $b_k$.
+Za $x = [x_1 \ldots x_n]^T$ sistem zapišemo kot $\dot{x} = Ax + b$.
+Če je $b = 0$ pravimo, da je sistem \pojem{homogen}.
+
+\begin{izrek}
+  Če je $A:[a,b] \to \R^{n \times n}$ zvezna in omejena, je množica rešitev
+  homogenega sistema $\dot{x} = Ax$ je $n$-dimenzionalen vektorski prostor v
+  prostoru $\zvodv{1}{[a,b]}$.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $R$ prostor rešitev.
+  Najprej moramo pokazati, da je $R$ vektorski podprostor.
+  Za vsak par rešitev $x_1, x_2$ in $\alpha, \beta \in \R$ velja
+  \[
+	A(\alpha x_1 + \beta x_2) = \alpha A x_1 + \beta A x_2 = \partial_t (\alpha
+	x_1 + \beta x_2).
+  \]
+  Naj bo $t_0 \in [a,b]$.
+  Po eksistenčnem izreku obstaja rešitev vsakega začetnega problema $\dot{x} =
+  Ax, x(t_0) = c \in \R^n$.
+  Naj bo $e_1, \ldots, e_n$ kanonična baza v $\R^n$.
+  Obstajajo torej rešitve $x_i$ začetnih problemov $\dot{x} = Ax, x(t_0) = e_i$.
+  Dokazati moramo še, da so $x_i$ tudi globalne rešitve; ta del pustimo za
+  kasneje, preostanek dokaza je lokalen.
+
+  Trdimo, da je $\{x_i\}_i$ baza $R$.
+  Linearna neodvisnost je trivialna.
+  Naj bo $x$ rešitev sistema in $c = x(t_0)$.
+  Vektor $c$ razvijemo po bazi $e_i$ v $c = \alpha_1 e_1 + \ldots + \alpha_n
+  e_n$ in definiramo
+  \[
+	\tilde{x} = \alpha_1 x_1 + \ldots + \alpha_n x_n.
+  \]
+  Ker sta tako $x$ kot $\tilde{x}$ rešitvi začetnega problema $\dot{x} = Ax,
+  x(t_0) = c$, sta po eksistenčnem izreku enaki.
+\end{proof}
+
+\vprasanje{Kaj je množica rešitev homogenega sistema linearnih NDE? Dokaži.}
+
+\begin{definicija}
+  \pojem{Fundamentalna matrika} sistema $\dot{x} = Ax$ je matrika
+  \[
+	\phi(t,t_0)
+	=
+	\begin{bmatrix}
+	  x_{11}(t) & \ldots & x_{1n}(t) \\
+	  \vdots & \ddots & \vdots \\
+	  x_{n1}(t) & \ldots & x_{nn}(t)
+	\end{bmatrix},
+  \]
+  v kateri je $i$-ti stolpec enak $i$-ti rešitvi iz dokaza.
+\end{definicija}
+
+Za matriko $\phi(t,t_0)$ velja $\phi(t_0,t_0) = I$.
+Naj bo $x$ rešitev začetnega problema $\dot{x} = Ax, x(t_0) = c$.
+Potem velja $x = \phi(t,t_0)c$.
+
+\begin{trditev}
+  Za vsak $t$ veja $\det \phi(t,t_0) \ne 0$.
+\end{trditev}
+
+\begin{proof}
+  Recimo, da obstaja $t_1$, da je $\det \phi(t, t_0) = 0$.
+  Potem je matrika $\phi(t_1, t_0)$ singularna, zato ima netrivialno jedro,
+  torej obstaja vsaj en neničeln vektor $d \in \R^n$, da $\phi(t_1, t_0) d = 0$.
+  Torej
+  \[
+	\phi(t_1, t_0) d = \sum_{i=1}^n x_i(t_1) d_i = 0.
+  \]
+  Definirajmo
+  \[
+	z(t) = \sum_{i=1}^n d_i . x_i(t).
+  \]
+  Ta funkcija je rešitev sistema, zanjo velja $z(t_1) = 0$.
+  Tudi funkcija $w(t) = 0$ je rešitev začetnega problema $\dot{x} = Ax, x(t_1) =
+  0$, torej po eksistenčnem izreku $z = 0$.
+  Ker so v točki $t_0$ vektorji $x_i$ linearno neodvisni, velja $d_i = 0$.
+\end{proof}
+
+\vprasanje{Kaj je fundamentalna matrika homogenega sistema linearnih NDE?
+  Dokaži, da je nesingularna.}
+
+Oglejmo si preslikavo $\mathcal{F}: (t_0-\varepsilon, t_0+\varepsilon) \times
+\R^n \to \R^n$, definirano z
+\[
+  \mathcal{F}(t, y) = \phi(t, t_0) y.
+\]
+To je tok enačbe $\dot{x} = Ax$.
+Za vsak dovolj majhen $t$ je preslikava $y \mapsto \mathcal{F}(t,y)$
+difeomorfizem, saj je obrnljiva linearna preslikava $\R^n \to \R^n$.
+Vzemimo $t_0 = 0$ in označimo $\phi(t,0) = \phi(t)$.
+
+\begin{trditev}
+  Velja $\phi(t_1 + t_2) = \phi(t_1) \phi(t_2)$.
+\end{trditev}
+
+\begin{proof}
+  Po eni strani imamo za vsak $x \in \R^n$
+  \begin{gather*}
+	\phi(t_1) x = \mathcal{F}(t_1,x), \\
+	\phi(t_2) \phi(t_1)x = \mathcal{F}(t_2, \phi(t_1) x) = \mathcal{F}(t_2 +
+	t_1, x),
+  \end{gather*}
+  ker je $\mathcal{F}$ tok, po drugi strani pa
+  \[
+	\phi(t_1 + t_2) x = \mathcal{F}(t_1+t_2,x).
+  \]
+\end{proof}
