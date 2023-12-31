@@ -119,3 +119,62 @@ Vzemimo $t_0 = 0$ in označimo $\phi(t,0) = \phi(t)$.
 	\phi(t_1 + t_2) x = \mathcal{F}(t_1+t_2,x).
   \]
 \end{proof}
+
+\vprasanje{Pokaži, da velja $\phi(t_1 + t_2) = \phi(t_1) \phi(t_2)$.}
+
+\begin{trditev}
+  Splošna rešitev sistema $\dot{x} = Ax + b$ je afin podprostor v
+  $\zvodv{1}{[a,b]}$, modeliran nad prostorom $R$ rešitev homogenega sistema.
+\end{trditev}
+
+To pomeni, da obstajajo vektorji $x_p \in \zvodv{1}{[a,b]}$, da je množica
+rešitev $\dot{x} = Ax+b$ enaka
+\[
+  W = \{x_h + x_p \such x_h \in R\}.
+\]
+Če imamo $R$ in želimo poiskati $W$, potrebujemo eno partikularno rešitev
+nehomogenega sistema.
+To dobimo z variacijo konstante.
+Za vsak konstanten vektor $c \in \R^n$ je $\phi(t) c$ rešitev homogenega
+sistema.
+Poskusimo poiskati kakšno rešitev $\dot{x} = Ax+b$ z nastavkom $x_p = \phi(t)
+c(t)$, kjer je $c(t): \R \to \R^n$ neznana funkcija.
+Začnemo z
+\[
+  \dot{x}_p = \dot{\phi} c + \phi \dot{c}
+  = A x_p + b,
+\]
+iz česar dobimo $\phi \dot{c} = b$, oziroma $\dot{c} = \phi(-t) b(t)$.
+Sledi
+\[
+  c(t) = \int_0^t \phi(-\tau) b(\tau) d\tau
+\]
+in
+\[
+  x_p(t) = \phi(t) c(t)
+  = \int_0^t \phi(t-\tau) b(\tau) d\tau.
+\]
+Dokazali smo
+
+\begin{trditev}
+  Splošna rešitev nehomogenega problema $\dot{x} = Ax+b$ je
+  \[
+	x(t,c) = \phi(t) c + \int_0^t \phi(t-\tau) b(\tau) d\tau,
+  \]
+  kjer je $c$ začetni pogoj pri $t_0 = 0$.
+\end{trditev}
+
+\vprasanje{Kako poiščeš množico rešitev $\dot{x} = Ax+b$?}
+
+Kako pa izračunamo $\phi$?
+V zaključeni obliki za splošen $A$ izračunati ne moremo, lahko pa dobimo
+izrazitev z Dysonovo vrsto.
+Oglejmo si začetni problem
+\[
+  \dot{\phi} = A \phi, \phi(0) = I.
+\]
+Ta je ekvivalenten integralski enačbi
+\[
+  \phi(t) = I + \int_0^t A(\tau) \phi(\tau) d\tau.
+\]
+To lahko razvijemo naprej
