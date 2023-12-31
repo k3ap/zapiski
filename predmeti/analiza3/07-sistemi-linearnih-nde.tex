@@ -177,4 +177,50 @@ Ta je ekvivalenten integralski enačbi
 \[
   \phi(t) = I + \int_0^t A(\tau) \phi(\tau) d\tau.
 \]
-To lahko razvijemo naprej
+To lahko razvijemo naprej v
+\[
+  \phi(t) = I + \int_0^t A(\tau_1) \left( I + \int_0^{\tau_1} A(\tau_2)
+	\phi(\tau_2) \right) d\tau_1,
+\]
+in nadaljujemo.
+Na koncu dobimo
+\[
+  \phi(t)
+  =
+  I + \sum_{n=1}^\infty \int_0^t A(\tau_1) \int_0^{\tau_1} A(\tau_2) \ldots
+  \int_0^{\tau_{n-1}} A(\tau_n) d\tau_n \ldots d\tau_1
+\]
+
+\begin{trditev}
+  Naj bo matrična funkcija $A(t): [0, T] \to \R^{n \times n}$ omejena po normi
+  $\norm{A(t)} \le M$,
+  Potem Dysonova vrsta konvergira.
+\end{trditev}
+
+\begin{proof}
+  Ocenimo lahko
+  \[
+	\norm{\phi}
+	\le
+	1 + \sum_{n=1}^\infty \int_{\Delta_n(t)} \norm{A(\tau_1) \ldots A(\tau_n)} d\tau
+	\le
+	1 + \sum_{n=1}^\infty \int_{\Delta_n(t)} M^n d\tau,
+  \]
+  kjer je $\Delta_n(t)$ urejeni $n$-simpleks.
+  Nadalje velja
+  \[
+	\norm{\phi}
+	\le 1 + \sum_{n=1}^\infty V(\Delta_n(t)) M^n
+	= 1 + \sum_{n=1}^\infty \frac{t^n}{n!} M^n = e^{Mt} \le e^{MT}.
+  \]
+\end{proof}
+
+\vprasanje{Pod katerim pogojem Dysonova vrsta konvergira? Dokaži.}
+
+Recimo, da je $A$ konstanta matrika.
+V tem primeru se Dysonova matrika glasi
+\[
+  \phi(t) = e^{At}.
+\]
+
+\vprasanje{Kakšna je Dysonova vrsta, če je matrika koeficientov konstanta?}
