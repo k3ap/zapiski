@@ -182,9 +182,7 @@ s $P(\lambda)$.
 \end{proof}
 
 \vprasanje{Kaj je karakteristični polinom homogene linearne NDE višjega reda?
-  Kako z njim poiščemo rešitve enačbe? Dokaži.}
-
-\podnaslov{O karakterističnemu polinomu}
+  Kako z njim poiščemo rešitve enačbe, če so vse ničle različne? Dokaži.}
 
 Z razvojem po prvem stolpcu lahko izračunamo
 \[
@@ -201,5 +199,58 @@ Z razvojem po prvem stolpcu lahko izračunamo
 \]
 Lastne vrednosti matrike $A$ so torej res ničle karakterističnega polinoma
 $P(\lambda)$ enačbe $Lx = 0$.
+
+Kaj pa če ima $A$ večkratne lastne vrednosti?
+
+\begin{trditev}
+  Naj bo $\lambda$ $k$-kratna ničla polinoma $P(\lambda)$.
+  Potem so funkcije $x_0(t) = e^{\lambda t}, x_1(t) = t e^{\lambda t}, \ldots,
+  x_{k-1}(t) = \lambda^{k-1} e^{\lambda t}$ linearno neodvisne rešitve $Lx = 0$.
+\end{trditev}
+
+\begin{proof}
+  Opazimo, da velja $x_i(t) = \frac{\partial^i}{\partial \lambda^i} e^{\lambda
+	t}$ za $i=0, \ldots, k-1$.
+  Kot že vemo, velja $L x_0(t) = P(\lambda) e^{\lambda t}$.
+  Odvedemo to enačbo $i$-krat po $\lambda$.
+  Na levi dobimo
+  \[
+	\frac{\partial^i}{\partial \lambda^i} L x_0(t)
+	= L(\frac{\partial^i}{\partial \lambda^i} e^{\lambda t})
+	= L(x_i(t)).
+  \]
+  To je res, ker so vsi koeficienti $a_i$ konstantni na $t$ in $\lambda$.
+  Imamo torej
+  \begin{align*}
+	L x_i(t) = \frac{\partial^i}{\partial \lambda^i} L x_0(t)
+	&= \frac{\partial^i}{\partial \lambda^i} (P(\lambda) e^{\lambda t}) \\
+	&= \sum_{l=0}^i \binom{i}{l} P^{(l)}(\lambda) \frac{\partial^{i-l}}{\partial
+	\lambda^{i-l}} e^{\lambda t} \\
+	&= \sum_{l=0} î \binom{i}{l} P^{(l)}(\lambda) \lambda^{i-l} e^{\lambda t} \\
+	&= \sum_{l=0}^i \binom{i}{l} P^{(l)}(\lambda) x_{i-l}(t).
+  \end{align*}
+  Naj bo sedaj $\lambda$ ničla $k$-te stopnje in $i \le k$.
+  Potem velja $P^{(l)}(\lambda) = 0$, torej $L x_i(t) = 0$, funkcija $x_i(t) =
+  t^i e^{\lambda t}$ je torej res rešitev enačbe $Lx = 0$ za $i = 0, \ldots,
+  k-1$.
+\end{proof}
+
+\vprasanje{Kako s karakterističnim polinomom poiščemo rešitve linearne NDE
+  višjega reda s konstantnimi koeficienti, če niso vse ničle različne? Dokaži.}
+
+Naj bo sedaj $\lambda$ kompleksna ničla $\lambda = a + ib$.
+Če so koeficienti operatorja $L$ realni, potem je tudi $\konj{\lambda}$ ničla
+$P$.
+Če je $\lambda = a+ib$ ničla $k$-tega reda, je tudi $\konj{\lambda}$ ničla
+$k$-tega reda.
+Ti dve lastni vrednosti dasta $2k$ baznih rešitev.
+Če jih želimo na najpreprostejši način izraziti z realnimi funkcijami, dobimo
+bazo
+\begin{gather*}
+  x_0(t) = e^{ta} \cos(bt), x_1(t) = e^{ta} \sin(bt), \\
+  x_2(t) = t e^{ta} \cos(bt), x_3(t) = t e^{ta} \sin(bt), \\
+  \vdots \\
+  x_{2k-2} = t^{k-1} e^{ta} \cos(bt), x_{2k-1} = t^{k-1} e^{ta} \sin(bt).
+\end{gather*}
 
 % LocalWords:  Wronskega Liouvilleova vandermondova
