@@ -2,7 +2,7 @@
 
 Obravnavamo enačbe oblike
 \[
-  a_0(t) x^{(n)} + \ldots + a_{n-1}(t) \dot{x} + a_n(t) x = b(t).
+  a_n(t) x^{(n)} + \ldots + a_1(t) \dot{x} + a_0(t) x = b(t).
 \]
 
 \begin{definicija}
@@ -12,9 +12,194 @@ Obravnavamo enačbe oblike
   \]
   podana s predpisom
   \[
-	Lx(t) = a_0(t) x^{(n)} + \ldots + a_n(t) x.
+	Lx(t) = a_n(t) x^{(n)} + \ldots + a_0(t) x.
   \]
 \end{definicija}
 
 Splošna rešitev homogene enačbe $Lx = 0$ je $\jedro L$.
 Vemo, da je splošna rešitev $n$-dimenzionalni vektorski prostor.
+Enačbo s substitucijo
+\begin{align*}
+  x_1 &= x \\
+  x_2 &= \dot{x} \\
+  \vdots & \\
+  x_n &= x^{(n-1)}
+\end{align*}
+prepišemo v sistem
+\begin{gather*}
+  \dot{x}_0 = x_1 \\
+  \dot{x}_1 = x_2 \\
+  \vdots \\
+  \dot{x}_n = \inv{a_n} (b - a_0 x_1 - a_2 x_1 - \ldots - a_{n-1} x_{n-2})
+\end{gather*}
+Označimo
+\[
+  p_i(t) = \frac{a_i(t)}{a_n(t)},
+\]
+s čimer izrazimo matriko koeficientov zgornjega sistema
+\[
+  A(t) =
+  \begin{bmatrix}
+	0 & 1 & 0 & \cdots & 0 \\
+	0 & 0 & 1 & \cdots & 0 \\
+	0 & 0 & 0 & \cdots & 0 \\
+	\vdots & \vdots & \vdots & \ddots & \vdots \\
+	-p_0 & -p_1 & -p_2 & \cdots & -p_{n-1}
+  \end{bmatrix}.
+\]
+
+\begin{izrek}
+  Naj bo $L: \zvodv{n}{[a,b]} \to \zvodv{0}{[a,b]}$ regularen diferencialni
+  operator.
+  Za vsak začetni pogoj $x(t_0) = c_0, \dot{x}(t_0) = c_1, \ldots,
+  x^{(n-1)}(t_0) = c_{n-1}$ ima enačba $Lx = b$ natanko eno rešitev na vsem
+  intervalu $[a,b]$.
+\end{izrek}
+
+\begin{opomba}
+  Diferencialni operator: $Lx = a_n x^{(n)} + \ldots + a_1 \dot{x} +
+  a_0 x = b$ je regularen, če je $a_n(t) \ne 0$ za vsak $t$ in če so $a_i(t)$
+  omejene.
+\end{opomba}
+
+Množica rešitev homogene linearne enačbe $Lx = 0$ je $n$-dimenzionalen vektorski
+prostor v $\zvodv{n}{[a,b]}$.
+Vsaka rešitev $x(t)$ namreč na enoličen način določa rešitev sistema
+$\dot{\vec{x}} = A \vec{x}$ za
+\[
+  \dot{\vec{x}}
+  =
+  \begin{bmatrix}
+	x(t) \\ \dot{x}(t) \\ \vdots \\ x^{(n-1)}(t)
+  \end{bmatrix}.
+\]
+Tudi obratno je res: vsak vektor $\vec{x}$ na enoličen način določa svojo prvo
+komponento.
+
+Oglejmo si fundamentalno matriko
+\[
+  \phi(t)
+  =
+  \begin{bmatrix}
+	x_1 & x_2 & \cdots & x_n \\
+	\dot{x}_1 & \dot{x}_2 & \cdots & \dot{x}_n \\
+	\vdots & \vdots & \ddots & \vdots \\
+	x_1^{(n-1)} & x_2^{(n-1)} & \cdots & x_n^{(n-1)}
+  \end{bmatrix}.
+\]
+Denimo, da so funkcije $x_1(t), x_2(t), \ldots, x_n(t)$ baza rešitev enačbe $Lx
+= 0$.
+Za bazo velikokrat vzamemo take vektorje $\vec{x}_1, \ldots, \vec{x}_n$, da je
+$\phi(t=0) = I$.
+Če je ta baza dobljena iz baze rešitev enačbe $Lx = 0$, potem za te rešitve
+velja $x_i(0) = 0, \ldots, x_i^{(i-1)}(t) = 0, x_i^{(i)}(0) = 1, x_i^{(i+1)}(0)
+= 0, \ldots, x_i^{(n-1)}(0) = 0$.
+Determinanta
+\[
+  W(t) = \det \phi(t)
+\]
+se imenuje \pojem{determinanta Wronskega}.
+V tem primeru se Liouvilleova formula glasi
+\[
+  W(t) = W(t_0) \exp\left( - \int_{t_0}^t p_{n-1}(\tau) d\tau \right).
+\]
+
+Rešitev nehomogene enačbe dobimo s pomočjo variacije konstante;
+\[
+  \vec{x} = \int_{t_0}^t \phi(t) \phi^{-1}(\tau) \vec{b}(\tau) d\tau,
+\]
+oziroma, ker ima $\vec{b}$ v tem primeru le eno neničelno komponento $b(t)$, bo
+prva komponenta $\vec{x}$ enaka
+\[
+  x(t)
+  = \int_{t_0}^t \sum_{i=1}^n \phi_{1i}(t) \phi_{in}^{-1}(\tau) b(\tau) d\tau
+  = \sum_{i=1}^n x_i(t) \int_{t_0}^t \phi_{in}^{-1}(\tau) b(\tau) d\tau,
+\]
+kjer je $(x_i(t))_i$ baza rešitev homogene enačbe $Lx = 0$.
+
+\vprasanje{Kako izračunaš rešitev linearne NDE višjega reda?}
+
+\podnaslov{Enačbe s konstantnimi koeficienti}
+
+Naj bo sedaj linearen diferencialni operator $L$ podan z
+\[
+  Lx = x^{(n)} + a_1 x^{(n-1)} + \ldots + a_n x.
+\]
+Oglejmo si enačbo $Lx = 0$.
+Če vstavimo nastavek $x(t) = e^{\lambda t}$:
+\[
+  \lambda^n e^{\lambda t} + a_1 \lambda^{n-1} e^{\lambda t} + \ldots + a_{n-1}
+  \lambda e^{\lambda t} + a_n e^{\lambda t} = 0
+\]
+oziroma (ker $e^{\lambda t} \ne 0$ tudi za $\lambda \in \C$)
+\[
+  \lambda^n + a_1 \lambda^{n-1} + \ldots + a_{n-1} \lambda + a_n = 0.
+\]
+Ta polinom imenujemo \pojem{karakteristični polinom enačbe $Lx = 0$} in označimo
+s $P(\lambda)$.
+
+\begin{trditev}
+  Če so $\lambda_1, \ldots, \lambda_n$ različne ničle karakterističnega polinoma
+  $P(\lambda)$, potem so funkcije $x_i(t) = e^{\lambda_i t}$ baza rešitev
+  homogene enačbe $Lx = 0$.
+\end{trditev}
+
+\begin{proof}
+  Vemo, da je rešitev sistema vektorski prostor, dokazati moramo samo, da so te
+  rešitve linearno neodvisne.
+  Priredimo našim rešitvam pripadajoče rešitve sistema, ki je prirejen $Lx = 0$,
+  \[
+	x_i(t) \mapsto \vec{x}_i(t) =
+	\begin{bmatrix}
+	  x_i(t) \\ \dot{x}_i(t) \\ \vdots \\ x_i^{n-1}(t)
+	\end{bmatrix}.
+  \]
+  Te stolpce zložimo v matriko in dobimo kandidatko za fundamentalno matriko
+  $\phi(t)$
+  \[
+	\phi(t)
+	=
+	\begin{bmatrix}
+	  e^{\lambda_1 t} & e^{\lambda_2 t} & \cdots & e^{\lambda_n t} \\
+	  \lambda_1 e^{\lambda_1 t} & \lambda_2 e^{\lambda_2 t} & \cdots & \lambda_n
+																	   e^{\lambda_n t} \\
+	  \lambda_1^2 e^{\lambda_1 t} & \lambda_2^2 e^{\lambda_2 t} & \cdots & \lambda_n^2
+																	   e^{\lambda_n t} \\
+	  \vdots & \vdots & \ddots & \vdots \\
+	  \lambda_1^{n-1} e^{\lambda_1 t} & \lambda_2^{n-1} e^{\lambda_2 t} & \cdots
+												 & \lambda_n^{n-1} e^{\lambda_n t} \\
+	\end{bmatrix}
+  \]
+  Matrika $\phi(0)$ je vandermondova, torej
+  \[
+	W(t) = \det \phi(t) = W(0) \exp\left( \int_0^t \operatorname{sl}(A) d\tau
+	\right)
+	= \prod_{i>j} (\lambda_i - \lambda_j) \cdot e^{- a_1 t}.
+  \]
+  Ker so vsi $\lambda_i$ različni, velja $W(0) \ne 0$, torej je $W(t) \ne 0$
+  za vsak $t$, in so funkcije $x_i$ res linearno neodvisne in so baza prostora
+  rešitev enačbe $Lx = 0$.
+\end{proof}
+
+\vprasanje{Kaj je karakteristični polinom homogene linearne NDE višjega reda?
+  Kako z njim poiščemo rešitve enačbe? Dokaži.}
+
+\podnaslov{O karakterističnemu polinomu}
+
+Z razvojem po prvem stolpcu lahko izračunamo
+\[
+  \det (A - \lambda I)
+  =
+  \begin{vmatrix}
+	-\lambda & 1 & 0 & \cdots & 0 \\
+	0 & -\lambda & 1 & \cdots & 0 \\
+	0 & 0 & -\lambda & \cdots & 0 \\
+	\vdots & \vdots & \vdots & \ddots & \vdots \\
+	-a_n & -a_{n-1} & -a_{n-2} & \cdots & -a_1-\lambda
+  \end{vmatrix}
+  = \lambda^n + a_1 \lambda^{n-1} + \ldots + a_{n-1} \lambda + a_n.
+\]
+Lastne vrednosti matrike $A$ so torej res ničle karakterističnega polinoma
+$P(\lambda)$ enačbe $Lx = 0$.
+
+% LocalWords:  Wronskega Liouvilleova vandermondova
