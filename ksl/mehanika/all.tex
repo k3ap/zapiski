@@ -203,3 +203,74 @@ Poleg tega za kinetično energijo upoštevamo le radialno komponento hitrosti:
   \theta - \theta_0 = \sgn(\dot{r}) \frac{l}{\sqrt{2 m}}
   \int_{r_0}^{r} \frac{dr}{r^2 \sqrt{E_0 - U(r)}}.
 \]
+
+\naslov{Relativno gibanje}
+
+Celotno poglavje se obrača okoli pretvarjanja med relativnih in absolutnim
+koordinatnim sistemom.
+Če so $\vec{r}, \vec{v}, \vec{a}$ položaj, hitrost in pospešek v absolutnem
+koordinatnem sistemu, in $\vec{\zeta}, \vec{v}_{\text{rel}},
+\vec{a}_{\text{rel}}$ pripadajoče količine v relativnem koordinatnem sistemu,
+imamo transformacije
+\begin{gather*}
+  \vec{r} = \vec{r}_0 + Q (\vec{r} - \vec{r}_0) \\
+  \vec{v} = \vec{v}_0 + \vec{\omega} \times \vec{\zeta} + \vec{v}_{\text{rel}}
+  \\
+  \vec{a} = \vec{a}_0 + \vec{\omega} \times (\vec{\omega} \times \vec{\zeta}) +
+  \dot{\vec{\omega}} \times \vec{\zeta} + 2 \vec{\omega} \times
+  \vec{v}_{\text{rel}} + \vec{a}_{\text{rel}}
+\end{gather*}
+kjer je $\vec{\omega}$ kotna hitrost, t.j.~osni vektor matrike $Q^T \dot{Q}$,
+količine z indeksom $0$ pa so pozicija, hitrost in pospešek središča relativnega
+koordinatnega sistema glede na absolutnega.
+
+Če obravnavamo gibanje v okolici Zemlje pod vplivom gravitacijske sile, lahko
+postavimo absolutni koordinatni sistem v središče in relativni koordinatni
+sistem v opazovalca ter zapišemo
+\[
+  m \vec{a}_{\text{rel}} = - \frac{mMG}{r_0^2} \vec{e}_3 - m \vec{\omega} \times
+  (\vec{\omega} \times \vec{r}_0) - m \vec{\omega} \times (\vec{\omega} \times
+  \vec{\zeta}) - 2m \vec{\omega} \times \vec{v}_{\text{rel}},
+\]
+kjer je $\vec{\omega} = \omega \vec{k}$ in $\vec{e}_3$
+enotski vektor v smeri od središča Zemlje do opazovalca.
+Ob predpostavki, da je $\zeta \ll r_0$ ter $\vec{g} = -g \vec{e}_3$ in za
+oznake
+\begin{gather*}
+  \vec{\zeta} = x \vec{e}_1 + y \vec{e}_2 + z \vec{e}_3 \\
+  \vec{v}_{\text{rel}} = \dot{x} \vec{e}_1 + \dot{y} \vec{e}_2 + \dot{z}
+  \vec{e}_3 \\
+  \vec{a}_{\text{rel}} = \ddot{x} \vec{e}_1 + \ddot{y} \vec{e}_2 + \ddot{z}
+  \vec{e}_3
+\end{gather*}
+se to poenostavi v
+\begin{gather*}
+  \ddot{x} = 2 \omega \dot{y} \sin \varphi \\
+  \ddot{y} = 2 \omega (- \dot{z} \cos \varphi - \dot{x} \sin \varphi) \\
+  \ddot{z} = -g + 2 \omega \dot{y} \cos \varphi
+\end{gather*}
+kjer je $\varphi$ kot med ravnino XY v absolutnem koordinatnem sistemu in opazovalcem.
+
+\naslov{Togo telo}
+
+Pri obravnavi togega telesa je pomembno težišče (masno središče).
+Velja namreč
+\[
+  \sum \vec{F}_{\text{zun.}} = m \vec{a}_*.
+\]
+Pogosto smo v situaciji, kjer so zunanje sile bolj enostavne kot notranje, in
+lahko hitro ugotovimo, kako se giblje težišče.
+Gibanje posameznih delov lahko potem izrazimo relativno na težišče, s čimer si
+marsikaj poenostavimo.
+
+Pri obravnavi vrtenja potrebujemo vztrajnostni tenzor okoli neke točke, ki ga
+izračunamo z
+\[
+  J_0 = \iiint
+  \begin{bmatrix}
+	y^2 + z^2 & -xy & -xz \\
+	-xy & x^2 + z^2 & -yz \\
+	-xz & -yz & x^2 + y^2
+  \end{bmatrix}
+  dm
+\]
