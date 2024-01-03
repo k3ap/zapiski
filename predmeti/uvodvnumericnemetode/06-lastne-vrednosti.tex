@@ -1,0 +1,44 @@
+\naslov{Lastne vrednosti}
+
+Dana je matrika $A \in \R^{n \times n}$.
+Iščemo njene lastne vrednosti, in morda lastne vektorje.
+Iščemo lahko tudi leve lastne vektorje $y^H A = \lambda y^H$.
+
+\begin{lema}
+  Če je $x$ desni lastni vektor $A$ za lastno vrednost $\lambda$ in je $y$ levi
+  lastni vektor za lastno vrednost $\mu \ne \lambda$, potem je $y^H x = 0$.
+\end{lema}
+
+\begin{proof}
+  Velja $\lambda y^H x = y^H Ax = \mu y^H x$, torej $y^H x = 0$.
+\end{proof}
+
+\begin{posledica}
+  Če je $A$ simetrična in sta $x, y$ lastna vektorja za različni lastni
+  vrednosti, je $y^T x = 0$.
+\end{posledica}
+
+\vprasanje{Kakšni so lastni vektorji simetrične matrike? Dokaži.}
+
+\begin{vo}{Zakaj Jordanova forma ni primerna za numerično računanje?}
+  Poglejmo si primer
+  \[
+	A(\varepsilon) =
+	\begin{bmatrix}
+	  0 & 1 \\ \varepsilon & 0
+	\end{bmatrix}.
+  \]
+  Matrika $A(0)$ je že svoja Jordanova kletka, ki pa ni blizu Jordanove forme za
+  $\varepsilon \ne 0$, ki je
+  \[
+	J =
+	\begin{bmatrix}
+	  \sqrt{\varepsilon} &  \\ & -\sqrt{\varepsilon}
+	\end{bmatrix}.
+  \]
+\end{vo}
+
+\begin{izrek}
+  Za vsako matriko $A \in \R^{n \times n}$ obstaja Schurova forma $A = USU^H$,
+  kjer je $U$ unitarna in $S$ zgornje trikotna.
+\end{izrek}
