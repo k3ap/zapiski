@@ -204,6 +204,22 @@ Poleg tega za kinetično energijo upoštevamo le radialno komponento hitrosti:
   \int_{r_0}^{r} \frac{dr}{r^2 \sqrt{E_0 - U(r)}}.
 \]
 
+\naslov{Sistem materialnih točk}
+
+V sistemu materialnih točk velja posebna oblika drugega Newtonovega zakona z
+masnim središčem (težiščem)
+\[
+  \sum \vec{F}_{\text{zun.}} = m \vec{a}_*.
+\]
+Če so vse notranje sile centralne (t.j.~vzporedne z zveznico med točkama), potem
+velja izrek o vrtilni količini; odvod vrtilne količine je enak rezultanti navora
+zunanjih sil
+\[
+  \dot{\vec{l}} = \sum \vec{N}_{\text{rel}}.
+\]
+Tako vrtilna količina kot navor sta merjena od nekega pola; izrek deluje, če je
+pol fiksna točka, ali če je pol masno središče.
+
 \naslov{Relativno gibanje}
 
 Celotno poglavje se obrača okoli pretvarjanja med relativnih in absolutnim
@@ -262,11 +278,24 @@ Pogosto smo v situaciji, kjer so zunanje sile bolj enostavne kot notranje, in
 lahko hitro ugotovimo, kako se giblje težišče.
 Gibanje posameznih delov lahko potem izrazimo relativno na težišče, s čimer si
 marsikaj poenostavimo.
+Druga komponenta gibanja so Eulerjeve dinamične enačbe
+\[
+  \vec{N}_* = J_* \dot{\vec{\omega}} + \vec{\omega} \times J_* \vec{\omega}.
+\]
+Če gibanje poteka v ravnini, velja $\vec{\omega} = \omega \vec{k}$, relevantna
+je le ena komponenta $J_*$ (spodnja desna).
+Enačba se poenostavi v
+\[
+  N_* = J_* \dot{\omega}.
+\]
 
 Pri obravnavi vrtenja potrebujemo vztrajnostni tenzor okoli neke točke, ki ga
 izračunamo z
 \[
-  J_0 = \iiint
+  J =
+  \iiint \abs{\vec{\zeta}}^2 I - \vec{\zeta} \otimes \vec{\zeta}\,dm
+  =
+  \iiint
   \begin{bmatrix}
 	y^2 + z^2 & -xy & -xz \\
 	-xy & x^2 + z^2 & -yz \\
@@ -274,3 +303,33 @@ izračunamo z
   \end{bmatrix}
   dm
 \]
+za tenzorski produkt $(\vec{a} \otimes \vec{b}) \vec{c} = (\vec{b} \cdot \vec{c})
+. \vec{a}$.
+Velja $\vec{l} = J \vec{\omega}$.
+Zgornji zapis je podan v telesnem koordinatnem sistemu; če moraš tenzor izraziti
+v prostorskem koordinatnem sistemu, ga moraš ali integrirati v teh koordinatah
+(kar je težko, ker se stvar verjetno vrti), ali pa rezultat pretvoriš s formulo
+\[
+  J' = Q J Q^T
+\]
+kjer je $Q$ matrika ki pove, kako se premikajoča baza izraža s fiksno.
+Če imamo znan vztrajnostni tenzor okoli nekega pola, ga lahko pretvorimo v
+vztrajnostni tenzor okoli nekega drugega pola skozi težišče
+\[
+  J_0 = J_* + m \abs{P_* - P_0}^2 I - m (P_* - P_0) \otimes (P_* - P_0).
+\]
+Formuli pravimo Steinerjev izrek.
+V ravnini ima bolj preprosto obliko $J_0 = J_* + m d^2$.
+
+Kinetična energija ima pri togem telesu obliko
+\[
+  T = \pol m \abs{\vec{v}}^2 + \pol \vec{\omega} \cdot J_* \vec{\omega}.
+\]
+
+V nalogah nam pogosto zmanjka kakšna enačba gibanja; ponavadi ne poznamo
+kakšne dodatne sile trenja/vrvi/vezi, za katero pa poznamo zgornjo mejo, ali pa
+lahko položaj izrazimo s kotom vrtenja.
+Če trenja ni, pravimo, da telo drsi brez kotaljenja; če je trenja dovolj, se
+telo kotali brez drsenja, če pa je trenja nekje vmes, pa imamo neko mešanico.
+Če ne veš, kaj od tega se dogaja, lahko poskusiš vse možnosti, in preveriš, da
+je rešitev smiselna.
