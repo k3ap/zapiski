@@ -42,3 +42,196 @@ Iščemo lahko tudi leve lastne vektorje $y^H A = \lambda y^H$.
   Za vsako matriko $A \in \R^{n \times n}$ obstaja Schurova forma $A = USU^H$,
   kjer je $U$ unitarna in $S$ zgornje trikotna.
 \end{izrek}
+
+\begin{proof}
+  Dokažemo z indukcijo na $n$.
+  Za $n = 1$ je primeren razcep $A = [1] A [1]$.
+  Za splošen $n$ pa:
+  Vsaka matrika ima vsaj en lastni vektor, torej velja $Ax = \lambda x$ za nek
+  $x$ velikosti $1$, in nek $\lambda$.
+  Za $U_1$ izberemo tako unitarno matriko, da je $U_1 e_1 = x$, in definiramo $B
+  = U_1^H A U_1$.
+  Velja $B e_1 = \lambda e_1$, torej je $B$ oblike
+  \[
+	B =
+	\begin{bmatrix}
+	  \lambda & y^T \\ 0 & C
+	\end{bmatrix}.
+  \]
+  Za matriko $C$ velja indukcijska predpostavka: obstajata $U_2$ in $S_2$, da je
+  $C = U_2 S_2 U_2^H$, in je $U_2$ unitarna, $S_2$ pa zgornje trikotna.
+  Definiramo
+  \begin{gather*}
+	U = U_1
+	\begin{bmatrix}
+	  1 & \\ & U_2
+	\end{bmatrix},
+	\\
+	S = U^H A U.
+  \end{gather*}
+\end{proof}
+
+\vprasanje{Dokaži, da za vsako matriko obstaja Schurova forma.}
+
+\begin{izrek}
+  Če je $A \in \R^{n \times n}$, obstajata ortogonalna $Q$ in kvazi zgornje
+  trikotna $T$, obe realni, da je $A = QTQ^T$.
+\end{izrek}
+
+Kvazi zgornje trikotna matrika je zgornje trikotna, razen da na diagonali
+dopuščamo bloke 2x2.
+V vsakem takem bloku se nahajajo konjugirani pari kompleksnih lastnih vrednosti.
+Razcepu $A = Q T Q^T$ pravimo \pojem{realna Schurova forma}.
+
+\vprasanje{Kaj je realna Schurova forma?}
+
+\podnaslov{Potenčna metoda}
+
+\begin{algorithm}
+  \caption{Potenčna metoda}
+  \label{alg:potencna-metoda}
+  \begin{algorithmic}
+	\State Izberemo nek $z_0 \ne 0$.
+	\For{$k=1,2,\ldots$}
+	\State $y_k = A z_{k-1}$
+	\State $z_k = \nicefrac{y_k}{\norm{y_k}}$
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{izrek}
+  Naj bo $\lambda_1$ dominantna lastna vrednost matrike $A$ (največja po
+  absolutni vrednosti in strogo večja od druge največje).
+  Za naključno izbrani začetni vektor $z_0$ vektorji $z_k$ iz potenčne metode po
+  smeri konvergirajo k lastnemu vektorju za $\lambda_1$.
+\end{izrek}
+
+\begin{proof}
+  Dokažemo le za primer, ko je $A$ diagonalizabilna.
+  Naj bo $A = X D X^{-1}$ za $X = [x_1, \ldots, x_n]$ in $D =
+  \operatorname{diag}(\lambda_1, \ldots, \lambda_n)$.
+  Začetni vektor $z_0$ lahko razvijemo v bazi lastnih vektorjev
+  \[
+	z_0 = \sum_{i=1}^n \alpha_i x_i.
+  \]
+  Za vsak $k$ velja
+  \[
+	z_k = \normiran{A^k z_0} = \normiran{\sum_i \alpha_i \lambda_i^k x_i}.
+  \]
+  Ulomek na obeh straneh delimo z $\lambda_1^k$:
+  \[
+	z_k = \normiran{\sum_i \alpha_i \lambda_i^k \lambda_1^{-k} x_i}
+  \]
+  Če je $\alpha_1 \ne 0$, bo to po smeri konvergiralo k $x_1$.
+\end{proof}
+
+\vprasanje{Zapiši algoritem potenčne metode in dokaži pravilnost za
+  digonalizabilne matrike.}
+
+Konvergenca metode je linearna in odvisna od razmerja
+$\abs{\nicefrac{\lambda_2}{\lambda_1}}$.
+Če je $z$ približek za lastni vektor, lahko približek za pripadajočo lastno
+vrednost dobimo z Rayleighovim kvocientom
+\[
+  \lambda = \frac{z^H A z}{z^H z} = \rho(z, A).
+\]
+Pri tem dejansko rešimo predoločen sistem $Az = \lambda z$, kjer je $z$ matrika,
+$\lambda$ spremenljivka in $Az$ desna stran.
+Za kvocient veljata naslednji lastnosti:
+\begin{itemize}
+\item $\rho(\alpha z, A) = \rho(z, A)$ za $\alpha \ne 0$
+\item $\rho(x_i, A) = \lambda_i$
+\end{itemize}
+To nam poda ustavitveni kriterij za algoritem; izračunamo $\rho(z_k, A)$ in
+primerjamo $\norm{Az_k - \rho(z_k, A) z_k} < \varepsilon$.
+
+\vprasanje{Kaj je Rayleighov kvocient?}
+
+Denimo, da smo našli $\lambda_1$ in $x_1$.
+Kako sedaj poiščemo $\lambda_2$ in $x_2$?
+Podobno kot pri dokazu obstoja Schurove forme poiščemo unitarno matriko $U_1$,
+da je $U_1 e_1 = x$ (npr. s Householderjevim zrcaljenjem).
+Vzamemo
+\[
+  B = U^H A U =
+  \begin{bmatrix}
+	\lambda_1 & \alpha^T \\ 0 & C
+  \end{bmatrix},
+\]
+in nadaljujemo s potenčno metodo na $C$, ki pa je seveda ne izrazimo
+eksplicitno.
+Množenje izvedemo tako, da množimo z $B$, in iz produkta vzamemo spodnjih $n-1$
+elementov.
+
+\vprasanje{Kako s potenčno metodo poiščeš vse lastne vrednosti?}
+
+\podnaslov{Inverzna iteracija}
+
+Naj bo $\sigma$ zelo dober približek za eno izmed lastnih vrednosti matrike $A$.
+Matrika $(A - \sigma I)^H$ ima lastne vrednosti $\inv{\lambda_i - \sigma}$, in
+velja
+\[
+  \inv{\abs{\lambda_j - \sigma}} \gg \inv{\abs{\lambda_i - \sigma}},
+\]
+kjer je $\lambda_j$ tista lastna vrednost, za katero je $\sigma$ dober
+približek.
+To dejstvo izrabimo v algoritmu~\ref{alg:inverzna-iteracija}.
+
+\begin{algorithm}
+  \caption{Inverzna iteracija}
+  \label{alg:inverzna-iteracija}
+  \begin{algorithmic}
+	\State Izberi naključen $z_0 \ne 0$.
+	\For{$k = 1, 2, \ldots$}
+	\State Reši $z_{k-1} = (A - \sigma I) y_k$
+	\State $z_k = \nicefrac{y_k}{\norm{y_k}}$
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\vprasanje{Opiši delovanje inverzne iteracije.}
+
+\podnaslov{Ortogonalna iteracija}
+
+\begin{definicija}
+  Prostor $N$ je \pojem{invariantni podprostor} za matriko $A$, če je za vsak $x
+  \in N$ tudi $Ax \in N$.
+\end{definicija}
+
+\begin{izrek}
+  Naj bo $S = [S_1 S_2]$ nesingularna matrika.
+  Naj bo $B = S^{-1} A S$ oblike
+  \[
+	B =
+	\begin{bmatrix}
+	  B_{11} & B_{12} \\ B_{21} & B_{22}
+	\end{bmatrix}.
+  \]
+  Potem stolpci $S_1$ razpenjajo invariantni podprostor za $A$ natanko tedaj, ko
+  je $B_{21} = 0$.
+\end{izrek}
+
+\begin{proof}
+  Ker je $SB = AS$, velja $S_1 B_{11} + S_2 B_{21} = AS_1$.
+\end{proof}
+
+Recimo, da je res $B_{21} = 0$.
+Naj za lastne vrednosti matrike $A$ velja $\abs{\lambda_1} \ge \abs{\lambda_2}
+\ge \ldots \ge \abs{\lambda_p} > \abs{\lambda_{p+1}} \ge \ldots$, kjer je $p$
+število stolpcev v $S_1$.
+V tem primeru je invariantni podprostor velikosti $p$, ki mu pripadajo največje
+lastne vrednosti, dominanten.
+
+\begin{algorithm}
+  \caption{Ortogonalna iteracija}
+  \label{alg:ortogonalna-iteracija}
+  \begin{algorithmic}
+	\State Izberi naključno matriko $Z_0 \in \R^{n \times p}$
+	\For{$k = 1, 2, \ldots$}
+	\State $Y_k = A Z_{k-1}$
+	\State Za $Z_k$ vzemi $Q_k$ iz QR razcepa $Y_k = Q_k S_k$
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+% LocalWords:  kvazi Schurova
