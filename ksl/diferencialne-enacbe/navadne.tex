@@ -145,6 +145,54 @@ Obstoj globalne rešitve pa lahko pokažemo tudi z naslednjo lemo:
   \end{itemize}
 \end{lema}
 
+\section{Linearni sistemi NDE}
+
+Rešitev sistema $\dot{x} = A x + b$ je vsota homogene in partikularne rešitve.
+Za homogen sistem $\dot{x} = Ax$ poiščemo fundamentalno rešitev
+\[
+  \phi = e^{A t} = P e^{Jt} P^{-1},
+\]
+kjer je $A=PJP^{-1}$ Jordanov razcep.
+Za dobljeno matriko velja $\dot{\phi} = A \phi$ in $\phi(0) = I$, njeni stolpci
+podajajo bazo rešitev sistema.
+Če je $x(0) = x_0$ začetni pogoj, je $\phi x_0$ rešitev začetnega problema.
+
+Partikularno rešitev poiščemo z nastavkom
+\[
+  x_p(t) = \int_0^t \phi(t) \phi(s)^{-1} b(s) ds
+  = P e^{Jt} \int_0^t e^{-Js} P^{-1} b(s) ds.
+\]
+
+\section{Linearne NDE višjega reda}%
+\label{sec:linearne-nde-visjega-reda}
+
+Za homogeno enačbo
+\[
+  a_0 y^{(n)} + a_1 y^{(n-1)} + \ldots + a_n y = 0
+\]
+zapišemo karakteristični polinom
+\[
+  f(\lambda) = a_0 \lambda^n + a_1 \lambda^{n-1} + \ldots + a_n = 0.
+\]
+Rešitve enačbe so vsote funkcij oblike
+\[
+  p(x) e^{\lambda_i x},
+\]
+kjer je ničla $\lambda_i \in \R$ in $\deg p = \deg_f \lambda_i - 1$, ter
+funkcij oblike
+\begin{align*}
+  q_1(x) e^{\Re \lambda_i \cdot x} \cos(\Im \lambda_i \cdot x)
+  && q_2(x) e^{\Re \lambda_i \cdot x} \sin(\Im \lambda_i \cdot x)
+\end{align*}
+za $\deg q_1 = \deg q_2 = \deg_f \lambda - 1$ in kompleksno ničlo $\lambda_i$.
+
+Če je desna stran oblike $p(x) e^{\mu x}$, je postopek reševanja opisan v
+razdelku~\ref{sec:posebne-nde-visjega-reda}, za splošno desno stran pa vzamemo
+linearno neodvisne rešitve homogenega dela $y_1, \ldots, y_n$, in poiščemo še
+partikularno rešitev z variacijo konstante
+\[
+  y_p = C_1(x) y_1 + \ldots + C_n(x) y_n.
+\]
 
 \section{Pogosti postopki reševanja}%
 
@@ -294,6 +342,60 @@ Rešujemo jo parametrično, torej zapišemo $p = y'$ in uporabimo $dy = p dx$.
 S tem se enačba prevede na linearno, ki jo rešimo kot v
 razdelku~\ref{sec:linearna-prvega-reda}.
 
+\subsection{Eulerjeva enačba}%
+\label{sec:eulerjeva-enacba}
+
+Za reševanje Eulerjeve enačbe
+\[
+  a_0 x^n y^{(n)} + a_1 x^{n-1} y^{(n-1)} + \ldots + a_n y = 0
+\]
+uporabimo nastavek $y(x) = x^\lambda$.
+V postopku poiščemo ničle polinoma
+\[
+  q(\lambda) = a_0 \lambda (\lambda-1) \ldots (\lambda - n + 1)
+  + a_1 \lambda (\lambda-1) \ldots (\lambda - n + 2)
+  + \ldots
+  + a_{n-1} \lambda + a_n
+\]
+Rešitev je vsota funkcij
+\[
+  p(\ln x) x^\lambda
+\]
+za realno ničlo $\lambda$ in $\deg p = \deg_f \lambda - 1$.
+Za kompleksen $\lambda$ pa
+\begin{align*}
+  q_1(\ln x) x^{\Re \lambda} \cos(\Im \lambda \cdot x)
+  && q_2(\ln x) x^{\Re \lambda} \sin(\Im \lambda \cdot x).
+\end{align*}
+
+\subsection{Posebne nehomogene linearne NDE višjega reda}%
+\label{sec:posebne-nde-visjega-reda}
+
+Za enačbo oblike
+\[
+  a_0 y^{(n)} + \ldots + a_{n-1} y' + a_n y = p(x) e^{\mu x}
+\]
+je rešitev oblike $y_h + y_p$.
+Homogen del poiščemo kot v razdelku~\ref{sec:linearne-nde-visjega-reda},
+partikularen del pa je oblike
+\[
+  y_p = e^{\mu x} q(x) x^k,
+\]
+kjer je $\deg q = \deg p$ in $k = \deg_f \mu$ za polinom $f$ iz
+razdelka~\ref{sec:linearne-nde-visjega-reda}.
+
+Podobno rešimo tudi enačbo oblike
+\[
+  a_0 x^n y^{(n)} + \ldots + a_{n-1} x y' + a_n y = x^\mu p(\ln x)
+\]
+kot $y = y_h + y_p$, kjer homogen del poiščemo kot v
+razdelku~\ref{sec:eulerjeva-enacba}, partikularen pa z
+\[
+  y_p = x^\mu r(\ln x) (\ln x)^k
+\]
+za $\deg r = \deg p$ in $k = \deg_q \mu$.
+Tu smo se sklicali na polinom $q$ iz razdelka~\ref{sec:eulerjeva-enacba}.
+
 \section{Razno}%
 
 \subsection{Iskanje ortogonalnih krivulj}
@@ -302,3 +404,24 @@ razdelku~\ref{sec:linearna-prvega-reda}.
 odvajamo predpis za to krivuljo, da dobimo enačbo $y = f(x, y')$.
 V tej enačbi nato zamenjamo pojavitve $y'$ z $\nicefrac{-1}{y'}$, da dobimo
 enačbo za ortogonalne trajektorije.
+
+\subsection{Determinanta Wronskega}
+
+Če imamo homogeno linearno NDE višjega reda
+\[
+  a_0 y^{(n)} + \ldots + a_{n-1} y' + a_n y = 0,
+\]
+in zložimo bazne rešitve ter njihove odvode v matriko
+\[
+  \phi
+  =
+  \begin{bmatrix}
+	y_1 & \cdots & y_n \\
+	\vdots & \ddots & \vdots \\
+	y_1^{(n-1)} & \cdots & y_n^{(n-1)}
+  \end{bmatrix},
+\]
+lahko zapišemo determinanto Wronskega kot $W(x) = \det \phi(x)$.
+Zanjo velja $W'(x) = \operatorname{tr}(A) W(x)$.
+
+% LocalWords:  Wronskega

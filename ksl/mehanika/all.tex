@@ -240,6 +240,36 @@ kjer je $\vec{\omega}$ kotna hitrost, t.j.~osni vektor matrike $Q^T \dot{Q}$,
 količine z indeksom $0$ pa so pozicija, hitrost in pospešek središča relativnega
 koordinatnega sistema glede na absolutnega.
 
+Običajno je obravnava gibanja v relativnem koordinatnem sistemu lažja, zato je
+smiselno izraziti drugi Newtonov zakon v relativnem sistemu; torej na levi $m
+\vec{a}_{\text{rel}}$, na desni pa prave in sistemske sile po zgornji enačbi.
+Pogosto je to relativno gibanje tudi vezano; v tem primeru se preprosto
+pretvarjaš, da je relativni pospešek vsota tangentnega in normalnega, kakor v
+poglavju višje.
+Sistemske sile pri tem obravnavaš kot pač neke sile z nadpovprečno kompliciranim
+predpisom.
+Tukaj tudi pogosto dobiš navodilo, da podaš \enquote{opis gibanja} -- to je
+diferencialna enačba, ki določa, kako se nek parameter, ki določa položaj,
+spreminja, v odvisnosti od sebe.
+Tako navodilo je dano, ker ni mišljeno, da diferencialno enačbo rešiš.
+
+Najpogostejše drugo vprašanje na tako nalogo je, da poiščeš ravnovesne položaje,
+in jih klasificiraš.
+Če gibanje parametriziramo z $\varphi \mapsto \vec{r}(\varphi)$, v ravnovesnem
+položaju velja $\dot{\varphi} = 0$ in posledično $\ddot{\varphi} = 0$.
+To lahko vstaviš v diferencialno enačbo od prej, in dobiš pogoj na $\varphi$, ki
+ti točno pove, kje najdeš stacionarne točke.
+Če uporabimo nastavek $\dot{\varphi} = z(\varphi)$, in odvajamo $\ddot{\varphi}
+= z' z$, lahko to stvar takoj nazaj integriramo v
+\[
+  \pol z^2 = \pol \dot{\varphi}^2 = \int \ddot{\phi}.
+\]
+Dobljen izraz je prvi integral enačbe, in se ohranja vzdolž neke rešitve.
+Ker vsebuje $\dot{\varphi}^2$, ga lahko predelamo v nekaj, kar izgleda kot
+kinetične energija, in preostale člene (razen morda konstanta), ki jih
+zapakiramo v efektivni potencial.
+Če si ta potencial narišemo, lahko klasificiramo negibne točke.
+
 Če obravnavamo gibanje v okolici Zemlje pod vplivom gravitacijske sile, lahko
 postavimo absolutni koordinatni sistem v središče in relativni koordinatni
 sistem v opazovalca ter zapišemo
