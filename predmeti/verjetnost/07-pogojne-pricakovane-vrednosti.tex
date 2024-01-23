@@ -1,4 +1,4 @@
-\naslov{Pogojne pričakovane vrednosti}
+\podnaslov{Pogojne pričakovane vrednosti}
 
 \begin{definicija}
   \pojem{Pogojna porazdelitev} diskretne slučajne spremenljivke $X$ glede na
@@ -54,3 +54,25 @@ Iz te formule sledi linearnost pogojne pričakovane vrednosti.
 \end{definicija}
 
 \vprasanje{Definiraj pogojno gostoto.}
+
+\begin{izrek}
+  Naj bosta $\sv{X}, \sv{Y}$ slučajna vektorja.
+  Za $p = \dim \sv{X}$ velja
+  \[
+	E(g(\sv{Y})) = \int_{\R^p} E(g(\sv{Y}) \such \sv{X} = \sv{x})
+	f_{\sv{X}}(\sv{x}) d\sv{x}.
+  \]
+\end{izrek}
+
+\begin{proof}
+  Računamo
+  \begin{align*}
+	\int_{\R^p} E(g(\sv{Y}) \such \sv{X} = \sv{x}) f_{\sv{X}}(\sv{x}) d\sv{x}
+	&= \int_{\R^p} f_{\sv{X}}(\sv{x}) d\sv{x} \int_{\R^q} g(\sv{y}) f_{\sv{Y} \such \sv{X} = \sv{x}}(\sv{y}) d\sv{y} \\
+	&= \int_{\R^{p+q}} g(\sv{y}) f_{\sv{X}}(\sv{x}) f_{\sv{Y} \such \sv{X} = \sv{x}}(\sv{y}) d\sv{x} d\sv{y} \\
+	&= \int_{\R^{p+q}} g(\sv{y}) f_{\sv{X},\sv{Y}}(\sv{x},\sv{y}) d\sv{x} d\sv{y} \\
+	&= E(g(\sv{Y})).
+  \end{align*}
+\end{proof}
+
+\vprasanje{Dokaži zvezno verzijo formule za popolno pričakovano vrednost.}

@@ -1,0 +1,58 @@
+\naslov{Rodovne funkcije}
+
+\begin{definicija}
+  \pojem{Rodovna funkcija} nenegativne celoštevilske slučajne spremenljivke $X$
+  je dana z $G_X(s) = \sum_{k=0}^\infty s^k P(X=k)$.
+\end{definicija}
+
+Potenčna vrsta konvergira enakomerno na $[-1, 1]$, ker je tam dominirana z vrsto
+$\sum_{k=0}^\infty P(X=k) = 1$.
+Torej je $G_X(s)$ zvezna na $[-1, 1]$.
+Na intervalu $(-1, 1)$ je vrsta neskončnokrat odvedljiva.
+Iz formule $E(f(x)) = \sum_k f(k) P(X=k)$ za $f(x) = s^x$ dobimo
+\[
+  E(s^X) = \sum_{k=0}^\infty s^k P(X=k) = G_X(s).
+\]
+
+\begin{izrek}
+  Naj bosta $X, Y$ neodvisni spremenljivki.
+  Velja $G_{X+Y}(s) = G_X(s) G_Y(s)$.
+\end{izrek}
+
+\begin{proof}
+  Sledi iz dejstva $E(s^{X+Y}) = E(s^X s^Y)$.
+\end{proof}
+
+\vprasanje{Povej nekaj lastnosti rodovnih funkcij.}
+
+\begin{izrek}
+  Naj bo $X$ slučajna spremenljivka. Potem velja
+  \begin{itemize}
+  \item $E(X) = \lim_{s \uparrow 1} G_X'(s)$
+  \item $E(X (X-1) (X-2) \ldots (X-k+1)) = \lim_{s \uparrow 1} G_X^{(k)}(s)$
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Samo za prvo točko.
+  Opazimo, da ima $G_X$ pozitivne koeficiente, torej imajo vsi odvodi pozitivne
+  koeficiente.
+  Sledi, da so odvodi na $(0,1)$ povsod naraščajoči.
+
+  Za začetek predpostavimo $E(X) < \infty$.
+  Za $s \in (0,1)$ velja
+  \[
+	\sum_{k=1}^N k P(X = k) s^{k-1} \le G_X'(s) \le E(X),
+  \]
+  kjer prva neenakost velja, ker je vrsta na levi glava vrste za $G_X'$.
+  Funkcija $G_X'$ je na $(0,1)$ naraščajoča in omejena, torej limita $\lim_{s
+	\uparrow 1} G_X'(s)$ obstaja.
+  Levi člen v zgornji neenakosti konvergira k $E(X)$ za $N \to \infty$, torej
+  trditev velja po izreku o sendviču.
+
+  Če je $E(X) = \infty$, potem levi člen v zgornji neenačbi divergira za $N \to
+  \infty$, in je posledično tudi
+  \[
+	\lim_{s \uparrow 1} G_X'(s) = \infty.
+  \]
+\end{proof}
