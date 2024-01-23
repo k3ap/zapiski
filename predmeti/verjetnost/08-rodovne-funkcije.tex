@@ -56,3 +56,95 @@ Iz formule $E(f(x)) = \sum_k f(k) P(X=k)$ za $f(x) = s^x$ dobimo
 	\lim_{s \uparrow 1} G_X'(s) = \infty.
   \]
 \end{proof}
+
+\vprasanje{Kako z odvodom rodovne funkcije izračunaš pričakovano vrednost?
+  Dokaži.}
+
+\begin{izrek}
+  Naj bodo $N, X_1, \ldots$ neodvisne celoštevilske slučajne spremenljivke in
+  naj bodo $X_1, X_2, \ldots$ enako porazdeljene.
+  Naj bo $X = X_1 + \ldots + X_N$.
+  Potem velja $G_X(s) = G_N(G_{X_i}(s))$.
+\end{izrek}
+
+\begin{proof}
+  Računamo
+  \begin{align*}
+	G_X(s)
+	&= E(s^X) \\
+	&= \sum_{n=0}^\infty E(s^X \such N = n) P(N = n) \\
+	&= \sum_{n=0}^\infty E(s^{X_1 + \ldots + X_n} \such N = n) P(N = n).
+  \end{align*}
+  Na tej točki upoštevamo neodvisnost spremenljivk in dobimo
+  \begin{align*}
+	G_X(s)
+	&= \sum_{n=0}^\infty E(s^{X_1 + \ldots + X_n}) P(N = n) \\
+	&= \sum_{n=0}^\infty E(s^{X_1}) \cdots E(s^{X_n}) P(N = n) \\
+	&= \sum_{n=0}^\infty (G_{X_1}(s))^n P(N=n) \\
+	&= G_N(G_{X_1}(s)).
+  \end{align*}
+\end{proof}
+
+\vprasanje{Kako izračunaš porazdelitev vsote slučajno mnogo slučajnih
+  spremenljivk? Dokaži.}
+
+\podnaslov{Procesi razvejanja}
+
+Predpostavimo, da so porazdelitve števila sinov za vsakega posameznika enake, da
+so generacije sočasne in da so števila sinov medsebojno neodvisne.
+Kakšna je verjetnost, da kraljeva rodbina izumre?
+
+Označimo z $Z_n$ število posameznikov v $n$-ti generaciji.
+Naj bodo $\xi_{n,k}$ vse neodvisne z rodovno funkcijo $G$.
+Definiramo rekurzivno $Z_0 = 1$ in
+\[
+  Z_{n+1} = \xi_{n+1,1} + \ldots + \xi_{n+1,Z_n}.
+\]
+Zaradi predpostavke o neodvisnosti so izpolnjene vse predpostavke zadnjega
+izreka in lahko izračunamo za $G_n = G_{Z_n}$
+\[
+  G_{n+1}(s) = G_n(G(s)).
+\]
+Ker je $G_1 = G$, dobimo $G_k = G \circ G \circ \ldots \circ G$.
+Velja
+\[
+  \{\text{rodbina izumre}\} = \bigcup_{n=1}^\infty \{Z_n = 0\}
+\]
+in ti dogodki so naraščajoči, torej je
+\[
+  \eta = P(\text{rodbina izumre}) = \lim_{n \to \infty} P(Z_n = 0).
+\]
+Ker je $P(Z_n = 0) = G_n(0)$, dobimo
+\[
+  \eta = \lim_{n \to \infty} G_n(0) = \lim_{n \to \infty} G_{n+1}(0)
+  = G(\lim_{n \to \infty} G_n(s)) = G(\eta).
+\]
+Ker je $s = 1$ vedno fiksna točka $G$ na $[0,1]$, ni pa nujno edina.
+Naj bo $\bar{\eta}$ poljubna fiksna točka na $[0,1]$.
+Funkcija $G$ je nepadajoča na $[0,1]$, torej $G(0) \le G(\bar{\eta}) =
+\bar{\eta}$.
+Z večkratno uporabo $G$ na tej neenakosti dobimo $G_n(0) \le \bar{\eta}$, iz
+česar sledi $\eta = \lim_{n \to \infty} G_n(0) \le \bar{\eta}$ in je $\eta$
+najmanjša fiksna točka.
+
+\vprasanje{Kako dobiš verjetnost izumrtja procesa razvejanja? Dokaži.}
+
+\podnaslov{Panjerjeva rekurzija}
+
+\begin{definicija}
+  Celoštevilska slučajna spremenljivka $X$ ima porazdelitev \pojem{Panjerjevega
+	razreda}, če obstajata konstanti $a,b$, da je
+  \[
+	P(N = n) = (a + \frac{b}{n}) P(N = n-1).
+  \]
+\end{definicija}
+
+Binomska, Poissonova in negativna binomska so vse v tem razredu.
+Zanima nas vsota $X = X_1 + \ldots + X_N$.
+Po dolgem računanju pridemo do formule
+\[
+  P(X = n+1) = \inv{1 - a P(X_1 = 0)} \sum_{k=1}^{n+1} \left( a + \frac{bk}{n+1}
+  \right) P(X_1 = k) P(X = n-k+1).
+\]
+
+\vprasanje{Povej formulo za Panjerjevo rekurzijo.}
