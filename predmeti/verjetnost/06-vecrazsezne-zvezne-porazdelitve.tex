@@ -106,3 +106,65 @@ da pišemo integrale namesto vsot.
 \end{definicija}
 
 \vprasanje{Kaj je moment in kaj centralni moment slučajne spremenljivke?}
+
+\begin{definicija}
+  Če imamo množico števil $x_1, \ldots, x_n$, njihov \pojem{raztros} definiramo
+  kot
+  \[
+	\sigma^2 = \inv{n} \sum_{k=1}^n (x_k - \bar{x})^2,
+  \]
+  kjer je $\bar{x}$ povprečje.
+\end{definicija}
+
+\begin{definicija}
+  \pojem{Varianca} slučajne spremenljivke je količina
+  \[
+	\operatorname{var}(X) = E(X^2) - (E(X))^2.
+  \]
+  Pravimo, da varianca obstaja, če obstajata obe pričakovani vrednosti.
+\end{definicija}
+
+\begin{definicija}
+  Naj bo $X$ slučajna spremenljivka, za katero $\operatorname{var}(X)$ obstaja.
+  Količini $\sqrt{\operatorname{var}(X)}$ rečemo \pojem{standardni odklon}
+  slučajne spremenljivke $X$ in jo označimo s $\operatorname{SD}(X)$.
+\end{definicija}
+
+\begin{definicija}
+  \pojem{Kovarianca} dveh slučajnih spremenljivk je $\operatorname{cov}(X, Y) =
+  E(XY) - E(X) E(Y)$.
+  Rečemo, da obstaja, če obstajajo vse pričakovane vrednosti.
+\end{definicija}
+
+\vprasanje{Definiraj raztros, varianco, standardni odklon in kovarianco.}
+
+\begin{izrek}
+  Naj bodo $X_1, \ldots, X_m$ in $Y_1, \ldots, Y_n$ slučajne spremenljivke in
+  $\alpha_1, \ldots, \alpha_m, \beta_1, \ldots, \beta_n$ konstante.
+  Velja
+  \[
+	\operatorname{cov}\!\left( \sum_{k=1}^m \alpha_k X_k, \sum_{l=1}^n \beta_l
+	  Y_l \right)
+	= \sum_{k,l} \alpha_k \beta_l \operatorname{cov}(X_k, Y_l).
+  \]
+\end{izrek}
+
+\begin{vo}{Povej nekaj lastnosti kovariance.}
+  \begin{itemize}
+  \item bilinearnost,
+  \item $\operatorname{cov}(X,X) = \operatorname{var}(X)$,
+  \item $\operatorname{cov}(X,Y) = \operatorname{cov}(Y,X)$,
+  \item če sta $X$ in $Y$ neodvisni, je $\operatorname{cov}(X,Y) = 0$.
+  \end{itemize}
+\end{vo}
+
+\begin{definicija}
+  Količina
+  \[
+	\rho = \frac{\operatorname{cov}(X,Y)}{\sqrt{\operatorname{var}(X)
+		\operatorname{Y}}}
+  \]
+  se imenuje \pojem{korelacijski koeficient}.
+\end{definicija}
+
+\vprasanje{Definiraj korelacijski koeficient.}

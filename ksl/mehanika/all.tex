@@ -204,22 +204,6 @@ Poleg tega za kinetično energijo upoštevamo le radialno komponento hitrosti:
   \int_{r_0}^{r} \frac{dr}{r^2 \sqrt{E_0 - U(r)}}.
 \]
 
-\naslov{Sistem materialnih točk}
-
-V sistemu materialnih točk velja posebna oblika drugega Newtonovega zakona z
-masnim središčem (težiščem)
-\[
-  \sum \vec{F}_{\text{zun.}} = m \vec{a}_*.
-\]
-Če so vse notranje sile centralne (t.j.~vzporedne z zveznico med točkama), potem
-velja izrek o vrtilni količini; odvod vrtilne količine je enak rezultanti navora
-zunanjih sil
-\[
-  \dot{\vec{l}} = \sum \vec{N}_{\text{rel}}.
-\]
-Tako vrtilna količina kot navor sta merjena od nekega pola; izrek deluje, če je
-pol fiksna točka, ali če je pol masno središče.
-
 \naslov{Relativno gibanje}
 
 Celotno poglavje se obrača okoli pretvarjanja med relativnih in absolutnim
@@ -297,6 +281,23 @@ se to poenostavi v
 \end{gather*}
 kjer je $\varphi$ kot med ravnino XY v absolutnem koordinatnem sistemu in opazovalcem.
 
+\naslov{Sistem materialnih točk}
+
+V sistemu materialnih točk velja posebna oblika drugega Newtonovega zakona z
+masnim središčem (težiščem)
+\[
+  \sum \vec{F}_{\text{zun.}} = m \vec{a}_*.
+\]
+Če so vse notranje sile centralne (t.j.~vzporedne z zveznico med točkama), potem
+velja izrek o vrtilni količini; odvod vrtilne količine je enak rezultanti navora
+zunanjih sil
+\[
+  \dot{\vec{l}} = \sum \vec{N}_{\text{rel}}.
+\]
+Tako vrtilna količina kot navor sta merjena od nekega pola; izrek deluje, če je
+pol fiksna točka, ali če je pol masno središče.
+
+
 \naslov{Togo telo}
 
 Pri obravnavi togega telesa je pomembno težišče (masno središče).
@@ -342,7 +343,9 @@ v prostorskem koordinatnem sistemu, ga moraš ali integrirati v teh koordinatah
 \[
   J' = Q J Q^T
 \]
-kjer je $Q$ matrika ki pove, kako se premikajoča baza izraža s fiksno.
+kjer je $Q$ matrika ki pove, kako se premikajoča baza izraža s fiksno; če je
+$\vec{w} = w_1 \vec{e}_1 + w_2 \vec{e}_2 + w_3 \vec{e}_3$, je $Q \vec{w} = x
+\vec{i} + y \vec{j} + z \vec{k}$.
 Če imamo znan vztrajnostni tenzor okoli nekega pola, ga lahko pretvorimo v
 vztrajnostni tenzor okoli nekega drugega pola skozi težišče
 \[
@@ -363,3 +366,37 @@ lahko položaj izrazimo s kotom vrtenja.
 telo kotali brez drsenja, če pa je trenja nekje vmes, pa imamo neko mešanico.
 Če ne veš, kaj od tega se dogaja, lahko poskusiš vse možnosti, in preveriš, da
 je rešitev smiselna.
+Načeloma je sila trenja omejena s produktom nekega koeficienta in normalne sile;
+lahko je manjša, večja pa ne.
+Deluje v točki dotika in vedno v nasprotni smeri gibanja te točke.
+
+Včasih je težko ugotoviti, kako se telesni koordinatni sistem izraža s
+prostorskim.
+Če je težava v rotacijah, jih lahko razbijemo v več komponent
+\[
+  Q = R_1(\vec{e}_1, \theta_1) R_2(\vec{e}_2, \theta_2) \ldots R_m(\vec{e}_m,
+  \theta_m),
+\]
+kjer je rotacijska matrika definirana kot
+\[
+  R(\vec{e}, \theta) \vec{x}
+  = \cos \theta I + (1 - \cos \theta)\,\vec{e} \otimes \vec{e} + \sin \theta\,
+  \vec{e} \times \vec{x}.
+\]
+Pri tem zapisu si lahko pomagamo z
+\[
+  \vec{e} \times \vec{x} =
+  \begin{bmatrix}
+	0 & -e_3 & e_2 \\
+	e_3 & 0 & -e_1 \\
+	-e_2 & e_1 & 0
+  \end{bmatrix}
+  \cdot \vec{x}.
+\]
+Če imamo dano rotacijsko matriko $R$, lahko os rotacije izračunamo kot lastni
+vektor za lastno vrednost $1$, kot pa računamo s sledjo matrike; velja
+$\operatorname{sl} R(\vec{e}, \theta) = 1 + 2 \cos \theta$.
+Če imaš izračunano (ali dano) takšno razbitje $Q$ na več komponent, lahko ta
+predpis odvajaš in množiš z leve s $Q^T$.
+Ob uporabi formule $A(\vec{x} \times \vec{y}) = A \vec{x} \times A \vec{y}$
+lahko iz dobljenega predpisa (z nekaj krajšanja) hitro izraziš $\vec{\omega}$.

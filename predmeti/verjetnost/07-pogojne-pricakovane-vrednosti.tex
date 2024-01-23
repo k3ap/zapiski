@@ -1,0 +1,56 @@
+\naslov{Pogojne pričakovane vrednosti}
+
+\begin{definicija}
+  \pojem{Pogojna porazdelitev} diskretne slučajne spremenljivke $X$ glede na
+  dogodek $B$ je dana z verjetnostjo $P(X=x \such B)$.
+  \pojem{Pogojna pričakovana vrednost} slučajne spremenljivke $X$ glede na
+  dogodek $B$ je dana z
+  \[
+	E(X \such B) = \sum_x x P(X = x \such B).
+  \]
+\end{definicija}
+
+Alternativno lahko izračunamo
+\[
+  E(X \cdot I_B) = \sum_x x P(X \cdot I_B = x)
+  = P(B) \sum_x x P(X = x \such B) = P(B) E(X \such B),
+\]
+torej $E(X \such B) = E(X \cdot I_B) / P(B)$.
+Iz te formule sledi linearnost pogojne pričakovane vrednosti.
+
+\vprasanje{Definiraj pogojno pričakovano vrednost in izpelji alternativno
+  izražavo.}
+
+\begin{izrek}
+  Naj bo $\{H_1, H_2, \ldots\}$ particija.
+  Naj bo $X$ diskretna slučajna spremenljivka.
+  Velja
+  \[
+	E(X) = \sum_k E(X \such H_k) P(H_k).
+  \]
+\end{izrek}
+
+\begin{proof}
+  Računamo
+  \[
+	\sum_k E(X \such H_k) P(H_k)
+	= \sum_k \sum_x x P(X = x \such H_k) P(H_k)
+	= \sum_x P(X = x)
+	= E(X).
+  \]
+\end{proof}
+
+\vprasanje{Dokaži formulo za popolno pričakovano vrednost.}
+
+\begin{definicija}
+  Naj bosta $\sv{X}, \sv{Y}$ slučajna vektorja z gostoto
+  $f_{\sv{X},\sv{Y}}(\sv{x},\sv{y})$.
+  Za $\sv{x}$, za katere je $f_{\sv{X}}(\sv{x}) > 0$, definiramo \pojem{pogojno
+	gostoto} $\sv{Y}$ glede na $\{\sv{X} = \sv{x}\}$ kot
+  \[
+	f_{\sv{Y} \such \sv{X} = \sv{x}} (\sv{y})
+	= \frac{f_{\sv{X},\sv{Y}}(\sv{x},\sv{y})}{f_{\sv{X}}(\sv{x})}.
+  \]
+\end{definicija}
+
+\vprasanje{Definiraj pogojno gostoto.}

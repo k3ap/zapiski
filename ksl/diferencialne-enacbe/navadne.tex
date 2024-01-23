@@ -194,6 +194,52 @@ partikularno rešitev z variacijo konstante
   y_p = C_1(x) y_1 + \ldots + C_n(x) y_n.
 \]
 
+\section{Variacijski račun}%
+\label{sec:variacijski-racun}
+
+Dana je $L: \R^3 \to \R \in \zvodvi{2}$ ter funkcional
+\[
+  \mathcal{L}(y) = \int_a^b L(x, y, y') dx
+\]
+na prostoru vseh $\zvodvi{2}$ funkcij $y: [a, b] \to \R$, za katere veljata
+robna pogoja $y(a) = A$ in $y(b) = B$.
+Iščemo ekstreme tega funkcionala.
+Le-ti zadoščajo Euler-Lagrangeovi enačbi
+\[
+  L_y(x, y, y') - \partial_x L_{y'}(x, y, y') = 0,
+\]
+kjer si pri odvajanju po $y$ in $y'$ (indeksa) mislimo, da sta to neodvisni
+spremenljivki, pri odvajanju po $x$ ($\partial_x$) pa upoštevamo $y = y(x)$.
+Ko enačbo rešiš, dobiš predpis za $y$ z dvema konstantama; konstanti določiš
+tako, da predpis vstaviš v robna pogoja.
+Če kakšnega robnega pogoja ne poznaš, ga nadomestiš z
+\[
+  L_{y'}(x_0, y(x_0), y'(x_0)) = 0,
+\]
+kjer je $x_0$ tisti izmed $a, b$, za katerega ne poznaš začetne vrednosti.
+
+Poznamo tudi dva posebna primera:
+\begin{itemize}
+\item Če je $L = L(x, y')$, velja $Ly' = \text{konst.}$.
+  V tem primeru ne potrebujemo vstavljati v Euler-Lagrangeovo enačbo.
+\item Če je $L = L(y, y')$, uporabimo Bertranijevo identiteto $L - y' L_{y'} =
+  \text{konst.}$.
+  V tem primeru moraš preveriti, da je dobljena rešitev dejansko rešitev
+  Euler-Lagrangeove enačbe.
+\end{itemize}
+
+Podobno lahko delamo tudi v več dimenzijah; če je $y = (y_1, \ldots, y_n)$
+iskana preslikava, preprosto uporabimo Euler-Lagrangeovo za vsako komponento
+posebej;
+\[
+  L_{y_i} - \partial_x (L_{y_i'}) = 0.
+\]
+
+Če je $L$ odvisen tudi od odvodov višjih redov, uporabiš Euler-Poissonovo enačbo
+\[
+  \sum_{k=0}^n (-1)^k (\frac{d}{dx})^k L_{y^{(k)}} = 0.
+\]
+
 \section{Pogosti postopki reševanja}%
 
 \subsection{Enačba z ločljivima spremenljivkama}%
@@ -423,5 +469,19 @@ in zložimo bazne rešitve ter njihove odvode v matriko
 \]
 lahko zapišemo determinanto Wronskega kot $W(x) = \det \phi(x)$.
 Zanjo velja $W'(x) = \operatorname{tr}(A) W(x)$.
+
+V dvodimenzionalnem primeru, ko ima enačba obliko
+\[
+  y'' + py' + qy = 0,
+\]
+lahko z determinanto Wronskega poiščemo drugo rešitev, če prvo že imamo.
+Če sta $u$ in $v$ dve linearno neodvisni rešitvi, za determinanto $W = uv' -
+u'v$ namreč velja $W' + pW = 0$ ter
+\[
+  v = u \int \frac{W}{u^2} dx.
+\]
+Če imamo enačbo in eno rešitev, prvo poiščemo $W$ z diferencialno enačbo $W' +
+pW = 0$ (če je $p=0$, pride $W=\text{konst.}$, kar je popolnoma sprejemljivo),
+nato pa poiščemo drugo rešitev z zgornjim integralom.
 
 % LocalWords:  Wronskega
