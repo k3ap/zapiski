@@ -101,3 +101,87 @@
 \end{proof}
 
 \vprasanje{Dokaži, da je odvod funkcionala v lokalnem minimumu enak $0$.}
+
+Če je
+\[
+  \mathcal{L} = \int_a^b L(x, u, u') dx,
+\]
+je odvod funkcionala enak
+\[
+  D_u \mathcal{L}(v)
+  = \int_a^b \left( \frac{\partial L}{\partial u}(x) v(x) +
+	\frac{\partial L}{\partial u'}(x) v'(x) \right) dx.
+\]
+
+\begin{definicija}
+  Naj bo $U$ Banachov prostor funkcij $y: [a,b] \to \R$ z metriko, porojeno iz
+  maksimum norme.
+  Naj bosta $A, B \in \R$ konstanti.
+  Prostor
+  \[
+	V = \{y \in U \such y(a) = A, y(b) = B\}.
+  \]
+  imenujemo \pojem{prostor dopustnih funkcij}.
+\end{definicija}
+
+Nekoliko splošneje: če so $l_i : U \to \R$ omejeni linearni funkcionali, je
+prostor dopustnih funkcij podan z
+\[
+  V = \{y \in U \such \forall i \velja l_i(y) = A_i\}.
+\]
+
+\begin{definicija}
+  \pojem{Dopustna variacija} je vsaka funkcija $v \in U$, za katero velja $u +
+  tv \in V$ za vsak $t$.
+\end{definicija}
+
+Za dopustne variacije velja $l_i(u+tv) = l_i(u) + t l_i(v)$.
+Če je $u + tv \in V$, je $l_i(u+tv) = A_i$, in torej $l_i(v) = 0$ za vsak $i$.
+Prostor dopustnih variacij je torej podan s predpisom
+\[
+  \text{Var} = \{ v \in U \such l_i(v) = 0 \forall i \} = \bigcap_i \jedro l_i.
+\]
+Prostor $\text{Var}$ je torej linearen podprostor v $U$, prostor $V$ pa je afin
+podprostor v $U$, modeliran s prostorom $\text{Var}$.
+Če se vrnemo k osnovnemu variacijskemu problemu, velja $l_1(u) = u(a)$ in
+$l_2(u) = u(b)$.
+
+\begin{definicija}
+  \pojem{Testne funkcije} na intervalu $[a, b]$ so funkcije $\varphi:[a,b] \to
+  \R$, za katere velja
+  \begin{itemize}
+  \item $\varphi \in \zvodvi{\infty}$,
+  \item $\cl{\operatorname{supp} \varphi} \subsetneq [a,b]$.
+  \end{itemize}
+\end{definicija}
+
+\vprasanje{Kaj so dopustne funkcije, dopustne variacije in testne funkcije? Kaj
+  mora veljati za dopustne variacije?}
+
+\begin{izrek}[Osnovni izrek variacijskega računa]
+  Naj bo $f: [a,b] \to \R$ zvezna funkcija.
+  Če za vsako testno funkcijo $\varphi$ velja
+  \[
+	\int_a^b f(x) \varphi(x) = 0,
+  \]
+  potem je $f(x) = 0$ na $[a,b]$.
+\end{izrek}
+
+\begin{proof}
+  Denimo, da ni tako, da obstaja $x_0 \in (a, b)$, za katerega je $f(x_0) = c>
+  0$.
+  Zaradi zveznosti $f$ obstaja $\delta > 0$, da velja $f(x) > c/2$ za $x \in
+  (x_0 - \delta, x_0 + \delta)$.
+  Naj bo $\varphi$ testna funkcija, za katero je $\operatorname{supp} \varphi
+  \subset (x_0 - \delta, x_0 + \delta)$ in $\varphi(x) > 0$ na
+  $\operatorname{supp} \varphi$.
+  Potem imamo
+  \[
+	\int_a^b f(x) \varphi(x) dx
+	= \int_{x_0 - \delta}^{x_0 + \delta} f(x) \varphi(x) dx
+	> \frac{c}{2} \int_{x_0 - \delta}^{x_0 + \delta} \varphi(x) dx > 0,
+  \]
+  kar je protislovno.
+\end{proof}
+
+\vprasanje{Povej in dokaži osnovni izrek variacijskega računa.}
