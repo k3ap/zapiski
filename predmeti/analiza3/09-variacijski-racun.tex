@@ -221,3 +221,74 @@ Euler-Lagrangeova enačba, za ostale dopustne variacije pa dobimo novo enačbo
   \partial_{u'} L (b) = 0.
 \]
 Temu pravimo \pojem{dinamični pogoj}.
+
+\podnaslov{Vezani ekstremi}
+
+Naj bodo $\phi_i : V \to \R$ nelinearni funkcionali.
+Množica $W \subseteq V$ naj bo podana s predpisom
+\[
+  W = \{u \in V \such \forall i . \phi(u) = l_i\}.
+\]
+Označimo $\vec{\phi}:V \to \R^n$ s komponentami $\vec{\phi} = (\phi_1, \ldots,
+\phi_n)$ in $\vec{l} = (l_1, \ldots, l_n)$.
+Velja $W = \vec{\phi}^{-1}(\vec{l})$.
+Predpostavljamo, da so v vseh točkah $u \in W$, ki nas bodo zanimale, funkcionali
+$\{D_u \phi_i\}_i$ linearno neodvisni v dualnem prostoru $\text{Var}^*$.
+Ker je za pot $v \in V$ z $v(0) = u$ odvod $\dot{v}(0)$ v tangentnem prostoru
+$T_u V = \text{Var}$, in ker velja
+\[
+  \left. \frac{d}{dt} \right|_{t=0} \phi_i(v(t)) = D_u \phi_i (\dot{v}(0)),
+\]
+so $D_u \phi_i$ res v $\text{Var}^*$.
+
+Naj bo $\mathcal{L}: V \to \R$ funkcional.
+Iščemo njegove ekstreme na podmnožici $W \subseteq V$.
+Videli smo, da je $\hat{u} \in W$ stacionarna točka $\mathcal{L}: W \to \R$, če
+za vsako krivuljo $v: (-\varepsilon, \varepsilon) \to W$, za katero je
+$\dot{v}(0) = \hat{u}$, velja
+\[
+  D_u \mathcal{L}(\dot{v}(0)) = 0.
+\]
+En način iskanja bi bil, da za vsak $u \in W$ poiščemo $T_u W$ in najdemo tisti
+$\hat{u}$, za katerega je $D_{\hat{u}} \mathcal{L} = 0$ na prostoru $T_{\hat{u}}
+W$.
+Tangentni prostor je enak
+\[
+  T_u W = \{ \dot{v}(0) \such \forall i \velja D_u \phi_i(\dot{v}(0)) = 0\}
+  = \bigcap_{i=1}^n \jedro D_u \phi_i.
+\]
+Ker sta tako odvod kot tangentni prostor v vsaki točki različna, je ta način
+iskanja nepraktičen.
+
+\vprasanje{Povej in razloži primitiven način iskanja vezanih ekstremov.}
+
+Boljši način je, da $\mathcal{L}$ modificiramo tako, da bo za novi
+$\tilde{\mathcal{L}}$ veljal sklep, da če je $D_{\hat{u}} \tilde{\mathcal{L}}(v)
+= 0$ za vse dopustne variacije $v$, bo $\hat{u}$ stacionarna točka
+$\mathcal{L}$.
+Vzemimo poljubno dopustno variacijo $v$ in jo dekomponirajmo v obliko $v = v_u +
+v_u^\bot$, kjer je $v_u \in T_u W$, $v_u^\bot$ pa pravokoten nanj.
+Naj bo $\{\varphi_1(u), \ldots, \varphi_n(u)\}$ dualna baza baze $\{D_u
+\phi_i\}_i$, torej $D_u \phi_i \cdot \varphi_j(u) = \delta_{ij}$.
+Definiramo
+\[
+  v_u^\bot = \sum_{i=1}^n D_u \phi_i(v) \cdot \varphi_i(u)
+\]
+in trdimo, da velja $v - v_u^\bot \in T_u W$.
+To je res, ker je
+\begin{align*}
+  D_u \phi_j(v - v_u^\bot)
+  &= D_u \phi_j(v) - D_u \phi_j \left( \sum_{i=1}^n D_u \phi_i (v) \cdot \varphi_i(u) \right) \\
+  &= D_u \phi_j(v) - \left( \sum_{i=1}^n D_u \phi_i (v) \cdot D_u \phi_j(\varphi_i(u)) \right) \\
+  &= D_u \phi_j(v) - D_u \phi_j(v) \\
+  &= 0.
+\end{align*}
+Če definiramo
+\[
+  \tilde{\mathcal{L}}(u) = \mathcal{L}(u) - \sum_{i=1}^n D_u \mathcal{L}
+  (\varphi_i(u)) \phi_i(u),
+\]
+bo veljalo $D_u \tilde{\mathcal{L}} (v_u^\bot) = 0$, kar lahko preverimo s
+podobnim računom.
+
+% LocalWords:  dekomponirajmo
