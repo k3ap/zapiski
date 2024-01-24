@@ -290,5 +290,24 @@ To je res, ker je
 \]
 bo veljalo $D_u \tilde{\mathcal{L}} (v_u^\bot) = 0$, kar lahko preverimo s
 podobnim računom.
+Označimo $\lambda_i(u) = D_u \mathcal{L}(\varphi_i(u))$.
+Odvajanje nam da
+\[
+  D_u \tilde{\mathcal{L}} = D_u \mathcal{L} - \sum_{i=1}^n \lambda_i(u) D_u
+  \phi_i - \sum_{i=1}^n D_u \lambda_i \cdot \phi_i(u).
+\]
+Če ustrezno modificiramo $\lambda_i$, bo res veljalo $D_{\hat{u}} \lambda_i = 0$
+v ekstremnih točkah, vendar to vodi v zelo kompliciran predpis.
+Alternativno lahko rečemo, da so $\lambda_i$ konstantne.
+
+\vprasanje{Izpelji drug način reševanja problemov vezanih ekstremov.}
+
+Strategija reševanja variacijskih problemov z vezmi je tedaj takšna:
+Prvo rešimo Euler-Lagrangeovo enačbo za
+\[
+  \tilde{\mathcal{L}} = \mathcal{L} - \sum_{i=1}^n \lambda_i \phi_i,
+\]
+kjer dobimo rešitev $\hat{u}$, odvisno od $\lambda_i$.
+Parametre poiščemo s pomočjo pogojev $\phi_i(\hat{u}) = l_i$.
 
 % LocalWords:  dekomponirajmo
