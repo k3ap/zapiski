@@ -1,0 +1,103 @@
+\naslov{Variacijski račun}
+
+\begin{definicija}
+  Naj bosta $U$ in $V$ Banachova prostora in $P: U \to V$ operator.
+  Naj bo $u \in U$ točka v prostoru.
+  \pojem{Gateauxov odvod} $P$ v $u$ in v smeri $v \in U$ je podan s predpisom
+  \[
+	D_u^G P (v) = \left. \frac{d}{dt} \right|_{t=0} P(u + tv)
+	= \lim_{t \to 0} \frac{P(u + tv) - P(u)}{t}.
+  \]
+  Ta odvod se imenuje tudi \pojem{smerni} ali \pojem{šibki} odvod.
+\end{definicija}
+
+\begin{definicija}
+  Naj bosta $U$ in $V$ Banachova prostora in $P: U \to V$ operator.
+  \pojem{Frechetov} ali \pojem{krepki} odvod $P$ v točki $u$ je omejen linearen
+  operator $\mathcal{A} : U \to V$, za katerega velja $P(u + tv) = P(u) +
+  \mathcal{A}(v) + o(u, v)$ in
+  \[
+	\lim_{\norm{v} \to 0} \frac{\norm{o(u, v)}}{\norm{v}} = 0.
+  \]
+  Pišemo $\mathcal{A} = D_u^F P$.
+\end{definicija}
+
+\vprasanje{Definiraj šibki in krepki odvod. Kako se še imenujeta?}
+
+\begin{trditev}
+  Če je $P$ v $u \in U$ Frechetovo odvedljiv, je tam tudi Gateauxovo odvedljiv.
+  Tedaj sta odvoda enaka.
+\end{trditev}
+
+\begin{proof}
+  Za vsak $v \in U$ velja
+  \[
+	P(u + tv) = Pu + D_u^F P(tv) + o(u, tv)
+	= Pu + t D_u^F P(v) + o(u, tv),
+  \]
+  iz česar pride
+  \[
+	\frac{P(u+tv)-Pu}{t} = D_u^F P(v) + \frac{o(u, tv)}{t}.
+  \]
+  Brez škode za splošnost predpostavimo $\norm{v} = 1$.
+  Ker Frechetov odvod obstaja, velja
+  \[
+	\lim_{t \to 0} \frac{P(u+tv) - Pu}{t}
+	= D_u^F P(v) + \lim_{\norm{tv} \to 0} \frac{o(u,tv)}{\norm{tv}}
+	= D_u^F P(v).
+  \]
+\end{proof}
+
+\begin{trditev}
+  Če obstaja $D_u^G P$ in je limita
+  \[
+	\lim_{t \to 0} \frac{P(u+tv)-Pu}{t} = D_u^G P(v)
+  \]
+  enakomerna glede na $v$ na enotski sferi $S \subseteq U$, potem obstaja tudi
+  $D_u^F P$.
+\end{trditev}
+
+\begin{proof}
+  Enakomernost pomeni, da za vsak $\varepsilon > 0$ obstaja $\delta > 0$, da
+  $\abs{t} < \delta$ implicira
+  \[
+	\norm{\frac{P(u+tv) - Pu}{t} - D_u^G P(v)} < \varepsilon
+  \]
+  ne glede na $v \in S \subseteq U$, oziroma
+  \[
+	\norm{P(u+tv) - Pu - D_u^G P(tv)} < \varepsilon t.
+  \]
+  Označimo $h = tv$ in dobimo
+  \[
+	\norm{P(u+h) - Pu - D_u^GP(h)} < \varepsilon \norm{h}.
+  \]
+  Po definiciji limite potem velja
+  \[
+	\lim_{\norm{h} \to 0} \frac{\norm{P(u+h) - Pu - D_u^G P(h)}}{\norm{h}} = 0.
+  \]
+\end{proof}
+
+\vprasanje{Povej zadostni pogoj za obstoj Frechetovega odvoda.}
+
+\begin{trditev}
+  Naj bo $u \in U$ lokalni minimum funkcionala $\mathcal{L} : U \to \R$, in naj
+  bo $\mathcal{L}$ krepko odvedljiv.
+  Potem velja $D_u \mathcal{L}(v) = 0$ za vsak $v$.
+\end{trditev}
+
+\begin{proof}
+  Ker je v $u$ dosežen minimum, velja za vsak $v$ in vsak dovolj majhen $t$
+  $\mathcal{L}(u + tv) > \mathcal{L}(u)$.
+  Ker je $\mathcal{L}(u+tv) = \mathcal{L}(u) + D_u \mathcal{L}(tv) + o(tv)$,
+  velja $D_u \mathcal{L}(tv) + o(tv) > 0$.
+  Če je $t > 0$, je $t D_u \mathcal{L}(v) + o(tv) > 0$ in
+  \[
+	D_u \mathcal{L}(v) + \frac{o(tv)}{t} > 0.
+  \]
+  Ker drug člen limitira k $0$, je za dovolj majhen $t$ predznak izraza odvisen
+  le od predznaka $D_u \mathcal{L}(v)$, ki mora torej biti pozitiven.
+  Če enako naredimo za $t < 0$, dobimo, da mora biti predznak $D_u
+  \mathcal{L}(v)$ negativen; torej je enak nič.
+\end{proof}
+
+\vprasanje{Dokaži, da je odvod funkcionala v lokalnem minimumu enak $0$.}
