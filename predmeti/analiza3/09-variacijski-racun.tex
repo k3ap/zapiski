@@ -185,3 +185,39 @@ $l_2(u) = u(b)$.
 \end{proof}
 
 \vprasanje{Povej in dokaži osnovni izrek variacijskega računa.}
+
+Predpostavimo, da je funkcija $\partial_{u'} L(x, u, u')$ odvedljiva po $x$, in
+z integracijo po delih izračunamo
+\[
+  \int_a^b \partial_{u'} L v' dx
+  = - \int_a^b \frac{d}{dx} \left( \partial_{u'} L \right) v dx
+  + \left. \partial_{u'} L v \right|_a^b.
+\]
+Odvod je torej enak
+\[
+  D_u \mathcal{L}(v) = \int_a^b \left( \partial_u L - \frac{d}{dx} \partial_{u'}
+	L\right) v dx + \left. \partial_{u'} L v \right|_a^b
+  = 0.
+\]
+Ker so testne funkcije tudi dopustne variacije, dobimo, da za vse testne
+funkcije $v$ velja
+\[
+  D_u \mathcal{L}(v) = \int_a^b \left( \partial_u L - \frac{d}{dx} \partial_{u'}
+	L\right) v dx
+  = 0,
+\]
+oziroma, po osnovnem izreku variacijskega računa,
+\[
+  \partial_u L(x, \hat{u}(x), \hat{u}'(x)) - \frac{d}{dx} \partial_{u'} L(x,
+  \hat{u}(x), \hat{u}'(x)) = 0.
+\]
+Temu pravimo Euler-Lagrangeova enačba.
+
+\vprasanje{Izpelji Euler-Lagrangeovo enačbo.}
+
+Če imamo samo en robni pogoj $u(a) = A$, bo za testne funkcije še vedno veljala
+Euler-Lagrangeova enačba, za ostale dopustne variacije pa dobimo novo enačbo
+\[
+  \partial_{u'} L (b) = 0.
+\]
+Temu pravimo \pojem{dinamični pogoj}.
