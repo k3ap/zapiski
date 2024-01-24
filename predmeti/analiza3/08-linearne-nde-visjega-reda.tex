@@ -253,4 +253,55 @@ bazo
   x_{2k-2} = t^{k-1} e^{ta} \cos(bt), x_{2k-1} = t^{k-1} e^{ta} \sin(bt).
 \end{gather*}
 
+\podnaslov{Linearizacija}
+
+Imejmo nelinearen sistem NDE $\dot{\vec{x}} = F(t, x)$.
+Naj bo $\vec{x}_0(t)$ neka rešitev tega sistema.
+Definiramo nelinearen operator $\mathcal{F}(\vec{x}(t)) = \dot{\vec{x}}(t) - F(t,
+\vec{x})$.
+Funkcija $\vec{x}_0$ je rešitev sistema natanko tedaj, ko je
+$\mathcal{F}(\vec{x}_0) = 0$.
+Splošna rešitev $\mathcal{S}$, ki je $n$-parametrični nelinearen prostor, je
+nivojska ploskev $\mathcal{S} = \mathcal{F}^{-1}(0)$.
+Naj bo sedaj $s \mapsto \vec{x}(t, s) \in \mathcal{S}$ pot v prostoru rešitev,
+za katero velja $\vec{x}(t, 0) = \vec{x}_0(t)$.
+Oglejmo si odvod
+\[
+  \left.\frac{d}{ds}\right|_{s = 0} \mathcal{F}(\vec{x}(t, s))
+  = D_{\vec{x}_0} \mathcal{F} \left( \left. \frac{d}{ds} \right|_{s=0}
+	\vec{x}(t,s) \right)
+  =: D_{\vec{x}_0} \mathcal{F} (\vec{u}(t)).
+\]
+Če je $\vec{x}(t, s)$ rešitev za vsak $s$, potem velja $F(\vec{x}(t, s)) = 0$,
+zato
+\[
+  \left. \frac{d}{ds} \right|_{s = 0} \mathcal{F}(\vec{x}(t, s))
+  = D_{\vec{x}_0} \mathcal{F} (\vec{u}(t)) = 0.
+\]
+Operator $D_{\vec{x}_0} \mathcal{F}$ je linearen.
+Če v predpis odvoda vstavimo definicijo $\mathcal{F}$, dobimo
+\[
+  \left. \frac{d}{ds} \right|_{s = 0} \mathcal{F}(\vec{x}(t, s))
+  = \left. \frac{d}{ds} \right|_{s=0} \left( \dot{\vec{x}}(t, s) - F(t,
+	\vec{x}(t, s)) \right)
+  = \dot{\vec{u}} - \left. \frac{d}{ds} \right|_{s=0} F(t, \vec{x}(t, s)).
+\]
+Če desni člen posredno odvajamo, dobimo sistem $\dot{\vec{u}} - A(t) \vec{u} =
+0$ za
+\[
+  A(t) =
+  \begin{bmatrix}
+	\partial_{x_1} F_1(t, \vec{x}_0(t)) & \cdots & \partial_{x_n} F_1(t,
+												   \vec{x}_0(t)) \\
+	\vdots & \ddots & \vdots \\
+	\partial_{x_1} F_n(t, \vec{x}_0(t)) & \cdots & \partial_{x_n} F_n(t, \vec{x}_0(t))
+  \end{bmatrix}.
+\]
+Dobili smo linearizacijo začetnega sistema okoli rešitve $\vec{x}_0$.
+Splošna rešitev te linearizacije je jedro operatorja $D_{\vec{x}_0}
+\mathcal{F}$, oziroma tangentni prostor na $\mathcal{S}$ v točki $\vec{x}_0$.
+
+\vprasanje{Izpelji linearizacijo nelinearnega sistema NDE. Kakšne so rešitve
+  linearizacije?}
+
 % LocalWords:  Wronskega Liouvilleova vandermondova
