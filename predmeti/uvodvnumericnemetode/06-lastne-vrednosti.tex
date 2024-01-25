@@ -342,4 +342,112 @@ Velja $A_{k+1} = Q_k^T A_k Q_k$, torej so si vse $A_k$ ortogonalno podobne.
   \]
 \end{proof}
 
+\vprasanje{Zapiši algoritem QR iteracije. Kako deluje? Dokaži.}
+
+\begin{definicija}
+  Matrika $H$ je \pojem{zgornje Hessenbergova}, če je $h_{ij} = 0$ za $i > j+1$.
+\end{definicija}
+
+\begin{lema}
+  Če je matrika $A$ zgornje Hessenbergova, se oblika med QR iteracijo ohranja.
+\end{lema}
+
+\begin{proof}
+  Če je $A$ zgornja Hessenbergova, je $Q$ zgornja Hessenbergova.
+\end{proof}
+
+\begin{algorithm}
+  \caption{Redukcija matrike v zgornje Hessenbergovo obliko}
+  \label{alg:redukcija-zgornje-hessenbergova}
+  \begin{algorithmic}
+	\State $Q = I$
+	\For{$k = 1, \ldots, n-2$}
+	\State Določi $w_k \in \R^{n-k}$ za Householderjevo zrcaljenje, ki slika
+	$A(k+1:n,k)$ v $\pm x e_1$
+	\State $A(k+1:n,k:n) = P_k A(k+1:n,k:n)$
+	\State $A(:,k+1:n) = A(:,k+1:n) P_k$
+	\State $Q(:,k+1:n) = Q(:,k+1:n) P_k$
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+Lema nam pove, da si lahko prihranimo veliko računanja med iteracijo.
+Prvo lahko s Householderjevimi zrcaljenji pretvorimo $A$ v zgornjo Hessenbergovo
+obliko, kot v algoritmu~\ref{alg:redukcija-zgornje-hessenbergova}
+Izračun QR razcepa take matrike lahko naredimo z $n-1$ Givensonovimi rotacijami,
+torej v $O(n^2)$.
+Če je $R_{ij}$ rotacija, velja
+\[
+  R_{n-1,n}^T \ldots R_{23}^T R_{12}^T A_k = R_k
+\]
+oziroma
+\[
+  A_{k+1} = R_k Q_k = R_k R_{12} R_{23} \ldots R_{n-1,n}.
+\]
+
+\vprasanje{Kako optimiziraš korak QR iteracije na $O(n^2)$?}
+
+\begin{definicija}
+  Zgornje Hessenbergova matrika $H$ je \pojem{nerazcepna}, če so vsi elementi v
+  spodnji diagonali neničelni.
+  V nasprotnem primeru je \pojem{razcepna}.
+\end{definicija}
+
+Če je matrika razcepna, lahko problem razdelimo na dva manjša.
+Predpostavimo lahko torej, da je začetna Hessenbergova matrika nerazcepna.
+Pri numeričnem reševanju element $h_{i+1,i}$ proglasimo za $0$, če je
+$\abs{h_{i+1,i}} \le \varepsilon (\abs{h_{i,i}} + \abs{h_{i+1,i+1}})$.
+
+Število iteracij lahko zmanjšamo z uporabo premikov, kot je prikazano v
+algoritmu~\ref{alg:qr-iteracija-enojni-premik}.
+
+\begin{algorithm}
+  \caption{QR iteracija z enojnim premikom}
+  \label{alg:qr-iteracija-enojni-premik}
+  \begin{algorithmic}
+	\State Naredi redukcijo na Hessenbergovo obliko $A_0 = Q^T A Q$
+	\For{$k=0, 1, \ldots$}
+	\State Izberi premik $\sigma_k$
+	\State Naredi QR razcep $A_k - \sigma_k I = Q_k R_k$
+	\State $A_{k+1} = R_k Q_k + \sigma_k I$
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+Matriki $A_k$ in $A_{k+1}$ sta še vedno ortogonalno podobni, ker velja
+\[
+  A_{k+1} = R_k Q_k + \sigma_k I = Q_k^T(A_k - \sigma_k I) Q_k + \sigma_k I =
+  Q_k^T A_k Q_k.
+\]
+
+\begin{lema}
+  Če je $A$ nerazcepna zgornje Hessenbergova matrika in za premik $\sigma$
+  izberemo lastno vrednost $A$, potem za matriko $B = RQ + \sigma I$, kjer je $A
+  - \sigma I = QR$, velja $b_{n,n-1} = 0$ in $b_{n,n} = \sigma$.
+\end{lema}
+
+\begin{proof}
+  Matrika $A - \sigma I$ je singularna, zaradi nerazcepnosti pa je prvih $n-1$
+  stolpcev linearno nedovisnih, torej mora veljati $r_{n,n} = 0$.
+  Torej je zadnja vrstica $R$ enaka $0$, in je $B$ predpisane oblike.
+\end{proof}
+
+\vprasanje{Kako deluje QR iteracija s premikom? Kaj je njena prednost? Dokaži.}
+
+Idealno je za premik torej izbrati čim boljši približek za lastno vrednost.
+Poznamo dve pogosti izbiri premika;
+\begin{itemize}
+\item Enojni premik: izberemo $\sigma_k = (A_k)_{nn}$.
+  Deluje dobro za matrike s samimi realnimi lastnimi vrednostmi.
+\item Dvojni premik: za $\sigma_{k1}$ in $\sigma_{k2}$ izberemo lastni vrednosti
+  matrike $A(n-1:n,n-1:n)$, in v okviru ene iteracije naredimo dva premika
+  \begin{align*}
+	A_k - \sigma_{k1} I = Q_k R_k && A_{k+1/2} - \sigma_{k2} = \tilde{Q}_k \tilde{R}_k \\
+	A_{k+1/2} = R_k Q_k + \sigma_{k1} I && A_{k+1} = \tilde{R}_k \tilde{Q}_k + \sigma_{k2} I
+  \end{align*}
+  Pokažemo lahko, da je za realno $A_k$ tudi $A_{k+1}$ realna.
+\end{itemize}
+
+\vprasanje{Kako izberemo premik za QR iteracijo?}
+
 % LocalWords:  kvazi Schurova Schurovi Schurovo
