@@ -226,12 +226,120 @@ lastne vrednosti, dominanten.
   \caption{Ortogonalna iteracija}
   \label{alg:ortogonalna-iteracija}
   \begin{algorithmic}
-	\State Izberi naključno matriko $Z_0 \in \R^{n \times p}$
+	\State Izberi naključno matriko $Z_0 \in \R^{n \times p}$.
 	\For{$k = 1, 2, \ldots$}
 	\State $Y_k = A Z_{k-1}$
-	\State Za $Z_k$ vzemi $Q_k$ iz QR razcepa $Y_k = Q_k S_k$
+	\State Za $Z_k$ vzemi $Q_k$ iz QR razcepa $Y_k = Q_k S_k$.
 	\EndFor
   \end{algorithmic}
 \end{algorithm}
 
-% LocalWords:  kvazi Schurova
+\begin{izrek}
+  Če za lastne vrednosti $A$ velja $\abs{\lambda_1} \ge \ldots \ge \abs{\lambda_p} > \abs{\lambda_{p+1}}$,
+  potem za naključno izbrano matriko $Z_0 \in \R^{n-p}$ matrika $Z_k$ konvergira
+  proti ortonormirani bazi za dominantni invariantni podprostor dimenzije $p$.
+\end{izrek}
+
+\begin{proof}
+  Dokažemo samo za primer, kjer lahko matriko $A$ diagonaliziramo v
+  $A = X D X^{-1}$.
+  Označimo $D = \operatorname{diag}(D_1 D_2)$ in $X = [X_1, X_2]$, kjer sta $D_1$ in
+  $X_1$ dimenzije $p$.
+  Ker je $\abs{\lambda_p} > 0$, velja $\det D_1 \ne 0$.
+  Če izrazimo $Z_0$ v bazi lastnih vektorjev kot
+  \[
+	Z_0 = X
+	\begin{bmatrix}
+	  W_1 \\ W_2
+	\end{bmatrix},
+  \]
+  potem lahko za naključen $Z_0$ predpostavimo, da je $W_1$ nesingularna.
+  Pokazati moramo, da $\im Z_k \to \im X_1$ za $k \to \infty$.
+  Velja
+  \[
+	\im Z_k = \im A Z_{k-1} = \cdots = \im A^k Z_0
+	= \im X D^k X^{-1} X
+	\begin{bmatrix}
+	  W_1 \\ W_2
+	\end{bmatrix}
+	= \im X
+	\begin{bmatrix}
+	  D_1^k W_1 \\ D_2^k W_2
+	\end{bmatrix}
+  \]
+  Ker je $W_1$ obrnljiva, je to enako
+  \[
+	\im Z_k = \im X
+	\begin{bmatrix}
+	  I \\ D_2^k W_2 W_1^{-1} D_1^{-k}
+	\end{bmatrix}
+	D_1^k W_1
+	= \im X
+	\begin{bmatrix}
+	  I \\ D_2^k W_2 W_1^{-1} D_1^{-k}
+	\end{bmatrix}.
+  \]
+  Elemente spodnje matrike lahko razpišemo kot
+  \[
+	\left[ D_2^k W_2 W_1^{-1} D_1^{-k} \right]_{ij}
+	= \left[ W_2 W_1^{-1} \right]_{ij} \frac{\lambda_{p+i}^k}{\lambda_j^k}
+  \]
+  Ker so vsi elementi $D_1$ večji od vseh v $D_2$, ulomek na desni konvergira k
+  $0$ za $k \to \infty$, torej $\im Z_k \to \im X_1$.
+\end{proof}
+
+\vprasanje{Pod katerim pogojem deluje ortogonalna iteracija? Dokaži za
+  diagonalizabilne matrike.}
+
+\begin{posledica}
+  Če za matriko $A$ velja $\abs{\lambda_1} > \cdots > \abs{\lambda_n}$, potem za naključno
+  izbrano matriko $Z_0$ matrika $Z_k^T A Z_k$ konvergira proti Schurovi formi.
+\end{posledica}
+
+\begin{proof}
+  Vzemimo $p \in \{1, \ldots, n\}$ in razcepimo $Z_k = [Z_{k1} Z_{k2}]$.
+  Po izreku $Z_{k1}$ konvergira proti ONB za dominantni invariantni podprostor
+  dimenzije $p$.
+  Matrika $Z_{k2}^T A Z_{k1}$ torej konvergira k $0$ (po izreku od prej), to pa
+  velja za vsak $p$, torej smo dobili zgornje trikotno matriko, kjer so elementi
+  na diagonali lastne vrednosti, urejene po absolutni vrednosti.
+\end{proof}
+
+\vprasanje{Kako z ortogonalno iteracijo poiščeš Schurovo formo? Dokaži.}
+
+\podnaslov{QR iteracija}
+
+\begin{algorithm}
+  \caption{QR iteracija}
+  \label{alg:qr-iteracija}
+  \begin{algorithmic}
+	\State $A_0 = A$
+	\For{$k=0, 1, \ldots$}
+	\State Izračunaj QR razcep $A_k = Q_k R_k$
+	\State $A_{k+1} = R_k Q_k$
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+Če za lastne vrednosti $\abs{\lambda_1} > \abs{\lambda_2} > \ldots > \abs{\lambda_n}$, potem $A_k$
+konvergira k Schurovi formi.
+Velja $A_{k+1} = Q_k^T A_k Q_k$, torej so si vse $A_k$ ortogonalno podobne.
+
+\begin{izrek}
+  Za matriko $A_k$ iz QR iteracije velja $A_k = Z_k^T A Z_k$, kjer je $Z_k$ matrika iz
+  ortogonalne iteracije z začetkom $Z_0 = I$.
+\end{izrek}
+
+\begin{proof}
+  Dokažemo z indukcijo na $k$, kjer je baza indukcije trivialna.
+  Če velja za $k$, računamo $A Z_k = Z_{k+1} S_{k+1}$, zato $Z_k^T A Z_k = Z_k^T Z_{k+1}
+  S_{k+1}$.
+  Matrika $Z_k^T Z_{k+1}$ je ortogonalna, $S_{k+1}$ pa zgornje trikotna, torej je to
+  QR razcep matrike $Z_k^T A Z_k = A_k$ po indukcijski predpostavki.
+  Velja torej
+  \[
+	A_{k+1} = R_k Q_k = S_{k+1} Z_k^T Z_{k+1} = Z_{k+1}^T A Z_k Z_k^T Z_{k+1} = Z_{k+1}^T A Z_{k+1}.
+  \]
+\end{proof}
+
+% LocalWords:  kvazi Schurova Schurovi Schurovo
