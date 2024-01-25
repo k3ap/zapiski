@@ -43,4 +43,97 @@ občutljiva.
 \vprasanje{Kako interpoliraš polinom z Lagrangeovo bazo? Dokaži, da je
   interpolacija enolična.}
 
-% LocalWords:  Vandermondova
+\begin{izrek}
+  Če je $f$ $(n+1)$-krat zvezno odvedljiva na $[a, b]$, ki vsebuje paroma
+  različne vozle $x_0, \ldots, x_n$ ter $x$, in je $p$ interpolacijski polinom
+  za $f$, potem velja
+  \[
+	f(x) - p(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} \omega(x)
+  \]
+  za $\omega(x) = (x - x_0) \ldots (x - x_n)$ in $\min(x_0, \ldots, x_n, x) \le
+  \xi \le \max(x_0, \ldots, x_n, x)$.
+\end{izrek}
+
+\begin{proof}
+  Predpostavimo lahko, da je $x$ različen od $x_0, \ldots, x_n$.
+  Definiramo $g(z) = f(z) - p(z) - C \omega(z)$, kjer nastavimo $C$ tako, da ima
+  $g$ pri $x$ ničlo.
+  Poleg tega ima $g$ tudi ničle v vozlih $x_0, \ldots, x_n$.
+  Funkcija $g$ je $(n+1)$-krat zvezno odvedljiva in ima $n+2$ različnih ničel.
+  Po Rollovem izreku ima $g'$ vsaj $n+1$ ničel.
+  Če postopek nadaljujemo, dobimo, da ima $g^{(n+1)}$ ničlo $\xi$.
+  Če upoštevamo, da sta $p$ in $\omega$ polinoma, dobimo
+  \[
+	C = \frac{f^{(n+1)}(\xi)}{(n+1)!}.
+  \]
+\end{proof}
+
+\vprasanje{Kako izraziš napako interpolacije? Dokaži.}
+
+\podnaslov{Deljene diference}
+
+\begin{definicija}
+  Za paroma različne točke $x_0, \ldots, x_k$ je \pojem{deljena diferenca}
+  $[x_0, \ldots, x_k]_f$ vodilni koeficient (pri $x^k$) interpolacijskega
+  polinoma za $f$ v točkah $x_0, \ldots, x_k$.
+\end{definicija}
+
+\begin{izrek}
+  Za paroma različne točke $x_0, \ldots, x_n$ lahko interpolacijski polinom za
+  $f$ na $x_0, \ldots, x_n$ zapišemo kot
+  \[
+	p(x) = [x_0]_f + [x_0, x_1]_f (x - x_0) + \ldots + [x_0, \ldots, x_n]_f (x-x_0)
+	\ldots (x-x_{n-1}).
+  \]
+\end{izrek}
+
+\begin{proof}
+  Dokažemo z indukcijo na $n$.
+  Baza indukcije je očitna, dokažimo korak.
+  Naj bo $p_n(x)$ polinom stopnje $\le n$, ki se z $f$ ujema na $x_0, \ldots,
+  x_n$.
+  Dodamo še točko $x_{n+1}$ in iščemo $p_{n+1}$.
+  Za
+  \[
+	p_{n+1}(x) = p_n(x) + C (x - x_0) \ldots (x - x_n)
+  \]
+  in ustrezen $C$ velja $p_{n+1}(x_i) = f(x_i)$.
+  Izračunamo torej
+  \[
+	C = \frac{f(x_{n+1}) - p_n(x_{n+1})}{(x_{n+1} - x_0) \ldots (x_{n+1} -
+	  x_n)}.
+  \]
+\end{proof}
+
+\vprasanje{Kakšna je Newtonova oblika interpolacije? Dokaži.}
+
+\begin{izrek}
+  Za deljene diference velja
+  \begin{itemize}
+  \item $[x_0, \ldots, x_n]_f$ je simetrična funkcija argumentov
+  \item $[x_0, \ldots, x_n]_f$ je linearen funkcional v $f$
+  \item Velja rekurzivna formula
+	\[
+	  [x_0, \ldots, x_k]_f = \frac{[x_1, \ldots, x_k]_f - [x_0, \ldots,
+		x_{k-1}]_f}{x_k - x_0}.
+	\]
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Prvi točki sta očitni.
+  Za tretjo:
+  Naj $p_a$ interpolira $f$ v točkah $x_0, \ldots, x_{k-1}$, in $p_b$ v točkah
+  $x_1, \ldots, x_k$.
+  Hitro lahko preverimo, da je ustrezen interpolacijski polinom
+  \[
+	p(x) = \frac{x-x_k}{x_0 - x_k} p_a(x) + \frac{x-x_0}{x_k - x_0} p_b(x),
+  \]
+  ker je stopnja $p$ manjša ali enaka $k$ in $p(x_0) = p_a(x_0) = f(x_0)$ ter
+  $p(x_k) = p_b(x_k) = f(x_k)$.
+  Za ostale točke tudi velja $p(x_i) = f(x_i)$.
+\end{proof}
+
+\vprasanje{Povej in dokaži rekurzivno formulo za deljene diference.}
+
+% LocalWords:  Vandermondova Rollovem
