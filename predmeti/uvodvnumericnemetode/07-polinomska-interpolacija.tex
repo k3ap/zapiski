@@ -1,0 +1,46 @@
+\naslov{Polinomska interpolacija}
+
+\podnaslov{Lagrangeova oblika}
+
+Problem z interpolacijo v standardni bazi je, da je Vandermondova matrika zelo
+občutljiva.
+
+\begin{izrek}
+  Za paroma različne točke $x_0, \ldots, x_n$ in vrednosti $y_0, \ldots, y_n$
+  obstaja natanko en polinom stopnje $\le n$, da je $p(x_i) = y_i$.
+\end{izrek}
+
+\begin{proof}
+  Obstoj dokažemo s konstrukcijo, kjer uporabimo Lagrangeove bazne polinome
+  \[
+	l_{n,i}(x_j) =
+	\begin{cases}
+	  1 & i = j \\
+	  0 & i \ne j
+	\end{cases}.
+  \]
+  Če take polinome lahko konstruiramo (kjer je $l_{n.i}$ stopnje $\le n$), bo
+  veljalo
+  \[
+	p = \sum_i y_i l_{n,i}.
+  \]
+  Če definiramo
+  \[
+	l_{n,i}(x)
+	= \frac{(x-x_0) \ldots (x - x_{i-1}) (x - x_{i+1}) \ldots (x - x_n)}{(x_i -
+	  x_0) \ldots (x_i - x_{i-1}) (x_i - x_{i+1}) \ldots (x_i - x_n)},
+  \]
+  potem $l_{0,n}, \ldots, l_{n,n}$ sestavljajo bazo za polinome stopnje $\le n$.
+
+  Dokazati moramo še enoličnost:
+  denimo, da je $\tilde{p}$ tudi polinom stopnje $\le n$, ki zadošča
+  $\tilde{p}(x_i) = y_i$.
+  Tedaj je $q = p - \tilde{p}$ polinom stopnje $\le n$, za katerega velja
+  $q(x_i) = 0$.
+  Polinom stopnje $\le n$, ki ima vsaj $n+1$ ničel, je enak $q = 0$.
+\end{proof}
+
+\vprasanje{Kako interpoliraš polinom z Lagrangeovo bazo? Dokaži, da je
+  interpolacija enolična.}
+
+% LocalWords:  Vandermondova
