@@ -1,0 +1,45 @@
+\naslov{Numerično integriranje}
+
+Želimo izračunati integral
+\[
+  I(f) = \int_a^b f(x) dx.
+\]
+Ideja je, da funkcijo aproksimiramo z interpolacijskim polinomom
+\[
+  \int_a^b f(x) dx
+  = \int_a^b \sum_{i=0}^n f(x_i) l_{n,i}(x) dx + R(f)
+  = \sum_{i=0}^n f(x_i) \int_a^b l_{n,i}(x) dx + R(f),
+\]
+kjer integrale interpolacijskih polinomov imenujemo \pojem{uteži} ali
+\pojem{koeficienti} $\alpha_i$, napaka $R(f)$ pa je oblike
+\[
+  R(f) = \int_a^b \frac{f^{(n+1)}(\xi)}{(n+1)!} \omega(x) dx.
+\]
+Tako dobljene kvadraturne formule so določene z izbiro vozlov.
+Napaka pri računanju se razdeli na dve komponenti; napaka metode $R(f)$ ter
+neodstranljiva napaka, ki jo dobimo, ker ne poznamo točnih vrednosti $f$ v
+vozlih.
+
+\vprasanje{Izpelji obliko kvadraturnih formul.}
+
+\podnaslov{Newton-Colesove formule}
+
+Pri NC formulah vozle izberemo enakomerno, $x_i = a + ih$.
+Ločimo zaprti tip formul, kjer uporabimo vse vozle, in odprti tip, kjer
+izpustimo vozla v krajiščih.
+
+Najenostavnejša kvadraturna formula je \pojem{trapezna formula}, t.j.~formula
+zaprtega tipa za $n=1$
+\[
+  \int_{x_0}^{x_1} f(x) dx = \frac{h}{2} (f(x_0) + f(x1))
+  + \int_{x_0}^{x_1} \pol f''(\xi_x) (x-x_0) (x-x_1) dx,
+\]
+kjer za napako po izreku o povprečni vrednosti velja
+\[
+  R(f) = \pol f''(\xi) \int_{x_0}^{x_1} (x-x_0)(x - x_1) dx = - \frac{h^3}{12}
+  f''(\xi).
+\]
+
+\vprasanje{Opiši trapezno formulo.}
+
+% LocalWords:  kvadraturne Newton-Colesove NC

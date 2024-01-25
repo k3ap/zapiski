@@ -136,4 +136,56 @@ občutljiva.
 
 \vprasanje{Povej in dokaži rekurzivno formulo za deljene diference.}
 
+Formula nam pove, da je smiselna definicija, če se točke $x_i$ ponavljajo,
+naslednja:
+\[
+  [x_0, \ldots, x_k]_f =
+  \begin{cases}
+	\frac{f^{(k)}(x_0)}{k!} & x_0 = x_1 = \cdots = x_k  \\
+	\frac{[x_1, \ldots, x_k]_f - [x_0, \ldots, x_{k-1}]_f}{x_k - x_0} & \text{sicer}
+  \end{cases}
+\]
+kjer pri drugi definiciji poskrbimo, da $x_0 \ne x_k$ (vrstni red točk je
+nepomemben).
+
+\begin{izrek}
+  Za $k$-krat zvezno odvedljivo $f$ velja
+  \[
+	[x_0, \ldots, x_k]_f = \int_0^1 dt_1 \int_0^{t_1} d t_2 \ldots
+	\int_0^{t_{k-1}} f^{(k)}(\xi_k) dt_k,
+  \]
+  kjer je $\xi_k = t_k(x_k - x_{k-1}) + \cdots + t_1 (x_1 - x_0) + x_0$.
+\end{izrek}
+
+\begin{posledica}
+  Za $k$-krat zvezno odvedljivo $f$ velja
+  \[
+	[x_0, \ldots, x_k]_f = \frac{f^{(k)}(\xi)}{k!},
+  \]
+  kjer je $\min(x_0, \ldots, x_k) \le \xi \le \max(x_0, \ldots, x_k)$.
+\end{posledica}
+
+\begin{proof}
+  Uporabimo zadnji izrek in izrek o povprečni vrednosti.
+  Upoštevamo, da je volumen simpleksa enak $k!^{-1}$.
+\end{proof}
+
+\begin{izrek}
+  Če je $p$ interpolacijski polinom za $f$ v točkah $x_0, \ldots, x_n$, potem
+  velja
+  \[
+	f(x) - p(x) = [x_0,\ldots, x_n, x]_f (x - x_0) \ldots (x-x_n).
+  \]
+\end{izrek}
+
+\begin{proof}
+  Če desni strani prištejemo $p(x)$, dobimo interpolacijski polinom za $f$
+  točkah $x_0, \ldots, x_n$ in $x$.
+\end{proof}
+
+Posledica tega je, da je ocena za napako enaka kot prej, tudi če uporabljamo
+ponovljene točke.
+
+\vprasanje{Kako izraziš oceno za napako interpolacije z deljenimi diferencami?}
+
 % LocalWords:  Vandermondova Rollovem
