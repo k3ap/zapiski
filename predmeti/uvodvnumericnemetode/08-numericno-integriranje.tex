@@ -76,4 +76,141 @@ ki NC formula z najmanj vozli in negativno utežjo.
 
 \vprasanje{Kaj sta sredinska in Milneova formula? Zakaj je druga omembe vredna?}
 
+\podnaslov{Napake pri numeričnem integriranju}
+
+Velja
+\[
+  \int_a^b f(x) dx = \sum_{i=0}^n \alpha_i f(x_i) + D_m,
+\]
+kjer za napako metode $D_m$ ne bo veljalo nujno $D_m \to 0$ za $n \to \infty$.
+Če npr.~integriramo $f(x) = (1+x^2)^{-1}$ na $[-5, 5]$ z enakomerno
+razporejenimi točkami, bo veljalo
+\[
+  \max_{x \in [-5, 5]} \abs{f(x) - p_n(x)} \to \infty,
+\]
+kjer je $p_n$ interpoliran polinom za $n$ točk.
+Pri izračunu vsote se pojavita še neodstranljiva $D_n$ in zaokrožitvena napaka.
+Recimo, da velja $\abs{f(x_i) - f_i} \le \varepsilon$, kjer je $f_i$ izračunan
+približek in $f(x_i)$ točna vrednost.
+Potem lahko ocenimo
+\[
+  \abs{D_n}
+  = \abs{\sum_{i=0}^n \alpha_i f(x_i) - \sum_{i=0}^n \alpha_i f_i}
+  \le \sum_{i=0}^n \abs{\alpha_i} \varepsilon.
+\]
+Če je $\alpha_i \ge 0$ za vse $i$, lahko to nadalje ocenimo z $\abs{D_n} \le
+(b-a)\varepsilon$, ker velja
+\[
+  \sum_{i=0}^n \alpha_i
+  = \sum_{i=0}^n \int_a^b l_{i,n}(x) dx
+  = \int_a^b 1 dx
+  = b-a.
+\]
+Če to ne velja, pa imamo težave.
+Pri NC formulah vsota absolutnih vrednosti $\alpha_i$ hitro divergira za $n \to
+\infty$.
+
+\vprasanje{Analiziraj neodstranljivo napako pri numeričnem integriranju.}
+
+Temu problemu se lahko ognemo tako, da razdelimo interval na manjše kose in
+integriramo na vsakem posebej.
+Temu pravimo \pojem{sestavljeno pravilo}, sedaj pa imamo težavo, da moramo
+računati veliko vrednosti, tudi če tega ne potrebujemo na celotni domeni.
+Rešitev so adaptivne metode.
+
+Oglejmo si adaptivno Simpsonovo metodo.
+Velja $I(f) = S_h(f) + R_h(f) = S_{h/2}(f) + R_{h/2}(f)$, s konkretnima napakama
+\begin{align*}
+  R_h(f) = \frac{h^4 (b-a)}{180} f^{(4)}(\xi_1),
+  && R_{h/2}(f) = \frac{h^4 (b-a)}{16 \cdot 180} f^{(4)}(\xi_2).
+\end{align*}
+Pri predpostavki, da je $f^{(4)}(\xi_1) \approx f^{(4)}(\xi_2)$, dobimo
+\[
+  R_h(f) \approx 16 R_{h/2}(f),
+\]
+iz česar izpeljemo oceno za napako
+\[
+  R_{h/2}(f) \approx \frac{S_{h/2}(f) - S_h(f)}{15}.
+\]
+Potem lahko dobimo ekstrapoliran približek
+\[
+  I(f) = S_{h/2}(f) + R_{h/2}(f) \approx \frac{16 S_{h/2}(f) - S_h(f)}{15}.
+\]
+Če želimo izračunati integral funkcije $f$ med $a$ in $b$, po (sestavljeni)
+Simpsonovi formuli izračunamo $S_h$ in $S_{h/2}$ ter preverimo, če je ocena za
+napako manjša od $\varepsilon$.
+Če je, končamo, sicer pa interval razdelimo na dva, in rekurzivno izračunamo
+integrala $f$ na teh intervalih, pri čemer zahtevamo, da je napaka manjša od
+$\nicefrac{\varepsilon}{2}$.
+Postopek se bo končal, ker se mera za napako zmanjšuje s faktorjem $16$,
+zahtevana natančnost pa s faktorjem $2$.
+
+\vprasanje{Razloži adaptivno Simpsonovo metodo.}
+
+\podnaslov{Gaussove kvadraturne formule}
+
+Imejmo
+\[
+  I(f) = \int_a^b f(x) \rho(x) dx,
+\]
+kjer je $\rho$ nenegativna utež.
+Kvadraturna formula ima obliko
+\[
+  I(f) = \sum_{i=0}^n \alpha_i f(x_i) + R(f),
+\]
+kjer je
+\[
+  \alpha_i = \int_a^b l_{i,n}(x) \rho(x) dx.
+\]
+Formula je vedno točna za polinome stopnje $\le n$ za poljubno izbiro vozlov
+$x_0, \ldots, x_n$.
+Če definiramo skalarni produkt
+\[
+  \sk{f, g} = \int_a^b f(x) g(x) \rho(x) dx
+\]
+in uporabimo Gram-Schmittovo ortogonalizacijo na standardni polinomski bazi,
+dobimo polinome $\varphi_0, \varphi_1, \ldots$, za katere velja $\st \varphi_i =
+i$ in $\sk{\varphi_i, \varphi_j} = \delta_{ij}$.
+
+\begin{izrek}
+  Če so $\varphi_0, \varphi_1, \ldots$ ortogonalni polinomi na $[a,b]$ z utežjo
+  $\rho$, ima $\varphi_k$ same realne enostavne ničle, ki vse ležijo v $(a,b)$.
+\end{izrek}
+
+\begin{proof}
+  Naj ima $\varphi_k$ v $(a, b)$ $l$ različnih ničel, kjer je $l < k$.
+  Označimo jih z $z_1, \ldots, z_l$, in definiramo
+  \[
+	g(x) = (x - z_1)^{j_1} \cdots (x - z_l)^{j_l},
+  \]
+  kjer je $j_i$ enak $1$, če je $z_i$ liha ničla, in $0$ sicer.
+  Ker je integrand pozitiven, velja
+  \[
+	\int_a^b g(x) \varphi_k(x) \rho(x) dx > 0.
+  \]
+  Polinom $g$ je manjše stopnje kot $k$, ker pa je $\varphi_k$ pravokoten na vse
+  polinome stopnje manjše od $k$, bi moral biti integral enak $0$.
+  To je protislovje.
+\end{proof}
+
+Če za vozle vzamemo ničle polinoma $\varphi_{n+1}$, bo veljalo $\omega(x) = c
+\varphi_{n+1}(x)$, torej je $\omega$ pravokoten na vse polinome stopnje $\le n$.
+Naj bo $f$ polinom stopnje $\le 2n+1$.
+Zapišemo ga lahko kot $f(x) = h(x) \omega(x) + g(x)$, kjer sta stopnji $h$ in
+$g$ manjši od $n$.
+Računamo
+\[
+  \int_a^b f(x) \rho(x) dx
+  = \underbrace{\int_a^b h(x) \omega(x) \rho(x) dx}_{\sk{h, \omega} = 0} +
+  \int_a^b g(x) \rho(x) dx
+  = \sum_{i=0}^n \alpha_i g(x_i) = \sum_{i=0}^n \alpha_i f(x_i).
+\]
+Formula je natančna za vse polinome stopnje $\le n$, torej tudi za $g$; sledi,
+da je natančna tudi za $f$.
+Izkaže se tudi, da so vse uteži pri Gaussovih formulah pozitivne, tako da ni
+problemov s stabilnostjo.
+
+\vprasanje{Povej idejo za Gaussovimi kvadraturnimi formulami in dokaži, da so
+  natančne za polinome stopnje $\le 2n+1$.}
+
 % LocalWords:  kvadraturne Newton-Colesove NC
