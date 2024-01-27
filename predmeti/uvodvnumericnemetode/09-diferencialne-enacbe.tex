@@ -1,0 +1,55 @@
+\naslov{Diferencialne enačbe}
+
+Numerična rešitev diferencialne enačbe je sestavljena iz zaporedja $x_0, x_1,
+\ldots$ in pripadajočih približkov $y_0, y_1, \ldots$.
+Metode delimo na enokoračne, kjer $y_{n+1}$ izračunamo iz $y_n$, ter večkoračne,
+kjer $y_{n+1}$ izračunamo iz prejšnjih nekaj približkov.
+Poleg tega ločimo metode na eksplicitne, kjer imamo formulo za $y_{n+1}$, in
+implicitne, kjer $y_{n+1}$ izračunamo z reševanjem nelinearne enačbe.
+
+Če je $f = f(x, y)$ Lipschitzova v $y$ s konstanto $L$, in je $y(x)$ točna
+rešitev začetnega problema $y' = f(x,y), y(x_0) = y_0$, ter $\tilde{y}(x)$
+rešitev začetnega problema z zmotenim začetnim pogojem $y(x_0) =
+\tilde{y}(x_0)$, potem za poljuben $x \ge x_0$ velja
+\[
+  \abs{\tilde{y}(x) - y(x)} \le e^{L (x-x_0)} \abs{\tilde{y}_0 - y_0}.
+\]
+Podobno slabo mejo dobimo tudi, če zmotimo še $f$.
+
+Najenostavnejša eksplicitna metoda je \pojem{eksplicitna Eulerjeva metoda}
+\begin{gather*}
+  y_{n+1} = y_n + h f(x_n, y_n), \\
+  x_{n+1} = x_n + h.
+\end{gather*}
+Poznamo tudi implicitno obliko
+\[
+  y_{n+1} = y_n + h f(x_{n+1}, y_{n+1}).
+\]
+
+\podnaslov{Runge-Kutta metode}
+
+Pri Runge-Kutta metodah najprej izračunamo koeficiente
+\[
+  k_i = h f\left(x_n + \alpha_i h, y_n + \sum_{j=1}^m \beta_{ij} k_j\right)
+\]
+za $i = 1, \ldots, m$, nato pa
+\[
+  y_{n+1} = y_n + \sum_{i=1}^m \gamma_i k_i.
+\]
+Pri tem je $m$ stopnja metode, konstante $\alpha_i, \beta_{ij}, \gamma_i$ pa
+določimo tako, da se $y_{n+1}$ čim bolj ujema z razvojem $y(x_n + h)$ v
+Taylorjevo vrsto.
+Veljati mora
+\[
+  \alpha_i = \sum_{j=1}^m \beta_{ij}.
+\]
+Metoda je eksplicitna, če za $i \le j$ velja $\beta_{ij} = 0$, sicer pa je
+implicitna.
+Stopnja metode $m$ je različna od \pojem{reda} metode $k$, ki je enak eksponentu
+v zadnjem členu Taylorjeve vrste, s katerim se metoda natančno ujema.
+
+\vprasanje{Razloži Runge-Kutta metode za reševanje diferencialnih enačb.}
+
+
+
+% LocalWords:  enokoračne večkoračne Runge-Kutta
