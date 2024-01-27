@@ -277,8 +277,92 @@ Iz vse te izražave lahko končno izračunamo
   \dot{\mb{P}}'
   &= \dot{\mb{P}}_0' + \dot{Q} (\mb{P} - \mb{P}_0) + Q \dot{\mb{P}} \\
   &= \dot{\mb{P}}_0' + Q Q^T \dot{Q} (\mb{P} - \mb{P}_0) + Q \dot{\mb{P}} \\
-  &= \dot{\mb{P}}_0' + Q (\vec{\omega} (\mb{P} - \mb{P}_0)) + Q \dot{\mb{P}} \\
+  &= \dot{\mb{P}}_0' + Q (\vec{\omega} \times (\mb{P} - \mb{P}_0)) + Q \dot{\mb{P}} \\
   &= \pvec{v}_0' + \pvec{\omega}' \times Q(\mb{P} - \mb{P}_0) + Q \vec{v}_{\text{rel}} \\
   &= \pvec{v}_0' + \pvec{\omega}' \times \pvec{\zeta}' + \pvec{v}'_{\text{rel}}
 \end{align*}
 Za $\zeta = \mb{P} - \mb{P}_0$.
+Če je $\vec{u}$ poljuben vektor, velja
+\[
+  \partial_t \vec{u}'
+  = \partial_t (Q \vec{u})
+  = \dot{Q} \vec{u} + Q \dot{\vec{u}}
+  = Q(\vec{\omega} \times \vec{u}) + Q \dot{\vec{u}},
+\]
+torej transformacija in odvod po času komutirata le v primeru, da je
+$\pvec{\omega'} \times \pvec{u}' = 0$.
+Primer takega vektorja je $\vec{\omega}$, torej velja $\partial_t \pvec{\omega}'
+= (\dot{\vec{\omega}})'$.
+Sedaj lahko izračunamo tudi pospešek
+\begin{align*}
+  \pvec{a}'
+  &= \partial_t \pvec{v}' \\
+  &= \partial_t \pvec{v}_0'
+	+ \dot{\pvec{\omega}'} \times \pvec{\zeta}'
+	+ \pvec{\omega}' \times \partial_t \pvec{\zeta}'
+	+ \partial_t \pvec{v}_{\text{rel}}' \\
+  &= \pvec{a}_0'
+	+ \dot{\pvec{\omega}'} \times \pvec{zeta}'
+	+ \pvec{\omega}' \times (\pvec{\omega}' \times \pvec{\zeta}')
+	+ 2 \pvec{\omega}' \times \pvec{v}_{\text{rel}}'
+	+ Q \dot{\vec{v}_{\text{rel}}} \\
+  &= \pvec{a}_0'
+	+ \dot{\pvec{\omega}'} \times \pvec{zeta}'
+	+ \pvec{\omega}' \times (\pvec{\omega}' \times \pvec{\zeta}')
+	+ 2 \pvec{\omega}' \times \pvec{v}_{\text{rel}}'
+	+ \pvec{a}_{\text{rel}}'. \\
+\end{align*}
+Prvi člen tega predpisa imenujemo \pojem{pospešek izhodišča RKS}, drugi člen
+\pojem{Eulerjev pospešek}, tretji \pojem{centrifugalni pospešek}, četrti
+\pojem{Coriolisov pospešek} in peti \pojem{relativni pospešek}.
+
+\vprasanje{Izpeli predpis za pospešek relativnega koordinatnega sistema in
+  poimenuj člene.}
+
+\begin{izrek}
+  Koordinatna sistema $\varphi(t, \mb{P})$ in $\varphi'(t, \mb{P}')$ sta v istem
+  razredu Galilejevih koordinatnih sistemov natanko tedaj, ko koordinatna
+  transformacija $\mb{P} \mapsto \mb{P}'$ preslika premočrtno gibanje s
+  konstantno brzino v premočrtno gibanje s konstantno brzino.
+\end{izrek}
+
+\begin{proof}
+  V desno je očitno iz zapisa pospeška.
+  V levo računamo
+  \begin{gather*}
+	\vec{0} = \pvec{a}_0 + \dot{\pvec{\omega}'} \times \pvec{\zeta}' +
+	\pvec{\omega}' \times (\pvec{\omega}' \times \pvec{\zeta}') + 2
+	\pvec{\omega}' \times \pvec{v}_{\text{rel}}', \\
+	\mb{P}' = \mb{P}_0' + v_0 \vec{e}, \\
+	\vec{0} = \pvec{a}_0' + t v_0 (\dot{\pvec{\omega}'} \times \vec{e} +
+	\pvec{\omega}' \times (\pvec{\omega}' \times \vec{e})) + 2 v_0
+	\pvec{\omega}' \times \vec{e}.
+  \end{gather*}
+  To velja za vsak $t$, torej tudi za $t = 0$,
+  \[
+	\vec{0} = \pvec{a}_0' + 2 v_0 \pvec{\omega}' \times \vec{e}.
+  \]
+  Ta del je neodvisen od $t$, torej se pri poljubnem $t$ pokrajša in dobimo
+  \[
+	\vec{0} = \dot{\pvec{\omega}'} \times \vec{e} + \pvec{\omega}' \times
+	(\pvec{\omega}' \times \vec{e}).
+  \]
+  Enačbo skalarno množimo z $\vec{e}$,
+  \[
+	0 = \pvec{\omega}' \times (\pvec{\omega}' \times \vec{e}) \cdot \vec{e}.
+  \]
+  To je mešani produkt, ki ga lahko ciklično zamenjamo in dobimo
+  \[
+	0 = (\pvec{\omega}' \times \vec{e}) \cdot (\vec{e} \times \pvec{\omega}'),
+  \]
+  iz česar sledi $\pvec{\omega}' \parallel \vec{e}$.
+  Sedaj upoštevamo prejšnjo enačbo in vidimo $\pvec{a}_0' = \vec{0}$.
+  Če vzamemo drug primer premočrtnega gibanja $\mb{P}' = \mb{P}_0' + t v_0
+  \vec{f}$, kjer $\vec{f}$ ni vzporeden $\vec{e}$, spet dobimo $\pvec{\omega}'
+  \parallel \vec{f}$, torej mora veljati $\pvec{\omega}' = 0$.
+\end{proof}
+
+\vprasanje{Kaj velja za premočrtno gibanje pri koordinatni transformaciji?
+  Dokaži.}
+
+% LocalWords:  brzino
