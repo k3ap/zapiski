@@ -1,0 +1,172 @@
+\naslov{Togo telo}
+
+\begin{definicija}
+  Gibanje sistema materialnih točk je \pojem{togo}, če gibanje ohranja razdalje
+  med točkami.
+\end{definicija}
+
+\begin{definicija}
+  Telo je \pojem{togo}, če nima koles.
+  Alternativno je telo togo, če je edini njegov način gibanja togo gibanje.
+\end{definicija}
+
+\begin{izrek}
+  Izometrija je afina preslikava.
+\end{izrek}
+
+\begin{proof}
+  Izberimo $\mb{P}_0$ in točke $\mb{A}, \mb{B}, \mb{C}$, ki niso kolinearne.
+  Naj bo $\mb{P}$ poljubna točka.
+  Za $\vec{r} = \mb{P} - \mb{P}_0$, $\vec{a} = \mb{A} - \mb{P}_0$, $\vec{b} =
+  \mb{B} - \mb{P}_0$ in $\vec{c} = \mb{C} - \mb{P}_0$ velja
+  \[
+	\vec{r} = \alpha \vec{a} + \beta \vec{b} + \gamma \vec{c}.
+  \]
+  Izometrija naj slika $\mb{T}$ v $\mb{T}'$, poleg tega naj je
+  \[
+	\pvec{r}' = \alpha' \pvec{a}' + \beta' \pvec{b}' + \gamma' \pvec{c}'.
+  \]
+  Če enačbo za $\vec{r}$ skalarno množimo z $\vec{a}$, $\vec{b}$ oziroma
+  $\vec{c}$, dobimo enačbe
+  \begin{align*}
+	\vec{r} \cdot \vec{a} &= \alpha \vec{a} \cdot \vec{a} + \beta \vec{b} \cdot \vec{a} + \gamma \vec{c} \cdot \vec{a} \\
+	\vec{r} \cdot \vec{b} &= \alpha \vec{a} \cdot \vec{b} + \beta \vec{b} \cdot \vec{b} + \gamma \vec{c} \cdot \vec{b} \\
+	\vec{r} \cdot \vec{c} &= \alpha \vec{a} \cdot \vec{c} + \beta \vec{b} \cdot \vec{c} + \gamma \vec{c} \cdot \vec{c}
+  \end{align*}
+  To zložimo v matriko $A$, da dobimo
+  \[
+	\begin{bmatrix}
+	  \vec{r} \cdot \vec{a} \\
+	  \vec{r} \cdot \vec{b} \\
+	  \vec{r} \cdot \vec{c} \\
+	\end{bmatrix}
+	= A
+	\begin{bmatrix}
+	  \alpha \\ \beta \\ \gamma
+	\end{bmatrix}
+  \]
+  in podobno za količine s črto.
+  Izometrija ohranja tako razdalje kot kote, torej sta levi strani sistemov in
+  matriki $A, A'$ enaki.
+  Sledi torej $\alpha = \alpha'$, $\beta = \beta'$ in $\gamma = \gamma'$.
+  Dobimo
+  \[
+	\mb{P}' = \mb{P}_0' + \pvec{r}' = \mb{P}_0' + A \vec{r}
+	= \mb{P}_0' + A(\mb{P} - \mb{P}_0)
+  \]
+  in $A \in O(3)$.
+\end{proof}
+
+Togo gibanje lahko zapišemo v obliki
+\[
+  \mb{P}(t) = \mb{P}_0(t) + Q(t) (\mb{P}(t=0) -\mb{P}_0(t=0)).
+\]
+Predstavimo ga kot relativno gibanje, kjer je RKS položaj telesa, kot ga vidimo
+ob času $t=0$, AKS pa položaj telesa ob času $t$.
+RKS se giblje skupaj s telesom, zato mu pravimo \pojem{telesni KS}, absolutnemu
+pa pravimo \pojem{prostorski KS}.
+
+\vprasanje{Kako opišeš gibanje togega telesa?}
+
+Za telo $B$ definiramo volumensko in masno mero in predpostavimo, da za $B' =
+B(t)$ velja $m(B') = m(B)$.
+Sledi
+\[
+  m(B') = \iiint_{B'} \rho' dV'
+  = \iiint_{B} \rho'(\mb{P}'(\mb{P})) \abs{\det \frac{\partial
+	  \mb{P}'}{\partial \mb{P}}} dV.
+\]
+Ker pa je $\mb{P}' = \mb{P}_0' + Q(\mb{P} - \mb{P}_0)$, torej je odvod enak $Q$
+in njegova determinanta enaka $1$.
+Torej
+\[
+  \iiint_{B} \rho'(\mb{P}'(\mb{P})) dV
+  = m(B')
+  = m(B)
+  = \iiint_B \rho(\mb{P}) dV,
+\]
+torej (ker to velja tudi na delih telesa) $\rho'(\mb{P}'(\mb{P})) =
+\rho(\mb{P})$.
+Podobno izpeljemo, da je
+\[
+  \mb{P}_*' = \inv{m(B)} \iiint_{B'} \mb{P}' - \mb{P}_0' dm + \mb{P}_0'
+\]
+enak $\mb{P}_*' = \mb{P}_0' + Q(\mb{P}_* - \mb{P}_0)$ za $\mb{P}_*$, definiran s
+podobnim integralom.
+Podobno kot v diskretnem primeru lahko tudi tu izpeljemo
+\[
+  \dot{\mb{P}}_*' = \inv{m(B')} \iiint_{B'} \dot{\mb{P}}' dm.
+\]
+
+Vrtilno količino izračunamo kot
+\begin{align*}
+  \vec{l}'(\mb{P}_0')
+  &= \iiint_{B'} (\mb{P}' - \mb{P}_0') \times \partial_t (\mb{P}' - \mb{P}_0') dm' \\
+  &= \iiint_{B'} \pvec{\zeta}' \times (\pvec{\omega}' \times \pvec{\zeta}') dm' \\
+  &= \iiint_{B'} \abs{\pvec{\zeta}'}^2 \pvec{\omega}' - (\pvec{\zeta}' \cdot \pvec{\omega}') . \pvec{\zeta}' dm' \\
+  &= \iiint_{B'} \left(\abs{\pvec{\zeta}'}^2 I - \pvec{\zeta}' \otimes \pvec{\zeta}'\right) dm' \cdot \pvec{\omega}'.
+\end{align*}
+Iz tega dobimo definicijo prostorskega vztrajnostnega tenzorja
+\[
+  J'(\mb{P}_0') = \iiint_{B'} \left(\abs{\pvec{\zeta}'}^2 I - \pvec{\zeta}'
+	\otimes \pvec{\zeta}'\right) dm'
+  = \iiint_{B'} \abs{\mb{P}' - \mb{P}_0'}^2 I - (\mb{P}' - \mb{P}_0') \otimes
+  (\mb{P}' - \mb{P}_0') dm'.
+\]
+Podobno definiramo telesni vztrajnostni tenzor, izračunamo lahko $J' = Q J Q^T$.
+Vztrajnostni tenzor je simetričen, poleg tega pa ga lahko diagonaliziramo
+\[
+  J(\mb{P}_0') = \sum_{i=1}^3 J_i \vec{w}_i \otimes \vec{w}_i,
+\]
+kjer so $J_i$ \pojem{glavne} (lastne) vrednosti.
+
+\begin{trditev}
+  Vztrajnostni tenzor je nenegativen.
+  Če $B$ ni tanka palica, je pozitivno definiten.
+\end{trditev}
+
+\begin{proof}
+  Trdimo, da je $\vec{e} \cdot J \vec{e} \ge 0$ za enotski $\vec{e}$.
+  Po Cauchy-Schwarzu velja
+  \[
+	\iiint_B \abs{\vec{\zeta}}^2 - (\vec{e} \cdot \vec{\zeta})^2 dm \ge 0
+  \]
+  natanko tedaj, ko je $\vec{e}$ vzporeden $\vec{\zeta}$, kar se zgodi le, če je
+  $B$ tanka palica.
+\end{proof}
+
+\vprasanje{Definiraj vztrajnostni tenzor in dokaži, da je pozitivno definiten.}
+
+\begin{trditev}
+  Normala na ravnino zrcalne simetrije telesa je glavna smer vztrajnostnega
+  tenzorja s polom na tej ravnini.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $\vec{e}$ ta normala.
+  Trdimo $J(\mb{P}_0) \vec{e} = J \vec{e}$ za neko lastno vrednost $J$.
+  To je ekvivalentno temu, da je deviator
+  \[
+	D \vec{e} = \vec{\zeta} \otimes \vec{\zeta} \vec{e}
+  \]
+  vzporeden $\vec{e}$.
+  Naj bo $\vec{f} \bot \vec{e}$ in izračunajmo
+  \[
+	\vec{f} \cdot D \vec{e}
+	= \iiint_B \vec{f} \cdot \vec{\zeta} . \vec{e} \cdot \vec{\zeta} dm
+	= \iiint_B \vec{f} \cdot \pvec{\zeta}' . \vec{e} \cdot \pvec{\zeta}' dm
+  \]
+  za zrcalno sliko $\pvec{\zeta}'$.
+  Izračunamo lahko, da velja $\vec{e} \cdot \pvec{\zeta}' = - \vec{e} \cdot
+  \vec{\zeta}$ in $\vec{f} \cdot \pvec{\zeta}' = \vec{f} \cdot \vec{\zeta}$,
+  torej velja $\vec{f} \cdot D \vec{e} = 0$.
+\end{proof}
+
+\begin{trditev}
+  Naj ima $B$ dve ravnini simetrije z normalama $\vec{e}_1$ in $\vec{e}_2$.
+  Potem ima $J(\mb{P}_0)$, kjer je $\mb{P}_0$ v preseku obeh ravnin, glavne
+  smeri $\vec{e}_1, \vec{e_2}, \vec{e}_1 \times \vec{e}_2$.
+\end{trditev}
+
+\vprasanje{Kaj lahko poveš o vztrajnostnemu tenzorju, če ima eno ali dve ravnini
+  zrcalne simetrije? Dokaži.}
