@@ -11,3 +11,78 @@ tudi
   m \ddot{\mb{P}}_* = \sum_{i=1}^N \vec{F}_i
 \]
 za zunanje sile $\vec{F}_i$.
+Za vsako točko velja
+\[
+  m_i \ddot{\mb{P}}_i = \vec{F}_i + \sum_{j \ne i} \vec{F}_{ji}
+\]
+Če to z leve vektorsko pomnožimo s $\mb{P}_i - \mb{O}$ in seštejemo po $i$,
+dobimo
+\[
+  \sum_{i=1}^N (\mb{P}_i - \mb{O}) \times m_i \ddot{\mb{P}}_i
+  = \sum_{i=1}^N (\mb{P}_i - \mb{O}) \times \vec{F}_i + \sum_{i=1}^N \sum_{j \ne
+  i} (\mb{P}_i - \mb{O}) \times \vec{F}_{ji}.
+\]
+Prvi člen predstavlja rezultanto navora zunanjih sil, drugi pa rezultanto navora
+notranjih sil.
+Če definiramo vrtilno količino $\vec{l}(\mb{O}, \mb{P}_i) = (\mb{P}_i - \mb{O})
+\times m_i \dot{\mb{P}}_i$ in $\vec{l} = \sum_i \vec{l}(\mb{O}, \mb{P}_i)$,
+lahko torej zapišemo
+\[
+  \dot{\vec{l}} = \vec{N}(\mb{O}) + \vec{N}_*(\mb{O}).
+\]
+
+\begin{definicija}
+  Sila $\vec{F}_{ji}$ je \pojem{centralna}, če je oblike
+  \[
+	\vec{F}_{ji} = F_{ji}(\abs{\mb{P}_i - \mb{P}_j}) \normiran{\mb{P}_i -
+	  \mb{P}_j}.
+  \]
+\end{definicija}
+
+\begin{trditev}
+  Če so vse notranje sile centralne, je navor notranjih sil enak $0$.
+\end{trditev}
+
+\begin{proof}
+  Zapišemo
+  \[
+	\sum_i \sum_j (\mb{P}_i - \mb{O}) \times \vec{F}_{ji}
+	= \pol (\sum_i \sum_j (\mb{P}_i - \mb{O}) \times \vec{F}_{ji}
+	+ \sum_j \sum_i (\mb{P}_j - \mb{O}) \times \vec{F}_{ij}).
+  \]
+  To razpišemo in dobimo $0$.
+\end{proof}
+
+\begin{izrek}[Izrek o vrtilni količini]
+  Če so vse notranje sile centralne, je odvod vrtilne količine enak rezultanti
+  navora zunanjih sil, $\dot{\vec{l}}(\mb{O}) = \vec{N}(\mb{O})$.
+  Pri tem predpostavimo, da je pol $\mb{O}$ fiksna točka.
+\end{izrek}
+
+\vprasanje{Povej in dokaži izrek o vrtilni količini.}
+
+Če je $\mb{P}_0$ poljubna točka, lahko izračunamo
+\[
+  \vec{l}(\mb{P}_0) = \vec{l}(\mb{O}) + m (\mb{O} - \mb{P}_0) \times
+  \dot{\mb{P}}_*.
+\]
+V nadaljevanju predpostavimo, da so vse notranje sile centralne.
+Če zgornjo enačbo odvajamo, dobimo
+\[
+  \dot{\vec{l}}(\mb{P}_0) = \vec{l}(\mb{P}_0) - \dot{\mb{P}}_0 \times m
+  \dot{\mb{P}}_*.
+\]
+Izrek o vrtilni količini torej ohrani obliko za premikajoč pol, če velja:
+\begin{itemize}
+\item $\dot{\mb{P}}_0 = \vec{0}$,
+\item $\dot{\mb{P}}_* = \vec{0}$,
+\item $\mb{P}_0 = \mb{P}_*$.
+\end{itemize}
+
+\vprasanje{Za katere pole izrek o vrtilni količini ohranja obliko?}
+
+Če je sistem zaprt, velja $\vec{F} = 0$, iz česar dobimo $\vec{N} = 0$.
+Sklepamo, da se masno središče giblje premočrtno s konstantno hitrostjo, in da
+je vrtilna količina konstanta.
+Dodatno je konstantna $m \dot{\mb{P}}_*$, torej velja izrek o ohranitvi gibalne
+količine.
