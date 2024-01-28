@@ -278,3 +278,135 @@ Podobno lahko naredimo za rotacijo okoli stalne osi $\vec{e}$
 
 \vprasanje{Izpelji Eulerjeve dinamične enačbe v lastnem koordinatnem sistemu in
   za rotacijo okoli stalne osi.}
+
+Poznamo volumenske sile $(B_1, \vec{f}_1)$, za katero velja
+\[
+  \vec{F}_1 = \iiint_{B_1} \vec{f}_1 dV.
+\]
+
+\begin{trditev}
+  Homogena volumenska sila je ekvivalentna točkovni sili s prijemališčem v
+  masnem središču.
+\end{trditev}
+
+\begin{proof}
+  Za silo je očitno, za navor pa velja
+  \[
+	\vec{N}(\mb{O})
+	= \iiint_B (\mb{P} - \mb{O}) \times \vec{f} dm
+	= \left( \iiint_B \mb{P} - \mb{O} dm \right) \times \vec{f}
+	= (\mb{P}_* - \mb{O}) \times \vec{F}.
+  \]
+\end{proof}
+
+Za odvod kinetične energije velja
+\[
+  \partial_t T
+  = m \dot{\mb{P}}_*' \cdot \ddot{\mb{P}}_*' + \vec{\omega} \cdot J_*
+  \dot{\vec{\omega}}
+  = \dot{\mb{P}}_*' \cdot \pvec{F}' + \pvec{\omega}' \cdot \pvec{N}_*',
+\]
+kjer smo upoštevali Eulerjeve dinamične enačbe.
+Recimo, da je $\vec{F}$ volumenska sila, in da velja $\pvec{f}' = - \grad u$.
+Definiramo
+\[
+  U = \iiint_{B'} u(\mb{P}') dm'
+\]
+in računamo
+\[
+  \partial_t U
+  = \iiint_{B'} \partial_t u(\mb{P}') dm'
+  = \iiint_{B'} \grad u \cdot \dot{\mb{P}}' dm
+  = - \iiint_B \pvec{f}' \cdot (\dot{\mb{P}}_*' + \pvec{\omega} \times (\mb{P}'
+  - \mb{P}_*')) dm
+\]
+Sedaj ciklično zamenjamo člene mešanega produkta v drugem členu, do
+\[
+  \partial_t U
+  = - \pvec{f}' \cdot \dot{\mb{P}}_*'
+  - \iiint_{B'} \pvec{\omega} \cdot ((\mb{P}' - \mb{P}_*') \times \pvec{f}') dm
+  = - \pvec{f}' \cdot \dot{\mb{P}}_*' - \pvec{\omega}' \cdot \pvec{N}_*'.
+\]
+Torej je $T + U$ konstantna.
+To je izrek o energiji za togo telo.
+
+\vprasanje{Izpelji izrek o energiji za togo telo.}
+
+\begin{definicija}
+  Telo $B_1$ se kotali po $B_2$, če imata telesi v dotikališču enako hitrost.
+\end{definicija}
+
+\podnaslov{Prosta vrtavka}
+
+Vrtavka je prosta, če je $\pvec{F}' = 0$ in $\pvec{N}' = 0$.
+Eulerjeve dinamične enačbe imajo tedaj obliko
+\begin{gather*}
+  J_1 \dot{\omega}_1 - \omega_2 \omega_3 (J_2 - J_3) = 0, \\
+  J_2 \dot{\omega}_2 - \omega_1 \omega_3 (J_3 - J_1) = 0, \\
+  J_3 \dot{\omega}_3 - \omega_1 \omega_2 (J_1 - J_2) = 0.
+\end{gather*}
+Enačba ima več rešitev:
+\begin{itemize}
+\item Trivialna: $\omega_1 = \omega_2 = \omega_3 = 0$
+\item Enakomerno vrtenje okoli ene osi: $\omega_1 = \omega_2 = 0$, $\omega_3 = \text{konst.}$.
+\item Netrivialne rešitve
+\end{itemize}
+
+Če je vrtavka simetrična, $J_1 = J_2$, je $\omega_3$ konstantna, in velja
+\begin{gather*}
+  \dot{\omega}_1 - \frac{\omega_3 (J_1 - J_3)}{J_1} \omega_2 = 0 \\
+  \dot{\omega}_2 - \frac{\omega_3 (J_3 - J_1)}{J_1} \omega_1 = 0
+\end{gather*}
+Za $\Omega = \omega_3 (J_1 - J_3) / J_1$ je rešitev sistema
+\begin{gather*}
+  \omega_1 = A \cos(\Omega t - \delta) \\
+  \omega_2 = - A \sin(\Omega t - \delta)
+\end{gather*}
+Vektor $\vec{\omega}$ torej precesira s kotno hitrostjo $\Omega$ okoli tretje
+osi.
+
+\vprasanje{Reši prosto simetrično vrtavko.}
+
+Če se preselimo v koordinatni sistem, v katerem je $J$ diagonalen, velja $l_i =
+J_i \omega_i$.
+Velja $l^2 = l_1^2 + l_2^2 + l_3^2 = \text{konst.}$ in
+\[
+  T = \pol J_1 \omega_1^2 + \pol J_2 \omega_2^2 + \pol J_3 \omega_3^2
+  = \frac{l_1^2}{2 J_1} + \frac{l_2^2}{2 J_2} + \frac{l_3^2}{2 J_3}.
+\]
+Iz tega dobimo
+\[
+  1 = \frac{l_1^2}{2 T J_1} + \frac{l_2^2}{2 T J_2} + \frac{l_3^2}{2 T J_3},
+\]
+čemur pravimo \pojem{Binetov elipsoid}.
+Vektor $\vec{\omega}$ leži na preseku sfere $\abs{\vec{l}} = l$ in Binetovega
+elipsoida.
+Če uredimo $J_1 \le J_2 \le J_3$, dobimo $1 \le l^2 / (2 T J_1)$, torej za polos
+velja $a_1 \le l$.
+Podobno dobimo $a_3 \ge l$.
+Če je rotacija le okoli največje ali najmanjše osi, se sfera in elipsoid
+dotikata v točki; za malo zmoten elipsoid imamo v preseku dve krožnici.
+Za srednjo polos pa majhna perturbacija elipsoida razklene točko v dve krivulji,
+ki prideta daleč od točke.
+Enakomerna rotacija okoli srednje osi je torej nestabilna.
+
+\vprasanje{Analiziraj stabilnost enakomerne rotacije proste vrtavke.}
+
+\podnaslov{Eulerjevi koti}
+
+Rotacijo predstavimo kot kompozitum rotacij
+\[
+  R = R(\pvec{k}'', \psi) R(\pvec{i}', \theta) R(\vec{k}, \varphi).
+\]
+
+\begin{lema}
+  Za $\pvec{f}' = R(\vec{e}, \varphi) \vec{f}$ velja $R(\pvec{f}, \psi)
+  R(\vec{e}, \varphi) = R(\vec{e}, \varphi) R(\vec{f}, \varphi)$.
+\end{lema}
+
+\begin{trditev}
+  Velja $R(\pvec{k}'', \psi) R(\pvec{i}', \theta) R(\vec{k}, \varphi) =
+  R(\vec{k}, \varphi) R(\vec{i}, \theta) R(\vec{k}, \psi)$.
+\end{trditev}
+
+Dokaz za lemo in trditev je preprost račun.
