@@ -410,3 +410,115 @@ Rotacijo predstavimo kot kompozitum rotacij
 \end{trditev}
 
 Dokaz za lemo in trditev je preprost račun.
+
+\begin{trditev}
+  Vsako rotacijo, ki ni rotacija okoli osi $\vec{k}$, lahko enolično napišemo z
+  Eulerjevo rotacijo s koti $\theta, \varphi, \psi \in [0, 2 \pi)$.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $\vec{\varepsilon}_1, \vec{\varepsilon}_2, \vec{\varepsilon}_3$ rotiran
+  koordinatni sistem.
+  Za vozliščnico $\vec{k} \times \vec{\varepsilon}_3 = \vec{e}$ definiramo kote
+  \begin{itemize}
+  \item $\varphi$ je kot med $\vec{i}$ in $\vec{e}$,
+  \item $\psi$ je kot med $\vec{e}$ in $\vec{\varepsilon}_1$,
+  \item $\theta$ je kot med $\vec{k}$ in $\vec{\varepsilon}_3$.
+  \end{itemize}
+  Za dokaz enoličnosti pogledamo delovanje preslikave
+  \[
+	R(\vec{i}, \theta_1) = R(\vec{k}, \varphi_2 - \varphi_1) R(\vec{i},
+	\theta_2) R(\vec{k}, \psi_2 - \psi_1)
+  \]
+  na vektorjih $\vec{i}$ in $\vec{k}$.
+\end{proof}
+
+\vprasanje{Dokaži, da se lahko vsako rotacijo zapiše na enoličen način z
+  Eulerjevimi rotacijami.}
+
+\begin{trditev}
+  Vektor kotne hitrosti Eulerjeve rotacije je $\pvec{\omega}' = \dot{\varphi}
+  \vec{k} + \dot{\theta} \pvec{i}' + \dot{\psi} \pvec{k}''$.
+\end{trditev}
+
+\begin{proof}
+  Označimo $R = R(\vec{k}, \varphi) R(\vec{i}, \theta) R(\vec{k}, \psi) = R_1
+  R_2 R_3$.
+  Po definiciji kotne hitrosti je
+  \begin{align*}
+	\dot{R} \vec{a}
+	&= \pvec{\omega}' \times R \vec{a} \\
+	&= (\dot{R}_1 R_2 R_3 + R_1 \dot{R}_2 R_3 + R_1 R_2 \dot{R}_3) \vec{a} \\
+	&= \pvec{\omega}_1' \times R_1 R_2 R_3 \vec{a}
+	  + R_1 (\pvec{\omega}_2' \times R_2 R_3 \vec{a})
+	  + R_1 R_2 (\pvec{\omega}_3' \times R_3 \vec{a}) \\
+	&= (\pvec{\omega}_1' + R_1 \pvec{\omega}_2' + R_1 R_2 \pvec{\omega}_3')
+	  \times R \vec{a}.
+  \end{align*}
+  Sledi
+  \begin{align*}
+	\pvec{\omega}'
+	&= \pvec{\omega}_1' + R_1 \pvec{\omega}_2' + R_1 R_2 \pvec{\omega}_3' \\
+	&= \dot{\varphi} \vec{k} + R_1 \dot{\theta} \vec{i} + R_2' R_1 \dot{\phi} \vec{k} \\
+	&= \dot{\varphi} \vec{k} + \dot{\theta} \pvec{i}' + \dot{\psi} \pvec{k}''.
+  \end{align*}
+\end{proof}
+
+\vprasanje{Kako izraziš vektor kotne hitrost Eulerjeve rotacije? Dokaži.}
+
+Če razpišemo $\pvec{k}''$, $\pvec{i}'$ in $\pvec{j}'$, dobimo
+\[
+  \pvec{\omega}'
+  = (\dot{\theta} \cos \varphi + \dot{\psi} \sin \varphi \sin \theta) \vec{i}
+  + (\dot{\theta} \sin \varphi - \dot{\psi} \cos \varphi \sin \theta) \vec{j}
+  + (\dot{\varphi} + \dot{\psi} \cos \theta) \vec{k},
+\]
+po drugi strani pa je $\pvec{\omega}' = Q \vec{\omega}$.
+Za rotacijo $Q$ velja
+\[
+  \vec{\omega}(Q) \times \vec{a} = Q^T \dot{Q} \vec{a} = - \dot{Q}^T Q \vec{a}
+  = - \pvec{\omega}'(Q^T) \times Q^T Q \vec{a} = - \pvec{\omega}'(Q^T) \times \vec{a},
+\]
+torej $\vec{\omega}(Q) = - \pvec{\omega}'(Q^T)$.
+Sledi
+\[
+  \vec{\omega}
+  = (\dot{\theta} \cos \psi + \dot{\varphi} \sin \theta \sin \psi) \vec{i}
+  + (- \dot{\theta} \sin \psi + \dot{\varphi} \sin \theta \cos \psi) \vec{j}
+  + (\dot{\psi} + \dot{\varphi} \cos \theta) \vec{k}
+\]
+oziroma
+\[
+  \pvec{\omega}'
+  = (\dot{\theta} \cos \psi + \dot{\varphi} \sin \theta \sin \psi) \vec{\varepsilon}_1
+  + (- \dot{\theta} \sin \psi + \dot{\varphi} \sin \theta \cos \psi) \vec{\varepsilon}_2
+  + (\dot{\psi} + \dot{\varphi} \cos \theta) \vec{\varepsilon}_3,
+\]
+kjer je $\vec{\varepsilon}_1 = \pvec{i}'''$ in podobno za drugi komponenti.
+
+\vprasanje{Izpelji predpis za $\pvec{\omega}'$ v rotirani bazi.}
+
+\begin{trditev}
+  Ne obstaja parametrizacija $SO(3)$, da je $\pvec{\omega}' = \dot{\vec{x}}$.
+\end{trditev}
+
+\begin{proof}
+  Če bi obstajala taka parametrizacija $\vec{x} = \vec{x}(\vec{y}) =
+  \vec{x}(\varphi, \theta, \psi)$, potem velja
+  \[
+	\pvec{\omega}' = \dot{\vec{x}} = \frac{\partial \vec{x}}{\partial \vec{y}}
+	\dot{\vec{y}} =
+	\begin{bmatrix}
+	  \sin \theta \sin \psi & \cos \psi & 0 \\
+	  \sin \theta \cos \psi & - \sin \psi & 0 \\
+	  \cos \theta & 0 & 1
+	\end{bmatrix}
+	\dot{\vec{y}}.
+  \]
+  Računamo lahko
+  \begin{align*}
+	\frac{\partial^2 x_1}{\partial y_1 \partial y_2} = \cos \theta \sin \psi
+	&& \frac{\partial^2 x_1}{\partial y_2 \partial y_1} = 0.
+  \end{align*}
+  To ne mora biti res.
+\end{proof}
