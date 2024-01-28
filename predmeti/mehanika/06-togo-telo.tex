@@ -170,3 +170,111 @@ kjer so $J_i$ \pojem{glavne} (lastne) vrednosti.
 
 \vprasanje{Kaj lahko poveš o vztrajnostnemu tenzorju, če ima eno ali dve ravnini
   zrcalne simetrije? Dokaži.}
+
+Če razpišemo predpis za tenzorski produkt z uporabo $\mb{P} - \mb{P}_0 = (\mb{P}
+- \mb{P}_*) + (\mb{P}_* - \mb{P}_0)$, dobimo
+\[
+  J(\mb{P}_0) = J(\mb{P}_*) + m \abs{\mb{P}_* - \mb{P}_0}^2 I - m (\mb{P}_* -
+  \mb{P}_0) \otimes (\mb{P}_* - \mb{P}_0).
+\]
+Tej formuli pravimo \pojem{Steinerjev izrek}.
+
+\vprasanje{Kaj pravi Steinerjev izrek?}
+
+Za kinetično energijo razpišemo
+\[
+  T = \pol \iiint_{B'} \abs{\dot{\mb{P}}'}^2 dm',
+\]
+pri čemer upoštevamo $\dot{\mb{P}}' = \dot{\mb{P}}_*' + \pvec{\omega}' \times
+(\mb{P}' - \mb{P}_*')$, ker se telo ne giblje v svojem sistemu in je zato $Q
+\dot{\mb{P}} = 0$.
+Na koncu dobimo
+\[
+  T = \pol m \abs{\dot{\mb{P}}_*'}^2 + \pol \vec{\omega} \cdot J(\mb{P}_*)
+  \vec{\omega}.
+\]
+
+\vprasanje{Izpelji predpis za kinetično energijo togega telesa.}
+
+Pri dinamiki togega telesa imamo tri principe:
+\begin{itemize}
+\item $m \ddot{\mb{P}}_*' = \vec{F}_{\text{zun}}'$ (enačba gibanja masnega
+  središča)
+\item $\partial_t \pvec{l}'(\mb{P}_*') = \pvec{N}'(\mb{P}_*')$ (princip o
+  vrtilni količini)
+\item $\pvec{N}'(\mb{P}_0') = \pvec{N}'(\mb{P}_*') + (\mb{P}_*' - \mb{P}_0')
+  \times \vec{F}_{\text{zun}}'$
+\end{itemize}
+
+\begin{izrek}
+  Naj bo $\mb{P}_0'$ točka trenutnega ali stalnega mirovanja togega telesa.
+  Potem velja $\partial_t \pvec{l}'(\mb{P}_0') = \pvec{N}'(\mb{P}_0')$.
+\end{izrek}
+
+\begin{proof}
+  Računamo
+  \begin{align*}
+	\pvec{l}'(\mb{P}_0')
+	&= Q \vec{l}(\mb{P}_0) \\
+	&= Q J(\mb{P}_0) \vec{\omega} \\
+	&= Q(J(\mb{P}_*) + m \abs{\mb{P}_0 - \mb{P}_*}^2 I -
+	  m (\mb{P}_0 - \mb{P}_*) \otimes (\mb{P}_0 - \mb{P}_*)) \vec{\omega} \\
+	&= Q \vec{l}(\mb{P}_*) + m \abs{\mb{P}_0 - \mb{P}_*}^2 \pvec{\omega}
+	  - m((\mb{P}_0 - \mb{P}_*) \cdot \vec{\omega}) . (\mb{P}_0' - \mb{P}_*') \\
+	&= \pvec{l}'(\mb{P}_*') + m ((\mb{P}_0' - \mb{P}_*') \times \pvec{\omega}')
+	  \times (\mb{P}_0' - \mb{P}_*') \\
+	&= \pvec{l}'(\mb{P}_*') + m \dot{\mb{P}}_*' \times (\mb{P}_0 - \mb{P}_*).
+  \end{align*}
+  Zadnji sklep uporabi dejstvo $\dot{\mb{P}}_*' = \dot{\mb{P}}_0' +
+  \pvec{\omega}' \times (\mb{P}_*' - \mb{P}_0')$, ki ga dobimo z odvajanjem
+  $\mb{P}_*' = \mb{P}_0' + Q(\mb{P}_* - \mb{P}_0)$.
+  Upoštevamo še dejstvo, da je $\dot{\mb{P}}_0' = 0$, ker je to točka trenutnega
+  mirovanja.
+  Zgornjo enakost nato še odvajamo do
+  \begin{align*}
+	\partial_t \pvec{l}'(\mb{P}_0')
+	&= \pvec{N}'(\mb{P}_*') + m \ddot{\mb{P}}_*' \times (\mb{P}_0 - \mb{P}_*)
+	  + m \dot{\mb{P}}_*' \times (- \dot{\mb{P}}_*') \\
+	&= \pvec{N}'(\mb{P}_*') + (\mb{P}_*' - \mb{P}_0') \times \pvec{F}_{\text{zun}}' \\
+	&= \pvec{N}'(\mb{P}_0').
+  \end{align*}
+\end{proof}
+
+Navor okoli masnega središča ali navor okoli točke mirovanja lahko razpišemo v
+\begin{align*}
+  \pvec{N}'(\mb{P}_*')
+  &= \partial_t \pvec{l}'(\mb{P}_*') \\
+  &= \partial_t (Q J(\mb{P}_*) \vec{\omega}) \\
+  &= \dot{Q} J(\mb{P}_*) \vec{\omega}
+	+ Q J(\mb{P}_*) \dot{\vec{\omega}} \\
+  &= \pvec{\omega}' \times Q J(\mb{P}_*) \vec{\omega}
+	+ Q J(\mb{P}_*) \dot{\vec{\omega}} \\
+  &= Q (\vec{\omega} \times J(\mb{P}_*) \vec{\omega}
+	+ J(\mb{P}_*) \dot{\vec{\omega}}).
+\end{align*}
+Iz tega dobimo Eulerjeve dinamične enačbe
+\[
+  \vec{N}(\mb{P}_*) = J(\mb{P}_*) \dot{\vec{\omega}} + \vec{\omega} \times
+  J(\mb{P}_*) \vec{\omega}.
+\]
+Enako dobimo za točko trenutnega mirovanja.
+
+\vprasanje{Izpelji Eulerjeve dinamične enačbe. Dokaži, da delujejo tudi v točki
+  mirovanja.}
+
+V lastnem KS vztrajnostnega je $J$ diagonalen.
+Dobimo
+\begin{gather*}
+  J_1 \dot{\omega}_1 - \omega_2 \omega_3 (J_2 - J_3) = N_1 \\
+  J_2 \dot{\omega}_2 - \omega_1 \omega_3 (J_3 - J_1) = N_2 \\
+  J_3 \dot{\omega}_3 - \omega_1 \omega_2 (J_1 - J_2) = N_3
+\end{gather*}
+Podobno lahko naredimo za rotacijo okoli stalne osi $\vec{e}$
+\begin{gather*}
+  J_{13} \ddot{\varphi} - J_{23} \dot{\varphi}^2 = N_1 \\
+  J_{23} \ddot{\varphi} + J_{13} \dot{\varphi}^2 = N_2 \\
+  J_{33} \ddot{\varphi} = N_3.
+\end{gather*}
+
+\vprasanje{Izpelji Eulerjeve dinamične enačbe v lastnem koordinatnem sistemu in
+  za rotacijo okoli stalne osi.}
