@@ -1,5 +1,5 @@
 predmeti := testnipredmet verjetnost mehanika analiza3 uvodvnumericnemetode
-ksl := testniksl mehanika verjetnost integriranje diferencialne-enacbe
+ksl := testniksl mehanika verjetnost integriranje diferencialne-enacbe uvodvnumericnemetode
 
 latex-cmd := lualatex --shell-escape
 

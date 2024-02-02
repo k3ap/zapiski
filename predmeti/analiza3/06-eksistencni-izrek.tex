@@ -18,8 +18,8 @@
   za vsak $x_0$.
   Rešitev $\varphi(t)$ obstaja na $[t_0 - a', t_0 + a']$ za nek $a' \le a$.
   Še več: za družino začetnih problemov $\dot{x} = F(t, x), x(t_0) = \hat{x}$,
-  kjer je $\norm{x_0 - \hat{x}}$ dovolj majhno, obstajata $0 < a'' \le a$ in
-  funkcija $g(t, x) : \mathcal{C}_{a,b} \to \R^n$, za katero velja
+  kjer je $\norm{x_0 - \hat{x}}$ dovolj majhno, obstajata $0 < a' \le a$ in
+  funkcija $g(t, x) : \mathcal{C}_{a',b'} \to \R^n$, za katero velja
   \begin{itemize}
   \item je zvezna na obe spremenljivki,
   \item $\partial_t g(t, x) = F(t, x)$,
@@ -36,7 +36,7 @@ enačbi
 \]
 Dokaz bo uporabil Picardov operator
 \[
-  Af(x) = x_0 + \int_{x_0}^t F(\tau, f(\tau)) d\tau
+  Af(x) = x_0 + \int_{t_0}^t F(\tau, f(\tau)) d\tau
 \]
 na posebnem funkcijskem prostoru.
 
@@ -85,7 +85,7 @@ x+h(t,x)), h(t_0, x) = 0$.
 
 Definiramo
 \[
-  M = \{ h(t, x) : \mathcal{C}_{a',b'} \to \R^n \such h \text{zvezna},
+  M = \{ h(t, x) : \mathcal{C}_{a',b'} \to \R^n \such h\,\text{zvezna},
   \norm{h(t,x)} \le C \abs{t-t_0} \}.
 \]
 Te preslikave zavzemajo vrednosti v stožcu $K_0$.
@@ -130,7 +130,7 @@ To naredimo z indukcijo na $n$.
 Pri $n = 0$ to očitno velja, indukcijski korak pa pokažemo z računom
 \[
   \norm{h_{n+1}(t,x)}
-  = \norm{ \int_{t-0}^t F(\tau, x+h_n(\tau,x)) d\tau }
+  = \norm{ \int_{t_0}^t F(\tau, x+h_n(\tau,x)) d\tau }
   \le \int_{t_0}^t \norm{F(\tau, x+h_n(\tau,x))} d\tau.
 \]
 Po indukcijski predpostavki vemo, da točka $h_n(t,x)$ leži v $K_0$ za vsak

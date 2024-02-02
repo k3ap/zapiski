@@ -5,7 +5,7 @@ Naj bo NDE prvega reda podana implicitno,
   F(x, y, y') = 0.
 \]
 Denimo, da $y'$ ne moramo eksplicitno izraziti z $x, y$, ali pa je ekspliciten
-izraz nepriraven.
+izraz nepripraven.
 Na $F$ poglejmo nekoliko drugače; vsaka dovolj lepa funkcija treh spremenljivk
 podaja družino ploskev, $F(\xi, \eta, \zeta) = C$ je implicitna enačba ploskve v
 $\R^3$ za vsak $C \in \R$.
@@ -22,7 +22,7 @@ Za poljubno rešitev $t \mapsto (x(t), y(t))$ velja $\dot{y} = y' \dot{x}$, tore
 za $\varphi(t) = x(t)$ in $\psi(t) = y'(t)$ dobimo $\dot{y} = \chi
 \dot{\varphi}$, oziroma
 \[
-  y(t) = \int_0^t \chi(\tau) \dot{\varphi(\tau)} d\tau.
+  y(t) = \int_0^t \chi(\tau) \dot{\varphi}(\tau) d\tau.
 \]
 Dobimo parametrično izraženo rešitev $t \mapsto (\varphi(t), y(t))$.
 
@@ -73,7 +73,7 @@ Velja $dy = y' dx$, iz česar izpeljemo
 \]
 Če je $\varphi(v) \ne v$, dobimo
 \[
-  (\phi(v) - v) \frac{du}{dv} + u \varphi'(v) + \psi'(v) = ,
+  (\phi(v) - v) \frac{du}{dv} + u \varphi'(v) + \psi'(v) = 0,
 \]
 kar je linearna diferencialna enačba prvega reda, če pa je $\varphi(v) = v$, pa
 imamo Clairontovo enačbo
@@ -130,7 +130,7 @@ tej točki, torej je
   \begin{bmatrix}
 	\dot{x} \\ \dot{y}
   \end{bmatrix}
-  \bot
+  \parallel
   \begin{bmatrix}
 	\partial_C x \\ \partial_C y
   \end{bmatrix}
