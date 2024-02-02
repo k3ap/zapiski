@@ -1,0 +1,273 @@
+\naslov{Predstavljivost števil}
+
+\newcommand{\nan}{\text{nan}}
+
+Množica predstavljivih števil $P(b, t, L, U)$ vsebuje vsa števila oblike
+\[
+  \pm 0, c_1 c_2 \ldots c_t \cdot b^e,
+\]
+kjer je $L \le e \le U$ in $c_i \in \{0, \ldots, b-1\}$.
+Dovoljena so tudi števila $0$, $\infty$, $-\infty$ ter $\nan$.
+Števila so lahko normalizirana ali denormalizirana; pri prvem tipu velja $c_1
+\ne 0$.
+Denormalizirana števila so dovoljena le, če se tega števila ne mora zapisati v
+normalizirani obliki.
+Običajen \verb+float+ je razreda $P(2, 24, -125, 128)$, \verb+double+ pa $P(2,
+53, -1021, 1023)$.
+
+Najbližje predstavljivo število številu $x$ v neki množici zapišemo s $\fl(x)$.
+Napako operacij lahko izračunamo kot \pojem{absolutno napako} $d_a = \hat{x} -
+x$ in \pojem{relativno napako} $d_r = d_a / x$.
+Pri ocenjevanju lahko uporabimo dejstvo
+\[
+  \frac{\abs{\fl{x} - x}}{\abs{x}} \le u = \pol b^{1-t}.
+\]
+Standard IEEE zagotavlja omejeno napako pri osnovnih operacijah,
+\begin{itemize}
+\item $\fl{x \oplus y} = (x \oplus y)(1+\delta)$ za $\abs{\delta} \le u$ in
+  osnovne operacije $+, -, \cdot, /$,
+\item $\fl{\sqrt{x}} = \sqrt{x} (1+\delta)$ za $\abs{\delta} \le u$.
+\end{itemize}
+
+\naslov{Nelinearne enačbe}
+
+Če iščemo ničlo funkcije $f(x)$ na nekem intervalu, lahko uporabimo bisekcijo
+ali katero od iteracijskih metod.
+V splošnem je problem za večkratne ničle bolj občutljiv, za $m$-kratno ničlo v
+splošnem velja
+\[
+  \abs{x - \alpha} \le {\left( \frac{m!\,\varepsilon}{\abs{f^{(m)}(\alpha)}}
+  \right)}^{1/m},
+\]
+če je $\abs{f(x)} \le \varepsilon$.
+
+Pri navadni iteraciji iščemo fiksno točko dane funkcije $g$ pri nekem začetnem
+približku, s postopkom $x_{r+1} = g(x_r)$.
+Da bo postopek konvergiral, mora biti $g$ v okolici fiksne točke skrčitev.
+Dovolj je že, da je $\abs{g'(\alpha)} < 1$ in $g$ zvezno odvedljiva.
+Če vemo, da je $g$ Lipschitzova s konstanto $L < 1$, lahko ocenimo
+\[
+  \abs{x_r - \alpha} \le L^r \abs{x_0 - \alpha}
+\]
+oziroma
+\[
+  \abs{x_{r+1} - \alpha} \le \frac{L}{1 - L} \abs{x_{r+1} - x_r},
+\]
+kjer je $\alpha$ fiksna točka.
+Interval konvergence lahko torej določamo s pomočjo odvoda (izračunamo, kje je
+$\abs{g'} < 1$), vendar nam to ne da vedno celotnega intervala.
+Drug način je, da direktno dokažemo, kakšna je limita zaporedja $(x_r)_r$.
+Vizualno si lahko pomagamo s pajčevinastim diagramom.
+
+Pri konvergenci poznamo tudi \pojem{red}.
+To je število $p$, za katerega velja
+\[
+  \lim_{r \to \infty} \frac{\abs{x_{r+1} - \alpha}}{\abs{x_r - \alpha}^{p}} = C
+\]
+za neko konstanto $C > 0$.
+Zadosten pogoj za red $p$ je, da velja $g'(\alpha) = \cdots = g^{(p-1)}(\alpha)
+= 0$ ter $g^{(p)} \ne 0$.
+Višji kot je red, boljša je metoda.
+
+Če iščemo ničlo funkcije $f$ in želimo zagotoviti red $2$ (za enostavno ničlo),
+lahko uporabimo \pojem{tangentno metodo}
+\[
+  g(x) = x - \frac{f(x)}{f'(x)}.
+\]
+Če je $f$ vsaj dvakrat odvedljiva in $\alpha$ ničla kratnosti $m$, potem za $g$
+iz tangentne metode velja
+\[
+  \lim_{x \to \alpha} g'(x) = 1 - \inv{m}.
+\]
+Podobna je \pojem{sekantna metoda}, kjer imamo predpis
+\[
+  x_{r+1} = x_r - \frac{f(x_r) (x_r - x_{r-1})}{f(x_r) - f(x_{r-1})}.
+\]
+To pa sedaj ni navadna iteracija.
+
+Če imamo dano neko iteracijo
+\[
+  x_r = F(x_{r-1}, x_{r-2}, \ldots, x_{r-k}),
+\]
+in vemo, da postopek konvergira (npr.~če dokažemo, da je zaporedje omejeno in
+monotono), potem lahko limito izračunamo s pomočjo trika
+\[
+  \lim_{r \to \infty} x_r = \lim_{r \to \infty} x_{r+i},
+\]
+torej je limita $\alpha = F(\alpha, \alpha, \ldots, \alpha)$.
+
+\naslov{Matrične norme}
+
+\begin{definicija}
+  Preslikava $\norm{\cdot} : \C^{n \times n} \to \R$ je \pojem{matrična norma},
+  če velja
+  \begin{itemize}
+  \item $\norm{A} \ge 0$ in $\norm{A} = 0 \nt A = 0$,
+  \item $\norm{\alpha A} = \abs{\alpha} \norm{A}$,
+  \item $\norm{A + B} \le \norm{A} + \norm{B}$,
+  \item $\norm{A B} \le \norm{A} \norm{B}$.
+  \end{itemize}
+\end{definicija}
+
+Vsota absolutnih vrednosti vseh elementov matrike $N_1(A)$ in maksimum
+absolutnih vrednosti vseh elementov matrike $N_\infty(A)$ žal nista normi,
+2-norma vektorizirane matrike pa dejansko je;
+\[
+  \norm{A}_F = \sqrt{\sum_{i,j} \abs{a_{ij}}^2}.
+\]
+Velja $\norm{A}_F^2 = \sled (A^H A)$.
+Poleg tega je matrična norma tudi $\norm{A} = n N_\infty(A)$, kjer je $n$
+dimenzija matrike.
+Najbolj uporabne pa so operatorske norme; če je $\norm{\cdot}_v$ vektorska
+norma, je pripadajoča matrična norma
+\[
+  \norm{A}_m = \max_{x \ne 0} \frac{\norm{Ax}_v}{\norm{x}_v}.
+\]
+Pri tem je operatorska norma $\norm{A}_1$ enaka največji 1-normi stolpca matrike
+$A$, $\norm{A}_\infty$ pa največji 1-normi vrstice.
+Najbolj uporabna in najtežje izračunljiva je 2-norma, ki je enaka največji
+singularni vrednosti matrike (t.j.~korenu lastne vrednosti matrike $A^H A$).
+Za poljubno matrično normo in poljubno lastno vrednost $\lambda$ matrike $A$
+velja $\abs{\lambda} \le \norm{A}$.
+
+Računanje druge norme je snov predmeta NLA, lahko pa jo ocenimo z enim od
+\begin{gather*}
+  \inv{\sqrt{n}} \norm{A}_F \le \norm{A}_2 \le \norm{A}_F \\
+  \inv{\sqrt{n}} \norm{A}_1 \le \norm{A}_2 \le \sqrt{n} \norm{A}_1 \\
+  \inv{\sqrt{n}} \norm{A}_\infty \le \norm{A}_2 \le \sqrt{n} \norm{A}_\infty \\
+  \norm{A}_2 \le \sqrt{\norm{A}_1 \norm{A}_\infty} \\
+  N_\infty(A) \le \norm{A}_2 \le n N_\infty(A)
+\end{gather*}
+Za Frobeniusovo in drugo normo dodatno velja $\norm{A}_F = \norm{A^H}_F$ oziroma
+$\norm{A}_2 = \norm{A^H}_2$.
+
+\naslov{LU razcep}
+
+Če imamo dano nesingularno matriko $A$, jo lahko razcepimo v produkt $A = LU$,
+kjer je $L$ spodnje diagonalna z enicami na diagonali, in $U$ zgornje diagonalna
+matrika.
+Pri postopku definiramo matrike $L_k = I - l_k e_k^T$ z inverzom $L_k^{-1} = I +
+l_k e_k^T$, kjer je vektor $l_k$ definiran kot
+\[
+  l_k =
+  \begin{bmatrix}
+	0 \\ \vdots \\ 0 \\ 1 \\ \nicefrac{w_{k+1}}{w_k} \\ \vdots \\ \nicefrac{w_n}{w_k}
+  \end{bmatrix}.
+\]
+Pri tem je $w$ vektor, ki mu $L_k$ uniči vse komponente pod $k$-to.
+Matrika $L_{n-1} \ldots L_2 L_1 A = U$ je zgornje trikotne oblike.
+Potem je $L$ kar $L = L_1^{-1} L_2^{-1} \ldots L_{n-1}^{-1}$.
+Dobimo ga lahko kar tako, da zapišemo vektorje $l_k$ kot stolpce v matriko.
+Ker vemo, da ima $L$ na diagonali enice, jih lahko izpustimo, in zapišemo
+celoten razcep kar v eno matriko.
+Potem lahko sistem $Ax = b$ rešimo v dveh korakih z enostavno premo oz.~obratno
+substitucijo $L y = b$, $Ux = y$.
+Enoličen $A = LU$ razcep obstaja natanko tedaj, ko so vse vodilne podmatrike $A$
+nesingularne.
+
+Bolj zapomnljivo lahko postopek opišemo na sledeč način.
+Ko smo na $k$-tem koraku, razdelimo matriko $A$ na šest delov;
+\[
+  A =
+  \begin{bmatrix}
+	A_{11} & A_{12} & A_{13} \\
+	A_{21} & A_{22} & A_{23}
+  \end{bmatrix}.
+\]
+Pri tem je $A_{11}$ matrike dimenzij $(k-1) \times (k-1)$, $A_{12}$ in $A_{22}$
+pa sta stolpca.
+Korake štejemo od $1$ naprej.
+Elemente podmatrik $A_{11}$, $A_{12}$, $A_{13}$ in $A_{21}$ samo prepišemo.
+Elemente podmatrike $A_{22}$ delimo z diagonalnim elementom $a_{kk}$ (najnižjim
+v matriki $A_{12}$), za elemente matrike $A_{23}$ pa naredimo naslednje:
+Če želimo transformirati element $a_{ij}$, vzamemo elementa $x$ in $y$, ki sta
+direktno levo in direktno nad elementom $a_{ij}$ v blokih $\tilde{A}_{22}$
+oziroma $A_{13}$ v novi (tisti, ki je sedaj na pol generirana) matriki, in
+popravimo $\tilde{a}_{ij} \gets a_{ij} - xy$.
+Na koncu dobimo LU razcep v kompresirani obliki.
+
+Ves ta opis je deloval za LU razcep brez pivotiranja.
+Če izvajamo delno pivotiranje, permutiramo neobravnavane vrstice tako, da na
+mesto pivota pride po absolutni vrednosti čim večji element.
+Tako dobimo razcep $PA = LU$, kjer je $P$ permutacijska matrika.
+Pri ročnem postopku to naredimo tako, da menjamo vrstice v spodnjem delu
+razdeljene matrike, preden izvedemo korak.
+Permutacijsko matriko $P$ potem dobimo tako, da začnemo z identiteto, in na njej
+izvajamo enake menjave vrstic kot v postopku.
+Podobno teče LU razcep s kompletnim pivotiranjem, kjer si dovolimo tudi menjavo
+stolpcev.
+Dobimo razcep $PAQ = LU$, kjer matriki $P$ in $Q$ izračunamo posebej; pri obeh
+začnemo z identiteto, med postopkom pa na $P$ izvajamo le menjave vrstic, na $Q$
+pa le menjave stolpcev.
+
+\naslov{Razcep Choleskega}
+
+Matrika $A$ je simetrična pozitivno definitna natanko tedaj, ko zanjo obstaja
+razcep Choleskega $A = V V^T$, kjer je $V$ spodnje trikotna matrika s
+pozitivnimi diagonalnimi elementi.
+Razcep Choleskega poiščemo z enostavnim postopkom; za vsak $k$ med $1$ in $n$
+nastavimo
+\[
+  v_{kk} = \sqrt{a_{kk} - \sum_{i=1}^{k-1} v_{ki}^2},
+\]
+nato pa še za $j = k+1, \ldots, n$
+\[
+  v_{jk} = \inv{v_{kk}} \left( a_{jk} - \sum_{i=1}^{k-1} v_{ki} v_{ji} \right).
+\]
+V praksi to izgleda tako, da od diagonalnega elementa odštejemo kvadrat vsakega
+elementa levo od njega, in dobljeno korenimo; nato pa elementom pod njem
+odštejemo skalarni produkt $k$-te in $j$-te vrstice (do $k$-tega stolpca),
+in razliko delimo z $v_{kk}$.
+
+\naslov{Sistemi nelinearnih enačb}
+
+Reševanja sistema nelinearnih enačb se lahko lotimo z navadno iteracijo.
+Če je $G = (G_1, \ldots, G_n)$ iteracijska funkcija, poznamo dva načina
+iteracije:
+\begin{itemize}
+\item Jacobijeva iteracija: $x^{[r+1]} = G(x^{[r]})$
+\item Seidlova iteracija: $x^{[r+1]} = (G_1(x^{[r]}), G_2(x_1^{[r+1]},
+  x_2^{[r]}, \ldots, x_n^{[r]}), \ldots, G_n(x_1^{[r+1]}, \ldots,
+  x_{n-1}^{[r+1]}, x_n^{[r]}))$
+\end{itemize}
+Jacobijeva iteracija konvergira na množici, kjer je $G$ skrčitev, za Seidlovo
+metodo pa velja podobno za preslikavo $H$, ki jo dobimo tako, da v poznejše
+argumente $G$ vstavljamo prejšnje slike.
+Zadosten pogoj je, da je največja absolutna lastna vrednost matrike $DG$ v
+poljubni točki omejena z nekim $m < 1$, ali pa da je $\norm{JG(x)} < 1$ v
+poljubni matrični normi.
+
+Podobno kot v drugem poglavju imamo tu Newtonovo metodo
+\[
+  G(x) = x - (DF(x))^{-1} F(x),
+\]
+kjer pa v praksi namesto računanja inverza rešimo linearen sistem.
+
+\naslov{Predoločeni sistemi}
+
+Rešitev predoločenega sistema lahko dobimo z reševanjem normalnega sistema
+\[
+  A^T A x = A^T b,
+\]
+kjer je matrika $A^T A$ simetrična pozitivno definitna, torej lahko sistem
+rešimo z razcepom Choleskega.
+
+Če iščemo minimum $\norm{A x - b}_2$ pod pogojem $Cx = d$, kjer je prvi sistem
+predoločen in drugi nedoločen, rešitev dobimo kot $\tilde{x}$ v
+\[
+  \begin{bmatrix}
+	A^T A & C^T \\ C & 0
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	\tilde{x} \\ \tilde{y}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	A^T b \\ d
+  \end{bmatrix}.
+\]
+
+% LocalWords:  denormalizirana bisekcijo iteracijskih konvergiral kratnosti LU
+% LocalWords:  vektorizirane enice podmatrik pivotiranja iteracijska
+% LocalWords:  Predoločeni
