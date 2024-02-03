@@ -268,6 +268,201 @@ predoločen in drugi nedoločen, rešitev dobimo kot $\tilde{x}$ v
   \end{bmatrix}.
 \]
 
+\podnaslov{QR razcep}
+
+Za matriko $A \in \R^{m \times n}$ polnega ranga obstaja enoličen razcep $A =
+QR$, kjer je $Q$ ortogonalna in $R$ zgornje trikotna s pozitivnimi diagonalnimi
+elementi.
+Če najdemo $Q$, lahko hitro pridemo do $R = Q^T A$.
+En način iskanja $Q$ je Gram-Schmittova ortogonalizacija
+
+\begin{algorithm}
+  \caption{QR razcep s klasičnim Gram-Schmittovim postopkom}
+  \begin{algorithmic}
+	\For{$k = 1, \ldots, n$}
+	\State $q_k = a_k$
+	\For{$i=1, \ldots, k-1$}
+	\State $r_{ik} = q_i^T a_k$
+	\State $q_k = q_k - r_{ik} q_i$
+	\EndFor
+	\State $r_{kk} = \norm{q_k}_2$
+	\State $q_k = \inv{r_{kk}} q_k$
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+Če namesto $r_{ik} = q_i^T a_k$ uporabimo $r_{ik} = q_i^T q_k$, dobimo
+teoretično ekvivalentni postopek (modificiran Gram-Schmitt), ki je v praksi bolj
+stabilen.
+Za boljšo numerično stabilnost lahko pri reševanju (predoločenega) sistema $Ax =
+b$ izračunamo QR razcep matrike $\left[ A b \right]$
+\[
+  \begin{bmatrix}
+	A & b
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	Q & q_{n+1}
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	R & z \\ 0 & \rho
+  \end{bmatrix},
+\]
+potem bo rešitev enaka $x = R^{-1} z$.
+
+Drug način iskanja QR razcepa so Givensove rotacije, kjer vsak poddiagonalni
+element matrike $A$ eliminiramo s pomočjo
+\[
+  A([i,k], i:n) =
+  \begin{bmatrix}
+	c & s \\ -s & c
+  \end{bmatrix}
+  \cdot A([i,k], i:n)
+\]
+za $r = \sqrt{a_{ii}^2 + a_{ki}^2}$ in $c = a_{ii} / r$ ter $s = a_{ik} / r$.
+Če nas zanimata tudi $Q$ in $b$, ju računamo kar zraven v postopku, kjer moramo
+matriko $Q$ na koncu še transponirati;
+\begin{gather*}
+  Q([i,k], :) =
+  \begin{bmatrix}
+	c & s \\ -s & c
+  \end{bmatrix}
+  \cdot Q([i,k], :), \\
+  b([i,k]) =
+  \begin{bmatrix}
+	c & s \\ -s & c
+  \end{bmatrix}
+  \cdot b([i,k]).
+\end{gather*}
+
+Najbolj ekonomična so verjetno Householderjeva zrcaljenja.
+Matrika
+\[
+  P = I - \frac{2}{w^T w} w w^T
+\]
+predstavlja zrcaljenje čez hiperravnino z normalo $w$.
+Če želimo vektorju $a$ odstraniti vse komponente razen prve, lahko vzamemo
+\[
+  w =
+  \begin{bmatrix}
+	a_1 + \operatorname{sgn} a_1 \cdot \norm{a}_2 \\
+	a_2 \\
+	\vdots \\
+	a_n
+  \end{bmatrix}.
+\]
+Potem je matrika $Pa$ oblike
+\[
+  Pa =
+  \begin{bmatrix}
+	-\operatorname{sgn} a_1 \cdot \norm{a}_2 \\
+	0 \\ \vdots \\ 0
+  \end{bmatrix}
+\]
+Na vsakem koraku slikamo zadnjih nekaj vrstic matrike $A$ in vektorja $b$ z
+(novim) $P$.
+Pri množenju pazimo na asociativnost; ne računamo matrike $w w^T$.
+
+\naslov{Lastne vrednosti}
+
+Na vajah smo lastne vrednosti računali s potenčno metodo, torej z iteracijo
+\begin{gather*}
+  \tilde{x}_k = A x_{k-1} \\
+  x_k = \normiran{\tilde{x}_k} \\
+  \lambda = x_k^T A x_k
+\end{gather*}
+Potenčna metoda nam vedno da največjo lastno vrednost.
+Če želimo poiskati drugo največjo lastno vrednost, lahko poiščemo unitarno
+matriko $U$ (npr.~Householderjevo zrcaljenje), da velja
+\[
+  B = U^H A U =
+  \begin{bmatrix}
+	\lambda_1 & \alpha^T \\ 0 & C
+  \end{bmatrix}
+\]
+in nadaljujemo s potenčno metodo na $C$.
+
+Drug način, ki smo ga omenjali, je QR iteracija
+\begin{algorithm}
+  \caption{QR iteracija z enojnim premikom}
+  \begin{algorithmic}
+	\State Reduciraj $A$ na zgornje Hessenbergovo obliko $A_0 = Q^T A Q$
+	\For{$k=0, 1, \ldots$}
+	\State Izberi premik $\sigma_k$
+	\State Naredi QR razcep $A_k - \sigma_k I = Q_k R_k$
+	\State $A_{k+1} = R_k Q_k + \sigma_k I$
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\naslov{Polinomska interpolacija}
+
+Funkcije običajno interpoliramo v Lagrangeovi bazi
+\[
+  l_{i,n}(x) = \prod_{j \ne i} \frac{x-x_j}{x_i-x_j}
+\]
+za neke fiksne $x_i$.
+Potem je interpolacija oblike
+\[
+  p(x) = \sum_{k=0}^n f(x_k) l_{k,n}(x).
+\]
+Za $\omega(x) = (x-x_0) \ldots (x-x_n)$ lahko zapišemo polinom tudi v
+\pojem{Baricentrični obliki}
+\[
+  p(x) = \frac{
+	\sum_{k=0}^n \frac{w_k}{x-x_k} f(x-k)
+  }{
+	\sum_{k=0}^n \frac{w_k}{x-x_k}
+  },
+\]
+kjer je $w_k = \inv{\omega'(x_k)}$.
+
+Druga možnost je \pojem{Newtonova oblika}, ki uporablja deljene diference
+\[
+  p(x) = [x_0]_f + [x_0, x_1]_f (x-x_0) + \ldots + [x_0, \ldots, x_n]_f (x -
+  x_0) \ldots (x-x_{n-1}).
+\]
+Te izračunamo rekurzivno po formuli
+\[
+  [x_0, \ldots, x_k]_f =
+  \begin{cases}
+	\frac{f^{(k)}(x_0)}{k!} & x_0 = x_1 = \cdots = x_k  \\
+	\frac{[x_1, \ldots, x_k]_f - [x_0, \ldots, x_{k-1}]_f}{x_k - x_0} & \text{sicer}
+  \end{cases}
+\]
+Napaka interpolacije je oblike
+\[
+  f(x) - p(x) = [x_0,\ldots, x_n, x]_f (x - x_0) \ldots (x-x_n).
+\]
+
+\naslov{Numerično integriranje}
+
+Numerično integriranje je goljufija.
+Pravzaprav izračunamo vrednosti $f$ v nekih specifično izbranih točkah, in jih
+seštejemo z nekimi koeficienti, odvisnimi od izbire točk.
+Pri izpeljavi formule si želimo, da bo točna za polinome čim višje stopnje; iz
+tega tudi izračunamo koeficiente.
+Pri tem je najlažje integrirati polinome $1, (x-a), (x-a)^2, \ldots$.
+Na koncu določimo še napako, ki je vedno oblike
+\[
+  C f^{(r)}(\xi),
+\]
+kjer $C$ in $r$ določimo tako, da v formulo vstavimo polinom eno (ali dve)
+stopnjo višje kot prej.
+
+Še posebej goljufiva so Gaussova integracijska pravila, kjer izračunamo točke
+$x_i$ tako, da bo formula točna za polinome stopnje $\le 2n+1$.
+Na standardni polinomski bazi uporabimo Gram-Schmittovo ortogonalizacijo, s
+čimer dobimo polinome $\varphi_i$.
+Za vozle lahko vzamemo ničle polinoma $\varphi_{n+1}$, koeficiente pa določimo
+kot prej.
+Seveda nam v praksi tega ni treba delati; mi samo integriramo standardno bazo
+polinomov do stopnje najvišje natančnosti, in kot običajno zapišemo kvadraturne
+formule, ter rešimo sistem na koeficiente in na $x_i$.
+
+\emph{Na listu imej standardne kvadraturne formule.}
+
 % LocalWords:  denormalizirana bisekcijo iteracijskih konvergiral kratnosti LU
 % LocalWords:  vektorizirane enice podmatrik pivotiranja iteracijska
-% LocalWords:  Predoločeni
+% LocalWords:  Predoločeni poddiagonalni Lagrangeovi interpoliramo
