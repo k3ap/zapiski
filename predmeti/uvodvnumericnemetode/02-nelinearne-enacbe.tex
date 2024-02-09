@@ -83,13 +83,13 @@ skrčitev.
   torej je tudi $x_{r+1} \in I$.
   S ponavljanjem tega postopka tudi dokažemo prvo točko, za drugo točko pa
   ocenimo
-  \[
+  \begin{align*}
 	\abs{x_{r+1} - \alpha}
-	= \abs{x_{r+1} - x_{r+2} + x_{r+2} - x_{r+3} + x_{r+3} - \ldots - \alpha}
-	\le \abs{x_{r+1} - x_{r+2}} + \abs{x_{r+2} - x_{r+3}} + \ldots
-	\le (m + m^2 + m^3 + \ldots) \abs{x_{r+1} - x_r}
-	= \frac{m}{1-m} \abs{x_{r+1} - x_r}.
-  \]
+	&= \abs{x_{r+1} - x_{r+2} + x_{r+2} - x_{r+3} + x_{r+3} - \ldots - \alpha} \\
+	&\le \abs{x_{r+1} - x_{r+2}} + \abs{x_{r+2} - x_{r+3}} + \ldots \\
+	&\le (m + m^2 + m^3 + \ldots) \abs{x_{r+1} - x_r} \\
+	&= \frac{m}{1-m} \abs{x_{r+1} - x_r}.
+  \end{align*}
 \end{proof}
 
 \begin{posledica}
@@ -323,13 +323,13 @@ koeficientom $1$.
 Iščemo popravke $\Delta x_1, \ldots, \Delta x_n$, da bodo $x_i + \Delta x_i$
 točne ničle.
 Velja
-\[
+\begin{align*}
   p(x)
-  = (x - (x_1 + \Delta x_1)) (x - (x_2 + \Delta x_2)) \ldots (x - (x_n
-  + \Delta x_n))
-  = \prod_{i=1}^n (x-x_i) - \sum_{j=1}^n \Delta x_j \prod{i \ne j} (x - x_i)
+  &= (x - (x_1 + \Delta x_1)) (x - (x_2 + \Delta x_2)) \ldots (x - (x_n
+  + \Delta x_n)) \\
+  &= \prod_{i=1}^n (x-x_i) - \sum_{j=1}^n \Delta x_j \prod{i \ne j} (x - x_i)
   + \ldots,
-\]
+\end{align*}
 člene drugega in večjega reda pa zanemarimo (torej vse, kar je v tropičju).
 Če s $q(x)$ označimo nezanemarjen del, velja
 \[

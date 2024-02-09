@@ -290,7 +290,7 @@ Za $\zeta = \mb{P} - \mb{P}_0$.
   = Q(\vec{\omega} \times \vec{u}) + Q \dot{\vec{u}},
 \]
 torej transformacija in odvod po času komutirata le v primeru, da je
-$\pvec{\omega'} \times \pvec{u}' = 0$.
+$\pvec{\omega}' \times \pvec{u}' = 0$.
 Primer takega vektorja je $\vec{\omega}$, torej velja $\partial_t \pvec{\omega}'
 = (\dot{\vec{\omega}})'$.
 Sedaj lahko izračunamo tudi pospešek
@@ -298,16 +298,16 @@ Sedaj lahko izračunamo tudi pospešek
   \pvec{a}'
   &= \partial_t \pvec{v}' \\
   &= \partial_t \pvec{v}_0'
-	+ \dot{\pvec{\omega}'} \times \pvec{\zeta}'
+	+ \dot{\pvec{\omega}}' \times \pvec{\zeta}'
 	+ \pvec{\omega}' \times \partial_t \pvec{\zeta}'
 	+ \partial_t \pvec{v}_{\text{rel}}' \\
   &= \pvec{a}_0'
-	+ \dot{\pvec{\omega}'} \times \pvec{zeta}'
+	+ \dot{\pvec{\omega}}' \times \pvec{\zeta}'
 	+ \pvec{\omega}' \times (\pvec{\omega}' \times \pvec{\zeta}')
 	+ 2 \pvec{\omega}' \times \pvec{v}_{\text{rel}}'
-	+ Q \dot{\vec{v}_{\text{rel}}} \\
+	+ Q \dot{\vec{v}}_{\text{rel}} \\
   &= \pvec{a}_0'
-	+ \dot{\pvec{\omega}'} \times \pvec{zeta}'
+	+ \dot{\pvec{\omega}}' \times \pvec{\zeta}'
 	+ \pvec{\omega}' \times (\pvec{\omega}' \times \pvec{\zeta}')
 	+ 2 \pvec{\omega}' \times \pvec{v}_{\text{rel}}'
 	+ \pvec{a}_{\text{rel}}'. \\
@@ -316,7 +316,7 @@ Prvi člen tega predpisa imenujemo \pojem{pospešek izhodišča RKS}, drugi čle
 \pojem{Eulerjev pospešek}, tretji \pojem{centrifugalni pospešek}, četrti
 \pojem{Coriolisov pospešek} in peti \pojem{relativni pospešek}.
 
-\vprasanje{Izpeli predpis za pospešek relativnega koordinatnega sistema in
+\vprasanje{Izpelji predpis za pospešek relativnega koordinatnega sistema in
   poimenuj člene.}
 
 \begin{izrek}
@@ -344,7 +344,7 @@ Prvi člen tega predpisa imenujemo \pojem{pospešek izhodišča RKS}, drugi čle
   \]
   Ta del je neodvisen od $t$, torej se pri poljubnem $t$ pokrajša in dobimo
   \[
-	\vec{0} = \dot{\pvec{\omega}'} \times \vec{e} + \pvec{\omega}' \times
+	\vec{0} = \dot{\pvec{\omega}}' \times \vec{e} + \pvec{\omega}' \times
 	(\pvec{\omega}' \times \vec{e}).
   \]
   Enačbo skalarno množimo z $\vec{e}$,

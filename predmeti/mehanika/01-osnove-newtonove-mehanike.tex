@@ -4,10 +4,10 @@
   \pojem{Afin prostor} $\affin$ nad vektorskim prostorom $V$ je množica z
   binarno operacijo $+: \affin \times V \to \affin$, za katero velja:
   \begin{itemize}
-  \item Za poljuben $A \in \affin$ ter $\mb{a},\mb{b} \in V$ velja $(A +
-    \mb{a}) + \mb{b} = A + (\mb{a} + \mb{b})$
-  \item Za poljubna $A, B \in \affin$ obstaja natanko določen $\mb{a} \in
-    V$, da je $B = A + \mb{a}$.
+  \item Za poljuben $\mb{A} \in \affin$ ter $a, b \in V$ velja $(\mb{A} +
+    a) + b = \mb{A} + (a + b)$
+  \item Za poljubna $\mb{A}, \mb{B} \in \affin$ obstaja natanko določen $a \in
+    V$, da je $\mb{B} = \mb{A} + a$.
   \end{itemize}
   \pojem{Dimenzija} afinega prostora je enaka dimenziji vektorskega prostora
   $V$.
@@ -18,30 +18,30 @@
   Definiramo operacijo odštevanja $\affin \times \affin \to V$ s
   predpisom
   \[
-    B - A = \mb{a} \nt B = A + \mb{a}.
+    \mb{B} - \mb{A} = a \nt \mb{B} = \mb{A} + a.
   \]
 \end{definicija}
 
 \begin{trditev}
   V afinem prostoru veljajo naslednje zveze:
   \begin{itemize}
-  \item $A - A = \mb{0}$.
-  \item $(A - B) + (B - A) = \mb{0}$.
-  \item $(A - B) + (B - C) + (C - A) = \mb{0}$.
-  \item $(A - B) + \mb{a} = (A + \mb{a}) - B$.
-  \item $(A - B) + C = (C - B) + A$.
+  \item $\mb{A} - \mb{A} = 0$.
+  \item $(\mb{A} - \mb{B}) + (\mb{B} - \mb{A}) = 0$.
+  \item $(\mb{A} - \mb{B}) + (\mb{B} - \mb{C}) + (\mb{C} - \mb{A}) = 0$.
+  \item $(\mb{A} - \mb{B}) + a = (\mb{A} + a) - \mb{B}$.
+  \item $(\mb{A} - \mb{B}) + \mb{C} = (\mb{C} - \mb{B}) + \mb{A}$.
   \end{itemize}
 \end{trditev}
 
 \begin{definicija}
   Preslikava $g : \affin \to \affin'$ med afinima prostoroma je
-  \pojem{afina}, če obstaja $dg \in L(V, V')$, da za vsaka $A, B \in
-  \affin$ velja $g(A) - g(B) = dg(A - B)$.
+  \pojem{afina}, če obstaja $dg \in L(V, V')$, da za vsaka $\mb{A}, \mb{B} \in
+  \affin$ velja $g(\mb{A}) - g(\mb{B}) = dg(\mb{A} - \mb{B})$.
 \end{definicija}
 
-Za afino preslikavo $g$ si lahko izberemo \pojem{pol} $O$, ter izpeljemo
+Za afino preslikavo $g$ si lahko izberemo \pojem{pol} $\mb{O}$, ter izpeljemo
 \[
-  g(A) = g(O) + dg(A - O).
+  g(\mb{A}) = g(\mb{O}) + dg(\mb{A} - \mb{O}).
 \]
 Vrednosti funkcije seveda niso odvisne od izbire pola.
 
@@ -55,9 +55,9 @@ Vrednosti funkcije seveda niso odvisne od izbire pola.
   $\norm{\cdot}$.
   Funkciji $\cas$ pravimo \pojem{časovnost}, elementom $\affin$ pa pravimo
   \pojem{dogodki}.
-  Pretečeni čas med dogodkoma $A$ in $B$ označimo s $\cas(A, B)$.
-  Dogodka sta \pojem{istočasna}, če je $\cas(A, B) = 0$.
-  Za istočasne dogodke lahko definiramo razdaljo $\rho(A, B) = \norm{B - A}$
+  Pretečeni čas med dogodkoma $\mb{A}$ in $\mb{B}$ označimo s $\cas(\mb{A}, \mb{B})$.
+  Dogodka sta \pojem{istočasna}, če je $\cas(\mb{A}, \mb{B}) = 0$.
+  Za istočasne dogodke lahko definiramo razdaljo $\rho(\mb{A}, \mb{B}) = \norm{\mb{B} - \mb{A}}$
   (uporabimo isto oznako kot za metriko v $\jedro\cas$).
 \end{definicija}
 
@@ -67,9 +67,9 @@ Vrednosti funkcije seveda niso odvisne od izbire pola.
   $g: \affin \to \affin'$, ki ohranja časovnost in razdaljo med istočasnimi
   dogodki;
   \begin{align*}
-    \cas'(g(A) - g(B)) = \cas(A, B),
+    \cas'(g(\mb{A}) - g(\mb{B})) = \cas(\mb{A}, \mb{B}),
     &&
-       \rho'(g(A), g(B)) = \rho(A, B).
+       \rho'(g(\mb{A}), g(\mb{B})) = \rho(\mb{A}, \mb{B}).
   \end{align*}
   Taki transformaciji pravimo \pojem{Galilejeva transformacija}.
 \end{definicija}
@@ -303,7 +303,7 @@ To je ena od implikacij v prvem Newtonovem zakonu.
   Števila $\alpha_{ij}$ so definirana le za $i \ne j$.
   Definicijo lahko razširimo, da je $\alpha_{ii} = 1$.
   Definiramo $l_{ij} = \log \alpha_{ij}$.
-  Velja $l_{ii} = 0$ in $L_{ij} = - l_{ji}$, poleg tega pa tudi $l_{ij} + l_{jk}
+  Velja $l_{ii} = 0$ in $l_{ij} = - l_{ji}$, poleg tega pa tudi $l_{ij} + l_{jk}
   + l_{ki} = 0$.
 
   Izberemo si indeks $i_0$, ki nam bo definiral enoto mase.
@@ -370,7 +370,7 @@ masam.
 \begin{definicija}
   Zunanja sila $\vec{F} = \vec{F}(t, \mb{P}, \dot{\mb{P}})$ je
   \pojem{potencialna}, če obstaja potencial $U$, da je $\vec{F} = -
-  \grad_{\mb{P}} U$.
+  \vec{\nabla}_{\mb{P}} U$.
 \end{definicija}
 
 \begin{definicija}
@@ -391,8 +391,8 @@ masam.
 Za rezultanto vseh sil $\vec{F}$ na telo $m$ lahko izpeljemo
 \[
   A = \int_{t_1}^{t_2} \vec{F} \cdot \dot{\mb{P}} dt
-  = \int_{t_1}^{t_2} m \ddot{\mb{P}} \cdot \dot{\mb{P}} ddt
-  = m \int_{t_1}^{t_2} \partial_t (\pol \dot{\mb{P}} \cdot \dot{\mb{P}}) dt
+  = \int_{t_1}^{t_2} m \ddot{\mb{P}} \cdot \dot{\mb{P}} dt
+  = m \int_{t_1}^{t_2} \partial_t \left(\pol \dot{\mb{P}} \cdot \dot{\mb{P}}\right) dt
   = T_2 - T_1,
 \]
 kar lahko zapišemo v izrek.
