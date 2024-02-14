@@ -75,7 +75,8 @@ Prvemu členu pravimo \pojem{translatorna hitrost}, drugemu \pojem{rotacijska
   BŠS je $\abs{\vec{p}} = 1$.
   Dopolnimo ga lahko do ortonormirane baze prostora $\{\vec{p}, \vec{q},
   \vec{r}\}$, kjer je $\vec{r} = \vec{p} \times \vec{q}$.
-  Ker je $\vec{a} W \vec{a} = 0$, dobimo
+  Ker je $W$ poševno simetričen, je $\vec{a}\cdot W \vec{a} = 0$ za poljuben
+  $\vec{a}$, in dobimo
   \begin{align*}
 	W \vec{q} = W \vec{q} \cdot \vec{r} . \vec{r},
 	&& W \vec{r} = W \vec{r} \cdot \vec{q} . \vec{q}.
@@ -143,11 +144,10 @@ Prostor poševno simetričnih tenzorjev z operacijama $+$ in $[,]$ je algebra.
 	&= [A \vec{a}, A \vec{b}, A A^{-1} \vec{c}] \\
 	&= \det A \cdot [\vec{a}, \vec{b}, A^{-1} \vec{c}] \\
 	&= \det A \cdot (\vec{a} \times \vec{b}) \cdot A^{-1} \vec{c} \\
-	&= \det A^{-T} \cdot (\vec{a} \times \vec{b}) \cdot \vec{c}.
+	&= (\vec{a} \times \vec{b}) \cdot (A^*)^T \vec{c} \\
+	&= A^* (\vec{a} \times \vec{b}) \cdot \vec{c},
   \end{align*}
-  Torej je $A \vec{a} \times A \vec{b} = \det A^{-T} (\vec{a} \times \vec{b})$.
-  Upoštevaje $A^{-1} = (A^*)^T / \det A$ je to nadalje enako $A^*(\vec{a} \times
-  \vec{b})$.
+  kjer smo upoštevali $A^{-1} = (A^*)^T / \det A$.
   Če $A$ ni obrnljiva, pa obstaja $A_\varepsilon$, da je $\abs{A -
 	A_\varepsilon} < \varepsilon$, torej v limiti velja za vse matrike.
 \end{proof}
@@ -214,7 +214,8 @@ Prostor poševno simetričnih tenzorjev z operacijama $+$ in $[,]$ je algebra.
   Sledi $\omega = \dot{\varphi}$.
 \end{proof}
 
-\vprasanje{Kaj je vektor kotne hitrosti rotacije? Kako ga izrazimo?}
+\vprasanje{Kaj je vektor kotne hitrosti rotacije? Kako ga izrazimo v primeru
+  stalne osi?}
 
 \begin{trditev}
   Naj bo $W$ poševno simetričen tenzor z enotskim osnim vektorjem $\vec{e}$.
@@ -330,11 +331,11 @@ Prvi člen tega predpisa imenujemo \pojem{pospešek izhodišča RKS}, drugi čle
   V desno je očitno iz zapisa pospeška.
   V levo računamo
   \begin{gather*}
-	\vec{0} = \pvec{a}_0 + \dot{\pvec{\omega}'} \times \pvec{\zeta}' +
+	\vec{0} = \pvec{a}_0 + \dot{\pvec{\omega}}' \times \pvec{\zeta}' +
 	\pvec{\omega}' \times (\pvec{\omega}' \times \pvec{\zeta}') + 2
 	\pvec{\omega}' \times \pvec{v}_{\text{rel}}', \\
-	\mb{P}' = \mb{P}_0' + v_0 \vec{e}, \\
-	\vec{0} = \pvec{a}_0' + t v_0 (\dot{\pvec{\omega}'} \times \vec{e} +
+	\mb{P}' = \mb{P}_0' + t v_0 \vec{e}, \\
+	\vec{0} = \pvec{a}_0' + t v_0 (\dot{\pvec{\omega}}' \times \vec{e} +
 	\pvec{\omega}' \times (\pvec{\omega}' \times \vec{e})) + 2 v_0
 	\pvec{\omega}' \times \vec{e}.
   \end{gather*}

@@ -108,7 +108,8 @@ Računamo
   \int_{\theta_0}^{\theta} \frac{\pol (b-a) (-\sin \theta) d\theta}{\pol (b-a)
 	\sqrt{\chi(\theta)} \sqrt{1 - \cos^2 \theta}}
 \]
-za substitucijo $x = \pol (a+b) + \pol (b-a) \cos\theta$.
+za substitucijo $x = \pol (a+b) + \pol (b-a) \cos\theta$ in $E_0 - U(x) =
+(x-a)(b-x) \chi(x)$.
 Pri tem smo si $x$ predstavljali kot kosinus kota v krožnici, ki poteka skozi
 točki $a$ in $b$ in ima središče na njuni zveznici.
 Če računamo dalje, dobimo
@@ -131,27 +132,27 @@ Rešitev je tedaj
 \vprasanje{Izpelji libracijsko aproksimacijo.}
 
 \begin{trditev}
-  Za premočrtno potencialno periodično gibanje velja $\frac{dA}{dE_0} =
-  \frac{T}{m}$ na poti med robnima točkama energijskega nivoja.
+  Za premočrtno potencialno periodično gibanje velja $\frac{dS}{dE_0} =
+  \frac{T}{m}$ za ploščino $S$ faznega diagrama.
 \end{trditev}
 
 \begin{proof}
-  Velja $A = 2 \sqrt{\frac{m}{2}} \int_a^b \sqrt{E_0 - U} dx$, torej
+  Velja $S = 2 \sqrt{\frac{m}{2}} \int_a^b \sqrt{E_0 - U} dx$, torej
   \[
-	\frac{dA}{dE_0} = 2 \sqrt{\frac{m}{2}} \left(
+	\frac{dS}{dE_0} = 2 \sqrt{\frac{m}{2}} \left(
 	  b' \sqrt{E_0 - U(b)} - a' \sqrt{E_0 - U(a)} + \int_a^b
 	  \frac{dx}{2\sqrt{E_0 - U}}
 	\right).
   \]
   Ker je $U(a) = U(b) = E_0$, sta prva dva člena v oklepaju enaka $0$, torej
   \[
-	\frac{dA}{dE_0} = \sqrt{\frac{m}{2}} \int_a^b \frac{dx}{\sqrt{E_0-U}}
-	= \frac{m}{T}.
+	\frac{dS}{dE_0} = \sqrt{\frac{m}{2}} \int_a^b \frac{dx}{\sqrt{E_0-U}}
+	= \frac{T}{m}.
   \]
 \end{proof}
 
-\vprasanje{Kako se opravljeno delo v nihaju spreminja z energijskim nivojem
-  $E_0$?}
+\vprasanje{Kako se pri nihanju ploščina faznega portreta spreminja z energijskim
+  nivojem $E_0$?}
 
 \naslov{Gibanje po krivulji}
 

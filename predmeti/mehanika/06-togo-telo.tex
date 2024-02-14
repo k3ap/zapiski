@@ -76,7 +76,7 @@ Sledi
   = \iiint_{B} \rho'(\mb{P}'(\mb{P})) \abs{\det \frac{\partial
 	  \mb{P}'}{\partial \mb{P}}} dV.
 \]
-Ker pa je $\mb{P}' = \mb{P}_0' + Q(\mb{P} - \mb{P}_0)$, torej je odvod enak $Q$
+Ker pa je $\mb{P}' = \mb{P}_0' + Q(\mb{P} - \mb{P}_0)$, je torej odvod enak $Q$
 in njegova determinanta enaka $1$.
 Torej
 \[
@@ -129,8 +129,9 @@ kjer so $J_i$ \pojem{glavne} (lastne) vrednosti.
   Trdimo, da je $\vec{e} \cdot J \vec{e} \ge 0$ za enotski $\vec{e}$.
   Po Cauchy-Schwarzu velja
   \[
-	\iiint_B \abs{\vec{\zeta}}^2 - (\vec{e} \cdot \vec{\zeta})^2 dm \ge 0
+	\iiint_B \abs{\vec{\zeta}}^2 - (\vec{e} \cdot \vec{\zeta})^2 dm \ge 0,
   \]
+  enakost dobimo
   natanko tedaj, ko je $\vec{e}$ vzporeden $\vec{\zeta}$, kar se zgodi le, če je
   $B$ tanka palica.
 \end{proof}
@@ -317,15 +318,15 @@ in računamo
   \partial_t U
   = \iiint_{B'} \partial_t u(\mb{P}') dm'
   = \iiint_{B'} \grad u \cdot \dot{\mb{P}}' dm
-  = - \iiint_B \pvec{f}' \cdot (\dot{\mb{P}}_*' + \pvec{\omega} \times (\mb{P}'
-  - \mb{P}_*')) dm
+  = - \iiint_{B'} \pvec{f}' \cdot (\dot{\mb{P}}_*' + \pvec{\omega} \times (\mb{P}'
+  - \mb{P}_*')) dm'
 \]
 Sedaj ciklično zamenjamo člene mešanega produkta v drugem členu, do
 \[
   \partial_t U
-  = - \pvec{f}' \cdot \dot{\mb{P}}_*'
+  = - \pvec{F}' \cdot \dot{\mb{P}}_*'
   - \iiint_{B'} \pvec{\omega} \cdot ((\mb{P}' - \mb{P}_*') \times \pvec{f}') dm
-  = - \pvec{f}' \cdot \dot{\mb{P}}_*' - \pvec{\omega}' \cdot \pvec{N}_*'.
+  = - \pvec{F}' \cdot \dot{\mb{P}}_*' - \pvec{\omega}' \cdot \pvec{N}_*'.
 \]
 Torej je $T + U$ konstantna.
 To je izrek o energiji za togo telo.
@@ -355,7 +356,7 @@ Enačba ima več rešitev:
 Če je vrtavka simetrična, $J_1 = J_2$, je $\omega_3$ konstantna, in velja
 \begin{gather*}
   \dot{\omega}_1 - \frac{\omega_3 (J_1 - J_3)}{J_1} \omega_2 = 0 \\
-  \dot{\omega}_2 - \frac{\omega_3 (J_3 - J_1)}{J_1} \omega_1 = 0
+  \dot{\omega}_2 - \frac{\omega_3 (J_3 - J_1)}{J_2} \omega_1 = 0
 \end{gather*}
 Za $\Omega = \omega_3 (J_1 - J_3) / J_1$ je rešitev sistema
 \begin{gather*}
@@ -379,7 +380,7 @@ Iz tega dobimo
   1 = \frac{l_1^2}{2 T J_1} + \frac{l_2^2}{2 T J_2} + \frac{l_3^2}{2 T J_3},
 \]
 čemur pravimo \pojem{Binetov elipsoid}.
-Vektor $\vec{\omega}$ leži na preseku sfere $\abs{\vec{l}} = l$ in Binetovega
+Vektor $\vec{l}$ leži na preseku sfere $\abs{\vec{l}} = l$ in Binetovega
 elipsoida.
 Če uredimo $J_1 \le J_2 \le J_3$, dobimo $1 \le l^2 / (2 T J_1)$, torej za polos
 velja $a_1 \le l$.
