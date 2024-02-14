@@ -100,14 +100,14 @@ Obstaja nekaj standardnih diskretnih porazdelitev.
   Oglejmo si dogajanje binomske porazdelitve, ko velja $np = \lambda$ konstanta,
   in ko $n \to \infty$.
   Tedaj
-  \[
+  \begin{align*}
 	\lim_{n \to \infty} \binom{n}{k} \left( \frac{\lambda}{n} \right)^k
 	\left( 1 - \frac{\lambda}{n} \right)^{n-k}
-	= \lim_{n \to \infty} \frac{\lambda^k}{k!} \frac{n(n-1) \ldots (n-k+1)}{n^k}
+	&= \lim_{n \to \infty} \frac{\lambda^k}{k!} \frac{n(n-1) \ldots (n-k+1)}{n^k}
 	\left( 1 - \frac{\lambda}{n} \right)^n \left( 1 - \frac{\lambda}{n}
-	\right)^{-k}
-	= \frac{\lambda^k}{k!} e^{-\lambda}.
-  \]
+	\right)^{-k} \\
+	&= \frac{\lambda^k}{k!} e^{-\lambda}.
+  \end{align*}
   Če je za $k = 0, 1, \ldots$ verjetnost
   \[
 	P(X = k) = e^{-\lambda} \frac{\lambda^k}{k!},
@@ -297,7 +297,7 @@ da je $f$ merljiva, torej da je $f^{-1}(A)$ dogodek za vse $A \in B(\R)$.
 
 Če je $X \sim N(\mu, \sigma^2)$, je torej
 \[
-  F_X(x) = \phi(\frac{x-\mu}{\sigma}).
+  F_X(x) = \phi\left(\frac{x-\mu}{\sigma}\right).
 \]
 
 \vprasanje{Kaj je standardizirana normalna porazdelitev?}

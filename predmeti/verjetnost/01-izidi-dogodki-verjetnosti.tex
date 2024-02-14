@@ -146,7 +146,7 @@
   če je njihova unija enaka $\Omega$ in če so paroma disjunktni.
 \end{definicija}
 
-\begin{vo}{Kaj je družina dogodkov? Izpelji formulo za popolno verjetnost.}
+\begin{vo}{Kaj je particija? Izpelji formulo za popolno verjetnost.}
   Za definicijo glej zgoraj.
   Naj bo $A$ dogodek.
   Računamo
@@ -218,11 +218,12 @@
   \]
   ker sta $A$ in $B_{m+1}$ neodvisna.
   Drugi člen razvijemo po formuli za vključitve in izključitve in dobimo
-  \[
-    P(A) P(B_{m+1}) - \sum_i P(A \presek B_i \presek B_{m+1}) + \sum_{i,j} P(A
-    \presek B_i \presek B_j \presek B_{m+1}) - \ldots + (-1)^m P(A \presek B_1
-    \presek \ldots \presek B_{m+1}).
-  \]
+  \begin{align*}
+    P(A) P(B_{m+1}) - \sum_i P(A \presek B_i \presek B_{m+1})
+	&+ \sum_{i,j} P(A \presek B_i \presek B_j \presek B_{m+1}) \\
+	&- \ldots
+	+ (-1)^m P(A \presek B_1 \presek \ldots \presek B_{m+1}).
+  \end{align*}
   V vseh členih dobimo presek $A$ z dogodkom v $\mathcal{P}$, torej lahko
   izpostavimo $P(A)$;
   \[
