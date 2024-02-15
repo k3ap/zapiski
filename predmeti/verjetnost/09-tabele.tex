@@ -1,0 +1,51 @@
+\naslov{Tabele}
+
+% \setlength{\extrarowheight}{15pt}
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|c|c|}
+	\hline
+	Porazdelitev $X$ & $X^2$ \\
+	\hline
+	$N(0,1)$ & $\displaystyle \Gamma\left(\pol, \pol\right)$ \\
+	\hline
+  \end{tabular}
+  \caption{Porazdelitve}
+\end{table}
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+	\hline
+	Porazdelitev $X$ & $E(X)$ & $E(X^2)$ & Varianca \\
+	\hline
+	$\operatorname{Bin}(n, p)$ & $np$ & $n^2 p^2 + np(1-p)$ & $npq$ \\
+	$\operatorname{NegBin}(n, p)$ & $\displaystyle \frac{n}{p}$ & $\displaystyle \frac{m(m+1)}{p^2} - \frac{m}{p}$ & $\displaystyle \frac{mq}{p^2}$ \\
+	$N(\mu, \sigma^2)$ & $\mu$ & $\sigma^2 + \mu^2$ & $\sigma^2$ \\
+	$\Gamma(a, \lambda)$ & $\displaystyle \frac{a}{\lambda}$ & $\displaystyle \frac{a(a+1)}{\lambda^2}$ & $\displaystyle \frac{a}{\lambda^2}$ \\
+	\hline
+  \end{tabular}
+  \caption{Pričakovane vrednosti}
+\end{table}
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|c|c|c|}
+	\hline
+	Porazdelitev $X$ & Porazdelitev $Y$ & Porazdelitev $X+Y$ \\
+	\hline
+	$\operatorname{Po}(\lambda)$ & $\operatorname{Po}(\mu)$ & $\operatorname{Po}(\lambda+\mu)$ \\
+	$\operatorname{Bin}(m, p)$ & $\operatorname{Bin}(n, p)$ & $\operatorname{Bin}(m+n, p)$ \\
+	$\operatorname{Polya}(a, \beta)$ & $\operatorname{Polya}(b, \beta)$ & $\operatorname{Polya}(a+b, \beta)$ \\
+	$N(\mu, \sigma^2)$ & $N(\nu, \tau^2)$ & $N(\mu+\nu, \sigma^2 + \tau^2)$ \\
+	$\Gamma(a, \lambda)$ & $\Gamma(b, \lambda)$ & $\Gamma(a+b, \lambda)$ \\
+	\hline
+  \end{tabular}
+  \caption{Vsote}
+\end{table}
+
+Porazdelitev $\operatorname{Polya}(a, \beta)$ je dana z
+\[
+  P(X = k) = \frac{\beta^a (a)_k}{k! (1+\beta)^{a+k}}.
+\]

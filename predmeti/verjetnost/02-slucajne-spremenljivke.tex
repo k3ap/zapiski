@@ -147,7 +147,7 @@ Obstaja nekaj standardnih diskretnih porazdelitev.
   Pravimo, da ima $X$ normalno porazdelitev s parametroma $\mu$ in $\sigma^2$,
   če je gostota enaka
   \[
-	f_X(x) = \inv{\sqrt{2\pi} \sigma} \exp{-\frac{(x-\mu)^2}{2 \sigma^2}}.
+	f_X(x) = \inv{\sqrt{2\pi} \sigma} \exp\left(-\frac{(x-\mu)^2}{2 \sigma^2}\right).
   \]
   Pri tem je $\sigma$ razdalja od $\mu$ do prevoja, $\mu$ pa središče
   porazdelitve.
@@ -173,7 +173,7 @@ Obstaja nekaj standardnih diskretnih porazdelitev.
   \[
 	f_X(x) =
 	\begin{cases}
-	  \frac{\lambda^a}{\gamma(a)} x^{a-1} e^{-\lambda x} & x \ge 0, \\
+	  \frac{\lambda^a}{\Gamma(a)} x^{a-1} e^{-\lambda x} & x \ge 0, \\
 	  0 & x < 0.
 	\end{cases}
   \]
