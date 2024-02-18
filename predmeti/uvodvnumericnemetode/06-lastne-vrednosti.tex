@@ -243,7 +243,7 @@ lastne vrednosti, dominanten.
 \begin{proof}
   Dokažemo samo za primer, kjer lahko matriko $A$ diagonaliziramo v
   $A = X D X^{-1}$.
-  Označimo $D = \operatorname{diag}(D_1 D_2)$ in $X = [X_1, X_2]$, kjer sta $D_1$ in
+  Označimo $D = \operatorname{diag}(D_1, D_2)$ in $X = [X_1, X_2]$, kjer sta $D_1$ in
   $X_1$ dimenzije $p$.
   Ker je $\abs{\lambda_p} > 0$, velja $\det D_1 \ne 0$.
   Če izrazimo $Z_0$ v bazi lastnih vektorjev kot
@@ -321,7 +321,7 @@ lastne vrednosti, dominanten.
   \end{algorithmic}
 \end{algorithm}
 
-Če za lastne vrednosti $\abs{\lambda_1} > \abs{\lambda_2} > \ldots > \abs{\lambda_n}$, potem $A_k$
+Če za lastne vrednosti velja $\abs{\lambda_1} > \abs{\lambda_2} > \ldots > \abs{\lambda_n}$, potem $A_k$
 konvergira k Schurovi formi.
 Velja $A_{k+1} = Q_k^T A_k Q_k$, torej so si vse $A_k$ ortogonalno podobne.
 
