@@ -1,0 +1,79 @@
+\naslov{Reševanje polinomskih enačb}
+
+Vemo, da za polinomsko enačbo $x^n + a_{n-1} x^{n-1} + \cdots + a_0 = 0$ obstaja
+razširitev polja $\F$, v kateri je enačba razcepna.
+Rešitev polinomske enačbe se izraža z radikali, če se da zapisati rešitve enačbe
+s pomočjo računskih operacij in korenov.
+
+\begin{definicija}
+  Naj bo $K$ polje.
+  Razširitvi oblike $K(\sqrt[n]{a})/K$ za $a \in K$ pravimo \pojem{radikalska
+	razširitev} polja $K$.
+\end{definicija}
+
+Polinomska enačba $p(X) = 0$ je rešljiva z radikali natanko tedaj, ko rešitve
+živijo v neki razširitvi $E/F$, pri čemer obstaja končna veriga razširitev $F
+\subseteq E_0 \subseteq \ldots \subseteq E_k = E$, kjer so zaporedne razširitve
+radikalske.
+Problem se prevede na vprašanje iz teorije grup.
+Od tu naprej predpostavimo, da so vse razširitve končne.
+
+\begin{definicija}
+  Naj bo $E/F$ končna razširitev.
+  To je \pojem{normalna razširitev}, če za vsak nerazcepen polinom $p(X) \in
+  F[X]$ velja ena od naslednjih možnosti:
+  \begin{itemize}
+  \item $p$ nima ničle v $E$
+  \item $p$ ima vse ničle v $E$
+  \end{itemize}
+  Ekvivalentno: vsak nerazcepen polinom $p(X) \in F[X]$ z vsaj eno ničlo v $E$
+  razpade v linearne faktorje v $E[X]$.
+\end{definicija}
+
+\begin{primer}
+  $\Q(\sqrt[3]{2})$ nad $\Q$ ni normalna.
+  Polinom $p(X) = X^3 - 2$ ne razpade.
+\end{primer}
+
+\begin{primer}
+  $\Q(\sqrt{2})$ je normalna.
+\end{primer}
+
+\vprasanje{Definiraj radikalske in normalne razširitve. Povej primer normalne
+  razširitve in razširitve, ki ni normalna.}
+
+\begin{izrek}
+  Naj bo $E/F$ končna razširitev.
+  Potem je ta razširitev normalna natanko tedaj, ko je $E$ razpadno polje nekega
+  polinoma s koeficienti iz $F$.
+\end{izrek}
+
+\begin{proof}
+  V desno:
+  Recimo, da je $E$ normalna.
+  Naj bo $p_i(X)$ minimalni polinom $a_i$.
+  Definiramo $p(X) = p_1(X) \ldots p_k(X)$.
+  Zaradi normalnosti so vse ničle polinoma $p_i(X)$ v $E$, torej so vse ničle
+  polinoma $p(X)$ v $E$.
+  Velja $F(p) \subseteq E$, ampak $a_1, \ldots, a_k \in F(p)$, torej $F(p)
+  \supseteq F(a_1, \ldots, a_k) = E$.
+
+  V levo:
+  Recimo, da je $E = F(p)$.
+  Vzemimo poljuben nerazcepen $q(X) \in F[X]$, ki ima neko ničlo $a \in E$.
+  Naj bo $b$ poljubna ničla $q$.
+  Ničli $a$ in $b$ imata isti minimalni polinom, $q$, torej je $F(a) \cong
+  F(b)$.
+  Izomorfizem $\delta$ lahko razširimo na izomorfizem razpadnih polj $\tau$.
+  Predpostavimo lahko, da je $\delta(a) = b$, torej tudi $\tau(a) = b$.
+  Ničla $a$ je racionalen izraz, odvisen od $a_1, \ldots, a_k$, torej je tudi
+  $b$ racionalen izraz, odvisen od $a_1, \ldots, a_k$, in posledično $b \in E$.
+\end{proof}
+
+\vprasanje{Karakteriziraj normalnost za končne razširitve. Dokaži
+  karakterizacijo.}
+
+\begin{izrek}[Primitivni element]
+  Naj bo karakteristika polja $0$.
+  Potem je vsaka končna razširitev $F$ enostavna.
+\end{izrek}
