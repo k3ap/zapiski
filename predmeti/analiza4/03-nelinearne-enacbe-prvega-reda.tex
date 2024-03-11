@@ -1,0 +1,71 @@
+\naslov{Nelinearne enačbe prvega reda}
+
+Rešujemo enačbo oblike
+\begin{equation}
+  \label{eq:ne}
+  F(x, y, u, u_x, u_y) = 0.
+\end{equation}
+Tu je $F \in \zvodvi{1}$ funkcija petih realnih spremenljivk in $u = u(x, y)$
+iskana funkcija.
+Vpeljemo oznake $p = u_x$, $q = u_y$.
+Normala na ploskev $\{z = u(x, y)\}$ je $(u_x, u_y, -1) = (p, q, -1)$.
+Enačba~\eqref{eq:ne} je zveza med točko $(x, y, z)$ na $\Gamma_u$ in normalo.
+Družino potencialnih normal parametriziramo z $\vec{n}(\lambda) = (p(\lambda),
+q(\lambda), -1)$.
+Za vsak izbrani $\lambda$ dobimo potencialno tangentno ravnino na ploskev.
+Enačba te ravnine, ki jo označimo s $\Pi_{\vec{r}_0, \lambda} = \Pi_\lambda$, je
+\[
+  \sk{\vec{r} - \vec{r}_0, \vec{n}(\lambda)} = 0.
+\]
+
+\begin{definicija}
+  Ogrinjača ravnin $\Pi_\lambda$ se imenuje \pojem{Mongeov stožec} v točki
+  $(x_0, y_0, z_0)$.
+\end{definicija}
+
+Ogrinjačo dobimo tako, da enačbo ravnin odvajamo po $\lambda$ in enačimo z $0$.
+Imamo torej $\sk{\vec{r} - \vec{r}_0, \vec{n}(\lambda)} = 0$ in $\sk{\vec{r} -
+  \vec{r}_0, \vec{n}'(\lambda)} = 0$.
+Vektor $\vec{r} - \vec{r}_0$ je torej vzporeden z vektorskih produktom
+$\vec{n}(\lambda) \times \vec{n}'(\lambda)$.
+Če je $F(x_0, y_0, z_0, p(\lambda), q(\lambda)) = 0$ in odvajamo po $\lambda$,
+dobimo
+\[
+  F_p p' + F_q q' = 0.
+\]
+Sledi $(q', -p') \parallel (F_p, F_q)$, torej (v kombinaciji s prejšnjo enačbo)
+$\vec{r} - \vec{r}_0 \parallel (F_p, F_q, p F_p + q F_q)$.
+Dobili smo parametrizacijo Mongeovega stožca
+\begin{align*}
+  \vec{r} &= \vec{r}_0 + \mu (P(\lambda), Q(\lambda), R(\lambda)), \\
+  P(\lambda) &= F_p(x_0, y_0, z_0, p(\lambda), q(\lambda)), \\
+  Q(\lambda) &= F_q(x_0, y_0, z_0, p(\lambda), q(\lambda)), \\
+  R(\lambda) &= p(\lambda) P(\lambda) + q(\lambda) Q(\lambda).
+\end{align*}
+Privzemimo, da imamo integralno ploskev $S = \{z = u(x, y)\}$.
+Naj bo $\gamma(t) = (x(t), y(t), z(t))$ neka krivulja na tej ploskvi.
+Tedaj $\dot{\gamma}(t)$ leži na tangentni ravnini, zato $\vec{r}_0 +
+\dot{\gamma}(t)$ leži v Mongeovem stožcu.
+Posledično mora veljati (oz.~lahko zahtevamo)
+\begin{align*}
+  \dot{x} &= F_p, \\
+  \dot{y} &= F_q, \\
+  \dot{z} &= p F_p + q F_q,
+\end{align*}
+kjer je $p = p(\lambda)$ in $q = q(\lambda)$ za neki (ne vemo kateri) $\lambda$.
+Ker $p$ in $q$ v splošnem ne poznamo, ju obravnavamo kot novi neznanki.
+Vsaki točki na $\gamma$ bomo dodali še en košček ravnine, določene z normalo
+$(p, q, -1)$, s čimer dobimo \pojem{karakteristični trak}.
+
+\begin{trditev}
+  Če krivulja $\gamma(t) = (x, y, z)$ zadošča pogoju $\dot{z} = p \dot{x} + q
+  \dot{y}$, leži v karakterističnem traku, določenem s $p = u_x$ in $q = u_y$.
+\end{trditev}
+
+\begin{proof}
+  Računamo $\sk{(\dot{x}, \dot{y}, \dot{z}), (p, q, -1)} = \sk{(\dot{x}, \dot{y},
+  p \dot{x} + q \dot{y}), (p, q, -1)} = 0$.
+\end{proof}
+
+
+% LocalWords:  Mongeov Mongeovega Mongeovem
