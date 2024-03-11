@@ -1,4 +1,4 @@
-predmeti := testnipredmet verjetnost mehanika analiza3 uvodvnumericnemetode algebra3
+predmeti := testnipredmet verjetnost mehanika analiza3 uvodvnumericnemetode algebra3 analiza4
 ksl := testniksl mehanika verjetnost integriranje diferencialne-enacbe uvodvnumericnemetode
 
 latex-cmd := lualatex --shell-escape

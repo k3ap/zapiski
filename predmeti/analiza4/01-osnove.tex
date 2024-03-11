@@ -1,0 +1,82 @@
+\naslov{Osnovni tipi PDE}
+
+Uporabljamo notacijo s predavanj:
+\begin{itemize}
+\item $\alpha = (\alpha_1, \ldots, \alpha_n) \in \N_0^n$ je multiindeks,
+\item $\abs{\alpha} = \alpha_1 + \cdots + \alpha_n$,
+\item odvod funkcije $u$ z multiindeksom $\alpha$ je
+  \[
+	D^\alpha u = \frac{\partial^{\abs{\alpha}}}{\partial x_1^{\alpha_1} \ldots
+	  \partial x_n^{\alpha_n}},
+  \]
+\item za $k \in \N$ označimo skupek odvodov $k$-tega reda kot $D^k u =
+  \{D^\alpha u \such \abs{\alpha} = k\}$.
+  To včasih obravnavamo kot množico, včasih pa kot vektor ali matriko.
+\end{itemize}
+
+\begin{definicija}
+  \pojem{Parcialna diferencialna enačba} je enačba, ki vsebuje neznano funkcijo
+  $u$ vsaj dveh spremenljivk ter nekatere njene parcialne odvode.
+\end{definicija}
+
+\begin{definicija}
+  \pojem{Parcialna enačba $k$-tega reda} je enačba oblike
+  \[
+	F(x, u(x), D u(x), \ldots, D^k u(x)) = 0,
+  \]
+  kjer je $x \in U\odpp\R^n$ in $F: U \times R \times \R^n \times \cdots \times
+  R^{n^k} \to \R$ dana.
+\end{definicija}
+
+Rešitev PDE je vsaka funkcija, ki enačbi zadošča.
+Lahko je klasična ali posplošena rešitev; za klasično obstajajo vsi odvodi $Du,
+\ldots, D^k u$, ki jih vstavimo v $F$, posplošena rešitev pa je rešitev v smislu
+integracije po delih.
+
+\begin{primer}
+  Dana je enačba $\Delta u = f$.
+  Če je $u \in \zvodvi{2}$ in označimo $\Delta u = g$, za vsak $\phi \in
+  \zvodv{\infty}{U}$ s kompaktnim nosilcem velja
+  \[
+	\sk{\Delta u, \phi} = \sk{g, \phi} = \int_U g(x) \phi(x) dx.
+  \]
+  Iz integracije po delih sledi $\sk{\Delta u, \phi} = \sk{u, \Delta \phi}$
+  oziroma $\sk{u, \Delta \phi} = \sk{g, \phi}$.
+  Tu zahtevamo samo, da je $u$ dovolj regularen, da lahko izračunamo integral v
+  skalarnem produktu.
+  Šibka rešitev je vsaka $u \in \zvezne{U}$, ki zadošča $\sk{u, \Delta \phi} =
+  \sk{f, \phi}$ za vsak $\phi$.
+\end{primer}
+
+Poznamo štiri osnovne tipe parcialnih diferencialnih enačb.
+\begin{itemize}
+\item Linearna PDE je linearna kombinacija parcialnih odvodov
+  \[
+	\sum_{\abs{\alpha} \le k} a_\alpha(x) D^\alpha u(x) = f(x).
+  \]
+\item Semilinearna PDE je linearna samo v odvodu najvišjega reda
+  \[
+	\sum_{\abs{\alpha} = k} a_\alpha(x) D^\alpha u + b(x, u, Du, D^{k-1} u) = 0.
+  \]
+\item Kvazilinearna PDE je enačba oblike
+  \[
+	\sum_{\abs{\alpha} = k} a_\alpha(x, u, Du, \ldots, D^{k-1}u) \cdot D^\alpha
+	u + b(x, u, \ldots, D^{k-1} u) = 0.
+  \]
+\item Povsem nelinearna PDE je enačba, ki je nelinearno odvisna od odvodov
+  najvišjega reda.
+\end{itemize}
+
+\vprasanje{Definiraj linearne, semilinearne in kvazilinearne PDE.}
+
+\begin{definicija}
+  Pravimo, da je problem PDE z začetnim ali robnim pogojem \pojem{dobro
+	postavljen}, če ima naslednje lastnosti:
+  \begin{itemize}
+  \item rešitev obstaja,
+  \item rešitev je enolična,
+  \item rešitev je zvezno odvisna od začetnih pogojev.
+  \end{itemize}
+\end{definicija}
+
+% LocalWords:  multiindeks multiindeksom
