@@ -1,0 +1,98 @@
+\naslov{Kvazilinearne enačbe prvega reda v dveh spremenljivkah}
+
+Obravnavamo enačbe oblike
+\begin{equation}
+  \label{eq:kle}
+  a(x, y, u) u_x + b(x, y, u) u_y = c(x, y, u).
+\end{equation}
+Reševanja se bomo lotili z metodo karakteristik.
+Enačbo prvo prepišemo v obliko
+\[
+  \sk{(a, b, c), (u_x, u_y, -1)} = 0.
+\]
+Ploskvi $z = u(x, y)$, ki reši kvazilinearno enačbo, pravimo \pojem{integralna
+  ploskev} enačbe~\eqref{kle}.
+Če je $u: D \subseteq \R^2 \to \R$, lahko njen graf parametriziramo z
+$\vec{r}(x, y) = (x, y, u(x, y))$.
+Ploskev opišemo z normalo $\vec{r}_x \times \vec{r}_y = -(u_x, u_y, -1)$.
+Če $u$ že imamo, tedaj vektor $(a, b, c)$ leži v tangentni ravnini na graf.
+
+\begin{definicija}
+  Vektor $(a, b, c)$ se imenuje \pojem{karakteristična smer} za PDE\@.
+\end{definicija}
+
+Pišimo $V = (a, b, c)$, čemur pravimo pripadajoče (karakteristično) vektorsko
+polje.
+Iz eksistenčnega izreka sledi, da za vsak $p_0 = (x_0, y_0, z_0)$ obstaja
+natanko ena tokovnica polja $V$, ki poteka skozi točko $p_0$.
+Če označimo $\varphi_t(p) = \gamma_p(t)$, je $\varphi$ tok, in velja
+$\varphi_{t+s} = \varphi_t \circ \varphi_s$.
+
+\begin{trditev}
+  Naj bodo $a,b,c \in \zvodv{1}{\R^3}$, $S = \{z = u(x,y)\}$ poljubna integralna
+  ploskev za~\eqref{eq:kle} in $p_0 \in S$.
+  Tedaj vsaka karakteristična krivulja za~\eqref{eq:kle}, ki gre skozi točko
+  $p_0$, cela leži v $S$.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $\gamma(t) = (x, y, z)$ karakteristična krivulja z $\gamma(0) = p_0$.
+  Dokazati želimo, da velja $z = u(x, y)$, za kar je dovolj pokazati $\dot{z} =
+  \partial_t u(x, y)$.
+  Označimo $w(t) = z(t) - u(x(t), y(t))$ in računamo
+  \begin{align*}
+	\dot{w}
+	&= \dot{z} - u_x \dot{x} - u_y \dot{y} \\
+	&= c(\gamma(t)) - u_x(x, y) a(\gamma(t)) - u_y(x, y) b(\gamma(t)) \\
+	&= c(x, y, w+u(x, y)) - u_x(x, y) a(x, y, w+u(x, y)) - u_y(x, y) b(x, y, w+u(x, y)).
+  \end{align*}
+  Velja $w(0) = 0$.
+  Dobili smo Cauchyjevo nalogo oblike $\dot{w}(t) = f(t, w(t)), w(0) = 0$.
+  Preverimo lahko, da za $f$ lokalno velja Lipschitzov pogoj, torej po
+  eksistenčnem izreku obstaja enolična rešitev.
+  Ker je $u$ po predpostavki rešitev~\eqref{eq:kle}, je $w = 0$ rešitev
+  Cauchyjeve naloge, ki je enolična.
+\end{proof}
+
+\vprasanje{Pokaži, da tokovnice ne zapustijo integralne ploskve.}
+
+\begin{posledica}
+  Ob predpostavkah trditve je vsaka integralna ploskev unija karakterističnih krivulj.
+\end{posledica}
+
+\begin{posledica}
+  Ob predpostavkah trditve:
+  \begin{itemize}
+  \item Če se dve integralski ploskvi $S_1, S_2$ sekata v točki $p \in S_1
+	\presek S_2$, cela tokovnica skozi $p$ leži v $S_1 \presek S_2$.
+  \item Če je $C = S_1 \presek C_2$ krivulja, ki je presek dveh integralskih
+	ploskev, je karakteristična krivulja.
+  \end{itemize}
+\end{posledica}
+
+Vsaka integralska ploskev $z = u(x, y)$ za~\eqref{eq:kle} je unija
+karakterističnih krivulj polja $V = (a, b, c)$.
+Naj bo $\Gamma$ gladka krivulja, parametrizirana z $\gamma(s) = (f(s), g(s),
+h(s))$.
+Skozi $\gamma(s)$ napeljemo karakteristično krivuljo, ki vsebuje točko
+$\gamma(s)$.
+Privzamemo lahko, da gre ta krivulja skozi točko $\gamma(s)$ ob času $t = 0$.
+Iščemo vektorsko funkcijo $R(s, t) = (x(s, t), y(s, t), z(s, t))$, ki zadošča
+\begin{itemize}
+\item za vsak $s$ funkcija $R(s, \cdot)$ reši karakteristični sistem $\dot{x} =
+  a(x, y, z), \dot{y} = b(x, y, z), \dot{z} = c(x, y, z)$,
+\item začetni pogoji: $x(s, 0) = f(s), y(s, 0) = g(s), z(s, 0) = h(s)$.
+\end{itemize}
+Naj bo $J$ kompakten interval, $\gamma: J \to \R^3$, $s \in J$ in $\vec{F}_s =
+(f(s), g(s), h(s))$.
+Rešujemo sistem
+\[
+  \frac{d}{dt} \vec{x}_s = V(\vec{x}_s),\quad\vec{x}_s(0) = \vec{F}_s.
+\]
+Rešitev bo podana z $R(s, t) = \vec{x}_s(t)$.
+Po eksistenčnem izreku za sisteme NDE obstaja $\varepsilon > 0$, da na intervalu
+$(-\varepsilon, \varepsilon)$ obstaja natanko ena rešitev $\vec{x}_s:
+(-\varepsilon, \varepsilon) \to \R^3$.
+Želeli bi, da je $R$ parametrizacija integralske ploskve.
+Problem je, če je $\Gamma$ karakteristična krivulja; tedaj je slika $R$
+enodimenzionalna, torej potrebujemo dodatne pogoje.
