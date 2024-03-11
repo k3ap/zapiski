@@ -96,3 +96,65 @@ $(-\varepsilon, \varepsilon)$ obstaja natanko ena rešitev $\vec{x}_s:
 Želeli bi, da je $R$ parametrizacija integralske ploskve.
 Problem je, če je $\Gamma$ karakteristična krivulja; tedaj je slika $R$
 enodimenzionalna, torej potrebujemo dodatne pogoje.
+
+Poskusimo sistem enačb $x = x(s, t), y = y(s, t)$ prevesti na sistem $s = s(x,
+y), t = t(x, y)$ in vstaviti v tretjo komponento $R$.
+To nam da $z = z(s(x, y), t(x, y)) = u(x, y)$.
+Kdaj pa to smemo narediti?
+Spomnimo se: če za neki $s_0 \in J$ velja
+\[
+  \frac{\partial (x, y)}{\partial (s, t)}(s_0, 0)
+  =
+  \begin{vmatrix}
+	\frac{\partial x}{\partial s} & \frac{\partial x}{\partial t} \\
+	\frac{\partial y}{\partial s} & \frac{\partial y}{\partial t}
+  \end{vmatrix}
+  \ne 0,
+\]
+inverz lahko poiščemo lokalno na neki okolici $(s_0, 0)$.
+Po privzetkih na $\vec{F}_s$ je determinanta enaka
+\[
+  \begin{vmatrix}
+	f'(s_0) & a(p_0) \\
+	f'(s_0) & b(p_0)
+  \end{vmatrix}
+  =
+  b(p_0) f'(s_0) - a(p_0) f'(s_0)
+\]
+za $p_0 = (f(s_0), g(s_0), h(s_0))$.
+Geometrijsko želimo, da je projekcija na prvi dve komponenti tangente
+$\dot{\gamma}(s_0)$ linearno neodvisna od projekcije vektorja $V(p_0)$ na prvi
+dve komponenti.
+
+\begin{trditev}
+  Naj bo $\gamma = (f, g, h)$ pot v $\R^3$ razreda $\zvodvi{1}$, ki v dani točki
+  $p_0 = \gamma(s_0)$ zadošča pogoju transverzalnosti
+  \[
+	\begin{vmatrix}
+	  f'(s_0) & a(p_0) \\
+	  g'(s_0) & b(p_0)
+	\end{vmatrix}
+	\ne 0.
+  \]
+  Tedaj v neki okolici točke $(x_0, y_0) = (f(s_0), g(s_0))$ obstaja natanko ena
+  rešitev $u = u(x, y)$ kvazilinearne PDE~\eqref{eq:kle}, ki zadošča pogoju
+  $h(s) = u(f(s), g(s))$ za vsak $s$ blizu $s_0$.
+\end{trditev}
+
+\begin{proof}
+  Vse razen enoličnosti smo že pokazali.
+  Denimo, da neka integralna ploskev vsebuje točko $p_0$.
+  Tedaj po že dokazanem vsebuje vse karakteristične krivulje skozi točko $p_0$.
+  Posledično (vsaj lokalno) celo ploskev parametriziramo z $(x(s, t), y(s, t),
+  z(s, t))$.
+  Če privzamemo, da v neki okolici $p_0$ obstaja še ena rešitev $w = w(x, y)$,
+  za katero je $h = w(f, g)$ na okolici $s_0$, tedaj je $W = \{z = z(x, y)\}$
+  unija tokovnic.
+  Če gre neka tokovnica iz $W$ skozi točko $p_0$, je cela vsebovana v $U$.
+  Torej $W \subseteq U$.
+\end{proof}
+
+\vprasanje{Kako poiščeš rešitev kvazilinearne PDE prvega reda dveh spremenljivk?
+  Katere predpostavke potrebuješ? Pokaži, da je rešitev enolična.}
+
+% LocalWords:  privzetkih transverzalnosti
