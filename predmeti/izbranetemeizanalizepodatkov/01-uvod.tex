@@ -1,0 +1,72 @@
+Pri strojnem učenju obravnavamo \pojem{množico opazovanih objektov} $O$, in
+opazujemo lastnosti teh objektov.
+\pojem{Lastnost} modeliramo kot preslikavo $V: O \to D_V$, kjer je zaloga
+vrednosti $D_V$ lahko bodisi poljubna končna množica (v primeru diskretne
+spremenljivke), ali pa podmnožica $\R$, v primeru numerične spremenljivke.
+Za diskretne spremenljivke dodatno zahtevamo, da so vrednosti $D_V$ neurejene.
+Lastnosti ustrezajo \pojem{spremenljivkam}, ki jih ločimo na dva tipa.
+Prve so \pojem{napovedne spremenljivke} $\mb{X} = (X_1, \ldots, X_p)$, ki
+predstavljajo podatke, druge pa so \pojem{ciljne spremenljivke}, ki jih želimo
+napovedati.
+Vsako ciljno spremenljivko lahko obravnavamo posebej, torej si mislimo, da imamo
+le eno, $Y$.
+Pri nenadzorovanem učenju ciljnih spremenljivk nimamo, tam nas namesto napovedi
+zanimajo drugačna vprašanja.
+
+\vprasanje{Opiši podatkovno množico pri strojnem učenju.}
+
+Napovedni model predstavimo s funkcijo $m: D_{X_1} \times D_{X_2} \times \cdots
+\times D_{X_p} \to D_Y$.
+Funkcija za podane vrednosti $\mb{x}$ izračuna napoved ciljne spremenljivke
+$m(\mb{x}) = \hat{y}$.
+Napovedne modele ločimo glede na to, kakšno spremenljivko napovedujejo.
+\pojem{Regresijski model} napoveduje numerično spremenljivko,
+\pojem{klasifikacijski} pa diskretno.
+
+Za mero, kateri napovedni model je boljši od drugega, definiramo \pojem{funkcijo
+izgube} $L: D_Y \times D_y \to \zo{0, \infty}$, ki izračuna napako ene napovedi
+$\hat{y}$ glede na točno vrednost $y$.
+Pri regresijskih modelih običajno uporabljamo kvadratno napako
+\[
+  L_{\text{SE}}(y, \hat{y}) = {(y - \hat{y})}^2,
+\]
+pri klasifikacijskih pa
+\[
+  L_{01}(y, \hat{y}) =
+  \begin{cases}
+	0 & y = \hat{y}, \\
+	1 & \text{sicer}.
+  \end{cases}
+\]
+Napovedna napaka modela je potem povprečna napaka na vseh primerih iz $S$,
+\[
+  \operatorname{Error}(m, S) = \inv{\abs{S}} \sum_{(\mb{x}, y) \in S} L(y,
+  m(\mb{x})).
+\]
+
+Pri nadzorovanem učenju razdelimo množico $S$ na učno in testno množico,
+$S_{\text{train}}$ in $S_{\text{test}}$, ki sta disjunktni in pokrijeta vse
+primere.
+Pravimo, da je model \pojem{točen}, če ima majhno napako na učni množici, in
+\pojem{splošen}, če ima majhno napako na testni množici.
+
+\vprasanje{Kako definiramo napako napovednega modela? Kaj sta točnost in
+  splošnost?}
+
+Optimalen in nepristranski napovedni model bo takšen, ki bo minimiziral
+kvadratno napako $E({(Y - m(\mb{X}))}^2)$.
+V idealnem svetu bo tak model imel obliko $m^*(\mb{x}) = E(Y \such \mb{X} =
+\mb{x})$.
+Če predpostavimo, da so vsa opažanja v $S$ enako verjetna, je približek tega
+modela funkcija
+\[
+  m^*(\mb{x}_0) = \inv{\abs{S_0}} \sum_{(\mb{x}, y) \in S_0} y,
+\]
+kjer je $S_0 = \{(\mb{x}, y) \in S_{\text{train}} \such \mb{x} = \mb{x}_0\}$
+množica primerov, kjer je $\mb{x} = \mb{x}_0$.
+Problem je v tem, da je v praksi ta množica najverjetneje prazna, ali pa vsebuje
+zelo malo primerov.
+Namesto tega lahko za $S_0$ vzamemo $k$ najbližjih primerov iz
+$S_{\text{train}}$, čemur pravimo \pojem{soseščina} točke $\mb{x}_0$.
+
+\vprasanje{Opiši delovanje metode najbližjih sosedov.}
