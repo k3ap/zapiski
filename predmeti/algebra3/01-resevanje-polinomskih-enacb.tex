@@ -73,7 +73,94 @@ Od tu naprej predpostavimo, da so vse razširitve končne.
 \vprasanje{Karakteriziraj normalnost za končne razširitve. Dokaži
   karakterizacijo.}
 
+\begin{definicija}
+  Polinom $p(X) \in F[X]$ je \pojem{separabilen}, če ima same enostavne ničle.
+  Končna razširitev $E/F$ je \pojem{separabilna}, če je minimalni polinom
+  vsakega elementa $a \in E$ separabilen.
+\end{definicija}
+
+\begin{opomba}
+  V karakteristiki $0$ je vsaka končna razširitev separabilna.
+\end{opomba}
+
 \begin{izrek}[Primitivni element]
-  Naj bo karakteristika polja $0$.
-  Potem je vsaka končna razširitev $F$ enostavna.
+  Vsaka separabilna razširitev je enostavna.
 \end{izrek}
+
+\begin{proof}
+  Če je $F$ končno polje, je tudi $E$ končno in je $(E^*, \cdot)$ ciklična
+  grupa, generirana z $a$.
+  Velja $E = F(a_1, \ldots, a_n)$, brez škode za splošnost $a_i \ne 0$, torej
+  obstajajo $n_i$, da je $a_i = a^{n_i}$.
+  Torej je $E = F(a)$.
+
+  Če pa je $F$ neskončno polje, zapišimo $E = F(a_1, \ldots, a_n)$, ker je
+  razširitev končna.
+  Poleg tega so $a_i$ algebraični.
+  Ker velja $F(a_1, \ldots, a_n) = F(a_1, \ldots, a_{n-2})(a_{n-1}, a_n)$, izrek
+  zadošča dokazati za $n = 2$.
+
+  Naj bo torej $E = F(b, c)$ ter $p(X)$ in $q(X)$ minimalna polinoma $b$ in $c$.
+  Označimo z $E_1$ razpadno polje polinoma $p(X) q(X)$ in z $b = b_1, \ldots,
+  b_r$, $c = c_1, \ldots, c_s$ njune ničle v tem polju.
+  Izberimo $\lambda \in F$ tako, da $\lambda \ne (b_j - b){(c - c_k)}^{-1}$ za vse
+  $j$ in $k$.
+  Tak $\lambda$ res obstaja, ker je polje neskončno.
+  Sedaj definiramo $a = b + \lambda c$.
+  Očitno je $F(a) \subseteq F(b, c)$; trdimo, da velja tudi vsebovanost v drugi
+  smeri.
+  Vpeljimo $f(X) = p(a - \lambda X) \in F(a)[X]$.
+  Velja $f(c) = p(a - \lambda c) = p(b) = 0$, torej je $c$ hkrati ničla $f(X)$
+  in $q(X) \in F[X] \subseteq F(a)[X]$.
+  Naj bo $\tilde{q}(X) \in F(a)[X]$ minimalni polinom elementa $c$ nad poljem
+  $F(a)$.
+  Velja $\tilde{q} | f$ in $\tilde{q} | q$.
+
+  Možne ničle polinoma $\tilde{q}$ so skupne ničle polinomov $q$ in $f$.
+  Vemo, da imata skupno ničlo $c$; katere od $c_i$ pa so še ničle $f$?
+  Če je $f(c_j) = p(a - \lambda c_j) = 0$, potem je $a - \lambda c_j = b_k$ za
+  nek $k$, torej $b + \lambda c - \lambda c_j = b_k$ in posledično $\lambda =
+  (b_j - b){(c - c_k)}^{-1}$, kar je po predpostavki nemogoče.
+  Torej je $c$ edina ničla $\tilde{q}$.
+  Ker je to minimalni polinom in polje $F$ separabilno, je ničla enostavna in
+  zato $\tilde{q}(X) = X-c \in F(a)[X]$, torej $c \in F(a)$.
+\end{proof}
+
+\begin{primer}
+  Razširitev $E = F_2(\sqrt{t})$ je algebraična razširitev, ki ni separabilna.
+  Minimalni polinom za $\sqrt{t}$ je $x^2 - t = {(x + \sqrt{t})}^2$.
+\end{primer}
+
+\vprasanje{Kdaj je razširitev separabilna? Podaj primer končne razširitve, ki ni
+  algebraična. Povej izrek o primitivnem elementu in ga dokaži za končna polja.}
+
+\begin{definicija}
+  \pojem{Galoisova grupa razširitve} $E/F$ je grupa
+  \[
+	\Gal(E/F) = \{\sigma \in \Aut(E) \such \left. \sigma \right|_F =
+	\operatorname{id}_F\}.
+  \]
+\end{definicija}
+
+\begin{lema}
+  Naj bo $E/F$ razširitev, $a \in E$ ničla $p(X) \in F[X]$ ter $\sigma \in
+  \Gal(E/F)$.
+  Potem je $\sigma(a)$ tudi ničla $p(X)$.
+\end{lema}
+
+\begin{proof}
+  Uporabimo $\sigma$ na zapisu $p(X) = a_n X^n + \cdots + a_0$.
+\end{proof}
+
+\begin{definicija}
+  Naj bo $p(X) \in F[X]$ polinom.
+  \pojem{Galoisova grupa} polinoma $p$ je $\Gal(p) = \Gal(F(p)/F)$.
+\end{definicija}
+
+\vprasanje{Definiraj Galoisovo grupo razširitve in polinoma.}
+
+\begin{definicija}
+  Normalnim separabilnim razširitvam pravimo \pojem{Galoisove razširitve}.
+\end{definicija}
+
+% LocalWords:  separabilno separabilnim
