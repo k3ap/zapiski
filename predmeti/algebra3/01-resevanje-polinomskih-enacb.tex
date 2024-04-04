@@ -163,4 +163,155 @@ Od tu naprej predpostavimo, da so vse razširitve končne.
   Normalnim separabilnim razširitvam pravimo \pojem{Galoisove razširitve}.
 \end{definicija}
 
-% LocalWords:  separabilno separabilnim
+\begin{trditev}
+  Naj bo $E/F$ končna Galoisova razširitev.
+  Potem je $\abs{\Gal(E/F)} = [E:F]$.
+\end{trditev}
+
+\begin{proof}
+  Po izreku o primitivnem elementu obstaja $a \in E$, da je $E = F(a)$.
+  Naj bo $p(X) \in F[X]$ minimalni polinom $a$.
+  Zaradi normalnosti so vse ničle $p$ v $E$, torej je za $\sigma \in \Gal(E/F)$
+  slika $\sigma(a)$ lahko katerakoli ničla $p$.
+  Ničel je ravno toliko kot je stopnja razširitve, ker ima $p$ paroma različne
+  ničle.
+  Torej je za $\sigma$ natanko toliko možnosti.
+\end{proof}
+
+\begin{opomba}
+  Če je $E/F$ končna separabilna razširitev, je $\abs{\Gal(E/F)} \le [E:F]$.
+\end{opomba}
+
+\vprasanje{Kolikšen je red Galoisove grupe končne Galoisove razširitve? Dokaži.}
+
+\begin{lema}
+  Naj bo $F \subseteq L \subseteq E$.
+  \begin{itemize}
+  \item Če je $E/F$ končna, je tudi $E/F$ končna.
+  \item Če je $E/F$ normalna, je tudi $E/L$ normalna.
+  \item Če je $E/F$ separabilna, je tudi $E/L$ separabilna.
+  \end{itemize}
+\end{lema}
+
+\begin{proof}
+  Prva točka je enostavna, dokaz tretje pa je podoben dokazu druge, torej
+  dokažemo le to.
+  Naj bo $p(X) \in L[X]$ nerazcepen z ničlo $a \in E$ in
+  naj bo $q(X) \in F[X]$ minimalen polinom za $a$ nad $F$.
+  Trdimo, da $p(X)$ deli $q(X)$.
+  Vzemimo največji skupni delitelj $d(X) \in L[X]$ polinomov $p(X)$ in $q(X)$.
+  Ker imata skupno ničlo $a$, $d$ ni konstanten, $d(a) = 0$ in $d$ deli $p$.
+  Ker je $p$ nerazcepen, mora biti $d(X) = p(X)$, torej $p$ res deli $q$.
+  Vsaka ničla $b$ polinoma $p$ je torej tudi ničla $q$.
+  Ker je $E$ normalna, je $b \in E$.
+\end{proof}
+
+\begin{izrek}[Fundamentalni izrek Galoisove teorije]
+  Naj bo $E/F$ končna Galoisova razširitev.
+  \begin{itemize}
+  \item Predpisa $L \mapsto \Gal(E/L)$ in $G \mapsto E^G$ sta paroma inverzni
+	preslikavi med vmesnimi polji razširitve in podgrupami Galoisove grupe.
+  \item Za poljubni vmesni polji $F \subseteq L \subseteq M \subseteq E$ velja
+	$[M:L] = \abs{\Gal(E/F) : Gal(E/M)}$.
+  \item Za vmesno polje $F \subseteq L \subseteq E$ je $L/F$ normalna natanko
+	tedaj, ko je $\Gal(E/L) \edinka \Gal(E/F)$.
+	Velja še $\Gal(L/F) \cong \Gal(E/F) / \Gal(E/L)$.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Za prvo točko:
+  Dokažimo, da za vsak $L$ velja
+  \[
+	E^{\Gal(E/L)} = L.
+  \]
+  Očitno je $L \subseteq E^{\Gal(E/L)}$.
+  Trdimo, da za vsak $a \in E \brez L$ obstaja $\sigma \in \Gal(E/L)$, ki ga ne
+  fiksira.
+  Naj bo $q(X) \in L[X]$ minimalni polinom $a$.
+  Ker $a \notin L$, je $\st q > 1$, torej ima $q$ od $a$ različno ničlo $b \in
+  E$.
+  Polji $L(a)$ in $L(b)$ sta izomorfni, izomorfizem lahko razširimo do
+  izomorfizma razpadnih polj polinoma $q$; ta izomorfizem fiksira elemente $L$
+  in slika $a$ v $b$.
+
+  Sedaj pokažimo $\Gal(E/E^G) = G$.
+  Očitno je $G \subseteq \Gal(E/E^G)$, za drugo inkluzijo pa je dovolj dokazati
+  (ker so vse grupe končne), da je $[E:E^G] \le \abs{G}$.
+  Zaradi separabilnosti je $E = E^G(a)$.
+  Naj bo $q(X) \in E^G[X]$ minimalni polinom $a$.
+  Velja $\st q = [E:E^G]$.
+  Definiramo
+  \[
+	p(X) = \prod_{\tau \in G} (X - \tau(a)) \in E[X].
+  \]
+  Trdimo, da je $p(X) \in E^G[X]$, za kar moramo pokazati, da vsak $\sigma \in
+  G$ fiksira koeficiente polinoma.
+  Označimo polinom slik koeficientov z
+  \[
+	\sigma(p(X)) = \prod_{\tau \in G} (X - \sigma(\tau(a))).
+  \]
+  Ko $\tau$ preteče cel $G$, tudi $\sigma \tau$ preteče cel $G$, torej
+  $\sigma(p(X)) = p(X) \in E^G[X]$.
+  Velja $p(a) = 0$, torej $q$ deli $p$ in zato $[E:E^G] = \st q \le \st p =
+  \abs{G}$.
+
+  Druga točka:
+  Preprost račun
+  \[
+	[M:L]
+	= \frac{[E:L]}{[E:M]} = \frac{\abs{\Gal(E/L)}}{\abs{\Gal(E/M)}}
+	= \abs{\Gal(E/L) : \Gal(E/M)}.
+  \]
+
+  Tretja točka:
+  Dokaz v več korakih.
+  Prvo pokažimo, da je $L/F$ normalna natanko tedaj, ko za vsak $\sigma \in
+  \Gal(E/F)$ velja $\sigma(L) = L$.
+  V desno naj bo $\sigma \in \Gal(E/F)$.
+  Velja $L = F(a_1, \ldots, a_k)$, označimo s $p_i$ minimalni polinom $a_i$.
+  Ker je razširitev normalna, so vse ničle $p_i$ v $L$, torej se $a_i$ s
+  $\sigma$ slika v neko ničlo $p_i$.
+  Torej je $\sigma(a_i) \in L$ za vse $i$, drugo inkluzijo pa dobimo z inverzom
+  $\sigma^{-1}$.
+  Podobno v drugo smer.
+
+  Sedaj pokažimo, da za $F \subseteq L \subseteq E$ in poljuben $\sigma \in
+  \Gal(E/F)$ velja $\Gal(E/\sigma(L)) = \sigma \Gal(E/F) \sigma^{-1}$.
+  To velja zato, ker je $\tau \in \Gal(E/\sigma(L))$ natanko tedaj, ko je
+  $\left. \tau \right|_{\sigma(L)} = \operatorname{id}$, oziroma
+  $\tau(\sigma(x)) = \sigma(x)$ za vsak $x \in L$.
+  Če množimo z leve s $\sigma^{-1}$, dobimo $\sigma^{-1} \tau \sigma (x) = x$ za
+  $x \in L$, kar je ekvivalentno zahtevi $\sigma^{-1} \tau \sigma \in \Gal(E/L)$.
+
+  V tretjem koraku opazimo, da je desni del ekvivalence v prvem koraku enaka
+  zahtevi, da za vsak $\sigma \in \Gal(E/F)$ velja $\Gal(E/F) =
+  \Gal(E/\sigma(L))$, oziroma $\sigma \Gal(E/L) \sigma^{-1} = \Gal(E/L)$, kar pa
+  je po definiciji enako $\Gal(E/L) \edinka \Gal(E/F)$.
+
+  V zadnjem koraku recimo, da je $L/F$ normalna, in definirajmo $\phi :
+  \Gal(E/F) \to \Gal(L/F)$ kot
+  \[
+	\phi(\sigma) = \left. \sigma \right|_L.
+  \]
+  Po prvem koraku dokaza prejšnje točke zožena preslikava res slika $L$ v $L$,
+  iz izreka o izomorfizmu torej dobimo $\Gal(E/F) / \Gal(E/L) \cong \Gal(L/F)$.
+\end{proof}
+
+\vprasanje{Povej in dokaži fundamentalni izrek Galoisove teorije.}
+
+\podnaslov{Rešljive grupe}
+
+\begin{definicija}
+  Grupa $G$ je \pojem{rešljiva}, če obstaja končno zaporedje podgrup
+  \[
+	\{e\} = G_0 \subseteq G_1 \subseteq \cdots \subseteq G_k = G,
+  \]
+  da je za vsak $i$ $G_i \edinka G_{i+1}$ ter $G_{i+1} / G_i$ Abelova grupa.
+\end{definicija}
+
+\begin{vo}{Kaj je rešljiva grupa? Povej nekaj pozitivnih in negativnih primerov.}
+  Abelove grupe so rešljive, enostavne nekomutativne grupe pa niso.
+\end{vo}
+
+% LocalWords:  separabilno separabilnim Galoisove Galoisovo nekomutativne
