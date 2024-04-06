@@ -1,0 +1,97 @@
+\naslov{Centralni limitni izrek}
+
+Naj bo $S_n \sim \operatorname{Bin}(n, \pol)$, da velja $P(S_n = k) =
+\binom{n}{k} 2^{-n}$.
+Poglejmo si razmerje
+\[
+  \frac{P(S_n = k+1)}{P(S_n = k)}
+  = \frac{\binom{n}{k+1}}{\binom{n}{k}}
+  = \frac{n-k}{k+1}.
+\]
+Za sedaj se omejimo na sode $n = 2m$.
+Potem je $P(S_n = k)$ največja za $k=m$, in za $d > 0$ dobimo
+\begin{align*}
+  \frac{P(S_{2m} = m+d)}{P(S_{2m} = m)}
+  &= \frac{P(S_{2m} = m+d)}{P(S_{2m} = m+d-1)} \frac{P(S_{2m} = m+d-1)}{P(S_{2m}
+	= m+d-2)} \cdots \frac{P(S_{2m} = m+1)}{P(S_{2m} = m)} \\
+  &= \frac{2m - m - d +1}{m+d} \cdots \frac{2m-m}{m+1} \\
+  &= \frac{m - d + 1}{m - d} \cdots \frac{m}{m+1} \\
+  &= \frac{1 + \frac{1-d}{m}}{1 + \frac{d}{m}} \cdots \frac{1}{1 + \frac{1}{m}} \\
+  &= \frac{1 - \frac{d-1}{m}}{1 + \frac{1}{m}} \cdots \frac{1}{1 + \frac{d}{m}}.
+\end{align*}
+Če je $d$ dovolj majhen, je to približno enako
+\begin{align*}
+  \frac{P(S_{2m} = m+d)}{P(S_{2m} = m)}
+  &\approx \frac{e^{- \frac{d-1}{m}} e^{- \frac{d-2}{m}}\cdots e^0}{e^{\frac{1}{m}} e^{\frac{2}{m}} \cdots e^{\frac{d}{m}}} \\
+  &= \exp\left( - \frac{1}{m} - \frac{2}{m} - \cdots - \frac{d}{m} - \frac{d-1}{m} - \cdots - \frac{1}{m} \right) \\
+  &= \exp\left( -\frac{d^2}{m} \right).
+\end{align*}
+Pri $d < 0$ je porazdelitev simetrična, torej dobimo enak rezultat.
+Izkaže se
+\[
+  \lim_{m \to \infty} \sum_{d = -\infty}^\infty \abs{ \frac{P(S_{2m} =
+	  m+d)}{P(S_{2m} = m)} - e^{-d^2 / m} } = 0.
+\]
+Vrsta
+\[
+  \sum_{d = -\infty}^\infty \frac{P(S_{2m} = m+d)}{P(S_{2m} = m)} =
+  \inv{P(S_{2m} = m)}
+\]
+je približno enaka
+\[
+  \sum_{d = -\infty}^\infty e^{-d^2/m} \approx \int_{-\infty}^\infty e^{-x^2 /
+	m} dx = \sqrt{m\pi},
+\]
+torej je verjetnost $P(S_{2m} = m) \approx \inv{\sqrt{m \pi}}$.
+Upoštevaje zgornjo formulo potem dobimo
+\[
+  P(S_{2m} = m+d) \approx \inv{\sqrt{m \pi}} e^{- \frac{d^2}{m}}
+\]
+oziroma
+\[
+  P(S_n = k) \approx \sqrt{\frac{2}{n \pi}} \exp\left( - \frac{2
+	  (k-\nicefrac{n}{2})^2}{n} \right).
+\]
+Vse to je res tudi za lihe $n$.
+Rezultatu pravimo \pojem{de Moivreova lokalna formula}.
+
+\vprasanje{Izpelji de Moivreovo lokalno formulo.}
+
+Za $a, b \in \Z$ lahko izpeljemo
+\begin{align*}
+  P(a \le S_n \le b)
+  &= \sum_{k=a}^b P(S_n = k) \\
+  &\approx \sqrt{\frac{2}{n \pi}} \sum_{k=a}^b \exp\left( - \frac{2 (k - \frac{m}{2})^2}{n} \right) \\
+  &\approx \sqrt{\frac{2}{n \pi}} \sum_{k=a}^b \int_{k - \pol}^{k + \pol} \exp\left( - \frac{2 (x - \frac{m}{2})^2}{n} \right) dx \\
+  &= \sqrt{\frac{2}{n \pi}} \int_{a}^{b} \exp\left( - \frac{2 (x - \frac{m}{2})^2}{n} \right) dx,
+\end{align*}
+kar se da razširiti za poljubna $a < b$.
+Dobljeni približek za verjetnost $P(S_n = k)$ je gostota normalne porazdelitve
+$N(\frac{n}{2}, \frac{n}{4})$ v točki $k$.
+Velja $E(S_n) = \frac{n}{2}$ in $\var(S_n) = \frac{n}{4}$.
+Binomska porazdelitev, s katero smo začeli, je enaka vsoti $n$ neodvisnih
+Bernoullijevih slučajnih spremenljivk, ki je torej porazdeljena približno
+normalno.
+
+\begin{izrek}[centralni limitni izrek]
+  Naj bodo $X_1, X_2, \ldots$ neodvisne in enako porazdeljene slučajne
+  spremenljivke s končnim drugim momentom.
+  Označimo $\mu_1 = E(X_i)$ in $\sigma_1^2 = \var(X_i)$.
+  Za $S_n = X_1 + \cdots + X_n$ veljata naslednji točki:
+  \begin{itemize}
+  \item Če definiramo $W_n = \frac{S_n - n \mu_1}{\sigma_1 \sqrt{n}}$, za vsak
+	$w \in \R$ velja
+	\[
+	  \lim_{n \to \infty} P(W_n \le w) = \phi(w).
+	\]
+  \item Limita
+	\[
+	  \lim_{n \to \infty} \sup_{w \in \R} \abs{P(W_n < w) - \phi(w)}
+	  = \lim_{n \to \infty} \sup_{x \in R} \abs{P(S_n < x) - \phi\!\left(
+		  \frac{x - n \mu_1}{\sigma_1 \sqrt{n}} \right)}
+	  = 0.
+	\]
+  \end{itemize}
+\end{izrek}
+
+\vprasanje{Formuliraj centralni limitni izrek.}
