@@ -66,9 +66,26 @@ $\varphi_{t+s} = \varphi_t \circ \varphi_s$.
   \item Če se dve integralski ploskvi $S_1, S_2$ sekata v točki $p \in S_1
 	\presek S_2$, cela tokovnica skozi $p$ leži v $S_1 \presek S_2$.
   \item Če je $C = S_1 \presek C_2$ krivulja, ki je presek dveh integralskih
-	ploskev, je karakteristična krivulja.
+	ploskev $S_1, S_2$, ki se sekata ne-tangentno, je karakteristična krivulja.
   \end{itemize}
 \end{posledica}
+
+\begin{proof}
+  Tokovnica ne zapusti ne $S_1$ ne $S_2$, torej mora biti vsebovana v preseku.
+  Za drug del naj bo $p \in S_1 \presek S_2$.
+  Tangentni ravnini $T_p S_1$ in $T_p S_2$ se sekata ne-tangentno, torej sta
+  različni, in je njun presek enodimenzionalen.
+  Ker sta $S_1$ in $S_2$ integralski ploskvi, njuni tangentni ravnini vsebujeta
+  smer karakteristike in je zato
+  \[
+	T_p S_1 \presek T_p S_2 = \{\lambda(a(p), b(p), c(p)) \such \lambda \in \R\}
+	= T_p(S_1 \presek S_2) = T_pC.
+  \]
+  Torej je $C$ v vsaki točki tangentna na smer karakteristike, torej je
+  karakteristična krivulja.
+\end{proof}
+
+\vprasanje{Dokaži, da je presek integralskih ploskev karakteristična krivulja.}
 
 Vsaka integralska ploskev $z = u(x, y)$ za~\eqref{eq:kle} je unija
 karakterističnih krivulj polja $V = (a, b, c)$.
