@@ -67,5 +67,74 @@ $(p, q, -1)$, s čimer dobimo \pojem{karakteristični trak}.
   p \dot{x} + q \dot{y}), (p, q, -1)} = 0$.
 \end{proof}
 
+Če odvajamo zgornjo enačbo, dobimo
+\begin{gather*}
+  F_x + F_u u_x + F_p p_x + F_q q_x = 0, \\
+  F_y + F_u u_y + F_p p_y + F_q q_y = 0.
+\end{gather*}
+Za $x = x(t)$ in $y = y(t)$ imamo torej
+\begin{gather*}
+  \dot{p} = p_x \dot{x} + p_y \dot{y} = p_x F_p + p_y F_q, \\
+  \dot{q} = q_x F_p + q_y F_q,
+\end{gather*}
+iz česar sledi
+\[
+  \dot{p} = - F_x - F_u u_x - F_q q_x + p_y F_q
+  = F_q (p_y - q_x) - F_x - F_u u_x
+\]
+Pričakujemo $p = u_x$ in $q = u_y$, torej $p_y - q_x = u_{xy} - u_{yx} = 0$.
+Posledično je smiselno zahtevati $\dot{p} = -F_x - F_u p$ in $\dot{q} = -F_y -
+F_u q$.
+S tem smo dobili karakteristični sistem za $x, y, z, q, p$:
+\begin{gather*}
+  \dot{x} = F_p \\
+  \dot{y} = F_q \\
+  \dot{z} = p F_p + q F_q \\
+  \dot{p} = - F_x - F_u p \\
+  \dot{q} = - F_y - F_u q
+\end{gather*}
+Rešitve imenujemo \pojem{karakteristike enačbe \eqref{eq:ne}}.
+Funkcija $F$ je konstantna vzdolž rešitev tega sistema.
+
+\vprasanje{Izpelji karakteristični sistem za nelinearno PDE prvega reda.}
+
+\podnaslov{Cauchyjeva naloga za PDE prvega reda}
+
+Vzemimo karakteristiko $\lambda = \lambda(t) = (x, y, z, p, q) = (\gamma, p,
+q)$.
+Imamo še začetni pogoj $(x_0, y_0, z_0, p_0, q_0) \in \R^5$.
+
+\begin{definicija}
+  Krivulja $\lambda = \lambda(s)$, ki zadošča $F(\lambda) = 0$, se imenuje
+  \pojem{integralna krivulja}, če velja $z_s = p x_s + q y_s$.
+\end{definicija}
+
+Rešitev karakterističnega sistema je integralna krivulja.
+Cauchyjeva naloga je reševanje~\eqref{eq:ne}, pri čemer graf rešitve vsebuje
+neko vnaprej dano krivuljo $\gamma(s) = (f(s), g(s), h(s))$.
+Želimo poiskati smiselna začetna pogoja za $p$ in $q$, torej iščemo funkciji
+$\varphi$ in $\psi$, da bo $(f, g, h, \varphi, \psi)(s)$ začetni pogoj za
+sistem.
+Rešitev sistema bo tedaj funkcija $R = R(s,t)$, za katero bo veljalo $R(s,0) =
+(f, g, h, \varphi, \psi)(s)$, in da $(x(s, t), y(s, t), z(s, t))$ parametrizira
+$\{z = u(x, y)\}$, kjer je $u$ rešitev enačbe~\eqref{eq:ne}.
+
+Da bo $R$ parametrizirala rešitev enačbe, mora veljati $F(R(s, t)) = 0$.
+Ker je $F$ vzdolž tokovnic konstantna, zadošča zahtevati, da je $F(R(s, t)) =
+0$, torej $F(f, g, h, \varphi, \psi) = 0$.
+Veljati mora
+\begin{gather*}
+  \dot{z} = u_x \dot{x} + u_y \dot{y}, \\
+  z_s = u_x x_s + u_y y_s.
+\end{gather*}
+Ker želimo $p = u_x$ in $q = u_y$, pa dodatno
+\begin{gather*}
+  \dot{z} = p \dot{x} + q \dot{y}, \\
+  z_s = p x_s + q y_s.
+\end{gather*}
+Iz pogojev pri $t=0$ torej dobimo
+\[
+  h'(s) = \varphi(s) f'(s) + \psi(s) g'(s).
+\]
 
 % LocalWords:  Mongeov Mongeovega Mongeovem
