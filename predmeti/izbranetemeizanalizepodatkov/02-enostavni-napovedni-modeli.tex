@@ -1,0 +1,118 @@
+\naslov{Linearna regresija}
+
+Pri numeričnih napovednih spremenljivkah in numerični ciljni spremenljivki lahko
+uporabimo linearno regresijo,
+\[
+  \hat{y} = \beta_0 + \sum_{i = 1}^p \beta_i X_i,
+\]
+kjer so $\beta_i$ neznani koeficienti.
+Če jih zložimo v vektor $\boldsymbol{\beta} = [\beta_0, \ldots, \beta_p]^T$,
+lahko model prepišemo v $\hat{y} = \mb{X} \boldsymbol{\beta}$ za $\mb{X} = [1,
+X_1, \ldots, X_p]$.
+Optimalna izbira za $\boldsymbol{\beta}$ bo tedaj
+\[
+  \argmin_{\boldsymbol{\beta}} (Y - \mb{X} \boldsymbol{\beta}) (Y - \mb{X}
+  \boldsymbol{\beta})^T
+\]
+za stolpec ciljnih vrednosti $Y$.
+Funkciji, ki jo zgoraj minimiziramo, pravimo tudi RSS\@.
+Optimalen $\boldsymbol{\beta}$ dobimo z reševanjem predoločenega sistema.
+
+\vprasanje{Pojasni linearno regresijo.}
+
+Napako linearnega modela lahko merimo na več načinov.
+Ena možnost je \pojem{residualna standardna napaka}
+\[
+  \text{RSE} = \sqrt{\frac{\text{RSS}}{\abs{S} - p - 1}},
+\]
+kjer je podobno kot prej
+\[
+  \text{RSS} = \sum_{(\mb{x}, y) \in S} {(y - \mb{x}^T \boldsymbol{\beta})}^2.
+\]
+Dober model imamo, ko je RSE blizu $0$.
+
+Drug način merjenja napake je \pojem{delež pojasnjene variance}
+\[
+  R^2 = 1 - \frac{\text{RSS}}{\text{TSS}}
+\]
+za
+\[
+  \text{TSS} = \sum_{(\mb{x}, y) \in S} {(y - \bar{y})}^2,
+\]
+kjer z $\bar{y}$ označimo povprečje.
+Mera $R^2$ ima vrednosti v intervalu $[0,1]$, dober model pa dobimo za $R^2$
+blizu $1$.
+
+Nazadnje imamo še \pojem{popolno napako modela} oziroma RMSE
+\[
+  \text{RMSE} = \sqrt{\inv{\abs{S}} \sum_{(\mb{x}, y) \in S} {(y - \mb{x}^T
+	  \boldsymbol{\beta})}^T}.
+\]
+Tudi tu ima dober model vrednost blizu $0$.
+
+\vprasanje{Kako meriš napako linearnega modela?}
+
+Če vemo (ali predpostavljamo), da ima neka spremenljivka nelinearen vpliv, lahko
+poskusimo dodati nove spremenljivke, npr.~$X_1^2, X_1 X_2$, ipd.
+
+\naslov{Logistična regresija}
+
+Če imamo diskretno spremenljivko $V$ z domeno $\{v_1, \ldots, v_k\}$, jo
+spremenimo v $k$ numeričnih spremenljivk, ki so indikatorji dogodka $V = v_i$.
+Dovolj je torej znati napovedati vrednost binarne diskretne spremenljivke.
+V nadaljevanju napovedujemo $Y$ z vrednostmi $D_Y = \{\oplus, \ominus\}$.
+Namesto vrednosti $\oplus$ in $\ominus$ lahko poskusimo napovedati verjetnost
+$P(Y = \oplus \such X = x)$, problem pa je, da nam linearna regresija hitro
+zbeži izven intervala $[0,1]$.
+Rešitev je, da napovedujemo logaritem obetov $\log \frac{p}{1 - p}$, ki leži na
+intervalu $(-\infty, \infty)$.
+Odločitvena meja pri $p = 0.5$ sovpada z vrednostjo $z = 0$.
+
+Težava je v tem, da verjetnosti $P(Y = \oplus \such X = x)$ ne poznamo, torej ne
+moremo formulirati najmanjših kvadratov.
+Deluje pa metoda največjega verjetja
+\[
+  L(\mb{X}, Y, \boldsymbol{\beta})
+  = \prod_{(\mb{x}, y) \in S} P(Y = y \such \mb{X} = \mb{x}, \boldsymbol{\beta})
+  = \prod_{y = 1} \frac{e^{\mb{x}^T \boldsymbol{\beta}}}{1 - e^{\mb{x}^T
+	  \boldsymbol{\beta}}}
+  \prod_{y = 0} \inv{1 - e^{\mb{x}^T \boldsymbol{\beta}}}.
+\]
+Najlažje maksimiziramo logaritem verjetja, torej
+\[
+  \log L
+  = \sum_{y = 1} (\mb{x}^T \boldsymbol{\beta} - \log (1 + e^{\mb{x}^T
+	\boldsymbol{\beta}}))
+  - \sum_{y = 0} \log (1 + e^{\mb{x}^T \boldsymbol{\beta}}).
+\]
+Če prvo vsoto pomnožimo z $y$, drugo pa z $1 - y$, nič ne spremenimo, torej je
+to enako
+\[
+  \log L = \sum_{(\mb{x}, y) \in S} (\mb{x}^T \boldsymbol{\beta} y - \log(1 +
+  e^{\mb{x}^T \boldsymbol{\beta}})).
+\]
+Maksimum funkcije poiščemo z odvodom.
+
+\vprasanje{Razloži logistično regresijo.}
+
+Pri logistični regresiji lahko merimo \pojem{klasifikacijsko napako}
+\[
+  \text{CE} = \inv{\abs{S}} \sum_{(\mb{x}, y) \in S} \mathbbm{1}(y \ne \mb{x}^T
+  \boldsymbol{\beta}),
+\]
+kjer imamo dober model, če je ta napaka blizu $0$.
+
+\vprasanje{Kaj je klasifikacijska napaka?}
+
+\naslov{Najbližji sosedi}
+
+V metodi najbližjih sosedov definiramo \pojem{soseščino} točke $\mb{x}_0$ kot
+množico $S_0$ najbližjih $k$ meritev tej točki.
+Razdalja je običajno psevdometrika, kjer ne zahtevamo, da iz $d(a, b) = 0$ sledi
+$a = b$.
+Pri regresijskem modelu vzamemo (uteženo) povprečje množice $S_0$, v
+klasifikaciji pa večinsko glasovanje, tj.~najpogostejšo vrednost v soseščini.
+
+\vprasanje{Razloži metodo najbližjih sosedov.}
+
+% LocalWords:  maksimiziramo
