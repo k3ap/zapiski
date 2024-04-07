@@ -312,6 +312,152 @@ Od tu naprej predpostavimo, da so vse razširitve končne.
 
 \begin{vo}{Kaj je rešljiva grupa? Povej nekaj pozitivnih in negativnih primerov.}
   Abelove grupe so rešljive, enostavne nekomutativne grupe pa niso.
+  Za $H = \sk{(1 2 3)}$ je $\{id\} \edinka H \edinka S_3$, za $K = \sk{(1 2) (3
+	4), (1 4)(3 2)}$ pa $\{id\} \edinka K \edinka A_4 \edinka S_4$, preverimo
+  lahko, da sta tako $S_3$ kot $S_4$ rešljivi.
 \end{vo}
 
+\begin{trditev}
+  Vsaka podgrupa rešljive grupe je rešljiva.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $G$ rešljiva, $\{e\} = G_0 \edinka \cdots \edinka G_k = G$, in naj bo
+  $H \le G$.
+  Potem je $G_i \presek H \edinka G_{i+1} \presek H$, za kvocient pa velja
+  \[
+	\frac{G_{i+1} \presek H}{G_i \presek H} = \frac{G_{i+1} \presek H}{G_i
+	  \presek G_{i+1} \presek H} \cong \frac{(G_{i+1} \presek H) \cdot G_i}{G_i}
+	\le \frac{G_{i+1}}{G_i},
+  \]
+  kjer smo uporabili drugi izrek o izomorfizmu.
+  Grupa $G_{i+1}/G_i$ je Abelova, torej je
+  \[
+	\{e\} = G_0 \presek H \edinka \cdots \edinka G_k \presek H = H.
+  \]
+\end{proof}
+
+\vprasanje{Pokaži, da je podgrupa rešljive grupe rešljiva.}
+
+\begin{trditev}
+  Kvocient rešljive grupe je rešljiv.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $G$ rešljiva in $N \edinka G$.
+  Preverimo lahko, da velja
+  \[
+	\{e\} \edinka \frac{G_0 N}{N} \edinka \cdots \edinka \frac{G_k N}{N} =
+	\frac{G}{N}.
+  \]
+  Z uporabo tretjega in drugega izreka o izomorfizmu izračunamo
+  \[
+	\frac{G_{i+1} N / N}{G_i N / N} \cong \frac{G_{i+1} /N}{G_i /N}
+	= \frac{G_{i+1} G_i /N}{G_i / N} \cong \frac{G_{i+1}}{G_{i+1} \presek G_i N}
+	\cong \frac{G_{i+1} / G_i}{(G_{i+1} \presek G_i N) / G_i}.
+  \]
+  Kvocient Abelove grupe je Abelova grupa.
+\end{proof}
+
+\vprasanje{Pokaži, da je kvocient rešljive grupe rešljiv.}
+
+\begin{trditev}
+  Naj bo $N \edinka G$ in naj bosta $N$ in $G/N$ rešljivi.
+  Potem je $G$ rešljiva grupa.
+\end{trditev}
+
+\begin{proof}
+  Naj bosta $N_0 \edinka \cdots \edinka N_k$ in $G_0 / N \edinka \cdots G_l / N$
+  zaporedji edink.
+  Iz $G_i/N \edinka G_{i+1}/N$ sledi $G_i \edinka G_{i+1}$.
+  Po tretjem izreku o izomorfizmu je $G_{i+1}/G_i$ Abelova (ker je
+  $\frac{G_{i+1}/N}{G_i/}$ Abelova).
+  Sedaj imamo zaporedje
+  \[
+	N_0 \edinka N_i \edinka \cdots \edinka N_k = N = G_0 \edinka G_1 \edinka
+	\cdots \edinka G_l = G.
+  \]
+\end{proof}
+
+\vprasanje{Kako sestaviš rešljivo grupo iz rešljive edinke in kvocienta?
+  Dokaži.}
+
+\podnaslov{Rešljivost polinomskih enačb z radikali}
+
+Dan je polinom $p(X) \in F[X]$.
+Rešljivost polinomske enačbe z $p(X) = 0$ z radikali je ekvivalentna obstoju
+razširitve $E/F$, ki jo dobimo z zaporedjem radikalskih razširitev $F = E_0
+\subseteq E_1 \subseteq \cdots \subseteq E_k = E$.
+
+\begin{lema}
+  Naj bo $F$ polje, ki vsebuje primitivni $n$-ti koren enote.
+  Naj bo $a \in F$.
+  Potem je Galoisova grupa polinoma $X^n - a$ ciklična.
+\end{lema}
+
+\begin{proof}
+  Naj bo $\varepsilon$ primitivni $n$-ti koren enote.
+  Če je $b$ neka ničla $X^n - a$, so vse ničle oblike $b, \varepsilon b, \ldots,
+  \varepsilon^{n-1} b$.
+  Potem je $F(X^n - a) = F(b, \varepsilon b, \ldots, \varepsilon^{n-1} b) =
+  F(b)$, ker je $\varepsilon \in F$.
+  Preslikava $\sigma \in \Gal(X^n - a)$ je določena s sliko $b$;
+  \[
+	b \mapsto \varepsilon^i b.
+  \]
+  S tem je določena injektivna preslikava $Gal(X^n - a) \to \Z_n$, ki je
+  hkrati homomorfizem grup.
+\end{proof}
+
+\begin{izrek}
+  Enačba $p(X) = 0$ je rešljiva z radikali natanko tedaj, ko je Galoisova grupa
+  polinoma $p$ rešljiva grupa.
+\end{izrek}
+
+\begin{proof}
+  Dokažemo le implikacijo v desno; v drugo smer je podobno.
+  Enačba je rešljiva, torej obstajajo razširitve $F = E_0 \subseteq E_1
+  \subseteq \cdots \subseteq E_k = E$, da je $E_{i+1} = E_i(a_i)$ in $a_i^{n_i}
+  \in F$.
+  Definiramo $n = n_0 \ldots n_{k-1}$.
+  Naj bo $\varepsilon$ primitivni $n$-ti koren enote.
+  Za ta dokaz se ne bomo ukvarjali s separabilnostjo; privzamemo npr.~da je
+  karakteristika polja $0$.
+
+  Po izreku o primitivnem elementu obstaja $a$, da je $E = F(a)$.
+  Naj bo $g(X) \in F[X]$ minimalni polinom $a$ in $\Omega = F(g(X) (X^n - 1))$.
+  To je normalna razširitev $F$, ki vsebuje $E$ in $\varepsilon$.
+  Vzemimo še $\tilde{E}$ kot normalno zaprtje polja $E(\varepsilon)$ v $\Omega$
+  tj.~najmanjša normalna razširitev $E(\varepsilon)$, ki je vsebovana v
+  $\Omega$.
+
+  Polje $\tilde{E}$ vsebuje vse $\sigma(E(\varepsilon))$ za $\sigma \in
+  \Gal(\Omega / F)$, torej je enako
+  \[
+	\tilde{E} = F(\varepsilon, a_0, a_1, \ldots, a_{k-1}, \sigma_1(a_0), \ldots,
+	\sigma_2(a_0), \ldots).
+  \]
+  Razširitev $\tilde{E}/F$ lahko naredimo po korakih, po vrstnem redu kot zgoraj.
+  V vsaki vmesni razširitvi dodamo ničlo polinoma $X^{n_i} - b_i$ za nek $b_i$,
+  torej so razširitve radikalske.
+  Preverimo lahko, da so tudi normalne.
+
+  Po Galoisovi korespondenci dobimo verigo podgrup
+  \[
+	\Gal(\tilde{E}/F) \supseteq \Gal(\tilde{E}/F(\varepsilon)) \supseteq \cdots
+	\supseteq \Gal(\tilde{E}/\tilde{E}) = \{e\}.
+  \]
+  Zaradi normalnosti je to zaporedje edink.
+  Kvocienti so po lemi ciklične grupe, torej je $\Gal(\tilde{E}/F)$ rešljiva.
+  Grupa
+  \[
+	\frac{\Gal(\tilde{E}/F)}{\Gal(\tilde{E}/F(p))} \cong \Gal(F(p)/F) = \Gal(p)
+  \]
+  je kvocient rešljive grupe, torej je rešljiva.
+\end{proof}
+
+\vprasanje{Dokaži, da je rešljivost polinomske enačbe $p(X) = 0$ z radikali
+  implicira rešljivost grupe $\Gal(p)$.}
+
 % LocalWords:  separabilno separabilnim Galoisove Galoisovo nekomutativne
+% LocalWords:  radikalskih separabilnostjo Galoisovi
