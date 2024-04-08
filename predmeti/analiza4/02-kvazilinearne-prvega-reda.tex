@@ -191,4 +191,108 @@ Enačbe karakteristik imajo obliko
 
 \vprasanje{Kakšne so enačbe karakteristik za linearno PDE?}
 
-% LocalWords:  privzetkih transverzalnosti
+\podnaslov{Ovojnica družine ravnin}
+
+Naj bo
+\[
+	\Pi_\lambda = \{(x, y, z) \in \R^3 \such z = \psi(x, y, \lambda) = a(\lambda)
+	x + b(\lambda) y\}
+\]
+družina ravnin, kjer za interval $I \subseteq R$ funkciji $a, b \in
+\zvodv{2}{I}$ taki, da je $\vec{n}(\lambda) = (a(\lambda), b(\lambda), -1)$
+injektivna in
+\[
+	W(a', b') =
+	\begin{vmatrix}
+		a' & b' \\ a'' & b''
+	\end{vmatrix}
+	\ne 0
+\]
+za vsak $\lambda$.
+\pojem{Ovojnica} družine $\Pi_\lambda$ je ploskev
+\[
+	\mathcal{O} = \{(x, y, z) \in \R^3 \such z = \varphi(x,y)\},
+\]
+za katero velja:
+\begin{itemize}
+\item $\mathcal{O} \subseteq \bigcup_\lambda \Pi_\lambda$,
+\item če je $p \in \mathcal{O} \presek \Pi_\lambda$, potem je normala na
+	$\mathcal{O}$ v točki $p$ vzporedna $\vec{n}(\lambda)$.
+\end{itemize}
+Trivialna izbira je $\mathcal{O} = \Pi_\lambda$ za nek $\lambda$, te pa v
+nadaljnje ne bomo upoštevali.
+
+\vprasanje{Definiraj ovojnico družine ravnin v $\R^3$.}
+
+Vzemimo projekcijo $\pi : \R^3 \to \R^2$ na prvi dve komponenti.
+Ker zahtevamo, da je $\vec{n}(\lambda)$ injektivna, za vsak par $(x, y) \ne
+(0,0)$ obstaja natanko določena točka $p \in \mathcal{O}$, da je $(x, y) =
+\pi(p)$.
+To nam definira preslikavo $\Lambda : \pi(\mathcal{O}) \to \R$, ki slika par
+$(x, y)$ v pripadajoči $\lambda$.
+
+Naš cilj je poiskati funkcijo $\varphi$, ki definira $\mathcal{O}$.
+Ker je $\mathcal{O} \subseteq \bigcup_\lambda \Pi_\lambda$, velja
+\[
+	\varphi(x, y) = a(\Lambda(x, y)) x + b(\Lambda(x, y)) y.
+\]
+Zahtevali smo, da je normala vzporedna z $\vec{n}(\lambda)$, torej lahko
+parametriziramo $\mathcal{O}$ z
+\[
+	u(x, y) = (x, y, \varphi(x, y)).
+\]
+Upoštevaje definicijo $\Pi_\lambda$ lahko zapišemo normalo kot
+\[
+	u_x \times u_y
+	= (1, 0, \varphi_x) \times (0, 1, \varphi_y)
+	= (- \psi_x - \psi_\lambda \Lambda_x, -\phi_y - \psi_\lambda \Lambda_y, 1)
+\]
+oziroma nasprotno vrednot kot
+\[
+	-u_x \times u_y = (\psi_x, \psi_y, -1) + \psi_\lambda (\Lambda_x, \Lambda_y,
+	0).
+\]
+Velja $\psi_x = a$ in $\psi_y = b$, torej $-u_x \times u_y = \vec{n}(\Lambda(x,
+y)) + \psi_\lambda(\Lambda_x, \Lambda_y, 0)$.
+Zahtevamo, da je to vzporedno z $\vec{n}(\Lambda(x, y))$, torej mora biti drugi
+člen ničeln.
+Če je $\Lambda_x = \Lambda_y = 0$, je $\Lambda$ konstantna preslikava in je
+$\mathcal{O} = \Pi_\Lambda$; to je izključen trivialni primer.
+Velja torej $\psi_\lambda = 0$, kar nam da dodatno enačbo za ovojnico.
+
+\vprasanje{Kako poiščeš ovojnico družine ploskev v $\R^3$? Izpelji potrebni
+	pogoj.}
+
+Ta enačba je ekvivalentna pogoju
+\[
+	D(\lambda) := \frac{a'(\lambda)}{b'(\lambda)} = \frac{-y}{x}.
+\]
+Po predpostavki o determinanti Wronskega je odvod $D$ neničeln, torej jo lahko
+na množici $\{x \ne 0\}$ obrnemo in dobimo $\Lambda_1(x, y) =
+D^{-1}(\nicefrac{-y}{x})$.
+Podobno lahko naredimo za $y \ne 0$, iz česar izpeljemo $\Lambda_2(x, y) =
+E^{-1}(\nicefrac{-x}{y})$ za $E(\lambda) = \nicefrac{b'(\lambda)}{a'(\lambda)}$.
+Če pokažemo, da je $\Lambda_1 = \Lambda_2$, kjer sta obe definirani, bomo lahko
+zapisali
+\[
+	\Lambda(x, y) =
+	\begin{cases}
+		\Lambda_1(x, y), & x \ne 0 \\
+		\Lambda_2(x, y). & y \ne 0
+	\end{cases}
+\]
+Vemo, da za $(x, y) \in \pi(\mathcal{O})$ obstaja natanko določen $\lambda$, pri
+katerem je $(x, y)$ slika neke točke na $\mathcal{O}$ s $\pi$.
+Ker je tretja koordinata $z = a(\Lambda_1) x + b(\Lambda_1) y = a(\Lambda_2) x +
+b(\Lambda_2) y$ pri tem natančno določena, iz pogoja injektivnosti $\vec{n}$
+lahko izpeljemo $\Lambda_1 = \Lambda_2$.
+
+Iz zgornje izpeljave hitro vidimo, da velja $\Lambda(\sigma x, \sigma y) =
+\Lambda(x, y)$ za $\sigma \ne 0$, iz česar sledi naslednja trditev.
+
+\begin{trditev}
+	Če je $p \in \mathcal{O}$, potem je $\sigma p \in \mathcal{O}$ za poljuben
+	$\sigma \ne 0$.
+\end{trditev}
+
+% LocalWords:  privzetkih transverzalnosti Wronskega

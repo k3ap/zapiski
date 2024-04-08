@@ -1,1 +1,20 @@
 \section{Kvazilinearna enačba prvega reda}
+
+To je enačba oblike
+\[
+	a_1 u_{x_1} + \cdots + a_n u_{x_n} = c,
+\]
+kjer so $a_1, \ldots, a_n, c$ dovolj lepe funkcije.
+Običajno so podani tudi začetni pogoji $u(x) = g(x)$ za $x \in \Gamma$, kjer je
+$\Gamma$ neka krivulja.
+Rešitev dobimo z reševanjem karakterističnega sistema
+\begin{gather*}
+	\dot{z}_y(t) = c(x_y(t), z_y(t)), \\
+	\dot{x}_y(t) = a(x_y(t), z_y(t)), \\
+	x_y(0) = y, \\
+	z_y(0) = g(y).
+\end{gather*}
+Pri tem predpostavimo, da sta $z_y$ in $x_y$ le funkciji časa $t$, $y$ v indeksu
+pa je dodaten parameter, ki nam pove, na kateri karakteristiki se nahajamo.
+Ko rešimo sistem, rešitve obrnemo, da dobimo $t(x)$ in $y(x)$, ki ju nato
+vstavimo v predpis za $z$.
