@@ -1,0 +1,148 @@
+\naslov{Singularni razcep}
+
+\begin{izrek}
+  Za vsako matriko $A \in \R^{m \times n}$, kjer je $m \ge n$, obstaja razcep $A
+  = U \Sigma V^T$, kjer je $U \in \R^{m \times m}$ ortogonalna, $V \in \R^{n
+	\times n}$ ortogonalna in $\Sigma \in \R^{m \times n}$  oblike
+  \[
+	\Sigma =
+	\begin{bmatrix}
+	  \sigma_1 & & \\
+			   & \ddots & \\
+			   & & \sigma_n \\
+	  \multicolumn{3}{c}{0}
+	\end{bmatrix}
+  \]
+  za singularne vrednosti $\sigma_1 \ge \ldots \ge \sigma_n \ge 0$ matrike $A$.
+\end{izrek}
+
+\begin{proof}
+  Če je $A = U \Sigma V^T$, potem je $A^T A = V \Sigma^T \Sigma V^T$.
+  Ta matrika je simetrična nenegativno definitna, torej so njene lastne
+  vrednosti realne in nenegativne ter jih lahko uredimo padajoče.
+  Lastne vektorje lahko izberemo ortonormirane in jih zložimo v stolpce $V$.
+
+  Iz $AV = U \Sigma$ sledi $A v_i = \sigma_i u_i$ za stolpce $v_i$ in $u_i$.
+  Če je $\sigma_i \ne 0$, lahko tak $u_i$ poiščemo.
+  Če je $\sigma_r > \sigma_{r+1} = \sigma_{r+2} = \cdots = \sigma_n = 0$, tako
+  določimo prvih $r$ stolpcev $U$.
+  Ker je $v_j$ lastni vektor za $A^T A$, velja
+  \[
+	u_i^T u_j = \inv{\sigma_i \sigma_j} v_i^T A^T A v_j = \inv{\sigma_i
+	  \sigma_j} \sigma_j^2 v_i^T v_j = \delta_{ij}.
+  \]
+  Sedaj imamo
+  \begin{gather*}
+	V =
+	\begin{bmatrix}
+	  V_1 & V_2
+	\end{bmatrix},
+	\\
+	\Sigma =
+	\begin{bmatrix}
+	  S & 0 \\
+	  0 & 0
+	\end{bmatrix},
+	\\
+	U =
+	\begin{bmatrix}
+	  U_1 & U_2
+	\end{bmatrix},
+  \end{gather*}
+  kjer smo $U_2$ določili tako, da dopolnimo stolpce $U_1$ do ortonormirane baze
+  prostora.
+
+  Preverimo, da te matrike res tvorijo singularni razcep:
+  \[
+	U^T A V =
+	\begin{bmatrix}
+	  U_1^T A V_1 & U_1^T A V_2 \\
+	  U_2^T A V_1 & U_2^T A V_2
+	\end{bmatrix}.
+  \]
+  Velja $(AV_2)^T A V_2 = V_2^T A^T A V_2 = V_2^T \cdot 0 = 0$, ker so stolpci
+  $V_2$ lastni vektorji za lastno vrednost $0$.
+  Iz definicije $u_i$ pa vidimo, da je $U_1^T A V_1 = S$.
+  Velja $A V_1 = [\sigma_1 u_1, \ldots, \sigma_r u_r]$, ti stolpci so pravokotni
+  vrednostim $u_{r+j}$ po definiciji.
+\end{proof}
+
+Če je $m < n$, singularni razcep dobimo tako, da transponiramo razcep za $A^T$.
+V dokazu je $r$ rang matrike $A$.
+Numerično je singularni razcep najboljše orodje za računanje ranga; dobimo tudi
+bazi za jedro in sliko matrike $A$ (stolpci $V_2$ in $U_1$).
+
+\vprasanje{Pokaži, da za vsako matriko obstaja singularni razcep.}
+
+Če je $A$ ranga $r < n$, potem za vektor $x$, ki reši predoločen sistem $A x =
+b$, izberemo tistega, ki minimizira $\norm{Ax-b}_2$ (ta ni več enolično
+določen), in ki ima med takimi minimalno normo $\norm{x}_2$.
+
+\begin{izrek}
+  Naj bo $A \in \R^{m \times n}$, $A = U \Sigma V^T$ ranga $r$.
+  Potem je rešitev predoločenega sistema $Ax = b$ enaka
+  \[
+	x = \sum_{i=1}^r \frac{u_i^T b}{\sigma_i} v_i.
+  \]
+\end{izrek}
+
+\begin{proof}
+  Zapišimo $U = [U_1 U_2]$, $V = [V_1 V_2]$ in $\Sigma = \operatorname{diag}(S,
+  0)$, kjer so prve komponente širine $r$, druge pa širine $n-r$.
+  Potem je
+  \[
+	\norm{Ax-b}_2 = \norm{U \Sigma V^T x - b}_2
+	= \norm{\Sigma V^T x - U^T b}_2
+	= \norm{
+	  \begin{bmatrix}
+		S y_1 - U_1^T b \\
+		-U_2^T b
+	  \end{bmatrix}
+	}
+  \]
+  za $V^T x = y = (y_1, y_2)$.
+  Minimum bo dosežen, če je $S y_1 = U_1^T b$, pri čemer je $y_2$ lahko
+  poljuben.
+  Velja $\norm{x}_2 = \norm{y}_2$, torej izberemo $y_2 = 0$.
+\end{proof}
+
+\vprasanje{Kakšna je rešitev problema najmanjših kvadratov $Ax=b$ za matriko $A
+  \in \R^{m \times n}$? Dokaži.}
+
+\begin{definicija}
+  Za matriko $A \in \R^{m\times n}$ je \pojem{psevdoinverz} matrika $X \in \R^{n
+	\times m}$, ki zadošča naslednjim točkam:
+  \begin{itemize}
+  \item $A X A = A$
+  \item $X A X = X$
+  \item $(AX)^T = AX$
+  \item $(XA)^T = XA$
+  \end{itemize}
+  Označimo $X = A^+$.
+\end{definicija}
+
+Če je rang matrike $A$ enak $r <n$, potem je
+\[
+  A^+ = (A^T A)^{-1} A^T.
+\]
+
+\vprasanje{Definiraj psevdoinverz. Čemu je enak?}
+
+\begin{izrek}
+  Naj bo $A = U \Sigma V^T \in \R^{m \times n}$ in $\rang A = r$.
+  Potem je psevdoinverz enak
+  \[
+	A^+ = \sum_{i=1}^r \inv{\sigma_i} v_i u_i^T
+  \]
+  oziroma $A^+ = V \Sigma^+ U^T$ za $\Sigma^+ = \operatorname{diag}(S^{-1}, 0)$.
+\end{izrek}
+
+\begin{proof}
+  Iščemo $X \in \R^{m \times n}$, ki zadošča Moore-Penroseovim pogojem.
+  Velja $X = V Y U^T$ za nek $Y$.
+  Veljati mora $(AX)^T = AX$, iz česar z zapisom po blokih dobimo, da je zgornji
+  desni blok $Y$ enak $0$; podobno iz drugih pogojev izpeljemo enakosti v
+  ostalih blokih.
+\end{proof}
+
+\vprasanje{Kako izračunaš psevdoinverz s pomočjo singularnega razcepa?}
