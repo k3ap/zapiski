@@ -95,3 +95,148 @@ normalno.
 \end{izrek}
 
 \vprasanje{Formuliraj centralni limitni izrek.}
+
+Dokažemo lahko tudi drugačno formulacijo:
+za vsako zvezno in omejeno funkcijo $h: \R \to \R$ z največ kvadratno rastjo
+(tj. obstaja $M$, da je $\abs{h(x)} \le M(1+x)^2$) velja
+\[
+  \lim_{n \to \infty} E(h(W_n)) = E(h(Z)),
+\]
+kjer je $Z \sim N(0,1)$.
+Funkcijam $h$ pravimo \pojem{poizkusne} ali \pojem{testne} funkcije.
+
+\begin{trditev}[Jensenova neenakost]
+  Naj bo $X$ slučajna spremenljivka z vrednostmi na intervalu $I \subseteq \R$
+  in $\varphi:I \to \R$ konveksna funkcija.
+  Tedaj je $\varphi(E(X)) \le E(\varphi(X))$.
+\end{trditev}
+
+Ideja dokaza je, da poiščemo linearno funkcijo, ki se v iskani točki dotika
+grafa $\varphi$, in vrednost aproksimiramo s pomočjo nje.
+Trditev je pomembna zaradi posledice.
+
+\begin{posledica}
+  Če je $p \ge q$, je $E(\abs{X}^q) \le (E(\abs{X}^p))^{q/p}$.
+\end{posledica}
+
+\begin{posledica}
+  Če obstaja $p$-ti moment in je $q \le p$, obstaja tudi $q$-ti moment.
+\end{posledica}
+
+Za nadaljevanje naj bodo $Y_1, \ldots, Y_n$ neodvisne z vsoto $S$ in $Z_1,
+\ldots, Z_n$ neodvisne z vsoto $T$.
+Privzemimo še, da tretji momenti $Y_k$ in $Z_k$ obstajajo, da je $E(Y_k) =
+E(Z_k) = 0$ in da je $\var(Y_k) = \var(Z_k) = \sigma_k^2$.
+Tedaj je $E(T) = E(S) = 0$ in
+\[
+  \var(S) = \var(T) = \sum_{k} \sigma_k^2.
+\]
+Za primerno $h : \R \to \R$ bomo ocenili razliko $E(h(S)) - E(h(T))$.
+Privzeli bomo, da je $h \in \zvodvi{3}$ in $M_3 = \sup_{x \in \R} \abs{h'''(X)}
+< \infty$.
+Definirajmo kombinirane vsote $V_k = Y_1 + \ldots + Y_k + Z_{k+1} + \ldots +
+Z_n$.
+
+Dodatno privzemimo, da so $Y_i$ in $Z_i$ vsi medsebojno neodvisni.
+Velja
+\[
+  E(h(S)) - E(h(T)) = \sum_{k=1}^n E(h(V_k) - h(V_{k-1}))
+  = \sum_{k=1}^n E(h(U_k + Y_k) - h(U_k + Z_k))
+\]
+za $U_k = Y_1 + \ldots + Y_{k-1} + Z_{k+1} + \ldots + Z_n$.
+Velja
+\[
+  h(V_k) = h(U_k) + h'(U_k) Y_k + \pol h''(U_k) Y_k^2 + R_k,
+\]
+kjer je $R_k$ omejen z $\inv{6} M_3 \abs{Y_k}^3$.
+Poleg tega je
+\[
+  h(V_{k-1}) = h(U_k) + h'(U_k) Z_k + \pol h''(U_k) Z_k^2 + \tilde{R}_k,
+\]
+kjer je $\tilde{R}_k$ podobno omejena.
+Zaradi neodvisnosti $U_k$, $Y_k$ in $Z_k$ potem dobimo
+\begin{gather*}
+  E(h(V_k) = E(h(U_k)) + E(h'(U_k)) E(Y_k) + \pol E(h''(U_k)) E(Y_k^2) + E(R_k),
+  \\
+  E(h(V-{k-1})) = E(h(U_k)) + E(h'(U_k)) E(Z_k) + \pol E(h''(U_k)) E(Z_k^2) + E(\tilde{R}_k).
+\end{gather*}
+Torej
+\[
+  \abs{E(h(V_k) - h(V_{k-1}))} \le E(R_k) + E(\tilde{R}_k) \le \inv{6} M_3
+  (E(\abs{Y_k}^3) + E(\abs{Z_k}^3)),
+\]
+iz česar naposled dobimo
+\[
+  \abs{E(h(S)) - E(h(T))} \le \inv{6} M_3 \sum_{k=1}^n \left( E(\abs{Y_k}^3) +
+	E(\abs{Z_k}^3) \right).
+\]
+
+\vprasanje{Izpelji oceno za razliko $\abs{E(h(S)) - E(h(T))}$, kjer je $S = Y_1
+  + \ldots + Y_n$ in $T = Z_1 + \ldots + Z_n$, in so $Y_i$ enako porazdeljeni
+  neodvisni, ter $Z_i$ enako porazdeljeni in neodvisni z $E(Y_i) = E(Z_i) = 0$,
+  $\var(Y_i) = \var(Z_i) = \sigma_i^2$.}
+
+Če vzamemo $Z_k \sim N(0, \sigma_k^2)$, je $T \sim N(0, \sigma^2)$.
+Tedaj lahko z integralom izračunamo
+\[
+  E(\abs{Z_k}^3) = \sigma_k^3 \frac{4}{\sqrt{2 \pi}}
+  = \frac{4}{\sqrt{2 \pi}} \left( E(Y_k^2) \right)^{3/2}
+  \le \frac{4}{\sqrt{2 \pi}} E(\abs{Y_k}^3),
+\]
+kjer smo v zadnjem koraku uporabili posledico Jensenove neenakosti.
+V tem primeru torej lahko ocenimo
+\[
+  \abs{E(h(S)) - E(h(T))}
+  \le \left(\inv{6} + \frac{2}{3 \sqrt{2 \pi}}\right) M_3 \sum_{k=1}^n E(\abs{Y_k}^3).
+\]
+Tu žal ne moramo vzeti $h(w) = \mathbbm{1}(w \le a)$.
+Velja pa naslednji izrek.
+
+\begin{izrek}
+  Obstaja taka univerzalna konstanta $C$, da za poljubne neodvisne slučajne
+  spremenljivke $Y_1, \ldots, Y_n$, za katere je $E(Y_k) = 0$, velja
+  \[
+	\sup_{x \in \R} \abs{P(S \le x) - \phi\!\left(\frac{x}{\sigma}\right)}
+	= \sup_{w \in \R} \abs{P\!\left(\frac{S}{\sigma} < w\right) - \phi(w)}
+	\le \frac{C}{\sigma^3} \sum_{k=1}^n E(\abs{Y_k}^3),
+  \]
+  pri čemer je $S = Y_1 + \ldots + Y_n$ in $\sigma^2 = \var(S) = \sum_k
+  \var(Y_k)$.
+\end{izrek}
+
+Naj bodo $X_1, X_2, \ldots$ neodvisne in enako porazdeljene z $E(X_1) = \mu_1$
+ter $\var(X_1) = \sigma_1^2$ in $E(\abs{X_1 - \mu_1}^3) = \gamma^3$.
+Definiramo $S_n = X_1 + \ldots + X_n$ in
+\[
+  W_n = \frac{S_n - n \mu_1}{\sigma_1 \sqrt{n}}.
+\]
+Za fiksen $n$ označimo
+\[
+  Y_k = \frac{X_k - \mu_1}{\sigma_1 \sqrt{n}},
+\]
+da je $E(Y_k) = 0$ in $W_n = \sum_k Y_k$.
+Velja $\sigma^2 = \var(W_n) = 1$ in
+\[
+  \sum_{k=1}^n E(\abs{Y_k}^3) = n E(\abs{Y_1}^3) = \frac{\gamma_1^3}{\sigma_1^3
+	\sqrt{n}}
+  \xrightarrow[{n \to \infty}]{} 0.
+\]
+
+\begin{posledica}
+  S temi oznakami
+  \[
+	\sup_{x \in \R} \abs{P(S_n < x) - \phi\!\left( \frac{x - n \mu_1}{\sigma_1
+		  \sqrt{n}} \right)}
+	= \sup_{w \in \R} \abs{P(W_n < w) - \phi(w)}
+	\le \frac{C}{\sqrt{n}} \frac{\gamma_1^3}{\sigma_1^3},
+  \]
+  za vsako funkcijo $h \in \zvodv{3}{\R}$ pa velja še
+  \[
+	\abs{E(h(W_n)) - E(h(Z))}
+	\le \left( \inv{6} + \frac{2}{3 \sqrt{2 \pi}} \right)
+	\frac{\gamma_1^3}{\sigma_1^3} \frac{M_3}{\sqrt{n}}.
+  \]
+\end{posledica}
+
+\vprasanje{Kaj lahko poveš o oceni razlike porazdelitve vsote od normalne
+  porazdelitve?}
