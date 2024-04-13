@@ -18,3 +18,18 @@ Pri tem predpostavimo, da sta $z_y$ in $x_y$ le funkciji časa $t$, $y$ v indeks
 pa je dodaten parameter, ki nam pove, na kateri karakteristiki se nahajamo.
 Ko rešimo sistem, rešitve obrnemo, da dobimo $t(x)$ in $y(x)$, ki ju nato
 vstavimo v predpis za $z$.
+Če je začetni pogoj podan vzdolž neke karakteristične krivulje, ne dobimo dovolj
+informacij, da sistem razrešimo.
+
+Drug način reševanja so prvi integrali (energije).
+Pri uporabi metode karakteristik iščemo predpise, ki so konstantni vzdolž
+rešitve, torej funkcije $E(x_1(t), \ldots, x_n(t), z(t))$, da je $\partial_t E =
+0$.
+Potem iščemo funkcijo $H(E_1, \ldots, E_m)$, ki bo na rešitvah konstantna.
+Za iskanje $H$ uporabimo začetne pogoje.
+Vstavimo
+\[
+  H(E_1(x(0), z(0)), E_2(x(0), z(0)), \ldots, E_m(x(0), z(0))) = 0
+\]
+in poskusimo razrešiti.
+Če nam uspe, to obrnemo, da najdemo $z$, s čimer smo magično rešili enačbo.
