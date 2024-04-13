@@ -1,0 +1,186 @@
+\naslov{Moduli}
+
+\begin{definicija}
+  Naj bo $R$ kolobar in $M$ neprazna množica.
+  \pojem{Levi $R$-modul} je $(M, +, \cdot)$, kjer sta $+ : M \times M \to M$ in
+  $\cdot : R \times M \to M$.
+  Pri tem zahtevamo
+  \begin{itemize}
+  \item $(M, +)$ je Abelova grupa
+  \item $r(m_1 + m_2) = r m_1 + r m_2$
+  \item $(r_1 + r_2) m = r_1 m + r_2 m$
+  \item $(r_1 r_2) m = r_1 (r_2 m)$
+  \item $1 \cdot m = m$
+  \end{itemize}
+\end{definicija}
+
+Analogno lahko definiramo desne module.
+Vsak levi $R$-modul je pravzaprav tudi desni $R^{\text{opp}}$ modul, kjer je
+$R^{\text{opp}}$ kolobar z enakim seštevanjem kot v $R$ in množenjem v obratnem
+vrstnem redu.
+
+\vprasanje{Definiraj modul.}
+
+\begin{primer}
+  Vektorski prostor nad poljem $F$ je levi (in desni) $F$-modul.
+\end{primer}
+
+\begin{primer}
+  Abelova grupa (tu pisana aditivno) je $\Z$-modul za množenje
+  \[
+	n \cdot g = \underbrace{g + g + \ldots + g}_{n}.
+  \]
+\end{primer}
+
+\begin{primer}
+  Naj bo $I$ levi ideal kolobarja $R$.
+  Potem je $I$ levi $R$-modul.
+\end{primer}
+
+\begin{primer}
+  Če je $V$ vektorski prostor nad poljem $F$ in $R$ množica endomorfizmov $V \to
+  V$, je $V$ levi $R$-modul za množenje
+  \[
+	A \cdot v = A(v).
+  \]
+\end{primer}
+
+\vprasanje{Naštej nekaj enostavnih primerov modulov.}
+
+\begin{definicija}
+  Naj bo $M$ $R$-modul.
+  Množica $N \subseteq M$ je \pojem{podmodul} v $M$, če je $N$ za podedovano
+  seštevanje in množenje s skalarjem tudi modul.
+  Oznaka $N \le M$.
+\end{definicija}
+
+\begin{definicija}
+  Naj bo $M$ $R$-modul in $X \subseteq M$ neprazna množica.
+  Najmanjšemu podmodulu, ki vsebuje $X$, pravimo \pojem{podmodul, generiran z
+	množico $X$}.
+  Oznaka $\sk{X}$.
+  Modul je \pojem{končno generiran}, če obstaja končna $X$, da je $M = \sk{X}$.
+  Če je modul generiran z enim samim elementom, je \pojem{ciklični}.
+\end{definicija}
+
+\begin{definicija}
+  Naj bosta $N, M$ $R$-modula.
+  Preslikava $\varphi : M \to N$ je \pojem{homomorfizem} $R$-modulov, če velja
+  $\varphi(m_1 + m_2) = \varphi(m_1) + \varphi(m_2)$ in $\varphi(r m) = r
+  \varphi(m)$.
+  \pojem{Jedro} homomorfizma je množica
+  \[
+	\jedro \varphi = \{m \in M \such \varphi(m) = 0\},
+  \]
+  \pojem{slika} pa
+  \[
+	\im \varphi = \{\varphi(m) \such m \in M\}.
+  \]
+\end{definicija}
+
+\begin{definicija}
+  Naj bo $M$ $R$-modul in $N \le M$.
+  Za relacijo
+  \[
+	m_1 \sim m_2 \nt m_1 - m_2 \in N
+  \]
+  definiramo \pojem{kvocientni modul} $M/_\sim = M/_N$.
+\end{definicija}
+
+\begin{izrek}
+  Za kvocientne module veljajo naslednje lastnosti:
+  \begin{itemize}
+  \item če je $\varphi : M \to N$ homomorfizem, potem je $M/_{\jedro \varphi}
+	\cong \im \varphi$,
+  \item če sta $N, K$ podmodula v $M$, potem je $(N+K)/_K \cong N/_{N \presek
+	  K}$,
+  \item velja
+	\[
+	  \frac{M/_N}{L/_N} \cong M/_L.
+	\]
+  \end{itemize}
+\end{izrek}
+
+\begin{definicija}
+  Naj bodo $N_1, \ldots, N_k$ $R$-moduli.
+  \pojem{Zunanji direktni produkt} je $R$-modul $N_1 \times N_2 \times \cdots
+  \times N_k$ s seštevanjem in množenjem s skalarjem po komponentah.
+  Oznaka $N_1 \oplus N_2 \oplus \cdots \oplus N_k$.
+\end{definicija}
+
+\begin{opomba}
+  Če imamo neskončno družino modulov, lahko naredimo podobno konstrukcijo, ki ji
+  pravimo \pojem{kartezični produkt}.
+\end{opomba}
+
+\begin{definicija}
+  Naj bodo $N_1, \ldots, N_k \le M$.
+  Vsoti $N_1 + \cdots + N_k$ pravimo \pojem{notranja direktna vsota}, če za vsak
+  $i$ velja $N_i \presek (N_1 + \cdots + N_{i-1} + N_{i+1} + \cdots + N_k) =
+  \{0\}$.
+\end{definicija}
+
+\begin{opomba}
+  Zunanja in notranja definicija sta ekvivalentni.
+\end{opomba}
+
+\begin{definicija}
+  Naj bo $M$ $R$-modul in $X \subseteq M$.
+  Pravimo, da je $X$ \pojem{baza} modula $M$, če je $M = \sk{X}$ in če za vsak
+  $k \in \N$ in vse $x_1, \ldots, x_k \in X$ iz enakosti $r_1 x_1 + \cdots + r_n
+  x_n = 0$ sledi $r_i = 0$.
+\end{definicija}
+
+\begin{primer}
+  Obstajajo moduli, ki nimajo baz.
+  Modul $M = \Z_n = \Z/_{n \Z}$ je $\Z$-modul.
+  Recimo, da je nek $x + n\Z$ v bazi.
+  Ampak $n(x + n \Z) = 0$, $n$ pa v $\Z$ ni enak $0$.
+\end{primer}
+
+\begin{definicija}
+  Modul je \pojem{prost}, če ima bazo.
+\end{definicija}
+
+\vprasanje{Kaj je baza modula? Podaj primer modula, ki ni prost.}
+
+\begin{izrek}
+  Naj bo $M$ $R$-modul.
+  Naslednje trditve so ekvivalentne:
+  \begin{itemize}
+  \item $M$ je prost $R$-modul.
+  \item Obstaja indeksna množica $\Lambda$, da je $M$ kot $R$-modul izomorfen
+	zunanji direktni vsoti kopij $R$-modula $R$:
+	\[
+	  M \cong \bigoplus_{\lambda \in \Lambda} R.
+	\]
+  \item Obstaja indeksna množica $\Lambda$ in podmoduli $M_\lambda \le M$,
+	$M_\lambda \cong R$, da je
+	\[
+	  M = \bigoplus_{\lambda \in \Lambda} M_\lambda.
+	\]
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Druga in tretja točka sta očitno ekvivalentni.
+  Naj bo $X$ baza modula $M$.
+  Trdimo $M = \bigoplus_{x \in X} \sk{x}$.
+  Ker je $M = \sk{X}$, je $M$ vsota podmodulov $\sk{x}$.
+  Vzemimo $z \in \sk{x} \presek \sum_{y \ne x} \sk{y}$.
+  Velja $z = rx = r_1 y_1 + \cdots + r_k y_k$, iz definicije baze pa sledi $r =
+  r_i = 0$.
+  Preveriti moramo še, da je $\sk{x} \cong R$.
+  Ustrezen izomorfizem $R \to \sk{x}$ bo $\varphi(r) = rx$.
+
+  Sedaj dokažimo, da iz druge točke sledi prva.
+  Imamo izomorfizem
+  \[
+	\varphi : \bigoplus_{\lambda \in \Lambda} R \to M.
+  \]
+  Izberimo $e_\lambda$ kot $\Lambda$-terico, ki ima na mestu $\lambda$ enico,
+  drugje pa $0$, in definirajmo $x_\lambda = \varphi(e_{\lambda})$.
+  Preverimo lahko, da je $X = \{x_\lambda \such \lambda \in \Lambda\}$ baza.
+\end{proof}
+
+\vprasanje{Karakteriziraj prostost modula in dokaži karakterizacijo.}
