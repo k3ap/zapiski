@@ -1,0 +1,200 @@
+\naslov{Konvergenca porazdelitev}
+
+\begin{definicija}
+  Zaporedje realnih slučajnih spremenljivk $X_1, X_2, \ldots$ \pojem{v
+	porazdelitvi konvergira} proti slučajni spremenljivki $X$, če za vsak $x \in
+  \R$, za katerega je $P(X = x) = 0$, velja
+  \[
+	\lim_{n \to \infty} P(X_n \le x) = P(X \le x).
+  \]
+  Pišemo $X_n \xrightarrow[n \to \infty]{d} X$.
+\end{definicija}
+
+\begin{opomba}
+  Temu pravimo tudi \pojem{šibka konvergenca}.
+\end{opomba}
+
+\begin{definicija}
+  Zaporedje slučajnih spremenljivk $X_1, X_2, \ldots$ z vrednostmi v topološkem
+  prostoru $S$ \pojem{v porazdelitvi konvergira proti $X$}, če za vsako zvezno
+  in omejeno funkcijo $h: S \to \R$ velja
+  \[
+	\lim_{n \to \infty} E(h(X_n)) = E(h(X)).
+  \]
+  Funkcijam $h$ rečemo tudi \pojem{preizkusne} ali \pojem{testne} funkcije.
+\end{definicija}
+
+\begin{izrek}[Helly-Bray]
+  Za porazdelitve na realni osi z običajno topologijo definiciji sovpadata.
+\end{izrek}
+
+\begin{izrek}[Centralni limitni izrek]
+  Če so $X_1, X_2, \ldots$ neodvisne in enako porazdeljene z $E(X_1) = \mu_1$ in
+  $\var(X_1) = \sigma_1^2$, velja
+  \[
+	\frac{X_1 + \ldots + X_n - n \mu_1}{\sqrt{n}} \xrightarrow[n\to \infty]{d}
+	N(0, \sigma_1^2).
+  \]
+\end{izrek}
+
+\vprasanje{Definiraj konvergenco v porazdelitvi in reformuliraj centralni
+  limitni izrek.}
+
+\begin{trditev}
+  Naj bodo $X_1, X_2, \ldots, X$ slučajne spremenljivke z vrednostmi v
+  topološkem prostoru $S$ in $T$ še en topološki prostor.
+  Naj bo $g: S \to T$ zvezna.
+  Če velja $X_n \xrightarrow[n \to \infty]{d} X$, velja tudi $g(X_n)
+  \xrightarrow[n\to\infty]{d} g(X)$.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $h : T \to \R$ zvezna in omejena.
+  Tedaj je tudi $h \circ g : S \to \R$ zvezna in omejena, zato je
+  \[
+	E(h(g(X))) = \lim_{n \to \infty} E(h(g(X_n))) = \lim_{n \to \infty} E(h
+	\circ g(X_n)) = E(h \circ g(X)).
+  \]
+\end{proof}
+
+\begin{trditev}
+  Naj bo $S_0 \subseteq S$ in naj imajo $X_1, X_2, \ldots, X$ vrednosti v $S_0$.
+  Če gre $X_n \xrightarrow[n \to \infty]{d} X$ v okviru $S_0$, to velja tudi v
+  okviru prostora $S$.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $h: S \to \R$ zvezna in omejena, ter naj bo $h_0$ zožitev $h$ na $S_0$.
+  Tudi ta funkcija je zvezna in omejena, zato je $\lim_{n \to \infty}
+  E(h_0(X_n)) = E(h_0(X))$.
+\end{proof}
+
+\begin{trditev}
+  Naj bo $S$ metrizabilen prostor, $S_0 \subseteq S$ pa zaprt podprostor.
+  Če imajo $X_1, X_2, \ldots, X$ vrednosti v $S_0$ in $X_n \xrightarrow[n \to
+  \infty]{d} X$ v okviru $S$, to velja tudi v okviru $S_0$.
+\end{trditev}
+
+\begin{proof}
+  Vsaka zvezna omejena funkcija $h_0 : S_0 \to \R$ se da po Tietzejevem izreku
+  razširiti do zvezne in omejene funkcije $h: S \to \R$.
+\end{proof}
+
+\vprasanje{V katerem primeru se konvergenca v porazdelitvi razširi iz večjega
+  prostora v podprostor? Kaj je ideja dokaza?}
+
+\begin{izrek}
+  Naj bo $S$ metrizabilen in $S_0 \subseteq S$ odprt podprostor.
+  Naj bodo $X_1, X_2, \ldots$ slučajne spremenljivke z vrednostmi v $S$ in $X$ z
+  vrednostmi v $S_0$. Naj gre $X_n \xrightarrow[n\to\infty]{d} X$ v okviru
+  prostora $S$.
+  Nadalje naj bodo $X_1^*, X_2^*, \ldots$ slučajne spremenljivke z vrednostmi v
+  $S_0$ ter naj bo $X_n^*(\omega) = X_n(\omega)$ brž ko je $X_n(\omega) \in
+  S_0$.
+  Tedaj gre $X_n \xrightarrow[n\to\infty]{d} X$ tudi v okviru $S_0$.
+\end{izrek}
+
+\begin{trditev}
+  Naj bodo $X_1, X_2, \ldots$ slučajne spremenljivke z vrednostmi v metričnem
+  prostoru $(S, d)$.
+  Naj bo $c \in S$ konstantna.
+  Tedaj gre $X_n \xrightarrow[n \to \infty]{d} c$ natanko tedaj, ko za vsak $r >
+  0$ velja
+  \[
+	\lim_{n \to \infty} P(d(X_n,c) \ge r) = 0.
+  \]
+\end{trditev}
+
+\begin{proof}
+  V desno:
+  Obstaja taka zvezna funkcija $h: S \to [0,1]$, da je $h(c) = 0$ in $h(x) = 1$
+  za $d(x, c) \ge r$.
+  Velja $\mathbbm{1}(d(x, c) \ge r) \le h(x)$, na tej neenakosti pa lahko
+  uporabimo pričakovano vrednost in dobimo
+  \[
+	P(d(X_n, c) \ge r) \le E(h(X_n)) \xrightarrow[n \to \infty]{} E(h(c)) = 0.
+  \]
+
+  V levo:
+  Naj bo $h: S \to [0,1]$ zvezna in $\varepsilon > 0$.
+  Obstaja tak $r > 0$, da za vsak $x \in S$ z $d(x, c) \ge r$ velja $\abs{h(x) -
+	h(c)} < \nicefrac{\varepsilon}{2}$.
+  Sledi
+  \begin{align*}
+	&\abs{E(h(X_n)) - h(c)} \\
+	&\le E(\abs{h(X_n) - h(c)}) \\
+	&= E(\abs{h(X_n) - h(c)} \mathbbm{1}(d(X_n, c) < r))
+	  + E(\abs{h(X_n) - h(c)} \mathbbm{1}( d(X_n, c) \ge r )) \\
+	&\le \frac{\varepsilon}{2} + P(d(X_n, c) \ge r).
+  \end{align*}
+  Za dovolj pozne $n$ bo to manj od $\varepsilon$.
+\end{proof}
+
+\vprasanje{Kdaj zaporedje slučajnih spremenljivk konvergira k konstanti?
+  Dokaži.}
+
+\begin{trditev}[Neenačba Markova]
+  Za nenegativno slučajno spremenljivko $W$ in poljuben $a > 0$ velja
+  \[
+	P(W \ge a) \le \frac{E(W)}{a}.
+  \]
+\end{trditev}
+
+\begin{proof}
+  Velja $\mathbbm{1}(w \ge a) \le \nicefrac{w}{a}$.
+  Na tem uporabimo pričakovano vrednost.
+\end{proof}
+
+\vprasanje{Povej in dokaži neenačbo Markova.}
+
+\begin{trditev}
+  Če je $p > 0$ in $\lim_{n \to \infty} E({(d(X_n, c))}^p) = 0$, gre $X_n
+  \xrightarrow[n \to \infty]{d} c$.
+\end{trditev}
+
+\begin{proof}
+  Velja $P(d(X_n, c) \ge r) = P({(d(X_n, c))}^p \ge r^p)$.
+  Na drugem delu uporabimo neenačbo Markova.
+\end{proof}
+
+\begin{trditev}[šibki zakon velikih števil]
+  Če so $X_1, X_2, \ldots$ neodvisne in enako porazdeljene z $E(X_1^2) < \infty$
+  in $E(X_1) = \mu$, gre
+  \[
+	\frac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{d} \mu.
+  \]
+\end{trditev}
+
+\begin{proof}
+  Pričakovana vrednost izraza je očitno $\mu$.
+  Potem je
+  \[
+	E\!\left({\left( \frac{X_1 + \cdots + X_n}{n} - \mu \right)}^2\right)
+	= \var\left(\frac{X_1 + \cdots + X_n}{n}\right)
+	= \frac{\var(X_1)}{n},
+  \]
+  to pa konvergira k $0$ za $n \to \infty$.
+\end{proof}
+
+\vprasanje{Povej in dokaži šibki zakon velikih števil.}
+
+\begin{opomba}
+  Velja celo
+  \[
+	P\!\left( \lim_{n \to \infty} \frac{X_1 + \cdots + X_n}{n} = \mu \right) = 1.
+  \]
+  Temu pravimo \pojem{krepki zakon velikih števil}.
+\end{opomba}
+
+\begin{izrek}
+  Naj bo $S$ metrizabilen prostor, ki je števna unija svojih kompaktnih
+  podprostorov.
+  Naj bodo $X_1, X_2, \ldots$ slučajne spremenljivke z vrednostmi v $S$.
+  Naj bo $T$ še en metrizabilen prostor in naj imajo $Y_1, Y_2, \ldots$
+  vrednosti v $T$.
+  Če gre $X_n \xrightarrow[n \to \infty]{d} X$ in $Y_n \xrightarrow[n \to
+  \infty]{d} c$, kjer je $c \in T$ konstanta, gre tudi $(X_n, Y_n)
+  \xrightarrow[n \to \infty]{d} (X, c)$.
+\end{izrek}
+
+\vprasanje{Kaj velja za konvergenco parov slučajnih spremenljivk?}
