@@ -184,3 +184,226 @@ vrstnem redu.
 \end{proof}
 
 \vprasanje{Karakteriziraj prostost modula in dokaži karakterizacijo.}
+
+\begin{posledica}
+  Vsak $R$-modul je kvocient nekega prostega $R$-modula.
+\end{posledica}
+
+\begin{proof}
+  Naj bo $M$ $R$-modul.
+  Definiramo
+  \[
+	\varphi: \oplus_{m \in M} R \to M
+  \]
+  tako, da za element $e_m$ direktne vsote, ki ima na $m$-tem mestu enico,
+  drugje pa nič, predpišemo $\varphi(e_m) = m$.
+  Ti elementi tvorijo bazo, torej je s tem natanko določen epimorfizem
+  $R$-modulov.
+\end{proof}
+
+\vprasanje{Pokaži, da je vsak modul kvocient prostega modula.}
+
+\begin{primer}
+  Podmodul prostega modula ni nujno prost.
+  $\Z_8$ je prost $\Z_8$-modul, njegov podmodul $2 \Z_8 = \{0, 2, 4, 6\}$ pa ni
+  prost.
+\end{primer}
+
+\vprasanje{Podaj primer podmodula prostega modula, ki ni sam prost.}
+
+\begin{izrek}[univerzalna lastnost]
+  $R$-modul $M$ je prost natanko tedaj, ko obstaja množica $X$ in preslikava
+  $\iota: X \to M$, da velja: za vsak $R$-modul $N$ in vsako preslikavo $\kappa:
+  X \to N$ obstaja natanko en homomorfizem $R$-modulov $f: M \to N$, da velja $f
+  \circ \iota = \kappa$.
+\end{izrek}
+
+\begin{proof}
+  V desno: $X$ naj bo baza $M$, $\iota$ pa vložitev, torej
+  \begin{gather*}
+	M = \oplus_{x \in X} R, \\
+	\iota(x) = e_x.
+  \end{gather*}
+  Naj bo $N$ poljuben $R$-modul in $\kappa : X \to N$ poljubna preslikava.
+  Recimo, da obstaja $f$, kot zahtevamo.
+  Potem mora veljati $f \circ \iota = \kappa$, torej $f(e_x) = \kappa(x)$.
+  Ker je ${\{e_x\}}_x$ baza, to enolično določi $f$, če le obstaja.
+  Definiramo ga kot
+  \[
+	f\!\left( \sum_{x \in X} a_x e_x \right) = \sum_{x \in X} a_x \kappa(x),
+  \]
+  kar ustreza zahtevi.
+
+  V levo:
+  Dokazujemo, da je
+  \[
+	M \cong \oplus_{x \in X} R.
+  \]
+  Definiramo $\kappa$, kar nam po univerzalni lastnosti poda homomorfizem $f$,
+  da diagram
+  \[\begin{tikzcd}
+	  X & {\oplus_x R} \\
+	  M
+	  \arrow["\kappa", from=1-1, to=1-2]
+	  \arrow["\iota"', from=1-1, to=2-1]
+	  \arrow["g"{description}, curve={height=6pt}, dotted, from=1-2, to=2-1]
+	  \arrow["f"{description}, curve={height=6pt}, dotted, from=2-1, to=1-2]
+	\end{tikzcd}\]
+  komutira.
+  Pokazali smo, da prosti moduli imajo univerzalno lastnost, torej obstaja
+  natanko en homomorfizem $R$-modulov $g$ kot zgoraj, torej $g \circ \kappa =
+  \iota$.
+  Pokazati želimo, da sta $f$ in $g$ inverzni.
+  Velja $f \circ g \circ \kappa = f \circ \iota = \kappa = \id \circ \kappa$.
+  Oglejmo si torej diagram
+  \[\begin{tikzcd}
+	  X & {\oplus_x R} \\
+	  {\oplus_x R}
+	  \arrow["\kappa", from=1-1, to=1-2]
+	  \arrow["\kappa"', from=1-1, to=2-1]
+	  \arrow["{f \circ g}"{description}, curve={height=6pt}, from=1-2, to=2-1]
+	  \arrow["{\id}"{description}, curve={height=6pt}, dotted, from=2-1, to=1-2]
+	\end{tikzcd}\]
+  Za oba homomorfizma diagram komutira, torej velja $f \circ g = \id$.
+  Podobno v drugo smer.
+\end{proof}
+
+\vprasanje{Povej in dokaži izrek o univerzalni lastnosti prostih modulov.}
+
+\begin{primer}
+  Naj bo $F$ polje in $R$ množica endomorfizmov
+  \[
+	R = \End\!\left( \oplus_{n \in \N} F \right),
+  \]
+  torej neskončnih kvadratnih matrik elementov iz $F$.
+  Kot $R$-modul je $R$ prost z bazo $\{\id\}$.
+  Imamo pa tudi bazo iz dveh elementov:
+  \begin{align*}
+	B_1 =
+	\begin{bmatrix}
+	  1 & 0 & 0 & 0 & 0 & \cdots \\
+	  0 & 0 & 1 & 0 & 0 & \cdots \\
+	  0 & 0 & 0 & 0 & 0 & \cdots \\
+	  \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+	\end{bmatrix}
+	&& B_2 =
+	   \begin{bmatrix}
+		 0 & 1 & 0 & 0 & 0 & \cdots \\
+		 0 & 0 & 0 & 1 & 0 & \cdots \\
+		 0 & 0 & 0 & 0 & 0 & \cdots \\
+		 \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+	   \end{bmatrix}
+  \end{align*}
+  Vsaka matrika $A$ je $R$-linearna kombinacija
+  \[
+	A = [a_1, a_3, a_5, \ldots] B_1 + [a_2, a_4, a_6, \ldots] B_2,
+  \]
+  torej je $\{B_1, B_2\}$ res baza (preverimo lahko, da sta res linearno
+  neodvisni).
+\end{primer}
+
+\begin{definicija}
+  Kolobar $R$ ima \pojem{lastnost enoličnega ranga}, če imajo vse baze
+  poljubnega prostega $R$-modula isto kardinalnost.
+\end{definicija}
+
+\vprasanje{Povej primer kolobarja, ki nima lastnosti enoličnega ranga.}
+
+\begin{primer}
+  Polja in obsegi imajo lastnost enoličnega ranga.
+\end{primer}
+
+\begin{definicija}
+  Naj bo $R$ kolobar, $I \edinka R$ in $M$ $R$-modul.
+  Potem je
+  \[
+	IM = \{ \sum_{i=1}^k u_i m_i \such u_i \in I, m_i \in M, k \in \N \}
+  \]
+  podmodul v $M$.
+\end{definicija}
+
+\begin{lema}
+  Če je $M$ prost $R$-modul z bazo $X$ in $I \triangleleft R$ različen od $R$,
+  potem je $M/IM$ prost $R/I$-modul z bazo $X + IM$.
+\end{lema}
+
+\begin{proof}
+  Očitno je $\sk{X + IM} = M/IM$, ker je $\sk{X} = M$.
+  Linearna neodvisnost:
+  \begin{align*}
+	& \sum_i (r_i + I) (x_i + IM) = 0 + IM \\
+	\nt& \sum_i (r_i x_i + IM) = 0 + IM \\
+	\nt& \sum_i r_i x_i \in IM.
+  \end{align*}
+  Velja
+  \[
+	\sum_i r_i x_i = \sum_j u_j m_j = \sum_j u_j \left( \sum_k s_k x_k \right)
+	= \sum_{j,k} \underbrace{u_j s_k}_{\in I} x_k.
+  \]
+  To sta dva razvoja po bazi $X$, torej $r_i = \sum_j u_j s_i \in I$, in $r_i +
+  I = 0 + I$.
+\end{proof}
+
+\vprasanje{Dokaži: če je $M$ prost $R$-modul z idealom $I$, je $M/IM$ prost
+  $R/I$-modul.}
+
+\begin{lema}
+  Ob oznakah prejšnje leme je $\abs{X} = \abs{X + IM}$.
+\end{lema}
+
+\begin{proof}
+  Recimo, da je $x + IM = x' + IM$.
+  Potem je $x - x' \in IM$, torej
+  \[
+	x - x' = \sum_j u_j x_j.
+  \]
+  Če je kakšen $u_j = 1$, je $I = R$, kar po predpostavki ne velja.
+  Torej so vsi različni od $1$, in zaradi enoličnosti razvoja po bazi velja $x =
+  x'$.
+\end{proof}
+
+\begin{izrek}
+  Veljata naslednji točki o lastnosti enoličnega ranga:
+  \begin{itemize}
+  \item Naj bo $R$ kolobar.
+	Recimo, da obstaja pravi ideal $I \edinka R$, da ima $R/I$ lastnost
+	enoličnega ranga.
+	Potem ima $R$ lastnost enoličnega ranga.
+  \item Vsak komutativen kolobar ima lastnost enoličnega ranga.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Prva točka:
+  Naj bo $M$ poljuben prost $R$-modul z bazama $X$ in $Y$.
+  Vemo, da je $M/IM$ prost $R/I$-modul z bazama $X + IM$ in $Y + IM$.
+  Ker ima $R/I$ lastnost enoličnega ranga, je $\abs{X + IM} = \abs{Y + IM}$,
+  torej je po lemi $\abs{X} = \abs{Y}$.
+
+  Druga točka:
+  Naj bo $R$ komutativen kolobar.
+  Če je $R$ polje, ima lastnost enoličnega ranga.
+  Če pa ni polje, ima nek pravi ideal, ki je vsebovan v nekem maksimalnem idealu
+  $I$.
+  Potem je $R/I$ polje, torej ima lastnost enoličnega ranga.
+  Po prvi točki ima tako $R$ lastnost enoličnega ranga.
+\end{proof}
+
+\vprasanje{Dokaži, da ima vsak komutativen kolobar lastnost enoličnega ranga.}
+
+\podnaslov{Projektivni moduli}
+
+\begin{definicija}
+  $R$-modul $P$ je \pojem{projektiven}, če za vsak homomorfizem $R$-modulov $f:
+  P \to M$ in vsak epimorfizem $R$-modulov $g: M' \to M$ obstaja homomorfizem
+  $R$-modulov $h: P \to M'$, da naslednji diagram komutira:
+  \[\begin{tikzcd}
+	  P \\
+	  M & {M'}
+	  \arrow["f"', from=1-1, to=2-1]
+	  \arrow["h", dotted, from=1-1, to=2-2]
+	  \arrow["g", two heads, from=2-2, to=2-1]
+	\end{tikzcd}\]
+\end{definicija}
+
+\vprasanje{Kaj je projektiven modul?}
