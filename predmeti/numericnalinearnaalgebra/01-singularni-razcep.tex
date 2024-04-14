@@ -146,3 +146,44 @@ določen), in ki ima med takimi minimalno normo $\norm{x}_2$.
 \end{proof}
 
 \vprasanje{Kako izračunaš psevdoinverz s pomočjo singularnega razcepa?}
+
+\podnaslov{Aproksimacija z matrikami nižjega ranga}
+
+\begin{izrek}[Eckart-Young-Mirskg]
+  Če je $A = U \Sigma V^T$ in $\rang A = r$, je za $k < r$ matrika
+  \[
+	A_k = \sum_{i=1}^k \sigma_i u_i v_i^T
+  \]
+  tista, ki minimizira
+  \begin{itemize}
+  \item $\min_{\rang B = k} \norm{A - B}_2$,
+  \item $\min_{\rang B = k} \norm{A - B}_F$.
+  \end{itemize}
+  Dodatno velja $\norm{A - A_k}_2 = \sigma_{k+1}$ in $\norm{A - A_k}_F =
+  \sqrt{\sigma_{k+1}^2 + \cdots + \sigma_n^2}$.
+\end{izrek}
+
+\begin{proof}
+  Dokažemo samo prvo točko.
+  Naj bo $B$ matrika ranga $k$.
+  Definiramo $V_{k+1} = [v_1, \ldots, v_{k+1}]$.
+  Velja $\dim(\jedro B) = n-k$ in $\dim(\im V_{k+1}) = k+1$, torej obstaja
+  vektor $w \ne 0$ v preseku.
+  Brez škode za splošnost je $\norm{w}_2 = 1$.
+  Velja
+  \[
+	\norm{A-B}_2 = \max_{\norm{x}_2 = 1} \norm{(A-B)x}_2
+	\ge \norm{(A-B)w}_2 = \norm{Aw}_2 = \sqrt{w^T A^T A w} \ge \sigma_{k+1}.
+  \]
+  Po drugi strani za $A_k$ očitno velja $\norm{A - A_k}_2 = \sigma_{k+1}$.
+\end{proof}
+
+\vprasanje{Kaj je najboljša aproksimacija matrike z matriko nižjega ranga?
+  Dokaži.}
+
+Če je $\sigma_{k+1} < \sigma_k$, je iz dokaza razvidno, da je najboljša
+aproksimacija enolična.
+Velikost $\sigma_{k+1}$ nam poda mero za razdaljo od matrik ranga $k$.
+
+Aproksimacijo lahko uporabimo za delo z velikimi matrikami; če vemo, da je
+matrika nizkega ranga, moramo shraniti za red velikosti manj podatkov.
