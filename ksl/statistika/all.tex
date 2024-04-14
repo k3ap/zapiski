@@ -1,0 +1,197 @@
+\naslov{Centralni limitni izrek}
+
+\begin{izrek}[centralni limitni izrek]
+  Naj bodo $X_1, X_2, \ldots$ neodvisne in enako porazdeljene slučajne
+  spremenljivke s končnim drugim momentom.
+  Označimo $\mu_1 = E(X_1)$, $\sigma_1^2 = \var(X_1)$ in $S_n = X_1 + \cdots +
+  X_n$.
+  Za $W_n = \frac{S_n - \mu_1 n}{\sigma_1 \sqrt{n}}$ potem velja
+  \[
+	\lim_{n \to \infty} P(W_n \le w) = \phi(w)
+  \]
+  enakomerno za $w \in \R$, torej
+  \[
+	\lim_{n \to \infty} \sup_{w \in \R} \abs{P(W_n \le w) - \phi(w)}
+	= 0.
+  \]
+\end{izrek}
+
+Izrek lahko uporabimo za ocenjevanje porazdelitve vsote veliko IID slučajnih
+spremenljivk.
+Izračunamo $\mu_1 = E(X_1)$ in $\sigma_1^2 = \var(X_1)$ in ocenimo verjetnost
+kot
+\[
+  P(S_n \le x) = \phi\!\left( \frac{x - n \mu_1}{\sigma_1 \sqrt{n}} \right).
+\]
+Za $x$ vzamemo mejo, ki nas zanima, pri čemer za vsote z vrednostmi na mreži $a
+\Z + b$ za $a, b \in \N$ po dogovoru vzamemo srednjo vrednost; torej za
+ocenjevanje verjetnosti, da je padlo manj kot $M$ pik, npr.~vzamemo $x = M -
+\pol$, za več kot $M$ pa $x = M + \pol$.
+
+Povemo lahko tudi nekaj o napaki te ocene.
+Če so $X_1, X_2, \ldots$ neodvisne, za $\mu_n = E(S_n)$ in $\sigma_n^2 =
+\var(S_n)$ velja
+\[
+  \sup_{x \in \R} \abs{ P(S_n \le x) - \phi\!\left( \frac{x - \mu_n}{\sigma_n}
+	\right) }
+  \le \frac{0.5583}{\sigma_n^3} \sum_{k=1}^n E\!\left( (X_k - E(X_k))^3 \right).
+\]
+Pri tem nismo predpostavili, da so spremenljivke enako porazdeljene, torej lahko
+to oceno uporabimo v več primerih.
+Če npr.~pokažemo, da desna stran konvergira k $0$ za $n \to \infty$, lahko
+pokažemo rezultat CLI tudi za različno porazdeljene slučajne spremenljivke.
+
+\naslov{Konvergenca slučajnih spremenljivk}
+
+Zaporedje $X_1, X_2, \ldots$ konvergira proti $X$
+\begin{itemize}
+\item \pojem{šibko}, če je za vsako zvezno in omejeno $h$
+  \[
+	\lim_{n \to \infty} E(h(X_n)) = E(h(X)),
+  \]
+\item \pojem{v verjetnosti}, če je za vsak $\varepsilon > 0$
+  \[
+	\lim_{n \to \infty} P(d(X_n, X) > \varepsilon) = 0,
+  \]
+\item \pojem{skoraj gotovo}, če je
+  \[
+	P\!\left( \{ \lim_{n \to \infty} X_n = X \} \right) = 1.
+  \]
+\end{itemize}
+Tretja točka implicira drugo, druga pa prvo.
+Če imajo spremenljivke vrednosti v $\R$, je prva točka ekvivalentna pogoju, da
+\[
+  \lim_{n \to \infty} P(X_n \le x) = P(X \le x)
+\]
+za vsak $x$ z $P(X=x) = 0$.
+
+\naslov{Cenilke}
+
+Recimo, da imamo model nekega dogajanja in želimo preveriti, če drži vodo.
+Karakteristika modela $y$ je neka lastnost (parameter, \ldots), ki je za ta
+model značilna, mi pa je ne poznamo.
+Iz opažanj lahko ocenimo vrednost te karakteristika $\hat{y}$, oceni pravimo
+\pojem{cenilka}.
+Za cenilko definiramo \pojem{pričakovano} ali \pojem{srednjo kvadratično napako}
+\[
+  \operatorname{MSE}(\hat{y} \such y) = E({(y - \hat{y})}^2)
+\]
+($\hat{y}$ je slučajna spremenljivka, pisana z malo).
+Poleg tega definiramo \pojem{pristranskost}
+\[
+  \operatorname{Bias}(\hat{y} \such y) = E(\hat{y}) - y.
+\]
+Cenilka je \pojem{nepristranska}, če je $\operatorname{Bias}(\hat{y} \such y) =
+0$.
+Pri takih cenilkah je MSE enaka varianci, in lahko definiramo
+\[
+  \operatorname{SE}(\hat{y}) = \operatorname{RMSE}(\hat{y} \such y) =
+  \sqrt{\var(\hat{y})},
+\]
+v splošnem pa dobimo
+\[
+  \var(\hat{y}) = \operatorname{MSE}(\hat{y} \such y) - \left(
+	\operatorname{Bias}(\hat{y} \such y) \right)^2.
+\]
+
+Če podatke dobivamo postopoma, dobimo zaporedje cenilk $(\hat{y}_i)_i$.
+Za tako zaporedje pravimo, da je \pojem{šibko dosledno}, če
+\[
+  \hat{y}_n \xrightarrow[n \to \infty]{d} y.
+\]
+Zadosten pogoj je, da srednja kvadratna napaka konvergira k $0$, čemur pravimo
+\pojem{doslednost}.
+
+Pogosta tema je iskanje \pojem{najboljše nepristranske linearne cenilke} (NNLC).
+To je preprosto cenilka, ki ima izmed vseh linearnih cenilk najmanjšo srednjo
+kvadratno napako.
+Če so $X_1, \ldots, X_n$ nekorelirane z enakimi pričakovanimi vrednostmi in
+variancami, je NNLC kar povprečje.
+
+\naslov{Slučajni vektorji}
+
+\newcommand{\sv}[1]{\underline{#1}}
+\newcommand{\cov}{\operatorname{cov}}
+
+Za slučajni vektor $\sv{X}$ definiramo \pojem{pričakovano vrednost}
+\[
+  E(\sv{X}) =
+  \begin{bmatrix}
+	E(X_1) \\ \vdots \\ E(X_n)
+  \end{bmatrix},
+\]
+za par $\sv{X}, \sv{Y}$ pa \pojem{kovariančno matriko}
+\[
+  \operatorname{Cov}(\sv{X}, \sv{Y}) =
+  \begin{bmatrix}
+	\cov(X_1, Y_1) & \cdots & \cov(X_1, Y_n) \\
+	\vdots & \ddots & \vdots \\
+	\cov(X_n, Y_1) & \cdots & \cov(X_n, Y_n)
+  \end{bmatrix}
+  = E(\sv{X} \sv{Y}^T) - E(\sv{X}) E(\sv{Y})^T.
+\]
+Za deterministično matriko $A$ je $E(A \sv{X}) = A E(\sv{X})$, podobno za
+slučajno matriko $M$ velja $E(A M) = A E(M)$.
+Analogni enakosti dobimo za množenje z desne.
+Za deterministični matriki $A, B$ in slučajna vektorja $\sv{X}, \sv{Y}$ je
+\[
+  \operatorname{Cov}(A \sv{X}, B \sv{Y}) = A \operatorname{Cov}(\sv{X}, \sv{Y})
+  B^T.
+\]
+
+Dva omembe vredna trika pri obračanju slučajnih matrik sta s sledjo.
+Ker je sled linearna preslikava, se lepo obnaša s pričakovano vrednostjo, in je
+$E(\sled(M)) = \sled(E(M))$.
+Spomnimo se, da je skalar enak svoji sledi, da je sled linearna, $\sled(A+B) =
+\sled A + \sled B$, in da lahko ciklično zamenjujemo argumente:
+\[
+  \sled(ABC) = \sled(BCA) = \sled(CAB).
+\]
+
+\naslov{Pridobivanje cenilk}
+
+Pri enostavnem slučajnem vzorčenju imamo populacijo velikosti $N$ in vzorec
+velikosti $n$.
+Iz populacije izberemo enote $K_1, \ldots, K_n$, $K_i \ne K_j$, tako, da so vse
+$n$-terice enako verjetne.
+Označimo $X_i = X_{K_i}$.
+Imamo nepristranske cenilke
+\[
+  \hat{\mu} = \inv{n} (X_1 + \ldots + X_n),
+\]
+za $S = \sum_i (X_i - \hat{\mu})^2$
+\begin{gather*}
+  \hat{\sigma^2} = \frac{N-1}{N} \frac{S}{n-1}, \\
+  \hat{\mu^2} = \hat{\mu}^2 \frac{N-n}{N} \frac{S}{n (n-1)},
+\end{gather*}
+in napaka
+\[
+  \hat{\text{SE}^2} = \frac{N-n}{N-1} \frac{\hat{\sigma^2}}{n}.
+\]
+
+Pri stratificiranem vzorčenju je populacija razdeljena na $k$ stratumov z
+velikostmi $N_1, \ldots, N_k$.
+Označimo $w_i = N_i / N$.
+Na vsakem stratumu vzorčimo enostavno slučajno.
+
+Poznamo dve pogosti metodi za pridobivanje cenilk.
+Prva je \pojem{metoda momentov}, kjer cenilke izpeljemo iz predpisov za momente
+(potrebujemo toliko momentov, kolikor je argumentov v porazdelitvi).
+Potem poiščemo inverzno preslikavo, s katero izrazimo cenilke z momenti;
+\[
+  (\hat{y}_1, \hat{y}_2, \ldots, \hat{y}_m) = F^{-1}(\overline{X}, \overline{X^2}, \ldots,
+  \overline{X^m}).
+\]
+
+Druga metoda je \pojem{metoda največjega verjetja}.
+Pri tej metodi iz opažanja $X = (X_1, \ldots, X_n)$ in gostote $f_X(x \such
+\theta)$ pridobimo cenilko za $\theta$ kot
+\[
+  \hat{\theta} = \operatorname{arg\,max} L(\theta \such x)
+\]
+kjer je $L(\theta \such x) = f_X(x \such \theta)$ verjetje.
+V diskretnem primeru zamenjamo $f_X$ z verjetnostjo $P(X = x \such \theta)$.
+Pogosto se splača namesto verjetja maksimizirati njegov logaritem, torej
+rešiti $\partial_\theta \log L = 0$.
+
+% LocalWords:  stratificiranem stratumov stratumu
