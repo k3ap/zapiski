@@ -198,3 +198,84 @@
 \end{izrek}
 
 \vprasanje{Kaj velja za konvergenco parov slučajnih spremenljivk?}
+
+Naslednje tri trditve se imenujejo \pojem{izreki Sluckega}.
+
+\begin{posledica}
+  Naj bodo $X_1, X_2, \ldots, X, Y_1, Y_2, \ldots$ slučajni vektorji z
+  vrednostmi v $\R^m$ in $c \in \R^m$ konstanta.
+  Če gre $X_n \xrightarrow[n \to \infty]{d} X$ in $Y_n \xrightarrow[n \to
+  \infty]{d} c$, gre tudi $X_n + Y_n \xrightarrow[n \to \infty]{d} X+c$ in $X_n
+  - Y_n \xrightarrow[n \to \infty]{d} X-c$.
+\end{posledica}
+
+\begin{posledica}
+  Naj bodo $X_1, X_2, \ldots, X$ slučajni vektorji z vrednostmi v $U_1, U_2,
+  \ldots$ realne slučajne spremenljivke in $c$ konstanta.
+  Če gre $X_n \xrightarrow[n \to \infty]{d} X$ in $U_n \xrightarrow[n \to
+  \infty]{d} c$, gre tudi $U_n X_n \xrightarrow[n \to \infty]{d} cX$.
+\end{posledica}
+
+\begin{trditev}
+  Naj bodo $X_1, X_2, \ldots, X, U_1, U_2, \ldots$ in $c$ kot prej.
+  Privzamemo še $c \ne 0$.
+  \begin{itemize}
+  \item Če so $Z_1, Z_2, \ldots$ taki slučajni vektorji z vrednostmi v $\R^m$,
+	da je $Z_n = \nicefrac{X_n}{U_n}$ za $U_n \ne 0$, potem gre $Z_n
+	\xrightarrow[n \to \infty]{d} \nicefrac{X}{c}$.
+  \item Naj bo $m = 1$.
+	Tedaj za vsak $a \in \R$, za katerega je $P(\nicefrac{X}{c} = a) = 0$, velja
+	\[
+	  \lim_{n \to \infty} P\!\left(U_n \ne 0, \frac{X_n}{U_n} \le a\right) =
+	  P\!\left(\frac{X}{c} \le a \right)
+	\]
+	ter
+	\[
+	  \lim_{n \to \infty} P\!\left( U_n \ne 0, \frac{X_n}{U_n} \ge a \right) =
+	  P\!\left(\frac{X}{c} \ge a\right).
+	\]
+  \end{itemize}
+\end{trditev}
+
+\begin{proof}
+  Prva točka:
+  Po izreku gre
+  \[
+	\begin{bmatrix}
+	  X_n \\ U_n
+	\end{bmatrix}
+	\xrightarrow[n \to \infty]{d}
+	\begin{bmatrix}
+	  X \\ c
+	\end{bmatrix}.
+  \]
+  Slučajni vektor $(X, c)$ zavzame vrednosti $S_0 = \R^m \times (\R \brez
+  \{0\})$.
+  V tej množici zavzamejo vrednosti tudi slučajni vektorji
+  \[
+	\begin{bmatrix}
+	  X_n^* \\ U_n^*
+	\end{bmatrix}
+	=
+	\begin{cases}
+	  (X_n, U_n), & U_n \ne 0 \\
+	  (Z_n, 1). & U_n = 0
+	\end{cases}
+  \]
+  Velja $Z_n = \nicefrac{X_n^*}{U_n^*}$.
+  Potem tudi $(X_n^*, U_n^*) \xrightarrow[n \to \infty]{d} (X, c)$ v okviru
+  $S_0$.
+  Ker je preslikava $(x, u) \mapsto \nicefrac{x}{u}$ zvezna $S_0 \to \R^m$,
+  velja
+  \[
+	Z_n = \frac{X_n^*}{U_n^*} \xrightarrow[n \to \infty]{d} \frac{X}{c}.
+  \]
+
+  Druga točka:
+  Definirajmo $Z_n = \nicefrac{X_n}{U_n}$ za $U_n \ne 0$ ter $Z_n = a+1$ za $U_n
+  = 0$.
+  Tedaj je $\{ U_n \ne 0, \nicefrac{X_n}{U_n} \le a \} = \{ Z_n \le a \}$.
+  Rezultat sledi po prvi točki, drugo limito pokažemo podobno.
+\end{proof}
+
+\vprasanje{Povej izreke Sluckega. Dokaži izrek za deljenje.}

@@ -1,0 +1,59 @@
+\naslov{Sklepna statistika}
+
+Naj bodo $X_1, X_2, \ldots$ neodvisne in enako porazdeljene slučajne
+spremenljivke z $E(X_1) = \mu$ in $\var(X_1) = \sigma^2$.
+Recimo, da je $\sigma$ fiksen, vrednosti $\mu$ pa ne poznamo.
+Lahko jo ocenimo na podlagi opaženih vrednosti $X_1, \ldots, X_n$.
+
+Zakon velikih števil pove, da gre $\overline{X_n} \xrightarrow[n \to \infty]{d}
+\mu$.
+Za koliko si upamo reči, da lahko $\overline{X_n}$ še odstopa od $\mu$?
+Želeli bi zatrditi, da je $\overline{X_n} - \delta < \mu < \overline{X_n} +
+\delta$.
+Postavimo torej \pojem{interval zaupanja} $(\overline{X_n} - \delta,
+\overline{X_n} + \delta)$ za $\mu$.
+Maksimalni dopustni verjetnosti, da se ne zmotimo, pravimo \pojem{stopnja
+  tveganja} $\alpha$.
+Tipična izbira je $\alpha = 0.05$.
+Zahtevamo torej
+\[
+  P(\abs{\overline{X_n} - \mu} \ge \delta) \le \alpha.
+\]
+
+Če vemo, da je $X_1 \sim N(\mu, \sigma^2)$ in poznamo $\sigma$, potem vemo, da
+je $\overline{X_n} - \mu \sim N(0, \sigma^2 / n)$.
+Za $Z \sim N(0,1)$ torej želimo
+\begin{align*}
+  &P(\abs{\overline{X_n} - \mu} \ge \delta) \\
+  &= P\!\left(\abs{\frac{\sigma}{\sqrt{n}} Z} \ge \delta\right) \\
+  &= P\!\left(\abs{Z} \ge \frac{\delta \sqrt{n}}{\sigma}\right) \\
+  &= 2 P\!\left(Z \ge \frac{\delta \sqrt{n}}{\sigma}\right) \\
+  &= 2\left( 1 - \phi\!\left(\frac{\delta \sqrt{n}}{\sigma}\right) \right) \\
+  &\le \alpha.
+\end{align*}
+Ustrezna izbira je potem
+\[
+  \delta = \frac{\sigma}{\sqrt{n}} \phi^{-1}\!\left(1 - \frac{\alpha}{2}\right).
+\]
+
+Če nismo prepričani, da so $X_i$ porazdeljene normalno, si lahko pomagamo s CLI.
+Velja
+\[
+  \frac{\overline{X_n} - \mu}{\sigma} \sqrt{n} \xrightarrow[n \to \infty]{d}
+  N(0,1).
+\]
+Pri dovolj velikih $n$ bo konstruirani interval zaupanja še vedno približno
+zadoščal izbrani stopnji tveganja, vendar je $\alpha$ le še \pojem{nominalna
+  stopnja tveganja}.
+
+Če ne poznamo $\sigma$, ga nadomestimo z \pojem{empiričnim standardnim odklonom}
+\[
+  \hat{\sigma}_n = \sqrt{
+	\inv{n} {\left( (X_1 - \overline{X_n})^2 + \cdots + (X_n - \overline{X_n})
+	  \right)}
+  }.
+\]
+To bo imelo smisel, če $\hat{\sigma}_n$ konvergira k $\sigma$, kar velja po
+zakonu velikih števil in izreku Sluckega.
+
+% TODO: spomni se nekih vprašanj tukej
