@@ -137,4 +137,144 @@ Iz pogojev pri $t=0$ torej dobimo
   h'(s) = \varphi(s) f'(s) + \psi(s) g'(s).
 \]
 
-% LocalWords:  Mongeov Mongeovega Mongeovem
+Zgornjo enačbo lahko zapišemo tudi v matrični obliki
+\begin{equation}
+  \label{eq:matricna-oblika}
+  \begin{bmatrix}
+	z_s \\ \dot{z}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	x_s & y_s \\
+	\dot{x} & \dot{y}
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	p \\ q
+  \end{bmatrix}.
+\end{equation}
+Če je determinanta te matrike neničelna, lahko lokalno izrazimo $s(x, y)$ in
+$t(x, y)$.
+Posledično dobimo
+\[
+  \begin{bmatrix}
+	p \\ q
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	s_x & t_x \\
+	s_y & t_y
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	z_s \\ \dot{z}
+  \end{bmatrix},
+\]
+iz česar sklepamo $u_x = p$ in $u_y = q$.
+
+Na $\Gamma$ je $x = x(s, 0) = f(s)$, zato je $x_s(\cdot, 0) = f'$ in podobno
+$y_s(\cdot, 0) = g'$.
+Za vsak $s$ naj $x(\cdot, t)$ reši karakteristični sistem.
+Od tod sledi $\dot{x}(s,0) = F_p(\Gamma(s))$ in $\dot{y}(s,0) = F_q(\Gamma(s))$.
+To pomeni, da lahko pogoj neničelne determinante izrazimo s podatki kot
+\[
+  \det
+  \begin{bmatrix}
+	f' & g' \\
+	F_p \circ \Gamma & F_q \circ \Gamma
+  \end{bmatrix}
+  \ne 0.
+\]
+Geometrijska interpretacija tega je, da projekcija $\Gamma$ in tokovnice nista
+vzporedni v presečišču $(s,0)$.
+Zato temu pravimo \pojem{pogoj transverzalnosti}.
+
+Če povzamemo, začetne pogoje za Cauchyjevo nalogo dobimo tako, da ob dani
+krivulji $\gamma(s) = (f,g,h)(s)$ poiščemo še $p = \phi(s)$ in $q = \psi(s)$, da
+za $\Gamma = (f,g,h,\phi,\psi)$ velja
+\begin{itemize}
+\item $F(\Gamma(s)) = 0$,
+\item $h' = \phi f' + \psi g'$,
+\item $f'(s) F_q(\Gamma(s)) - g'(s) F_p(\Gamma(s)) \ne 0$.
+\end{itemize}
+Za vsak $s$ rešimo karakteristični sistem z začetnimi pogoji zgoraj.
+Na ta način dobimo $R(s,t) = (x, y, z, p, q)(s, t)$, za katero velja
+\begin{itemize}
+\item $R(s,0) = (f,g,h,\phi,\psi)(s)$,
+\item projekcija $R$ na prve tri komponente je lokalno graf funkcije.
+\end{itemize}
+Druga točka sledi iz dejstva, da je Jacobijeva determinanta
+\[
+  \det \frac{\partial(x,y)}{\partial(s,t)} \ne 0.
+\]
+Če označimo $u(x,y) = z(s(x,y), t(x,y))$, bo to rešitev~\eqref{eq:ne}, dokaz
+sledi.
+
+Preverili bomo, da funkcija $u$ reši sistem~\eqref{eq:matricna-oblika}.
+Ker na ploskvi $\Sigma = \{R(s,t)\}$ velja $F = 0$, bo sledilo $p=u_x$ in
+$q=u_y$.
+Verižno pravilo namreč pove
+\[
+  \begin{bmatrix}
+	z_s \\ \dot{z}
+  \end{bmatrix}
+  = A
+  \begin{bmatrix}
+	u_x \\ u_y
+  \end{bmatrix},
+\]
+kjer smo z $A$ označili matriko iz~\eqref{eq:matricna-oblika}.
+Ker je $A$ lokalno obrnljiva, bo torej veljalo $p = u_x$ in $q = u_y$.
+Drugi pogoj iz~\eqref{eq:matricna-oblika} (tj.~$\dot{z} = p \dot{x} + q
+\dot{y}$) sledi iz karakterističnega sistema, za prvi pogoj pa označimo $B(s,t)
+= z_s - p x_s - q y_s$.
+Velja
+\[
+  B(s,0) = h'(s) - \phi(s) f'(s) - \psi(s) g'(s) = 0
+\]
+in
+\begin{align*}
+  \partial_t B(s,t)
+  &= z_{st} - \dot{p} x_s - p x_{st} - \dot{q} y_s - q y_{st} \\
+  &= \partial_s \left( \dot{z} - p \dot{x} - q \dot{y} \right)
+	+ p_s \dot{x} + q_s \dot{y} - \dot{p} x_s - \dot{q} y_s \\
+  &= F_p p_s + F_q q_s + (F_x + p F_z) x_s + (F_y + q F_z) y_s \\
+  &= (F \circ R)_s - F_z z_s + p F_z x_s + q F_z y_s \\
+  &= F_z(p x_s + q y_s - z_s) \\
+  &= - F_z B.
+\end{align*}
+Torej $B$ reši diferencialno enačbo
+\[
+  \dot{B} = - F_z B,
+\]
+iz česar sledi
+\[
+  B(s,t) = B(s,0) \exp\left( - \int_0^t F_z(\tau) d\tau \right) = 0.
+\]
+S tem smo dokazali eksistenčni izrek za nelinearne PDE prvega reda.
+
+\begin{izrek}
+  Naj bo $F(x,y,z,p,q)$ dana $\zvodvi{2}$ funkcija, $\gamma = (f,g,h)$ dana
+  $\zvodvi{1}$ krivulja, $\phi, \psi \in \zvodvi{1}$, $V_0 = \Gamma(s_0) =
+  (f,g,h,\phi,\psi)(s_0)$ za neki $s_0$ in naj na neki okolici točke $s_0$
+  veljajo pogoji
+  \begin{itemize}
+  \item $F(\Gamma(s)) = 0$,
+  \item $h' = \phi f' + \psi g'$,
+  \item $f'(s) F_q(\Gamma(s)) - g'(s) F_p(\Gamma(s)) \ne 0$.
+  \end{itemize}
+  Tedaj obstaja $\varepsilon > 0$, da na krogli $K = K((s_0, 0), \varepsilon)$
+  obstaja natanko ena funkcija $R(s,t) = (x,y,z,p,q)(s,t)$, da velja
+  \begin{itemize}
+  \item $R(\cdot, 0) = \Gamma$ za $\abs{s-s_0} < \varepsilon$,
+  \item $F\circ R = 0$ za $K$,
+  \item za vsak $s \in K(s_0, \varepsilon) \subseteq \R$ funkcija $R(s, \cdot)$
+	reši karakteristični sistem za~\eqref{eq:ne},
+  \item projekcija $R$ na prve tri komponente določa parametrično podano
+	integralno ploskev $\{z = u(x,y)\}$ za~\eqref{eq:ne}.
+  \end{itemize}
+\end{izrek}
+
+\vprasanje{Izpelji rešitev Cauchyjeve naloge za nelinearno PDE prvega reda.}
+
+% LocalWords:  Mongeov Mongeovega Mongeovem transverzalnosti
