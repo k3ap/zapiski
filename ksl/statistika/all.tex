@@ -34,12 +34,14 @@ Povemo lahko tudi nekaj o napaki te ocene.
 \[
   \sup_{x \in \R} \abs{ P(S_n \le x) - \phi\!\left( \frac{x - \mu_n}{\sigma_n}
 	\right) }
-  \le \frac{0.5583}{\sigma_n^3} \sum_{k=1}^n E\!\left( (X_k - E(X_k))^3 \right).
+  \le \frac{0.5583}{\sigma_n^3} \sum_{k=1}^n E\!\left( \abs{X_k - E(X_k)}^3 \right).
 \]
 Pri tem nismo predpostavili, da so spremenljivke enako porazdeljene, torej lahko
 to oceno uporabimo v več primerih.
 Če npr.~pokažemo, da desna stran konvergira k $0$ za $n \to \infty$, lahko
 pokažemo rezultat CLI tudi za različno porazdeljene slučajne spremenljivke.
+
+Za računanje $\phi$ glej tabelo, in se spomni $\phi(-x) = 1 - \phi(x)$.
 
 \naslov{Konvergenca slučajnih spremenljivk}
 
@@ -65,12 +67,52 @@ Tretja točka implicira drugo, druga pa prvo.
 \]
 za vsak $x$ z $P(X=x) = 0$.
 
+Glede konvergence slučajnih spremenljivk lahko povemo marsikaj.
+Naj bodo $X_1, X_2, X_3, \ldots, X$ slučajne spremenljivke, da velja $X_n
+\xrightarrow[n \to \infty]{d} X$.
+Če je $g$ zvezna funkcija, velja tudi $g(X_n) \xrightarrow[n \to \infty]{d} X$.
+
+Če so $X_i$ neodvisne in enako porazdeljene z $E(X_i) = \mu$, velja \pojem{zakon
+  velikih števil}
+\[
+  \frac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{d} \mu.
+\]
+Za konvergenco parov lahko povemo manj kot bi pričakovali; če $X_n
+\xrightarrow[n \to \infty]{d} X$ in $Y_n \xrightarrow[n \to \infty]{d} c$, kjer
+je $c$ konstanta, potem konvergirajo tudi pari $(X_n, Y_n) \xrightarrow[n \to
+\infty]{d} (X, c)$.
+Kot posledico dobimo \pojem{izreke Sluckega}, ki pravijo, da $X_n + Y_n
+\xrightarrow[n \to \infty]{d} X + c$ in $X_n Y_n \xrightarrow[n \to \infty]{d}
+cX$.
+Podobno velja tudi za deljenje, kjer moramo izrek formulirati malce drugače:
+
+\begin{trditev}
+  Naj bodo $X_1, X_2, \ldots, X, Y_1, Y_2, \ldots$ in $c$ kot prej.
+  Privzamemo še $c \ne 0$.
+  \begin{itemize}
+  \item Če so $Z_1, Z_2, \ldots$ taki slučajni vektorji,
+	da je $Z_n = \nicefrac{X_n}{Y_n}$ za $Y_n \ne 0$, potem gre $Z_n
+	\xrightarrow[n \to \infty]{d} \nicefrac{X}{c}$.
+  \item
+	Za vsak $a \in \R$, za katerega je $P(\nicefrac{X}{c} = a) = 0$, velja
+	\[
+	  \lim_{n \to \infty} P\!\left(Y_n \ne 0, \frac{X_n}{Y_n} \le a\right) =
+	  P\!\left(\frac{X}{c} \le a \right)
+	\]
+	ter
+	\[
+	  \lim_{n \to \infty} P\!\left( Y_n \ne 0, \frac{X_n}{Y_n} \ge a \right) =
+	  P\!\left(\frac{X}{c} \ge a\right).
+	\]
+  \end{itemize}
+\end{trditev}
+
 \naslov{Cenilke}
 
 Recimo, da imamo model nekega dogajanja in želimo preveriti, če drži vodo.
 Karakteristika modela $y$ je neka lastnost (parameter, \ldots), ki je za ta
 model značilna, mi pa je ne poznamo.
-Iz opažanj lahko ocenimo vrednost te karakteristika $\hat{y}$, oceni pravimo
+Iz opažanj lahko ocenimo vrednost te karakteristike $\hat{y}$, oceni pravimo
 \pojem{cenilka}.
 Za cenilko definiramo \pojem{pričakovano} ali \pojem{srednjo kvadratično napako}
 \[
