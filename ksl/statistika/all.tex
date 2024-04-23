@@ -68,9 +68,10 @@ Tretja točka implicira drugo, druga pa prvo.
 za vsak $x$ z $P(X=x) = 0$.
 
 Glede konvergence slučajnih spremenljivk lahko povemo marsikaj.
-Naj bodo $X_1, X_2, X_3, \ldots, X$ slučajne spremenljivke, da velja $X_n
+Vzemimo take slučajne spremenljivke
+$X_1, X_2, X_3, \ldots, X$, da velja $X_n
 \xrightarrow[n \to \infty]{d} X$.
-Če je $g$ zvezna funkcija, velja tudi $g(X_n) \xrightarrow[n \to \infty]{d} X$.
+Če je $g$ zvezna funkcija, velja tudi $g(X_n) \xrightarrow[n \to \infty]{d} g(X)$.
 
 Če so $X_i$ neodvisne in enako porazdeljene z $E(X_i) = \mu$, velja \pojem{zakon
   velikih števil}
@@ -203,12 +204,12 @@ Imamo nepristranske cenilke
 \]
 za $S = \sum_i (X_i - \hat{\mu})^2$
 \begin{gather*}
-  \hat{\sigma^2} = \frac{N-1}{N} \frac{S}{n-1}, \\
-  \hat{\mu^2} = \hat{\mu}^2 \frac{N-n}{N} \frac{S}{n (n-1)},
+  \widehat{\sigma^2} = \frac{N-1}{N} \frac{S}{n-1}, \\
+  \widehat{\mu^2} = \hat{\mu}^2 \frac{N-n}{N} \frac{S}{n (n-1)},
 \end{gather*}
 in napaka
 \[
-  \hat{\text{SE}^2} = \frac{N-n}{N-1} \frac{\hat{\sigma^2}}{n}.
+  \widehat{\text{SE}^2} = \frac{N-n}{N-1} \frac{\widehat{\sigma^2}}{n}.
 \]
 
 Pri stratificiranem vzorčenju je populacija razdeljena na $k$ stratumov z
@@ -234,6 +235,54 @@ Pri tej metodi iz opažanja $X = (X_1, \ldots, X_n)$ in gostote $f_X(x \such
 kjer je $L(\theta \such x) = f_X(x \such \theta)$ verjetje.
 V diskretnem primeru zamenjamo $f_X$ z verjetnostjo $P(X = x \such \theta)$.
 Pogosto se splača namesto verjetja maksimizirati njegov logaritem, torej
-rešiti $\partial_\theta \log L = 0$.
+rešiti $\partial_\theta l = \partial_\theta \log L = 0$.
 
-% LocalWords:  stratificiranem stratumov stratumu
+\newcommand{\FI}{\operatorname{FI}}
+
+Ko imamo cenilko po MNV, morda tudi želimo oceniti, za koliko smo se zmotili.
+To lahko naredimo s pomočjo Fisherjeve informacije
+\[
+  \FI(\theta) = E\!\left( \left( \frac{\partial l(\theta(X))}{\partial \theta}
+	\right)^2 \right)
+  = - E\!\left( \frac{\partial^2 l(\theta(X))}{\partial \theta^2} \right).
+\]
+Če je cenilka $\hat{\theta}_{\text{MNV}}$ nepristranska, namreč velja
+Rao-Cramerjeva ocena
+\[
+  \text{SE}^2(\hat{\theta}) = \var \theta
+  \ge \inv{\FI(\theta)}.
+\]
+Če so opažanja neodvisna in enako porazdeljena, lahko izračunamo Fisherjevo
+informacijo enega opažanja
+\[
+  \FI_1(\theta) = E\!\left( \left( \frac{\partial l_1(\theta(X))}{\partial \theta}
+	\right)^2 \right)
+  = - E\!\left( \frac{\partial^2 l_1(\theta(X))}{\partial \theta^2} \right),
+\]
+potem je
+\[
+  \FI(\theta) = n \FI_1(\theta).
+\]
+Če je model dovolj regularen (kar predpostavljamo, da vedno je), potem je
+cenilka po MNV asimptotsko nepristranska, in za $n \to \infty$ velja
+\[
+  \text{SE}^2(\hat{\theta}) \sim \inv{n \FI_1(\theta)}.
+\]
+
+Če je model večparametričen, torej če je $\sv{\theta}$ vektor, je Fisherjeva
+informacija matrika z elementi
+\[
+  \left[ \FI(\theta) \right]_{ij} = E\!\left( \frac{\partial l}{\partial
+	  \theta_i} \frac{\partial l}{\partial \theta_j} \right)
+  = -E\!\left( \frac{\partial^2 l}{\partial \theta_i \partial \theta_j} \right).
+\]
+Če je $\xi = h(\theta)$ neka karakteristika modela in $\hat{\xi} =
+h(\hat{\theta})$ nepristranska cenilka za $\xi$, velja
+\[
+  \var(\xi) \ge \grad h(\theta)^T \FI^{-1}(\theta) \grad h(\theta).
+\]
+Tudi tu lahko računamo po opažanjih, če so le ta IID.
+
+
+% LocalWords:  stratificiranem stratumov stratumu Fisherjeva asimptotsko MNV
+% LocalWords:  IID
