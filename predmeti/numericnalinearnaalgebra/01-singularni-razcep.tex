@@ -187,3 +187,119 @@ Velikost $\sigma_{k+1}$ nam poda mero za razdaljo od matrik ranga $k$.
 
 Aproksimacijo lahko uporabimo za delo z velikimi matrikami; če vemo, da je
 matrika nizkega ranga, moramo shraniti za red velikosti manj podatkov.
+
+\podnaslov{Regularizacija}
+
+Pri Fredholmovi integralski enačbi prve vrste
+\[
+  \int_0^1 K(s,t) f(t) dt = g(s)
+\]
+sta podana jedro $K$ in funkcija $g$, izračunati pa želimo $f$.
+Vsako jedro lahko razvijemo v
+\[
+  K(s,t) = \sum_{i=1}^\infty \sigma_i u_i(s) v_i(t),
+\]
+kjer so $u_i$ in $v_i$ leve in desne singularne funkcije, $\sigma_1 \ge \sigma_2
+\ge \sigma_3 \ge \cdots$ pa singularne vrednosti, velja $\lim \sigma_n = 0$.
+Funkcije $u_i, v_i$ so ortonormirane za skalarni produkt
+\[
+  \sk{g,h} = \int_0^1 g(t) h(t) dt,
+\]
+poleg tega velja
+\[
+  \int_0^1 K(s,t) v_i(t) dt = \sigma_i u_i(s).
+\]
+Podobno kot za singularni razcep lahko rešitev poiščemo z
+\[
+  f(t) = \sum_{i=1}^\infty \inv{\sigma_i} \sk{u_i, g} v_i(t).
+\]
+Pričakujemo, da bodo prispevki poznih členov majhni, torej da $\sk{u_i, g}$
+limita k $0$ hitreje kot $\sigma_i$.
+Če namesto $g$ poznamo $g + \Delta g$, lahko izračunamo
+\[
+  \tilde{f} = \sum_{i=1}^\infty \frac{\sk{u_i, g}}{\sigma_i} v_i +
+  \sum_{i=1}^\infty \frac{\sk{u_i, \Delta g}}{\sigma_i} v_i.
+\]
+Problem je v tem, da pričakujemo, da bo šum razporejen po vseh komponentah
+funkcijskega prostora, torej bodo $\sk{u_i, \Delta g}$ majhni, a ne bodo
+konvergirali k $0$.
+Majhna sprememba $g$ lahko torej povzroči poljubno veliko spremembo v rezultatu.
+
+Pri numeričnem reševanju bomo skalarni produkt izračunali z neko kvadraturno
+formulo
+\[
+  \int_0^1 f(t) dt = \sum_{i=0}^n \alpha_i f(t_i),
+\]
+torej kot rešitev sistema
+\[
+  \begin{bmatrix}
+	\alpha_0 K(s_0, t_0) & \alpha_1 K(s_0, t_1) & \cdots & \alpha_n K(s_0, t_n)
+	\\
+	\alpha_0 K(s_1, t_0) & \alpha_1 K(s_1, t_1) & \cdots & \alpha_n K(s_1, t_n)
+	\\
+	\vdots & \vdots & \ddots & \vdots \\
+	\alpha_0 K(s_n, t_0) & \alpha_1 K(s_n, t_1) & \cdots & \alpha_n K(s_n, t_n)
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	f(t_1) \\ \vdots \\ f(t_n)
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	g(s_0) \\ \vdots \\ g(s_n)
+  \end{bmatrix}.
+\]
+Singularne vrednosti matrike so približki največjih singularnih vrednosti
+funkcije.
+Za večje matrike bo aproksimacija boljša, ampak občutljivost visoka.
+
+Rešitev teh težav je regularizacija.
+Rešujemo sistem $Ax = b$ z $A = U \Sigma V^T$ in rešitvijo
+\[
+  x = \sum_{i=1}^n \frac{u_i^T b}{\sigma_i} v_i.
+\]
+Če je prisoten še šum, dobimo rešitev $x + \Delta x$,
+\[
+  \Delta x = \sum_{i=1}^n \frac{u_i^T \Delta b}{\sigma_i} v_i.
+\]
+Če $\inv{\sigma_i} u_i^T b$ padajo k $0$, $\abs{u_i^T \Delta b}$ pa je enakega
+velikostnega reda za vse $i$, lahko uporabimo odrezan singularni razcep in
+psevdoinverz najboljše aproksimacije $A$ ranga $k$;
+\[
+  x_k = \sum_{i=1}^k \frac{u_i^T b}{\sigma_i} v_i = A_k^+ b.
+\]
+
+Druga možnost je regularizacija Tihonova
+\[
+  x_{\text{reg}} = \sum_{i=1}^n \phi_i \frac{u_i^T b}{\sigma_i} v_i,
+\]
+kjer so \pojem{faktorji filtra} definirani kot
+\[
+  \phi_i = \frac{\sigma_i^2}{\sigma_i^2 + \alpha^2}
+\]
+za \pojem{parameter regularizacije} $\alpha$.
+
+\begin{izrek}
+  Regularizacija Tihonova s parametrom $\alpha > 0$ vrne tisti $x \in \R^n$, ki
+  minimizira $\norm{Ax-b}_2^2 + \alpha^2 \norm{x}_2^2$.
+\end{izrek}
+
+\begin{proof}
+  Zapisan $x$ je natanko rešitev normalnega sistema
+  \[
+	\begin{bmatrix}
+	  A \\ \alpha I
+	\end{bmatrix}
+	x
+	=
+	\begin{bmatrix}
+	  b \\ 0
+	\end{bmatrix}.
+  \]
+\end{proof}
+
+\vprasanje{Kaj je problem, ki ga rešujemo z regularizacijo? Povej izrek o
+  regularizaciji Tihonova in ga dokaži.}
+
+% LocalWords:  Fredholmovi regularizacija regularizacije regularizacijo
+% LocalWords:  regularizaciji Tihonova
