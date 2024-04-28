@@ -1,0 +1,86 @@
+\naslov{Vrednotenje napovednih modelov}
+
+Recimo, da obstaja idealen napovedni model $Y = m(\mb{X}) + \varepsilon$, kjer
+je za napako $E(\varepsilon) = 0$.
+Zanima nas pričakovana napaka napovednega modela $\hat{m}$, naučenega na neki
+množici $S$, pri $\mb{X} = \mb{x}_0$.
+Model $m$ je determinističen, torej velja
+\[
+  E(Y \such \mb{X} = \mb{x}_0) = E(m(\mb{x}_0) + \varepsilon) = E(m(\mb{x}_0)) =
+  m(\mb{x}_0)
+\]
+in
+\[
+  \var(Y \such \mb{X} = \mb{x}_0) = E(\varepsilon^2) = \sigma_\varepsilon^2.
+\]
+S podobno enostavnim računom pridemo do
+\[
+  E(\operatorname{Err}(\mb{x}_0))
+  = E((Y - \hat{m}(\mb{x}_0))^2)
+  = \sigma_\varepsilon^2 + \left( E(\hat{m}(\mb{x}_0)) - m(\mb{x}_0) \right)^2
+  + \var(\hat{m}(\mb{x}_0)).
+\]
+To nas vodi do definicije dveh novih količin: \pojem{pristranskost}
+\[
+  E(\hat{m}(\mb{x}_0)) - m(\mb{x}_0)
+\]
+in \pojem{varianca}
+\[
+  \var(\hat{m}(\mb{x}_0)).
+\]
+
+\vprasanje{Izpelji predpis za pričakovano napako napovednega modela. Kaj sta
+  pristranskost in varianca?}
+
+Pri učenju modelov ločimo \pojem{učno} in \pojem{testno} napako.
+Učna napaka je oblike
+\[
+  \operatorname{Err}_{\text{train}}(m, S)
+  = E(L(y, m(\mb{x})) \such (\mb{x}, y) \in S)
+  = \inv{\abs{S}} \sum_{(\mb{x}, y) \in S} L(y, m(\mb{x})),
+\]
+kjer je $L$ funkcija izgube.
+Ta napaka je seveda optimistična, zato merimo tudi testno napako
+\[
+  \operatorname{Err}_{\text{test}}(m, S)
+  = E(L(y, m(\mb{x})) \such (\mb{x}, y) \notin S).
+\]
+Razliki med tema napakama pravimo \pojem{optimizem}
+\[
+  o = \operatorname{Err}_{\text{test}} - \operatorname{Err}_{\text{train}}.
+\]
+Izkaže se, da v splošnem velja
+\[
+  E(o) = \frac{2}{\abs{S}} \sum_{(\mb{x}, y) \in S} \cov(m(\mb{x}), y),
+\]
+torej je optimizem obratno sorazmeren številu učnih primerov $\abs{S}$.
+V skrajnem primeru za $\abs{S} \to \infty$ sploh ne potrebujemo testnih
+primerov.
+Pri linearnih modelih se izkaže $\cov(m(\mb{x}), y) = p \sigma_\varepsilon^2$,
+torej je optimizem premo sorazmeren s številom napovednih spremenljivk.
+
+\vprasanje{Kaj je optimizem? Kako se izraža v primeru linearnega modela?}
+
+Poznamo več načinov za izbiro učnih in testnih podatkov.
+Najbolj enostaven je naključno vzorčenje, kjer vzamemo nekaj naključnih
+primerov za učne, ostale pa pustimo za testne.
+Problem s tem je, da je ocena napake občutljiva na izbiro primerov.
+
+Boljši način je prečno preverjanje, kjer razdelimo $S$ na $k$ enako velikih
+množic, ki imajo približno enako porazdelitev ciljne spremenljivke.
+Potem naredimo $k$ modelov, vsakič vzamemo en kos za testno in ostale za učno
+množico.
+Končna napaka je potem povprečje napak na posamičnih testnih.
+
+\vprasanje{Razloži prečno preverjanje.}
+
+Druga možnost je zankanje, kjer vzamemo $B$ naključnih vzorcev množice $S$ s
+ponavljanjem.
+Te množice so vse enako velike kot $S$, imajo vlogo učnih, njihov komplement pa
+vlogo testnih množic.
+Verjetnost, da nek primer ni v učni množici, je potem $(1 -
+\inv{\abs{S}})^{\abs{S}} \approx e^{-1}$.
+Napako izmerimo za vsak model (na komplementu njegovih učnih podatkov), končna
+ocena napake je povprečje teh.
+
+\vprasanje{Razloži zankanje.}
