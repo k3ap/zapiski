@@ -1,0 +1,60 @@
+\naslov{Odločitvena drevesa}
+
+Odločitveno drevo razbije prostor na dele, na katerih je napoved konstantna.
+Pri tem uporabljamo le teste oblike $X_i < a_j$; ena veja predstavlja resnično,
+ena pa neresnično vrednost tega izraza.
+Končna vozlišča podajo napovedi.
+Za konstrukcijo uporabimo algoritem TDIDT (\pojem{top-down induction of decision
+  trees}).
+Definiramo mero nečistoče (\pojem{impurity}) za neko množico; potem je nečistoča
+drevesa enaka
+\[
+  \text{Impurity}(T) = \sum_{l \in T} \frac{\abs{S_l}}{\abs{S}}
+  \text{Impurity}(S_l),
+\]
+kjer so $l$ listi drevesa.
+Želimo poiskati drevo z najmanjšo nečistočo, to pa je žal NP-poln problem, zato
+uporabimo požrešni algoritem; v vsakem koraku vzamemo poddrevesi, ki imata
+skupaj najmanjšo nečistočo.
+Taki poddrevesi poiščemo s polnim iskanjem možnih testov.
+Ko napovedujemo vrednosti, je napoved lista enaka povprečju vrednosti ciljne
+spremenljivke v tem listu (ali večinska vrednost v diskretnem primeru).
+
+\vprasanje{Kako deluje algoritem TDIDT?}
+
+Pri izbiri mere nečistoče ločimo numerične in diskretne primere.
+V numeričnem merimo varianco
+\[
+  \text{Impurity}(S) = \inv{\abs{S}} \sum_{(\mb{x}, y) \in S} \left( y - \bar{y}
+  \right)^2,
+\]
+pri diskretnem primeru pa je $\text{Impurity}(S) = \phi(p_1, \ldots, p_c)$,
+kjer so
+\[
+  p_i = P(Y = y_i \such S) = \frac{\abs{\{y = y_i\}}}{\abs{S}},
+\]
+$\phi$ pa je neka funkcija, za katero želimo, da čim bolje modelira varianco.
+Zahtevamo, da ima največjo vrednost pri enakomerni porazdelitvi, minimalno pri
+determinističnih, ter da je neodvisna od permutacije argumentov.
+Imamo dve pogosti možnosti:
+\begin{itemize}
+\item Entropija: $\phi = \sum_i p_i \log_2 p_i$
+\item Indeks Gini: $\phi = 1 - \sum_i p_i^2$
+\end{itemize}
+
+\vprasanje{Kakšne mere nečistoče poznamo pri gradnji odločitvenih dreves?}
+
+Če so drevesa prevelika, lahko v listih dovoliš $\text{Impurity} > 0$, čemur
+pravimo \pojem{tree pruning}.
+To lahko naredimo na dva načina.
+Če si nastavimo minimalno število primerov, ki jih ne bomo več ločevali, temu
+pravimo \pojem{sprotno rezanje}, če pa prvo naredimo celo drevo, in nato neka
+notranja vozlišča spremenimo v končna, pa govorimo o \pojem{naknadnem rezanju}.
+Pri tem gledamo napako poddrevesa
+\[
+  \text{Err}_\alpha(T) = \text{Err}(T) + \alpha \abs{T},
+\]
+kjer je $T$ število listov v drevesu, $\alpha$ pa izbran parameter.
+V algoritmu primerjamo napako v staršu in v otrocih, in vzamemo manjšo.
+
+\vprasanje{Kako upravljaš velikost odločitvenega drevesa?}

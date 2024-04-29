@@ -84,3 +84,59 @@ Napako izmerimo za vsak model (na komplementu njegovih učnih podatkov), končna
 ocena napake je povprečje teh.
 
 \vprasanje{Razloži zankanje.}
+
+Pri dvojiški klasifikaciji imamo dva pristopa: ali napovedujemo razred, ali
+napovedujemo verjetnost.
+Če napovedujemo razred, je funkcija izgube $L$ ravno indikator, če smo se
+zmotili.
+Problem tu je, da ta funkcija izgube ne loči med lažnimi pozitivnimi in lažnimi
+negativnimi primeri, kar bomo poskusili popraviti kasneje.
+Pred tem si oglejmo \pojem{napovedno napako}
+\[
+  \text{Err} = \frac{\text{FP} + \text{FN}}{n}
+\]
+in \pojem{napovedno točnost}
+\[
+  \text{Acc} = \frac{\text{TP} + \text{TN}}{n} = 1 - \text{Err}.
+\]
+
+\vprasanje{Kaj sta napovedna napaka in točnost pri dvojiški klasifikaciji?}
+
+Boljši meri sta \pojem{delež pravilno razvrščenih primerov} ali
+\pojem{občutljivost}
+\[
+  \text{TPR} = \frac{\text{TP}}{\text{P}},
+\]
+ki ima za idealne modele vrednost $1$, in \pojem{delež napačno razvrščenih
+  primerov}
+\[
+  \text{FPR} = \frac{\text{FP}}{\text{N}} = 1 - \frac{\text{TN}}{\text{N}},
+\]
+ki ima v idealnem primeru vrednost $0$.
+Ti meri lahko uporabimo kot ordinatno in abscisno os v t.i.~prostoru ROC --
+\pojem{receiver operating characteristic}.
+Modeli z enako napako so v tem prostoru na isti (pozitivni) diagonali, z
+idealnim modelom v zgornjem levem kotu in naključnim modelom na simetrali lihih
+kvadrantov.
+Če je ena napaka tipa FP ali FN slabša kot druga, lahko primerno naklonimo
+premice enakovrednih modelov, (ki zdaj ne bodo $y = x + c$, temveč $y = kx +
+c$), in izbiramo med modeli na primeren način.
+
+\vprasanje{Kaj je prostor ROC? Kako v njem poiščeš idealni model, če so napake
+  FP $\alpha$-krat slabše od napake FN?}
+
+Pri klasifikaciji s pomočjo verjetnosti si zadamo prag $\theta$, da je napoved
+enaka $\mathbbm{1}(m(\mb{x}) \ge \theta)$.
+Če spreminjamo $\theta$ od $0$ do $1$, se pomikamo v ROC diagramu od levega
+spodnjega kota do desnega zgornjega.
+Idealen model potem izberemo na podoben način kot prej, s sweepom premice
+določenega naklona.
+
+Ploščina pod krivuljo ROC nam poda dodatno mero AUC, ki je neodvisna od izbire
+$\theta$ (oz.~se nanaša na vse možne izbire $\theta$).
+Poda nam oceno razdalje med verjetnosti za pozitivne in negativne primere.
+
+\vprasanje{Kako izbereš optimalen odločitveni prag pri klasifikaciji z
+  verjetnostjo?}
+
+% LocalWords:  lažnimi
