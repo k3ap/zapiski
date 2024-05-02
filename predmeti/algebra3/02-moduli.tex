@@ -407,3 +407,178 @@ vrstnem redu.
 \end{definicija}
 
 \vprasanje{Kaj je projektiven modul?}
+
+\begin{trditev}
+  Vsak prost $R$-modul je projektiven.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $F$ prost modul z bazo $X$.
+  Naj bo $\iota : X \to M$ vložitev, $f$ homomorfizem $F \to M$ in $g: M' \to M$
+  epimorfizem.
+  Definiramo $\varphi: X \to M'$ tako, da $\varphi(x)$ izberemo nek element
+  $M'$, ki se z $g$ slika v $f(\iota(x))$.
+  Ker je $F$ prost, obstaja natanko en homomorfizem $h: F \to M'$, da je
+  $\varphi(x) = h(\iota(x))$ za $x \in X$.
+  Ta ustreza zahtevi projektivnosti.
+\end{proof}
+
+\vprasanje{Dokaži: vsak prost $R$-modul je projektiven.}
+
+\begin{izrek}
+  Za $R$-modul $P$ so ekvivalentne naslednje trditve:
+  \begin{itemize}
+  \item $P$ je projektiven
+  \item za vsak epimorfizem $\varphi: M \to P$ je $M = P \oplus \ker \varphi$
+  \item obstaja $R$-modul $M$, da je $P \oplus M$ prost $R$-modul
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  1 v 2:
+  Ker je $P$ projektiven, obstaja homomorfizem $R$-modulov $\psi: P \to M$, da
+  je $\varphi \circ \psi = \id$.
+  Iz tega sledi injektivnost $\psi$, torej je $\im \psi \cong P$.
+  Dokazali bomo $M = \jedro \varphi \oplus \im \psi$.
+  Naj bo $x \in \jedro \varphi \presek \im \psi$, torej $x = \psi(y)$.
+  Sledi $\varphi(\psi(y)) = 0$, torej je $x = 0$.
+  Naj bo $m \in M$.
+  Zapišemo
+  \[
+	m = \underbrace{\psi(\varphi(m))}_{\in \im \psi}
+	+ \underbrace{(m - \psi(\varphi(m)))}_{\in \ker \varphi}.
+  \]
+
+  2 v 3:
+  Vsak modul je kvocient prostega modula, torej obstaja nek prost $F$, in
+  epimorfizem $f: F \to P$.
+  Po predpostavki je $F = \ker \varphi \oplus P$.
+
+  3 v 1:
+  Obstaja $R$-modul $N$, da je $P \oplus N$ prost.
+  Ta je projektiven, torej za projekcijo na prvo komponento $\pi_1 : P \oplus N
+  \to P$ obstaja $\tilde{h}: P \to M'$, da naslednji diagram komutira:
+  \[\begin{tikzcd}
+	  & {P \oplus N} \\
+	  {M'} & M
+	  \arrow["{\tilde{h}}"', from=1-2, to=2-1]
+	  \arrow["{f \circ \pi_1}", from=1-2, to=2-2]
+	  \arrow[two heads, from=2-1, to=2-2]
+	\end{tikzcd}\]
+  Definiramo $h: P \to M'$ kot $h(p) = \tilde{h}(p,0)$.
+\end{proof}
+
+\vprasanje{Karakteriziraj projektivnost in dokaži karakterizacijo.}
+
+\begin{vo}{Podaj primer projektivnega modula, ki ni prost.}
+  $\Z_2$ in $Z_3$ sta $\Z_6$-modula, $\Z_6 = \Z_2 \oplus \Z_3$ pa je prost
+  $\Z_6$-modul, torej je $\Z_2$ projektiven, ni pa prost.
+\end{vo}
+
+\podnaslov{Tenzorski produkt modulov}
+
+V razdelku gledamo le module nad komutativnimi kolobarji z enico.
+
+\begin{definicija}
+  Naj bosta $M, N$ $R$-modula.
+  Naj bo $F$ prost $R$-modul nad množico $M \times N$ in $T$ podmodul v $F$,
+  generiran z naslednjimi elementi:
+  \begin{itemize}
+  \item $(m_1 + m_2, n) - (m_1, n) - (m_2, n)$
+  \item $(m, n_1 + n_2) - (m, n_1) - (m, n_2)$
+  \item $(rm, n) - r(m, n)$
+  \item $(m, rn) - r(m, n)$
+  \end{itemize}
+  Potem je \pojem{tenzorski produkt} $R$-modulov $M, N$ $R$-modul
+  \[
+	M \otimes_R N = F/T.
+  \]
+\end{definicija}
+
+\vprasanje{Definiraj tenzorski produkt.}
+
+Za elementarne tenzorje veljajo naslednje lastnosti:
+\begin{itemize}
+\item $(m_1 + m_2) \otimes n = m_1 \otimes n + m_2 \otimes n$
+\item $m \otimes (n_1 + n_2) = m \otimes n_1 + m \otimes n_2$
+\item $(rm) \otimes n = r(m \otimes n)$
+\item $m \otimes (rn) = r (m \times n)$
+\end{itemize}
+
+\begin{opomba}
+  Preslikava $\beta: M \times N \to M \otimes_R N$, definirana z $\beta(m,n) = m
+  \otimes n$, je bilinearna.
+\end{opomba}
+
+\begin{izrek}[univerzalna lastnost]
+  Naj bodo $M, N, K$ $R$-moduli.
+  Za vsako bilinearno preslikavo $\gamma : M \times N \to K$ obstaja natanko en
+  homomorfizem $R$-modulov $f: M \otimes_R N \to K$, da naslednji diagram
+  komutira:
+  \[\begin{tikzcd}
+	  {M \times N} & K \\
+	  {M \otimes_R N}
+	  \arrow["\gamma", from=1-1, to=1-2]
+	  \arrow["\beta"', from=1-1, to=2-1]
+	  \arrow["f"', dashed, from=2-1, to=1-2]
+	\end{tikzcd}\]
+\end{izrek}
+
+\begin{proof}
+  Naj bosta $F, T$ kot v definiciji tenzorskega produkta.
+  Ker je $F$ prost nad $M \times N$, obstaja natanko en homomorfizem $\tilde{f}:
+  F \to K$, da diagram
+  \[\begin{tikzcd}
+	  {M \times N} & K \\
+	  F
+	  \arrow["\gamma", from=1-1, to=1-2]
+	  \arrow["\iota"', from=1-1, to=2-1]
+	  \arrow["{\tilde{f}}"', dashed, from=2-1, to=1-2]
+	\end{tikzcd}\]
+  komutira.
+  Velja $\tilde{f}(m, n) = \gamma(m, n)$.
+  Trdimo, da je $T \subseteq \jedro \tilde{f}$; velja
+  \[
+	\tilde{f}((m_1 + m_2, n) - (m_1, n) - (m_2, n))
+	= \gamma(m_1 + m_2, n) - \gamma(m_1, n) - \gamma(m_2, n)
+	= 0,
+  \]
+  ker je $\gamma$ bilinearna.
+  Podobno pokažemo, da je $\tilde{f}$-slika ostalih generatorjev $0$, torej
+  $\tilde{f}$ inducira natanko en homomorfizem $f: F/T \to K$.
+\end{proof}
+
+\vprasanje{Dokaži, da za tenzorski produkt velja univerzalna lastnost.}
+
+\begin{izrek}
+  Naj bodo $M, N, P$ $R$-moduli.
+  Naj bo $\beta: M \times N \to P$ poljubna bilinearna preslikava.
+  Recimo, da za vsak $R$-modul $K$ in vsako bilinearno preslikavo $\gamma: M
+  \times N \to K$ obstaja natanko en homomorfizem $R$-modulov $f: P \to K$, da
+  naslednji diagram komutira:
+  \[\begin{tikzcd}
+	  {M \times N} & K \\
+	  P
+	  \arrow["\gamma", from=1-1, to=1-2]
+	  \arrow["\beta"', from=1-1, to=2-1]
+	  \arrow["f"', dashed, from=2-1, to=1-2]
+	\end{tikzcd}\]
+  Potem sta $P$ in $M \otimes_R N$ izomorfna.
+\end{izrek}
+
+\begin{proof}
+  Za $\alpha(m, n) = m \otimes n$ po prejšnjem izreku obstaja natanko en $g: M
+  \otimes_R N \to R$, da naslednji diagram komutira:
+  \[\begin{tikzcd}
+	  {M \times N} & P \\
+	  {M \otimes_R N}
+	  \arrow["\beta", from=1-1, to=1-2]
+	  \arrow["\alpha"', from=1-1, to=2-1]
+	  \arrow["g"', dashed, from=2-1, to=1-2]
+	\end{tikzcd}\]
+  Po predpostavki obstaja natanko en $f: P \to M \otimes_R N$, da je $f\circ
+  \beta = \alpha$.
+  Preverimo lahko, da sta $f$ in $g$ inverzna.
+\end{proof}
+
+% LocalWords:  projektivnosti projektivnost
