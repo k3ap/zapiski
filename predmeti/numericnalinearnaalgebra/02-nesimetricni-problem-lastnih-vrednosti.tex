@@ -1,0 +1,149 @@
+\naslov{Nesimetrični problem lastnih vrednosti}
+
+Naj bosta $A, E \in \R^{n \times n}$ matriki in $\varepsilon \in \R$.
+Označimo lastne vrednosti matrike $A + \varepsilon E$ z
+$\lambda_i(\varepsilon)$.
+
+\begin{izrek}[Bauer-Fike]
+  Naj bo $A = X D X^{-1}$ diagonalizabilna z $D = \operatorname{diag}(\lambda_1,
+  \ldots, \lambda_n)$ in $X = [x_1, \ldots, x_n]$.
+  Za vsak $\varepsilon > 0$ lastne vrednosti $A + \varepsilon E$ ležijo v uniji
+  krogov
+  \[
+	K_i = \{ z \such \abs{z - \lambda_i} \le \varepsilon \norm{E} \norm{X}
+	\norm{X^{-1}} \},
+  \]
+  kjer je $\norm{\cdot}$ $1$-, $\infty$- ali $2$-norma.
+  Če unija razpade na več povezanih komponent, vsaka vsebuje toliko lastnih
+  vrednosti, kolikor krogov jo sestavlja.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $\lambda(\varepsilon)$ lastna vrednost $A + \varepsilon E$.
+  Matrika $A + \varepsilon E - \lambda(\varepsilon) I$ je singularna, velja
+  \[
+	A + \varepsilon E - \lambda(\varepsilon) I
+	= X(D + \varepsilon X^{-1} X E X - \lambda(\varepsilon) I) X^{-1}.
+  \]
+  Če je $\lambda(\varepsilon) = \lambda_i$ za nek $i$, očitno leži v uniji.
+  Sicer je $D - \lambda(\varepsilon) I$ nesingularna, ker pa je srednji člen
+  produkta zgoraj singularen, je singularna tudi
+  \[
+	I + \varepsilon (D - \lambda(\varepsilon) I)^{-1} X^{-1} E X.
+  \]
+  Torej je
+  \[
+	1 \le \norm{\varepsilon (D - \lambda(\varepsilon) I)^{-1} X^{-1} E X}
+	\le \varepsilon \norm{(D - \lambda(\varepsilon) I)^{-1}} \norm{X^{-1}}
+	\norm{X} \norm{E}.
+  \]
+  Elementi matrike $(D - \lambda(\varepsilon))^{-1}$ so oblike $(\lambda_i -
+  \lambda(\varepsilon))^{-1}$, torej je res
+  \[
+	\min_i \abs{\lambda_i - \lambda(\varepsilon)} \le \varepsilon \norm{X^{-1}}
+	\norm{E} \norm{X}.
+  \]
+\end{proof}
+
+\vprasanje{Povej in dokaži Bauer-Fikeov izrek o občutljivosti problema lastnih
+  vrednosti.}
+
+\begin{posledica}
+  Če je $A$ simetrična, potem za vsako lastno vrednost $\tilde{\lambda}$ matrike
+  $A + \varepsilon E$ obstaja lastna vrednost $\lambda_i$ matrike $A$, da je
+  $\abs{\tilde{\lambda} - \lambda_i} \le \varepsilon \norm{E}_2$.
+\end{posledica}
+
+\begin{proof}
+  Matriko lahko diagonaliziramo z ortogonalno bazo, torej sta normi $\norm{X}_2
+  = \norm{X^{-1}}_2 = 1$.
+\end{proof}
+
+\vprasanje{Kaj pravi Bauer-Fikeov izrek o simetričnih matrikah?}
+
+Naj bo $Ax = \lambda x$ in $(A + \Delta A)(x + \Delta x) = (\lambda + \Delta
+\lambda)(x + \Delta x)$.
+Recimo, da je $\lambda$ enostavna lastna vrednost in $y$ levi lastni vektor,
+$y^H A = \lambda y^H$.
+Potem je
+\[
+  Ax + \Delta A x + A \Delta x + \Delta A \Delta x = \lambda x + \Delta \lambda
+  x + \lambda \Delta x + \Delta \lambda \Delta x.
+\]
+Zadnji člen na vsaki strani zanemarimo in množimo z leve z $y^H$, da dobimo
+\[
+  y^H \Delta A x + y^H A \Delta x = \Delta \lambda y^H x + \lambda y^H \Delta x,
+\]
+oziroma
+\[
+  \Delta \lambda = \frac{y^H \Delta A x}{y^H x}.
+\]
+
+\vprasanje{Izpelji predpis za motnjo v lastni vrednosti ob dani motnji matrike
+  $\Delta A$.}
+
+\begin{izrek}
+  Naj bo $\lambda_i$ enostavna lastna vrednost $A$ z normiranima desnim in levim
+  lastnim vektorjem $x_i$ in $y_i$.
+  Če je $\lambda_i(\varepsilon)$ ustrezna lastna vrednost $A + \varepsilon E$,
+  potem velja
+  \[
+	\lambda_i(\varepsilon) = \lambda_i + \varepsilon \frac{y_i^H E x_i}{y_i^H
+	  x_i} + O(\varepsilon^2).
+  \]
+\end{izrek}
+
+Definiramo
+\[
+  s_i = \frac{y_i^H x_i}{\norm{y_i}_2 \norm{x_i}_2}.
+\]
+Potem je občutljivost lastne vrednosti enaka $1/\abs{s_i}$.
+Ocenimo lahko $\abs{\lambda_i(\varepsilon) - \lambda_i} \le \varepsilon
+\frac{\norm{E}_2}{\abs{s_i}} + O(\varepsilon^2)$.
+Do maksimalne spremembe pride pri $E = y_i x_i^H$; tedaj je $\abs{y_i^H E x_i} =
+1$.
+
+\vprasanje{Kaj je občutljivost lastne vrednosti?}
+
+Če je $\lambda$ $p$-kratna lastna vrednost in ima v Jordanovi formi kletke
+velikosti $m_1, \ldots, m_k$ za $m_1 + \cdots + m_k = p$, lahko pričakujemo
+$\abs{\lambda_i(\varepsilon) - \lambda_i} = O(\varepsilon^{1/m_1})$ za ureditev
+$m_1 \ge m_2 \ge \cdots \ge m_k$.
+
+\begin{izrek}
+  Naj bo $A = X D X^{-1}$ diagonalizabilna ter $Y^H A = D Y^H$, kjer je $X =
+  [x_1, \ldots, x_n]$, $Y = [y_1, \ldots, y_n]$ in $\norm{x_i}_2 = \norm{y_i}_2
+  = 1$.
+  Če je $\lambda_i$ enostavna lastna vrednost, potem za dovolj majhen
+  $\varepsilon$ za lastni vektor $x_i(\varepsilon)$ za $\lambda_i(\varepsilon)$
+  velja
+  \[
+	x_i(\varepsilon) = x_i + \sum_{i \ne j} \varepsilon \frac{y_j^H E
+	  x_i}{(\lambda_i - \lambda_j) s_j} x_j + O(\varepsilon^2).
+  \]
+\end{izrek}
+
+\begin{izrek}
+  Če je $\lambda_i$ enostavna lastna vrednost $A$, je $s_i \ne 0$.
+\end{izrek}
+
+\begin{proof}
+  Recimo, da je $y_i^H x_i = 0$.
+  Naj bo $U$ taka unitarna matrika, da je $U e_1 = x_i$.
+  Oglejmo si
+  \[
+	B = U^H A U =
+	\begin{bmatrix}
+	  \lambda_i & \cdots \\
+	  0 & C
+	\end{bmatrix}.
+  \]
+  Velja $B e_1 = \lambda_i e_1$, levi lastni vektor je oblike $z^H = y_i^H U$.
+  Vemo $y_i^H x_i = 0$, torej je $y_i^H U U^H x_i = 0$, ker pa je $U^H x_i =
+  e_1$, velja $y_i^H U = [0 w^H]$.
+  Torej $[0 w^H] B = \lambda_i [0 w^H]$, oziroma $w^H C = \lambda_i w^H$.
+  Torej je $\lambda_i$ vsaj dvojna lastna vrednost $A$.
+\end{proof}
+
+\vprasanje{Pokaži, da je občutljivost enostavne lastne vrednosti dobro
+  definirana.}
