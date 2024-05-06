@@ -1,0 +1,99 @@
+\naslov{Metoda podpornih vektorjev}
+
+Pri metodi podpornih vektorjev se ukvarjamo z dvojiško klasifikacijo.
+Iščemo najširši rob, podan z afino preslikavo, da bo za pozitivne primere
+veljalo $\beta^T x + \beta_0 \ge 1$, za negativne pa $\beta^T x + \beta_0 \le
+-1$.
+V obeh primerih postavimo ciljno spremenljivko na $y_i = \pm 1$, da je
+$y_i(\beta^T x_i + \beta_0) \ge 1$.
+Vsak učni primer nam da eno tako neenakost.
+Če vzamemo dve točki na nasprotnem robu in upoštevamo, da je $\beta$ normala na
+hiperravnini, v kateri se nahajata en pozitiven primer $x_+$ oz. en negativen
+primer $x_-$, potem je širina pasu, ki ga hiperravnini definirata, enaka
+\[
+  \frac{\beta^T (x_+ - x_-)}{\norm{\beta}}
+  = \frac{1 - \beta_0 - (-1 - \beta_0)}{\norm{\beta}}
+  = \frac{2}{\norm{\beta}}.
+\]
+Želimo imeti čim širši pas, torej iščemo maksimum tega izraza; ekvivalentno
+iščemo minimum $\pol \norm{\beta}^2$ pod pogojem, da veljajo zgoraj zapisane
+neenakosti.
+
+Minimum poiščemo z Lagrangeovimi multiplikatorji
+\begin{gather*}
+  L = \pol \norm{\beta}^2 - \sum_i \alpha_i (y_i(\beta^T \mb{x}_i + \beta_0) - 1), \\
+  \partial_\beta L = \beta - \sum_i \alpha_i y_i \mb{x}_i, \\
+  \partial_{\beta_0} L = - \sum_i \alpha_i y_i
+\end{gather*}
+Če enačimo zadnji enačbi z $0$ in vstavimo v $L$, dobimo
+\[
+  L = \sum_i \alpha_i - \pol \sum_{i,j} \alpha_i \alpha_j y_i y_j \mb{x}_i^T
+  \mb{x}_j.
+\]
+Karush-Kuhn-Tuckerjevi pogoji nam dajo dodatne omejitve $\alpha_i \ge 0$ ter
+\[
+  \sum_i \alpha_i y_i = 0.
+\]
+Zahtevali smo $y_i (\beta^T \mb{x} + \beta_0) -1 \ge 0$, iz KKT robnih pogojev pa
+dobimo $\alpha_i (y_i (\beta^T \mb{x} + \beta_0) -1) = 0$.
+V primerih, ko je $\alpha_i \ne 0$, torej velja $y_i (\beta^T \mb{x} + \beta_0)
+= 1$; to so ravno primeri na robu.
+Pravimo jim \pojem{podporni vektorji}.
+Napoved modela bo enaka
+\[
+  \hat{y}_0 = g\!\left( \sum_i \alpha_i y_i \mb{x}^T \mb{x}_0 + \beta_0 \right),
+\]
+kjer je $g$ indikatorska funkcija
+\[
+  g(x) =
+  \begin{cases}
+	1, & x \ge 0 \\
+	0. & x < 0
+  \end{cases}
+\]
+
+\vprasanje{Izpelji metodo podpornih vektorjev za linearno ločljive podatke.}
+
+Če podatki niso linearno ločljivi, lahko v optimizacijsko funkcijo dodamo člen,
+ki meri oddaljenost od pravilnega dela prostora, iščemo
+\[
+  \min_{\beta, \beta_0} \pol \norm{\beta}^2 + C \sum_i \xi_i,
+\]
+kjer je $\xi_i$ razdalja $i$-tega primera od roba, ki temu primeru pripada
+(torej od pozitivnega roba, če je pozitiven, in od negativnega, če je
+negativen), oziroma $0$, če je primer na pravilni strani roba.
+Omejitve so sedaj oblike
+\begin{gather*}
+  y_i (\beta^T x_i + \beta_0) \ge 1 - \xi_i, \\
+  \xi_i \ge 0.
+\end{gather*}
+Tudi za ta problem lahko najdemo optimalno rešitev s podobnim postopkom.
+Parameter $C$ določa, kako pomembno je manjšanje števila podpornih vektorjev, ki
+so sedaj lahko tudi znotraj roba (ali na drugi strani).
+Večja vrednost $C$ pomeni, da bo model bolj ločeval razrede, s čimer se zniža
+predsodek, a poveča varianca.
+
+\vprasanje{Kaj narediš, če podatki v metodi podpornih vektorjev niso linearno
+  ločljivi? Kaj je vloga parametra cene?}
+
+Če imamo več kot dva razreda, lahko klasifikacijo naredimo na dva načina:
+\begin{itemize}
+\item Zgradimo model za vsak par možnih vrednosti v klasifikaciji
+\item Zgradimo model za vsako možnost, ki ločuje podatke tega tipa od vseh ostalih
+\end{itemize}
+
+Če podatki niso linearni, jih transformiramo z neko funkcijo $\phi$, da
+nelinearna odločitvena meja postane linearna.
+Raje pa definiramo
+\[
+  K(u,v) = \sk{\phi(u), \phi(v)},
+\]
+ki nam dovoli, da se ne ubadamo s prehodom v transformiran prostor.
+Jedrno funkcijo uporabimo namesto skalarnega produkta v predpisu za optimizacijo.
+Na splošno lahko $\phi$ slika v poljuben Hilbertov prostor, zato so lahko jedra
+konkretno komplicirana; če želimo, lahko $\phi$ recimo slika v
+višjedimenzionalni prostor kot naš prostor podatkov.
+
+\vprasanje{Kako modificiraš metodo podpornih vektorjev z jedrnimi funkcijami?}
+
+% LocalWords:  hiperravnini višjedimenzionalni
