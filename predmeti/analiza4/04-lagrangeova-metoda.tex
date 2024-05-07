@@ -1,0 +1,69 @@
+\naslov{Lagrangeova metoda}
+
+\begin{definicija}
+  Realna funkcija $\phi(x, y, z)$ se imenuje \pojem{prvi integral} $\zvodvi{1}$
+  polja $V = (a,b,c)$, če je konstantna vzdolž vsake krivulje $\gamma(t)$, ki
+  reši $\dot{\gamma} = V(\gamma)$.
+\end{definicija}
+
+\vprasanje{Kaj je prvi integral?}
+
+Velja
+\[
+  \partial_t \phi(\gamma(t)) = \sk{\grad \phi(\gamma(t)), \dot{\gamma(t)}},
+\]
+torej je $\phi$ prvi integral za $V$ natanko tedaj, ko je za vsako tokovnico
+$\gamma$ za $V$ ta skalarni produkt enak $0$.
+
+\begin{trditev}
+  Če $u$ reši kvazilinearno enačbo $a u_x + b u_y = c$, je $\psi(x,y,z) = z -
+  u(x,y)$ prvi integral za prirejeno polje $V = (a,b,c)$.
+\end{trditev}
+
+\begin{proof}
+  Izračunamo $\sk{\grad \psi, V} = -au_x - b u_y + c = 0$.
+\end{proof}
+
+\begin{trditev}
+  Vsaka nivojna ploskev $\Sigma = \{\phi = C\}$ prvega integrala $\phi$ je unija
+  karakteristik polja $V$.
+\end{trditev}
+
+\begin{proof}
+  Vzemimo točko $p_0 \in \Sigma$ in rešimo Cauchyjevo nalogo $\dot{\gamma} =
+  V(\gamma), \gamma(0) = p_0$.
+  Tako dobimo tokovnico, ki vsebuje $p_0$.
+  Obratno, tokovnica, ki seka $\Sigma$ v točki $t_0$, cela leži v $\Sigma$, saj
+  je $\phi$ prvi integral.
+\end{proof}
+
+Integralne ploskve za kvazilinearno enačbo so torej nivojnice prvih integralov
+polja $V = (a,b,c)$.
+Nivojnica prvega integrala pa je integralna ploskev samo, če na njej lahko
+izrazimo $z$ kot funkcijo spremenljivk $x, y$.
+
+\begin{trditev}
+  Naj bo $\phi \in \zvodvi{1}$ prvi integral za $V = (a,b,c)$ v okolici točke
+  $p_0 \in \R^3$.
+  Označimo $d = \phi(p_0)$.
+  Če je $\partial_z \phi(p_0) \ne 0$, je nivojnica $S = \{\phi = d\}$ v okolici
+  integralna ploskev za kvazilinearno enačbo.
+\end{trditev}
+
+\begin{proof}
+  Ker je odvod neničeln, je $S$ lokalno graf neke $\zvodvi{1}$ funkcije $u$.
+  Dokazati želimo, da $u$ reši kvazilinearno enačbo.
+  Lokalno velja $\phi(x,y,u(x,y)) = d$; če to odvajamo po $x$ in $y$, dobimo
+  \begin{gather*}
+	\sk{\grad \phi, (1, 0, u_x)} = 0, \\
+	\sk{\grad \phi, (0, 1, u_y)} = 0.
+  \end{gather*}
+  Torej je $\grad \phi$ vzporeden vektorskemu produktu $(1,0,u_x) \times
+  (0,1,u_y) = (-u_x, -u_y, 1)$.
+  Ker pa je $\phi$ prvi integral polja $V = (a,b,c)$, je nanj pravokoten, torej
+  sta vektorja $(a,b,c)$ in $(-u_x, -u_y, 1)$ pravokotna, kar je ravno
+  kvazilinearna enačba.
+\end{proof}
+
+\vprasanje{Dokaži, da so nivojnice prvega integrala polja $(a,b,c)$ integralne
+  ploskve za kvazilinearno enačbo $a u_x + b u_y = c$.}
