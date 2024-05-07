@@ -1,0 +1,67 @@
+\naslov{Ansambli napovednih modelov}
+
+V ansamblu $\hat{M}$ imamo več modelov $\hat{m}_i$.
+Ideja je, da vrednosti ciljnih spremenljivk kombiniramo iz napovedi posameznih
+modelov v ansamblu.
+Običajno to naredimo s povprečjem, za razvrščanje pa vzamemo gostiščnico.
+Za razvrščanje lahko pridemo do pričakovane napake:
+če vsakemu od $T$ modelov pripišemo naključno spremenljivko $Z_i = \mathbbm{1}(y
+\ne \hat{y}_i)$, in predpostavimo, da so te spremenljivke neodvisne z $E(Z_i) =
+\varepsilon_i$, potem je
+\begin{align*}
+  \operatorname{Err}(\hat{M})
+  &= P\!\left( \sum_i Z_i > \frac{T}{2} \right)
+  = P\!\left( \sum_i (Z_i - E(Z_i)) + T \varepsilon > \frac{T}{2} \right) \\
+  &= P\!\left( \inv{T} \sum_i (Z_i - E(Z_i)) > \pol - \varepsilon \right)
+  \le \exp\!\left( -2 T (\pol - \varepsilon)^2 \right)
+\end{align*}
+po Hoeffdingovi neenakosti.
+Napaka je torej reda $e^{-T}$, če je le $\varepsilon < \pol$.
+
+\vprasanje{Oceni napako klasifikacijskega ansambla.}
+
+Obravnavajmo homogen ansambel regresijskih modelov.
+Razlike potem pridejo iz različnih podatkovnih množic $S$, ki jih obravnavajmo
+kot slučajno spremenljivko.
+\[
+  E_S(\hat{M}(\mb{x}_0))
+  = E_S(\inv{T} \sum_i \hat{m}_i(\mb{x}_0))
+  = \inv{T} \sum_i E_S(\hat{m}_i(\mb{x}_0))
+  = E_S(\hat{m}(x_0))
+\]
+Torej je pristranskost $E_S(\hat{M}(\mb{x}_0)) - m(\mb{x}_0)$ enaka kot
+pristranskost osnovnega modela $\hat{m}$.
+
+\vprasanje{Pokaži, da ansambel ne spremeni pristranskosti.}
+
+Izračunamo lahko, da za korelacijski faktor
+\[
+  \rho_S(\mb{x}_0)
+  = \frac{E_S((\hat{m}_i(\mb{x}_0) - E(\hat{m}_i(\mb{x}_0))) (\hat{m}_j(\mb{x}_0) -
+	E(\hat{m}_j(\mb{x}_0))))}{\sqrt{ \var_S(\hat{m}_i(\mb{x}_0))
+	  \var_S(\hat{m}_j(\mb{x}_0)) }}
+\]
+velja
+\[
+  \var_S(\hat{M}(\mb{x}_0))
+  = \left( \rho + \frac{1-\rho}{T} \right) \var_S(\hat{m}(\mb{x}_0)).
+\]
+Levemu členu produkta pravimo \pojem{faktor zmanjševanja variance}.
+
+\vprasanje{Kaj je faktor zmanjševanja variance? Izpelji predpis.}
+
+Za pridobivanje različnih modelov v homogenem ansamblu imamo več možnosti.
+Ena od njih je vrečenje, kjer spreminjamo učne podatke za vsak model z
+vzorčenjem skupne učne množice s ponavljanjem.
+Napako ansambla lahko potem ocenimo kot povprečje napak na učni množici, kjer
+napovedi za posamičen primer iz učne množice generiramo le z modeli, ki tega
+testa niso imeli med učnimi podatki.
+Temu pravimo \pojem{ocena out-of-bag}.
+
+\vprasanje{Kaj je ocena out-of-bag?}
+
+Drug način za pridobivanje različnih modelov so naključni podprostori, kjer vsak
+model naučimo na $q < p$ naključno izbranih spremenljivkah z vsemi podatki.
+Tu ni vzorčenja, tako da ne moramo uporabljati ocen out-of-bag.
+
+% LocalWords:  gostiščnico Hoeffdingovi vrečenje generiramo out-of-bag
