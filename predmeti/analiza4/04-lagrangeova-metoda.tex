@@ -67,3 +67,97 @@ izrazimo $z$ kot funkcijo spremenljivk $x, y$.
 
 \vprasanje{Dokaži, da so nivojnice prvega integrala polja $(a,b,c)$ integralne
   ploskve za kvazilinearno enačbo $a u_x + b u_y = c$.}
+
+\begin{definicija}
+  Če je $\phi$ prvi integral za $V$ in $d \in \R$, se družina nivojnic $\{\phi =
+  d\}$ imenuje \pojem{splošna rešitev} za kvazilinearno enačbo $a u_x + b u_y =
+  c$.
+\end{definicija}
+
+\begin{izrek}
+  Naj bosta $\phi_1$ in $\phi_2$ neodvisna prva integrala polja $(a,b,c)$ v
+  okolici točke $p \in \R^3$.
+  Splošna rešitev $a u_x + b u_y = c$ je v okolici točke $p$ podana z
+  $\{F(\phi_1, \phi_2) = 0\}$, kjer je $F = F(x,y)$ poljubna funkcija razreda
+  $\zvodvi{1}$.
+\end{izrek}
+
+\begin{proof}
+  Preverimo, da je $F \circ (\phi_1, \phi_2) = 0$ res posplošena rešitev.
+  Če je $\gamma$ tokovnica in je $\phi_1 = d_1$, $\phi_2 = d_2$ na $\gamma$, je
+  $F(\phi_1, \phi_2) \circ \gamma$ konstanta.
+
+  V drugo smer preverimo, da je rešitev res take oblike.
+  Vzemimo $p_0 \in \R^3$, ki leži v definicijskem območju $V$.
+  Vemo, da je $\sk{\grad \phi(p_0), V(p_0)} = 0$ za vsak prvi integral $\phi$.
+  Naj bo $\phi_3$ še en prvi integral.
+  Tedaj je $V(p_0) \in \jedro D(\phi_1, \phi_2, \phi_3)$, ker je pravokoten na
+  vse gradiente.
+  Hkrati je $V \ne 0$ povsod, ker bi sicer nekje veljalo $\dot{\gamma} = 0$.
+  Torej je Jacobijeva matrika izrojena in so funkcije $\phi_1$, $\phi_2$ in
+  $\phi_3$ odvisne, zato obstaja neničelna funkcija $G = G(x,y,z)$, da lokalno
+  velja $G(\phi_1, \phi_2, \phi_3) = 0$.
+  Nivojnica $\{\phi_3 = d\}$ je lokalno vsebovana v $\{G(\phi_1, \phi_2,
+  \phi_3) = 0\}$, kar je natanko $\{F(\phi_1, \phi_2) = 0\}$, če za $F$ vzamemo
+  $F(x,y) = G(x,y,d)$.
+\end{proof}
+
+\vprasanje{Utemelji pravilnost metode prvih integralov.}
+
+\begin{izrek}
+  Naj bo $V$ vektorsko polje razreda $\zvodvi{1}$ v okolici točke $p \in \R^3$
+  in naj bo $V(p) \ne 0$.
+  Tedaj obstaja $\zvodvi{1}$ vektorsko polje $\psi$, definirano na okolici točke
+  $p$, da je $\sk{\grad \psi_j, V}_{\R^3} = \delta_{1j}$ v okolici $p$.
+\end{izrek}
+
+\begin{proof}
+  Privzemimo prvo $p = 0$ in $V(p) = (1,0,0)$.
+  Naj bo $\phi_t$ tok polja $V$, tj.~družina $\zvodvi{1}$ vektorskih polj, za
+  katera je $\phi_t(x) = V(\phi_t(x))$ in $\phi_0(x) = x$.
+  V okolici točke $0$ definiramo še $g(x_1, x_2, x_3) = \phi_{x_1}(0, x_2,
+  x_3)$.
+  Dobimo
+  \[
+	\partial_{x_1} g(x)
+	= \lim_{h \to 0} \frac{\phi_{x_1 + h}(0, x_2, x_3) - \phi_{x_1}(0, x_2,
+	  x_3)}{h}
+	= \partial_{x_1} \phi((0,x_2, x_3), x_1)
+	= V(g(x))
+  \]
+  za $\phi(x,t) = \phi_t(x)$.
+  Velja še $g(0,x_2, x_3) = (0, x_2, x_3)$, zato je $\partial_{x_j} g = e_j$ na
+  ravnini $x_1 = 0$.
+  Iz $V(g(0)) = v(0) = (1,0,0)$ sledi $Dg(0) = I_3$, zato je $g$ difeomorfizem
+  na neki okolici točke $0$.
+  Označimo $\psi = g^{-1}$.
+  Če pišemo $x = (x_1, x_2, x_3)$ in $\psi = (\psi_1, \psi_2, \psi_3)$, tedaj iz
+  zveze $\psi \circ g = \id$ sledi $\psi_j(g(x)) = x_j$.
+  Odvajamo po $x_1$ in dobimo
+  \[
+	\delta_{1j}
+	= \sum_{k=1}^3 \partial_{y_k} \psi_j(g(x)) \partial_{x_1} g_k(x)
+	= \sum_{k=1}^3 \partial_{y_k} \psi_j(g(x)) V_k(g(x))
+	= \sk{\grad \psi_j(g(x)), V(g(x))}.
+  \]
+  Ker je $g$ difeomorfizem, velja $\sk{\grad \psi_j, V} = 0$ na neki okolici
+  $0$.
+
+  Sedaj obravnavajmo splošni primer.
+  Če sta $p, V(p) \in \R^3$ poljubna, vzamemo ortogonalno $A \in \R^{3 \times
+	3}$, s katero se $\normiran{V(p)}$ slika v $(1,0,0)$.
+  Označimo $\lambda = \norm{V(p)}^{-1}$ in $w(x) = \lambda A(V(x + p))$.
+  Ta $w$ slika iz okolice točke $0$, velja $w(0) = (1,0,0)$.
+  Torej obstaja vektorsko polje $\eta$, definirano na okolici $0$, da je
+  $\sk{\grad \eta_j, w} = \delta_{1j}$.
+  Sedaj definiramo še $\psi$ tako, da velja $\eta(x) = \lambda^{-1} A \psi(x +
+  p)$.
+  Izračunamo lahko, da velja
+  \[
+	\sk{\grad \eta_j(x), w(x)} = \sk{\grad \psi_j(x + p), V(x+p)}.
+  \]
+\end{proof}
+
+\vprasanje{Dokaži, da za vsako vektorsko polje $V$ in točko $p$, za katero $V(p)
+  \ne 0$, obstaja polje $\psi$, da je v okolici $p$ skalarni produkt $\sk{\grad
+	\psi_j, V} = \delta_{1j}$.}
