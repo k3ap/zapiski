@@ -581,4 +581,143 @@ Za elementarne tenzorje veljajo naslednje lastnosti:
   Preverimo lahko, da sta $f$ in $g$ inverzna.
 \end{proof}
 
+\begin{trditev}
+  Naj bo $M$ $R$-modul.
+  Potem je $R \otimes_R M \cong M$.
+\end{trditev}
+
+\begin{proof}
+  Definiramo $\beta: R \times M \to M$ s predpisom $\beta(r,m) = rm$.
+  To je bilinearna preslikava, torej po univerzalni lastnosti inducira
+  homomorfizem $R$-modulov $R \otimes_R M \to M$, ki slika $r \otimes m \mapsto
+  rm$.
+  V drugo smer podamo homomorfizem $M \to R \otimes_R M$ s predpisom $m \mapsto
+  1 \otimes m$.
+  Preverimo lahko, da sta preslikavi inverzni.
+\end{proof}
+
+\vprasanje{Kaj je $R \otimes_R M$? Dokaži.}
+
+\begin{izrek}
+  Naj bo $M$ prost $R$-modul nad $X = \{m_i \such i \in I\}$ in $N$ prost
+  $R$-modul nad $Y = \{n_j \such j \in J\}$.
+  Potem je $M \otimes_R N$ tudi prost $R$-modul nad $Z = \{m_i \otimes n_j \such
+  i \in I, j \in J\}$.
+\end{izrek}
+
+\begin{proof}
+  Množica $Z$ očitno generira $M \otimes_R N$.
+  Naj bo
+  \[
+	\sum_{ij} r_{ij} (m_i \otimes_R n_j) = 0.
+  \]
+  Naredimo homomorfizem $f_k: N \to R$ za vsak $k \in J$, s predpisom $f_k(n_j)
+  = \delta_{kj}$.
+  Preslikava je definirana na bazi, lahko jo razširimo do homomorfizma $N \to
+  R$.
+  Oglejmo si preslikavo $\id_M \otimes_R f_k : M \otimes_R N \to M \otimes_R R$.
+  Slika zgornje linearne kombinacije s to preslikavo je
+  \[
+	0 = \sum_{ij} r_{ij} (m_i \otimes \delta_{kj}) = \sum_i r_{ik} m_i \otimes 1.
+  \]
+  Ker je $M \otimes_R R \cong M$, velja $\sum_i r_{ik} m_i = 0$ (slikamo z
+  izomorfizmom), torej je $r_{ik} = 0$ za vsak $i$.
+  To lahko naredimo za poljuben $k$.
+\end{proof}
+
+\vprasanje{Pokaži, da je tenzorski produkt prostih modulov prost.}
+
+\begin{trditev}
+  Naj bodo $A, B, C$ $R$-moduli.
+  Potem velja:
+  \begin{itemize}
+  \item $A \otimes_R B \cong B \otimes_R A$
+  \item $A \otimes_R (B \oplus C) \cong (A \otimes_R B) \oplus (A \otimes_R C)$
+  \item $A \otimes_R (B \otimes_R C) \cong (A \otimes_R B) \otimes_R C$
+  \end{itemize}
+\end{trditev}
+
+\podnaslov{Skrčitev in razširitev skalarjev}
+
+Naj bo $\varphi : S \to R$ homomorfizem komutativnih kolobarjev.
+Če je $M$ $R$-modul, postane tudi $S$-modul preko predpisa
+\[
+  s \circ m = \varphi(s) \cdot m.
+\]
+Predpis je dobro definiran, temu pravimo \pojem{skrčitev skalarjev}.
+Podobno lahko naredimo tudi v obratni smeri:
+če je $M$ $S$-modul, je po ravno ugotovljenem $R$ tudi $S$-modul, in je $R
+\oplus_R M$ $R$-modul z množenjem
+\[
+  r(r' \otimes m) = rr' \otimes m.
+\]
+Temu pravimo \pojem{razširitev skalarjev}.
+
+\vprasanje{Kaj je razširitev in kaj skrčitev skalarjev?}
+
+\begin{trditev}
+  Naj bo $\varphi: R \to S$ homomorfizem komutativnih kolobarjev.
+  Naj bo $M$ $R$-modul in $N$ $S$-modul.
+  Z uporabo skrčitve oz.~razširitve skalarjev lahko definiramo Abelovi grupi
+  $\operatorname{Hom}_R(M,N)$ in $\operatorname{Hom}_S(S \otimes_R M, N)$, ki
+  sta izomorfni.
+\end{trditev}
+
+\begin{izrek}[Dualnost med $\operatorname{Hom}$ in $\otimes$]
+  Naj bodo $M, N, P$ $R$-moduli za komutativen kolobar $R$.
+  Potem sta $\operatorname{Hom}_R(M \otimes_R N, P)$ in $\operatorname{Hom}_R(M,
+  \operatorname{Hom}_R(N, P))$ izomorfna kot $R$-modula.
+\end{izrek}
+
+\vprasanje{V kakšnem smislu sta množica homomorfizmov modulov in tenzorski
+  produkt dualna?}
+
+\podnaslov{Eksaktna zaporedja modulov}
+
+\begin{definicija}
+  Naj bodo $A, B, C$ $R$-moduli.
+  Imejmo homomorfizme $R$-modulov
+  \[\begin{tikzcd}
+	  A & B & C
+	  \arrow["f", from=1-1, to=1-2]
+	  \arrow["g", from=1-2, to=1-3]
+	\end{tikzcd}\]
+  To zaporedje je \pojem{eksaktno} pri $B$, če velja $\im f = \jedro g$.
+\end{definicija}
+
+\begin{vo}{Kaj je eksaktno zaporedje? Karakteriziraj injektivnost in
+	surjektivnost z eksaktnostjo.}
+  Za definicijo glej zgoraj.
+  Oglejmo si zaporedje
+  \[\begin{tikzcd}
+	  0 & A & B & C & 0
+	  \arrow[from=1-1, to=1-2]
+	  \arrow["f", from=1-2, to=1-3]
+	  \arrow["g", from=1-3, to=1-4]
+	  \arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+  To zaporedje je eksaktno pri $A$ natanko tedaj, ko je $f$ injektivna, in
+  eksaktno pri $C$ natanko tedaj, ko je $g$ surjektivna.
+\end{vo}
+
+Za zaporedje
+\[\begin{tikzcd}
+	0 & A & B & C & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["g", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+  \end{tikzcd}\]
+pravimo, da je \pojem{kratko eksaktno}, če je eksaktno pri $A$, $B$ in $C$.
+Izkaže se, da so vsa kratka eksaktna zaporedja oblike
+\[\begin{tikzcd}
+	0 & B & A & {A/B} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[hook, from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+  \end{tikzcd}\]
+
+\vprasanje{Kaj je kratko eksaktno zaporedje? Kakšno obliko ima?}
+
 % LocalWords:  projektivnosti projektivnost
