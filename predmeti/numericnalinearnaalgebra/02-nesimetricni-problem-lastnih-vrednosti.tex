@@ -147,3 +147,72 @@ $m_1 \ge m_2 \ge \cdots \ge m_k$.
 
 \vprasanje{Pokaži, da je občutljivost enostavne lastne vrednosti dobro
   definirana.}
+
+\podnaslov{Implicitna QR iteracija}
+
+\begin{izrek}[Izrek o implicitnem Q]
+  Naj bo $Q = [q_1, \ldots, q_n]$ taka ortogonalna matrika, da je $H = Q^T A Q$
+  nerazcepna zgornje Hessenbergova matrika.
+  Potem so stolpci $q_2, \ldots, q_n$ do predznaka natančno določeni s $q_1$.
+\end{izrek}
+
+\begin{proof}
+  Naj bo tudi $V^T A V = G$, kjer je $G$ nerazcepna zgornje Hessenbergova, $V$
+  ortogonalna in $v_1 = q_1$.
+  Velja $AV = VG$ in $Q^T A = H Q^T$.
+  Če prvo enačbo množimo z leve s $Q^T$ in drugo z desne z $V$, dobimo $Q^T V G
+  = Q^T A V = H Q^T V$, za $W = Q^T V$ torej velja $W G = H W$.
+  Matrika $W$ je ortogonalna z $w_1 = e_1$, ker je $q_1 = v_1$.
+  Poglejmo sedaj $i$-ti stolpec matrike $WG = HW$.
+  Velja
+  \[
+	\sum_{j=1}^{i+1} g_{ji} w_j = H w_i,
+  \]
+  torej
+  \[
+	g_{i+1,i} w_{i+1} = H w_i - \sum_{j=1}^i g_{ji} w_j.
+  \]
+  Pokažimo, da ima $w_i$ neničelnih le prvih $i$ elementov.
+  Indukcija na $i$;
+  \[
+	w_{i+1} = \inv{g_{i+1,i}} H w_i - \inv{g_{i+1,i}} \sum_{j=1}^i g_{ji} w_j.
+  \]
+  Matrika $H$ je zgornje Hessenbergova, drug člen razlike pa po indukcijski
+  predpostavki vsebuje le elemente na mestih $1$ do $i$.
+  Torej je $W$ zgornje trikotna; ker je tudi ortogonalna, mora biti diagonalna z
+  $\pm 1$ na diagonali.
+\end{proof}
+
+\vprasanje{Povej in dokaži izrek o implicitnem Q.}
+
+Obravnavajmo QR iteracijo z enojnim premikom.
+Če začnemo z zgornje Hessenbergovo matriko $A_0$, v vsakem koraku izračunamo QR
+razcep $A_k - \sigma_k I = Q_k R_k$, in nato določimo $A_{k+1} = R_k Q_k +
+\sigma_k I$.
+Pišemo lahko tudi $A_{k+1} = Q_k^T A_k Q_k$.
+Ker smo začeli z zgornje Hessenbergovo matriko, naredimo QR razcep z
+Givensovimi rotacijami.
+Prvo z leve množimo z rotacijo $R_{12}^T$, ki nam spremeni prvi vrstici matrike;
+pri množenju z desne z $R_{12}$ pa dobimo nov element na mestu $(3,1)$.
+V nadaljevanju bomo množili z novimi rotacijami tako, da ne bomo spremenili
+prvega stolpca v prehodni matriki na desni, nov element pa bomo počasi premikali
+navzdol izven matrike.
+
+\vprasanje{Kako uporabiš izrek o implicitnem Q pri QR iteraciji z enojnim
+  premikom?}
+
+Za dvojni premik velja
+\[
+  N_k = A_k^2 - (\sigma_{k1} + \sigma_{k2}) A_k + \sigma_{k1} \sigma_{k2} I =
+  Q_k R_k
+\]
+in $A_{k+1} = Q_k^T A_k Q_k$.
+Prvi stolpec matrike $N_k$ lahko izračunamo v konstantno mnogo operacijah.
+Iz tega določimo Householderjevo zrcaljenje $P_1$, ki stolpec zrcali v $e_1$.
+Tukaj dobimo nove elemente tako pri množenju z leve kot pri množenju z desne,
+tako da premikamo grbo velikosti 2x2.
+
+\vprasanje{Kako uporabiš izrek o implicitnem Q pri QR iteraciji z dvojnim
+  premikom?}
+
+% LocalWords:  neničelnih Givensovimi Householderjevo
