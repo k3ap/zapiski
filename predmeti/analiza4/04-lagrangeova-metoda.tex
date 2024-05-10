@@ -174,3 +174,138 @@ izrazimo $z$ kot funkcijo spremenljivk $x, y$.
 
 \vprasanje{Utemelji, da obstajata dva neodvisna prva integrala kvazilinearne
   enačbe.}
+
+\podnaslov{Odvisnost funkcij}
+
+\begin{definicija}
+  Naj bo $U \odpp \R^n$, $S \subseteq U$ in $f_1, \ldots, f_n \in \zvodv{1}{U}$.
+  Funkcije $f_1, \ldots, f_n$ so \pojem{funkcijsko odvisne} na $S$, če obstaja
+  $V\odpp\R^n$, za katero je $(f_1, \ldots, f_n)_*(S) \subseteq V$ in če obstaja
+  $\zvodvi{1}$ funkcija $F: V \to \R$, za katero je $F(f_1, \ldots, f_n) = 0$ na
+  $S$, hkrati pa ni praslika $\{F = 0\}$ nikjer gosta.
+\end{definicija}
+
+\vprasanje{Definiraj funkcijsko odvisnost.}
+
+\begin{definicija}
+  \pojem{Kritična točka} preslikave $f: \R^m \to \R^n$ je vsaka točka $p \in
+  \R^m$, kjer je $\rang Df(p) < n$.
+\end{definicija}
+
+\begin{izrek}[izrek o rangu]
+  Naj bo $m \ge n$.
+  Naj bosta $U \odpp\R^m$, $V \odpp\R^n$ odprti množici, $f \in \zvodv{1}{U,V}$
+  ter $p \in U$ točka maksimalnega ranga za $f$.
+  Potem obstajata odprti množici $U_1, U_2 \subseteq \R^m$, za kateri je $p \in
+  U_1 \subseteq U$, in difeomorfizem $X: U_1 \to U_2$, da velja
+  \[
+	(f \circ X^{-1})(u_1, \ldots, u_m) = (u_{m-n+1}, \ldots, u_m)
+  \]
+  za vse $u \in U_2$.
+\end{izrek}
+
+\begin{proof}
+  Za $m = n$ je to natanko izrek o inverzni preslikavi.
+  Naj bo torej $m > n$ in $k = m-n$.
+  Ker je $Df(p)$ maksimalnega ranga, ima $n$ linearno neodvisnih stolpcev;
+  brez škode za splošnost je torej $Df(p) = [C, D]$, kjer je $D$ obrnljiva $n
+  \times n$ matrika.
+  Pišimo $x = (y, z)$ in definirajmo $g(y,z) = (y, f(y, z))$.
+  Potem je
+  \[
+	Dg(p) =
+	\begin{bmatrix}
+	  I_k & 0 \\
+	  C & D
+	\end{bmatrix}
+  \]
+  in $\det Dg(p) \ne 0$.
+  Po izreku o inverzni preslikavi obstaja okolica $U_1$ točke $p$, za katero je
+  $X = \left. g \right|_{U_1}$ difeomorfizem.
+  Preverimo lahko, da res ustreza želeni lastnosti.
+\end{proof}
+
+\vprasanje{Povej in dokaži izrek o rangu.}
+
+\begin{posledica}
+  Pod enakimi predpostavkami obstaja okolica $U$ točke $p$, za katero je
+  $f_*(U)$ odprta.
+\end{posledica}
+
+\begin{proof}
+  Vzemimo $U = U_1$ iz izreka.
+  Potem je
+  \[
+	f_*(U_1) = f \circ X^{-1} \circ X_* (U_1)
+	= f \circ X^{-1}_*(U_2),
+  \]
+  ta preslikava pa je projekcija in zato odprta.
+\end{proof}
+
+\begin{izrek}[Sard]
+  Naj bo $\Omega \odpp\R^m$ in $f: \Omega \to \R^m$ preslikava ranga
+  $\zvodvi{r}$ za $r = 1 + \max\{0, m-n\}$.
+  Označimo množico kritičnih točk preslikave $f$ z $A$.
+  Potem ima $f_*(A)$ mero $0$.
+\end{izrek}
+
+\vprasanje{Povej Sardov izrek.}
+
+\begin{lema}
+  Zaprta podmnožica v $\R^n$ je množica ničel gladke funkcije $\R^n \to \R$.
+\end{lema}
+
+\begin{proof}
+  Naj bo $X$ zaprta podmnožica $\R^n$.
+  Definiramo $U = \R^n \brez X$ in
+  \[
+	K_m = \{x \in U \such d(x, X) \ge 2^{-m}\} \presek \cl{K(0, m)}
+  \]
+  za $m \in \N$.
+  Dodatno definiramo $L_m = K_m \brez \Int K_{m-1}$.
+  Ta množica je kompaktna, torej jo lahko pokrijemo s končno mnogo kroglami
+  $B_1^m, \ldots, B_{k_m}^m$ z radijem $2^{-m-1}$.
+  Velja $B_j^m \presek X = \varnothing$.
+
+  Množica $B = \{B_1^m, \ldots, B_{k_m}^m\}_m$ pokrije unijo
+  \[
+	\bigcup_m L_m = \R^n \brez X
+  \]
+  in je lokalno končna.
+  Sedaj lahko definiramo gladko funkcijo $\varphi_j^m$ tako, da je neničelna
+  natanko na $B_j^m$, in
+  \[
+	\varphi = \sum_{m,j} \varphi_j^m.
+  \]
+\end{proof}
+
+\vprasanje{Dokaži: zaprte množice v $\R^n$ so natanko ničle gladkih funkcij.}
+
+\begin{izrek}
+  Naj bo $\Omega \odpp\R^m$ in $f_1, \ldots, f_n \in \zvodv{r}{\Omega}$ za $r =
+  1 + \max \{0, m-n\}$.
+  Potem je množica $\{f_1, \ldots, f_n\}$ funkcijsko odvisna na vsaki kompaktni
+  podmnožici $S \subseteq \Omega$ natanko tedaj, ko je $\rang D(f_1, \ldots,
+  f_n) < n$ za vsak $x \in \Omega$.
+\end{izrek}
+
+\begin{proof}
+  V desno:
+  Recimo, da obstaja točka $p \in \R^n$, kjer je $Df$ ranga $n$.
+  Po izreku o rangu obstaja odprta okolica $U \ni p$, katere $f$-slika je
+  odprta.
+  Potem $f_*(\cl{U})$ ni nikjer gosta, torej ne obstaja $F$ iz definicije
+  funkcijske odvisnosti.
+
+  V levo:
+  Po Sardovem izreku ima $f_*(\Omega)$ mero nič.
+  Če je $K \subseteq \Omega$ kompakt, je kompaktna tudi njegova $f$-slika, ki
+  ima mero nič.
+  Torej je $f_*(K)$ zaprta in obstaja $\varphi \in \zvodv{\infty}{\Omega}$, da
+  je $f_*(K) = \varphi^{-1}(0)$.
+  Ta preslikava ustreza pogojem za $F$.
+\end{proof}
+
+\vprasanje{Karakteriziraj funkcijsko odvisnost in dokaži karakterizacijo.}
+
+% LocalWords:  Sardov Sardovem
