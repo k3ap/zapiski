@@ -1,0 +1,26 @@
+\naslov{Teorija kategorij}
+
+\begin{definicija}
+  \pojem{Kategorija} je struktura $\kat$, sestavljena iz
+  \begin{itemize}
+  \item razreda objektov $\operatorname{Ob} \kat$,
+  \item množice morfizmov $\kat(A,B)$ med vsakima objektoma $A, B$,
+  \item preslikav $\circ : \kat(A,B) \times \kat(B,C) \to \kat(A,C)$, kjer so
+	$A, B, C$ poljubni objekti kategorije $\kat$.
+  \end{itemize}
+  Zahtevamo, da so preslikave $\circ$ asociativne, in da za vsak objekt $A$
+  obstaja morfizem $1_A \in \kat(A,A)$, da velja $f \circ 1_A = f$ za vsak $f
+  \in \kat(A,B)$ ter $1_A \circ g = g$ za vsak $g \in \kat(B,A)$.
+  Temu pogoju pravimo \pojem{unitalnost}.
+\end{definicija}
+
+\vprasanje{Definiraj kategorijo.}
+
+\begin{definicija}
+  Naj bo $\kat$ kategorija in $f \in \kat(A,B)$.
+  Potem je $f$ \pojem{izomorfizem}, če obstaja morfizem $g \in \kat(B,A)$, da je
+  $f \circ g = 1_B$ in $g \circ f = 1_A$.
+  Pravimo, da sta $A$ in $B$ \pojem{izomorfna}, če med njima obstaja izomorfizem.
+\end{definicija}
+
+% LocalWords:  morfizmov morfizem unitalnost
