@@ -1,0 +1,193 @@
+\naslov{Simetrični problem lastnih vrednosti}
+
+Matrika $A = A^T$ ima same realne lastne vrednosti, torej jih lahko uredimo kot
+$\lambda_n \le \cdots \le \lambda_1$.
+Lastne vektorje lahko izberemo tako, da so ortonormirani, $A x_i = \lambda_i
+x_i$, $x_i^T x_j = \delta_{ij}$.
+
+\begin{lema}
+  Za Rayleighov kvocient velja $\lambda_n \le \rho(x, A) \le \lambda_1$.
+\end{lema}
+
+\begin{proof}
+  Zapišemo $x$ v bazi lastnih vektorjev, in dobimo
+  \[
+	\rho(x, A) = \frac{\sum_i \alpha_i^2 \lambda_i}{\sum_i \alpha_i^2}.
+  \]
+\end{proof}
+
+\begin{izrek}[Courant-Fisher]
+  Za simetrično matriko $A$ velja
+  \[
+	\lambda_i = \min_{\dim S = n-i+1} \max_{x \in S} \rho(x, A)
+	= \max_{\dim R = i} \min_{x \in R} \rho(x, A).
+  \]
+\end{izrek}
+
+\begin{proof}
+  Označimo prvi izraz z $L$ in drugega z $D$.
+  Za poljuben par podprostorov $S$ in $R$ je $\dim S + \dim R = n+1 > n$, torej
+  obstaja neničelni vektor $x_{RS}$ v preseku.
+  Naj bo na levi strani minimum dosežen pri $\hat{S}$, na desni pa pri
+  $\hat{R}$.
+  Potem je
+  \[
+	\max_{x \in \hat{S}} \rho(x, A) \ge \rho(x_{\hat{R} \hat{S}}, A) \ge \min_{x
+	\in \hat{R}} \rho(x, A),
+  \]
+  iz česar sledi $L \ge D$.
+  Če pa izberemo $\tilde{S} = \operatorname{Lin}(x_i, x_{i+1}, \ldots, x_n)$ in
+  $\tilde{R} = \operatorname{Lin}(x_1, \ldots, x_i)$, pa je očitno
+  \[
+	L \le \max_{x \in \tilde{S}} \rho(x, A) = \lambda_i = \min_{x \in \tilde{R}}
+	\rho(x, A) \le D,
+  \]
+  torej $L = D = \lambda_i$.
+\end{proof}
+
+\vprasanje{Povej in dokaži Courant-Fisherjev izrek.}
+
+\begin{posledica}
+  Če sta $A$ in $E$ simetrični matriki, potem za lastne vrednosti
+  $\tilde{\lambda}_n \le \cdots \le \tilde{\lambda}_1$ matrike $A + E$ velja
+  \[
+	\lambda_i + \lambda_n(E) \le \tilde{\lambda}_i \le \lambda_i + \lambda_1(E).
+  \]
+\end{posledica}
+
+\begin{proof}
+  Uporabimo Courant-Fisherjev izrek za $\tilde{\lambda}_i$.
+  Velja
+  \[
+	\tilde{\lambda}_i = \min_{\dim S = n-i+1} \max_{x \in S} \rho(x, A+E),
+  \]
+  upoštevamo $\rho(x, A+E) = \rho(x, A) + \rho(x, E)$ in ocenimo $\lambda_n(E)
+  \le \rho(x, E) \le \lambda_1(E)$.
+\end{proof}
+
+\begin{posledica}[Weylov izrek]
+  Če so $\lambda_n \le \cdots \le \lambda_1$ lastne vrednosti $A = A^T$ in
+  $\tilde{\lambda}_n \le \cdots \le \tilde{\lambda}_1$ lastne vrednosti $A + E$
+  za simetrično $E$, je $\abs{\tilde{\lambda}_i - \lambda_i} \le \norm{E}_2$.
+\end{posledica}
+
+\begin{proof}
+  Velja $\norm{E}_2 = \max_i \abs{\lambda_i(E)}$.
+\end{proof}
+
+\vprasanje{Povej in dokaži Weylov izrek.}
+
+\podnaslov{Rayleighova iteracija}
+
+\begin{algorithm}
+  \caption{Rayleighova iteracija}
+  \label{alg:rayleighova-iteracija}
+  \begin{algorithmic}
+	\State Izberi $z_0 \ne 0$
+	\For{$k=0, 1, 2, \ldots$}
+	\State $\sigma_k = \rho(z_k, A)$
+	\State Reši $(A - \sigma_k I) y_{k+1} = z_k$
+	\State $z_{k+1} = y_{k+1} / \norm{y_{k+1}}_2$
+	\EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{lema}
+  Naj bo $\norm{z_0}_2 = 1$ približek za lastni vektor $x$ simetrične matrike
+  $A$ z lastnimi vrednostmi $\abs{\lambda_n} \le \cdots \le \abs{\lambda_2} <
+  \abs{\lambda_1}$.
+  Če izvedemo en korak potenčne metode za $A$ z začetnim vektorjem $z_0$, potem
+  za $z_1$ velja
+  \[
+	\norm{z_i \pm x_1} \le \frac{\abs{\lambda_2}}{\abs{\lambda_1}} \norm{z_0 -
+	  x_1}_2 + O(\norm{z_0 - x_1}_2^2),
+  \]
+  kjer vzamemo tisto možnost v $z_1 \pm x_1$, ki da manjšo normo.
+\end{lema}
+
+\begin{proof}
+  Predpostavimo, da je $z_0$ dober približek za $x_1$, torej
+  \[
+	z_0 = x_1 + \sum_{i=2}^n \alpha_i x_i
+  \]
+  za $\abs{\alpha_i} \ll 1$.
+  Potem je
+  \[
+	z_1 \approx x_1 + \sum_{i=2}^n \alpha_i \frac{\lambda_i}{\lambda_1} x_i
+  \]
+  in
+  \[
+	\norm{z_1 - x_1}_2^2 = \sum_{i=2}^n \alpha_i^2
+	\frac{\lambda_i^2}{\lambda_1^2}
+	\le \frac{\lambda_2^2}{\lambda_1^2} \sum_{i=2}^n \alpha_i^2
+	= \frac{\lambda_2^2}{\lambda_1^2} \norm{z_0 - x_1}^2.
+  \]
+\end{proof}
+
+\vprasanje{Oceni napako po enem koraku potenčne metode.}
+
+\begin{posledica}
+  Naj bo $A$ simetrična in $\abs{\sigma - \lambda_i} \ll \abs{\sigma -
+	\lambda_j}$ za $j \ne i$.
+  Če je $z_0$ dober približek za lastni vektor $x_i$ in naredimo en korak
+  inverzne iteracije, je
+  \[
+	\norm{z_1 \pm x_i} = O(\abs{\sigma - \lambda_i}) \norm{z_0 - x_i}_2
+  \]
+\end{posledica}
+
+\begin{lema}
+  Naj bo $A$ simetrična in $z$ približek za lastni vektor $x_i$ za $\lambda_i$.
+  Potem je $\abs{\rho(z,A) - \lambda_i} \le 2 \norm{A}_2 \cdot \norm{z -
+	x_i}_2^2$.
+\end{lema}
+
+\begin{proof}
+  Brez škode za splošnost je $i = 1$.
+  Naj bo $z = \sum_i \alpha_i x_i$ in $\sum_i \alpha_i^2 = 1$.
+  Potem je
+  \[
+	\norm{z - x_1}_2^2 = (1 - \alpha_1)^2 + \alpha_2^2 + \cdots + \alpha_n^2
+	= 2 - 2 \alpha_1.
+  \]
+  Velja $\rho(z, A) = \sum_i \lambda_i \alpha_i^2$, torej
+  \[
+	\rho(z, A) - \lambda_1
+	= \sum_{i=1}^n \lambda_i \alpha_i^2 - \lambda_1 \sum_{i=1}^n \alpha_i^2
+	= \sum_{i=2}^n (\lambda_i - \lambda_1) \alpha_i^2.
+  \]
+  Sledi
+  \[
+	\abs{\rho(z,A) - \lambda_1}
+	\le \sum_{i=2}^n \abs{\lambda_i - \lambda_1} \alpha_i^2
+	\le \sum_i (\abs{\lambda_i} + \abs{\lambda_1}) \alpha_1^2
+	\le \sum_i 2 \norm{A}_2 \alpha_i^2
+	\le 2 \norm{A}_2 (1 - \alpha_1^2)
+  \]
+  Predpostavimo, da je $\alpha_i \approx 1$, torej lahko to ocenimo še z
+  \[
+	2 \norm{A}_2 \cdot 2 (1 - \alpha_1)
+	= 2 \norm{A}_2 \norm{z - x_1}_2^2.
+  \]
+\end{proof}
+
+\vprasanje{Oceni napako, ki jo dobimo z Rayleighovim kvocientom.}
+
+\begin{izrek}
+  Rayleighova iteracija ima v bližini lastne vrednosti simetrične matrike
+  kubično konvergenco.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $z_k$ blizu $x_i$.
+  Vemo, da je
+  \[
+	\norm{z_{k+1} \pm x_i} = O(\abs{\sigma_k - \lambda_i} \norm{z_k - x_i}_2)
+	= O(\norm{z_k - x_i}^2 \cdot \norm{z_k - x_i}_2).
+  \]
+\end{proof}
+
+\vprasanje{Kakšen red konvergence ima Rayleighova iteracija za simetrične
+  matrike? Dokaži.}
+
+% LocalWords:  Courant-Fisherjev Courant-Fisher Weylov Rayleighova
