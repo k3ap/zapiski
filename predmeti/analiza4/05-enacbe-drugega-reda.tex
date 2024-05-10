@@ -59,3 +59,114 @@ za
   B = a \xi_x \eta_x + b (\xi_x \eta_y + \xi_y \eta_x) + c \xi_y \eta_y \\
   C = a \eta_x^2 + 2b \eta_x \eta_y + c \eta_y^2.
 \end{gather*}
+Enačbe lahko prepišemo v obliko
+\[
+  \begin{bmatrix}
+	A & B \\
+	B & C
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	\xi_x & \xi_y \\
+	\eta_x & \eta_y
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	a & b \\
+	b & c
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	\xi_x & \xi_y \\
+	\eta_x & \eta_y
+  \end{bmatrix},
+\]
+iz česar sledi
+\[
+  \begin{vmatrix}
+	A & B \\
+	B & C
+  \end{vmatrix}
+  =
+  \begin{vmatrix}
+	a & b \\
+	b & c
+  \end{vmatrix}
+  \cdot
+  {
+  \begin{vmatrix}
+	\xi_x & \xi_y \\
+	\eta_x & \eta_y
+  \end{vmatrix}
+  }^2,
+\]
+torej sta determinanti istega predznaka in se tip parcialnega diferencialnega
+operatorja ne spremeni s spremembo koordinat.
+
+\begin{izrek}
+  Naj bo $L$ hiperboličen na domeni $D \subseteq \R^2$.
+  Tedaj v okolici točke $(x_0, y_0) \in D$ obstaja koordinatni sistem $(\xi,
+  \eta)$, v katerem ima $L$ obliko $\tilde{L}(w) = 2B w_{\xi \eta} + l_1(w)$,
+  kjer je $l_1$ linearen PDO prvega reda.
+\end{izrek}
+
+Dokaz izreka je izpeljava.
+Želimo, da bo $A = C = 0$, kar razpišemo v enačbo
+\[
+  a \xi_x^2 + 2b \xi_x \xi_y + c \xi_y^2 = 0
+\]
+oz.~podobno za $\eta$.
+Enačbi razrešimo na $\xi_x / \xi_y$ oz.~$\eta_x / \eta_y$, in dobimo
+\begin{gather*}
+  a \xi_x + (b \pm \sqrt{\delta}) \xi_y = 0, \\
+  a \eta_x + (b \pm \sqrt{\delta}) \eta_y = 0. \\
+\end{gather*}
+Hiperboličnost zagotavlja $\delta > 0$, torej imata enačbi realni rešitvi.
+Vzemimo $+$ pri $\xi$ in $-$ pri $\eta$.
+To sta linearni PDE prvega reda, za kateri dobimo sistem $\dot{x} = a$ in
+$\dot{y} = b \pm \sqrt{\delta}$.
+Če je (lokalno) $a \ne 0$, lahko zapišemo sistem
+\[
+  \frac{dy}{dx} = \frac{b \pm \sqrt{\delta}}{a}.
+\]
+Rešitvi $\xi(x,y)$ in $\eta(x,y)$ predstavljata novi koordinati, v katerih ima
+$L$ želeno obliko.
+
+\vprasanje{Izpelji spremembo koordinat za pretvorbo hiperbolične enačbe v
+  standardno obliko.}
+
+\begin{izrek}
+  Naj bo $L$ paraboličen na $D \subseteq \R^2$.
+  Tedaj obstajajo koordinate $(\xi, \eta)$, da ima operator $L$ obliko $A w_{\xi
+  \xi} + l_1(w) = 0$, kjer je $l_1$ linearen diferencialni operator prvega reda.
+\end{izrek}
+
+Brez škode za splošnost privzamemo $\abs{a} > 0$ (sicer to velja za $c$ in
+zamenjamo vlogo $x, y$).
+Tokrat želimo $B = C = 0$; ker pa paraboličnost zagotavlja $B^2 = AC$, je dovolj
+zahtevati $C = 0$.
+Upoštevaje $b^2 = ac$ lahko zapišemo
+\[
+  C = \inv{a} {(a \eta_x + b \eta_y)}^2,
+\]
+torej iščemo $\eta$, ki bo rešitev $a \eta_x + b \eta_y = 0$.
+Karakteristični sistem nam da enačbo
+\[
+  \frac{dy}{dx} = \frac{b}{a}.
+\]
+Konstanta v rešitvi nam da $\eta(x,y)$, za $\xi$ pa lahko izberemo poljubno
+funkcijo, neodvisno od $\eta$.
+
+\vprasanje{Izpelji spremembo koordinat za pretvorbo parabolične enačbe v
+  standardno obliko.}
+
+\begin{izrek}
+  Naj bo $L: u \mapsto a u_{xx} + 2b u_{xy} + c u_{yy}$ eliptičen parcialni
+  diferencialni operator z realno analitičnimi koeficienti $a, b, c$ na $D
+  \subseteq \R^2$.
+  Tedaj lokalno obstajata koordinati $(\xi, \eta)$, v katerih ima $L$ kanonično
+  obliko $\tilde{L} w = D(w_{\xi \xi} + w_{\eta \eta}) + l_1(w)$, kjer je $l_1$
+  linearen diferencialen operator prvega reda.
+\end{izrek}
+
+% LocalWords:  paraboličnost
