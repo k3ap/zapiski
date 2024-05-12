@@ -33,3 +33,21 @@ Vstavimo
 \]
 in poskusimo razrešiti.
 Če nam uspe, to obrnemo, da najdemo $z$, s čimer smo magično rešili enačbo.
+
+\section{Nelinearna enačba prvega reda}
+
+Podobno kot pri kvazilinearnih enačbah tudi nelinearne rešujemo z metodo
+karakteristik.
+Za enačbo oblike $F(x, u, \grad u) = 0$ iščemo polje $t \mapsto (x(t), z(t),
+p(t))$, ki reši karakteristični sistem
+\begin{gather*}
+  \dot{p} = - (\nabla_x + p \nabla_z) F(x,z,p) \\
+  \dot{z} = p \cdot \nabla_p F(x, z, p) \\
+  \dot{x} = \nabla_p F(x, z, p)
+\end{gather*}
+tu sta $x$ in $p$ lahko vektorja (iste dimenzije), $z$ pa je skalar.
+Ko najdemo rešitev sistema, vstavimo začetne pogoje (in morda njihove odvode),
+da dobimo funkciji $x(t,\omega)$ in $z(t, \omega)$, kjer je $\omega$ parameter
+karakteristike.
+Na koncu obrnemo v $\omega(x)$ in $t(x)$ ter vstavimo v $z(\omega, t)$, da
+dobimo rešitev $u(x) = z(t(x), \omega(x))$.
