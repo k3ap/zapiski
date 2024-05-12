@@ -1,0 +1,25 @@
+\naslov{Valovna enačba na realni osi}
+
+Imamo podan koeficient $c > 0$.
+Gledamo enačbo
+\[
+  u_{tt} - c^2 u_{xx} = 0,
+\]
+kjer je $x \in (a,b)$ in $t > 0$.
+To je hiperbolična enačba, ki ima kanonično obliko $w_{\xi \eta} = 0$, pri čemer
+sta novi koordinati oblike $\xi = x - ct$ in $\eta = x + ct$.
+Če integriramo $w_{\xi \eta} = 0$, dobimo $w = D(\xi) + E(\eta)$ oziroma $u(x,
+t) = F(x - ct) + G(x + ct)$ za poljubni $F, G \in \zvodvi{2}$.
+Predpis deluje tudi, če funkciji nista odvedljivi.
+Če sta le odsekoma zvezni, obstajata zaporedji gladkih funkcij $F_n$ in $G_n$,
+ki konvergirata k $F$ in $G$ po točkah in enakomerno na kompaktih, kjer sta $F$
+in $G$ zvezni.
+Potem bo zaporedje $u_n = F_n(x - ct) + G(x+ct)$ na enak način konvergiralo k
+$u$.
+
+\begin{definicija}
+  Če sta $F, G$ odsekoma zvezni na $\R$, se $u(t,x) = F(x-ct) + G(x+ct)$ imenuje
+  \pojem{posplošena rešitev} za valovno enačbo.
+\end{definicija}
+
+\vprasanje{Kakšne oblike so rešitve valovne enačbe? Kaj pa posplošene rešitve?}

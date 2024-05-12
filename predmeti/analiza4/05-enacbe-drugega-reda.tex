@@ -198,4 +198,107 @@ Na koncu dobimo $\xi = \operatorname{Re} \phi$ in $\eta = \operatorname{Im}
 \vprasanje{Izpelji spremembo koordinat za pretvorbo eliptične enačbe v
   standardno obliko. Katero dodatno predpostavko potrebujemo?}
 
-% LocalWords:  paraboličnost
+\podnaslov{Cauchyjev problem}
+
+Imamo enačbo oblike $a u_{xx} + 2b u_{xy} + c u_{yy} = d$ in krivuljo $\gamma(s)
+= (f(s), g(s))$, na kateri želimo predpisati vrednosti rešitve $u$ in njenega
+gradienta, $u = h(s)$, $u_x = \varphi(s)$ ter $u_y = \psi(s)$.
+Za poljubno $\zvodvi{1}$ funkcijo $v(x,y)$ mora tako veljati
+\[
+  \left. \partial_s v \right|_\gamma = v_x(x,y) f'(s) + v_y(x,y) g'(s),
+\]
+iz česar dobimo zvezo, ki mora veljati za podatke, če naj bo problem dobro
+postavljen:
+\[
+  h'(s) = \varphi(s) f'(s) + \psi(s) g'(s).
+\]
+
+\vprasanje{Opiši Cauchyjev problem za PDE drugega reda. Kateri pogoj mora
+  veljati, da je dobro postavljen?}
+
+Pogoj lahko nadaljujemo z odvodi višjega reda, do
+\begin{gather*}
+  \partial_s u_x = u_{xx}(\gamma) f' + u_{xy}(\gamma) g', \\
+  \partial_s u_y = u_{yx}(\gamma) f' + u_{yy}(\gamma) g',
+\end{gather*}
+iz česar na $\gamma$ sledi
+\begin{gather*}
+  f' u_{xx} + g' u_{xy} = \varphi', \\
+  f' u_{xy} + g' u_{yy} = \psi'.
+\end{gather*}
+To je sistem treh linearnih enačb za $u_{xx}$, $u_{xy}$ in $u_{yy}$:
+\begin{gather*}
+  a u_{xx} + 2b u_{xy} + c u_{yy} = d, \\
+  f' u_{xx} + g' u_{xy} = \varphi', \\
+  f' u_{xy} + g' u_{yy} = \psi'.
+\end{gather*}
+Sistem je enolično rešljiv natanko tedaj, ko je njegova determinanta neničelna.
+Torej
+\[
+  \Delta =
+  \begin{vmatrix}
+	a & 2b & c \\
+	f' & g' & 0 \\
+	0 & g' & g'
+  \end{vmatrix}
+  = a g'^2 - 2b f' g' + c f'^2 \ne 0
+\]
+
+\begin{definicija}
+  Krivulja $\gamma = (f,g)$ je \pojem{karakteristična}, če je $\Delta = 0$
+  vzdolž $\gamma$ in je \pojem{nekarakteristična}, če je $\Delta \ne 0$ na
+  $\gamma$.
+\end{definicija}
+
+\vprasanje{Kdaj je krivulja karakteristična za Cauchyjev problem za PDE drugega
+  reda? Iz česa to izhaja?}
+
+Enačba $\Delta = 0$ je ekvivalentna
+\[
+  a \left( \frac{g'}{f'} \right)^2 - 2b \frac{g'}{f'} + c = 0.
+\]
+Če pišemo $\frac{dy}{dx} = \frac{g'}{f'}$, dobimo
+\[
+  \frac{dy}{dx} = \frac{b \pm \sqrt{b^2 - ac}}{a},
+\]
+kar je navadna diferencialna enačba (funkcije $a, b, c$ so dane).
+
+Za nekarakteristično krivuljo $\gamma$ odvajamo originalno enačbo po $x$:
+\[
+  a_x u_{xx} + a u_{xxx} + 2 b_x u_{xy} + 2b u_{xxy} + c_x u_{yy} + c u_{yyy} =
+  d_x,
+\]
+kar prepišemo v
+\[
+  a u_{xxx} + 2b u_{xxy} + c u_{xyy} = - a_x u_{xx} - 2b_x u_{xy} - c_x u_{yy} +
+  d_x.
+\]
+Na krivulji $\gamma$ potem velja
+\begin{gather*}
+  \partial_s u_{xx} = u_{xxx} f' + u_{xxy} g', \\
+  \partial_s u_{xy} = u_{xxy} f' + u_{xyy} g',
+\end{gather*}
+kar je nov sistem za $u_{xxx}$, $u_{xxy}$ in $u_{xyy}$.
+Zaradi predpostavke o nekarakterističnosti ima sistem natanko eno rešitev vzdolž
+$\gamma$, torej te vrednosti lahko izračunamo.
+Podobno dobimo, če odvajamo po $y$, in če postopek ponavljamo; rezultat so
+odvodi poljubno visokega reda.
+Dobimo torej vrsto
+\[
+  \sum_{k=0}^\infty \sum_{\abs{\alpha} = k} \partial^\alpha u \inv{\alpha_1!
+	\alpha_2!} (x - x_0)^{\alpha_1} (y - y_0)^{\alpha_2}.
+\]
+
+\begin{izrek}[Cauchy-Kowalewski]
+  Če je Cauchyjev problem podan z realno analitičnimi podatki in je krivulja
+  $\gamma$ nekarakteristična za problem, potem vrsta zgoraj konvergira v neki
+  okolici točke $(x_0, y_0) \in \gamma$ in predstavlja rešitev Cauchyjevega
+  problema.
+\end{izrek}
+
+\vprasanje{Kako rešuješ Cauchyjevo nalogo na karakteristični in kako na
+  nekarakteristični krivulji? Povej Cauchy-Kowalewskijev izrek.}
+
+% LocalWords:  paraboličnost nekarakteristične nekarakteristično Cauchyjevega
+% LocalWords:  nekarakterističnosti nekarakteristični Cauchy-Kowalewski
+% LocalWords:  nekarakteristična Cauchy-Kowalewskijev
