@@ -1,0 +1,53 @@
+\naslov{Nevronske mreže}
+
+Nevronske mreže so sestavljene iz nevronov in sinaps.
+Vsak nevron hrani stanje $v \in \R$ iz izhod $y$, sinapse pa so utežene povezave
+med nevroni.
+Uteži označimo z $w_i$.
+Poleg tega ima vsak nevron aktivacijsko funkcijo $\phi$, s pomočjo katere
+izračuna izhod: $y = \phi(v)$.
+Pri evaluaciji stanje nevrona izračunamo iz stanj njegovih vhodnih sinaps kot
+\[
+  v = w_0 + \sum_i w_i x_i.
+\]
+Mrežo ustavimo, ko se neha spreminjati, zato običajno nima ciklov.
+
+Pri usmerjeni nevronski mreži imamo nevrone razporejene v $L+2$ plasti.
+Plasti $0$ pravimo \pojem{vhodna plast}, kjer imamo en nevron za vsako vhodno
+spremenljivko, plasti $L+1$ pa \pojem{izhodna plast}.
+Tu je en nevron v primeru regresije in en nevron za vsak razred v primeru
+klasifikacije.
+Preostane $L$ \pojem{skritih plasti}, ki nam dovoljujejo kompleksnejše
+računanje.
+Sinapse so postavljene tako, da je vsak nevron v neki plasti povezan z vsemi v
+naslednji plasti, ni pa povezan s prejšnjimi plastmi ali svojo plastjo.
+
+\vprasanje{Opiši postavitev usmerjene nevronske mreže.}
+
+Najenostavnejša mreža je \pojem{enostavni perceptron}.
+To je pravzaprav (skoraj) linearni model z $L = 0$ in stopničasto aktivacijsko
+funkcijo $\phi(v) = \mathbbm{1}(v > 0)$.
+Enostavneje ga zapišemo kot
+\[
+  \hat{y} = \phi(\mb{w}^T \mb{x}).
+\]
+Učenje poteka z gradientnim spustom, torej imamo predpis
+\[
+  \Delta \mb{w} = \eta (y - \phi(\mb{w}^T \mb{x})) \mb{x},
+\]
+kjer v vsaki iteraciji obravnavamo en primer, parameter $\eta$ pa se imenuje
+\pojem{learning rate}.
+
+\vprasanje{Opiši enostavni perceptron.}
+
+Za splošnejšo klasifikacijsko nevronsko mrežo imamo v izhodnem sloju toliko
+nevronov, kolikor je možnosti v klasifikaciji.
+Kot odgovor mreže dobimo neka števila v $\R$, ki jih pretvorimo v verjetnosti s
+funkcijo \pojem{softmax}
+\[
+  \phi(v_i) = \frac{e^{v_i}}{\sum_j e^{v_j}}.
+\]
+
+\vprasanje{Kaj je softmax?}
+
+% LocalWords:  perceptron softmax

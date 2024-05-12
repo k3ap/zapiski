@@ -64,4 +64,32 @@ Drug način za pridobivanje različnih modelov so naključni podprostori, kjer v
 model naučimo na $q < p$ naključno izbranih spremenljivkah z vsemi podatki.
 Tu ni vzorčenja, tako da ne moramo uporabljati ocen out-of-bag.
 
-% LocalWords:  gostiščnico Hoeffdingovi vrečenje generiramo out-of-bag
+Če je naš osnoven model odločitveno drevo, dobimo naključen gozd.
+Tukaj vsako drevo učimo na naključni podmnožici $q \le p$ spremenljivk, kar
+pomaga dekorelirati drevesa, če imamo neko močno spremenljivko.
+Naključnih dreves običajno ne režemo.
+
+\vprasanje{Kako narediš naključni gozd?}
+
+Ansambli sami po sebi ne podajajo jasne interpretacije.
+Edino, kar lahko naredimo, je da pogledamo napovedno moč spremenljivke, kar
+lahko naredimo na več načinov.
+V primeru naključnega gozda imamo \pojem{povprečno zmanjševanje nečistoče}, ki
+je enaka povprečni vrednosti zmanjševanja nečistoče v vseh vozliščih drevesa, ki
+testirajo vrednost določene spremenljivke.
+Napovedna moč v ansamblu je potem povprečje vseh teh povprečij po modelih, ki
+ansambel sestavljajo.
+Običajno jo še normaliziramo, da je največja vrednost enaka $1$.
+
+\vprasanje{Opiši povprečno zmanjševanje nečistoče.}
+
+Druga strategija je povprečno zmanjševanje točnosti.
+Tukaj opazujemo razliko v napaki pravega modela in modela, treniranega na
+množici, kjer smo opazovano spremenljivko po stolpcih naključno permutirali,
+torej izničili njen vpliv.
+Če je razlika v napakah majhna, spremenljivka nima velikega vpliva.
+
+\vprasanje{Opiši povprečno zmanjševanje točnosti.}
+
+% LocalWords:  gostiščnico Hoeffdingovi vrečenje generiramo out-of-bag režemo
+% LocalWords:  dekorelirati
