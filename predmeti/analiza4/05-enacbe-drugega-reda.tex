@@ -169,4 +169,33 @@ funkcijo, neodvisno od $\eta$.
   linearen diferencialen operator prvega reda.
 \end{izrek}
 
+Tokrat zahtevamo $A = C$ in $B=0$, iz česar dobimo
+\begin{gather*}
+  a \xi_x^2 + 2b \xi_x \xi_y + c \xi_y^2 = a \eta_x^2 + 2b \eta_x \eta_y + c
+  \eta_y^2, \\
+  a \xi_x \eta_x + b(\xi_x \eta_y + \xi_y \eta_x) + c \xi_y \eta_y = 0.
+\end{gather*}
+Sedaj vpeljimo $\phi = \xi + i \eta$, s čimer pridemo do
+\[
+  a \phi_x^2 + 2b \phi_x \phi_y + c \phi_y^2 = 0.
+\]
+Enako smo dobili v hiperboličnem primeru, le da je bil tam $\delta > 0$.
+Sistem je torej ekvivalenten
+\[
+  a \phi_x + (b \pm i \sqrt{ac - b^2}) \phi_y = 0.
+\]
+Tudi to enačbo rešujemo s pomočjo karakteristik.
+Funkcije, ki nastopajo, so po predpostavki realno analitične, torej jih lahko
+razširimo do kompleksnih holomorfnih funkcij dveh spremenljivk.
+Potem je $\phi$ rešitev
+\[
+  \frac{dy}{dx} = \frac{b \pm i \sqrt{ac -b^2}}{a}
+\]
+v smislu, da je konstantna vzdolž karakteristik.
+Na koncu dobimo $\xi = \operatorname{Re} \phi$ in $\eta = \operatorname{Im}
+\phi$.
+
+\vprasanje{Izpelji spremembo koordinat za pretvorbo eliptične enačbe v
+  standardno obliko. Katero dodatno predpostavko potrebujemo?}
+
 % LocalWords:  paraboličnost
