@@ -23,4 +23,89 @@
   Pravimo, da sta $A$ in $B$ \pojem{izomorfna}, če med njima obstaja izomorfizem.
 \end{definicija}
 
-% LocalWords:  morfizmov morfizem unitalnost
+\begin{definicija}
+  Naj bo $f \in \kat(A,B)$ morfizem.
+  Potem je
+  \begin{itemize}
+  \item \pojem{prerez}, če obstaja $g \in \kat(B,A)$, da je $g \circ f = 1_A$,
+  \item \pojem{retrakt}, če obstaja $g \in \kat(B,A)$, da je $f \circ g = 1_B$,
+  \item \pojem{monomorfizem}, če za vsaka morfizma $g, h \in \kat(C,A)$ iz
+	enakosti $f \circ g = f \circ h$ sledi $g = h$.
+  \item \pojem{epimorfizem}, če za vsaka morfizma $g, h \in \kat(B,C)$ iz
+	enakosti $g \circ f = h \circ f$ sledi $g = h$.
+  \end{itemize}
+\end{definicija}
+
+\vprasanje{Definiraj prerez, retrakt, monomorfizem in epimorfizem.}
+
+\begin{vo}{Povej primer epimorfizma, ki ni surjektiven.}
+  Vložitev $\iota: \Z \to \Q$ je homomorfizem kolobarjev.
+  Če je $g \circ \iota = h \circ \iota$, velja $g(n) = h(n)$ za vsako celo
+  število $n$.
+  Potem velja tudi
+  \[
+	g(\frac{a}{b}) = g(a) g(\inv{b})
+	= h(a) g(\inv{b})
+	= h(b \frac{a}{b}) g(\inv{b})
+	= h(\frac{a}{b}).
+  \]
+\end{vo}
+
+\begin{definicija}
+  Naj bo $\kat$ kategorija.
+  Objekt $Z$ je \pojem{začetni objekt}, če za vsak objekt $A$ velja
+  $\abs{\kat(Z,A)} = 1$.
+  Objekt $K$ je \pojem{končni objekt}, če za vsak objekt $A$ velja
+  $\abs{\kat(A,K)} = 1$.
+\end{definicija}
+
+\begin{trditev}
+  Poljubna začetna objekta dane kategorije sta izomorfna.
+\end{trditev}
+
+\begin{proof}
+  Naj bosta $Z_1$ in $Z_2$ začetna objekta.
+  Potem obstaja $f \in \kat(Z_1, Z_2)$ in $g \in \kat(Z_2, Z_1)$.
+  Velja $f \circ g \in \kat(Z_2, Z_2)$; ker pa je $\abs{\kat(Z_2, Z_2)} = 1$, je
+  $f \circ g = 1$.
+  Podobno v drugo smer.
+\end{proof}
+
+\begin{opomba}
+  Enako velja za končne objekte.
+\end{opomba}
+
+\vprasanje{Dokaži: poljubna začetna objekta v dani kategoriji sta izomorfna.}
+
+\begin{definicija}
+  Naj bo $\kat$ kategorija.
+  \pojem{Nasprotna kategorija} $\kat^{\text{op}}$ je definirana na naslednji
+  način:
+  \begin{itemize}
+  \item objekti so enaki objektom $\kat$
+  \item če sta $A, B$ objekta, je $\kat^{\text{op}}(A,B) = \kat(B,A)$
+  \item za $f \in \kat^{\text{op}}(A,B)$ in $g \in \kat^{\text{op}}(C,A)$ je
+	kompozitum $f * g = g \circ f$.
+  \end{itemize}
+\end{definicija}
+
+\vprasanje{Definiraj nasprotno kategorijo.}
+
+\begin{definicija}
+  Naj bosta $\kat$ in $\katD$ kategoriji.
+  \pojem{Funktor} med kategorijama je predpis $F$, za katerega velja
+  \begin{itemize}
+  \item za vsak objekt $A$ v $\kat$ imamo natanko določen objekt $F(A)$ v
+	$\katD$,
+  \item za vsak $f \in \kat(A,B)$ imamo natanko določen morfizem $F(f) \in
+	\katD(F(A), F(B))$,
+  \item $F(1_A) = 1_{F(A)}$ za vsak objekt $A$ v $\kat$,
+  \item $F(f \circ g) = F(f) \circ F(g)$
+  \end{itemize}
+  \pojem{Kofunktor} med $\kat$ in $\katD$ je funktor v nasprotni kategoriji.
+\end{definicija}
+
+\vprasanje{Definiraj funktorje in kofunktorje.}
+
+% LocalWords:  morfizmov morfizem unitalnost morfizma monomorfizem epimorfizma
+% LocalWords:  Funktor funktor Kofunktor kofunktorje funktorje
