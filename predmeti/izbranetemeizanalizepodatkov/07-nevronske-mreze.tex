@@ -50,4 +50,79 @@ funkcijo \pojem{softmax}
 
 \vprasanje{Kaj je softmax?}
 
-% LocalWords:  perceptron softmax
+Če imamo več plasti, za gradientni spust potrebujemo odvode napake po
+$w_{ji}^{l}$, torej po utežeh med $l$-to in $(l+1)$-to plastjo.
+Pri tem odvajamo posredno:
+\[
+  \frac{\partial E}{\partial w_{ji}^l}
+  = \frac{\partial E}{\partial y_i^l} \frac{\partial y_i^l}{\partial v_i^l}
+  \frac{\partial v_i^l}{\partial w_{ji}^l}
+  = \frac{\partial E}{\partial y_i^l} \phi'(v_i^l) y_j^{l-1},
+\]
+odvod napake po $y_i^l$ pa izračunamo kot
+\[
+  \frac{\partial E}{\partial y_i^l}
+  = \sum_k \frac{\partial E}{\partial v_k^{l+1}} \frac{\partial
+	v_k^{l+1}}{\partial y_i^l}
+  = \sum_k \frac{\partial E}{\partial y_k^{l+1}} \frac{\partial
+	y_k^{l+1}}{\partial v_k^{l+1}} \frac{\partial v_k^{l+1}}{\partial y_i^l}
+  = \sum_k \frac{\partial E}{\partial y_k^{l+1}} \phi'(v_k^{l+1}) \frac{\partial
+	v_k^{l+1}}{\partial y_i^l},
+\]
+kjer seštevamo po nevronih v naslednji plasti.
+Računamo lahko torej od desne proti levi, da dobimo vse odvode.
+V plasti $L+1$ namesto drugega predpisa za $\partial E / \partial y_i^{L+1}$
+uporabimo $-(y_i - y_i^{L+1})$, ki izhaja iz predpisa napake $E = \pol \sum_i
+(y_i - \hat{y}_i)^2$ in dejstva, da dejansko odvajamo po $\hat{y}_i$.
+
+\vprasanje{Izpelji predpis za računanje gradienta v večplastni nevronski mreži.}
+
+V primeru klasifikacije uporabljamo drugačno funkcijo izgube, prečno entropijo
+\[
+  H = - \sum_i P_i \log_2 Q_i,
+\]
+kjer je $P$ prava (diskretna) porazdelitev cilje porazdelitve $Y$, torej $P_k =
+1$ natanko tedaj, ko je trenutno opazovana vrednost enaka $k$, $Q$ pa je
+porazdelitev, ki jo napove model, $Q_i = y_i^{L+1}$.
+Potem je $E = - \log_2 y_k^{L+1}$, odvod pa
+\[
+  \frac{\partial E}{\partial \hat{y}_i}
+  =
+  \begin{cases}
+	0 & i \ne k \\
+	\inv{\hat{y}_k \ln 2} & i = k
+  \end{cases}
+\]
+z enakim nadaljnjim delom.
+
+\vprasanje{Kako izračunaš odvode za primer klasifikacijske nevronske mreže?}
+
+Poznamo tudi konvolucijske nevronske mreže, kjer so nevroni v posamičnih plasteh
+organizirani v matrike.
+Namesto linearne obtežene vsote po vseh nevronih uporabimo konvolucijski filter,
+tj.~matriko $c \times c$ uteži $w_{ij}$, s katero kombiniramo nevrone.
+Če je plast $l-1$ dimenzije $x \times y$, je plast $l$ potem dimenzije $(x-c+1)
+\times (y - c+1)$.
+Pogosto želimo tudi zmanjšati dimenzije teh matrik, kar običajno naredimo z
+max-akumulacijo, ki vzame največjo vrednost v neki izbrani podmatriki; ponavadi
+velikosti $2 \times 2$.
+
+\vprasanje{Opiši delovanje konvolucijskih nevronskih mrež.}
+
+Poznamo tudi rekurenčne nevronske mreže, kjer dovolimo pojavitev zanke.
+Za možnost računanja gradientov diskretiziramo čas in pri zanki za vhod
+uporabimo izhod prejšnje iteracije; tako si lahko zapomnimo prejšnje podatke.
+S tem smo pravzaprav dobili zaporedje enakih nevronskih mrež, ki ustrezajo
+časovnim točkam.
+Problem se pojavi pri učenju; napaka je sedaj funkcija časa
+\[
+  E = \inv{T} \sum_{t=1}^T L(y_t, \hat{y}_t),
+\]
+kjer je $L$ funkcija izgube.
+Na podoben način kot prej lahko izračunamo odvod te napake, pri čemer dobimo
+rekurzivno zvezo v $t$.
+
+\vprasanje{Opiši rekurenčne nevronske mreže.}
+
+% LocalWords:  perceptron softmax konvolucijske konvolucijski max-akumulacijo
+% LocalWords:  konvolucijskih mrež rekurenčne diskretiziramo
