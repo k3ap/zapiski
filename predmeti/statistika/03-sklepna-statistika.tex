@@ -36,6 +36,9 @@ Ustrezna izbira je potem
   \delta = \frac{\sigma}{\sqrt{n}} \phi^{-1}\!\left(1 - \frac{\alpha}{2}\right).
 \]
 
+\vprasanje{Izpelji širino intervala zaupanja za $\mu$ v primeru neodvisnih
+  normalno porazdeljenih spremenljivk $X_n$.}
+
 Če nismo prepričani, da so $X_i$ porazdeljene normalno, si lahko pomagamo s CLI.
 Velja
 \[
@@ -46,6 +49,8 @@ Pri dovolj velikih $n$ bo konstruirani interval zaupanja še vedno približno
 zadoščal izbrani stopnji tveganja, vendar je $\alpha$ le še \pojem{nominalna
   stopnja tveganja}.
 
+\vprasanje{Kaj pa narediš, če $X_n$ niso porazdeljene normalno?}
+
 Če ne poznamo $\sigma$, ga nadomestimo z \pojem{empiričnim standardnim odklonom}
 \[
   \hat{\sigma}_n = \sqrt{
@@ -53,7 +58,35 @@ zadoščal izbrani stopnji tveganja, vendar je $\alpha$ le še \pojem{nominalna
 	  \right)}
   }.
 \]
-To bo imelo smisel, če $\hat{\sigma}_n$ konvergira k $\sigma$, kar velja po
-zakonu velikih števil in izreku Sluckega.
+To bo imelo smisel, če $\hat{\sigma}_n$ konvergira k $\sigma$.
+Po zakonu velikih števil vemo
+\[
+  \frac{(X_1 - \mu)^2 + \cdots + (X_n -\mu)^2}{n}
+  \xrightarrow[n \to \infty]{d} \sigma^2.
+\]
+Za empirično porazdeljeno
+\[
+  W \sim
+  \begin{pmatrix}
+	X_1 & X_2 & \cdots & X_n \\
+	\nicefrac{1}{n} & \nicefrac{1}{n} & \cdots & \nicefrac{1}{n}
+  \end{pmatrix}
+\]
+vemo $\var(W) = E(W^2) - (E(W))^2 = E((W - \mu)^2) - (E(W - \mu))^2$, torej
+\[
+  \inv{n} \sum_{i=1}^n (X_i - \overline{X_n})^2 = \inv{n} \sum_{i=1}^n (X_i -
+  \mu)^2 - (\overline{X_n} - \mu)^2,
+\]
+kjer prvi člen konvergira k $\sigma^2$ in drugi k $0$.
+Po izreku Sluckega gre tudi
+\[
+  \hat{\sigma}^2 = \inv{n} \sum_{i=1}^n (X_i - \overline{X_n})^2
+  \xrightarrow[n \to \infty]{d} \sigma^2
+\]
+načeloma v okviru $\R$, a po enem od izrekov prejšnjega poglavja tudi v $\zo{0,
+  \infty}$, torej konvergira tudi $\hat{\sigma} \to \sigma$.
 
-% TODO: spomni se nekih vprašanj tukej
+\vprasanje{Kaj pa narediš v primeru enako porazdeljenih normalnih spremenljivk,
+  če ne poznaš $\sigma$?}
+
+% LocalWords:  Sluckega

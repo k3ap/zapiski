@@ -1,0 +1,54 @@
+\naslov{Opisna statistika}
+
+Tukaj \pojem{statistika} pomeni povzetek opaženih vrednosti; če opazimo $x_1,
+\ldots, x_n$, potem je statistika $f(x_1, \ldots, x_n)$.
+Številu $n$ pravimo \pojem{numerus}.
+Za empirično porazdelitev definiramo \pojem{aritmetično sredino} kot povprečje
+vrednosti $x_i$, \pojem{empirični standardni odklon} pa kot
+\[
+  \sigma = \sqrt{\inv{n} \sum_{k=1}^n (x_k - \overline{x})^2 }.
+\]
+Če uredimo vrednosti kot $x_{(1)} \le x_{(2)} \le \cdots \le x_{(n)}$, pravimo,
+da je $x_{(k)}$ \pojem{$k$-ta vrstilna statistika}.
+Za neko verjetnost $\alpha \in (0,1)$ je \pojem{kvantil} slučajne spremenljivke
+$X$ tako število $x_\alpha$, da je $P(X < x_\alpha) \le \alpha \le P(X \le
+x_\alpha)$.
+Kvantil ni enolično določen, razen v primeru, ko je gostota porazdelitve strogo
+pozitivna na nekem intervalu, drugje pa enaka $0$.
+Nekaj kvantilov ima tudi svoja imena:
+\begin{itemize}
+\item $x_{1/2}$ je \pojem{mediana},
+\item $x_{1/3}$ in $x_{2/3}$ sta prvi in drugi \pojem{tercil},
+\item $x_{1/4}, x_{1/2}, x_{3/4}$ so \pojem{tercili}
+\item desetine dajo \pojem{decile}, stotine \pojem{centile}, itd.
+\end{itemize}
+Če kvantili niso enolično določeni, jim določamo arbitrarne vrednosti.
+Mediani običajno pripišemo vrednost
+\[
+  \pol (x_{1/2}^{\text{min}} + x_{1/2}^{\text{max}}).
+\]
+Povezan pojem je \pojem{interkvartilni razmik} (interquartile range)
+\[
+  \text{IQR} = x_{3/4}^{\text{max}} - x_{1/4}^{\text{min}}.
+\]
+
+\vprasanje{Kaj so kvantili? Kaj je IQR?}
+
+Številu pojavitev posamične vrednosti pravimo \pojem{frekvenca}.
+Frekvence lahko sestavimo skupaj in prikažemo v histogramu.
+Želeli bi si, da le-ta čim manj odstopa od teoretične gostote porazdelitve.
+V primeru Gaussove gostote po kriteriju najmanjših kvadratov pridemo do
+Scottovega pravila
+\[
+  \text{širina} \approx \sigma \sqrt[3]{\frac{24 \sqrt{2 \pi}}{n}},
+\]
+kar pa veselo ignoriramo, ko je to pripravno.
+
+\vprasanje{Kako postaviš dober histogram?}
+
+Po dogovoru so \pojem{osamelci} vrednosti izven intervala $[x_{1/4}^{\text{min}}
+- \frac{3}{2} \text{IQR}, x_{3/4}^{\text{max}} + \frac{3}{2} \text{IQR}]$.
+
+
+% LocalWords:  kvantilov tercil tercili decile centile kvantili kvartili IQR
+% LocalWords:  interkvartilni
