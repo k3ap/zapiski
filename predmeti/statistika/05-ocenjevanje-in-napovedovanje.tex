@@ -1,0 +1,95 @@
+\podnaslov{Ocenjevanje in napovedovanje}
+
+Naše opažanje sestoji iz nekih podatkov $X$.
+Zanima nas druga količina $Y$, ki bi jo radi vsaj približno ocenili.
+Postavimo \pojem{matematični model}, ki je opis mehanizma, za katerega
+domnevamo, da je generiral $X$ in $Y$.
+V statistiki vzamemo verjetnostni model, kjer je vsaj ena od $X$ oz.~$Y$
+slučajna.
+Iščemo opazljivo količino $\hat{Y}$ (tj.~tako, ki jo lahko izračunamo z merljivo
+funkcijo $h(X)$), ki bo čim bližje $Y$.
+
+V Bayesovem modelu sta $X$ in $Y$ slučajni spremenljivki na fiksnem
+verjetnostnem prostoru $(\Omega, \mathcal{F}, P)$.
+Če poznamo $X$ in $Y$ živi na množici $\R$, je smiselna napoved $\hat{Y} = E(Y
+\such X)$.
+Postopek je naslednji:
+\begin{itemize}
+\item Poznamo $P(X = x \such Y = y)$
+\item Privzamemo apriorno porazdelitev $Y$
+\item Po Bayesovi formuli izračunamo $P(Y = y \such X = x)$
+\item Izračunamo $E(Y \such X = x)$
+\end{itemize}
+Bayesova statistika je pripravna, če podatke dobivamo postopoma.
+
+Drug koncept je postavil Ronald Fisher.
+Tu imamo več verjetnostnih mer $P_\theta$ za $\theta \in I$.
+Modeliramo tako, da je $X$ slučajna spremenljivka, ki jo poznamo, $y =
+g(\theta)$ pa je deterministična in je ne poznamo.
+Karakteristiko $y$ ocenimo z njeno \pojem{cenilko} $\hat{y}$.
+O cenilki govorimo, preden opazimo podatke; ko jih poznamo, iz njih izračunamo
+vrednost cenilke, in ji pravimo \pojem{ocena}.
+
+\vprasanje{Kakšna je razlika med Bayesovo in Fisherjevo statistiko?}
+
+\podnaslov{Vrednotenje cenilk in predikatorjev}
+
+Naj bo $\hat{y} = h(X)$ cenilka za $y$.
+\pojem{Pričakovana} ali \pojem{srednja kvadratična napaka} cenilke je
+\[
+  \operatorname{MSE}_\theta(\hat{y} \such y) = E_\theta((\hat{y} - y)^2).
+\]
+Pogosto jo še korenimo, da dobimo RMSE.
+Definiramo tudi \pojem{pristranskost}
+\[
+  \operatorname{Bias}_\theta(\hat{y} \such y)
+  = E_\theta(\hat{y}) - y.
+\]
+Cenilka je \pojem{nepristranska}, če je pristranskost enaka $0$ za vse $\theta$.
+Opazimo, da je za nepristransko cenilko pričakovana kvadratna napaka enaka
+varianci.
+V tem primeru količini RMSE pravimo \pojem{standardna napaka}.
+V splošnem je
+\[
+  \var_\theta(\hat{y})
+  = \var_\theta(\hat{y} - y)
+  = E_\theta((\hat{y} - y)^2) - (E_\theta(\hat{y} - y))^2
+  = \operatorname{MSE}_\theta(\hat{y} \such y)
+  - \left( \operatorname{Bias}(\hat{y} \such y) \right)^2.
+\]
+
+\vprasanje{Definiraj pričakovano napako in pristranskost.}
+
+Če podatke dobivamo postopoma, dobimo zaporedje cenilk $\hat{y}_n$.
+Zaporedje je \pojem{šibko dosledno}, če gre
+\[
+  \hat{y}_n \xrightarrow[n \to \infty]{d \such \theta} y
+\]
+za vse $\theta \in I$.
+
+\begin{trditev}
+  Če je
+  \[
+	\lim_{n \to \infty} \operatorname{MSE}_\theta(\hat{y}_n \such y) = 0
+  \]
+  za vse $\theta \in I$, je zaporedje $(\hat{y}_n)_n$ šibko dosledno.
+\end{trditev}
+
+\begin{proof}
+  Sledi iz ene od trditev od prej; če je
+  \[
+	\lim_{n \to \infty} E((d(X_n, c))^p) = 0,
+  \]
+  potem $X_n \xrightarrow[n \to \infty]{d} c$.
+\end{proof}
+
+\vprasanje{Kdaj je zaporedje cenilk šibko dosledno? Povej zadostni pogoj.}
+
+\begin{posledica}
+  Če je zaporedje cenilk $(\hat{y}_n)_n$ asimptotično nepristransko, tj.~da
+  velja $\lim E_\theta(\hat{y}_n) = y$ za vsak $\theta \in I$, in če je $\lim
+  \var_\theta(\hat{y}_n) = 0$, je to zaporedje šibko dosledno.
+\end{posledica}
+
+% LocalWords:  generiral Bayesovem živi Bayesovi Bayesova Fisher Fisherjevo
+% LocalWords:  Bayesovo predikatorjev korenimo RMSE
