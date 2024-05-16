@@ -51,3 +51,44 @@ da dobimo funkciji $x(t,\omega)$ in $z(t, \omega)$, kjer je $\omega$ parameter
 karakteristike.
 Na koncu obrnemo v $\omega(x)$ in $t(x)$ ter vstavimo v $z(\omega, t)$, da
 dobimo rešitev $u(x) = z(t(x), \omega(x))$.
+
+\section{Enačbe drugega reda}
+
+Za enačbo oblike
+\[
+  a u_{xx} + 2b u_{xy} + c u_{yy} + f(u) = 0,
+\]
+kjer $f$ vsebuje odvode nižjega reda, definiramo
+\[
+  \Delta = -
+  \begin{vmatrix}
+	a & b \\
+	b & c
+  \end{vmatrix}.
+\]
+
+Če je $\Delta > 0$, enačbo lahko prevedemo v obliko $w_{\xi \eta} + g(w) = 0$
+tako, da rešimo diferencialno enačbo
+\[
+  \frac{dy}{dx} = \frac{b \pm \sqrt{\Delta}}{a}
+\]
+oz.~$c$ v imenovalcu, če je $a = 0$.
+Dobimo $y_+ = f_+(x)$ in $y_- = f_-(x)$ ter izrazimo konstante integracije tako,
+da je $y_+ = f_+(x, \eta(x,y))$ in $y_- = f_-(x, \xi(x,y))$.
+
+Če je $\Delta = 0$, lahko enačbo pretvorimo v obliko $w_{\xi \xi} + g(w) = 0$
+tako, da rešimo
+\[
+  \frac{dy}{dx} = \frac{b}{a}.
+\]
+Dobimo $y(x) = f(x,C)$ in izrazimo integracijsko konstanto v $\eta(x,y)$.
+Za $\xi(x,y)$ lahko vzamemo karkoli, kar je funkcijsko neodvisno od $\eta$.
+
+Če je $\Delta < 0$, lahko enačbo pretvorimo v $w_{\xi \xi} + w_{\eta \eta} +
+g(w) = 0$ z rešitvijo
+\[
+  \frac{dy}{dx} = \frac{b \pm i \sqrt{- \Delta}}{a}.
+\]
+Rešitev je kompleksna, oblike $y(x) = \operatorname{Re} f + i \operatorname{Im}
+f$, potem vzamemo $\xi$ in $\eta$ kot realni in imaginarni del razlike $y -
+f(x)$.
