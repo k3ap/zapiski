@@ -1,0 +1,86 @@
+\naslov{Pričakovana vrednost in varianca slučajnih vektorjev}
+
+\begin{definicija}
+  Za slučajni vektor $\sv{X} = (X_1, \ldots, X_n)$ definiramo $E(\sv{X}) =
+  (E(X_1), \ldots, E(X_n))$.
+\end{definicija}
+
+\begin{trditev}
+  Za deterministično matriko $A$ primerne velikosti in slučajni vektor $\sv{X}$
+  velja $E(A \sv{X}) = A E(\sv{X})$.
+\end{trditev}
+
+\begin{posledica}
+  Če je $\sv{u}$ determinističen, $\sv{X}$ pa slučajen vektor, je $E(\sv{u}
+  \cdot \sv{X}) = \sv{u} \cdot E(\sv{X})$.
+\end{posledica}
+
+\begin{definicija}
+  Za slučajno matriko $M$ definiramo $E(M) = [E(M_{ij})]_{ij}$.
+\end{definicija}
+
+\begin{trditev}
+  Naj bo $M$ slučajna matrika.
+  Potem je $E(M^T) = E(M)^T$.
+  Za poljubni deterministični matriki $A$ in $B$ primerne velikosti velja $E(A M
+  B) = A E(M) B$.
+\end{trditev}
+
+\begin{trditev}
+  Za poljubna primerna slučajna vektorja $\sv{X}$ in $\sv{Y}$ ter za poljubni
+  primerni slučajni matriki $M$ in $N$ velja $E(\sv{X} + \sv{Y}) = E(\sv{X}) +
+  E(\sv{Y})$ in $E(M + N) = E(M) + E(N)$.
+\end{trditev}
+
+\begin{definicija}
+  \pojem{Kovariančna matrika} med slučajnimi vektorji $\sv{X}$ in $\sv{Y}$ je
+  \[
+	\cov(\sv{X}, \sv{Y}) =
+	\begin{bmatrix}
+	  \cov(X_1, Y_1) & \cdots & \cov(X_1, Y_n) \\
+	  \vdots & \ddots & \vdots \\
+	  \cov(X_n, Y_1) & \cdots & \cov(X_n, Y_n)
+	\end{bmatrix}.
+  \]
+\end{definicija}
+
+\begin{trditev}
+  $\cov(\sv{X}, \sv{Y}) = E((\sv{X} - E(\sv{X}))(\sv{Y} - E(\sv{Y}))^T) =
+  E(\sv{X} \sv{Y}^T) - E(\sv{X}) E(\sv{Y})^T$.
+\end{trditev}
+
+\vprasanje{Kako izraziš kovariančno matriko?}
+
+Izračunamo lahko
+\[
+  \cov(A \sv{X}, B \sv{Y})
+  = A \cov(\sv{X}, \sv{Y}) B^T,
+\]
+iz česar za vektor $\sv{u}$ dobimo
+\[
+  0 \le \var(\sv{u} \cdot \sv{X})
+  = \sv{u}^T \var(\sv{X}) \sv{u}
+  = \sk{\var(\sv{X}) \sv{u}, \sv{u}},
+\]
+torej je kovariančna matrika slučajnega vektorja pozitivno semidefinitna.
+
+\begin{trditev}
+  Pozitivno semidefinitna matrika je kovariančna matrika slučajnega vektorja.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $\Sigma$ pozitivno semidefinitna matrika.
+  Vzemimo $\sv{Z} = (Z_1, \ldots, Z_n)$, kjer so $Z_i$ neodvisne in porazdeljene
+  standardno normalno.
+  Velja $\var(\sv{Z}) = I_n$.
+  Za $\Sigma$ obstaja razcep Choleskega $\Sigma = V V^T$.
+  Potem je $\cov(A \sv{Z}, A \sv{Z}) = A A^T = \Sigma$.
+\end{proof}
+
+\vprasanje{Pokaži, da je matrika enaka kovariančni matriki slučajnega vektorja
+  natanko tedaj, ko je pozitivno semidefinitna.}
+
+\begin{definicija}
+  Slučajna vektorja $\sv{X}$ in $\sv{Y}$ sta \pojem{nekorelirana}, če je
+  $\cov(\sv{X}, \sv{Y}) = 0$.
+\end{definicija}

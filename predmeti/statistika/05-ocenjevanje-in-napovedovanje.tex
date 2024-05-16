@@ -91,5 +91,17 @@ za vse $\theta \in I$.
   \var_\theta(\hat{y}_n) = 0$, je to zaporedje šibko dosledno.
 \end{posledica}
 
+Če so $X_1, X_2, \ldots$ enako porazdeljene z $E(X_1) = \mu$ in $E(X_1^2) <
+\infty$ ter nekorelirane, je $\overline{X}$ dosledna cenilka za $\mu$.
+Poleg tega je $\overline{X}$ \pojem{najboljša nepristranska linearna cenilka}
+(NNLC) za $\mu$.
+Najboljša tu pomeni, da ima najmanjšo srednjo kvadratno napako.
+Pri tem pazimo, da je $\overline{X}^2$ pristranska cenilka za $\mu^2$; velja
+\[
+  E(\overline{X}^2) = \var(\overline{X}) + (E(\overline{X}))^2
+  = \frac{\sigma^2}{n} + \mu^2,
+\]
+je pa asimptotično nepristranska in šibko dosledna.
+
 % LocalWords:  generiral Bayesovem živi Bayesovi Bayesova Fisher Fisherjevo
-% LocalWords:  Bayesovo predikatorjev korenimo RMSE
+% LocalWords:  Bayesovo predikatorjev korenimo RMSE NNLC nekorelirane
