@@ -92,3 +92,18 @@ g(w) = 0$ z rešitvijo
 Rešitev je kompleksna, oblike $y(x) = \operatorname{Re} f + i \operatorname{Im}
 f$, potem vzamemo $\xi$ in $\eta$ kot realni in imaginarni del razlike $y -
 f(x)$.
+
+\section{Valovna enačba}
+
+Za valovno enačbo
+\[
+  u_{tt} - u_{xx} = F(t,x)
+\]
+so običajni začetni pogoji $u(0, x) = f(x)$ in $u_t(0, x) = g(x)$.
+V tem primeru lahko uporabimo d'Alembertovo formulo
+\[
+  u(t,x) = \pol (f(x-t) + f(x + t))
+  + \int_{x-t}^{x+t} g(\xi) d\xi
+  + \pol \iint_{\Delta(x,t)} F(\tau, \xi) d\tau d\xi
+\]
+za $\Delta(x,t) = \{(\tau, \xi) \such 0 \le \tau \le t, \abs{\xi-x} \le t - \tau\}$.
