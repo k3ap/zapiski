@@ -190,4 +190,184 @@ x_i$, $x_i^T x_j = \delta_{ij}$.
 \vprasanje{Kakšen red konvergence ima Rayleighova iteracija za simetrične
   matrike? Dokaži.}
 
-% LocalWords:  Courant-Fisherjev Courant-Fisher Weylov Rayleighova
+\podnaslov{QR iteracija}
+
+Če je $A$ simetrična, začetna redukcija na zgornje Hessenbergovo obliko vrne
+tridiagonalno simetrično matriko.
+Tako $A$ reduciramo na
+\[
+  T =
+  \begin{bmatrix}
+	a_1 & b_1 & & & \\
+	b_1 & a_2 & b_2 & & \\
+		& b_2 & \ddots & \ddots & \\
+		& & \ddots & a_{n-1} & b_{n-1} \\
+	& & & b_{n-1} & a_n
+  \end{bmatrix}.
+\]
+Algoritem bo še vedno porabil $O(n^3)$ operacij, ampak ga lahko zaradi simetrije
+malo pohitrimo.
+Predpostavimo lahko, da je $T$ nerazcepna.
+En korak QR iteracije lahko izvedemo v $O(n)$ operacijah, če pa želimo
+posodabljati še produkt matrik $Q_k$, je to dodatnih $O(n^2)$ operacij.
+
+Imamo dva načina za izvajanje premika.
+Prvi je Rayleighov premik $\sigma_k = \rho(e_n, T_k) = a_n^{(k)}$.
+
+\begin{izrek}
+  Če izvajamo QR iteracijo za tridiagonalno simetrično matriko $T$, potem se
+  Rayleighovi premiki $\sigma_k$ ujemamo z Rayleighovimi kvocienti, ki bi jih
+  dobili pri Rayleighovi iteraciji z $z_0 = e_n$.
+\end{izrek}
+
+\vprasanje{Kako deluje QR iteracija z Rayleighovimi premiki?}
+
+Druga možnost so Wilkinsonovi premiki, kjer pogledamo
+\[
+  W_k =
+  \begin{bmatrix}
+	a_{n-1}^{(k)} & b_{n-1}^{(k)} \\
+	b_{n-1}^{(k)} & a_n^{(k)}
+  \end{bmatrix}
+\]
+in izberemo tisto lastno vrednost, ki je bližja $a_n^{(k)}$.
+Tukaj imamo celo globalno konvergenco, ki je v bližini lastne vrednosti kubična.
+
+\vprasanje{Kaj so Wilkinsonovi premiki?}
+
+\podnaslov{Bisekcija}
+
+\begin{izrek}
+  Če je $T$ nerazcepna simetrična tridiagonalna matrika, ima vse lastne
+  vrednosti enostavne.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $\lambda$ lastna vrednost $T$.
+  Ker je matrika simetrična, sta geometrijska in algebraična večkratnost enaki.
+  Ker so $b_i \ne 0$, je prvih $n-1$ stolpcev $T - \lambda I$ neodvisnih, torej
+  je rang te matrike enak $n-1$ in je večkratnost $\lambda$ enaka $1$.
+\end{proof}
+
+\vprasanje{Dokaži: nerazcepna simetrična tridiagonalna matrika ima vse lastne
+  vrednosti enostavne.}
+
+\begin{definicija}
+  Matriki $A$ in $B$ sta \pojem{kongruentni}, če obstaja nesingularna $X$, da je
+  $B = X^T A X$.
+\end{definicija}
+
+Če je $A$ simetrična, je $\varphi(x) = x^T A x$ kvadratna forma.
+Potem za $x = Zy$ dobimo $x^T A x = y^T Z^T A Z y$ v drugi bazi.
+
+\begin{definicija}
+  Za vsako $n \times n$ simetrično matriko $A$ definiramo \pojem{inercijo} $A$
+  kot trojico $(\nu, z, p)$, kjer je $\nu$ število negativnih, $z$ število
+  ničelnih in $p$ število pozitivnih lastnih vrednosti.
+\end{definicija}
+
+\begin{izrek}[Sylvester]
+  Kongruentni simetrični matriki imata enako inercijo.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $(\nu, z, p)$ inercija $A$ in $(\nu', z', p')$ inercija $X^T A X$.
+  Recimo $\nu' < \nu$.
+  Vsi lastni vektorji matrike $A$ za negativne lastne vrednosti razpenjajo nek
+  invarianten podprostor $\mathcal{N}$ dimenzije $\nu$.
+  Podobno vsi lastni vektorji nenegativnih lastnih vrednosti $X^T A X$
+  razpenjajo invarianten podprostor $\mathcal{P}$ dimenzije $n - \nu'$ za $X^T A
+  X$.
+  Prostor $X \mathcal{P}$ je tudi podprostor dimenzije $n - \nu'$, ki se mora
+  sekati z $\mathcal{N}$ po predpostavki $\nu' < \nu$.
+  Naj bo $v \in \mathcal{N} \presek X \mathcal{P}$ neničeln.
+  Velja
+  \[
+	\rho(v, A) = \frac{v^T A v}{v^T v} < 0,
+  \]
+  po drugi strani pa obstaja $w \in \mathcal{P}$, da je $v = X w$.
+  Velja
+  \[
+	\rho(v, A) = \frac{w^T X^T A X w}{w^T X^T X w} \ge 0,
+  \]
+  kar je protislovje.
+  Podobno v primeru $p' < p$.
+\end{proof}
+
+\vprasanje{Povej in dokaži Sylvestrov izrek.}
+
+Kako izračunamo inercijo za $T - \lambda I$?
+Uporabimo $L D L^T$ razcep, z
+\[
+  L =
+  \begin{bmatrix}
+	1 & & & & \\
+	l_1 & 1 & & & \\
+	  & l_2 & 1 & & \\
+	  & & \ddots & \ddots & \\
+	& & & l_{n-1} & 1
+  \end{bmatrix}
+\]
+in $D = \operatorname{diag}(d_1, \ldots, d_n)$.
+Razcep poiščemo podobno kot LU razcep.
+Vemo, da je inercija $T - \lambda I$ enaka inerciji $D$.
+Lastne vrednosti poiščemo z bisekcijo, kjer upoštevamo informacije iz inercije.
+
+V postopku za račun $LDL^T$ razcepa smo nekje delili z diagonalnim elementom,
+kar lahko načeloma da vmesni rezultat $d_i = -\infty$.
+To nas ne moti, tako vrednost štejemo kot negativno, v naslednjem koraku pa bomo
+tako in tako dobili $0$.
+
+\vprasanje{Opiši metodo bisekcije za iskanje lastnih vrednosti.}
+
+\podnaslov{Jacobijeva metoda}
+
+V Jacobijevi metodi matrike ne reduciramo na tridiagonalno obliko.
+Vzamemo Jacobijevo (Givensovo) rotacijo
+\[
+  R_{pq}^T =
+  \begin{bmatrix}
+	1 &        &   &    &        &   &        & \\
+	  & \ddots &   &    &        &   &        & \\
+	  &        & 1 &    &        &   &        & \\
+	  &        &   & c  &        & s &        & \\
+	  &        &   &    & \ddots &   &        & \\
+	  &        &   & -s &        & c &        & \\
+	  &        &   &    &        &   & \ddots & \\
+	  &        &   &    &        &   &        & 1
+  \end{bmatrix},
+\]
+kjer izberemo $c$ in $s$ tako, da bo $\tilde{a}_{pq} = \tilde{a}_{qp} = 0$.
+S tem si lahko pokvarimo prejšnja postavljanja.
+
+\begin{lema}
+  Če $\tilde{A}$ dobimo iz $A$ kot $\tilde{A} = R_{pq}^T A R_{pq}$, kjer
+  $R_{pq}$ določimo tako, da je $\tilde{a}_{pq} = \tilde{a}_{qp} = 0$, potem
+  $\operatorname{off}(\tilde{A})^2 = \operatorname{off}(A)^2 - 2 a_{pq}^2$,
+  kjer je $\operatorname{off}$ norma izvendiagonalnega dela.
+\end{lema}
+
+\begin{proof}
+  Ker je $R_{pq}$ ortogonalna, velja
+  \[
+	\operatorname{off}(\tilde{A})^2 + \sum_i \tilde{a}_{ii}^2
+	= \norm{\tilde{A}}_F^2
+	= \norm{A}_F^2
+	= \operatorname{off}(A)^2 + \sum_i a_{ii}^2.
+  \]
+  Vsi diagonalni elementi razen $pp$ in $qq$ se ujemajo, torej se to poenostavi
+  v
+  \[
+	\operatorname{off}(\tilde{A})^2 = \operatorname{off}(A)^2 + a_{pp}^2 +
+	a_{qq}^2 - \tilde{a}_{pp}^2 - \tilde{a}_{qq}^2.
+  \]
+  Tudi $2\times 2$ podmatriki mest $(p, q)$ imata enako Frobeniusovo normo,
+  torej je ostanek enak $- 2 a_{pq}^2$.
+\end{proof}
+
+\vprasanje{Dokaži, da se norma izvendiagonalnih elementov zmanjšuje z
+  iteracijami.}
+
+% LocalWords:  Courant-Fisherjev Courant-Fisher Weylov Rayleighova Rayleighovi
+% LocalWords:  Rayleighovimi Wilkinsonovi Sylvester invarianten LU Jacobijevi
+% LocalWords:  Givensovo izvendiagonalnega izvendiagonalnih
