@@ -1,0 +1,79 @@
+\naslov{Nenadzorovano učenje}
+
+Pri nenadzorovanem učenju nimamo ciljne spremenljivke $Y$.
+Namesto napovedi iščemo povezane skupine podatkov (\enquote{clustering}).
+Kot vhodni podatek dobimo množico podatkov $S$ z metriko $d$, in želeno število
+skupin $k$.
+Prva možnost tu je algoritem HAC.
+Začnemo s $\abs{S}$ enojci, dokler imamo več kot eno skupino, najbližji dve
+združimo.
+Rezultat je dendrogram, kjer $y$ koordinata povezave med skupinama prikaže
+medsebojno razdaljo.
+Razdaljo med skupinama $C_1$ in $C_2$ lahko definiramo na več načinov, ali kot
+najmanjšo/največjo/povprečno razdaljo med primeri, ali pa bolj ekonomično; za
+tretjo skupino $C$ je
+\[
+  d(C_1 \unija C_2, C) = \alpha_1 D(C_1, C) + \alpha_2 D(C_2, C) + \beta D(C_1,
+  C_2)
+\]
+za
+\begin{gather*}
+  \alpha_1 = \frac{\abs{C_i} + \abs{C}}{\abs{C_1} + \abs{C_2} + \abs{C}}, \\
+  \beta = - \frac{\abs{C}}{\abs{C_1} + \abs{C_2} + \abs{C}}.
+\end{gather*}
+Temu pravimo \pojem{Wardova formula}.
+
+\vprasanje{Opiši delovanje algoritma HAC in povej Wardovo formulo.}
+
+Druga metoda je $k$-means clustering.
+Tukaj iščemo
+\[
+  \min_{\abs{\mathcal{C}} = k} \sum_{C \in \mathcal{C}} \abs{C} \var(C),
+\]
+kar lahko naredimo za evklidsko razdaljo.
+Izračunamo \pojem{centroid} (težišče)
+\[
+  c = \operatorname{arg\,min}_u \sum_{v \in S} d(u,v)
+  = \inv{\abs{S}} \sum_{v \in S} \vec{v},
+\]
+kar dobimo z računanjem odvodov.
+Varianca skupine je vsota kvadratov razdalj med primeri in centroidom.
+
+Razbitje izračunamo iterativno.
+Začnemo z naključno razporeditvijo, in potem iterativno izračunamo centroide
+vseh skupin ter vse primere povežemo s tistim centroidom, ki jim je najbližje.
+Iteracijo ustavimo, ko ni več spremembe.
+
+Če imamo neevklidsko mero razdalje, se lahko zgodi, da centroida ne znamo
+poiskati.
+V tem primeru ga nadomestimo z \pojem{medoidom}
+\[
+  m = \operatorname{arg\,min}_{u \in S} \sum_{v \in S} d(u,v).
+\]
+
+\vprasanje{Opiši delovanje algoritma $k$-means clustering. Kaj naredimo, če
+  nimamo evklidske metrike?}
+
+Kvaliteto razvrščanja merimo s povezanostjo in ločenostjo primerov od ostalih.
+\pojem{Povezanost} je definirana kot
+\[
+  a(u) = \inv{\abs{C_u} - 1} \sum_{v \in C_u} d(u,v),
+\]
+kjer je $C_u$ skupina, kateri pripada $u$.
+Delimo s $\abs{C_u} - 1$, ker je razdalja $d(u,u) = 0$.
+\pojem{Ločenost} pa je definirana kot
+\[
+  b(u) = \min_{C \in \mathcal{C}, C \ne C_u} \inv{C} \sum_{v \in C} d(u,v).
+\]
+Ti vrednosti kombiniramo v \pojem{obris}
+\[
+  s(u) = \frac{b(u) - a(u)}{\max(a(u), b(u))},
+\]
+ki ima vrednosti med $-1$ in $1$.
+Primer je razvrščen dobro za $s$ blizu $1$ in slabo za $s$ blizu $-1$; mera
+kvalitete celotnega razvrščanja bo povprečje $s(u)$ čez vse $u$.
+
+\vprasanje{Kako vrednotimo razvrščanje?}
+
+% LocalWords:  HAC dendrogram Wardova Wardovo means clustering centroidom
+% LocalWords:  centroide centroida medoidom
