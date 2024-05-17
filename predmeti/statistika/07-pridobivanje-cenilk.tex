@@ -11,3 +11,76 @@ Cenilka za $y$ je potem $\hat{y} = \operatorname{Char}(\operatorname{Emp}(X_1,
 \ldots, X_n))$.
 
 \vprasanje{Opiši metodo empirične porazdelitve. Kakšne so predpostavke?}
+
+Kot primer vzemimo $\mu = E(X_1)$, ki ga ocenimo z $\hat{\mu} =
+E(\operatorname{Emp}(X_1, \ldots, X_n)) = \overline{X}_n$.
+To je nepristranska cenilka za $\mu$.
+Če so $X_1, \ldots, X_n$ nekorelirane, vemo, da je
+\[
+  \operatorname{SE} = \frac{\sigma}{\sqrt{n}}
+\]
+kjer je $\sigma^2 = \var(X_1)$.
+Drug pogled je enostavno slučajno vzorčenje.
+Na populaciji z $N$ enotami naj bo definirana statistična spremenljivka,
+tj.~funkcija $\{1, \ldots, N\} \to \R$.
+Njene vrednosti na posameznih enotah izrazimo z $x_1, \ldots, x_N$.
+Iz populacije vzamemo vzorec, ki ga sestavljajo enote $K_1, \ldots, K_n$.
+Enostavno slučajno vzorčenje pomeni, da ima vektor $(K_1, \ldots, K_n)$
+vrednosti v množici $\{(k_1, \ldots, k_n) \such k_i \ne k_j\}$.
+Označimo $X_i = x_{K_i}$, da velja $X_i \sim \operatorname{Emp}(X_1, \ldots,
+X_n)$.
+Potem je $\mu = E(X_1) = \mu$ in
+\[
+  \var(X_1) = \inv{N} \sum_{k=1}^N (x_k - \mu)^2.
+\]
+Standardna napaka cenilke $\overline{X}$ za $\overline{x}$ je
+\[
+  \operatorname{SE}^2
+  = \var(\overline{X})
+  = \inv{n^2} \var\left(\sum_i X_i\right)
+  = \inv{n^2} \sum_{i,j} \cov(X_i, X_j)
+  = \frac{N-n}{N-1} \frac{\sigma^2}{n}.
+\]
+
+\vprasanje{Opiši uporabo metode empirične porazdelitve za pričakovano vrednost.}
+
+Če ocenjujemo $\sigma^2 = \var(X_1)$, je cenilka
+\[
+  \hat{\sigma}^2 = \inv{n} \sum_k (X_k - \overline{X})^2
+\]
+Za nepristranskost izračunajmo $E(\hat{\sigma}^2)$.
+Velja
+\[
+  \hat{\sigma}^2 = \inv{n} \norm{(X_1 - \overline{X}, \ldots, X_n -
+	\overline{X})}^2
+  = \inv{n} \norm{\sv{X} - \overline{X} \cdot \sv{1}}^2
+  = \inv{n} \norm{(I - \inv{n} \sv{1} \sv{1}^T) \sv{X}}^2.
+\]
+Označimo $H = I - \inv{n} \sv{1} \sv{1}^T$.
+To je ortogonalni projektor, velja
+\[
+  \hat{\sigma}^2 = \inv{n} (H \sv{X})^T (H \sv{X})
+  = \inv{n} \sv{X}^T H \sv{X}.
+\]
+Sled skalarja je enaka skalarju, velja
+\[
+  E(\hat{\sigma}^2)
+  = \inv{n} \sled (H E(\sv{X} \sv{X}^T)).
+\]
+Če zamenjamo spremenljivke $\sv{X}' = \sv{X} - \sv{\mu}$, lahko izrazimo
+\[
+  E(\hat{\sigma}^2) = \inv{n} \sled(H E(\sv{X}' \sv{X}'^T))
+  = \inv{n} \sled (H \var(\sv{X})),
+\]
+ker je $E(\sv{X}') = 0$.
+
+Sedaj ločimo dva primera.
+Če so $X_1, \ldots, X_n$ nekorelirane, je $\var(\sv{X}) = \sigma^2 I$ in
+posledično
+\[
+  E(\hat{\sigma}^2) = \frac{n-1}{n} \sigma^2,
+\]
+torej je $\hat{\sigma}^2$ pristranska cenilka za $\sigma^2$, cenilka
+$\hat{\sigma}^2_+ = \frac{n}{n-1} \hat{\sigma}^2$ pa je nepristranska.
+
+\vprasanje{Pokaži, da je empirična varianca pristranska.}
