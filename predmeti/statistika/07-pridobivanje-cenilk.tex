@@ -84,3 +84,147 @@ torej je $\hat{\sigma}^2$ pristranska cenilka za $\sigma^2$, cenilka
 $\hat{\sigma}^2_+ = \frac{n}{n-1} \hat{\sigma}^2$ pa je nepristranska.
 
 \vprasanje{Pokaži, da je empirična varianca pristranska.}
+
+Če je $\operatorname{SE}$ standardna napaka cenilke $\overline{X}$ za $\mu$,
+potem je cenilka
+\[
+  \hat{\operatorname{SE}}^2 = \inv{n^2} \sum_{i=1}^n (X_i - \overline{X})^2
+\]
+pristranska cenilka.
+Nepristranska cenilka bo
+\[
+  \hat{\operatorname{SE}}^2_+ = \inv{n(n-1)} \sum_{i=1}^n (X_i -
+  \overline{X})^2.
+\]
+
+Pri enostavnem slučajnem vzorčenju iz populacije z $N$ enotami imamo
+\[
+  \var(\sv{X}) = \sigma^2
+  \begin{bmatrix}
+	1 & \frac{-1}{N-1} & \cdots & \frac{-1}{N-1} \\
+	\frac{-1}{N-1} & 1 & \cdots & \frac{-1}{N-1} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	\frac{-1}{N-1} & \frac{-1}{N-1} & \cdots & 1
+  \end{bmatrix}
+  = \sigma^2 \left(\frac{-1}{N-1} \sv{1} \sv{1}^T + \frac{N}{N-1} I\right).
+\]
+Za matriko $H = I - \inv{n} \sv{1} \sv{1}^T$ lahko izračunamo $H \var(\sv{X}) =
+\frac{N \sigma^2}{N-1} H$, torej dobimo
+\[
+  E(\hat{\sigma}^2)
+  = \inv{n} \sled(H \var(\sv{X}))
+  = \inv{n} \sled \left( \frac{N \sigma^2}{N-1} H \right)
+  = \frac{N}{N-1} \frac{n-1}{n} \sigma^2
+\]
+in je cenilka
+\[
+  \hat{\sigma}^2_+ = \frac{N-1}{N} \frac{n}{n-1} \hat{\sigma}^2
+\]
+nepristranska za $\sigma^2$.
+
+\vprasanje{Kaj je nepristranska cenilka za $\sigma^2$ pri enostavnem slučajnem
+  vzorčenju? Izpelji.}
+
+Poseben primer metode empirične porazdelitve je \pojem{metoda momentov}.
+Pri njej teoretični moment $m_k = E(X_1^k)$ ocenimo z empiričnim momentom,
+količino $y = g(m_1, \ldots, m_k)$ pa ocenimo z $\hat{y} = g(\hat{m}_1, \ldots,
+\hat{m}_k)$.
+
+\vprasanje{Opiši metodo momentov.}
+
+\podnaslov{Metoda največjega verjetja}
+
+\pojem{Verjetje} je verjetnostna funkcija ali gostota, ki ga gledamo kot
+funkcijo parametra model $\theta$.
+Za cenilko $\hat{\theta} = h(x)$ pravimo, da je \pojem{cenilka po MNV}, če
+verjetje $L(\theta \such x)$ pri vsakem $x$ doseže maksimum pri $\hat{\theta} =
+h(x)$.
+V praksi se izkaže, da je lažje maksimizirati $l = \ln L$.
+Če je $\sv{X} = (X_1, \ldots, X_n)$, kjer so komponente neodvisne in enako
+porazdeljene, je potem $l$ vsota verjetij za vsak $X_i$.
+
+\vprasanje{Opiši metodo največjega verjetja.}
+
+Če je $I \subseteq \R^p$ in $\sv{\theta} = (\theta_1, \ldots, \theta_p)$, je
+stacionarna točka verjetja ničla funkcije $\grad l$.
+Temu gradientu pravimo \pojem{zbirna funkcija}.
+Recimo, da verjetje pride iz neke gostote $f(\sv{x} \such \sv{\theta})$.
+Potem je
+\[
+  1 = \int_{\R^n} f(\sv{x} \such \sv{\theta}) d\sv{x}.
+\]
+Če to odvajamo po $\theta_j$, in upoštevamo $\partial_{\theta_j} l =
+\partial_{\theta_j} L / L$, dobimo
+\[
+  E_\theta\!\left( \frac{\partial l}{\partial \theta_j} (\sv{\theta} \such
+	\sv{X}) \right)
+  =
+  \int_{\R^n} L(\sv{\theta} \such \sv{x}) \frac{\partial l}{\partial \theta_j}
+  d \sv{x} = 0.
+\]
+Z računom lahko pokažemo
+\[
+  \frac{\partial^2 l}{\partial \theta_j \partial \theta_k}
+  = \frac{\partial_{\theta_j} \partial_{\theta_k} L}{L} - \frac{\partial
+	l}{\partial \theta_j} \frac{\partial l}{\partial \theta_k}.
+\]
+Če odvajamo $\int L = 1$ po $\theta_j$ in $\theta_k$, dobimo
+\[
+  \int_{\R^n} \frac{\partial_{\theta_j} \partial_{\theta_k} L}{L} f = 0,
+\]
+iz česar sledi, da je pričakovana vrednost prvega člena dvojnega odvoda zgoraj
+enaka $0$.
+Torej je
+\[
+  E_\theta\!\left( \frac{\partial^2 l}{\partial \theta_j \partial \theta_k}
+  \right)
+  = - E_\theta\!\left( \frac{\partial l}{\partial \theta_j} \frac{\partial
+	  l}{\partial \theta_k} \right)
+  = - \cov_\theta\!\left( \frac{\partial l}{\partial \theta_j},
+	\frac{\partial l}{\partial \theta_k} \right).
+\]
+Pričakovana vrednost Hessejeve matrike $H l$ je torej nasprotna vrednost
+kovariančne matrike zbirne funkcije, in je negativno semidefinitna.
+Torej je stacionarna točka v povprečju maksimum.
+Definiramo \pojem{Fisherjevo informacijo}
+\[
+  \operatorname{FI}(\sv{\theta})
+  = \var(\grad l(\sv{\theta} \such \sv{x}))
+  = - E(H l(\sv{\theta} \such \sv{x})).
+\]
+
+\vprasanje{Kaj je Fisherjeva informacija? Izpelji povezavo med predstavitvama.}
+
+Če je $\sv{X} = (X_1, X_2, \ldots, X_n)$, kjer so $X_i$ neodvisni in enako
+porazdeljeni, potem lahko definiramo Fisherjevo informacijo ene komponente, da
+je $\operatorname{FI} = n \operatorname{FI}_1$.
+
+\begin{izrek}
+  Naj bo $I \odpp\R^p$, $\operatorname{FI}_1$ obrnljiva za vsak $\sv{\theta} \in
+  I$ ter naj veljajo določeni dodatni tehnični pogoji.
+  Če so $X_i$ neodvisni in enako porazdeljeni, tedaj gre
+  \begin{itemize}
+  \item $\hat{\sv{\theta}} \xrightarrow[n \to \infty]{} \sv{\theta}$
+  \item $\sqrt{n} \operatorname{Bias}(\hat{\sv{\theta}} \such \sv{\theta})
+	\xrightarrow[n \to \infty]{} 0$
+  \item $n \var(\hat{\sv{\theta}}) (\operatorname{FI}_1(\sv{\theta}))^{-1}$
+  \item $n \operatorname{MSE}(\hat{\sv{\theta}} \such \sv{\theta})
+	\xrightarrow[n \to \infty]{d} (\operatorname{FI}_1(\sv{\theta}))^{-1}$
+  \end{itemize}
+  Če je $g: I \to \R$ primerna funkcija ter $y = g(\theta)$, za $\hat{y} =
+  g(\hat{\theta})$ velja
+  \begin{itemize}
+  \item $\hat{y} \xrightarrow[n \to \infty]{d} y$
+  \item $\sqrt{n} \operatorname{Bias}(\hat{y} \such y) \xrightarrow[n \to
+	\infty]{} 0$
+  \item $n \var(\hat{y}) \xrightarrow[n \to \infty]{} (\grad g(\sv{\theta}))^T
+	(\operatorname{FI}_1(\sv{\theta}))^{-1} (\grad g(\sv{\theta}))$
+  \item $n \operatorname{MSE}(\hat{y} \such y) \xrightarrow[n \to \infty]{}
+	(\grad g(\sv{\theta}))^T (\operatorname{FI}_1(\sv{\theta}))^{-1} (\grad
+	g(\sv{\theta}))$
+  \end{itemize}
+\end{izrek}
+
+\vprasanje{Povej izrek o metodi največjega verjetja.}
+
+% LocalWords:  MNV Fisherjeva
