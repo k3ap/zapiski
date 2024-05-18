@@ -114,3 +114,33 @@ Pristopa tu sta dva; lahko po kosih razširjamo rešitev $u$, pri čemer upošte
 informacije o robu, ali pa se pretvarjamo, da rob ne obstaja, in primerno
 razširimo začetni pogoj.
 Če to naredimo prav, bo rešitev ustrezala robnim pogojem.
+
+\section{Toplotna enačba}
+
+Toplotna enačba je oblike
+\[
+  u_t - u_{xx} = 0.
+\]
+Rešujemo jo z ločevanjem spremenljivk $u(t,x) = T(t) X(x)$.
+Dobimo sistem
+\[
+  \frac{T'}{T} = \frac{X''}{X}.
+\]
+Ker je leva stran odvisna le od $t$ in desna le od $x$, torej je ta izraz
+konstanta $\lambda$.
+Iz robnih pogojev izračunamo možne vrednosti za $\lambda$.
+Običajno pride $\lambda = -k^2$ za $k \in \Z$.
+Splošna rešitev bo potem (neskončna) vsota takih členov.
+Zahtevamo tudi, da je $u$ realna funkcija, torej se kompleksni členi v izražavi
+združijo, in dobimo $u$ kot linearno kombinacijo sinunov in kosinusov.
+Koeficiente v kombinaciji izračunamo s pomočjo Fourierovega razvoja začetnega
+pogoja.
+
+Včasih pri reševanju pride prav energija
+\[
+  E(t) = \pol \int_0^{2 \pi} u^2 dx.
+\]
+Če robni pogoji dajo $u u_x = 0$ na $0$ in na $2 \pi$, potem je $E'(t) < 0$,
+torej se ta energija ne viša s časom.
+
+% LocalWords:  izražavi sinunov
