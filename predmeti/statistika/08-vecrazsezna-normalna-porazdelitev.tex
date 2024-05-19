@@ -1,0 +1,120 @@
+\naslov{Večrazsežna normalna porazdelitev}
+
+\begin{definicija}
+  \pojem{Standardna večrazsežna normalna porazdelitev} je porazdelitev
+  slučajnega vektorja $(Z_1, \ldots, Z_n)$, kjer so $Z_i \sim N(0, 1)$
+  neodvisne.
+\end{definicija}
+
+\begin{opomba}
+  To je $n$-razsežna porazdelitev z gostoto
+  \[
+	\phi_n(z_1, \ldots, z_n) = \inv{(2 \pi)^{n/2}} \exp\!\left( -
+	  \frac{z_1^2}{2} - \cdots - \frac{z_n^2}{2} \right)
+  \]
+\end{opomba}
+
+\begin{definicija}
+  \pojem{Večrazsežna normalna porazdelitev} je poljubna porazdelitev slučajnega
+  vektorja oblike $A \sv{Z} + \sv{\mu}$, kjer je $\sv{Z}$ slučajni večrazsežni
+  normalni vektor, $A$ deterministična matrika, $\sv{\mu}$ pa deterministični
+  vektor primerne velikosti.
+\end{definicija}
+
+\begin{opomba}
+  Za vektor $\sv{X} = A \sv{Z} + \sv{\mu}$ je $E(\sv{X}) = \sv{\mu}$ in
+  $\var(\sv{X}) = A A^T$.
+\end{opomba}
+
+\vprasanje{Definiraj večrazsežno normalno porazdelitev.}
+
+Če je $\sv{Z}$ standardni $n$-razsežni normalni slučajni vektor, $A \in \R^{n
+  \times n}$ deterministična matrika in $\mu \in \R^n$.
+Tedaj ima $\sv{X} = A \sv{Z} + \sv{\mu}$ gostoto
+\[
+  f_{\sv{X}}(\sv{x})
+  = \inv{(2 \pi)^{n/2} \sqrt{\det \Sigma}} \exp\!\left( - \pol (\sv{x} -
+	\sv{\mu})^T \Sigma^{-1} (\sv{x} - \sv{\mu}) \right)
+\]
+za $\Sigma = A A^T$.
+
+\begin{trditev}
+  Če je $m \le n$, $\mu \in \R^m$ in ima $A \in \R^{m \times n}$ poln rang, je
+  $A \sv{Z} + \sv{\mu}$ porazdeljena $N(\sv{\mu}, A A^T)$.
+\end{trditev}
+
+\begin{proof}
+  Razcepimo lahko $A = B P Q$, kjer je $Q \in \R^{n \times n}$ ortogonalna, $P
+  \in \R^{m \times n}$ koordinatna projekcija na prvih $m$ komponent, in $B \in
+  \R^m$ neizrojena.
+  Ker je $Q Q^T = I$, je $Q \sv{Z} \sim N(0, I)$, in so komponente tega vektorja
+  neodvisne standardno normalne.
+  Vektor $P Q \sv{Z}$ je prav tako standardni normalni z enakimi komponentami,
+  le da jih ima $m$ namesto $n$.
+  Torej je $A \sv{Z} + \sv{\mu} = B P Q \sv{Z} + \sv{\mu}$ porazdeljen $N(\mu, B
+  B^T) = N(\mu, A A^T)$.
+\end{proof}
+
+\vprasanje{Kako je porazdeljen vektor $A \sv{Z} + \sv{\mu}$, kjer je $A$ polnega
+  ranga?}
+
+\begin{trditev}
+  Porazdelitev poljubnega večrazsežnega normalnega slučajnega vektorja je
+  natančno določena z njegovo pričakovano vrednostjo in kovariančno matriko.
+\end{trditev}
+
+\begin{proof}
+  Če je $\sv{X}$ $m$-razsežen normalen slučajni vektor, po definiciji obstajata
+  $A \in \R^{m \times n}$ in $\sv{\mu} \in \R^m$, da je $\sv{X} = A \sv{Z} +
+  \sv{\mu}$ za $\sv{Z} \sim N(0, I_n)$.
+
+  Naj bo $\tilde{\sv{Z}} \sim N(0, I_m)$ neodvisen od $\sv{Z}$.
+  Definiramo $\sv{X}_k = A \sv{Z} + \inv{k} \tilde{\sv{Z}} + \sv{\mu}$.
+  Iz izrekov Sluckega sledi $\sv{X}_k \xrightarrow[k \to \infty]{d} \sv{X}$.
+  Ker sta $\sv{Z}$ in $\tilde{\sv{Z}}$ neodvisna, je vektor $(\sv{Z},
+  \tilde{\sv{Z}}) \sim N(0, I_{n+m})$.
+  Pišimo
+  \[
+	\sv{X}_k =
+	\begin{bmatrix}
+	  A & \inv{k} I_m
+	\end{bmatrix}
+	\cdot
+	\begin{bmatrix}
+	  \sv{Z} \\ \tilde{\sv{Z}}
+	\end{bmatrix}
+	+ \sv{\mu}.
+  \]
+  Ta matrika je polnega ranga, zato je porazdelitev slučajnega vektorja
+  $\sv{X}_k$ odvisna le od pričakovane vrednosti $\sv{\mu}$ in kovariančne
+  matrike $\var(\sv{X}_k) = A A^T + \inv{k^2} I_m$.
+  Porazdelitev $\sv{X}$ je limita verjetnostnih porazdelitev $N(\sv{\mu}, A A^T
+  + \inv{k^2} I_m)$; ta je natančno določena, torej je porazdelitev $\sv{X}$
+  natančno določena z $\sv{\mu}$ in $A A^T$.
+\end{proof}
+
+\vprasanje{Dokaži: porazdelitev normalnega slučajnega vektorja je natančno
+  določena s pričakovano vrednostjo in kovariančno matriko.}
+
+\begin{trditev}
+  Če je bločni slučajni vektor $(\sv{X}_1, \sv{X}_2)$ porazdeljen večrazsežno
+  normalno in sta $\sv{X}_1$ ter $\sv{X}_2$ nekorelirana, sta tudi neodvisna.
+\end{trditev}
+
+\begin{proof}
+  Velja
+  \[
+	(\sv{X}_1, \sv{X}_2) \sim N\!\left(
+	  \begin{bmatrix}
+		\sv{\mu}_1 \\ \sv{\mu}_2
+	  \end{bmatrix},
+	  \begin{bmatrix}
+		\Sigma_1 & \\
+		& \Sigma_2
+	  \end{bmatrix}
+	\right),
+  \]
+  to pa je tudi porazdelitev vektorja, kjer sta prvi in drugi blok nekorelirana.
+\end{proof}
+
+% LocalWords:  Sluckega
