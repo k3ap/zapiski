@@ -365,9 +365,170 @@ S tem si lahko pokvarimo prejšnja postavljanja.
   torej je ostanek enak $- 2 a_{pq}^2$.
 \end{proof}
 
-\vprasanje{Dokaži, da se norma izvendiagonalnih elementov zmanjšuje z
-  iteracijami.}
+\vprasanje{Dokaži, da se pri Jacobijevi iteraciji norma izvendiagonalnih
+  elementov zmanjšuje z iteracijami.}
+
+S preprostim izračunom lahko pridemo do naslednjega predpisa za $s$ in $c$:
+\begin{gather*}
+  \tau = \frac{a_{pp} - a_{qq}}{2 a_{pq}}, \\
+  t = \frac{\operatorname{sgn} \tau}{\abs{\tau} + \sqrt{1 + \tau^2}}, \\
+  c = \inv{\sqrt{1 + t^2}}, \\
+  s = ct.
+\end{gather*}
+V enem koraku metode potem posodobimo $A = R_{pq}^T A R_{pq}$ in $Q = Q R_{pq}$.
+
+\vprasanje{Opiši en korak Jacobijeve iteracije.}
+
+Jacobijeva metoda je običajno počasnejša od ostalih, lahko pa z njo natančneje
+izračunamo majhne lastne vrednosti spd matrik.
+Metoda ima več variant:
+\begin{itemize}
+\item \pojem{Klasična varianta}: v vsakem koraku uničimo po absolutni vrednosti
+  največji izvendiagonalni element.
+  Preverjanje, kateri element je največji, lahko optimiziramo iz $O(n^2)$ v
+  $O(n)$, če si shranjujemo največji element po vrsticah in stolpcih.
+\item \pojem{Ciklična varianta}: elemente uničujemo po vrsti, na koncu se vrnemo
+  na začetek.
+\item \pojem{Pragovna varianta}: podobno kot ciklična metoda, a uničimo le
+  dovolj velike elemente.
+\end{itemize}
+
+\vprasanje{Opiši tri variante Jacobijeve metode.}
+
+\podnaslov{Deli in vladaj}
+
+Naj bo $T$ nerazcepna simetrična tridiagonalna $n \times n$ matrika in $m
+\approx \frac{n}{2}$.
+Razdelimo $T$ na dve matriki;
+\[
+  T =
+  \begin{bmatrix}
+	T_1 & \\
+	& T_2
+  \end{bmatrix}
+  + b_m v v^T,
+\]
+kjer je $v = e_m + e_{m+1}$, matriki $T_1$ in $T_2$ pa sta nerazcepni
+tridiagonalni.
+Rekurzivno lahko poiščemo $T_1 = Q_1 D_1 Q_1^T$ in $T_2 = Q_2 D_2 Q_2^T$.
+Potem velja
+\[
+  T =
+  \begin{bmatrix}
+	Q_1 & \\
+	& Q_2
+  \end{bmatrix}
+  \left(
+	\begin{bmatrix}
+	  D_1 & \\
+		  & D_2
+	\end{bmatrix}
+	+ b_m u u^T
+  \right)
+  \begin{bmatrix}
+	Q_1^T & \\
+	& Q_2^T
+  \end{bmatrix}
+\]
+za
+\[
+  u =
+  \begin{bmatrix}
+	Q_1^T & \\
+		  & Q_2^T
+  \end{bmatrix}
+  v.
+\]
+Recimo, da znamo učinkovito rešiti problem lastnih vrednosti za matriko $D +
+\rho u u^T = \tilde{Q} \Lambda \tilde{Q}^T$.
+Potem je
+\[
+  T =
+  \begin{bmatrix}
+	Q_1 & \\
+	& Q_2
+  \end{bmatrix}
+  \tilde{Q}
+  \Lambda
+  \tilde{Q}^T
+  \begin{bmatrix}
+	Q_1^T & \\
+	& Q_2^T
+  \end{bmatrix}.
+\]
+
+\begin{izrek}
+  Naj bo $A = D + \rho u u^T$ za $D = \operatorname{diag}(d_1, \ldots, d_n)$ in
+  $d_1 \ge d_2 \ge \cdots \ge d_n$.
+  \begin{itemize}
+  \item Če je $u_i = 0$, je $d_i$ lastna vrednost $A$ z lastnim vektorjem $e_i$.
+  \item Če je $d_i = d_{i+1}$, potem je $d_i$ lastna vrednost $A$ za lastni
+	vektor $- u_{i+1} e_i + u_i e_{i+1}$.
+  \end{itemize}
+\end{izrek}
+
+\vprasanje{Opiši osnovno delovanje metode deli in vladaj. Kakšni so posebni
+  primeri za lastne vrednosti?}
+
+Preostane problem lastnih vrednosti za $A = D + \rho u u^T$, kjer je $d_1 >
+\cdots > d_n$ in $u_i \ne 0$ za vsak $i$.
+Naj bo $\lambda$ lastna vrednost $A$.
+Predpostavimo, da je $\lambda \ne d_i$.
+Vemo, da je $A - \lambda I$ singularna.
+Ker je
+\[
+  A - \lambda I = D - \lambda I + \rho u u^T
+  = (D - \lambda I)(I + \rho (D - \lambda I)^{-1} u u^T)
+\]
+in ker je prva matrika v produktu nesingularna, je druga singularna.
+Za $x = (D - \lambda I)^{-1} u$ in $y^T = u^T$ velja naslednja lema:
+
+\begin{lema}
+  $\det (I + x y^T) = 1 + y^T x$.
+\end{lema}
+
+\begin{proof}
+  Če je $z \bot y$, je $(I + xy^T)z = z$, takih je $n-1$ linearno neodvisnih
+  $z$, torej je $1$ $(n-1)$-kratna lastna vrednost.
+  Velja $(I + xy^T)x = (1 + y^T x)x$, torej je $1 + y^T x$ zadnja lastna
+  vrednost.
+\end{proof}
+
+Računamo
+\[
+  \det (I+ \rho (D - \lambda I)^{-1} u u^T) = 1 + \rho u^T (D - \lambda I)^{-1}
+  u
+  = 1 + \rho \sum_{i=1}^n \frac{u_i^2}{d_i - \lambda} = f(\lambda),
+\]
+čemur pravimo \pojem{sekularna funkcija}.
+
+\vprasanje{Izpelji sekularno funkcijo.}
+
+Lastne vrednosti se rešitve sekularne enačbe $f(\lambda) = 0$.
+Funkcija ima $n$ enostavnih polov, za $\rho > 0$ je naraščajoča in za $\rho < 0$
+padajoča z asimptoto $y = 1$.
+Torej ima natanko $n$ ničel na znanih intervalih $(d_i, d_{i-1})$ oziroma na
+enem od neskončnih intervalov.
+Če je $\alpha$ lastna vrednost, lahko izračunamo lastni vektor $(D - \alpha
+I)^{-1} u$.
+
+Krivulja je strma okoli ničle in položna na velikem delu intervala, kar je
+težava, ker tako tangentna metoda kot bisekcija ne delujeta dobro.
+Namesto tega $f$ aproksimiramo z
+\[
+  h(x) = \frac{c_1}{d_{i+1} - \lambda} + \frac{c_2}{d_i - \lambda} + c_3,
+\]
+kjer konstante izračunamo tako, da se vrednosti $h$ in $f$ ter njunih odvodov
+ujemajo v približku $x_0$.
+
+\vprasanje{Kako poiščeš lastne vrednosti in lastne vektorje matrike $D + \rho u
+  u^T$?}
+
+Metoda je hitrejša od QR iteracije za $n > 30$, če potrebujemo tudi lastne
+vektorje.
+Ne deluje pa brez računanja $Q$.
 
 % LocalWords:  Courant-Fisherjev Courant-Fisher Weylov Rayleighova Rayleighovi
 % LocalWords:  Rayleighovimi Wilkinsonovi Sylvester invarianten LU Jacobijevi
-% LocalWords:  Givensovo izvendiagonalnega izvendiagonalnih
+% LocalWords:  Givensovo izvendiagonalnega izvendiagonalnih izvendiagonalni spd
+% LocalWords:  Pragovna tridiagonalni
