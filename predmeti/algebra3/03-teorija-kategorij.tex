@@ -107,5 +107,91 @@
 
 \vprasanje{Definiraj funktorje in kofunktorje.}
 
+\begin{definicija}
+  Naj bosta $F, G$ funktorja iz $\kat$ v $\katD$.
+  \pojem{Naravna transformacija} med $F$ in $G$ je nabor morfizmov $\mu_C: F(C)
+  \to G(C)$ za objekt $C$ kategorije $\kat$, da za vsak morfizem $f: A \to B$ v
+  kategoriji $\kat$ diagram
+  \[\begin{tikzcd}
+	  {F(A)} && {F(B)} \\
+	  \\
+	  {G(A)} && {G(B)}
+	  \arrow["{F(f)}", from=1-1, to=1-3]
+	  \arrow["{\mu_A}"', from=1-1, to=3-1]
+	  \arrow["{\mu_B}", from=1-3, to=3-3]
+	  \arrow["{G(f)}"', from=3-1, to=3-3]
+	\end{tikzcd}\]
+  komutira.
+  Pravimo, da sta funktorja $F$ in $G$ \pojem{naravno izomorfna}, če obstaja
+  naravna transformacija $\mu: F \to G$, za katero so vsi morfizmi $\mu_C$
+  izomorfizmi.
+\end{definicija}
+
+\vprasanje{Kaj je naravna transformacija?}
+
+\podnaslov{Univerzalne konstrukcije}
+
+\begin{definicija}
+  Naj bosta $A, B$ objekta kategorije $\kat$.
+  \pojem{Produkt} objektov $A$ in $B$ je objekt $P$, skupaj z morfizmoma $p: P
+  \to A$ in $q: P \to B$, da za poljuben objekt $X$ in poljubna morfizma $f: X
+  \to A$ ter $g: X \to B$ obstaja natanko en morfizem $h: X \to P$, da naslednji
+  diagram komutira:
+  \[\begin{tikzcd}
+	  A & P & B \\
+	  & X
+	  \arrow["p"', from=1-2, to=1-1]
+	  \arrow["q", from=1-2, to=1-3]
+	  \arrow["f", from=2-2, to=1-1]
+	  \arrow["h", from=2-2, to=1-2]
+	  \arrow["g"', from=2-2, to=1-3]
+	\end{tikzcd}\]
+\end{definicija}
+
+\begin{definicija}
+  \pojem{Koprodukt} objektov $A$ in $B$ je produkt v nasprotni kategoriji.
+\end{definicija}
+
+\vprasanje{Definiraj produkt in koprodukt.}
+
+\begin{definicija}
+  Kategorija je \pojem{konkretna}, če so objekti množice, morfizmi pa
+  preslikave.
+\end{definicija}
+
+\begin{definicija}
+  Naj bo $\kat$ konkretna kategorija in $X$ neprazna množica.
+  \pojem{Prosti objekt} nad množico $X$ v kategoriji $\kat$ je objekt $F$,
+  skupaj s preslikavo $\iota: X \to F$, da za vsak objekt $C$ in vsako
+  preslikavo $f: X \to C$ obstaja natanko en morfizem $\tilde{f}: F \to C$, da
+  naslednji diagram komutira:
+  \[\begin{tikzcd}
+	  X & C \\
+	  F
+	  \arrow["f", from=1-1, to=1-2]
+	  \arrow["\iota", from=2-1, to=1-1]
+	  \arrow["{\tilde{f}}"', from=2-1, to=1-2]
+	\end{tikzcd}\]
+\end{definicija}
+
+\begin{opomba}
+  Prost objekt, če obstaja, je do izomorfizma natanko enolično določen.
+  Definiramo kategorijo $\hat{\kat}$ z objekti $X \xrightarrow{f} C$ in morfizmi
+  \[\begin{tikzcd}
+	  X & C \\
+	  X & C
+	  \arrow["f", from=1-1, to=1-2]
+	  \arrow["\id"', from=1-1, to=2-1]
+	  \arrow[dotted, from=1-2, to=2-2]
+	  \arrow["g"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+  kjer je diagram komutativen.
+  Prosti objekt v $C$ je ravno začetni objekt kategorije $\hat{\kat}$.
+\end{opomba}
+
+\vprasanje{Definiraj prosti objekt in pokaži, da je do izomorfizma natanko
+  enolično določen.}
+
 % LocalWords:  morfizmov morfizem unitalnost morfizma monomorfizem epimorfizma
-% LocalWords:  Funktor funktor Kofunktor kofunktorje funktorje
+% LocalWords:  Funktor funktor Kofunktor kofunktorje funktorje funktorja
+% LocalWords:  morfizmoma
