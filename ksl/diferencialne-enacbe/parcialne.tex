@@ -115,6 +115,12 @@ informacije o robu, ali pa se pretvarjamo, da rob ne obstaja, in primerno
 razširimo začetni pogoj.
 Če to naredimo prav, bo rešitev ustrezala robnim pogojem.
 
+Običajna energija za valovno enačbo $u_{tt} - c^2 u_{xx} = 0$
+na definicijskem območju $(t,x) \in (0, \infty) \times [0, L]$ je oblike
+\[
+  E = \pol \int_0^L (u_t^2 + c^2 u_x^2) dx
+\]
+
 \section{Toplotna enačba}
 
 Toplotna enačba je oblike
@@ -142,5 +148,16 @@ Včasih pri reševanju pride prav energija
 \]
 Če robni pogoji dajo $u u_x = 0$ na $0$ in na $2 \pi$, potem je $E'(t) < 0$,
 torej se ta energija ne viša s časom.
+
+\section{Eliptične enačbe}
+
+Standardna energija eliptične enačbe $u_{xx} + u_{yy} = 0$ je
+\[
+  \int \norm{\grad u}^2 dx dy
+  = \int (u_x^2 + u_y^2) dx dy.
+\]
+To je skalar, za dovolj lepe probleme konstanta.
+Če ima enačba pred členoma še koeficiente, lahko poskusimo dodati podobne
+koeficiente v zgornji predpis (v upanju, da spet dobimo energijo).
 
 % LocalWords:  izražavi sinunov
