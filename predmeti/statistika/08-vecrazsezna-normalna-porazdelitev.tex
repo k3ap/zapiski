@@ -117,4 +117,82 @@ za $\Sigma = A A^T$.
   to pa je tudi porazdelitev vektorja, kjer sta prvi in drugi blok nekorelirana.
 \end{proof}
 
-% LocalWords:  Sluckega
+Če je $\sv{Z}$ porazdeljen standardno normalno z $n$ prostorskimi stopnjami,
+je $\norm{\sv{Z}}^2 \sim \chi^2(n) = \Gamma(\frac{n}{2}, \pol)$.
+
+\begin{trditev}
+  Če je $H$ ortogonalni projektor ranga $p$ in $\sv{X} \sim N(0, H)$, je
+  $\norm{\sv{X}}^2 \sim \chi^2(p)$.
+\end{trditev}
+
+\begin{proof}
+  Obstaja ortogonalna matrika $Q$, da je
+  \[
+	Q H Q^T =
+	\begin{bmatrix}
+	  I_p &  \\
+	   & 0_{n-p}
+	\end{bmatrix}.
+  \]
+  Velja $Q \sv{X} \sim N(0, Q H Q^T)$ in $\norm{Q \sv{X}} = \norm{\sv{X}}$.
+\end{proof}
+
+\vprasanje{Opiši porazdelitev $\chi^2$.}
+
+\begin{opomba}
+  Če so $X_1, \ldots, X_n \sim N(\mu, \sigma^2)$ neodvisne, je
+  \[
+	\inv{\sigma^2} \sum_i (X_i - \overline{X})^2
+  \]
+  porazdeljena $\chi^2(n-1)$.
+\end{opomba}
+
+\begin{definicija}
+  \pojem{Studentova porazdelitev} s $p$ prostorskimi stopnjami je porazdelitev
+  slučajne spremenljivke $Z / \sqrt{H/p}$, kjer sta $Z \sim N(0,1)$ in $H \sim
+  \chi^2(p)$ neodvisni.
+\end{definicija}
+
+\vprasanje{Definiraj Studentovo porazdelitev.}
+
+Če so $X_1, \ldots, X_n \sim N(\mu, \sigma^2)$ neodvisne slučajne spremenljivke,
+vemo, da je
+\[
+  \frac{\overline{X} - \mu}{\sigma} \sqrt{n} \sim N(0,1).
+\]
+Če ne poznamo $\sigma$, bi ga radi nadomestili s cenilko $\hat{\sigma}_+$.
+Pišimo
+\[
+  \frac{\overline{X} - \mu}{\hat{\sigma}_+} \sqrt{n}
+  = \frac{\frac{\overline{X} - \mu}{\sigma} \sqrt{n}}{\hat{\sigma}_+ / \sigma}
+  = \frac{Z}{\sqrt{G / (n-1)}},
+\]
+kjer je $Z \sim N(0,1)$ in
+\[
+  G = \inv{\sigma^2} \sum_i (X_i - \overline{X})^2.
+\]
+Za $H = I_n - \inv{n} \sv{1} \sv{1}^T$ velja $\overline{X} = \inv{n} \sv{1}^T
+\sv{X}$ in $\sum (X_i - \overline{X})^2 = \norm{H \sv{X}}^2$.
+Vektor
+\[
+  \begin{bmatrix}
+	H \sv{X} \\ \sv{1}^T \sv{X}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+	H \\ \sv{1}^T
+  \end{bmatrix}
+  \sv{X}
+\]
+je porazdeljen večrazsežno normalno.
+Izračunamo lahko $\cov(H \sv{X}, \sv{1}^T \sv{X}) = 0$, torej sta $Z$ in $G$
+neodvisna, in je
+\[
+  \frac{\overline{X} - \mu}{\hat{\sigma}_+} \sqrt{n}
+  \sim \operatorname{Student}(n-1).
+\]
+
+\vprasanje{Kako je porazdeljen $\frac{\overline{X} - \mu}{\hat{\sigma}_+}
+  \sqrt{n}$, če so $X_i \sim N(\mu, \sigma^2)$ neodvisni?}
+
+% LocalWords:  Sluckega Studentova Studentovo

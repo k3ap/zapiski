@@ -1,0 +1,49 @@
+\naslov{Statistično sklepanje z nadzorovanim tveganjem}
+
+Opazimo $X$, zanima nas $Y$.
+Želimo zatrditi, da z visoko verjetnostjo velja $Y_{\text{min}} < Y <
+Y_{\text{max}}$, kjer sta $Y_{\text{min}}$ in $Y_{\text{max}}$ opazljivi.
+Intervalu med njima pravimo \pojem{napovedni interval}, če pa je $Y = y =
+g(\theta)$ determinističen, pa \pojem{interval zaupanja}.
+
+Splošneje lahko izjavimo $Y \in C_X$, kjer je $\{C_X\}_X$ nek nabor množic.
+Naš cilj je nadzorovati verjetnost zmote $p_\theta = P_\theta(Y \notin C_X)$, za
+kar vnaprej izberemo \pojem{stopnjo tveganja} $\alpha$, tipično $0.05$.
+To lahko naredimo na več načinov:
+\begin{itemize}
+\item eksaktna stopnja tveganja: $p_\theta = \alpha$ za vsak $\theta$,
+\item nominalna stopnja tveganja: $p_\theta$ je čim bližje $\alpha$,
+\item asimptotično eksaktna stopnja tveganja: opazimo čim več vrednosti;
+  zahtevamo
+  \[
+	\lim_{n \to \infty} p_\theta = \alpha,
+  \]
+\item konzervativna stopnja tveganja: $p_\theta \le \alpha$ za vsak $\theta$.
+\end{itemize}
+Nasprotni verjetnosti $1 - \alpha$ pravimo \pojem{stopnja zaupanja}.
+
+\vprasanje{Na katere načine lahko izberemo stopnjo zaupanja?}
+
+Za iskanje mej definiramo \pojem{mero razhajanja} $\rho(x,y)$, ki meri neskladje
+med $x$ in $y$.
+Če imamo srečo, je $\rho$ \pojem{pivotna funkcija}, kar pomeni, da je
+porazdelitev slučajne spremenljivke $\rho(X,Y)$ neodvisna od $\theta$.
+Tedaj postavimo $C = \{(x,y) \such \rho(x,y) < c_\alpha\}$, kjer $c_\alpha$
+izračunamo tako, da je verjetnost zmote enaka $\alpha$.
+
+\begin{izrek}
+  Če definiramo
+  \[
+	\widehat{\text{RMSE}}
+	= \sqrt{\inv{n} \grad g(\hat{\theta})^T
+	  \operatorname{FI}_1^{-1}(\hat{\theta}) \grad g(\hat{\theta})},
+  \]
+  kjer je $\hat{\theta}$ cenilka po MNV, pod podobnimi pogoji kot za prejšnji
+  rezultat velja
+  \[
+	\frac{\hat{y} - y}{\widehat{\text{RMSE}}}
+	\xrightarrow[n \to \infty]{d} N(0,1).
+  \]
+\end{izrek}
+
+% LocalWords:  MNV
