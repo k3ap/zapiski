@@ -1,0 +1,36 @@
+\naslov{Toplotna enačba}
+
+Naj bo $U \subseteq \R^n$ omejena odprta množica z gladkim robom.
+Obravnavamo Cauchyjev problem za toplotno enačbo
+\[
+  u_t - \Delta u = 0
+\]
+na $U \times (0,\infty)$.
+Poleg tega zahtevamo $u=0$ na $\partial U \times (0,\infty)$ in $u(x,0) = g(x)$
+na $U \times \{0\}$.
+Iskali bomo rešitve oblike $u(x,t) = v(t) w(x)$.
+Izračunamo $u_t - \Delta u = w(x) v'(t) - v(t) \Delta w(x) = 0$, iz česar dobimo
+\[
+  \frac{\Delta w(x)}{w(x)} = \frac{v'(t)}{v(t)}.
+\]
+Leva stran te enačbe je neodvisna od $t$, desna pa neodvisna od $x$, torej
+morata biti konstantni.
+Označimo to konstanto z $-\lambda$.
+Iskali bomo funkcije $w$, ki rešijo Cauchyjevo nalogo $- \Delta w = \lambda w$
+in $w = 0$ na $\partial U$.
+Potem bo funkcija $u(x,t) = d e^{-\lambda t} w(x)$ rešila enačbo $u_t - \Delta u
+= 0$ na $U \times (0,\infty)$ s pogojem $u = 0$ na $\partial U$.
+Pri $t = 0$ velja $u(x,0) = d w(x) = g(x)$, torej je rešitev oblike $u(x,t) =
+g(x) e^{-\lambda t}$, a le v primeru, da je $g$ oblike $d w(x)$, kjer je $d \in
+\R$ in $w$ reši omenjen problem.
+Ker je enačba linearna, je vsota rešitev take oblike tudi rešitev.
+Poiskali bomo števno družino rešitev $w_j, \lambda_j, d_j$, da bo
+\[
+  u(x,t) = \sum_{j=1}^\infty d_j e^{-\lambda_j t} w_j(x).
+\]
+
+\vprasanje{Izpelji splošno rešitev za toplotno enačbo.}
+
+Obravnavajmo primer $n=1$.
+Če je $\lambda \le 0$, iz robnih pogojev izpeljemo, da mora biti $w$ trivialen,
+kar za nas ni zanimivo.

@@ -38,3 +38,95 @@ V homogenem primeru za dan $c$ rešujemo $u_{tt} - c^2 u_{xx} = 0$ za $x \in \R$
 ter $t > 0$, pri pogojih $u(x,0) = f(x)$ in $u_t(x,0) = g(x)$.
 Zahtevamo, da je rešitev zvezna na $\R\times \zo{0, \infty}$ in $\zvodvi{2}$ na
 $\R \times (0, \infty)$.
+Splošna rešitev je oblike $u(x,t) = F(x - ct) + G(x + ct)$.
+Veljati mora
+\[
+  u_t(x,0) = -c F'(x) + c G'(x) = g(x),
+\]
+kar integriramo v
+\[
+  -F(x) + G(x) = \inv{c} \int_0^x g(\xi) d\xi + d.
+\]
+Drug pogoj je
+\[
+  u(x,0) = F(x) + G(x) = f(x),
+\]
+iz česar lahko izpeljemo
+\begin{gather*}
+  G(x) = \pol f(x) + \inv{2c} \int_0^x g(\xi) d\xi + d, \\
+  F(x) = \pol f(x) - \inv{2c} \int_0^x g(\xi) d\xi - d.
+\end{gather*}
+Če to sestavimo, dobimo \pojem{d'Alembertovo formulo}
+\[
+  u(x,t) = \pol (f(x-ct) + f(x+ct)) + \inv{2c} \int_{x - ct}^{x + ct} g(\xi)
+  d\xi.
+\]
+
+\vprasanje{Izpelji d'Alembertovo formulo za homogeno valovno enačbo.}
+
+Za vrednost $u(x,t)$ moramo poznati $f$ v krajiščih in $g$ na notranjosti
+intervala vpliva $[x-ct, x+ct]$, ki mu pravimo \pojem{interval vpliva}.
+Trikotnik
+\[
+  \Delta(x,t) = \{ (\chi, \tau) \such 0 \le \tau \le t, x - c (t-\tau) \le \chi \le
+  x + c (t-\tau) \}
+\]
+pa imenujemo \pojem{karakteristični trikotnik}.
+
+Za nehomogen primer rešujemo $u_{tt} - c^2 u_{xx} = \varphi(x, t)$.
+Če je $u$ rešitev Cauchyjevega problema, je
+\[
+  \iint_{\Delta(x,t)} \varphi dS = \iint_{\Delta(x,y)} (u_{tt} - c^2 u_{xx}) dS.
+\]
+Za $P = - u_t$ in $Q = -c^2 u_x$ po Greenovi formuli dobimo
+\[
+  \iint_{\Delta(x,t)} (u_{tt} - c^2 u_{xx}) dS
+  = \int_{\partial \Delta(x,t)} (-u_t, -c^2 u_x) \cdot d\vec{r}.
+\]
+Integral izračunamo na vsaki stranici trikotnika posebej.
+Na koncu dobimo
+\[
+  u(x,t) = \inv{2c} \iint_{\Delta(x,y)} \varphi dS
+  + \pol (f(x+ct) + f(x - ct)) + \inv{2c} \int_{x-ct}^{x+ct} g(\xi) d\xi.
+\]
+
+\vprasanje{Izpelji d'Alembertovo formulo za nehomogeno valovno enačbo.}
+
+\begin{izrek}
+  Naj bodo $f \in \zvodv{2}{\R}$, $g \in \zvezne{\R}$, $\varphi \in
+  \zvezne{\R^2}$ in $T > 0$.
+  Cauchyjeva naloga $u_{tt} - c^2 u_{xx} = \varphi$, $u(x,0) = f(x)$,
+  $u_t(x,0) = g(x)$ je za vsak $x \in \R$ ter $t \in [0,T]$ dobro postavljen,
+  torej
+  \begin{itemize}
+  \item rešitev obstaja,
+  \item rešitev je enolična,
+  \item rešitev je zvezno odvisna od začetnih pogojev.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Obstoj in enoličnost sta dokazana zgoraj (začeli smo z rešitvijo, in izpeljali
+  formulo).
+  Zveznost preverjamo za supremum normo, kjer za $f$ in $g$ dovolimo neskončne
+  vrednosti v normi.
+  Dokazujemo, da za vsak $\varepsilon > 0$ obstaja $\delta > 0$, da pogoji
+  $\norm{\varphi_1 - \varphi_2}_\infty < \delta$, $\norm{f_1 - f_2}_\infty <
+  \delta$ in $\norm{g_1 - g_2}_\infty < \delta$ implicirajo $\norm{u_1 -
+	u_2}_\infty < \varepsilon$.
+
+  Za razliko $u_1 - u_2$ ocenimo vsak kos posebej:
+  \begin{gather*}
+	\abs{\frac{f_1(x+ct) - f_2(x+ct) + f_1(x-ct) - f_2(x-ct)}{2}} < \delta, \\
+	\abs{\inv{2c} \int_{x - ct}^{x+ct} (g_1(\xi) - g_2(\xi)) d\xi} < \inv{2c}
+	2ct \delta, \\
+	\abs{\inv{2c} \iint_{\Delta(x,t)} (\varphi_1 - \varphi_2) dS} < \inv{2c}
+	S(\Delta(x,t)) \delta,
+  \end{gather*}
+  torej bo primerna izbira $\delta = \pol \frac{\varepsilon}{1 + T + \pol T^2}$.
+\end{proof}
+
+\vprasanje{Dokaži, da je rešitev valovne enačbe zvezno odvisna od začetnih
+  pogojev.}
+
+% LocalWords:  d'Alembertovo Cauchyjevega
