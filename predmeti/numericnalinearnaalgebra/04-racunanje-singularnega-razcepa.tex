@@ -1,0 +1,67 @@
+\naslov{Računanje singularnega razcepa}
+
+Dano imamo matriko $A \in \R^{m \times n}$, iščemo $A = U \Sigma V^T$.
+Vemo, da je $A^T A = V D V^T$, kjer je $V = \operatorname{\sigma_1^2, \ldots,
+  \sigma_n^2}$.
+To lahko uporabimo za numerični postopek:
+\begin{itemize}
+\item izračunaj $B = A^T A$
+\item poišči $B = V D V^T$ z rešitvijo simetričnega problema lastnih vrednosti
+\item izračunaj $\Sigma$ iz $D$
+\item izračunaj vektorje $u_i = \inv{\sigma_i} A v_i$ za $i = 1, \ldots,
+  \rang(A)$
+\item dopolni $U$ do ortogonalne matrike
+\end{itemize}
+Problem je, da nočemo eksplicitno računati $B$.
+
+\podnaslov{Enostranska Jacobijeva metoda}
+
+Implicitno izvajamo Jacobijevo metodo na $B = A^T A$.
+V iteraciji predpišemo $\tilde{B} = R_{pq}^T B R_{pq}$, namesto tega pa množimo
+$\tilde{A} = A R_{pq}$.
+Za določitev $R_{pq}$ potrebujemo le elemente $[A^T A]_{pp}$, $[A^T A]_{pq}$ in
+$[A^T A]_{qq}$.
+Potem $\tilde{A}$ konvergira proti matriki z ortogonalnimi stolpci.
+Norme stolpcev so singularne vrednosti, produkt rotacij $R_{pq}$ pa nam da
+matriko $V$.
+Najbolje je uporabljati pragovno varianto Jacobijeve iteracije; element $B_{pq}$
+uničimo, če je dovolj velik v primerjavi z $B_{pp}$ in $B_{qq}$.
+Jacobijeva metoda lahko za določene tipe matrik majhne singularne vrednosti
+izračunati natančneje od ostalih.
+
+\vprasanje{Opiši enostransko Jacobijevo metodo.}
+
+\podnaslov{Enostranska QR iteracija}
+
+Vsako matriko $A \in \R^{m \times n}$ lahko reduciramo na $A = U_1 B V_1^T$,
+kjer je $B$ bidiagonalna in $U_1, V_1$ ortogonalni.
+Če potem izračunamo $B = U_2 \Sigma V_2^T$, bo $A = U_1 U_2 \Sigma (V_1 V_2)^T$.
+Redukcijo izvedemo z uporabo Householderjevih zrcaljenj z leve in z desne.
+Zahtevnost te redukcije je $8 m n^2 - \frac{8}{3} n^3$.
+
+Če je $B$ bidiagonalna, lahko izračunamo $B^T B$ in delamo QR iteracijo z
+Wilkinsonovimi premiki.
+Matrika $B^T B$ je simetrična nenegativno definitna.
+Prav tako je spodnja desna $2 \times 2$ podmatrika simetrična nenegativno
+definitna, torej so premiki oblike $\sigma^2$.
+Matrika $C = B^T B$ je simetrična tridiagonalna, en korak QR iteracije s
+premikom $\sigma^2$ nam da $\tilde{C} = Q^T C Q$, kjer je $Q$ iz QR razcepa $C -
+\sigma^2 I$.
+Če nastavimo $\tilde{B} = P B \hat{Q}$, kjer je $\hat{Q}$ ortogonalna s prvim
+stolpcem, enakim normiranemu prvemu stolpcu $C - \sigma^2 I$, $P$ pa je taka
+ortogonalna, da je $\tilde{B}$ spet bidiagonalna.
+Potem je $\tilde{C} = \tilde{B}^T \tilde{B} = \hat{Q}^T C \hat{Q}$
+tridiagonalna, torej zgornja Hessenbergova.
+Po izreku o implicitnem Q je $\hat{Q} = Q \operatorname{diag}(1, \pm 1, \ldots,
+\pm 1)$.
+To je en korak enostranske QR iteracije s premikom $\sigma^2$.
+
+Matriko izjemoma množimo z rotacijami z leve in z desne, s čimer premikamo grbo
+skozi diagonalo.
+Matriki $P$ in $\hat{Q}$ dobimo kot produkt teh rotacij.
+En cikel skozi vse elemente na diagonali vzame $30n$ iteracij.
+
+\vprasanje{Opiši enostransko QR iteracijo.}
+
+% LocalWords:  pragovno bidiagonalno bidiagonalna Householderjevih
+% LocalWords:  Wilkinsonovimi
