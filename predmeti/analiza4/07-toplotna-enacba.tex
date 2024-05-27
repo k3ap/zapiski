@@ -34,3 +34,39 @@ Poiskali bomo števno družino rešitev $w_j, \lambda_j, d_j$, da bo
 Obravnavajmo primer $n=1$.
 Če je $\lambda \le 0$, iz robnih pogojev izpeljemo, da mora biti $w$ trivialen,
 kar za nas ni zanimivo.
+V primeru $\lambda > 0$ dobimo
+\[
+  w(x) = A \cos(\sqrt{\lambda} x) + B \sin(\sqrt{\lambda} x).
+\]
+Iz robnih pogojev dobimo
+\[
+  \begin{bmatrix}
+	\cos(\sqrt{\lambda} a) & \sin(\sqrt{\lambda} a) \\
+	\cos(\sqrt{\lambda} b) & \sin(\sqrt{\lambda} b)
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	A \\ B
+  \end{bmatrix}
+  = 0.
+\]
+Dobimo dodatno zahtevno, da je ta matrika nesingularna.
+Sistem se prevede na $\sin(\sqrt{\lambda} (b-a)) = 0$, torej mora veljati
+\[
+  \lambda = \lambda_k = \left( \frac{k \pi}{b-a} \right)^2.
+\]
+Upoštevamo $a = 0$ in $b = L$, da dobimo $\lambda_k = (k \pi / L)^2$.
+Iz $w(a) = w(b) = 0$ potem sledi $A = 0$, in so rešitve oblike
+\[
+  w_k(x) = B_k \sin(\frac{k \pi x}{L}).
+\]
+Nastavek sedaj deluje za
+\[
+  g = \sum_{k=1}^\infty d_k w_k,
+\]
+in iščemo koeficiente $B_k$, da bo ta enakost veljala.
+
+\vprasanje{Izpelji rešitev Cauchyjevega problema za enodimenzionalno toplotno
+  enačbo.}
+
+% LocalWords:  Cauchyjevega
