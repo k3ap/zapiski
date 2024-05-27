@@ -1,0 +1,126 @@
+\naslov{Posplošitve problema lastnih vrednosti}
+
+\podnaslov{Posplošen problem lastnih vrednosti}
+
+Imamo matriki $A, B \in \C^{n \times n}$.
+Množico vseh matrik $A - \lambda B$ za $\lambda \in \C$ imenujemo
+\pojem{matrični šop}.
+Včasih ga označimo z $(A,B)$.
+Definiramo lahko karakteristični polinom $p(\lambda) = \det (A - \lambda B)$.
+Če je $p = 0$, pravimo, da je šop \pojem{singularen}, sicer pa je
+\pojem{regularen}.
+
+Naj bo $(A,B)$ regularen šop.
+Če je $A x = \lambda B x$ za $x \ne 0$, je $\lambda$ končna lastna vrednost in
+$x$ desni lastni vektor.
+Podobno za $y^H A = \lambda y^H B$.
+Če pa je $B x = 0$ za nek $x \ne 0$, je $\infty$ lastna vrednost in $x$ desni
+lastni vektor; podobno za $y^H B = 0$.
+Za regularen šop ima problem $n$ lastnih vrednosti, tj.~ničle karakterističnega
+polinoma, ki jim dodamo še toliko neskončnih lastnih vrednosti, da pridemo do
+$n$.
+
+\vprasanje{Opiši posplošen problem lastnih vrednosti.}
+
+\begin{izrek}
+  Naj bo $(A,B)$ regularen šop.
+  \begin{itemize}
+  \item Če je $B$ obrnljiva matrika, so lastne vrednosti tega šopa enake lastnim
+	vrednostim $B^{-1} A$ oziroma $A B^{-1}$.
+  \item $\infty$ je lastna vrednost šopa natanko tedaj, ko je $\det B = 0$.
+  \item Če je $A$ nesingularna, potem so lastne vrednosti $(A,B)$ recipročne
+	lastnim vrednostim matrike $A^{-1} B$ oz.~$B A^{-1}$.
+	Tu je $\infty = \inv{0}$.
+  \end{itemize}
+\end{izrek}
+
+\vprasanje{Kakšne so lastne vrednosti regularnega šopa $(A,B)$, če je $A$
+  obrnljiva?}
+
+\begin{definicija}
+  Če sta $U, V$ nesingularni matriki, je šop $(A,B)$ \pojem{ekvivalenten} šopu
+  $(UAV, UBV)$.
+\end{definicija}
+
+\begin{izrek}
+  Ekvivalentna šopa imata enake lastne vrednosti.
+  Če je $x$ desni lastni vektor za $(A,B)$, je $V^{-1}x$ desni lastni vektor za
+  $(UAV, UBV)$.
+  Če je $y$ levi lastni vektor za $(A,B)$, je $U^{-H} y$ levi lastni vektor za
+  $(UAV, UBV)$.
+\end{izrek}
+
+\vprasanje{Kaj lahko poveš o lastnih vektorjih ekvivalentnih šopov?}
+
+\begin{izrek}
+  Za regularen matrični šop $(A,B)$ obstajata taki unitarni matriki $Q,Z$, da je
+  $(Q^H A Z, Q^H B Z) = (S,T)$, kjer sta $S$ in $T$ zgornje trikotni matriki.
+  Lastne vrednosti $(A,B)$ so potem
+  \[
+	\lambda_i = \frac{s_{ii}}{t_{ii}}
+  \]
+  za $t_{ii} \ne 0$ in $\lambda_i = \infty$ za $t_{ii} = 0$.
+\end{izrek}
+
+\begin{proof}
+  Indukcija na $n$.
+  Pri $n = 1$ je trivialno, poglejmo primer $n-1 \leadsto n$.
+  Ker je $(A,B)$ regularen šop, ima vsaj eno lastno vrednost $\lambda$ in lastni
+  vektor $x$.
+  Če je $\lambda$ končna, je $Ax = \lambda B x$, sicer pa je $Bx = 0$.
+  V vsakem primeru sta vektorja $Ax$ in $Bx$ kolinearna, torej obstaja $y$ z
+  $\norm{y}_2 = 1$, da je $Ax = \alpha y$ in $Bx = \beta y$, ter $(\alpha,
+  \beta) \ne (0,0)$.
+
+  Dopolnimo $x$ do unitarne matrike $X = [x X_1]$ in $y$ do unitarne $Y = [y
+  Y_1]$.
+  Potem je
+  \[
+	Y^H A X =
+	\begin{bmatrix}
+	  \alpha & \cdots \\
+	  0 & A_1
+	\end{bmatrix}
+  \]
+  in
+  \[
+	Y^H B X =
+	\begin{bmatrix}
+	  \beta & \cdots \\
+	  0 & B_1
+	\end{bmatrix}.
+  \]
+  Obstajata $Q_1$ in $Z_1$, da je $Q_1^H (A_1 - \lambda B_1) Z_1 = S_1 - \lambda
+  T_1$; velja
+  \begin{gather*}
+	\begin{bmatrix}
+	  1 & \\ & Q_1^H
+	\end{bmatrix}
+	Y^H A X
+	\begin{bmatrix}
+	  1 & \\ & Z_1
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	  \alpha & \cdots \\
+	  & S_1
+	\end{bmatrix}
+	= S \\
+	\begin{bmatrix}
+	  1 & \\ & Q_1^H
+	\end{bmatrix}
+	Y^H B X
+	\begin{bmatrix}
+	  1 & \\ & Z_1
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	  \beta & \cdots \\
+	  & T_1
+	\end{bmatrix}
+	= T. \\
+  \end{gather*}
+\end{proof}
+
+\vprasanje{Dokaži, da za regularen matrični šop obstaja posplošena Schurova
+  forma.}

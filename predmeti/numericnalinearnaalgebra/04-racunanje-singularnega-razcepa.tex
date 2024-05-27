@@ -63,5 +63,102 @@ En cikel skozi vse elemente na diagonali vzame $30n$ iteracij.
 
 \vprasanje{Opiši enostransko QR iteracijo.}
 
-% LocalWords:  pragovno bidiagonalno bidiagonalna Householderjevih
-% LocalWords:  Wilkinsonovimi
+\podnaslov{Weylov izrek}
+
+\begin{lema}
+  Naj bo $B \in \R^{m \times n}$ za $m \ge n$.
+  Potem ima matrika
+  \[
+	C =
+	\begin{bmatrix}
+	  0 & B^T \\
+	  B & 0
+	\end{bmatrix}
+  \]
+  lastne vrednosti $\pm \sigma_i$ z lastnimi vektorji $(v_i, \pm u_i)$, in $m-n$
+  lastnih vrednosti $0$ z lastnimi vektorji $(0, u_j)$ za $j = n+1, \ldots, m$.
+  Pri tem je $B = U \Sigma V^T$.
+\end{lema}
+
+Dokaz je račun.
+Če je
+\[
+  B =
+  \begin{bmatrix}
+	a_1 & b_1 &        &        & \\
+	    & a_2 & b_2    &        & \\
+	    &     & \ddots & \ddots &  \\
+	    &     &        & a_{n-1} & b_{n-1} \\
+	    &     &        &        & a_n
+  \end{bmatrix}
+\]
+in $P = [e_1, e_{n+1}, e_2, e_{n+2}, \ldots, e_n, e_{2n}]$, je za zgornji $C$
+potem
+\[
+  P^T C P =
+  \begin{bmatrix}
+	0 & a_1 &  &  &  \\
+	a_1 & 0 & b_1 &  &  \\
+	  & b_1 & 0 & \ddots &  \\
+	  &  & \ddots & \ddots & a_n \\
+	  &  &  & a_n & 0
+  \end{bmatrix}
+\]
+Privzamemo, da je ta matrika nerazcepna (torej $a_i, b_i \ne 0$), sicer lahko
+problem razdelimo na dva manjša.
+
+\begin{izrek}[Weylov izrek za singularne vrednosti]
+  Naj bosta $A, E \in \R^{m \times n}$ za $m \ge n$, $\sigma_1 \ge \cdots \ge
+  \sigma_n$ singularne vrednosti $A$ in $\tilde{\sigma}_1 \ge \cdots \ge
+  \tilde{\sigma}_n$ singularne vrednosti $A+E$.
+  Potem velja $\abs{\tilde{\sigma}_i - \sigma_i} \le \norm{E}_2$.
+\end{izrek}
+
+\begin{proof}
+  Naj bo
+  \begin{align*}
+	C =
+	\begin{bmatrix}
+	  0 & A^T \\
+	  A & 0
+	\end{bmatrix}
+	&&
+	   F =
+	   \begin{bmatrix}
+		 0 & E^T \\
+		 E & 0
+	   \end{bmatrix}
+  \end{align*}
+  Vemo, da je $\abs{\lambda_i(C) - \lambda_i(C + F)} \le \norm{F}_2 =
+  \norm{E}_2$.
+\end{proof}
+
+\vprasanje{Povej in dokaži Weylov izrek.}
+
+Singularne vrednosti $A$ lahko izračunamo na dva načina:
+\begin{itemize}
+\item Izračunamo $B = A^T A$ in na $B$ uporabimo obratno stabilno metodo za
+  simetrični problem lastnih vrednosti.
+  Te potem korenimo.
+\item $A$ damo v obratno stabilno metodo za računanje singularnega razcepa.
+\end{itemize}
+V drugem načinu so numerično izračunane singularne vrednosti točne singularne
+vrednosti matrike $A + \Delta A$, kjer je $\norm{\Delta A}_2 = O(\norm{A}_2 u)$.
+Če gledamo prvi način in ignoriramo korenjenje, so numerično izračunane lastne
+vrednosti točne lastne vrednosti $B + \Delta B$ za $\norm{\Delta B}_2 =
+O(\norm{B} u)$.
+Sledi $\abs{\hat{\sigma}_i - \sigma_i} = O(\sigma_1 u)$.
+Po Weylovem izreku za simetrične matrike je $\abs{\hat{\sigma}_i^2 - \sigma_i^2}
+= O(\norm{B}_2 u) = O(\sigma_1^2 u)$.
+Ocenimo lahko $\hat{\sigma}_i \approx \sigma_i$, iz česar potem sledi
+\[
+  \abs{\hat{\sigma}_i - \sigma_i} = O\!\left( \frac{\sigma_1^2 u}{\sigma_i}
+  \right).
+\]
+Oba načina dobro izračunata velike singularne vrednosti, za majhne pa je prvi
+način boljši.
+
+\vprasanje{Kako stabilno izračunaš majhne singularne vrednosti?}
+
+% LocalWords:  pragovno bidiagonalno bidiagonalna Householderjevih Weylov
+% LocalWords:  Wilkinsonovimi korenimo korenjenje Weylovem
