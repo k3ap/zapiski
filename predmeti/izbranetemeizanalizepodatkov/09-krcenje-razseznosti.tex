@@ -1,0 +1,82 @@
+\naslov{Krčenje razsežnosti}
+
+Prvo vprašanje je, zakaj bi razsežnost sploh krčili.
+Odgovor je prekletstvo večrazsežnosti:
+Naj bodo $X_1, \ldots, X_n$ točke v enotski krogli v $\R^p$, porazdeljene
+enakomerno, in naj bo $M$ najmanjša razdalja teh točk do središča.
+Izračunamo lahko
+\[
+  P(M \le x) = 1 - (1 - x^p)^n.
+\]
+Potem je mediana (tj.~razdalja, pri kateri je najbližja točka z verjetnostjo
+$\pol$ v krogli s tem radijem) enaka
+\[
+  x_m = F_M^{-1}(\pol) = \left( 1 - \inv{2^{1/n}} \right)^{1/p}.
+\]
+Z veliko točkami se oddaljujemo od $1$, z veliko dimenzijami pa se bližamo $1$.
+Pozorni moramo biti na razmerje $n/p$.
+
+\vprasanje{Demonstriraj problem večrazsežnosti.}
+
+Želeli bi si \pojem{rangiranje} napovednih spremenljivk $X_i$ po pomembnosti.
+Za to definiramo \pojem{relevantnost} spremenljivke kot funkcijo $r_S : \mb{X}
+\to \R$, ki za podatkovno množico $S$ pove, kako pomembna je spremenljivka $X_i
+\in \mb{X}$ (tu je $\mb{X}$ množica spremenljivk).
+
+Mere relevantnosti ločimo na nadzorovane in nenadzorovane.
+Za nenadzorovane opazimo, da je relevantnost je pozitivno korelirana z varianco
+spremenljivke, saj večja varianca pomeni, da imamo več prostora za odločitve.
+Ta mera pa se izgubi, če podatke normaliziramo.
+V primeru diskretne spremenljivke lahko namesto variance vzamemo entropijo
+\[
+  H(X_i) = - \sum_{v} p_v \log_2 p_v,
+\]
+kjer je $p_v = \abs{\{x_i \in S \such x_i = v\}} / \abs{S}$.
+
+\vprasanje{Opiši nenadzorovano mero relevantnosti.}
+
+Pri nadzorovanih merah relevantnosti začnemo z uni-variantnimi metodami.
+Pri teh gledamo samo povezanost med $X_i$ in $Y$ za nek $i$.
+Ker uporabljajo $Y$, so nadzorovane; ker ignorirajo vse ostale $X_j$, so
+uni-variantne.
+Če sta $X_i$ in $Y$ numerični, je ena možnost korelacijski faktor, imamo pa še
+cel kup drugih možnosti.
+V primeru numerične $X_i$ in diskretne $Y$ lahko opazujemo \pojem{relief}, kjer
+za naključno izbran primer $(\mb{x},y) \in S$ poiščemo najbližjega soseda v
+projekciji na $X_i$, $\mb{x}_H$, ki pripada istemu razredu kot $\mb{x}$, in
+najbližjega soseda $\mb{x}_M$, ki pripada različnemu razredu.
+Če je razdalja do $\mb{x}_M$ veliko večja od razdalje do $\mb{x}_H$, je to dober
+znak za relevantnost spremenljivke, na katero smo projecirali.
+V algoritmu je relevantnost $X_i$ potem enaka
+\[
+  \inv{\abs{S}} \sum_{(\mb{x}, y) \in S} (\abs{\mb{x}_{Mi} - \mb{x}_i} -
+  \abs{\mb{x}_{Hi} - \mb{x}_i}).
+\]
+
+\vprasanje{Opiši metodo reliefa.}
+
+Zadnja možnost je ocenjevanje relevantnosti na podlagi modela.
+Če imamo razumljiv model, npr.~linearni, lahko relevantnost direktno preberemo
+iz njega.
+V primeru manj razumljivega modela lahko permutiramo vrednosti v stolpcu $i$ v
+podatkih in natreniramo nov model; spremenljivka je tako uničena, relevantnost
+dobimo kot razliko v napovedni napaki.
+Ta metoda je najpočasnejša, a je zelo kvalitetna.
+
+\vprasanje{Kako oceniš relevantnost spremenljivke z danim modelom?}
+
+Pri zmanjševanju razsežnosti pogosto želimo tvoriti nove spremenljivke, ki bodo
+bolj relevantne za nas.
+Običajno ima to obliko linearne transformacije $Z = X W$, kjer je $Z$ dimenzije
+$q \ll p$.
+Za to imamo metodo glavnih komponent, kjer dodatno zahtevamo, da je $W$
+ortogonalna, in da dimenzije $Z$ pojasnijo čim več variance v osnovnih podatkih.
+Predpostavimo, da imajo vse spremenljivke v $X$ povprečje $0$, torej je
+kovariančna matrika enaka $C = X^T X$.
+Ta je simetrična nenegativno definitna, torej jo lahko s pomočjo singularnega
+razcepa zapišemo kot $C = W D W^T$, kjer je $D$ diagonalna matrika kvadratov
+singularnih vrednosti.
+
+\vprasanje{Razloži metodo glavnih komponent.}
+
+% LocalWords:  rangiranje korelirana uni-variantnimi uni-variantne projecirali
