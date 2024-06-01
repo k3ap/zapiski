@@ -155,4 +155,47 @@ Dokaz je račun.
 
 \vprasanje{Dokaži: vse lastne vrednosti SL problema so realne.}
 
+\begin{lema}
+  Če so funkcije $f_1, \ldots, f_n$ linearno odvisne, je determinanta Wronskega
+  identično enaka $0$.
+  Obratno, če je $\Lambda$ diferencialen operator z realnimi koeficienti in
+  $y_1, \ldots, y_n$ rešijo enačbo $\Lambda y = 0$, ter je $W(y_1, \ldots, y_n)
+  = 0$, tedaj so linearno odvisne.
+\end{lema}
+
+\begin{trditev}
+  Naj bo $\lambda$ lastna vrednost za SL problem $L_{\mathcal{U}} = - \lambda r
+  u$.
+  Tedaj je pripadajoči lastni podprostor enodimenzionalen.
+\end{trditev}
+
+\begin{proof}
+  Naj za $u, v \in \mathcal{U}$ velja $Lu = - \lambda r u$ in $Lv = - \lambda r
+  v$.
+  Sledi $u L v - v L u = 0$, a hkrati $u L v - v L u = [p(u' v - u v')]'$, torej
+  je $f = p\,(u'v - uv')$ konstantna.
+  Ker sta $u, v \in \mathcal{U}$, je $f(a) = f(b) = 0$ in zato $f = 0$.
+  Ker pa je $p \ne 0$, sledi še $u'v - vu' = 0$, kar je ravno determinanta
+  Wronskega.
+  Iz leme sledi, da sta $u$ in $v$ linearno odvisni, saj obe ležita v jedru
+  diferencialnega operatorja $\Lambda y = Ly + \lambda ry$.
+\end{proof}
+
+\vprasanje{Dokaži: lastni podprostor za SL problem je enodimenzionalen.}
+
+\begin{izrek}[spektralni izrek za SL problem]
+  Za vsak regularen SL problem obstaja zaporedje lastnih vrednosti $\lambda_1 <
+  \lambda_2 < \ldots < \infty$, da velja
+  \begin{itemize}
+  \item $\lim \lambda_n = \infty$
+  \item Pripadajoč normaliziran sistem lastnih funkcij $\{v_n\}_n$ sestavlja
+	kompleten ortonormiran sistem v $l^2(r)$.
+  \end{itemize}
+  Enako velja za periodičen SL problem, pri čemer imamo lahko dvodimenzionalne
+  lastne podprostore.
+\end{izrek}
+
+\vprasanje{Povej spektralni izrek za SL problem.}
+
 % LocalWords:  Sturm-Liouvilleova SL Sturm-Liouvilleov ničtega Banachovem
+% LocalWords:  Wronskega

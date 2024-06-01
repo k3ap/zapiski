@@ -1,0 +1,35 @@
+\naslov{Harmonične funkcije}
+
+\begin{trditev}[verižno pravilo]
+  Za $f, g \in \zvodvi{1}$ velja
+  \begin{gather*}
+	\partial_{\konj{z}} g\circ f
+	= \partial_w g(f) \cdot \partial_{\konj{z}} f
+	+ \partial_{\konj{w}} g(f) \cdot \partial_{\konj{z}} \konj{f}, \\
+	\partial_z g \circ f
+	= \partial_w g(f) \cdot \partial_{z} g
+	+ \partial_{\konj{w}} g(f) \cdot \partial_z \konj{f}.
+  \end{gather*}
+\end{trditev}
+
+\begin{definicija}
+  Naj bo $\Omega \odpp \R^2$ in $u \in \zvodv{2}{\Omega}$.
+  Funkcija $u$ je \pojem{harmonična} na $\Omega$, če je $\Delta u = 0$.
+  Funkcija je \pojem{subharmonična}, če je $\Delta u \ge 0$.
+\end{definicija}
+
+\begin{definicija}
+  Funkcija $u$ zadošča \pojem{lastnosti povprečne vrednosti} (LPV), če za vsak
+  $z_0 \in \Omega$ in $r > 0$, pri katerih je $\cl{K}(z_0, r) \subseteq \Omega$,
+  velja
+  \[
+	u(z_0) = \int_0^1 u(z_0 + r e^{2 \pi i t}) dt.
+  \]
+\end{definicija}
+
+\begin{izrek}
+  Funkcija $u \in \zvodv{2}{\Omega}$ je harmonična na $\Omega$ natanko tedaj, ko
+  tam zadošča LPV.
+\end{izrek}
+
+% LocalWords:  subharmonična LPV
