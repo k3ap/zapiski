@@ -1,0 +1,158 @@
+\naslov{Sturm-Liouvilleova teorija}
+
+Od tu naprej SL teorija.
+Naj bo $I = [a,b]$ in $p,q,r: I \to \R$ funkcije, ki zadoščajo
+\begin{itemize}
+\item $p \in \zvodvi{1}$
+\item $q,r \in \zveznei{}$
+\item $p,r$ nenegativni
+\end{itemize}
+Na $\zvodv{2}{I}$ definiramo pridruženi \pojem{Sturm-Liouvilleov} operator
+\[
+  Lu = (p u')' + qu.
+\]
+Naj bodo $\alpha_0, \alpha_1, \beta_0, \beta_1 \in \R$ take, da je
+$\abs{\alpha_0} + \abs{\alpha_1} > 0$ in $\abs{\beta_0} + \abs{\beta_1} > 0$
+(torej paroma ne obe $0$).
+Označimo $B_a(u) = \alpha_0 u(a) + \alpha_1 u'(a)$ in $B_b(u) = \beta_0 u(b) +
+\beta_1 u'(b)$.
+SL problem sprašuje po netrivialnih rešitvah enačbe
+\begin{equation}
+  \label{eq:sl}
+  Lu = - \lambda r u
+\end{equation}
+ob pogojih $B_a(u) = 0$ in $B_b(u) = 0$.
+Funkcijo $r$ imenujemo \pojem{utež} ali \pojem{gostota}.
+Problem je \pojem{regularen}, če sta $p, r > 0$, in \pojem{singularen}, če sta
+$p$ ali $q$ enaka $0$ v točki $a$ ali $b$, ali če imata v kakšni od teh točk
+skok, ali pa če je $I$ neomejen.
+Če par $(\lambda, u)$ reši SL problem, je $\lambda$ \pojem{lastna vrednost}, $u$
+pa \pojem{lastna funkcija}.
+
+\vprasanje{Definiraj Sturm-Liouvilleov problem. Kdaj je regularen in kdaj
+  singularen?}
+
+\begin{trditev}
+  Vsako homogeno regularno linearno NDE drugega reda lahko zapišemo v obliki SL
+  problema.
+\end{trditev}
+
+\begin{proof}
+  Imejmo enačbo $A v'' + B v' + C v = 0$.
+  Velja $Lv = p v'' + p' v' + (\ldots)$, kjer smo člene ničtega reda skrili.
+  Veljati bi moralo $B = A'$.
+  Če to ni res, lahko zaradi homogenosti enačbo množimo z neničelno funkcijo $m$
+  in dobimo $m(A v'' + B v') + m C v = 0$, kjer $m$ določimo tako, da bo veljalo
+  $(mA)' = mB$; izračun pokaže
+  \[
+	m = \inv{A} \exp\!\left( \int \frac{B}{A} \right).
+  \]
+  Na koncu dobimo
+  \[
+	m A v'' + m B v' + m C v = (p v')' + (m C v) = 0
+  \]
+  za $p = \exp(B/A)$ in $q + \lambda r = \frac{C}{A} p$.
+\end{proof}
+
+\vprasanje{Pokaži, da se vsako enačbo drugega reda da zapisati kot SL problem.}
+
+Linearen operator na Banachovem prostoru je zvezen natanko tedaj, ko je omejen.
+Ker diferencialni operatorji običajno niso omejeni, je to sila neprijetno, zato
+se omejimo na podprostore.
+SL problem gledamo na definicijskem območju $L$, ki bo v prihodnje bodisi
+\[
+  \mathcal{U} = \{u \in \zvodv{2}{I} \such B_a(u) = B_b(u) = 0\}
+\]
+bodisi
+\[
+  \mathcal{V} = \{u \in \zvodv{2}{I} \such u(a) = u(b), u'(a) = u'(b)\},
+\]
+odvisno če gledamo običajen ali periodičen problem (druga množica so ravno
+pogoji periodičnega problema).
+Operatorja $L_{\mathcal{U}}$ in $L_{\mathcal{V}}$ (torej zožitvi $L$ na ta
+prostora) sta definirana na gosti podmnožici $l^2(I)$.
+Za zvezno funkcijo $r: I \to \R$ označimo
+\[
+  l^2(r) = \{f: I \to \C \such f\;\text{merljiva},
+  \norm{f}_{l^2(r)}^2 = \int_I \abs{f}^2 r < \infty \}.
+\]
+Ker je $r$ zvezna na kompaktu, obstajata $c_1$ in $c_2$, da velja $c_1 \le r(x)
+\le c_2$, kar označimo z $r \sim 1$.
+
+\begin{opomba}
+  Oznako lahko razširimo: $r \sim g$ natanko tedaj, ko obstajata konstanti $c_1$
+  in $c_2$, da velja $c_1 g(x) \le r(x) \le c_2 r(x)$.
+\end{opomba}
+
+Vidimo, da je $\norm{f}_{l^2(r)} \sim \norm{f}_{l^2}$.
+
+\begin{trditev}
+  Naj bo $Lu = (pu')' + qu$ standardni SL operator.
+  Če je $v \in \zvodv{2}{I}$, velja $u L v - v L u = [p \cdot (u v' - u' v)]'$
+  (\pojem{Lagrangeova identiteta}) in
+  \[
+	u L v - v L u = \left. p \cdot (u v' - u' v) \right|_{\partial I}.
+  \]
+\end{trditev}
+
+Dokaz je račun.
+
+\begin{posledica}
+  Operator $L_{\mathcal{U}}$ je simetričen.
+  Enako velja za $\mathcal{V}$, če je $p(a) = p(b)$.
+\end{posledica}
+
+\begin{proof}
+  Naj bosta $u$ in $v$ realni funkciji.
+  Velja
+  \[
+	\sk{Lu, v} - \sk{u, Lv}
+	= \int_I (vLu - uLv) = \left. p(u' v - u v') \right|_{\partial I}.
+  \]
+  Če je $p(a) = p(b)$ in $L = L_{\mathcal{V}}$, je to enako $0$.
+  V drugem primeru prepišemo robni pogoj v
+  \[
+	\begin{bmatrix}
+	  u(a) & u'(a) \\
+	  v(a) & v'(a)
+	\end{bmatrix}
+	\cdot
+	\begin{bmatrix}
+	  \alpha_0 \\ \alpha_1
+	\end{bmatrix}
+	= 0.
+  \]
+  Privzeli smo, da nista oba $\alpha_0, \alpha_1$ enaka $0$, torej je matrika
+  singularna.
+  Enako velja za $b$, iz česar sledi $\left. u'v - uv' \right|_a = 0$ in $\left.
+	u'v - u v' \right|_b = 0$.
+
+  Če sta $u$ in $v$ kompleksni funkciji, torej $u = u_1 + i u_2$ in $v = v_1 + i
+  v_2$, pa velja
+  \[
+	\sk{Lu, v} = \sk{Lu_1, v_1} + \sk{L u_2, v_2} -i (\sk{Lu_1, v_2} + \sk{L
+	  u_2, v_1}).
+  \]
+  Sedaj le upoštevamo realni primer, dobimo $\sk{Lu, v} = \sk{u, Lv}$.
+\end{proof}
+
+\vprasanje{Dokaži: če je $\mathcal{U}$ množica $\zvodv{2}{I}$ funkcij, ki
+  ustrezajo robnemu pogoju SL problema, je zožitev operatorja $L_{\mathcal{U}}$
+  simetrična.}
+
+\begin{trditev}
+  Vse lastne vrednosti operatorjev $L_\cdot$ glede na utež $r$ so realne.
+\end{trditev}
+
+\begin{proof}
+  Če je $u$ lastna funkcija, velja
+  \[
+	0 = \sk{Lu, u} - \sk{u, Lu}
+	= \sk{- \lambda r u, u} - \sk{u, - \lambda r u}
+	= (\konj{\lambda} - \lambda) \sk{u, ru}.
+  \]
+\end{proof}
+
+\vprasanje{Dokaži: vse lastne vrednosti SL problema so realne.}
+
+% LocalWords:  Sturm-Liouvilleova SL Sturm-Liouvilleov ničtega Banachovem
