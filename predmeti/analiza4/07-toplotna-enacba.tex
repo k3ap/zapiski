@@ -69,4 +69,107 @@ in iščemo koeficiente $B_k$, da bo ta enakost veljala.
 \vprasanje{Izpelji rešitev Cauchyjevega problema za enodimenzionalno toplotno
   enačbo.}
 
+Oglejmo si enodimenzionalni nehomogen problem
+\[
+  u_t = k u_{xx} + F(x,t)
+\]
+z robnimi pogoji $u(0,t) = a(t)$, $u(\pi, t) = b(t)$ in začetnimi pogoji $u(x,0)
+= f(x)$.
+Rešitev sestavimo iz rešitev bolj enostavnih problemov:
+\begin{alignat*}{3}
+  & u_t - k u_{xx} = F(x,t) & \qquad & u_t = k u_{xx} & \qquad & u_t = k u_{xx} \\
+  & u(0,t) = 0 & & u(0,t) = a(t) & & u(0,t) = 0 \\
+  & u(\pi,t) = 0 & & u(\pi, t) = b(t) & & u(\pi, t) = 0 \\
+  & u(x,0) = 0 & & u(x,0) = 0 & & u(x,0) = f(x)
+\end{alignat*}
+
+Rešitve tretjega problema iščemo s separacijo spremenljivk.
+Iz tega dobimo nastavek
+\[
+  u(x,t) = \sum_{n=1}^\infty C_n e^{-k n^2 t} \sin(nx),
+\]
+koeficiente pa dobimo iz Fouerierovega razvoja $f$.
+
+Za prvi problem razvijemo
+\[
+  F(x,t) = \sum_{n=1}^\infty F_n(t) \sin(nx)
+\]
+in
+\[
+  u(x,t) = \sum_{n=1}^\infty T_n(t) \sin(nx).
+\]
+Iz $u(x,0) = 0$ sledi $T_n(0) = 0$ za vsak $n$.
+To vstavimo v enačbo $u_t = k u_{xx} + F(x,t)$ in dobimo
+\[
+  T_n' + k n^2 T_n = F_n,
+\]
+kar je nehomogena NDE prvega reda z rešitvijo
+\[
+  T_n(t) = T_{n,p}(t) + B_n e^{- k n^2 t},
+\]
+ki mora ustrezati pogoju $T_{n,p}(0) = -B_n$.
+
+Za drugi problem enak pristop ne deluje zaradi robnih pogojev.
+Enačbo homogeniziramo z
+\[
+  w(x,t) = \frac{b-a}{\pi} x + a.
+\]
+Velja $w(0,t) = w(\pi, t) = 0$.
+Sedaj razcepimo $u = v + w$ ter iščemo pogoje za $v$;
+\[
+  v_t + w_t = k (v_{xx} + w_{xx}).
+\]
+Iz tega dobimo
+\[
+  v_t = k v_{xx} - \frac{b'-a'}{\pi} x - a'.
+\]
+To je problem prvega tipa za $\tilde{F}(x,t) = - \frac{b'-a'}{\pi} x - a'$.
+
+\vprasanje{Kako rešiš nehomogeno toplotno enačbo v enodimenzionalnem primeru?}
+
+Rešitve take enačbe so enolične.
+Naj bosta $u_1$ in $u_2$ rešitvi; potem $u = u_1 - u_2$ reši enačbo
+$u_t = k u_{xx}$ s pogoji $u(0,t) = u(\pi, t) = u(x,0) = 0$.
+Definiramo energijo
+\[
+  E(t) = \int_0^\pi u^2(x,t) dx.
+\]
+Velja $E(0) = 0$ in $E(t) \ge 0$.
+Če predpis odvajamo, dobimo
+\[
+  E'(t) = 2k \int_0^\pi u u_{xx} dx
+  = \left. 2 k u u_{xx} \right|_0^\pi - 2k \int_0^\pi u_x^2 dx
+  = -2k \int_0^\pi u_x^2 dx
+  \le 0
+\]
+za $k \ge 0$.
+Torej je $E$ konstanta in $u = 0$.
+
+\vprasanje{Dokaži, da je rešitev nehomogene toplotne enačbe v eni dimenziji
+  enolična.}
+
+\begin{izrek}[princip maksima za toplotno enačbo]
+  Naj bo $D$ omejena odprta množica v $\R^n$, $0 < T < \infty$ in $u \in
+  \zvezne{\cl{D} \times \zo{0, \infty}} \presek \zvodv{\infty}{D \times (0,
+	\infty)}$ rešitev enačbe $u_t = k \Delta u$.
+  Tedaj $u$ zavzame maksimum na $D \times \{0\} \unija \partial D \times [0,T]$.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $\varepsilon > 0$.
+  Definiramo $v = u + \varepsilon \abs{x}^2$.
+  Potem je $v_t = u_t$ in $\Delta v = \Delta u + 2 n \varepsilon$.
+  Velja $v_t - \Delta v = u_t - \Delta u - 2 n \varepsilon < 0$.
+  Če ima $v$ maksimum v $D \times (0,T)$, potem v tej točki velja $v_t = 0$ in
+  $\Delta v \le 0$ (to je ravno sled Hessejeve matrike), torej $v_t - \Delta v
+  \ge 0$, kar je protislovje.
+  Podobno ugotovimo, da $v$ ne mora imeti maksimuma v $D \times \{T\}$.
+  Za dovolj majhen $\varepsilon$ je $v$ le majhna sprememba $u$, torej tudi $u$
+  nima maksimuma na teh množicah.
+\end{proof}
+
+\vprasanje{Dokaži princip maksima za toplotno enačbo.}
+
+
+
 % LocalWords:  Cauchyjevega
