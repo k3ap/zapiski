@@ -44,10 +44,10 @@ V drugem primeru bo vsakršno delo stabilnejše, ker so stolpci ortonormirani.
 Normalni sistem se tedaj prevede na $Rx = Q^T b$, ki ga lahko rešimo s premo
 substitucijo.
 
-\podnaslov{Gram-Schmittova ortogonalizacija}
+\podnaslov{Gram-Schmidtova ortogonalizacija}
 
 Poznamo tri načine za izračun QR razcepa.
-Najenostavnejši pristop je Gram-Schmittova ortogonalizacija.
+Najenostavnejši pristop je Gram-Schmidtova ortogonalizacija.
 Velja
 \[
   a_k = \sum_{i=1}^{k-1} r_{ik} q_i + r_{kk} q_k.
@@ -60,7 +60,7 @@ Celoten postopek je prikazan v algoritmu~\ref{alg:qr-gram-schmitt}, ki ima
 računsko zahtevnost $2 mn^2$.
 
 \begin{algorithm}
-  \caption{QR razcep s klasičnim Gram-Schmittovim postopkom}
+  \caption{QR razcep s klasičnim Gram-Schmidtovim postopkom}
   \label{alg:qr-gram-schmitt}
   \begin{algorithmic}
 	\For{$k = 1, \ldots, n$}
@@ -75,12 +75,12 @@ računsko zahtevnost $2 mn^2$.
   \end{algorithmic}
 \end{algorithm}
 
-\vprasanje{Izpelji in zapiši klasični Gram-Schmittov postopek za izračun QR
+\vprasanje{Izpelji in zapiši klasični Gram-Schmidtov postopek za izračun QR
   razcepa.}
 
 V algoritmu naredimo še popravek, ki bo povečal stabilnost; pri računanju
 $r_{ik}$ namesto formule $r_{ik} = q_i^T a_k$ uporabimo $r_{ik} = q_i^T q_k$.
-Novemu postopku pravimo \pojem{modificiran Gram-Schmitt}, in je v teoriji
+Novemu postopku pravimo \pojem{modificiran Gram-Schmidt}, in je v teoriji
 ekvivalenten klasičnemu.
 Modificiran postopek moramo tudi bolj pametno uporabiti; izračunamo QR razcep
 razširjene matrike
@@ -122,9 +122,9 @@ in dobimo
 \]
 Najboljšo rešitev dobimo, ko je $Rx = z$.
 Dejansko je $z = Q^T b$, le da smo ga v tem postopku izračunali z modificiranem
-Gram-Schmittovem postopkom, kar je numerično bolje.
+Gram-Schmidtovem postopkom, kar je numerično bolje.
 
-\vprasanje{Kaj je modificiran Gram-Schmittov postopek? Kako ga pravilno uporabiš
+\vprasanje{Kaj je modificiran Gram-Schmidtov postopek? Kako ga pravilno uporabiš
   za reševanje sistema najmanjših kvadratov?}
 
 \podnaslov{Givensove rotacije}
