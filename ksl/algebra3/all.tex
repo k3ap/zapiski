@@ -1,0 +1,214 @@
+\naslov{Galoisova teorija}
+
+\podnaslov{Razširitve polj}
+
+Pri določanju stopnje razširitve $F(a_1, \ldots, a_n)$ zapišemo vmesne
+razširitve, in si pomagamo z naslednjo trditvijo:
+
+\begin{trditev}
+  Naj bo $F$ polje in $a_1, \ldots, a_n$ algebrajski nad $F$.
+  Potem velja
+  \begin{itemize}
+  \item $\abs{F(a_1, \ldots, a_n) : F} = \abs{F(a_1, \ldots, a_n) : F(a_1,
+	  \ldots, a_{n-1})} \cdots  \abs{F(a_1):F}$,
+  \item $\abs{F(a_1, \ldots, a_n):F} \le \abs{F(a_1):F} \cdots \abs{F(a_n): F}$,
+  \item če imata $\abs{F(a_1) : F}$ in $\abs{F(a_2) : F}$ največji skupni
+	delitelj enak $1$, velja $\abs{F(a_1, a_2) : F} = \abs{F(a_1):F} \cdot
+	\abs{F(a_2):F}$.
+  \end{itemize}
+\end{trditev}
+
+Stopnje posameznih razširitev lahko ocenimo (najbolj enostavno, če $a_2 \notin
+F(a_1)$, je $\abs{F(a_1, a_2):F(a_1)} \ge 2$), ali pa poiščemo minimalni
+polinom, katerega stopnja je enaka stopnji razširitve.
+Za minimalni polinom je dovolj, da je nerazcepen, in da ima ničlo $a_2$; pogosto
+pa je že to težko.
+Če je $p$ praštevilo, je $1 + x + x^2 + \cdots + x^{p-1}$ \pojem{ciklotoničen
+  polinom}, ki je nerazcepen nad $\Q$.
+Za polinome nad $\Q$ imaš na voljo tudi Eisensteinov kriterij:
+
+\begin{trditev}
+  Naj bo $p(x) = a_n x^n + \cdots + a_0$ polinom s koeficienti v $\Z$.
+  Če obstaja praštevilo $p$, ki deli vse koeficiente razen $a_n$, in $p^2$ ne
+  deli $a_0$, potem je $p$ nerazcepen nad $\Q$.
+\end{trditev}
+
+\begin{izrek}
+  Naj bo $f \in F[X]$ nekonstanten nerazcepen polinom.
+  Naslednje trditve so ekvivalentne:
+  \begin{itemize}
+  \item $f$ ima večkratno ničlo v razpadnem polju,
+  \item $\operatorname{gcd}(f, f') \ne 1$,
+  \item $f$ je polinom v $x^q$, kjer je $q$ karakteristika polja $F$,
+  \item vse ničle v razpadnem polju so večkratne.
+  \end{itemize}
+\end{izrek}
+
+\begin{trditev}
+  Naj bo $f(X) \in F[X]$ polinom stopnje $n$.
+  Potem $\abs{F(p):F}$ deli $n!$.
+\end{trditev}
+
+\podnaslov{Normalne in separabilne razširitve}
+
+Za polinom $p(X) \in F[X]$ je razpadno polje $p$ najmanjša razširitev $E$, za
+katero so vse ničle v $E$.
+Določeno je do izomorfizma natančno, označimo ga z $F(p)$.
+Če imamo izomorfizem polje $\sigma: F \to F'$, ga lahko vedno razširimo do
+izomorfizma razpadnih polj.
+
+\begin{definicija}
+  Končna razširitev $E/F$ je \pojem{normalna}, če za vsak nerazcepen polinom
+  $p(X) \in F[X]$ bodisi $p$ nima ničle v $E$, bodisi ima vse ničle v $E$.
+\end{definicija}
+
+\begin{izrek}
+  Končna razširitev $E/F$ je normalna natanko tedaj, ko je $E$ razpadno polje
+  nekega polinoma s koeficienti iz $F$.
+\end{izrek}
+
+\begin{definicija}
+  Polinom $p(X) \in F[X]$ je \pojem{separabilen}, če ima same enostavne ničle.
+  Končna razširitve $E/F$ je \pojem{separabilna}, če je za vsak $a \in E$
+  minimalni polinom separabilen.
+\end{definicija}
+
+Če je karakteristika polja enaka $0$, in je polinom nerazcepen, so vse njegove
+ničle enostavne.
+V tem primeru je vsaka končna razširitev separabilna; polju s to lastnostjo
+pravimo \pojem{perfektno}.
+Poleg polj s karakteristiko $0$ vemo, da so tudi vsa končna polja perfektna.
+
+\begin{izrek}[primitivni element]
+  Vsaka separabilna razširitev je enostavna (tj.~obstaja $a \in E$, da je $E =
+  F(a)$).
+\end{izrek}
+
+\podnaslov{Galoisove grupe in razširitve}
+
+\begin{definicija}
+  \pojem{Galoisova grupa} razširitve $E/F$ je grupa
+  \[
+	\operatorname{Gal}(E/F)
+	= \{\sigma \in \Aut E \such \left. \sigma \right|_F = \id_F\}.
+  \]
+  Elementom te grupe pravimo \pojem{$F$-avtomorfizmi} polja $E$.
+\end{definicija}
+
+Galoisovo grupo polinoma $p(X) \in F[X]$ definiramo kot $\operatorname{Gal}(p) =
+\operatorname{Gal}(F(p)/F)$.
+Normalnim separabilnim razširitvam pravimo \pojem{Galoisove razširitve}.
+Če ima $F$ karakteristiko $0$, je za polinom $p(X) \in F[X]$ je $F(p)/F$ vedno
+Galoisova; to je končna razširitev, torej je normalna (ker je $F(p)$ razpadno
+polje), in separabilna, ker ima polje karakteristiko $0$.
+Pri določanju Galoisove grupe si pomagamo z naslednjo trditvijo:
+
+\begin{trditev}
+  Naj bo $E/F$ končna Galoisova razširitev.
+  Potem je $\abs{\operatorname{Gal}(E/F)} = \abs{E:F}$.
+  Če je $E/F$ končna separabilna, je $\abs{\operatorname{Gal}(E/F)} \le
+  \abs{E:F}$.
+\end{trditev}
+
+Pogledamo torej stopnjo razširitve, da vemo, koliko elementov bo v grupi.
+Potem te elemente poiščemo.
+V primeru razpadnega polja pride prav naslednja lema:
+
+\begin{lema}
+  Če je $a \in E$ ničla polinoma $p(X) \in F[X]$ ter $\sigma \in
+  \operatorname{Gal}(E/F)$, je tudi $\sigma(a)$ ničla $p(X)$.
+\end{lema}
+
+Avtomorfizme iščemo tako, da si izberemo, kam bomo slikali ničle.
+Če jih najdemo dovolj, vemo, da je to to.
+Potem moramo le določiti, kaj točno je grupa.
+Najbolj enostavno je preveriti komutativnost in red elementov (torej poiskanih
+avtomorfizmov).
+Spomnimo se klasifikacijo končnih Abelovih grup:
+
+\begin{izrek}
+  Vsaka končna Abelova grupa je vsota cikličnih grup, katerih red je potenca
+  praštevila.
+\end{izrek}
+
+Rezultat, ki bizarno redko pride prav, je fundamentalni izrek Galoisove teorije:
+
+\begin{izrek}
+  Naj bo $E/F$ končna Galoisova razširitev.
+  \begin{itemize}
+  \item Predpisa $L \mapsto \operatorname{Gal}(E/L)$ in
+	\[
+	  G \mapsto \{x \in E \such g \cdot x = x \;\forall g \in G\}
+	\]
+	sta paroma inverzni preslikavi med vmesnimi polji $F \subseteq L \subseteq
+	E$ in podgrupami Galoisove grupe.
+  \item Za poljubni vmesni polji $F \subseteq L \subseteq M \subseteq E$ velja
+	$\abs{M:L} = \abs{\operatorname{Gal}(E/L) : \operatorname{Gal}(E/M)}$.
+  \item Za vmesno polje $F \subseteq L \subseteq E$ je $L/F$ normalna natanko
+	tedaj, ko je $\operatorname{Gal}(E/L) \edinka \operatorname{Gal}(E/F)$.
+  \end{itemize}
+\end{izrek}
+
+\podnaslov{Rešljivost grup}
+
+\begin{definicija}
+  Grupa $G$ je \pojem{rešljiva}, če obstaja končno zaporedje podgrup
+  \[
+	\{1\} = G_0 \le G_1 \le \cdots \le G_k = G,
+  \]
+  za katere velja $G_i \edinka G_{i+1}$ in $G_{i+1} / G_i$ Abelova.
+\end{definicija}
+
+Naslednje grupe so dokazano rešljive:
+\begin{itemize}
+\item Abelove grupe,
+\item končne $p$-grupe,
+\item $D_{2n}$,
+\item vsaka grupa reda $pq$, kjer sta $p,q$ praštevili
+\end{itemize}
+Vse podgrupe in kvocienti rešljivih grup so rešljivi.
+Če sta $N$ in $G/N$ rešljivi za edinko $N \edinka G$, je tudi $G$ rešljiva.
+
+\naslov{Moduli}
+
+Modul je algebrajska struktura nad kolobarjem $R$, v kateri dovolimo seštevanje
+in množenje s skalarjem z leve.
+Veljajo vse običajne definicije, kar se tiče algebrajskih struktur.
+Če je $X = \{x_1, \ldots, x_n\}$, je podmodul, generiran z $X$, enak
+\[
+  \sk{X} = \{r_1 x_1 + \cdots + r_n x_n \such r_i \in R\}.
+\]
+Če je modul generiran z enim elementom, pravimo, da je \pojem{cikličen}.
+Vsak enostaven modul (tj.~tak, ki nima netrivialnih podmodulov) je cikličen.
+
+Množici $X$, za katero je $M = \sk{X}$ in za katero iz enakosti $r_1 x_1 +
+\cdots + r_n x_n = 0$ sledi $r_i = 0$ za vsak $i$, pravimo \pojem{baza}.
+Če ima modul bazo, je \pojem{prost}.
+Velja naslednja karakterizacija:
+
+\begin{izrek}
+  Naj bo $M$ $R$-modul.
+  Naslednje trditve so ekvivalentne:
+  \begin{itemize}
+  \item $M$ je prost $R$-modul
+  \item Obstaja indeksna množica $\Lambda$, da je $M$ kot $R$-modul izomorfen
+	\[
+	  M \cong \bigoplus_{\lambda \in \Lambda} R
+	\]
+  \item Obstaja množica $X$ in preslikava $\iota: X \to M$, da za vsak $R$-modul
+	$N$ in vsako preslikavo $\kappa: X \to N$ obstaja natanko en homomorfizem
+	$f: M \to N$, za katerega je $f \circ \iota = \kappa$.
+  \end{itemize}
+\end{izrek}
+
+Zadnji točki pravimo \pojem{univerzalna lastnost}.
+Pripada ji naslednji komutativni diagram:
+\[\begin{tikzcd}
+	X & N \\
+	M
+	\arrow["\kappa", from=1-1, to=1-2]
+	\arrow["\iota"', from=1-1, to=2-1]
+	\arrow["f"', from=2-1, to=1-2]
+  \end{tikzcd}\]
+
+% LocalWords:  ciklotoničen separabilne Galoisove Galoisovo separabilnim

@@ -1,5 +1,5 @@
 predmeti := testnipredmet verjetnost mehanika analiza3 uvodvnumericnemetode algebra3 analiza4 izbranetemeizanalizepodatkov statistika numericnalinearnaalgebra
-ksl := testniksl mehanika verjetnost integriranje diferencialne-enacbe uvodvnumericnemetode statistika
+ksl := testniksl mehanika verjetnost integriranje diferencialne-enacbe uvodvnumericnemetode statistika algebra3
 
 latex-cmd := lualatex --shell-escape
 
