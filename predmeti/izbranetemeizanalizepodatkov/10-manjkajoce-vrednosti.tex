@@ -1,0 +1,49 @@
+\naslov{Manjkajoče vrednosti}
+
+Včasih v testnih ali učnih primerih manjka kakšen podatek.
+Če manjka $y$, primer samo izbrišemo, ker nam ne pomaga.
+To lahko naredimo tudi za manjkajoče $X_i$, čemur pravimo \pojem{complete-case
+  analysis}.
+Tu lahko pride do problemov; eno je predsodek v podatkih, drugo pa, da ima tako
+učna množica lahko premalo primerov.
+Podobna ideja je \pojem{available-case analysis}, kjer namesto primerov brišemo
+spremenljivke (stolpce), kjer podatki manjkajo.
+
+\vprasanje{Kakšne so težave z brisanjem neznanih podatkov?}
+
+Če podatkov ne brišemo, delamo \pojem{imputacijo}.
+Numerično spremenljivko lahko nadomestimo s povprečjem vseh primerov v
+podatkovni množici, diskretno pa z gostiščnico, ali pa neznane podatke postavimo
+v razred zase.
+Dobra ideja je, da dodamo še novo indikatorsko spremenljivko, ki pove, ali je
+bila originalna spremenljivka prisotna, ali pa je imputirana.
+Druga možnost, ki je baje \enquote{relativno korektna,} je, da neznano vrednost
+nadomestimo z naključno vrednostjo iz tega stolpca.
+To je dejanje iz obupa; v praksi je bolje, da uporabiš znanje o problemu.
+Korektno pa je, ker tako ne prinašaš predsodka, ker se porazdelitev ne spremeni.
+Še zadnja osnovna možnost je nadomeščanje s povprečno vrednostjo najbližjih
+sosedov (po znanih spremenljivkah).
+
+\vprasanje{Opiši osnovne tehnike imputacije.}
+
+Bolj napredno je nadomeščanje z napovednimi modeli.
+To je iterativni postopek, kjer v prvem koraku napovemo manjkajoče vrednosti z
+eno od enostavnih metod, v vseh nadaljnjih korakih pa izberemo eno od
+spremenljivk (v nekem vrstnem redu), naučimo napovedni model na vseh $X_i$ brez
+te, in napovemo vrednost te spremenljivke.
+Tu \poudarjenne{} uporabljamo podatkov iz $Y$, ker bi potem bile generirane
+vrednosti pristranske, kar nam efektivno uniči testne primere.
+
+\vprasanje{Opiši imputacijo z napovednimi modeli.}
+
+Izjema tu so modeli, ki sprejemajo tudi neznane vrednosti, recimo odločitvena
+drevesa.
+V algoritmu TDIDT primere z neznano vrednostjo $X_i$ enakomerno porazdelimo med
+vse naslednike; te primere v računih obravnavamo, kot da bi bili na pol v eni in
+na pol v drugi množici.
+
+\vprasanje{Kako prilagodiš TDIDT tako, da lahko dela tudi z neznanimi
+  vrednostmi?}
+
+% LocalWords:  imputacijo complete-case analysis available-case imputirana
+% LocalWords:  imputacije generirane TDIDT

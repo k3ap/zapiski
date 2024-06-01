@@ -1,0 +1,43 @@
+\naslov{Neenakomerne porazdelitve}
+
+Težava pri neenakomernih porazdelitvah $Y$ je, da bomo za pogoste vrednosti
+dobili manjšo napako.
+Za porazdelitev
+\[
+  Y \sim
+  \begin{pmatrix}
+	0.01 & 0.99 \\
+	\oplus & \ominus
+  \end{pmatrix}
+\]
+je model $Y = \ominus$ perfekten, a ga ne želimo uporabiti iz očitnih razlogov.
+Za diskreten $Y$ vzorčimo, torej upoštevamo manj velikih razredov
+(\pojem{podvzorčenje}) ali pa primere majhnih razredov večkrat kopiramo
+(\pojem{prevzorčenje}).
+
+\vprasanje{Kaj je podvzorčenje in kaj prevzorčenje?}
+
+Noben od teh pristopov ni idealen.
+Malo boljši je algoritem SMOTE, kjer tvorimo nove sintetične primere.
+Algoritem za izbran primer $(x,y)$ poišče $k$ najbližjih sosedov in za
+naključnega $(x_n, y)$ z enakim $y$ tvori sintetični primer $(x + g \cdot (x_n -
+x), y)$, kjer je $g \in [0,1]$ naključno izbran.
+Dodatno algoritem sprejme tudi parametra o stopnji podvzorčenja in prevzorčenja;
+to sta faktorja v številu novih razredov manjšinskega oz.~večinskega razreda
+glede na originalno število.
+
+\vprasanje{Opiši algoritem SMOTE.}
+
+Pri regresiji neenakomerna porazdelitev izgleda tako, da imamo osamelce z zelo
+različnimi vrednosti $Y$.
+Definiramo \pojem{funkcijo pomembnosti} $\phi: Y \to [0,1]$, ki da visoko
+pomembnost redkim primerom in zvezno pada k pogostejšim.
+Primere z visoko pomembnostjo prevzorčimo, primere z nizko pomembnostjo pa
+podvzorčimo.
+V regresijski obliki algoritma SMOTE v sintetičnih primerih uporabimo
+konvolucijo tudi v spremenljivki $Y$.
+
+\vprasanje{Kako obravnavaš vprašanje o neenakomerni porazdelitvi v primeru
+  regresije?}
+
+% LocalWords:  podvzorčenje SMOTE podvzorčenja podvzorčimo
