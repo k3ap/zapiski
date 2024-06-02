@@ -124,3 +124,89 @@ $n$.
 
 \vprasanje{Dokaži, da za regularen matrični šop obstaja posplošena Schurova
   forma.}
+
+Za računanje posplošene Schurove forme imamo na voljo QZ algoritem.
+Predpriprava je, da z ortogonalno ekvivalenčno transformacijo pretvorimo $(A,B)$
+v $(A_1, B_1)$, kjer je $A_1$ zgornje Hessenbergova in $B_1$ zgornje trikotna.
+Iščemo torej ortogonalni $Q_1, Z_1$, da velja $A = Q_1 A_1 Z_1$, $B = Q_1 B_1
+Z_1$.
+V prvem koraku uporabimo algoritem za QR razcep in poiščemo ortogonalno $U$, da
+je $U^T B$ zgornje trikotna.
+Potem z rotacijami iz leve uničujemo elemente v $A$ (oz.~$U^TA$).
+Z vsako rotacijo si pokvarimo en element v $B$, ki ga popravimo z rotacijo z
+desne (ta pa nam ne pokvari ustvarjenih ničel v $A$).
+
+\vprasanje{Opiši postopek predpriprave za QZ algoritem.}
+
+Če ima $B$ na diagonali ničlo, jo lahko prestavimo na spodnje desno mesto in
+nadaljujemo na podmatriki $(n-1) \times (n-1)$.
+Predpostavimo torej, da je $B$ nesingularna.
+Matrika $C_0 = A_0 B_0^{-1}$ je zgornja Hessenbergova.
+Na njej naredimo korak QR iteracije z dvojnim premikom, da dobimo $C_1 = Q_0^T
+C_0 Q_0$, kjer je $Q_0$ matrika iz QR razcepa $N_0 = C_0^2 - (\sigma_1+\sigma_2)
+C_0 + \sigma_1 \sigma_2 I$.
+
+QZ iteracija nam iz matrik $A_0, B_0$ da matriki $A_1 = Q_0^T A_0 Z_0$ in $B_1 =
+Q_0^T B_0 Z_0$, kjer je $Q_0$ ortogonalna in taka, da je prvi stolpec enak
+normiranemu prvemu stolpcu $N_0$, ter $Z_0$ ortogonalna in taka, da je $A_1$
+zgornje Hessenbergova in $B_1$ zgornje trikotna.
+Po izreku o implicitnem Q je $A_1 B_1^{-1} = Q_0^T A_0 B_0^{-1} Q_0 = C_1$.
+Za določitev premika potrebujemo spodnjo desno $2 \times 2$ podmatriko $C_0$,
+torej moramo izračunati le inverz spodnje desne $3 \times 3$ podmatrike $B_0$.
+Za prvi stolpec $N_0$ potrebujemo tudi inverz vodilne $2 \times 2$ podmatrike
+$B_0$.
+
+Prvi stolpec $N_0$ ima tri elemente, torej za redukcijo potrebujemo $3 \times 3$
+Householderjevo zrcaljenje.
+Ko s tem množimo $A$ in $B$, dobimo grbi; v $A$ je grba velikosti $1 \times 1$,
+v $B$ pa velikosti $2 \times 2$.
+Potem uničimo grbo v $B$ z dvema zrcaljenjema iz desne, kar nam poveča grbo v
+$A$ na velikost $2 \times 2$.
+To grbo spravimo nazaj v $1 \times 1$ z zrcaljenjem iz leve, kar nam zopet
+prinese grbo v $B$ velikosti $2 \times 2$.
+Ko grbo premaknemo do konca, celoten postopek ponavljamo.
+QZ iteracija je ekvivalentna inverzni iteraciji na matriki $A B^{-1}$.
+Je bolj numerično stabilna kot množenje z inverzom in računanje lastnih
+vrednosti, a počasnejša.
+
+\vprasanje{Opiši QZ algoritem. Čemu je ekvivalenten?}
+
+\podnaslov{Kvadratni problem lastnih vrednosti}
+
+Naj bo $Q(\lambda) = \lambda^2 M + \lambda C + K$, kjer so $M$, $C$ in $K$
+matrike dimenzij $n \times n$.
+Potem je $\det Q(\lambda)$ polinom stopnje manjše ali enake $2n$.
+Če ta polinom ni konstantno enak $0$, pravimo, da je problem \pojem{regularen}.
+
+Če je za regularen problem $Q(\lambda) x = 0$, je $\lambda$ lastna vrednost in
+$x$ desni lastni vektor.
+Podobno je za $y^H Q(\lambda) = 0$ $y$ levi lastni vektor.
+V primeru $Mx = 0$ za neničeln $x$ pa pravimo, da je $\infty$ lastna vrednost za
+$x$.
+Lastne vrednosti so ničle karakterističnega polinoma, ki jih dopolnimo do $2n$ z
+neskončnimi.
+
+Klasičen način reševanja je linearizacija.
+Če je $\det M \ne 0$, imamo $2n$ končnih lastnih vrednosti, in poiščemo lastne
+vrednosti matrike
+\[
+  \begin{bmatrix}
+	0 & I \\
+	-M^{-1} K & -M^{-1} C
+  \end{bmatrix}.
+\]
+V primeru $\det M = 0$, pa poiščemo rešitve $(A-\lambda B) u = 0$ za
+\begin{align*}
+  A =
+  \begin{bmatrix}
+	C & K \\ K & 0
+  \end{bmatrix},
+  && B =
+	 \begin{bmatrix}
+	   -M & 0 \\ 0 & K
+	 \end{bmatrix}.
+\end{align*}
+
+\vprasanje{Opiši kvadratni problem lastnih vrednosti. Kako ga rešiš?}
+
+% LocalWords:  QZ linearizacija
