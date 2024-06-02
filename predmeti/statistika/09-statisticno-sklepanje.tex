@@ -31,6 +31,12 @@ porazdelitev slučajne spremenljivke $\rho(X,Y)$ neodvisna od $\theta$.
 Tedaj postavimo $C = \{(x,y) \such \rho(x,y) < c_\alpha\}$, kjer $c_\alpha$
 izračunamo tako, da je verjetnost zmote enaka $\alpha$.
 
+Osnovna ideja za iskanje $\rho(x,y)$ je, da nastavimo $\rho(x,y) = \abs{h(x) -
+  y}$, kjer je $h(x)$ cenilka za $y$.
+Če je $y = g(\theta)$ lastnost porazdelitve, lahko zanjo uporabimo metodo
+največjega verjetja, da dobimo $\hat{y}$.
+Potem velja naslednji izrek.
+
 \begin{izrek}
   Če definiramo
   \[
@@ -45,5 +51,35 @@ izračunamo tako, da je verjetnost zmote enaka $\alpha$.
 	\xrightarrow[n \to \infty]{d} N(0,1).
   \]
 \end{izrek}
+
+\begin{proof}
+  Skica.
+  Pogledamo logaritem verjetja
+  \[
+	l(\theta \such x_1, \ldots, x_n)
+	= \sum_i l_1(\theta \such x_i).
+  \]
+  Normalna porazdelitev bo sledila iz CLI.
+  Problem je, da to potrebujemo z cenilko; izpeljemo lahko, da je $\hat{y}$
+  približno linearna funkcija vsote nekih IID slučajnih spremenljivk.
+  Iz večrazsežne variante CLI izpeljemo, da
+  \[
+	\frac{\hat{y} - y}{\sqrt{\inv{n} \grad g(\theta)^T
+		\operatorname{FI}_1^{-1}(\theta) \grad g(\theta)}}
+	\xrightarrow[n \to \infty]{d} N(0,1).
+  \]
+  Manjka še, da smemo uporabiti $\hat{\theta}$ namesto $\theta$, kar dobimo iz
+  izrekov Sluckega.
+\end{proof}
+
+Iz tega sledi asimptotični interval zaupanja
+\[
+  \hat{y} - \phi^{-1}(1 - \frac{\alpha}{2}) \hat{\operatorname{RMSE}}
+  < y
+  < \hat{y} + \phi^{-1}(1 - \frac{\alpha}{2}) \hat{\operatorname{RMSE}}.
+\]
+
+\vprasanje{Kako dobiš asimptotični interval zaupanja z uporabo cenilke po MNV?
+  Povej idejo dokaza izreka.}
 
 % LocalWords:  MNV
