@@ -32,4 +32,108 @@
   tam zadošča LPV.
 \end{izrek}
 
+\begin{proof}
+  Naj bo $z_0 \in \Omega$ ter $r > 0$ dovolj majhen.
+  Definirajmo $\varphi: [0,r] \to \C$ s predpisom
+  \[
+	\varphi(s) = \int_0^1 u(z_0 + s e^{2 \pi i t}) dt.
+  \]
+  Funkcija $\varphi$ je zvezna na $[0,r]$, diferenciabilna na $(0,r)$ in velja
+  $\varphi(0) = u(z_0)$.
+  Izračunamo lahko
+  \[
+	\varphi'(s)
+	= \int_0^1 \partial_s u(x_0 + s \cos 2 \pi t, y_0 + s \sin 2 \pi t) dt
+	= \int_0^1 \sk{\grad u(\vec{r}(t)), (\cos 2 \pi t, \sin 2 \pi t)} dt
+  \]
+  za $\vec{r}(t) = z_0 + s e^{2 \pi i t}$.
+  Drugi vektor v skalarnem produktu je enak normali $\vec{n}(\vec{r}(t))$, torej
+  integriramo smerni odvod
+  \[
+	\varphi'(s)
+	= \int_0^1 \frac{\partial u}{\partial \vec{n}} (\vec{r}(t)) dt
+	= \inv{2 \pi s} \iint_{K(z_0, s)} \Delta u dS
+  \]
+  po Greenovi formuli, kjer konstanta pred integralom pride iz spremembe
+  spremenljivke.
+  Obe smeri implikacije enostavno sledita.
+\end{proof}
+
+\vprasanje{Dokaži: funkcija je harmonična natanko tedaj, ko zadošča lastnosti
+  povprečne vrednosti.}
+
+\begin{trditev}
+  Naj bosta $u, v \in \zvodv{2}{\Omega}$ realni.
+  Če je $u + i v$ holomorfna, sta $u$ in $v$ harmonični.
+\end{trditev}
+
+\begin{trditev}
+  Naj bo $\Omega \subseteq \R^2$ enostavno povezana odprta množica.
+  Če je $u$ realna harmonična funkcija, obstaja holomorfna funkcija $f$ na
+  $\Omega$, da je $u = \Real f$.
+\end{trditev}
+
+\begin{posledica}
+  Če je $u$ harmonična in $F$ holomorfna, je $u \circ F$ harmonična.
+\end{posledica}
+
+\begin{proof}
+  Vemo, da je lokalno $u = \Real f$.
+  Sledi $u\circ F = \Real f \circ F = \Real (f \circ F)$.
+\end{proof}
+
+\vprasanje{Dokaži: če je $u$ harmonična in $F$ holomorfna, je $u \circ F$
+  harmonična.}
+
+\podnaslov{Dirichletov problem}
+
+Označimo enotski disk z $D$ in njegov rob s $\mathbb{T} = \partial D$.
+Funkcije na $\mathbb{T}$ lahko identificiramo z $1$-periodičnimi funkcijami na
+$\R$ na očiten način.
+Dirichletov problem je naslednji:
+Če imamo dano funkcijo $f \in \zvezne{\mathbb{T}}$, ali lahko najdemo $u \in
+\zvezne{\cl{D}}$, da bo $u$ harmonična na $D$ in da se bo ujemala z $f$ na
+$\mathbb{T}$?
+
+\begin{primer}
+  Funkcijo $z^{-k}$ razširimo iz $\partial D$ na $D$ kot $\konj{z}^k$.
+  Realni del je enak realnemu delu $z^k$, torej je funkcija res harmonična.
+\end{primer}
+
+\vprasanje{Kaj je Dirichletov problem na enotskem disku? Kako ga rešiš za
+  $z^{-k}$?}
+
+Označimo $e_m(t) = \exp(2 \pi i m t)$ za $m \in \Z$ in $t \in [0,1]$.
+Pripadajoča razširitev funkcije $e_m$ na $D$ je funkcija $E_m: D \to \C$,
+definirana kot
+\[
+  E_m(r e^{2 \pi i t}) =
+  \begin{cases}
+	r^m e^{2 \pi i m t} & m \in \N \\
+	r^{-m} e^{2 \pi i m t} & m \in -\N
+  \end{cases}
+\]
+Za $f = \sum_k c_k e_k$ dobimo razširitev $\sum_k c_k E_k$.
+Ta prehod lahko zapišemo na eleganten način.
+Funkcije $e_k$ tvorijo ortonormiran sistem: če je $f = \sum_k c_k e_k$, je
+\[
+  c_k = \int_0^1 f(\tau) \konj{e_k(\tau)} d\tau.
+\]
+Domnevamo, da je
+\[
+  F(r e^{2 \pi i t})
+  = \sum_k \int_0^1 f(\tau) \konj{e_k(\tau)} r^{\abs{k}} e^{2 \pi i k t} d\tau
+  = \int_0^1 f(\tau) \sum_k r^{\abs{k}} e^{2 \pi i k (t - \tau)} d\tau.
+\]
+Če vsoto v zadnjem integralu označimo z $G_r(t - \tau)$, je to enako $(f *
+G_r)(t)$.
+Z nekaj algebrajske manipulacije lahko ugotovimo, da je
+\[
+  G_r(s) = P_r(s) := \frac{1 - r^2}{1 - 2 r \cos (2 \pi s) + r^2}.
+\]
+Tej funkciji pravimo \pojem{Poissonovo jedro}.
+
+\vprasanje{Izpelji predpis za rešitev Dirichletovega problema na enotskem disku.
+  Kaj je Poissonovo jedro?}
+
 % LocalWords:  subharmonična LPV
