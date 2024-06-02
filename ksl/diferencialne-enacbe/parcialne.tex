@@ -138,9 +138,19 @@ Iz robnih pogojev izračunamo možne vrednosti za $\lambda$.
 Običajno pride $\lambda = -k^2$ za $k \in \Z$.
 Splošna rešitev bo potem (neskončna) vsota takih členov.
 Zahtevamo tudi, da je $u$ realna funkcija, torej se kompleksni členi v izražavi
-združijo, in dobimo $u$ kot linearno kombinacijo sinunov in kosinusov.
+združijo, in dobimo $u$ kot linearno kombinacijo sinusov in kosinusov.
 Koeficiente v kombinaciji izračunamo s pomočjo Fourierovega razvoja začetnega
 pogoja.
+
+Če imamo nehomogen problem $u_t = k u_{xx} + F(x,t)$ s pogoji $u(0,t) = a(t)$,
+$u(\pi, t) = b(t)$ in $u(x,0) = f(x)$, potem rešitev sestavimo iz treh bolj
+enostavnih delov:
+\begin{alignat*}{3}
+  & u_t - k u_{xx} = F(x,t) & \qquad & u_t = k u_{xx} & \qquad & u_t = k u_{xx} \\
+  & u(0,t) = 0 & & u(0,t) = a(t) & & u(0,t) = 0 \\
+  & u(\pi,t) = 0 & & u(\pi, t) = b(t) & & u(\pi, t) = 0 \\
+  & u(x,0) = 0 & & u(x,0) = 0 & & u(x,0) = f(x)
+\end{alignat*}
 
 Včasih pri reševanju pride prav energija
 \[
@@ -160,4 +170,12 @@ To je skalar, za dovolj lepe probleme konstanta.
 Če ima enačba pred členoma še koeficiente, lahko poskusimo dodati podobne
 koeficiente v zgornji predpis (v upanju, da spet dobimo energijo).
 
-% LocalWords:  izražavi sinunov
+\section{Harmonične funkcije}
+
+Funkcija $u \in \zvodvi{2}$ je harmonična, če je $\Delta u = 0$.
+Za te funkcije velja lastnost povprečne vrednosti:
+\[
+  u(z_0) = \int_{\partial K(z_0, r)} u ds.
+\]
+
+% LocalWords:  izražavi
