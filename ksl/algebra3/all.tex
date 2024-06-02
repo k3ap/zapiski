@@ -211,4 +211,240 @@ Pripada ji naslednji komutativni diagram:
 	\arrow["f"', from=2-1, to=1-2]
   \end{tikzcd}\]
 
+\podnaslov{Projektivni moduli}
+
+\begin{definicija}
+  $R$-modul $P$ je \pojem{projektiven}, če za vsak homomorfizem $R$-modulov $f:
+  P \to M$ in vsak epimorfizem $R$-modulov $g: M' \to M$ obstaja homomorfizem
+  $R$-modulov $h: P \to M'$, da naslednji diagram komutira:
+  \[\begin{tikzcd}
+	  P \\
+	  M & {M'}
+	  \arrow["f"', from=1-1, to=2-1]
+	  \arrow["h", dashed, from=1-1, to=2-2]
+	  \arrow["g", two heads, from=2-2, to=2-1]
+	\end{tikzcd}\]
+\end{definicija}
+
+Vsak prost $R$-modul je projektiven.
+Dodatno velja naslednja karakterizacija:
+
+\begin{izrek}
+  Za $R$-modul $P$ je ekvivalentno:
+  \begin{itemize}
+  \item $P$ je projektiven
+  \item za vsak epimorfizem $\varphi: M \to P$ je $M = P \oplus \jedro \varphi$
+  \item obstaja $R$-modul $M$, da je $P \oplus M$ prost $R$-modul
+  \end{itemize}
+\end{izrek}
+
+Poznamo tudi \pojem{injekcijske module}; če je $M$ injekcijski modul, za vsak
+$R$-modul $Q$ z $M \le Q$ obstaja $K \le Q$, za katerega je $Q = M \oplus K$.
+Ekvivalentno, če za vsako injektivno $f: X \to Y$ in vsak $g: X \to M$ obstaja
+$h: Y \to M$, da spodnji diagram komutira:
+\[\begin{tikzcd}
+	X & Y \\
+	M
+	\arrow["f", hook, from=1-1, to=1-2]
+	\arrow["g"', from=1-1, to=2-1]
+	\arrow["h", dashed, from=1-2, to=2-1]
+  \end{tikzcd}\]
+
+\podnaslov{Tenzorski produkt}
+
+V tem razdelku je $R$ vedno komutativni kolobar z enico.
+Definicija tenzorskega produkta je grozno komplicirana, zato raje uporabljamo
+univerzalno lastnost, s katero lahko definiramo preslikave iz tenzorskega
+produkta:
+
+\begin{izrek}
+  Naj bodo $M, N, K$ $R$-moduli.
+  Za vsako bilinearno $\gamma: M \times N \to K$ obstaja natanko en homomorfizem
+  $R$-modulov $f: M \otimes_R N \to K$, da naslednji diagram komutira:
+  \[\begin{tikzcd}
+	  {M \times N} & K \\
+	  {M \otimes_R N}
+	  \arrow["\gamma", from=1-1, to=1-2]
+	  \arrow["\beta"', from=1-1, to=2-1]
+	  \arrow["f"', dashed, from=2-1, to=1-2]
+	\end{tikzcd}\]
+\end{izrek}
+
+Kot prostor si tenzorski produkt lahko predstavljamo prostor linearnih
+kombinacij elementarnih tenzorjev $a \otimes b$, pri čemer imajo elementi lahko
+več predstavitev.
+Preslikava $(a,b) \mapsto a \otimes b$ je bilinearna, torej lahko konstante (iz
+$R$) nesemo ven iz zapisa, če to želimo.
+Velja $M \otimes_R N \cong N \otimes_R N$.
+Poleg tega je tenzorski produkt do izomorfizma natančno asociativen in
+distributiven z direktno vsoto $\oplus$.
+
+\naslov{Teorija kategorij}
+
+\pojem{Kategorija} je sestavljena iz razreda objektov in množic morfizmov med
+vsakim parom objektov.
+Morfizme lahko komponiramo, za kompozicijo zahtevamo asociativnost in obstoj
+enote (za vsak objekt).
+
+Morfizem $A \to B$ je
+\begin{itemize}
+\item \pojem{izomorfizem}, če obstaja morfizem $g: B \to A$, da je $f \circ g =
+  1_B$ in $g \circ f = 1_A$.
+\item \pojem{prerez}, če obstaja $g: B \to A$, da je $g \circ f = 1_A$
+\item \pojem{retrakt}, če obstaja $g: B \to A$, da je $f \circ g = 1_B$
+\item \pojem{monomorfizem}, če velja pravilo krajšanja iz leve: $f \circ g = f
+  \circ h \implies g = h$
+\item \pojem{epimorfizem}, če velja pravilo krajšanja iz desne: $g \circ f = h
+  \circ f \implies g = h$
+\end{itemize}
+
+Za objekt pravimo, da je \pojem{začetni}, če obstaja natanko en morfizem iz tega
+objekta na poljuben drug objekt.
+Podobno je \pojem{končni objekt} tak, na katerega obstaja natanko en morfizem iz
+poljubnega drugega objekta.
+Poljubna začetna ali končna objekta sta izomorfna.
+
+\begin{definicija}
+  Naj bosta $C$ in $D$ kategoriji.
+  \pojem{Funktor} med $C$ in $D$ je predpis $F$, za katerega velja:
+  \begin{itemize}
+  \item za vsak objekt $A$ v $C$ imamo natanko določen objekt $F(A)$ v D
+  \item za vsak morfizem $f: A \to B$ imamo natanko določen morfizem $F(f): F(A)
+	\to F(B)$
+  \item $F(1_A) = 1_{F(A)}$
+  \item $F(f \circ g) = F(f) \circ F(g)$
+  \end{itemize}
+\end{definicija}
+
+Definiramo lahko tudi kofunktorje, kjer obrnemo vrstni red v drugi in četrti
+točki.
+Kofunktor je funktor med nasprotnima kategorijama $C^{\text{op}}$ in
+$D^{\text{op}}$.
+
+\begin{definicija}
+  Naj bosta $F, G$ funktorja iz $C$ v $D$.
+  \pojem{Naravna transformacija} med $F$ in $G$ je nabor morfizmov $\mu_A: F(A)
+  \to G(A)$ za objekte $A$ iz $C$.
+  Zahtevamo, da so ti morfizmi kompatibilni z morfizmi v $C$: za vsak $f: A \to
+  B$ mora naslednji diagram komutira:
+  \[\begin{tikzcd}
+	  {F(A)} & {F(B)} \\
+	  {G(A)} & {G(B)}
+	  \arrow["{F(f)}", from=1-1, to=1-2]
+	  \arrow["{\mu_A}"', from=1-1, to=2-1]
+	  \arrow["{\mu_B}", from=1-2, to=2-2]
+	  \arrow["{G(f)}"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+\end{definicija}
+
+Pravimo, da sta funktorja $F$ in $G$ \pojem{naravno izomorfna}, če obstaja
+naravna transformacija $\mu: F \to G$, za katero so vsi morfizmi $\mu_A$
+izomorfizmi.
+Za kategoriji $C$ in $D$ pravimo, da sta \pojem{ekvivalentni}, če obstajata
+funktorja $F: C \to D$ in $G: D \to C$ in naravna izomorfizma $F \circ G \to
+\id_D$ ter $G \circ F \to \id_C$.
+
+\begin{definicija}
+  Naj bosta $A,B$ objekta kategorije $C$.
+  \pojem{Produkt} objektov $A$ in $B$ je objekt $P$, skupaj z morfizmoma $p: P
+  \to A$ in $q: P \to B$, da za poljuben objekt $X$ in poljubna morfizma $f: X
+  \to A$ in $g: X \to B$ obstaja natanko en morfizem $h: X \to P$, da diagram
+  komutira:
+  \[\begin{tikzcd}
+	  A & P & B \\
+	  & X
+	  \arrow["p"', from=1-2, to=1-1]
+	  \arrow["q", from=1-2, to=1-3]
+	  \arrow["f"{description}, from=2-2, to=1-1]
+	  \arrow["h", from=2-2, to=1-2]
+	  \arrow["g"{description}, from=2-2, to=1-3]
+	\end{tikzcd}\]
+\end{definicija}
+
+Podobno definiramo koprodukt, kjer le obrnemo puščice:
+\[\begin{tikzcd}
+	A & P & B \\
+	& X
+	\arrow["p", from=1-1, to=1-2]
+	\arrow["f"{description}, from=1-1, to=2-2]
+	\arrow["h"', from=1-2, to=2-2]
+	\arrow["q"', from=1-3, to=1-2]
+	\arrow["g"{description}, from=1-3, to=2-2]
+  \end{tikzcd}\]
+
+Nekatere kategorije premorejo \pojem{generatorje}, torej objekte $G$, za katere
+za vsaka različna $f, g: A \to B$ obstaja $h: G \to A$, da je $f \circ h \ne g
+\circ h$.
+
+Za kategorijo pravimo, da je \pojem{konkretna}, če so objekti množice in
+morfizmi preslikave.
+V tem primeru lahko za neprazno množico $X$ definiramo \pojem{prosti objekt} nad
+$X$ kot tak objekt $F$, skupaj s preslikavo $\iota: X \to F$, da za vsak objekt
+$C$ in vsako preslikavo $f:X \to C$ obstaja natanko en morfizem $\tilde{f}: F
+\to C$, da komutira diagram
+\[\begin{tikzcd}
+	X & C \\
+	F
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["\iota"', from=1-1, to=2-1]
+	\arrow["{\tilde{f}}"', dashed, from=2-1, to=1-2]
+  \end{tikzcd}\]
+V konkretni kategoriji za morfizem veljata naslednji verigi implikacij:
+\begin{gather*}
+  \text{prerez} \implies \text{injekcija} \implies \text{monomorfizem} \\
+  \text{retrakt} \implies \text{surjekcija} \implies \text{epimorfizem}
+\end{gather*}
+
+\naslov{Teorija upodobitev}
+
+\begin{definicija}
+  \pojem{Upodobitev} $R$-algebre $A$ nad modulom $V$ je homomorfizem algeber
+  $\rho: A \to \End_R(V)$.
+\end{definicija}
+
+Najbolj relevantna algebra je t.i.~grupna algebra $RG$, prosti $R$-modul nad
+$G$.
+
+\begin{definicija}
+  $A$-modul $V$ je \pojem{enostaven}, če ima le trivialna podmodula.
+  Modul je \pojem{polenostaven}, če je končna direktna vsota enostavnih.
+\end{definicija}
+
+\begin{izrek}[Maschke]
+  Naj bo $G$ končna grupa in $F$ polje.
+  Predpostavimo, da karakteristika $F$ ne deli $\abs{G}$.
+  Naj bo $\rho: G \to \operatorname{GL}_F(V)$ upodobitev grupe $G$, kjer je $V$
+  končnodimenzionalen modul nad $F$.
+  Naj bo $W$ $G$-podmodul $V$.
+  Potem obstaja $G$-podmodul $X$, da je $V = W \oplus X$.
+\end{izrek}
+
+Kot posledica je vsak končnorazsežen $G$-modul polenostaven.
+
+\begin{lema}[Schur]
+  Naj bo $A$ $F$-algebra in $S_1, S_2$ enostavna $A$-modula.
+  Če je $S_1 \ncong S_2$, je $\operatorname{Hom}(S_1, S_2) = \{0\}$.
+  Če je $S_1 \cong S_2$, je $\End_A(S_1)$ obseg.
+  Če je $F$ algebraično zaprto polje, je $\End_A(S_1) \cong F$.
+\end{lema}
+
+\begin{izrek}[Artin-Wedderburn]
+  Naj bo $A$ končnorazsežna algebra nad poljem $F$, za katero je vsak končno
+  generiran $A$-modul polenostaven.
+  Recimo, da je $A$ kot $A$-modul oblike $A = S_1^{n_1} \oplus \cdots \oplus
+  S_r^{n_r}$, kjer so $S_i$ paroma neizomorfni enostavni $A$-moduli in
+  $S_i^{n_i}$ $n_i$-kratna direktna vsota.
+  Potem je $A$ kot $F$-algebra izomorfna direktni vsoti matrik $M_{n_1}(D_1)
+  \oplus \cdots \oplus M_{n_r}(D_r)$, kjer so $D_i = \End_A(S_i)^{\text{op}}$.
+  Če je $F$ algebraično zaprto, je $D_i = F$.
+\end{izrek}
+
+Izreka imata nekaj posledic.
+Če karakteristika $F$ ne deli $\abs{G}$, je vsaka upodobitev grupe $G$ povsem
+razcepna (torej je za vsako upodobitev $G \to \operatorname{GL}_F(V)$ modul $V$
+polenostaven $FG$-modul).
+Do ekvivalence natančno ima grupa le končno mnogo nerazcepnih upodobitev,
+$\rho_1, \ldots, \rho_r$; v kolikor je $F$ algebraično zaprto, je $n_1^2 +
+\cdots + n_r^2 = \abs{G}$.
+
 % LocalWords:  ciklotoničen separabilne Galoisove Galoisovo separabilnim
