@@ -1,0 +1,49 @@
+\naslov{Preizkušanje domnev}
+
+Želimo narediti nek sklep o $\theta$, včasih imamo o njem neko idejo.
+Tedaj to idejo imenujemo \pojem{ničelna hipoteza}, jo označimo s $H_0$ in
+poskusimo preveriti ali zavreči.
+V splošnem $H_0$ trdi, da je $\theta \in I_0 \subseteq I$.
+Testiramo jo proti \pojem{alternativni domnevi} $H_1$.
+Če je opažanje preveč neskladno s $H_0$, to domnevo zavrnemo in sprejmemo $H_1$;
+nikoli pa ne sprejmemo $H_0$.
+
+V primeru, ko $H_0$ zavrnemo, čeprav velja, pride do zmote.
+Želimo si, da je takih zmot malo, hkrati pa želimo $H_0$ čim večkrat zavreči, če
+ne velja.
+Funkciji $I_1 \to [0,1]$ s predpisom
+\[
+  \theta \mapsto P_\theta(\text{zavrnemo}\,H_0)
+\]
+pravimo \pojem{moč preizkusa}, in nam pove, do kolikšne mere smo upoštevali
+drugo od teh želja.
+Za prvo željo običajno le želimo omejiti verjetnost zmote
+$P_\theta(\text{zavrnemo}\,H_0)$ na $\alpha$ za $\theta \in I_0$.
+Tu uporabimo podobno idejo kot pri intervalih zaupanja.
+
+\vprasanje{Opiši osnovno idejo za testiranjem hipotez. Kaj je moč preizkusa?}
+
+Včasih pride prav pogledati razmerje verjetij
+\[
+  \Lambda = \frac{\sup_{\theta \in I} L(\theta \such X)}{\sup_{\theta \in I_0}
+	L(\theta \such X)},
+\]
+kjer bomo hipotezo zavrnili, če bo razmerje dovolj veliko.
+Ker je porazdelitev tega v praksi zelo težko poiskati, si pomagamo z naslednjim
+izrekom:
+
+\begin{izrek}[Wilks]
+  Naj bodo $X_1, X_2, \ldots$ neodvisne in enako porazdeljene, njihova
+  porazdelitev pa naj pripada družini $P_\theta$, $\theta \in I$, kjer je $I$
+  gladka mnogoterost dimenzije $p$.
+  Naj bo $I_0$ gladka podmnogoterost dimenzije $q$.
+  Tedaj velja
+  \[
+	2 \log \Lambda \xrightarrow[n \to \infty]{d} \chi^2(p-q)
+  \]
+  pri vsaki verjetnostni meri $P_\theta$ za $\theta \in I_0$.
+\end{izrek}
+
+\vprasanje{Kaj je razmerje verjetij? Povej Wilksov izrek.}
+
+% LocalWords:  Wilksov
