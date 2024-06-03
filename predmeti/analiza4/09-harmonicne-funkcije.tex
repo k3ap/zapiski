@@ -136,4 +136,83 @@ Tej funkciji pravimo \pojem{Poissonovo jedro}.
 \vprasanje{Izpelji predpis za rešitev Dirichletovega problema na enotskem disku.
   Kaj je Poissonovo jedro?}
 
+\begin{lema}
+  Za vsak $r \in \zo{0,1}$ je
+  \[
+	\int P_r(t) dt
+	= \inv{\pi} \arctan\!\left( \frac{1+r}{1-r} \tan(\pi t) \right).
+  \]
+\end{lema}
+
+\begin{trditev}
+  Družina $\{P_r\}_r$ je približna enota.
+  To pomeni:
+  \begin{itemize}
+  \item $\int_{-1/2}^{1/2} P_r = 1$
+  \item $\int_{-1/2}^{1/2} \abs{P_r} \lesssim 1$ (je omejeno do konstante
+	natančno)
+  \item za vsak $\delta \in (0, \pol)$ velja
+	\[
+	  \lim_{r \uparrow 1} \int_{\delta < \abs{t} < \pol} \abs{P_r(t)} dt
+	  = 0.
+	\]
+  \end{itemize}
+\end{trditev}
+
+\vprasanje{Definiraj približno enoto.}
+
+\begin{izrek}
+  Naj bo $\{P_r\}_r$ poljubna približna enota.
+  Tedaj za vsako funkcijo $f \in \zvezne{\mathbb{T}}$ velja
+  \begin{itemize}
+  \item $P_r * f$ je zvezna na $\mathbb{T}$,
+  \item $P_r * f \xrightarrow[r \to 1]{} f$ enakomerno na $\mathbb{T}$.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Prva točka:
+  Izračunamo
+  \[
+	P_r * f(t) - P_r * f(t')
+	= \int P_r(\tau) (f(t-\tau) - f(t'-\tau)) d\tau
+  \]
+  Ker je $f$ zvezna, je enakomerno zvezna, zato za $\varepsilon > 0$ obstaja
+  $\delta > 0$, da iz $\abs{s_1 - s_2} < \delta$ sledi $\abs{f(s_i) - f(s_2)} <
+  \varepsilon$.
+  V primeru $\abs{t-t'} = \abs{(t-\tau) - (t'-\tau)} < \delta$ velja
+  \[
+	\abs{P_r*f(t) - P_r*f(t')}
+	\le \int \abs{P_r(\tau)} \abs{f(t-\tau) - f(t'-\tau)} d\tau
+	< \varepsilon \int \abs{P_r(\tau)} d\tau,
+  \]
+  ta integral pa je omejen.
+
+  Druga točka:
+  \[
+	P_r * f(t) - f(t)
+	= \int f(t-\tau) P_r(\tau) d\tau - f(t) \cdot 1
+	= \int P_r(\tau) (f(t-\tau) - f(t)) d\tau
+  \]
+  po prvi lastnosti približne enote.
+  Naj bo $\varepsilon > 0$.
+  Obstaja $\delta > 0$, da za $\abs{\tau} < \delta$ velja $\abs{f(t-\tau) -
+	f(t)} < \varepsilon$.
+  Potem integral razdelimo na dva;
+  \[
+	\int_{\abs{\tau} < \delta} \abs{P_r(\tau)} \cdot \abs{f(t-\tau) - f(\tau)}
+	d\tau
+	< \varepsilon \int_{\abs{\tau} < \delta} \abs{P_r(\tau)} d\tau,
+  \]
+  kar je omejeno po drugi točki definicije, in
+  \[
+	\int_{\abs{\tau} > \delta} \abs{P_r(\tau)} \cdot \abs{f(t-\tau) - f(\tau)}
+	< M \int_{\abs{\tau} > \delta} \abs{P_r(\tau)} d\tau,
+  \]
+  ker je razlika $f(t-\tau) - f(\tau)$ zvezna na kompaktu in zato omejena.
+  Ta integral konvergira k $0$ za $r \to 1$.
+\end{proof}
+
+\vprasanje{Kateri lastnosti veljata za konvolucijo s približno enoto? Dokaži.}
+
 % LocalWords:  subharmonična LPV
