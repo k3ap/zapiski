@@ -1,0 +1,76 @@
+\naslov{Analiza besedil in vpetja}
+
+Širše obravnavamo poljubne delno strukturirane podatke $O$, zraven tega pa imamo
+še slovar $E$.
+Najenostavnejša ideja je, da poiščemo število pojavitev vsake besede v $O$, s
+čimer dobimo vektor velikosti $\abs{E}$ s komponentami v $\N_0$.
+Če želimo, lahko te podatke še transformiramo, v primeru besedil recimo
+\begin{itemize}
+\item Boolova frekvenca: $1$, če se beseda pojavi, sicer $0$
+\item Normalizirana frekvenca: delimo s številom besed v besedilu
+\item Logaritmična frekvenca: $\log(1 + f)$
+\end{itemize}
+Problem pri uporabi frekvenc za besedila je, da imamo veliko \pojem{praznih
+  besed}, tj.~besed, ki si pojavijo velikokrat v vsakem besedilu.
+Ena možna rešitev je, da praznih besed ne damo v slovar, druga pa, da pogledamo
+frekvenco v dokumentih $\text{DF}$, tj.~število dokumentov, kjer se ta
+beseda pojavi.
+Potem definiramo mero
+\[
+  \text{TFIDF} = \text{TF} \cdot \text{IDF}
+\]
+za obratno frekvenco v dokumentih
+\[
+  \text{IDF} = \log \frac{\text{število dokumentov}}{\text{DF}}.
+\]
+
+\vprasanje{Opiši obravnavo vpetij s frekvencami. Kaj je TFIDF?}
+
+Pri besedilih je preprocesiranja še veliko več.
+Prvo je lematizacija, kjer pretvorimo vse besede v osnovno obliko (odstranimo
+sklanjanje, množino, \ldots).
+Če lematizacije ne moremo uporabiti, jo lahko zamenjamo s krnjenjem, kjer besedo
+pretvorimo v njen koren.
+
+\vprasanje{Kaj je lematizacija in kaj krnjenje?}
+
+V primeru besedil slovar dobimo enostavno tako, da zberemo vse besede v
+dokumentih.
+Včasih dodamo tudi pogoste besedne zveze; temu potem rečemo \pojem{$n$-gram}.
+V primeru slik so besede konvolucijski filtri; te lahko poiščemo na roko ali
+uporabimo neko iskanje pogostih vzorcev.
+
+Težava pri tej obravnavi bag-of-words je, da ignorira pomen besed.
+Rešitev temu so \pojem{vpetja}, tj.~preslikave $E \to \R^n$, kjer pričakujemo,
+da se bodo podobne besede slikale v podobne vektorje.
+Pri tem naredimo \pojem{porazdelitveno predpostavko}: besede s podobnih pomenom
+uporabimo v istem kontekstu.
+Tu je kontekst mišljen kot nekaj besed levo in desno od trenutno obravnavane.
+
+Za vhod v nevronske mreže besede kodiramo kot vektor dolžine $\abs{E}$ z enico
+na indeksu, ki ustreza tej besedi v slovarju.
+Model CBOW (\textit{continuous bag-of-words}) je preprosta nevronska mreža s
+tremi plastmi.
+Vhodna raven ima $2 k \abs{E}$ nevronov, ki kodirajo besede v kontekstu ($k$ je
+širina konteksta).
+Skrita raven zakodira predstavitveni vektor.
+Ima $m$ nevronov, kjer je $m$ dimenzija vpetja.
+Izhodna raven pa kodira opazovano besedo, spet ima $\abs{E}$ nevronov.
+Pri tem naredimo eno poenostavitev; nevroni v vhodni plasti so razdeljeni v
+$2k$ skupin, uteži na sinapsah so enake med skupinami (vsaka skupina kodira eno
+besedo).
+Ideja je, da to mrežo uporabimo tako, da poskuša napovedati srednjo besedo iz
+besed konteksta.
+
+\vprasanje{Opiši model CBOW.}
+
+Lahko napovedujemo tudi v drugo smer; iz besede ustvarimo kontekst.
+To naredimo z modelom Skip-Gram, ki je CBOW v nasprotni kategoriji.
+Vektor stanj nevronov v skriti plasti nam bo tako dal vpetje vhodne besede.
+Ciljna funkcija je sedaj negativni logaritem verjetja konteksta; pri izpeljavi
+pa naredimo hudo napako, da so besede v kontekstu neodvisne.
+
+\vprasanje{Opiši model Skip-Gram.}
+
+% LocalWords:  lematizacija lematizacije konvolucijski bag-of-words CBOW
+% LocalWords:  continuous Skip-Gram
