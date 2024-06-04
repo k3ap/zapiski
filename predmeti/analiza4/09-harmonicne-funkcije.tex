@@ -215,4 +215,123 @@ Tej funkciji pravimo \pojem{Poissonovo jedro}.
 
 \vprasanje{Kateri lastnosti veljata za konvolucijo s približno enoto? Dokaži.}
 
+\begin{izrek}
+  Naj bo $u$ zvezna na $\cl{D}$ in harmonična na $D$.
+  Za $r \in \zo{0,1}$ označimo $u_r: \mathbb{T} \to \C$ s predpisom $u_r(t) =
+  u(r e^{2 \pi i t})$.
+  Tedaj je $u_r = u_1 * P_r$.
+\end{izrek}
+
+\begin{proof}
+  Izberimo $\alpha \in D$.
+  Naj bo $\psi: \R \to \R$ takšna funkcija, da je
+  \[
+	e^{2 \pi i t} = \varphi_\alpha(e^{2 \pi i \psi(t)})
+  \]
+  za Möbiusovo transformacijo $\varphi_\alpha(z) = \frac{z+\alpha}{1 +
+	\konj{\alpha}z}$.
+  Dodatno zahtevamo, da je $\psi$ zvezna in $\psi(s+1) = \psi(s)+1$.
+  Ta funkcija je odvedljiva, njen odvod je $1$-periodična funkcija.
+  Ker je $v = u \circ \varphi_\alpha$ harmonična ($u$ harmonična,
+  $\varphi_\alpha$ holomorfna), zadošča LPV.
+  Velja
+  \[
+	u(\alpha) = v(0)
+	= \int_0^1 v(e^{2 \pi i t}) dt
+	= \int_0^1 v(e^{2 \pi i \psi(s)}) \psi'(s) ds,
+  \]
+  kjer smo zamenjali spremenljivko na $t = \psi(s)$.
+  Nadalje je
+  \[
+	u(\alpha)
+	= \int_0^1 v \circ \varphi_{-\alpha}(e^{2 \pi i s}) \psi'(s) ds
+	= \int_0^1 u(e^{2 \pi i s}) \psi'(s) ds.
+  \]
+  Dokazati moramo le še
+  \[
+	\psi'(s) = \frac{1-r^2}{1 - 2r \cos(2 \pi (t-s)) + r^2}
+  \]
+  za $\alpha = r e^{2 \pi i t}$.
+  Vemo, da je $e_1 \circ \psi = \varphi_{-\alpha} \circ e_1$, kjer je $e_1(t) =
+  e^{2 \pi i s}$.
+  Če to odvajamo, dobimo
+  \[
+	2 \pi i e^{2 \pi i \psi(s)} \psi'(s) = \frac{1 - r^2}{(1 - \konj{\alpha}
+	  e_1(s))^2} 2 \pi i e^{2 \pi i s}.
+  \]
+  Iz tega izpeljemo
+  \[
+	\psi'(s) = \frac{1 - r^2}{(1 - \konj{\alpha} e_1(s))^2}
+	\frac{e_1(s)}{\varphi_{-\alpha}(e_1(s))}.
+  \]
+  Pišimo $z = e_1(s)$.
+  Potem je
+  \[
+	\frac{z}{(1 - \konj{\alpha} z)^2 \varphi_{-\alpha}(z)}
+	= \frac{z (1 - \konj{\alpha} z)}{(1 - \konj{\alpha} z)^2 (z - \alpha)}
+	= \frac{z}{(z-\alpha)(1 - \konj{\alpha} z)}
+	= \frac{1}{(1 - \konj{\alpha} z)(1 - \alpha \konj{z})}
+  \]
+  upoštevaje $\abs{z} = 1$.
+  To je potem enako $1 / \abs{1 - \konj{\alpha}z}^2$, torej ima $\psi'$ res
+  želeno obliko.
+\end{proof}
+
+\vprasanje{Dokaži, da je harmonična funkcija natančno določena z robnimi
+  vrednostmi.}
+
+\begin{lema}
+  Naj bo $\Omega \subseteq \R^2$ območje.
+  Če je $u \in \zvezne{\Omega}$ in zadošča LPV, tedaj zanjo velja princip
+  maksima; če $u$ doseže maksimum v neki točki iz $\Omega$, tedaj je $u$
+  konstantna funkcija.
+\end{lema}
+
+\begin{proof}
+  Brez škode za splošnost privzamemo, da je maksimum dosežen v točki $z_0$, ter
+  da je $u(z_0) > 0$ ter realno.
+  Vzamemo $K(z_0, r) \subseteq \Omega$ in $\rho < r$.
+  Če na LPV uporabimo $\Real$, dobimo
+  \[
+	u(z_0) = \int_0^1 \Real u(z_0 + \rho e^{2 \pi i t}) dt,
+  \]
+  oziroma
+  \[
+	\int_0^1 (u(z_0) - \Real u(z_0 + \rho e^{2 \pi i t})) dt = 0.
+  \]
+  Ker je integrand povsod pozitiven, mora biti povsod enak $0$, torej je $u(z) =
+  u(z_0)$ za vsak $z$ iz krogle $K(z_0, r)$.
+  Vzemimo maksimalno množico $M = \{z \in \Omega \such u(z) = u(z_0)\}$.
+  Po zgornjem je odprta, hkrati pa je zaprta, ker je množica rešitev enačbe.
+\end{proof}
+
+\vprasanje{Dokaži princip maksima za harmonične funkcije.}
+
+\begin{posledica}
+  Naj bo $u$ zvezna na $\Omega\odpp\R^2$ in naj zadošča LPV.
+  Tedaj je $u$ harmonična.
+\end{posledica}
+
+\begin{proof}
+  Naj bosta $z_0, r$ taka, da je $K(z_0, r) \subseteq \Omega$.
+  Brez škode za splošnost je $z_0 = 0$ in $r = 1$.
+  Naj bo $f(t) = u(e^{2 \pi i t})$ ter
+  \[
+	v(R e^{2 \pi i t}) =
+	\begin{bmatrix}
+	  f * P_R(t) & R < 1 \\
+	  f(t) & R = 1
+	\end{bmatrix}
+  \]
+  Vemo, da je $v$ harmonična na $D$, zvezna na $\cl{D}$ in $\left. v
+  \right|_{\partial D} = f$.
+  Ker je $w = u-v$ zvezna na $\cl{D}$, doseže $\abs{w}$ maksimum na $\cl{D}$,
+  vemo pa, da je $w = 0$ na $\partial D$, torej je $w = 0$ povsod po principu
+  maksima.
+  Torej je $u = v$ harmonična.
+\end{proof}
+
+\vprasanje{Dokaži, da je zvezna funkcija, ki ustreza lastnosti povprečne
+  vrednosti, harmonična.}
+
 % LocalWords:  subharmonična LPV
