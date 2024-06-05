@@ -334,4 +334,180 @@ Tej funkciji pravimo \pojem{Poissonovo jedro}.
 \vprasanje{Dokaži, da je zvezna funkcija, ki ustreza lastnosti povprečne
   vrednosti, harmonična.}
 
-% LocalWords:  subharmonična LPV
+\begin{izrek}
+  Kompleksna funkcija $u \in \zvodvi{2}$ je harmonična natanko tedaj, ko je $u =
+  \varphi_1 + \konj{\varphi_2}$ za holomorfni $\varphi_1, \varphi_2$, določeni
+  do konstante natančno.
+\end{izrek}
+
+\begin{proof}
+  Enoličnost: če je $\varphi_1 + \konj{\varphi_2} = \varphi_3 +
+  \konj{\varphi_4}$, je $\varphi_1 - \varphi_3 = \konj{\varphi_4 - \varphi_2}$.
+  Leva stran je holomorfna, desna antiholomorfna, torej sta konstantni.
+
+  Obstoj: $u = \alpha + i \beta$ za realni harmonični $\alpha, \beta$.
+  Potem obstajata holomorfni $f, g$, da je $\alpha = \Real f$ in $\beta = \Real
+  g$, torej
+  \[
+	u = \frac{f + ig}{2} + \konj{\frac{f + ig}{2}}.
+  \]
+\end{proof}
+
+\vprasanje{Dokaži: kompleksna funkcija je harmonična natanko tedaj, ko je vsota
+  holomorfne in antiholomorfne.}
+
+\begin{izrek}
+  Naj bo $\Omega$ omejeno območje v $\R^2$ in $f \in \zvodv{2}{\Omega}$ ter $g
+  \in \zvezne{\partial \Omega}$.
+  Dirichletov problem $\Delta u = f$ na $\Omega$ in $u = g$ na $\partial \Omega$
+  ima največ eno rešitev $u \in \zvezne{\cl{\Omega}} \presek \zvodv{2}{\Omega}$.
+\end{izrek}
+
+\begin{proof}
+  Če sta $u_1, u_2$ rešitvi, je $v = u_1 - u_2$ harmonična na $\Omega$ in zvena
+  na zaprtju.
+  Ker je $\cl{\Omega}$ kompakt, $\abs{v}$ na njem doseže maksimum; a $v = 0$ na
+  $\partial \Omega$, torej je $v = 0$ povsod.
+\end{proof}
+
+\vprasanje{Pokaži, da je rešitev Dirichletovega problema na omejenem območju
+  enolična, če obstaja.}
+
+\begin{trditev}
+  Če je $f$ holomorfna, je $\log \abs{f}^2$ harmonična na množici $\{z \in \C
+  \such f(z) \ne 0\}$.
+\end{trditev}
+
+\begin{proof}
+  Velja $\log f = \log \abs{f} + i \arg f$, torej je $\log \abs{f}$ realni del
+  holomorfne funkcije.
+\end{proof}
+
+Za $F(z) = \frac{1+z}{1-z}$ velja $P(z) = \Real F(z) = \frac{1 -
+  \abs{z}^2}{\abs{1-z}^2}$ in $P(r e^{2 \pi i s}) = P_r(e^{2 \pi i s})$.
+Če pogledamo imaginarni del, $Q(z) = \Imag F(z) = \frac{2 \Imag z}{\abs{1
+	-z}^2}$, lahko definiramo
+\[
+  Q_r(t) = Q(r e^{2 \pi i t}) = \frac{2 r \sin(2 \pi t)}{1 - 2r \cos(2 \pi t) +
+	r^2}.
+\]
+Žal $Q_r$ ni približna enota.
+Dodatno je
+\[
+  \lim_{r \uparrow 1} P_r(t) =
+  \begin{cases}
+	0 & t \ne 0 \\
+	\infty & t = 0
+  \end{cases}
+\]
+za $Q$ pa pride
+\[
+  \lim_{r \uparrow 1} Q_r(t) =
+  \begin{cases}
+	\cot(\pi t) & t \ne 0 \\
+	0 & t = 0
+  \end{cases}
+\]
+kar je posebej grozno, ker ta predpis pri $t \ne 0$ ni integrabilen.
+Kljub temu poskusimo definirati $v_r(t) = (f * Q_r)(t)$ in upoštevamo, da je
+$Q_r$ liha funkcija.
+
+\begin{trditev}
+  Če je $f: \mathbb{T} \to \C$ odvedljiva, tedaj za vsak $t \in \mathbb{T}$
+  limita
+  \[
+	\lim_{\delta \downarrow 0} \int_{\delta \le \abs{\tau} \le \pol} \cot(\pi
+	\tau) f(t - \tau)
+  \]
+  obstaja.
+\end{trditev}
+
+\begin{proof}
+  Razdelimo integral na pozitiven in negativen del ter na enem od njih
+  uporabimo spremembo spremenljivk, da dobimo
+  \[
+	I = \int_{\delta}^\pol \cot(\pi \tau) (f(t - \tau) - f(t + \tau)) d\tau.
+  \]
+  Potem to spremenimo v
+  \[
+	I = \int_\delta^\pol \tau \cot(\pi \tau) \left( \frac{f(t - \tau) -
+		f(t)}{\tau} - \frac{f(t+\tau) - f(t)}{\tau} \right) d\tau.
+  \]
+  Notranjost oklepaja označimo z $g_t(\tau)$.
+  To je zvezna funkcija, ker je $f$ odvedljiva.
+  Ker je $\tau \cot(\pi \tau)$ zvezna na $[0,\pol]$, limita integrala za $\delta
+  \to 0$ res obstaja.
+\end{proof}
+
+\vprasanje{Kaj je $Q_r$? Dokaži, da za odvedljive $f$ obstaja glavna vrednost $f
+  * Q_r(t)$.}
+
+Funkciji
+\[
+  Hf(t) = \text{g.v.} \int_{\mathbb{T}} \cot(\pi \tau) f(t-\tau) d\tau
+\]
+pravimo \pojem{Hilbertova transformiranka $f$}.
+
+\begin{trditev}
+  Če je $f: \mathbb{T} \to \C$ odvedljiva, limita
+  \[
+	\lim_{r\uparrow 1} (f * Q_r)(t)
+  \]
+  obstaja in je enaka $Hf(t)$.
+\end{trditev}
+
+\begin{proof}
+  Za vsak $\delta \in (0,1)$ imamo
+  \begin{align*}
+	v_r(t) = (f * Q_r)(t)
+	&= \int_{\abs{\tau} < \delta} \tau Q_r(\tau) \frac{f(t - \tau) - f(t)}{\tau}
+	d\tau \\
+	&+ \int_{\abs{\tau} \ge \delta} (Q_r(\tau) - \cot(\pi \tau)) f(t - \tau)
+	d\tau \\
+	&+ \int_{\abs{\tau} \ge \delta} \cot(\pi \tau) f(t - \tau) d\tau,
+  \end{align*}
+  kjer smo v prvem integralu uporabili dejstvo, da je $Q_r$ lih, da smo lahko
+  odšteli $f(t)$.
+  Te integrale označimo z $I_1$, $I_2$ in $I_3$.
+  Za $\delta \to 0$ gre $I_3 \to Hf(t)$, dokazati moramo, da $I_1$ in $I_2$
+  konvergirata k $0$.
+
+  Dokažimo prvo
+  \[
+	\sup_{r, \tau} \abs{\tau Q_r(\tau)} < \infty.
+  \]
+  Velja
+  \[
+	\tau Q_r(\tau) = \frac{2 r \tau \sin(2 \pi \tau)}{1 - 2r \cos(2 \pi \tau) +
+	  r^2}
+	= \inv{\pi} \frac{xr \sin x}{1 - 2 r \cos x + r^2}
+  \]
+  za $x = 2 \pi \tau$.
+  Za $r \to 1$ je $x r \sin x \approx r \sin x \cdot r \sin x$, in zato
+  \[
+	\tau Q_r(\tau) \approx \frac{(r \sin x)^2}{1 - 2r \cos x + r^2}
+	\approx \frac{\abs{z - \konj{z}}^2}{\abs{1 - z}^2}
+	\approx \frac{\abs{w - \konj{w}}^2}{\abs{w}^2}
+	= \abs{\frac{w}{\abs{w}} - \frac{\konj{w}}{\abs{w}}}^2
+  \]
+  za $w = 1-z$, to pa je omejeno.
+  Če pa je $r$ blizu $0$, pa je $1 - 2r \cos (2 \pi \tau) + r^2 \ge (1-r)^2
+  \approx 1$ in je $\abs{\tau Q_r(\tau)}$ spet omejen.
+  Torej je supremum res končen.
+
+  Ocenimo
+  \[
+	\abs{I_1} \le \int_{\abs{\tau} \le \delta} \abs{\tau Q_r(\tau)}
+	\abs{\frac{f(t-\tau) - f(t)}{\tau}} d\tau.
+  \]
+  Oba člena tu sta omejena, torej je integral manjši od $2 M \delta$ za nek $M$,
+  in konvergira k $0$ za $\delta \to 0$.
+\end{proof}
+
+\vprasanje{Pokaži, da limita $f * Q_r(t)$ za $r \uparrow 1$ obstaja. Čemu je
+  enaka?}
+
+
+
+% LocalWords:  subharmonična LPV antiholomorfna antiholomorfne integrabilen
+% LocalWords:  transformiranka
