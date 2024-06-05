@@ -1,0 +1,96 @@
+\naslov{Linearna regresija}
+
+Linearna regresija je model dogajanja, kjer pojasnimo opažene podatke kot
+$\sv{Y} = X \sv{\beta} + \sv{\varepsilon}$ za konstantno matriko opažanj $X$,
+determinističen (a neznan) vektor $\sv{\beta}$ in slučajni šum
+$\sv{\varepsilon}$.
+Predpostavimo, da je $\sv{\varepsilon}$ \pojem{beli šum}, torej da je
+$E(\sv{\varepsilon}) = \sv{0}$ in $\var(\sv{\varepsilon}) = \sigma^2 I$.
+Druga lastnost je kombinacija nekoreliranosti komponent in
+\pojem{homoskedastičnosti}, da so diagonalni elementi enaki.
+Rešitev za $\sv{\beta}$ po najmanjših kvadratih je $\hat{\sv{\beta}} = (X^T
+X)^{-1} X^T \sv{Y}$.
+
+\begin{definicija}
+  \pojem{Linearna cenilka} za količino $q$ z vrednostmi v $\R$ na podlagi
+  opažanja $\sv{Y} \in \R^n$ je cenilka oblike $\hat{q} = \sv{\psi}^T \sv{Y} +
+  \rho$, kjer sta $\sv{\psi} \in \R^n$ in $\rho \in \R$ konstanti.
+\end{definicija}
+
+\begin{izrek}[Gauss, Markov]
+  Če je $\hat{\sv{\beta}}$ cenilka po najmanjših kvadratih kot zgoraj, je
+  $\sv{c}^T \hat{\sv{\beta}}$ najboljša nepristranska linearna cenilka za
+  $\sv{c}^T \sv{\beta}$.
+\end{izrek}
+
+\begin{proof}
+  Model lahko parametriziramo že z $\sv{v} = X \sv{\beta}$.
+  Obstaja tak $\sv{\varphi} \in V = \im X$, da je $q = \sv{\varphi}^T \sv{v}$.
+  Definiramo $\hat{\sv{v}} = X \hat{\sv{\beta}} = H \sv{Y}$ za $H = X X^T (X^T
+  X)^{-1} X^T$.
+  Ekvivalentno je pokazati, da je $\sv{\varphi}^T \hat{\sv{v}}$ NNLC za $q =
+  \sv{\varphi}^T \sv{v}$.
+
+  Linearne cenilke za $q$ so oblike $\hat{Q} = \sv{\psi}^T \sv{Y} + \rho$.
+  Cenilka je nepristranska, če je
+  \[
+	E(\hat{Q}) = \sv{\psi}^T E(\sv{Y}) + \rho
+	= \sv{\psi}^T X \sv{\beta} + \rho = \sv{\psi}^T \sv{v} + \rho
+	= \sv{\varphi}^T \sv{v}.
+  \]
+  To mora veljati za vsak $\sv{v}$.
+  Pri $\sv{v} = 0$ dobimo $\rho = 0$, iz preostalih pa sklepamo:
+  \[
+	\sv{\psi}^T \sv{v}
+	= \sv{\psi}^T H \sv{v}
+	= (H \sv{\psi})^T \sv{v}
+	= \sv{\varphi}^T \sv{v}
+  \]
+  upoštevaje dejstvo, da je $H$ simetričen projektor.
+  Sledi $\sv{\psi} = \sv{\varphi} + \sv{\eta}$, kjer je $\sv{\eta} \in V^\bot$,
+  torej $\hat{Q} = (\sv{\varphi} + \sv{\eta})^T \sv{Y}$.
+
+  Če izračunamo varianco, dobimo
+  \[
+	\var(\hat{Q}) = (\sv{\varphi} + \sv{\eta})^T \var(\sv{\varepsilon})
+	(\sv{\varphi} + \sv{\eta})
+	= \sigma^2 (\sv{\varphi}^T \sv{\varphi} + \sv{\eta}^T \sv{\eta}),
+  \]
+  torej je varianca minimalna pri $\sv{\eta} = 0$.
+\end{proof}
+
+\vprasanje{Povej in dokaži izrek Gaussa in Markova.}
+
+Za vsoto kvadratov ostankov
+\[
+  \text{RSS} = \norm{\sv{Y} - X \hat{\sv{\beta}}}^2
+  = \norm{(I_n - H) \sv{Y}}^2
+\]
+lahko s pomočjo trika s sledjo izračunamo
+\[
+  E(\text{RSS}) = \sigma^2 (n - \rang H) = \sigma^2 (n-p),
+\]
+torej dobimo nepristransko cenilko $\hat{\sigma}^2_+ = \frac{\text{RSS}}{n-p}$
+za $\sigma^2$.
+
+\vprasanje{Izpelji nepristransko cenilko za varianco šuma pri linearni
+  regresiji.}
+
+Če vzamemo Gaussov model šuma, torej $\sv{\varepsilon} \sim N(\sv{0}, \sigma^2
+I_n)$, potem je $\hat{\sv{\beta}}$ tudi cenilka za $\sv{\beta}$ po metodi
+največjega verjetja.
+Če je $\hat{\sigma}$ cenilka po MNV za $\sigma$, pa je $\hat{\sigma}^2 =
+\frac{\text{RSS}}{n}$.
+Izkaže se
+\[
+  \frac{\text{RSS}}{\sigma^2} \sim \chi^2(n-p)
+\]
+in
+\[
+  \frac{\sv{c}^T \hat{\sv{\beta}} - \sv{c}^T \sv{\beta}}{\hat{\sigma}^2_+
+	\sqrt{\sv{c}^T (X^T X)^{-1} \sv{c}}}
+  \sim \operatorname{Student}(n-p).
+\]
+
+
+% LocalWords:  nekoreliranosti homoskedastičnosti NNLC
