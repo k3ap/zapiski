@@ -27,3 +27,64 @@
   \to \End_R(V)$.
 \end{definicija}
 
+\begin{primer}
+  Če je $G$ poljubna grupa, da je $\rho: G \to \GL_R(RG)$, definirana na bazi
+  kot
+  \[
+	\rho(g): h \mapsto gh
+  \]
+  upodobitev.
+  Pravimo ji \pojem{leva regularna upodobitev grupe $G$}.
+  Je stopnje $\abs{G}$.
+\end{primer}
+
+\begin{primer}
+  Če je $G$ grupa in $R$ komutativen kolobar z enico, lahko definiramo množico
+  $\operatorname{fun}(G, R)$ vseh funkcij $G \to R$.
+  Tu seštevanje in množenje s skalarjem definiramo po točkah, da dobimo kolobar.
+  Potem je $\rho: G \to \GL_R(\operatorname{fun}(G,R))$, definirana z
+  \[
+	\rho(g): \varphi \mapsto \left( h \mapsto \varphi(hg) \right),
+  \]
+  \pojem{desna regularna upodobitev grupe $G$}.
+\end{primer}
+
+\vprasanje{Kaj sta leva in desna regularna upodobitev grupe?}
+
+\begin{definicija}
+  Naj bosta $\rho_1: G \to \GL_R(V_1)$ in $\rho_2: G \to \GL_R(V_2)$ upodobitvi
+  grupe $G$.
+  $R$-linearni preslikavi $T: V_1 \to V_2$, za katero velja $T \circ \rho_1(g) =
+  \rho_2(g) \circ T$ za vsak $g \in G$, pravimo \pojem{spletična} med $\rho_1$
+  in $\rho_2$.
+  Upodobitvi $\rho_1$ in $\rho_2$ sta \pojem{ekvivalentni}, če obstaja
+  bijektivna spletična med njima.
+\end{definicija}
+
+\begin{opomba}
+  Upodobitvi sta ekvivalentni natanko tedaj, ko sta $V_1$ in $V_2$ izomorfna kot
+  $G$-modula.
+\end{opomba}
+
+\vprasanje{Kaj je spletična? Kdaj sta upodobitvi ekvivalentni?}
+
+\begin{definicija}
+  Podprostor $W \subseteq V$ je \pojem{$G$-invarianten}, če velja $\rho(g) w \in
+  W$ za vsak $g \in G$ in $w \in W$.
+\end{definicija}
+
+V tem primeru lahko zožimo upodobitev na $G \to \GL_R(W)$, temu pravimo
+\pojem{podupodobitev}.
+
+\begin{vo}{Pokaži, da je leva regularna upodobitev grupe podupodobitev desne.}
+  Pokazati moramo, da je $RG$ $G$-podmodul modula $\operatorname{fun}(G,R)$.
+  Za to poiščemo injektivno spletično $T: RG \to \operatorname{fun}(G,R)$.
+  Pravi predpis je
+  \[
+	T(g) : h \mapsto
+	\begin{cases}
+	  1 & g = h^{-1} \\
+	  0 & g \ne h^{-1}
+	\end{cases}
+  \]
+\end{vo}
