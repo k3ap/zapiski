@@ -502,12 +502,76 @@ pravimo \pojem{Hilbertova transformiranka $f$}.
   \]
   Oba člena tu sta omejena, torej je integral manjši od $2 M \delta$ za nek $M$,
   in konvergira k $0$ za $\delta \to 0$.
+
+  Izračunamo lahko, da je
+  \[
+	Q_1(\tau) - Q_r(\tau) = \frac{1 + \cos w}{\sin w} P_r(\tau) \frac{1-r}{1+r}
+  \]
+  za $w = 2 \pi \tau$.
+  Drugi integral lahko zapišemo kot
+  \[
+	I_2 = - \int_{\abs{\tau} \ge \delta} \tau (Q_1(\tau) - Q_{1 - \delta}(\tau))
+	\left( \frac{f(t-\tau) - f(t)}{\tau} \right) d\tau,
+  \]
+  kar potem ocenimo na
+  \[
+	\abs{I_2} \le \sup \abs{\frac{f(t-\tau) - f(t)}{\tau}} \cdot
+	\int_{\abs{\tau} \ge \delta} \abs{\frac{\tau (1 + \cos w)}{(2 - \delta) \sin
+		w} P_{1-\delta}(\tau) \delta} d\tau.
+  \]
+  Ker je
+  \[
+	\int_{\abs{\tau} \ge \delta} P_{1-\delta}(\tau) d\tau
+	\le \int_{\mathbb{T}} P_{1-\delta}(\tau) d\tau = 1,
+  \]
+  je $\abs{I_2}$ omejen s $C \delta$ in konvergira k $0$ za $\delta \to 0$.
 \end{proof}
 
 \vprasanje{Pokaži, da limita $f * Q_r(t)$ za $r \uparrow 1$ obstaja. Čemu je
   enaka?}
 
+Rešitev Dirichletovega problema na enotskem disku želimo posplošiti za poljubno
+(dovolj lepo) območje $\Omega$.
+Poiskati želimo $P_\Omega$, da bo
+\[
+  u(z) = \int_{\partial \Omega} P_\Omega(z, w) f(w) dw
+\]
+rešitev $\Delta u = 0$, $u = f$ na $\partial \Omega$.
+Upoštevamo Riemannov upodobitveni izrek, ki pravi, da za enostavno povezano
+območje z gladkim robom obstaja biholomorfizem $\phi: D \to \Omega$.
+Tega lahko razširimo do funkcije $\cl{D} \to \cl{\Omega}$, ki slika rob v rob
+difeomorfno.
+Pišimo $\tilde{f} = f \circ \phi: \partial D \to \R$.
+Če parametriziramo rob $\Omega$ s $\phi(e^{2 \pi i t})$, zgornja formula dobi
+obliko
+\[
+  u(z) = \int_0^1 P_\Omega(z, \phi(e^{2 \pi i t})) f(e^{2 \pi i t})
+  \abs{\phi'(e^{2 \pi i t})} 2 \pi dt,
+\]
+funkcijo $\tilde{f}$ pa razširimo na $D$ kot
+\[
+  \tilde{u}(r e^{2 \pi i t}) = \int_0^1 P_r(e^{2 \pi i t} e^{-2 \pi i \tau})
+  \tilde{f}(e^{2 \pi i \tau}) d\tau.
+\]
+Zahtevamo $\tilde{u} = u \circ \phi$, kar nam da
+\[
+  u(z) = \int_0^1 P(\phi^{-1}(z)\,\konj{\phi^{-1}(\phi(e^{2 \pi i t}))})
+  f(\phi(e^{2 \pi i \tau})) d\tau
+\]
+torej
+\[
+  P_\Omega(z,w) \abs{\phi'(\phi^{-1}(w))} 2 \pi = P(\phi^{-1}(z)
+  \konj{\phi^{-1}(w)}),
+\]
+iz česar dobimo
+\[
+  P_\Omega(z,w) = \frac{\abs{\psi'(w)}}{2 \pi} \frac{1 - \abs{\psi(z)
+	  \konj{\psi(w)}}^2}{\abs{1 - \konj{\psi(z) \psi(w)}}^2}
+  = \frac{\abs{\psi'(w)}}{2 \pi}
+  \frac{1 - \abs{\psi(z)}^2}{\abs{\psi(w) - \psi(z)}^2}.
+\]
 
+\vprasanje{Izpelji predpis za jedrno funkcijo $P_\Omega$.}
 
 % LocalWords:  subharmonična LPV antiholomorfna antiholomorfne integrabilen
 % LocalWords:  transformiranka
