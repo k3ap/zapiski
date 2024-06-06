@@ -88,3 +88,123 @@ V tem primeru lahko zožimo upodobitev na $G \to \GL_R(W)$, temu pravimo
 	\end{cases}
   \]
 \end{vo}
+
+Če sta $\rho_1: G \to \GL_R(V_1)$ in $\rho_2: G \to \GL_R(V_2)$ upodobitvi, je
+$\rho_1 \oplus \rho_2: G \to \GL_R(V_1 \oplus V_2)$, definirana z $(v_1, v_2)
+\mapsto (\rho_1(g) v_1, \rho_2(g) v_2)$, njuna \pojem{direktna vsota}.
+Podobno lahko definiramo \pojem{tenzorski produkt} $\rho_1 \otimes \rho_2: G \to
+\GL_R(V_1 \otimes_R V_2)$ kot
+\[
+  \rho_1 \otimes \rho_2(g) : (v_1 \otimes v_2) \mapsto \rho_1(g) v_1 \otimes
+  \rho_2(g) v_2.
+\]
+Poznamo tudi Hom-konstrukcijo:
+$\Hom_R(V_1, V_2)$ je $R$-modul, in postane $G$-modul z
+\[
+  g \cdot \varphi(v_1) = \rho_2(g) \varphi(\rho_1(g)^{-1} v_1).
+\]
+S tem dobimo upodobitev $\Hom(\rho_1, \rho_2): G \to \GL_R(\Hom_R(V_1, V_2))$.
+
+\vprasanje{Opiši direktno vsoto, tenzorski produkt in Hom-konstrukcijo
+  upodobitev.}
+
+\podnaslov{Polenostavni moduli}
+
+Naj bo $A$ kolobar z enico (ne nujno komutativen).
+
+\begin{definicija}
+  Naj bo $V$ $A$-modul.
+  Pravimo, da je $V$ \pojem{enostaven}, če ima natanko dva podmodula.
+  Pravimo, da je $V$ \pojem{polenostaven}, če je končna direktna vsota
+  enostavnih modulov.
+\end{definicija}
+
+\begin{definicija}
+  \pojem{Kompozicijska vrsta} $A$-modula $V$ je končno zaporedje $A$-modulov
+  \[
+	\{0\} = V_0 \subseteq V_1 \subseteq V_2 \subseteq \cdots \subseteq V_n = V,
+  \]
+  pri čemer so zaporedni kvocienti $V_{i+1} / V_i$ enostavni $A$-moduli.
+\end{definicija}
+
+\begin{lema}
+  Naj bo $U$ $A$-modul in $U = S_1 + \cdots + S_n$, kjer so $S_i$ enostavni.
+  Naj bo $V$ podmodul $U$.
+  Potem obstaja $\{i_1, \ldots, i_k\} \subseteq \{1, \ldots, n\}$, da je $U = V
+  \oplus S_{i_1} \oplus \cdots \oplus S_{i_k}$.
+\end{lema}
+
+\begin{proof}
+  Izberimo največjo podmnožico indeksov, da bo $W = V \oplus S_{i_1} \oplus
+  \cdots \oplus S_{i_k}$ direktna vsota.
+  Recimo, da $W \ne U$, torej $S_j \nsubseteq W$ za nek $j$.
+  Presek $S_j \presek W$ je podmodul v $S_j$, torej je $S_j \presek W = \{0\}$,
+  in izbrana množica ni bila maksimalna.
+\end{proof}
+
+\vprasanje{Dokaži: če je $U$ direktna vsota enostavnih modulov, lahko za vsak
+  podmodul $V$ zapišemo $U$ kot direktno vsoto $V$ in nekih enostavnih modulov.}
+
+\begin{trditev}
+  Naj bo $U$ $A$-modul.
+  Naslednje trditve so ekvivalentne:
+  \begin{itemize}
+  \item $U$ je končna direktna vsota enostavnih $A$-modulov,
+  \item $U$ je direktna vsota končno mnogo enostavnih podmodulov,
+  \item $U$ ima končno kompozicijsko vrsto in vsak podmodul v $U$ ima direkten
+	komplement.
+  \end{itemize}
+\end{trditev}
+
+\begin{proof}
+  Implikacija iz 1 v 2 je očitna.
+  Implikacija iz 2 v 3 takoj sledi iz leme.
+  Iz 3 v 1:
+  Najprej dokažimo, da se tretja lastnost deduje na podmodule.
+  Če je $W \le U$, ima $W$ končno kompozicijsko vrsto, ki jo dobimo s sekanjem
+  vrste za $U$ z $W$.
+  Če je $Z \le W$, je $Z \le U$ in je $U = Z \oplus X$, torej $W = Z \oplus (W
+  \presek X)$.
+
+  Sedaj uporabimo indukcijo po dolžini kompozicijske vrste $l$.
+  Za $l = 0$ je $U$ enostaven in velja.
+  Prehod na $l+1$: $U_l$ je podmodul, torej obstaja komplement $U = U_l \oplus
+  X$.
+  Ta podmodul ima kompozicijsko vrsto dolžine $l$, prav tako ima $X \cong U/U_l$
+  tudi kompozicijsko vrsto dolžine kvečjemu $l$.
+  Lastnost je dedna na $U_l$ in $X$, ki sta po indukcijski predpostavki vsoti
+  enostavnih modulov.
+\end{proof}
+
+\vprasanje{Recimo, da ima modul $U$ končno kompozicijsko vrsto, in da ima vsak
+  podmodul v $U$ direkten komplement. Pokaži, da je $U$ polenostaven.}
+
+\begin{izrek}[Maschke]
+  Naj bo $G$ končna grupa in $F$ polje.
+  Predpostavimo, da karakteristika $F$ ne deli reda grupe.
+  Naj bo $\rho: G \to \GL_F(V)$ upodobitev grupe $G$, kjer $V$
+  končnodimenzionalen.
+  Naj bo $W$ $G$-podmodul $V$.
+  Potem obstaja $G$-podmodul $V$, da je $V = W \oplus X$.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $\pi: V \to W$ projektor.
+  Velja $V = W \oplus \jedro \pi$, to jedro pa ni nujno $G$-invariantno.
+  Definiramo $\pi': V \to V$ kot
+  \[
+	\pi' = \inv{\abs{G}} \sum_{g \in G} \rho(g) \pi \rho(g)^{-1}.
+  \]
+  Velja $\im \pi' \subseteq W$ ter $\pi'(w) = w$ za $w \in W$, torej je $V = W
+  \oplus \jedro \pi'$.
+  Sedaj $\pi'$ je homomorfizem $G$-modulov, in je jedro $G$-invariantno.
+\end{proof}
+
+\begin{posledica}
+  Naj bo $G$ končna grupa, $F$ polje, ter $\operatorname{char} F \nmid \abs{G}$.
+  Potem je vsak končnorazsežen $G$-modul polenostaven.
+\end{posledica}
+
+\vprasanje{Povej in dokaži Maschkejev izrek.}
+
+% LocalWords:  Polenostavni Maschke
