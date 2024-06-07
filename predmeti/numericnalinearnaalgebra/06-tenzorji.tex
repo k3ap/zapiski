@@ -1,0 +1,78 @@
+\naslov{Tenzorji}
+
+Tenzor reda $d$ je $d$-razsežna \enquote{matrika} elementov $a_{i_1 i_2 \ldots
+  i_d}$.
+Za tenzor pravimo, da je ranga $1$, če obstajajo vektorji $a^{(1)}, \ldots,
+a^{(n)}$, da je $a_{i_1 \ldots i_d} = a^{(1)}_{i_1} \cdots a^{(d)}_{i_d}$.
+Pišemo $a^{(1)} \circ \cdots \circ a^{(d)}$.
+Tenzorje lahko vektoriziramo (torej zložimo elemente v vektor), kar običajno
+naredimo v obratnem leksikografskem vrstnem redu.
+
+Poleg vektorizacije lahko tenzorje tudi matrificiramo, torej elemente zložimo v
+matriko.
+To lahko naredimo na več načinov, tako da si izberemo smeri, ki jih zberemo v
+vrstice, in smeri, ki jih zberemo v stolpce.
+Poseben primer je razprtje v smeri $j$, kjer si za množico smeri za vrstice
+izberemo samo $j$.
+Razprtje potem označimo z $A_{(j)}$.
+
+\vprasanje{Definiraj razprtje tenzorja v smeri $j$.}
+
+Tenzor lahko množimo z matriko v $j$-ti smeri; če je $X$ tenzor $n_1 \times
+\cdots \times n_d$, in $A \in \R^{m_j \times n_j}$ matrika, potem je
+\[
+  (X \times_j A)_{i_1 \ldots i_{j-1} k i_{j+1} \ldots i_d}
+  = \sum_{i_j=1}^{n_j} x_{i_1, \ldots, i_d} a_{k i_j}.
+\]
+
+Tenzorje bi si želeli aproksimirati kot vsoto tenzorjev ranga $1$, kakor to
+lahko naredimo pri matrikah s singularnih razcepom.
+Temu rečemo \pojem{kanonični poliadični} zapis; za
+\[
+  X = \sum_{l=1}^r \lambda_l a_l \circ b_l \circ c_l,
+\]
+kjer zahtevamo, da so vektorji $a_i$, $b_i$ in $c_i$ normirani, lahko označimo
+tudi $X = \llbracket \lambda; A, B, C \rrbracket$.
+Rang tenzorja je potem najmanjši $r$, za katerega takšen zapis obstaja.
+Takšna definicija ima drugačne lastnosti od ranga za matrike; rang je
+npr.~odvisen od polja, nad katerim smo, obstajajo tudi tenzorji, ki jih lahko
+poljubno dobro aproksimiramo s tenzorjem nižjega ranga.
+Poleg tega je določitev ranga tenzorja NP težek problem.
+
+Kljub temu pa imamo algoritme, ki dovolj dobro poiščejo takšno aproksimacijo.
+Najbolj relevanten je ALS-CP, kjer fiksiramo vse matrike $A_i$ v $\llbracket A_1
+\ldots A_n \rrbracket$ razen ene, in poiščemo rešitev problema najmanjših
+kvadratov
+\[
+  \min_B \norm{X - \llbracket A_1 \ldots A_{j-1} B A_{j+1} \ldots A_d}_F.
+\]
+Potem to ponavljamo za različne $j$, dokler nismo zadovoljni z rezultatom.
+Konvergenca ni zagotovljena niti do lokalnega minimuma in je lahko zelo počasna.
+
+\vprasanje{Razloži algoritem ALS-CP.}
+
+Podoben koncept je Tuckerjev razcep, kjer iščemo majhen tenzor $G$, ter matrike
+$A_1, A_2, \ldots, A_d$, da je
+\[
+  X = \llbracket G; A_1, \ldots, A_d \rrbracket
+  = G \times_1 A_1 \times_2 A_2 \times_3 \cdots \times_d A_d.
+\]
+Tu imamo zagotovljeno, da tak razcep obstaja, da imajo matrike $A_i$
+ortonormirane stolpce, za $G$ pa velja:
+\begin{itemize}
+\item rezine na različnih indeksih so pravokotne (s skalarnim produktom po
+  elementih),
+\item norme rezin monotono padajo.
+\end{itemize}
+Tenzor $G$ je $d$-razsežen, v $i$-ti smeri ima $\rang X_{(i)}$ rezin.
+
+Temu razcepu pravimo tudi HOSVD (high-order SVD).
+Poznamo tudi algoritem za računanje; za vsako matrifikacijo $X_{(j)}$ poiščemo
+singularni razcep, in za $A_i$ vzamemo prvih $\rang X_{(i)}$ stolpcev matrike
+$U$.
+Potem je $G = X \times_1 A_1^T \times_2 A_2^2 \times_3 \cdots \times_d A_d^T$.
+
+\vprasanje{Kaj je HOSVD? Kako ga izračunaš?}
+
+% LocalWords:  vektorizacije matrificiramo poliadični NP ALS-CP Tuckerjev HOSVD
+% LocalWords:  SVD high-order matrifikacijo
