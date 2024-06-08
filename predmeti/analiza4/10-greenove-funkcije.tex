@@ -1,0 +1,124 @@
+\naslov{Greenove funkcije}
+
+Naj bo $L$ linearen PDO s konstantnimi koeficienti na $\R^n$,
+\[
+  L = \sum_{\abs{\alpha} \le N} a_{\alpha} \partial^\alpha.
+\]
+Vzemimo $f \in \mathcal{C}^\infty_C$, in rešimo $L u = f$.
+
+\begin{definicija}
+  Funkcija $w$ se imenuje \pojem{fundamentalna rešitev} za operator $L$, če
+  velja $Lw = \delta_0$, kjer je $\delta_0$ Diracova distribucija, definirana
+  kot $\delta_0(f) = f(0)$.
+\end{definicija}
+
+Če je $w$ fundamentalna rešitev, je $w * f$ rešitev enačbe $Lu = f$; ker je $L$
+linearen, velja
+\[
+  L(w * f) = (Lw)*f = \delta_0 * f = f,
+\]
+ker
+\[
+  \delta_0 * f(x) = \int \delta_0(x-t) f(t) dt = f(x).
+\]
+
+\vprasanje{Kaj je fundamentalna rešitev linearne PDE $Lu = f$? Kako z njo
+  poiščeš rešitev $u$?}
+
+Za fundamentalno rešitev prvo rešimo $Lw = 0$.
+
+\begin{primer}
+  Za $L = \Delta$ je operator invarianten na ortogonalne transformacije, torej
+  lahko predpostavimo, da je $w(x) = \psi(\abs{x-\xi}^2)$ za nek fiksen $\xi \in
+  \R^n$ ter funkcijo $\psi$.
+  Enačbo lahko potem prevedemo na obliko
+  \[
+	\varphi''(r) + \frac{n-1}{r} \varphi'(r) = 0,
+  \]
+  kar lahko reduciramo na NDE prvega reda z rešitvijo $\varphi(r) = D + C r^{2 -
+  n}$ za $n \ne 2$ oziroma $\varphi(r) = D + C \ln r$ za $n = 2$.
+\end{primer}
+
+Poglejmo si situacijo $n=2$ iz zgornjega primera.
+Naj bo $M \subseteq \R^2$ omejena, odprta in povezana množica z gladkim robom.
+Definiramo lahko funkcijo
+\[
+  \phi(z) = \inv{2 \pi} \log \abs{z}.
+\]
+Preverimo lahko, da je harmonična in lokalno integrabilna.
+Definiramo še $k(z, \zeta) = \phi(z-\zeta)$ ter, za $f \in \zvezne{\cl{M}}$,
+\[
+  \Gamma(f)(z) = \iint_M f(\zeta) k(z, \zeta) dS
+  = \iint_M f(\zeta) \phi(z-\zeta) dS
+\]
+Funkciji $\Gamma(f): M \to \R$ pravimo \pojem{Newtonov potencial}.
+
+\begin{izrek}[Greenova reprezentacijska formula]
+  Če je $u \in \zvodv{2}{\cl{M}}$ in $z \in M$, tedaj je
+  \[
+	u(z) = \int_{\partial M} \left( u \partial_{\vec{n}} k(z, \cdot) -
+	  \partial_{\vec{n}} u \cdot k(z, \cdot) \right) ds
+	+ \iint_M k(z, \cdot) \Delta u dS
+  \]
+\end{izrek}
+
+\begin{proof}
+  Skica.
+  Za $\varepsilon > 0$ vzamemo $M_\varepsilon = M \brez \cl{K(z, \varepsilon)}$,
+  ter uporabimo Greenovo identiteto
+  \[
+	\int_{\partial \Omega} (v \partial_{\vec{n}} u - u \partial_{\vec{n}} v) ds
+	= \iint_\Omega (v \Delta u - u \Delta v) dS.
+  \]
+  Ostane integral leve strani enakosti iz izreka, po notranjem robu, za katerega
+  pokažemo, da konvergira k $0$ za $\varepsilon \to 0$.
+\end{proof}
+
+\vprasanje{Povej Greenovo reprezentacijsko formulo.}
+
+\begin{posledica}
+  Za $u \in \mathcal{C}^2_C(\C)$ je $u = \Gamma(\Delta u)$.
+\end{posledica}
+
+Torej je $\phi$ fundamentalna rešitev za Laplaceov operator na $\R^2 \brez
+\{0\}$.
+Izrek bi želeli uporabiti za reševanje Cauchyjeve naloge $\Delta u = f$, $u = g$
+na $\partial M$.
+Problem je, da ne poznamo $\partial_{\vec{n}} u$ na $\partial M$, kar
+potrebujemo v formuli.
+Vpeljemo \pojem{korekcijski faktor}, namesto $k(z, \cdot)$ vzamemo $k(z, \cdot)
+- h$ za primeren $h$.
+
+Če v dokazu izreka namesto $k(z, \cdot)$ vzamemo neko funkcijo $H$ s $\Delta H =
+0$, bi isti dokaz pokazal
+\[
+  \int_{\partial M} u \partial_{\vec{n}} H - H \partial_{\vec{n}} u
+  = \iint_M H \Delta u,
+\]
+torej formula velja tudi, če $k$ nadomestimo s $k-H$.
+Potem definiramo $G_z$ kot rešitev homogenega Dirichletovega problema $\Delta
+G_z = 0$ in $G_z = \phi(\cdot - z)$ na $\partial M$.
+Za tako izbiro bo $k(z, \cdot) - G_z = 0$ na $\partial M$, kar je točno to, kar
+smo želeli od $h$.
+
+\begin{definicija}
+  Funkcija $G$, definirana kot
+  \[
+	G(z,w) = k(w,z) - G_z(w),
+  \]
+  se imenuje \pojem{Greenova funkcija} domene $M$ za Laplaceov operator.
+\end{definicija}
+
+\vprasanje{Izpelji Greenovo funkcijo za Laplaceov operator.}
+
+\begin{izrek}
+  Naj bo $G$ Greenova funkcija območja $M$, $z \in M$ ter $u \in
+  \zvodv{2}{\cl{M}}$.
+  Potem
+  \[
+	u(z) = \int_{\partial M} u(\zeta) \partial_{\vec{n}} G(z, \zeta) dS
+	+ \iint_M G(z, \zeta) \Delta u(\zeta) dS.
+  \]
+\end{izrek}
+
+% LocalWords:  PDO reprezentacijska reprezentacijsko
