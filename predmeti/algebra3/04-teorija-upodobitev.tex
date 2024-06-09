@@ -207,4 +207,115 @@ Naj bo $A$ kolobar z enico (ne nujno komutativen).
 
 \vprasanje{Povej in dokaži Maschkejev izrek.}
 
-% LocalWords:  Polenostavni Maschke
+\begin{definicija}
+  Kolobar $A$ je \pojem{polenostaven}, če je vsak $A$-modul polenostaven.
+\end{definicija}
+
+\begin{primer}
+  Če je $F$ polje, $G$ končna grupa in karakteristika $F$ ne deli $\abs{G}$, je
+  po Maschkejevem izreku $FG$ polenostaven kolobar.
+\end{primer}
+
+\begin{lema}[Schur]
+  Naj bo $A$ $F$-algebra ter $S_1, S_2$ enostavna $A$-modula.
+  \begin{itemize}
+  \item Če $S_1 \ncong S_2$, je $\Hom(S_1, S_2) = \{0\}$,
+  \item če $S_1 \cong S_2$, je $\End_A(S_1)$ obseg,
+  \item če je $F$ algebraično zaprto polje, je $\End_A(S_1) \cong F$.
+  \end{itemize}
+\end{lema}
+
+\begin{proof}
+  Prva točka: naj bo $\varphi: S_1 \to S_2$ homomorfizem.
+  Jedro $\jedro \varphi$ je podmodul v $S_1$, torej je bodisi $\{0\}$ bodisi
+  $S_1$.
+  Podobno je $\im \varphi$ podmodul v $S_2$, torej je bodisi $\{0\}$ bodisi
+  $S_2$.
+  Če je $\varphi \ne 0$, je izomorfizem.
+  Podobno za drugo točko.
+
+  Tretja točka: naj bo $\varphi: S_1 \to S_1$ endomorfizem.
+  To je linearna preslikava, torej ima lastno vrednost $\lambda \in F$.
+  Potem $\varphi - \lambda \id$ ni injektiven, in je po drugi točki enak $0$, iz
+  česar sledi $\varphi = \lambda \id$.
+\end{proof}
+
+\vprasanje{Povej in dokaži Schurovo lemo.}
+
+\begin{lema}
+  Naj bo $A$ kolobar.
+  Če gledamo $A$ kot $A$-modul, potem je $\End_A(A) \cong A^{\text{op}}$.
+\end{lema}
+
+\begin{lema}
+  Naj bo $U$ $A$-modul, $U = U_1 \oplus \cdots \oplus U_r$, kjer so $U_i$
+  podmoduli v $U$.
+  Potem je $\End_A(U)$ izomorfen kolobarju matrik $[\varphi_{ij}]_{ij}$ za
+  $\varphi_{ij} \in \Hom_A(U_j, U_i)$.
+\end{lema}
+
+\begin{proof}
+  Skica.
+  Preslikava $\varphi: U \to U$ je določena s slikami $u_j \in U_j$.
+  Razpišemo lahko
+  \[
+	\varphi(u_j) = \underbrace{\varphi_{1j}(u_j)}_{\in U_1} + \cdots +
+	\underbrace{\varphi_{rj}(u_j)}_{\in U_r},
+  \]
+  pri čemer se izkaže $\varphi_{ij} \in \Hom_A(U_j, U_i)$.
+  Ta predpis določa matriko, podobno dobimo v drugo smer.
+  Preveriti je treba še, da komponiranje ustreza produktu matrik.
+\end{proof}
+
+\begin{izrek}[Artin-Wedderburn]
+  Naj bo $A$ končnorazsežna algebra nad poljem $F$, za katero velja, da je vsak
+  končnogeneriran $A$-modul polenostaven.
+  Recimo, da je $A$ kot $A$-modul oblike
+  \[
+	A = S_1^{n_1} \oplus \cdots \oplus S_r^{n_r},
+  \]
+  kjer so $S_i$ paroma neizomorfni enostavni $A$-moduli in potenciranje
+  $S_i^{n_i}$ označuje $n_i$-kratno direktno vsoto.
+  Potem je $A$ kot $F$-algebra izomorfna $A \cong M_{n_1}(D_1) \oplus \cdots
+  \oplus M_{n_r}(D_r)$, kjer so $D_i = \End_A(S_i)^{\text{op}}$ obsegi.
+  V posebnem primeru, če je $F$ algebraično zaprto, je $D_i = F$.
+\end{izrek}
+
+\begin{proof}
+  Velja $\End_A(A) = \End(S_1^{n_1} \oplus \cdots \oplus S_r^{n_r})$, elementi
+  te množice so matrike $[\varphi_{ij}]_{ij}$, kjer $\varphi_{ij}: S_j^{n_j} \to
+  S_i^{n_i}$.
+  Če je $i \ne j$, je $\varphi_{ij} = 0$ po Schurovi lemi, torej so matrike
+  diagonalne in je $\End_A(A) = \End_A(S_1^{n_1}) \oplus \cdots
+  \oplus \End_A(S_r^{n_r})$.
+  Elementi $\End_A(S_i^{n_i})$ so $n_i \times n_i$ matrike nad $\End_A(S_i)$,
+  torej je
+  \[
+	\End_A(A) = M_{n_1}(\End_A(S_1)) \oplus \cdots \oplus M_{n_r}(\End_A(S_r)),
+  \]
+  hkrati pa velja $A = \End_A(A)^{\text{op}}$ kot algebra.
+\end{proof}
+
+\vprasanje{Povej in dokaži Artin-Wedderburnov izrek.}
+
+\podnaslov{Uporaba pri upodobitvah grup}
+
+\begin{definicija}
+  Upodobitev $\rho: G \to \GL_F(V)$ je \pojem{nerazcepna}, če je $V$ enostaven
+  $FG$-modul.
+  Upodobitev je \pojem{povsem razcepna}, če je $V$ polenostaven $FG$-modul.
+\end{definicija}
+
+\begin{izrek}
+  Naj bo $G$ končna grupa, $F$ polje in $\operatorname{char} F \nmid \abs{G}$.
+  Vsaka upodobitev $G$ je povsem razcepna.
+  Do ekvivalence natančno ima $G$ končno mnogo nerazcepnih upodobitev $\rho_1,
+  \ldots, \rho_r$.
+  Če je $F$ algebraično zaprto, je $n_1^2 + \cdots + n_r^2 = \abs{G}$ za $n_i =
+  \deg \rho_i$.
+\end{izrek}
+
+Izrek sledi iz rezultatov prejšnjega razdelka.
+
+% LocalWords:  Polenostavni Maschke Maschkejev Maschkejevem Schurovo Schurovi
+% LocalWords:  Artin-Wedderburn končnogeneriran Artin-Wedderburnov
