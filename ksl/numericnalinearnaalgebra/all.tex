@@ -1,0 +1,236 @@
+\naslov{Singularni razcep}
+
+Za matriko $A \in \R^{m \times n}$ ranga $r$, kjer je $m \ge n$, obstaja
+singularni razcep $A = U \Sigma V^T$, kjer sta $U \in \R^{m \times m}$ in $V \in
+\R^{n \times n}$ ortogonalni, $\Sigma \in \R^{m \times n}$ pa je diagonalna
+matrika singularnih vrednosti, torej lastnih vrednosti $A^H A$.
+Če razdelimo
+\[
+  A =
+  \begin{bmatrix}
+	U_1 & U_2
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	\Sigma_r & 0 \\ 0 & 0
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	V_1 & V_2
+  \end{bmatrix}^T,
+  = U_1 \Sigma_r V_1^T
+\]
+kjer imata $U_1$ in $V_1$ $r$ stolpcev, potem stolpci $U_1$ tvorijo bazo slike
+$\im A$, stolpci $V_2$ pa bazo jedra $\jedro A$.
+Stolpci $V$ so desni lastni vektorji $A^H A$.
+
+Singularni razcep lahko uporabimo za računanje \pojem{psevdoinverza}.
+Ta je definiran kot taka matrika $A^+ \in \C^{n\times n}$, za katero velja $A
+A^+ A = A$, $A^+ A A^+ = A^+$, $(A A^+)^H = A A^+$ ter $(A^+ A)^H = A^+ A$.
+Če poznamo singularni razcep $A$, potem je $A^+ = U \Sigma^+ U^H$ za
+\[
+  \Sigma^+ =
+  \begin{bmatrix}
+	\inv{\sigma_1} &        &                &   &        &     \\
+	               & \ddots &                &   &        &     \\
+	               &        & \inv{\sigma_n} &   &        &     \\
+	               &        &                & 0 &        &     \\
+	               &        &                &   & \ddots &     \\
+	               &        &                &   &  & 0
+  \end{bmatrix}.
+\]
+Psevdoinverz matrike ranga $1$ $C = a b^T$ za vektorja $a \in \R^m, b \in \R^n$,
+je oblike $C^+ = b a^T / (\norm{a}_2^2 \norm{b}_2^2)$.
+Podobno, če lahko razcepimo $C = A B^T$ za matriki polnega ranga $A$ in $B$,
+dobimo $C^+ = B (B^T B)^{-1} (A^T A)^{-1} A^T$.
+
+Psevdoinverz je uporaben za reševanje nedoločenih sistemov.
+Če je $A \in \R^{m \times n}$ ranga $r$, potem je matrika, ki minimizira
+$\norm{X A - I_n}_F$, in ima od vseh takih najmanjšo normo $\norm{X}_F$, ravno
+$X = A^+$.
+
+\podnaslov{Totalni najmanjši kvadrati}
+
+Če imamo dan predoločen sistem $A x = b$, običajno iščemo minimum $\norm{Ax -
+  b}_2$.
+Dejansko s tem rešujemo $Ax = r + b$, kjer je $\norm{r}_2$ čim manjši.
+Pri totalnih najmanjših kvadratih namesto tega iščemo popravek tudi v $A$, torej
+taki $\tilde{A}, \tilde{b}$, da je $\tilde{b} \in \im \tilde{A}$ in norma
+$\norm{[\tilde{A}, \tilde{b}] - [A, b]}_F$ čim manjša.
+
+V dobro postavljenem problemu bo $b \notin \im A$ ter $\rang [\tilde{A},
+\tilde{b}] = n$, tako da je $[\tilde{A}, \tilde{b}]$ ravno matrika ranga $n$, ki
+najbolje aproksimira $[A, b]$.
+Če naredimo singularni razcep $[A,b]$, potem bo naša rešitev $[\tilde{A},
+\tilde{b}] = \sum_{i \le n} \sigma_i u_i v_i^T = [A,b] - \sigma_{n+1} u_{n+1}
+v_{n+1}^T$.
+Rešitev sistema $\tilde{x}$ je tedaj enak vektorju $v_{n+1}$, skaliranemu tako,
+da ima na zadnjem mestu $-1$.
+
+\naslov{Občutljivost lastnih vrednosti}
+
+Če je $\lambda_i$ enostavna lastna vrednost $A$, s pripadajočima desnim in levim
+lastnim vektorjem $x_i, y_i$, potem je \pojem{občutljivost} $\lambda_i$
+definirana kot
+\[
+  \inv{s_i} = \frac{\norm{y_i}_2 \norm{x_i}_2}{y_i^H x_i}.
+\]
+
+Za ocenjevanje lastnih vrednosti imamo na voljo Grešgorinova izreka.
+Prvi pravi, da lastne vrednosti $A$ ležijo v uniji krogov
+\[
+  K_i = \{z \in \C \such \abs{z - a_{ii}} \le \sum_{j \ne i} \abs{a_{ij}}\}.
+\]
+Če ta unija razpade na več povezanih komponent, je v vsaki komponenti toliko
+lastnih vrednosti, kolikor krogov jo sestavlja.
+Pri ocenjevanju si lahko pomagaš s podobnostno transformacijo $X A X^{-1}$.
+Klasičen tip naloge je, da imaš dan nek razred možnih $X$, ti pa iščeš
+vrednost parametra, kjer dobiš čim bolj natančno oceno za eno od lastnih
+vrednosti.
+Pri tem moraš le poskrbeti, da se ta krog ne bo dotaknil ostalih.
+
+\naslov{Simetrični problem lastnih vrednosti}
+
+Najenostavnejša metoda za računanje lastnih vrednosti je potenčna metoda.
+Ta izračuna le največjo lastno vrednost, potem pa lahko z uporabo
+\pojem{Hotellingove redukcije} poiščeš še naslednje; redukcija poteka tako, da
+izračunaš $B = A - \lambda_1 \frac{x_1 y_1^T}{y_1^T x_1}$, in nato nadaljuješ s
+potenčno metodo na $B$.
+Pri tem sta $x_i, y_i$ desni in levi lastni vektor za $\lambda_i$.
+V primeru simetrične $A$ sta enaka.
+
+Za simetrične matrike je možna tudi Householderjeva redukcija, kjer poiščeš
+zrcaljenje $P$, za katerega je
+\[
+  A = P
+  \begin{bmatrix}
+	\lambda_1 & u^T \\
+	0 & B
+  \end{bmatrix}
+  P^T.
+\]
+Potem poiščeš lastne pare $B$.
+Če je $x$ lastni vektor za $\lambda$ za matriko $B$, potem dobiš lastni vektor
+matrike $A$ kot $(y, x)$ za $y = \frac{u^T x}{\lambda - \lambda_1}$.
+
+\podnaslov{Rayleighova iteracija}
+
+Rayleighova iteracija je le poseben primer inverzne iteracije, kjer si v vsakem
+koraku izberemo premik $\rho_k = \rho(z_k, A)$, rešimo $(A - \rho_k I) y_{k+1} =
+z_k$, in nato posodobimo $z_{k+1} = \normiran{y_{k+1}}$.
+
+\podnaslov{QR iteracija}
+
+Dano imamo tridiagonalno matriko $T$.
+V vsakem koraku izberemo premik $\sigma_k$ ter izračunamo QR razcep $T_k -
+\sigma_k I = Q_k R_k$.
+Potem je $T_{k+1} = R_k Q_k + \sigma_k I$.
+
+Običajno vzamemo Rayleighov premik, $\sigma_k = \rho(e_{n}, T_k) = [T_k]_{nn}$.
+QR iteracija je ekvivalentna Rayleighovi iteraciji za začetni približek $z_0 =
+e_n$.
+
+\podnaslov{Deli in vladaj}
+
+Algoritem deli in vladaj je rekurziven.
+Simetrično tridiagonalno matriko $T$ prvo razdelimo na
+\[
+  T =
+  \begin{bmatrix}
+	T_1 & \\ & T_2
+  \end{bmatrix}
+  + b_m v v^T,
+\]
+kjer je $v = e_m + e_{m+1}$.
+Potem problem rekurzivno rešimo za matriki $T_1$ in $T_2$, da dobimo $T_1 = Q_1
+\Lambda_1 Q_1^T$ in $T_2 = Q_2 \Lambda_2 Q_2^T$.
+Za tem izračunamo lastne pare matrike
+\[
+  \begin{bmatrix}
+	\Lambda_1 & \\
+	& \Lambda_2
+  \end{bmatrix}
+  + b_m u u^T
+  = \tilde{Q} \Lambda \tilde{Q}^T
+\]
+za
+\[
+  u =
+  \begin{bmatrix}
+	Q_1 & \\ & Q_2
+  \end{bmatrix}
+  v.
+\]
+Na koncu vrnemo $\Lambda$ in
+\[
+  Q =
+  \begin{bmatrix}
+	Q_1 & \\ & Q_2
+  \end{bmatrix}
+  \tilde{Q}.
+\]
+
+Eden od korakov v postopku je izračun lastnih vrednosti matrike $D + \rho u
+u^T$, kjer je $D$ diagonalna in $u$ vektor.
+Pri tem velja naslednje:
+\begin{itemize}
+\item Če je $u_i = 0$ je $d_i$ lastna vrednost in $e_i$ lastni vektor.
+\item Če je $u_i = u_{i+1}$, je $d_i$ lastna vrednost za $u_i e_{i+1} + u_{i+1}
+  e_i$.
+\item Ko odstranimo posebna primera, so lastne vrednosti rešitve sekularne
+  enačbe
+  \[
+	f(\lambda) = 1 + \rho \sum_{i=1}^n \frac{u_i^2}{d_i - \lambda},
+  \]
+  pripadajoč lastni vektor pa je $(D - \lambda I)^{-1} u$.
+\end{itemize}
+Namesto uporabe Newtonove metode v algoritmu $f$ aproksimiramo z enostavnejšo
+racionalno funkcijo.
+Za to ločimo vsoto na člene, manjše od $d_k$, in na člene, večje od $d_k$.
+Potem aproksimiramo $f(\lambda) \approx 1 + \rho h_1(\lambda) + \rho
+h_2(\lambda)$, kjer sta
+\begin{align*}
+  h_1(\lambda) = \frac{c_1}{d_k - \lambda} + c_1'
+  && h_2(\lambda) = \frac{c_2}{d_{k+1} - \lambda} + c_2'
+\end{align*}
+določeni tako, da se ujemata s pripadajočo vsoto in njenim odvodom v točki
+$x_r$.
+Potem sta ničli $h = 1 + \rho h_1 + \rho h_2$ taki, da je le ena v intervalu
+$(d_{k+1}, d_k)$; to vzamemo za naslednji približek.
+
+\podnaslov{Bisekcija}
+
+Pri metodi bisekcije uporabimo LDL razcep, $T - \lambda I = L D L^T$, kjer je
+$L$ bidiagonalna, na diagonali ima enice, ostali elementi so na prvi
+poddiagonali.
+Matrika $D$ je diagonalna.
+Izkaže se, da je inercija, tj.~število pozitivnih in negativnih lastnih
+vrednosti, enaka za $T - \lambda I$ in $D$; v koraku bisekcije preštejemo
+število pozitivnih in negativnih diagonalnih elementov $D$ (ki jih izračunamo po
+enostavnem postopku, $d_1 = a_1 - \lambda$ in $d_r = a_r - \lambda - b_{r-1}^2 /
+d_{r-1}$), ter glede na to število odločamo, če smo lastno vrednost preskočili
+ali ne.
+Če kje dobimo $d_i = -\infty$, to ni težava; v parih $(0, -\infty)$ se pojavi
+natanko ena pozitivna in natanko ena negativna lastna vrednost, in ju štejemo
+tako.
+
+\naslov{Posplošeni problem lastnih vrednosti}
+
+Posplošeni problem lastnih vrednosti je oblike $Ax = \lambda B x$.
+Pri tem lahko izračunamo matriko $C = A B^{-1}$ in poiščemo njene lastne
+vrednosti; zaradi izgube simetrije pa to ni dobra ideja.
+Raje uporabimo razcep Choleskega, $B = V V^T$ (če je $B$ spd.), in rešimo
+$V^{-1} A V^{-T}y = \lambda y$ za $y = V^T x$.
+
+Druga možnost je posplošena Rayleighova iteracija, kjer v vsakem koraku
+izračunamo posplošeni Rayleighov kvocient $\rho(z_k,A,B) = \frac{z_k^T A
+  z_k}{z_k^T B z_k}$, nato rešimo $(A - \rho_k B) y_{k+1} = B z_k$ in nastavimo
+$z_{k+1} = \normiran{y_{k+1}}$.
+
+Imamo tudi hujše posplošitve, recimo polinomski problem lastnih vrednosti, kjer
+rešujemo $P(\lambda) x = 0$ za $P(\lambda) = A_0 + \lambda A_1 + \cdots +
+\lambda^n A_n$.
+
+% LocalWords:  psevdoinverza skaliranemu Grešgorinova podobnostno Hotellingove
+% LocalWords:  Householderjeva Rayleighova Rayleighovi bidiagonalna enice LDL
+% LocalWords:  poddiagonali spd

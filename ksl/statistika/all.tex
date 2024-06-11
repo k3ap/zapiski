@@ -278,8 +278,184 @@ h(\hat{\theta})$ nepristranska cenilka za $\xi$, velja
 \[
   \var(\xi) \ge \grad h(\theta)^T \FI^{-1}(\theta) \grad h(\theta).
 \]
-Tudi tu lahko računamo po opažanjih, če so le ta IID.
+Tudi tu lahko računamo po opažanjih, če so le ta IID\@.
 
+\naslov{Večrazsežna normalna porazdelitev}
+
+Standardna $p$-razsežna normalna porazdelitev je porazdelitev vektorja $Z =
+(Z_1, \ldots, Z_p)$, kjer so $Z_i \sim N(0,1)$ neodvisne.
+Potem je splošna $n$-razsežna normalna porazdelitev vektorja $X = AZ + \mu$,
+kjer sta $\mu \in \R^n$ in $A \in \R^{n \times p}$ deterministični.
+Pišemo $X \sim N(b, \Sigma)$, kjer je $b$ pričakovana vrednost in $\Sigma$
+variančna matrika.
+
+Če sta $X_1 \sim N(\mu_1, \Sigma_1)$ in $X_2 \sim N(\mu_2, \Sigma_2)$ neodvisna,
+je vektor
+\[
+  \begin{bmatrix}
+	X_1 \\ X_2
+  \end{bmatrix}
+  \sim
+  N\!\left(
+	\begin{bmatrix}
+	  \mu_1 \\ \mu_2
+	\end{bmatrix},
+	\begin{bmatrix}
+	  \Sigma_1 & \\ & \Sigma_2
+	\end{bmatrix}
+  \right).
+\]
+Velja tudi obratno.
+Komponente normalnega vektorja so neodvisne natanko tedaj, ko so nekorelirane.
+
+Poznamo tudi porazdelitev $\chi^2(p)$, kar je porazdelitev $Z_1^2 + \cdots +
+Z_p^2$, kjer so $Z_i \sim N(0,1)$ neodvisni.
+Velja $\chi^2(p) = \Gamma(\frac{p}{2}, \pol)$.
+
+\naslov{Intervali zaupanja}
+
+Če imamo cenilko $\hat{\theta}$ parametra porazdelitve, želimo poiskati
+zgornjo in spodnjo mejo $(L(\hat{\theta}), U(\hat{\theta}))$ za $\theta$, da bo
+parameter v tem intervalu  verjetnostjo $1 - \alpha$.
+Običajno poiščemo cenilko, ki jo lahko z determinističnimi operacijami
+transformiramo v slučajni vektor $W = g(\hat{\theta}(X))$, katerega porazdelitev
+poznamo vsaj asimptotično.
+Potem poiščemo meji $c_1, c_2$, da bo $P(c_1 \le W) = 1 - \frac{\alpha}{2}$ in
+$P(W \le c_2) \le 1 - \frac{\alpha}{2}$ (če je zahtevan najmanjši interval
+zaupanja, se morda drugače odločiš za desno stran).
+Kumulativna porazdelitvena funkcija $F_W$ nam potem da $c_1$ in $c_2$, nato pa
+naš interval transformiramo nazaj v
+\[
+  g^{-1}(F_W^{-1}(\frac{\alpha}{2}))
+  \le \theta
+  \le g^{-1}(F_W^{-1}(1 - \frac{\alpha}{2})).
+\]
+
+Za to je dobro poznati porazdelitve raznih stvari.
+Vedno si lahko pomagaš s CLI, ki ti bo dal, da je $W$ porazdeljen normalno.
+Če poznaš pričakovano vrednost in varianco, je to to, sicer pa moraš malo
+kreativno obračati stvari.
+
+Če so $X_1, \ldots, X_n$ neodvisni in porazdeljeni $N(\mu, \sigma^2)$, potem je
+\[
+  \frac{\overline{X} - \mu}{\sigma / \sqrt{n}}
+  \sim N(0,1).
+\]
+Pogosto ne poznaš $\sigma$, tedaj lahko uporabiš dejstvo
+\[
+  \frac{\overline{X} - \mu}{\hat{\text{SE}}_+} \sim \operatorname{Student}(n-1)
+\]
+za cenilko
+\[
+  \hat{\text{SE}}_+ = \sqrt{\inv{n-1} \sum_{i} (X_i - \overline{X})^2}.
+\]
+Poleg tega velja
+\[
+  n \frac{\hat{\sigma}^2}{\sigma^2} \sim \chi^2(n)
+\]
+za običajen $\hat{\sigma}$ (po MNV).
+Če vzameš $\hat{\sigma}_+$, potem dobiš
+\[
+  (n-1) \frac{\hat{\sigma}_+^2}{\sigma^2} \sim \chi^2(n-1).
+\]
+
+Uporabiš lahko tudi dejstvo, da je cenilka $\hat{\theta}$, dobljena po MNV, pri
+dovolj lepih modelih in dovolj velikih $n$ porazdeljena približno $N(\theta,
+\hat{\text{SE}}^2)$, kjer je $\hat{\text{SE}}^2 =
+\operatorname{FI}(\hat{\theta})^{-1}$.
+
+\naslov{Preizkusi domnev}
+
+Dano imamo neko domnevo $H_0$, za katero želimo preizkusiti veljavnost.
+Poleg tega imamo alternativno domnevo $H_1$, ki bo veljala, če $H_0$ zavržemo;
+nikoli pa $H_0$ ne sprejmemo.
+Preizkus je postopek odločanja, in ima stopnjo tveganja $\alpha$.
+Preizkus vedno naredimo tako, da bo za vsako verjetnostno mero $\theta$, ki
+ustreza $H_0$, velja $P_\theta(H_0\;\text{zavrnemo}) \le \alpha$.
+Gledamo lahko tudi moč preizkusa $P_{H_1}(H_0\;\text{zavrnemo}) =: 1-\beta$.
+Količinam $\alpha$ in $\beta$ pravimo napaka prve oz.~druge vrste.
+
+Pri konstrukciji preizkusa običajno vzamemo neko cenilko parametra $\theta$,
+katere porazdelitev poznamo pod predpostavko, da $H_0$ drži
+(ali pa $g(\theta)$ za nek $g$, če poznamo porazdelitev tega).
+To je enak postopek kot pri iskanju intervalov zaupanja, z eno malo razliko; če
+je $H_1$ le enostranska negacija (npr.~$H_0: \theta = \theta_0$, $H_1: \theta <
+\theta_0$), potem poiščemo enostranski interval zaupanja.
+
+Na voljo imamo tudi preizkus na podlagi razmerja verjetij, ki deluje drugače.
+Definiramo
+\[
+  \Lambda = \frac{\sup_{\theta \in I} L(\theta \such X)}{\sup_{\theta \in I_0}
+	L(\theta \such X)}
+\]
+in domnevo zavrnemo, če je $\Lambda \gg 1$.
+Podobno lahko gledamo $\Lambda'$, ki je definirana enako, le da je supremum v
+števcu po $I_1$, ne po $I$.
+Če znamo izračunati porazdelitev $\Lambda$ (ali $\Lambda'$), potem preprosto
+določimo tak $c$, da je $P(\Lambda > c) = \alpha$, in zavrnemo, če je $\Lambda >
+c$.
+Če pa ne poznamo porazdelitve, pa si lahko pomagamo z Wilksovim izrekom:
+\[
+  2 \ln \Lambda \xrightarrow[n \to \infty]{d} \chi^2(\dim I - \dim I_0),
+\]
+kjer gledamo dimenzijo v smislu mnogoterosti.
+Zavrnemo, če je $2 \ln \Lambda > F^{-1}(1 - \alpha)$, kjer je $F$ CDF za
+$\chi^2(\dim I - \dim I_0)$.
+
+Če $H_0$ pravi, da vzorec prihaja iz multinomske porazdelitve za neke
+koeficiente $(p_1, \ldots, p_n) \in I_0$, potem lahko uporabimo Pearsonov
+$\chi^2$-test.
+Označimo s $T_i$ število pojavitev $i$-tega razreda, $N$ velikost vzorca in $E_i
+= N p_i$.
+Pearsonova statistika pravi
+\[
+  T = \sum_{i=1}^n \frac{(T_i - E_i)^2}{E_i} \sim \chi^2(\dim I - \dim I_0)
+\]
+(tu $\sim$ pomeni, da je porazdelitev približno enaka, ne enaka).
+Zavrnemo, če je $T$ prevelik.
+
+Poseben primer Pearsonovega testa je preizkus neodvisnosti; če imamo tabelo
+$[T_{ij}]_{ij}$ pojavitev v $ij$-tem razredu, potem za $E_{ij} = N p_{i, \cdot}
+p_{\cdot, j}$, kjer je $p_{i,\cdot} = \frac{T_{i,\cdot}}{N}$, pika pa pomeni
+vsoto po tej komponenti, dobimo
+\[
+  T = \sum_{ij} \frac{(T_{ij} - E_{ij})^2}{E_{ij}}
+  \sim \chi^2((r-1) (c-1)).
+\]
+Porazdelitev je spet približno enaka, $r$ označuje število vrstic, $c$ pa
+število stolpcev.
+Spet zavrnemo, je če $T$ prevelik.
+
+\naslov{Linearna regresija}
+
+Uporabljamo linearen model $Y = X \beta + \varepsilon$, kjer je $Y$ slučajen
+$n$-razsežni vektor, $X$ poznana deterministična $n \times p$ matrika, $\beta$
+determinističen, a nepoznan $p$-razsežen vektor, in $\varepsilon$ šum z
+$E(\varepsilon) = 0$ in $\var(\varepsilon) = \sigma^2 I_n$.
+Cilj je poiskati $\beta$.
+
+Po izreku Gauss-Markova je $\hat{\beta} = (X^T X)^{-1} X^T Y$ NNLC za $\beta$, v
+primeru $\varepsilon \sim N(0, \sigma^2 I_n)$ pa je tudi cenilka po MNV.
+Za ta $\hat{\beta}$ velja $\var(\hat{\beta}) = \sigma^2 (X^TX)^{-1}$.
+Če potrebuješ oceno variance, lahko $\sigma$ nadomestiš z nepristransko cenilko
+\[
+  \hat{\sigma}^2 = \inv{n-p} \norm{Y - X \hat{\beta}}^2,
+\]
+v primeru normalnega modela je potem $\hat{\beta}\sim N(\beta, \sigma^2 (X^T
+X)^{-1})$ in
+\[
+  \frac{(n-p) \hat{\sigma}^2}{\sigma^2} \sim \chi^2(n-p).
+\]
+
+V primeru $p > 1$ je za konstanten $c \in \R^p$ NNLC za $c^T \beta$ kar enaka
+$c^T \hat{\beta}$.
+Potem je za $\hat{\text{SE}}(c^T \hat{\beta}) = \hat{\sigma} \sqrt{c^T (X^T
+  X)^{-1} c}$ in normalni model
+\[
+  \frac{c^T \hat{\beta} - c^T \beta}{\hat{\text{SE}}(c^T \hat{\beta})}
+  \sim \operatorname{Student}(n-p).
+\]
 
 % LocalWords:  stratificiranem stratumov stratumu Fisherjeva asimptotsko MNV
-% LocalWords:  IID
+% LocalWords:  IID variančna Wilksovim CDF Pearsonov Pearsonova Pearsonovega
+% LocalWords:  Gauss-Markova
