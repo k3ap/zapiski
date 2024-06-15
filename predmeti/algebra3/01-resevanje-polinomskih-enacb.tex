@@ -132,7 +132,7 @@ Od tu naprej predpostavimo, da so vse razširitve končne.
 \end{primer}
 
 \vprasanje{Kdaj je razširitev separabilna? Podaj primer končne razširitve, ki ni
-  algebraična. Povej izrek o primitivnem elementu in ga dokaži za končna polja.}
+  separabilna. Povej izrek o primitivnem elementu in ga dokaži za končna polja.}
 
 \begin{definicija}
   \pojem{Galoisova grupa razširitve} $E/F$ je grupa
@@ -352,8 +352,8 @@ Od tu naprej predpostavimo, da so vse razširitve končne.
   \]
   Z uporabo tretjega in drugega izreka o izomorfizmu izračunamo
   \[
-	\frac{G_{i+1} N / N}{G_i N / N} \cong \frac{G_{i+1} /N}{G_i /N}
-	= \frac{G_{i+1} G_i /N}{G_i / N} \cong \frac{G_{i+1}}{G_{i+1} \presek G_i N}
+	\frac{G_{i+1} N / N}{G_i N / N} \cong \frac{G_{i+1} N}{G_i N}
+	= \frac{G_{i+1} G_i N}{G_i N} \cong \frac{G_{i+1}}{G_{i+1} \presek G_i N}
 	\cong \frac{G_{i+1} / G_i}{(G_{i+1} \presek G_i N) / G_i}.
   \]
   Kvocient Abelove grupe je Abelova grupa.
@@ -371,7 +371,7 @@ Od tu naprej predpostavimo, da so vse razširitve končne.
   zaporedji edink.
   Iz $G_i/N \edinka G_{i+1}/N$ sledi $G_i \edinka G_{i+1}$.
   Po tretjem izreku o izomorfizmu je $G_{i+1}/G_i$ Abelova (ker je
-  $\frac{G_{i+1}/N}{G_i/}$ Abelova).
+  $\frac{G_{i+1}/N}{G_i/N}$ Abelova).
   Sedaj imamo zaporedje
   \[
 	N_0 \edinka N_i \edinka \cdots \edinka N_k = N = G_0 \edinka G_1 \edinka
@@ -418,7 +418,7 @@ razširitve $E/F$, ki jo dobimo z zaporedjem radikalskih razširitev $F = E_0
   Dokažemo le implikacijo v desno; v drugo smer je podobno.
   Enačba je rešljiva, torej obstajajo razširitve $F = E_0 \subseteq E_1
   \subseteq \cdots \subseteq E_k = E$, da je $E_{i+1} = E_i(a_i)$ in $a_i^{n_i}
-  \in F$.
+  \in E_i$.
   Definiramo $n = n_0 \ldots n_{k-1}$.
   Naj bo $\varepsilon$ primitivni $n$-ti koren enote.
   Za ta dokaz se ne bomo ukvarjali s separabilnostjo; privzamemo npr.~da je
