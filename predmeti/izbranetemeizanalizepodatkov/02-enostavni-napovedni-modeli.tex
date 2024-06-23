@@ -74,9 +74,9 @@ Deluje pa metoda največjega verjetja
 \[
   L(\mb{X}, Y, \boldsymbol{\beta})
   = \prod_{(\mb{x}, y) \in S} P(Y = y \such \mb{X} = \mb{x}, \boldsymbol{\beta})
-  = \prod_{y = 1} \frac{e^{\mb{x}^T \boldsymbol{\beta}}}{1 - e^{\mb{x}^T
+  = \prod_{y = 1} \frac{e^{\mb{x}^T \boldsymbol{\beta}}}{1 + e^{\mb{x}^T
 	  \boldsymbol{\beta}}}
-  \prod_{y = 0} \inv{1 - e^{\mb{x}^T \boldsymbol{\beta}}}.
+  \prod_{y = 0} \inv{1 + e^{\mb{x}^T \boldsymbol{\beta}}}.
 \]
 Najlažje maksimiziramo logaritem verjetja, torej
 \[

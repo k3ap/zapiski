@@ -99,7 +99,7 @@ x_i$, $x_i^T x_j = \delta_{ij}$.
   Če izvedemo en korak potenčne metode za $A$ z začetnim vektorjem $z_0$, potem
   za $z_1$ velja
   \[
-	\norm{z_i \pm x_1} \le \frac{\abs{\lambda_2}}{\abs{\lambda_1}} \norm{z_0 -
+	\norm{z_1 \pm x_1} \le \frac{\abs{\lambda_2}}{\abs{\lambda_1}} \norm{z_0 -
 	  x_1}_2 + O(\norm{z_0 - x_1}_2^2),
   \]
   kjer vzamemo tisto možnost v $z_1 \pm x_1$, ki da manjšo normo.
@@ -164,7 +164,7 @@ x_i$, $x_i^T x_j = \delta_{ij}$.
 	\le \sum_i 2 \norm{A}_2 \alpha_i^2
 	\le 2 \norm{A}_2 (1 - \alpha_1^2)
   \]
-  Predpostavimo, da je $\alpha_i \approx 1$, torej lahko to ocenimo še z
+  Predpostavimo, da je $\alpha_1 \approx 1$, torej lahko to ocenimo še z
   \[
 	2 \norm{A}_2 \cdot 2 (1 - \alpha_1)
 	= 2 \norm{A}_2 \norm{z - x_1}_2^2.

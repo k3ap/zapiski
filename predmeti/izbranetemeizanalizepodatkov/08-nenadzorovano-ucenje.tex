@@ -13,12 +13,12 @@ Razdaljo med skupinama $C_1$ in $C_2$ lahko definiramo na več načinov, ali kot
 najmanjšo/največjo/povprečno razdaljo med primeri, ali pa bolj ekonomično; za
 tretjo skupino $C$ je
 \[
-  d(C_1 \unija C_2, C) = \alpha_1 D(C_1, C) + \alpha_2 D(C_2, C) + \beta D(C_1,
+  D(C_1 \unija C_2, C) = \alpha_1 D(C_1, C) + \alpha_2 D(C_2, C) + \beta D(C_1,
   C_2)
 \]
 za
 \begin{gather*}
-  \alpha_1 = \frac{\abs{C_i} + \abs{C}}{\abs{C_1} + \abs{C_2} + \abs{C}}, \\
+  \alpha_i = \frac{\abs{C_i} + \abs{C}}{\abs{C_1} + \abs{C_2} + \abs{C}}, \\
   \beta = - \frac{\abs{C}}{\abs{C_1} + \abs{C_2} + \abs{C}}.
 \end{gather*}
 Temu pravimo \pojem{Wardova formula}.
@@ -63,7 +63,7 @@ kjer je $C_u$ skupina, kateri pripada $u$.
 Delimo s $\abs{C_u} - 1$, ker je razdalja $d(u,u) = 0$.
 \pojem{Ločenost} pa je definirana kot
 \[
-  b(u) = \min_{C \in \mathcal{C}, C \ne C_u} \inv{C} \sum_{v \in C} d(u,v).
+  b(u) = \min_{C \in \mathcal{C}, C \ne C_u} \inv{\abs{C}} \sum_{v \in C} d(u,v).
 \]
 Ti vrednosti kombiniramo v \pojem{obris}
 \[
