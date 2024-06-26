@@ -318,10 +318,10 @@ Tej funkciji pravimo \pojem{Poissonovo jedro}.
   Naj bo $f(t) = u(e^{2 \pi i t})$ ter
   \[
 	v(R e^{2 \pi i t}) =
-	\begin{bmatrix}
+	\begin{cases}
 	  f * P_R(t) & R < 1 \\
 	  f(t) & R = 1
-	\end{bmatrix}
+	\end{cases}
   \]
   Vemo, da je $v$ harmonična na $D$, zvezna na $\cl{D}$ in $\left. v
   \right|_{\partial D} = f$.
@@ -349,7 +349,7 @@ Tej funkciji pravimo \pojem{Poissonovo jedro}.
   Potem obstajata holomorfni $f, g$, da je $\alpha = \Real f$ in $\beta = \Real
   g$, torej
   \[
-	u = \frac{f + ig}{2} + \konj{\frac{f + ig}{2}}.
+	u = \frac{f + ig}{2} + \konj{\frac{f - ig}{2}}.
   \]
 \end{proof}
 

@@ -65,7 +65,7 @@ $\varphi_{t+s} = \varphi_t \circ \varphi_s$.
   \begin{itemize}
   \item Če se dve integralski ploskvi $S_1, S_2$ sekata v točki $p \in S_1
 	\presek S_2$, cela tokovnica skozi $p$ leži v $S_1 \presek S_2$.
-  \item Če je $C = S_1 \presek C_2$ krivulja, ki je presek dveh integralskih
+  \item Če je $C = S_1 \presek S_2$ krivulja, ki je presek dveh integralskih
 	ploskev $S_1, S_2$, ki se sekata ne-tangentno, je karakteristična krivulja.
   \end{itemize}
 \end{posledica}
@@ -133,7 +133,7 @@ Po privzetkih na $\vec{F}_s$ je determinanta enaka
 \[
   \begin{vmatrix}
 	f'(s_0) & a(p_0) \\
-	f'(s_0) & b(p_0)
+	g'(s_0) & b(p_0)
   \end{vmatrix}
   =
   b(p_0) f'(s_0) - a(p_0) f'(s_0)
@@ -165,9 +165,10 @@ dve komponenti.
   Posledično (vsaj lokalno) celo ploskev parametriziramo z $(x(s, t), y(s, t),
   z(s, t))$.
   Če privzamemo, da v neki okolici $p_0$ obstaja še ena rešitev $w = w(x, y)$,
-  za katero je $h = w(f, g)$ na okolici $s_0$, tedaj je $W = \{z = z(x, y)\}$
-  unija tokovnic.
-  Če gre neka tokovnica iz $W$ skozi točko $p_0$, je cela vsebovana v $U$.
+  za katero je $h = w(f, g)$ na okolici $s_0$, tedaj je $W = \{w(x, y) \such x,
+  y\}$ unija tokovnic.
+  Če gre neka tokovnica iz $W$ skozi točko $p_0$, je cela vsebovana v $U =
+  \{u(x,y) \such x, y\}$.
   Torej $W \subseteq U$.
 \end{proof}
 
@@ -198,7 +199,7 @@ Naj bo
 	\Pi_\lambda = \{(x, y, z) \in \R^3 \such z = \psi(x, y, \lambda) = a(\lambda)
 	x + b(\lambda) y\}
 \]
-družina ravnin, kjer za interval $I \subseteq R$ funkciji $a, b \in
+družina ravnin, kjer sta za interval $I \subseteq R$ funkciji $a, b \in
 \zvodv{2}{I}$ taki, da je $\vec{n}(\lambda) = (a(\lambda), b(\lambda), -1)$
 injektivna in
 \[
