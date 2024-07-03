@@ -178,7 +178,7 @@ Tej funkciji pravimo \pojem{Poissonovo jedro}.
 	= \int P_r(\tau) (f(t-\tau) - f(t'-\tau)) d\tau
   \]
   Ker je $f$ zvezna, je enakomerno zvezna, zato za $\varepsilon > 0$ obstaja
-  $\delta > 0$, da iz $\abs{s_1 - s_2} < \delta$ sledi $\abs{f(s_i) - f(s_2)} <
+  $\delta > 0$, da iz $\abs{s_1 - s_2} < \delta$ sledi $\abs{f(s_1) - f(s_2)} <
   \varepsilon$.
   V primeru $\abs{t-t'} = \abs{(t-\tau) - (t'-\tau)} < \delta$ velja
   \[
@@ -200,13 +200,13 @@ Tej funkciji pravimo \pojem{Poissonovo jedro}.
 	f(t)} < \varepsilon$.
   Potem integral razdelimo na dva;
   \[
-	\int_{\abs{\tau} < \delta} \abs{P_r(\tau)} \cdot \abs{f(t-\tau) - f(\tau)}
+	\int_{\abs{\tau} < \delta} \abs{P_r(\tau)} \cdot \abs{f(t-\tau) - f(t)}
 	d\tau
 	< \varepsilon \int_{\abs{\tau} < \delta} \abs{P_r(\tau)} d\tau,
   \]
   kar je omejeno po drugi točki definicije, in
   \[
-	\int_{\abs{\tau} > \delta} \abs{P_r(\tau)} \cdot \abs{f(t-\tau) - f(\tau)}
+	\int_{\abs{\tau} > \delta} \abs{P_r(\tau)} \cdot \abs{f(t-\tau) - f(t)}
 	< M \int_{\abs{\tau} > \delta} \abs{P_r(\tau)} d\tau,
   \]
   ker je razlika $f(t-\tau) - f(\tau)$ zvezna na kompaktu in zato omejena.
@@ -417,7 +417,7 @@ $Q_r$ liha funkcija.
   limita
   \[
 	\lim_{\delta \downarrow 0} \int_{\delta \le \abs{\tau} \le \pol} \cot(\pi
-	\tau) f(t - \tau)
+	\tau) f(t - \tau) d\tau
   \]
   obstaja.
 \end{trditev}
@@ -439,8 +439,8 @@ $Q_r$ liha funkcija.
   \to 0$ res obstaja.
 \end{proof}
 
-\vprasanje{Kaj je $Q_r$? Dokaži, da za odvedljive $f$ obstaja glavna vrednost $f
-  * Q_r(t)$.}
+\vprasanje{Kaj je $Q_r$? Dokaži, da za odvedljive $f$ obstaja glavna vrednost
+  $\cot(\pi \cdot) * f(t)$.}
 
 Funkciji
 \[

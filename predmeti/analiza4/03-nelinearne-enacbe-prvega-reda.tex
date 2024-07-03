@@ -26,7 +26,7 @@ Enačba te ravnine, ki jo označimo s $\Pi_{\vec{r}_0, \lambda} = \Pi_\lambda$, 
 Ogrinjačo dobimo tako, da enačbo ravnin odvajamo po $\lambda$ in enačimo z $0$.
 Imamo torej $\sk{\vec{r} - \vec{r}_0, \vec{n}(\lambda)} = 0$ in $\sk{\vec{r} -
   \vec{r}_0, \vec{n}'(\lambda)} = 0$.
-Vektor $\vec{r} - \vec{r}_0$ je torej vzporeden z vektorskih produktom
+Vektor $\vec{r} - \vec{r}_0$ je torej vzporeden z vektorskim produktom
 $\vec{n}(\lambda) \times \vec{n}'(\lambda)$.
 Če je $F(x_0, y_0, z_0, p(\lambda), q(\lambda)) = 0$ in odvajamo po $\lambda$,
 dobimo
@@ -190,17 +190,17 @@ vzporedni v presečišču $(s,0)$.
 Zato temu pravimo \pojem{pogoj transverzalnosti}.
 
 Če povzamemo, začetne pogoje za Cauchyjevo nalogo dobimo tako, da ob dani
-krivulji $\gamma(s) = (f,g,h)(s)$ poiščemo še $p = \phi(s)$ in $q = \psi(s)$, da
-za $\Gamma = (f,g,h,\phi,\psi)$ velja
+krivulji $\gamma(s) = (f,g,h)(s)$ poiščemo še $p = \varphi(s)$ in $q = \psi(s)$, da
+za $\Gamma = (f,g,h,\varphi,\psi)$ velja
 \begin{itemize}
 \item $F(\Gamma(s)) = 0$,
-\item $h' = \phi f' + \psi g'$,
+\item $h' = \varphi f' + \psi g'$,
 \item $f'(s) F_q(\Gamma(s)) - g'(s) F_p(\Gamma(s)) \ne 0$.
 \end{itemize}
 Za vsak $s$ rešimo karakteristični sistem z začetnimi pogoji zgoraj.
 Na ta način dobimo $R(s,t) = (x, y, z, p, q)(s, t)$, za katero velja
 \begin{itemize}
-\item $R(s,0) = (f,g,h,\phi,\psi)(s)$,
+\item $R(s,0) = (f,g,h,\varphi,\psi)(s)$,
 \item projekcija $R$ na prve tri komponente je lokalno graf funkcije.
 \end{itemize}
 Druga točka sledi iz dejstva, da je Jacobijeva determinanta
@@ -230,7 +230,7 @@ Drugi pogoj iz~\eqref{eq:matricna-oblika} (tj.~$\dot{z} = p \dot{x} + q
 = z_s - p x_s - q y_s$.
 Velja
 \[
-  B(s,0) = h'(s) - \phi(s) f'(s) - \psi(s) g'(s) = 0
+  B(s,0) = h'(s) - \varphi(s) f'(s) - \psi(s) g'(s) = 0
 \]
 in
 \begin{align*}
@@ -255,12 +255,12 @@ S tem smo dokazali eksistenčni izrek za nelinearne PDE prvega reda.
 
 \begin{izrek}
   Naj bo $F(x,y,z,p,q)$ dana $\zvodvi{2}$ funkcija, $\gamma = (f,g,h)$ dana
-  $\zvodvi{1}$ krivulja, $\phi, \psi \in \zvodvi{1}$, $V_0 = \Gamma(s_0) =
-  (f,g,h,\phi,\psi)(s_0)$ za neki $s_0$ in naj na neki okolici točke $s_0$
+  $\zvodvi{1}$ krivulja, $\varphi, \psi \in \zvodvi{1}$, $V_0 = \Gamma(s_0) =
+  (f,g,h,\varphi,\psi)(s_0)$ za neki $s_0$ in naj na neki okolici točke $s_0$
   veljajo pogoji
   \begin{itemize}
   \item $F(\Gamma(s)) = 0$,
-  \item $h' = \phi f' + \psi g'$,
+  \item $h' = \varphi f' + \psi g'$,
   \item $f'(s) F_q(\Gamma(s)) - g'(s) F_p(\Gamma(s)) \ne 0$.
   \end{itemize}
   Tedaj obstaja $\varepsilon > 0$, da na krogli $K = K((s_0, 0), \varepsilon)$
