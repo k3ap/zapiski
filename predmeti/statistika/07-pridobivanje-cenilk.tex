@@ -29,7 +29,7 @@ Enostavno slučajno vzorčenje pomeni, da ima vektor $(K_1, \ldots, K_n)$
 vrednosti v množici $\{(k_1, \ldots, k_n) \such k_i \ne k_j\}$.
 Označimo $X_i = x_{K_i}$, da velja $X_i \sim \operatorname{Emp}(X_1, \ldots,
 X_n)$.
-Potem je $\mu = E(X_1) = \mu$ in
+Potem je $\mu = E(X_1)$ in
 \[
   \var(X_1) = \inv{N} \sum_{k=1}^N (x_k - \mu)^2.
 \]
@@ -207,7 +207,7 @@ je $\operatorname{FI} = n \operatorname{FI}_1$.
   \item $\hat{\sv{\theta}} \xrightarrow[n \to \infty]{} \sv{\theta}$
   \item $\sqrt{n} \operatorname{Bias}(\hat{\sv{\theta}} \such \sv{\theta})
 	\xrightarrow[n \to \infty]{} 0$
-  \item $n \var(\hat{\sv{\theta}}) (\operatorname{FI}_1(\sv{\theta}))^{-1}$
+  \item $n \var(\hat{\sv{\theta}}) \xrightarrow[n \to \infty]{} (\operatorname{FI}_1(\sv{\theta}))^{-1}$
   \item $n \operatorname{MSE}(\hat{\sv{\theta}} \such \sv{\theta})
 	\xrightarrow[n \to \infty]{d} (\operatorname{FI}_1(\sv{\theta}))^{-1}$
   \end{itemize}
