@@ -1,4 +1,4 @@
-predmeti := moderna-fizika uvod-v-funkcionalno-analizo #teorija-izracunljivosti teorija-grafov
+predmeti := moderna-fizika uvod-v-funkcionalno-analizo teorija-izracunljivosti #teorija-grafov
 ksl := moderna-fizika
 
 latex-cmd := lualatex --shell-escape

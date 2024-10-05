@@ -1,0 +1,80 @@
+\naslov{Introduction}
+
+A \pojem{Turing machine} is defined to consist of the following components.
+There is an infinite tape divided into cells, each of which contains a symbol
+from the chosen alphabet $\Gamma$.
+This alphabet must include a \texttt{blank} symbol.
+At the start, only a finite number of cells in the tape have a character
+different than \texttt{blank}.
+The machine also possesses a read-write head positioned at some cell, and an
+internal control state, which determines the instruction to be followed.
+
+Instructions are given as a \pojem{transition} (partial) function $f$, which
+maps
+\[
+  (\text{state}, \text{character}) \mapsto (\text{new state}, \text{new
+	character}, \text{motion}).
+\]
+To perform an action, a TM will look for rules matching its current control
+state and the character currently written at the position of the read-write
+head.
+When a matching rule is found, the machine switches to the defined new state,
+writes the specified character on the tape and moves according to the
+instruction.
+We limit its motion to three possibilities: one cell to the left or right, or
+no motion at all.
+More formally, we may restate the definition as follows:
+
+\begin{definition}
+  A \pojem{Turing machine} is specified by the following:
+  \begin{itemize}
+  \item a finite \pojem{tape alphabet} $\Gamma$ with $\boxdot \in \Gamma$,
+  \item a finite set $Q$ of \pojem{states} with $\mathtt{start} \in Q$,
+  \item a transition partial function
+	\[
+	  \delta: Q \times \Gamma \rightharpoonup Q \times \Gamma \times \{-1, 0, +1\}.
+	\]
+  \end{itemize}
+\end{definition}
+
+For a given input alphabet $\Sigma_1 \subseteq \Gamma$ and output alphabet
+$\Sigma_2 \subseteq \Gamma$, a TM specifies a partial function $f: \Sigma_1^*
+\rightharpoonup \Sigma_2^*$ if for any $w \in \Sigma_1^*$, running the TM on the
+input $w$ results in the machine halting in the \texttt{halt} state and it has
+$f(w)$ as the word on the tape, with the head at the leftmost character.
+We also require $\boxdot \notin \Sigma_1$ or $\Sigma_2$.
+If the machine does not halt in the \texttt{halt} state, we say $f(w)$ is not
+defined.
+
+\begin{definition}
+  A partial function $f: \Sigma_1^* \rightharpoonup \Sigma_2^*$ is
+  \pojem{computable} if there exists a TM that computes it.
+\end{definition}
+
+\vprasanje{Describe the basic working of a Turing machine. What does it mean for
+  a function to be computable?}
+
+\begin{definition}
+  A \pojem{language} over an alphabet $\Sigma$ is a subset $L \subseteq
+  \Sigma^*$.
+\end{definition}
+
+For language recognition we require a subset $\Sigma \subseteq \Gamma$ (the
+\pojem{input alphabet}) and two distinguished states, \texttt{accept} and
+\texttt{reject}.
+A language-recognizing Turing machine accepts a word $w$ if, when the machine is
+run on the input $w$, the computation halts in the \texttt{accept} state.
+Similarly, $w$ is rejected if the machine halts in the \texttt{reject} state.
+We say that a Turing machine $M$ \pojem{decides} or \pojem{computes} $L$ if for
+any $w \in \Sigma^*$, $w \in L$ implies that $M$ accepts $w$ and $w \notin L$
+implies that $M$ rejects $w$.
+
+If $M$ correctly accepts words of the language, and does not accept words that
+are not part of the language, we say that $M$ \pojem{semidecides},
+\pojem{semicomputes} or \pojem{recognizes} $L$.
+A language is \pojem{decidable} or \pojem{computable} if there is a TM which
+decides it, and \pojem{semidecidable}, \pojem{semicomputable} or
+\pojem{computably innumerable} if there is a TM which recognizes it.
+Clearly, every decidable language is also semidecidable.
+
+\vprasanje{What is a decidable and what is a semidecidable language?}
