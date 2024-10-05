@@ -1,0 +1,10 @@
+.pdf-view-restore
+auto/*
+**/auto/*
+*.out
+*.toc
+*.aux
+*.log
+*.pdf
+zbt-templates
+zapiski-*.tex

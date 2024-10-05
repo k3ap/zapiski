@@ -1,0 +1,37 @@
+\naslov{Normirani in Banachovi prostori}
+
+\begin{definicija}
+  Naj bo $X$ vektorski prostor nad poljem $\F \in \{\R, \C\}$.
+  Preslikava $\norm{\cdot}: X \to \R$ je \pojem{norma}, če velja:
+  \begin{itemize}
+  \item $\norm{x} \ge 0$,
+  \item $\norm{x} = 0 \iff x = 0$,
+  \item $\norm{\lambda x} = \abs{\lambda} \norm{x}$,
+  \item $\norm{x + y} \le \norm{x} + \norm{y}$.
+  \end{itemize}
+\end{definicija}
+
+\begin{opomba}
+  Velja $\abs{\norm{x} - \norm{y}} \le \norm{x - y}$, iz česar sledi, da je
+  norma zvezna (celo Lipschitzova za $L = 1$).
+\end{opomba}
+
+Norma porodi metriko $d(x,y) = \norm{x-y}$ na prostoru $X$, ki je invariantna na
+translacije, in za katero velja
+\[
+  d(\lambda x, \lambda y) = \abs{\lambda} d(x,y).
+\]
+Zaprto kroglo radija $r$ s središčem v točki $x$ označimo z $B(x, r)$, odprto
+kroglo pa z $\mathring{B}(x, r)$.
+Zaradi zveznosti norme je zaprtje odprte krogle natanko pripadajoča zaprta
+krogla.
+
+\begin{definicija}
+  Normiran prostor je \pojem{Banachov}, če je poln za inducirano metriko.
+\end{definicija}
+
+\begin{trditev}
+  Seštevanje in množenje vektorjev s skalarjem sta zvezni operaciji.
+\end{trditev}
+
+% LocalWords:  Banachovi
