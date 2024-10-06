@@ -1,0 +1,240 @@
+\naslov{Matchings}
+
+\begin{definition}
+  A vertex set $S \subseteq V$ is an \pojem{independent set} of the graph $G =
+  (V, E)$ if the induced subgraph $G[S]$ is empty.
+  The maximum cardinality of an independent set is the \pojem{independence
+	number} $\alpha(G)$.
+\end{definition}
+
+\begin{definition}
+  A vertex set $T \subseteq V$ is a \pojem{vertex cover} if every edge has at least one
+  of its endings in $T$.
+  The maximum cardinality of a vertex cover is the \pojem{vertex cover number}
+  $\beta(G)$.
+\end{definition}
+
+\begin{definition}
+  An edge set $M \subseteq E$ is a \pojem{matching} if for every distinct $e_1,
+  e_2 \in M$, edges $e_1$ and $e_2$ have no common ending.
+  The maximum cardinality of a matching is the \pojem{matching number}
+  $\alpha'(G)$.
+\end{definition}
+
+\begin{definition}
+  An edge set $C \subseteq E$ is an \pojem{edge cover} if every vertex of $G$ is
+  covered by at least one edge from $C$.
+  If the minimum degree $\delta(G)$ is at least $1$, we can define the
+  \pojem{edge cover number} $\beta'(G)$ as the minimum cardinality of an edge
+  cover.
+\end{definition}
+
+\vprasanje{Define the independence number, the vertex and edge cover number, and
+  the matching number.}
+
+\begin{remark}
+  The complement of an independent set is a vertex cover, so $\alpha(G) +
+  \beta(G) = n(G)$ in every graph $G$.
+  In a maximum matching, every edge must be covered by different vertices, so
+  $\alpha'(G) \le \beta(G)$.
+  We can similarly argue that $\alpha'(G) \le \nicefrac{n(G)}{2} \le \beta'(G)$
+  and $\alpha(G) \le \beta'(G)$.
+\end{remark}
+
+\begin{theorem}[Gallai]
+  If $\delta(G) \ge 1$, then $\alpha'(G) + \beta'(G) = n(G)$.
+\end{theorem}
+
+\begin{proof}
+  Take a maximum matching $M$ in $G$ and let $V(M)$ be the vertices covered by
+  $M$.
+  For every vertex not covered by $M$, we can take an incident edge and add it
+  to $M$.
+  This gives an edge cover with
+  \[
+	\abs{M} + \abs{\comp{V(M)}} = \abs{M} + (n - 2 \abs{M}) = n - \abs{M}
+  \]
+  edges.
+  Since $\abs{M} = \alpha'(G)$, this implies $\beta'(G) + \alpha'(G) \le n(G)$.
+
+  Now take a minimum edge cover $C$.
+  We claim that for every edge in $C$, at least one end is covered only once by
+  $C$.
+  For suppose that $uv \in C$ is an edge and both $u$ and $v$ are covered by
+  other edges in $C$.
+  If we remove $uv$, then $C \setminus \{uv\}$ is a smaller cover, which is a
+  contradiction.
+
+  The induced subgraph $G[C]$ is then a forest of stars.
+  Suppose it consists of $k$ components.
+  We get $\abs{C} = n-k$, since in a tree, the number of vertices is $1$ more
+  than the number of edges.
+  A matching is obtained by choosing one edge from every star, which gives
+  $\alpha'(G) + \beta'(G) \ge n(g)$, thus completing the proof.
+\end{proof}
+
+\vprasanje{State and prove Gallai's theorem.}
+
+\begin{definition}
+  Let $M$ be a matching.
+  A path $v_1 v_2 \ldots v_k$ is an \pojem{$M$-alternating path} if
+  the edges along the path alternate between $M$ and $\comp{M}$.
+  An $M$-alternating path is \pojem{$M$-augmenting} if neither end of the path
+  is covered by $M$.
+\end{definition}
+
+\begin{remark}
+  Such a path cannot start or end with an edge from $M$, and the endpoints
+  cannot be part of an edge in $M$.
+\end{remark}
+
+\begin{proposition}
+  If $G$ is a graph, $M$ is a matching and there exists an $M$-augmenting path
+  $P$, then $M$ is not a maximum matching.
+\end{proposition}
+
+\begin{proof}
+  Suppose $P = v_1 \ldots v_k$.
+  We know the first and last edge are not in $M$, so $\abs{E(P) \cap \comp{M}} =
+  \abs{E(P) \cap M} + 1$.
+  Now let $M' = M \oplus E(P)$ be the symmetric difference of $M$ and $E(P)$.
+  This is clearly a matching.
+  We know that $\abs{M'} = \abs{M} + 1$, so $M$ cannot be maximum.
+\end{proof}
+
+\vprasanje{How can you construct a larger matching from an augmenting path?}
+
+\begin{definition}
+  A \pojem{König-Egerváry} graph is a graph $G$ with $\alpha'(G) = \beta(G)$.
+\end{definition}
+
+\begin{theorem}[König]
+  Let $G$ be a bipartite graph.
+  Then $\alpha'(G) = \beta(G)$.
+  Additionally, if $M$ is a matching in $G$ and there is no $M$-augmenting
+  path, $M$ is a maximum matching.
+\end{theorem}
+
+\begin{proof}
+  Let the partite classes of $G$ be $A$ and $B$.
+  Suppose that $M$ is a matching for which there is no $M$-augmenting path in
+  $G$.
+  Define $X$ as the set of all vertices in $A$ that are not covered by the
+  matching, and $Y$ the vertices in $B$ not covered by $M$.
+  Additionally, let $B_1$ be the set of vertices in $B$ that can be reached by
+  an $M$-alternating path from $X$, and similarly, let $A_1$ be the set of
+  vertices of $A$ which can be reached from $X$ by an $M$-alternating path.
+  Finally, define $B_2 = B \setminus (B_1 \cup Y)$ and $A_2 = A \setminus (A_1
+  \cup X)$.
+
+  Observe that on an $M$-alternating path from $X$, any edge from $A$ to $B$ is
+  in $\comp{M}$ and any edge from $B$ to $A$ is in $M$.
+  Out matching provides a one-to-one mapping between $A_1$ and $B_1$ and between
+  $A_2$ and $B_2$, so $\abs{A_1} = \abs{B_1}$ and $\abs{A_2} = \abs{B_2}$.
+  We also know that $\abs{A_1} + \abs{A_2} = \abs{M}$.
+  Now consider the possible edges between the defined vertex sets.
+
+  There is no edge between $X$ and $Y$, since that would be a (trivial)
+  $M$-augmenting path.
+  There are also no edges between $X$ and $B_2$, since an edge $xb$ is an
+  $M$-alternating path, implying $b \in B_1$.
+  So the only edges from $X$ lead to $B_1$.
+
+  There are also no edges between $A_1$ and $Y$, because we can construct an
+  $M$-augmenting path with such an edge.
+  If $a \in A_1$, then there is an alternating path from $X$ to $a$, which we
+  could extend with a $a$-to-$Y$ edge to get an augmenting path.
+  Finally, there are no edges between $A_1$ and $B_2$, since that would give an
+  alternating path from $X$ to the $B_2$-vertex as before.
+
+  Then $T = B_1 \cup A_2$ is a vertex cover with
+  $\abs{T} = \abs{B_1} + \abs{A_2} = \abs{A_1} + \abs{A_2} = \abs{M}$.
+  We have thus constructed a vertex cover with $\abs{M}$ vertices, giving
+  \[
+	\beta(G) \le \abs{T} = \abs{M} \le \alpha'(G).
+  \]
+  The other inequality holds in the general case, so this completes the proof.
+\end{proof}
+
+\vprasanje{State and prove König's theorem.}
+
+\begin{corollary}
+  If $G$ is a bipartite graph, then $\alpha(G) = \beta'(G)$.
+\end{corollary}
+
+\begin{definition}
+  Let $G$ be a bipartite graph with partite classes $A$ and $B$.
+  \pojem{Hall's condition} holds for the set $A$ if for every $S \subseteq A$,
+  \[
+	\abs{S} \le \abs{N(S)} = \abs{ \bigcup_{u \in S} N(u) }.
+  \]
+\end{definition}
+
+\begin{theorem}[Hall]
+  If $G$ is a bipartite graph with partite classes $A$ and $B$, then there
+  exists a matching that covers $A$ if and only if Hall's condition holds for
+  $A$.
+\end{theorem}
+
+\begin{proof}
+  Let $M$ be a matching covering $A$ and $S \subseteq A$.
+  We can take the pairs matched by $M$
+  \[
+	B_S = \{ v \in B \such \text{$v$ is covered by an edge in $M$} \}.
+  \]
+  Clearly, $\abs{S} = \abs{B_S}$ and $B_S \subseteq N(S)$, so $\abs{S} \le
+  \abs{N(S)}$.
+
+  For the other implication, suppose there is no matching covering $A$.
+  Divide the sets $A$ and $B$ as in the proof of König's theorem, using some
+  matching $M$.
+  Since the matching doesn't cover $A$, $X$ is not empty.
+  Now consider $S = A_1 \cup X$.
+  All edges from $S$ lead into $B_1$, so $N(S) = B_1$, but $\abs{S} = \abs{A_1}
+  + \abs{X} > \abs{B_1} = \abs{N(S)}$.
+\end{proof}
+
+\vprasanje{State and prove Hall's theorem.}
+
+\begin{definition}
+  A matching $M$ is a \pojem{perfect matching} if it covers all vertices.
+\end{definition}
+
+\begin{corollary}
+  In a bipartite graph $G$, there is a perfect matching if and only if $\abs{A}
+  = \abs{B}$ and $A$ satisfies Hall's condition.
+\end{corollary}
+
+\begin{definition}
+  Let $G$ be a bipartite graph with partite classes $A,B$, and $S \subseteq A$.
+  The \pojem{deficiency} of $S$ is $\operatorname{def}(S) = \abs{S} -
+  \abs{N(S)}$.
+\end{definition}
+
+\begin{theorem}
+  Let $G$ be a bipartite graph with partite classes $A$ and $B$.
+  If $M$ is a maximum matching in $G$, it covers
+  \[
+	\alpha'(G) = \abs{A} - \max_{S \subseteq A} \operatorname{def}(S)
+  \]
+  vertices of $A$.
+\end{theorem}
+
+\begin{theorem}
+  If $G$ is a regular bipartite graph, then $G$ has a perfect matching.
+\end{theorem}
+
+\begin{proof}
+  The number of edges in the graph is $k \cdot \abs{A} = k \cdot \abs{B}$, so
+  $\abs{A} = \abs{B}$.
+  Let $S \subseteq A$.
+  The number of edges between $S$ and $N(S)$ is exactly $k \cdot \abs{S}$.
+  Every neighbour $u \in N(S)$ has exactly $k$ neighbours, at most $k$ are in
+  $S$.
+  So at most $k \cdot \abs{N(S)}$ edges are between $S$ and $N(S)$, implying
+  $\abs{S} \le \abs{N(S)}$.
+\end{proof}
+
+\vprasanje{Show that a regular bipartite graph has a perfect matching.}
+
+% LocalWords:  Egerváry König König's
