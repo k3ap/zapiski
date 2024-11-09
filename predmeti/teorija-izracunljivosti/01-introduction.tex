@@ -78,3 +78,123 @@ decides it, and \pojem{semidecidable}, \pojem{semicomputable} or
 Clearly, every decidable language is also semidecidable.
 
 \vprasanje{What is a decidable and what is a semidecidable language?}
+
+Given a $k$-tape machine $(\Gamma, Q, \delta)$, we can simulate it by a
+single-tape machine.
+We will encode the different tapes by separating them with a special symbol $|
+\in \tilde{\Gamma}$ and encoding the positions of the read-write heads with
+another special symbol $\Delta \in \tilde{\Gamma}$.
+When simulating a computational step of the multi-tape machine, we scan for
+transitions and implement them manually.
+
+\vprasanje{How can you simulate a multi-tape Turing machine with a single-tape
+  machine?}
+
+\begin{proposition}
+  There are languages that are not semidecidable.
+\end{proposition}
+
+\begin{proof}
+  There are only countably many non-equivalent Turing machines, but an
+  uncountable number of languages on any alphabet.
+\end{proof}
+
+We can also give an example of a language that is semidecidable but not
+decidable.
+To construct it, we will encode a Turing machine $M = (\Gamma, Q, \delta)$ into
+a string.
+We encode it in $\sk{M} \in \Sigma_u^*$ for the alphabet
+\[
+  \Sigma_u = \{0, 1, -1, \verb+[+, \verb+]+, \parallel, \cdot\}.
+\]
+We encode every state $q \in Q$ as a word $\sk{q} \in \{0, 1, -1\}^l$, where $l
+\ge \log_3 \abs{Q}$.
+We require that the encoding of the start state is $0^l$, the encoding of the
+accepting state is $1^l$, and the encoding of the rejecting state is $(-1)^l$.
+Every symbol $a \in \Gamma$ is encoded as $\sk{a} \in \{-1, 0, 1\}^m$ for $m \ge
+\log_3 \abs{\Gamma}$.
+We require that the encoding of the blank symbol is $0^m$.
+
+Finally, to encode $\delta$, consider an instruction $(q, a) \mapsto (q', b,
+d)$.
+This will be encoded as a word
+\[
+  [\sk{q} \cdot \sk{a} \parallel \sk{q'} \cdot \sk{b} \cdot d]
+\]
+with $d \in \{0, 1, -1\}$.
+This encoding has length $2l + 2m + 7$, and allows us to encode the full Turing
+machine as the encoding of the start state, followed by a dot $\cdot$, followed
+by the encoding of the blank symbol, and then followed by the encodings of all
+transitions one after another.
+We can encode any word $w \in \Gamma^*$ as a sequence of characters, delimited
+by $\cdot$, so that we may define a language $L_{\text{accept}}$ as follows:
+the language includes words of the form $\sk{M} \cdot \sk{w}$, where $M$ is a
+single-tape Turing machine with tape alphabet $\Gamma \supseteq \Sigma_u$, and
+$w \in \Sigma_u^*$ is a word which $M$ accepts.
+
+\vprasanje{How is $L_{\text{accept}}$ defined? Describe the universal encoding
+  of a Turing machine.}
+
+\begin{theorem}
+  The language $L_{\text{accept}}$ is undecidable.
+\end{theorem}
+
+\begin{proof}
+  Suppose that it is decidable, so there exists a Turing machine $D$ which
+  decides it.
+  We define a new Turing machine $N$ with input alphabet $\Sigma_u$.
+  This machine reads its input string $v$ and converts it to the string $v \cdot
+  \sk{v}$.
+  It then proceeds as $D$ on this input, except it switches the accept and
+  reject states.
+
+  Consider what $N$ does when given an input of the form $v = \sk{M}$ for some
+  Turing machine $M$.
+  If $D$ rejects $\sk{M} \cdot \sk{\sk{M}}$, then $N$ terminates on the
+  accepting state, and vice versa.
+  Because $D$ decides $L_{\text{accept}}$, we get from $N$:
+  \begin{itemize}
+  \item \texttt{accept} iff $M$ does not accept $\sk{M}$, and
+  \item \texttt{reject} iff $M$ accepts $\sk{M}$.
+  \end{itemize}
+  Now run $N$ on $\sk{N}$.
+  We get \texttt{accept} iff $N$ does not accept $\sk{N}$, and \texttt{reject}
+  iff $N$ accepts $\sk{N}$.
+  This is a contradiction.
+\end{proof}
+
+\vprasanje{Show that $L_{\text{accept}}$ is undecidable.}
+
+Using $\Sigma_u$, we can also construct the \pojem{universal Turing machine}.
+
+\begin{theorem}
+  There exists a Turing machine $U$ over the tape alphabet $\Sigma_u \cup
+  \{\boxdot\}$ that exhibits the following behavior:
+  If we run $U$ on the string $\sk{M} \cdot \sk{w}$, then the resulting
+  execution satisfies the following.
+  \begin{itemize}
+  \item It terminates if and only if $M$ terminates on input $w$.
+  \item It accepts if and only if $M$ accepts $w$.
+  \item It rejects if and only if $M$ rejects $w$.
+  \end{itemize}
+\end{theorem}
+
+The idea of the proof is to use a three-tape machine, putting the encoding of
+$M$ on the first tape, the encoding of the state on the second, and the input on
+the third.
+Then simulate the execution of $M$.
+
+\begin{theorem}
+  The language $L_{\text{accept}}$ is semidecidable.
+\end{theorem}
+
+\begin{proof}
+  We construct a machine $S$ that does the following.
+  It first reads its input word $v \in \Sigma_u^*$ and checks whether $v$ is of
+  the form $\sk{M} \cdot \sk{w}$.
+  If $v$ is not of this form, then we reject immediately.
+  Otherwise, we run the universal machine $U$ on the input $v$ and end in the
+  end state of $U$.
+\end{proof}
+
+\vprasanje{Show that $L_{\text{accept}}$ is semidecidable.}
