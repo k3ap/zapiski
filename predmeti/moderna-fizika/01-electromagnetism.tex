@@ -105,4 +105,106 @@ following fields;
 and two constants, the \pojem{permittivity of free space} $\varepsilon_0$ and
 the \pojem{permeability of free space} $\mu_0$.
 
+\podnaslov{Charge and current}
+
+Particles have properties, one of which is the electric charge $q \in \R$.
+Usually, the electric charge is an integer multiple of the basic charge $e$, but
+fractional values are also possible for quarks.
+We can define the \pojem{density of charge} $\rho$ as the amount of charge in a
+given volume, which we think of as a scalar field.
+The total charge of the universe
+\[
+  Q = \iiint_{\R^3} \rho dV
+\]
+is constant in time by the law of the preservation of charge.
+
+We can also define the \pojem{current density} $\vec{J}$ as a vector field
+signifying the flow of current though some area, and the \pojem{total current}
+through a surface as
+\[
+  I = \iint_S \vec{J} \cdot d\vec{S}.
+\]
+
+Finally, there is a force exerted on every charged particle, equal to
+\[
+  \vec{F} = q(\vec{E} + \partial_t \vec{r} \times \vec{B}).
+\]
+
+\podnaslov{Electrostatics}
+
+By definition, electrostatics is the conditions in which $\vec{J} = 0$ and $\rho
+\ne 0$.
+In this case, and additionally setting $\vec{B} = 0$, Maxwell's equations reduce
+to
+\begin{gather*}
+  \div \vec{E} = \frac{\rho}{\varepsilon_0}, \\
+  \rot \vec{E} = 0.
+\end{gather*}
+Integrating Gauss' law gives
+\[
+  \frac{Q}{\varepsilon_0} = \iiint_V \div \vec{E} dV = \iint_{\partial V}
+  \vec{E} \cdot d\vec{s}.
+\]
+
+Since we must satisfy $\rot \vec{E} = 0$, it is useful to introduce the
+electrostatic potential $\vec{E} = - \grad \phi$.
+This reduces Gauss' law to $\Delta \phi = - \frac{\rho}{\varepsilon_0}$.
+Note that $\phi$ is only defined up to an additive constant.
+We call this concept \pojem{gauge invariance}.
+
+For a general distribution of point charges, we can find $\phi$ using the method
+of Green's functions.
+The Green's function $G(\vec{r}, \pvec{r}')$ is the function which solves
+$\Delta G(\vec{r}, \pvec{r}') = \delta(\vec{r} - \pvec{r}')$.
+For Poisson's equation, we then have
+\[
+  \Delta \phi(\vec{r}) = - \inv{\varepsilon_0} \iiint_V \rho(\pvec{r}')
+  \delta(\vec{r} - \pvec{r}') d\pvec{r}'
+  = \Delta_{\vec{r}} \left(
+	-\inv{\varepsilon_0} \iiint_V \rho(\pvec{r}') G(\vec{r}, \pvec{r}') d\pvec{r}'
+  \right)
+\]
+so
+\[
+  \phi(\vec{r}) = -\inv{\varepsilon_0} \iiint_V \rho(\pvec{r}') G(\vec{r},
+  \pvec{r}') d\pvec{r}'.
+\]
+
+We have
+\[
+  G(\vec{r}, \pvec{r}') = - \inv{4 \pi} \inv{\abs{\vec{r} - \pvec{r}'}}
+\]
+which gives
+\[
+  \phi(\vec{r}) = \inv{4 \pi \varepsilon_0} \iiint_V
+  \frac{\rho(\pvec{r}')}{\abs{\vec{r} - \pvec{r}'}} d\pvec{r}'
+\]
+and
+\[
+  \vec{E} =
+  \inv{4 \pi \varepsilon_0} \iiint_V \rho(\pvec{r}') \frac{\vec{r} -
+	\pvec{r}'}{\abs{\vec{r} - \pvec{r}'}^3} d\pvec{r}'
+\]
+
+Take a particle with a charge $q$ in $\phi$.
+The potential energy is the work required to bring this particle from $\infty$
+to $\vec{r}$,
+\[
+  U(\vec{r})
+  = - \int_{\infty}^r q \vec{E} \cdot d\vec{r}
+  = q \phi(\vec{r}).
+\]
+For more than one charge, we can compute
+\[
+  U = \pol \iiint_V \rho(\vec{r}) \phi(\vec{r}) d\vec{r}
+  = \frac{\varepsilon_0}{2} \iiint_V \div \vec{E} \phi d\vec{r}
+  = \frac{\varepsilon_0}{2} \iiint_V \left( \div (\vec{E} \phi) - \vec{E} \cdot
+	\grad \phi \right) d\vec{r}.
+\]
+Setting $\phi(\infty) = 0$ then gives
+\[
+  U = \frac{\varepsilon_0}{2} \iiint_V \vec{E} \cdot \vec{E} d\vec{r}.
+\]
+
+
 % LocalWords:  monopoles unifications Chivita th
