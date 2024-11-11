@@ -34,4 +34,67 @@ krogla.
   Seštevanje in množenje vektorjev s skalarjem sta zvezni operaciji.
 \end{trditev}
 
+\begin{definicija}
+  Algebra $A$ je \pojem{normirana algebra}, če je normiran vektorski prostor in
+  če velja $\norm{xy} \le \norm{x} \norm{y}$.
+  Če ima normirana algebra enoto, zahtevamo še $\norm{e} = 1$.
+\end{definicija}
+
+\begin{primer}
+  Naj bo $X$ Hausdorffov topološki prostor in $\zveznei_b(X)$ množica zveznih
+  omejenih funkcij $X \to \F$.
+  Če jo opremimo s supremum normo, postane normirana algebra za seštevanje in
+  množenje po točkah.
+  Preverimo lahko, da je celo Banachov prostor.
+\end{primer}
+
+\begin{posledica}
+  Če je $X$ kompakten Hausdorffov prostor, je $\zvezne{X}$ Banachova algebra.
+\end{posledica}
+
+\begin{trditev}
+  Naj bo $X$ normiran prostor in $Y$ (vektorski) podprostor v $X$.
+  Veljata naslednji točki.
+  \begin{itemize}
+  \item Če je $Y$ poln, potem je $Y$ zaprt v $X$.
+  \item Če je $X$ Banachov prostor, potem je $Y$ Banachov natanko tedaj, ko je
+	$Y$ zaprt v $X$.
+  \end{itemize}
+\end{trditev}
+
+\begin{proof}
+  Prva točka:
+  Naj bo $y \in \cl{Y}$.
+  Obstaja zaporedje $(y_n)_n$ v $Y$, ki konvergira k $y$.
+  To zaporedje je Cauchyjevo, torej ima limito, ki je enaka $y$.
+  Sledi $y \in Y$, zato $Y = \cl{Y}$.
+
+  Druga točka:
+  V desno smo ravno dokazali.
+  V levo naj bo $(y_n)_n$ Cauchyjevo zaporedje v $Y$.
+  Potem je Cauchyjevo tudi v $X$, kjer ima limito, saj je $X$ poln.
+  Ker je $Y$ zaprt, je $y \in Y$, torej $y_n \to y$ v $Y$.
+\end{proof}
+
+\begin{primer}
+  Naj bo $X$ lokalno kompakten Hausdorffov prostor ter $\zveznei_0(X)$ množica
+  vseh funkcij v $\zvezne{X}$, za katere za vsak $\varepsilon > 0$ obstaja
+  kompakt $K_\varepsilon \subseteq X$, da je $\abs{f}$ zunaj $K_\varepsilon$
+  strogo manjša od $\varepsilon$.
+
+  Pri $X = \R$ so to natanko vse funkcije, katerih limita v obeh neskončnostih
+  je enaka $0$, pri $X = \N$ pa je to natanko prostor $c_0$ zaporedij, ki
+  konvergirajo k $0$.
+
+  Dokažemo lahko, da je $\zveznei_0(X)$ zaprt dvostranski ideal v
+  $\zveznei_b(X)$ in zato Banachova algebra.
+\end{primer}
+
+\begin{primer}
+  Množica $c$ vseh konvergentnih zaporedij je Banachov prostor za supremum
+  normo.
+\end{primer}
+
+\podnaslov{Napolnitve normiranih prostorov}
+
 % LocalWords:  Banachovi
