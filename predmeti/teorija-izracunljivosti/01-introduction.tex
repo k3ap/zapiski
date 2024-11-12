@@ -198,3 +198,110 @@ Then simulate the execution of $M$.
 \end{proof}
 
 \vprasanje{Show that $L_{\text{accept}}$ is semidecidable.}
+
+\begin{proposition}
+  If $f: \Sigma_1^* \rightharpoonup \Sigma_2^*$ and $g: \Sigma_2^*
+  \rightharpoonup \Sigma_3^*$ are computable, then so if $g \circ f$.
+\end{proposition}
+
+Note that the composite of two partial functions is defined as
+\[
+  (g \circ f)(w) \simeq
+  \begin{cases}
+	g(f(w)) & f(w) \downarrow \\
+	\uparrow & f(w) \uparrow
+  \end{cases}
+\]
+
+\begin{definition}
+  A $k$-tape Turing machine \pojem{computes} $f: \Sigma_1^* \times \cdots \times
+  \Sigma_k^* \rightharpoonup \Sigma^*$ if when we run the Turing machine on the
+  configuration with a word on each tape, the machine terminates in the halt
+  state if and only if for all $(w_1, \ldots, w_k)$ in the domain of $f$, it
+  halts in the configuration with $f(w_1, \ldots, w_k)$ on the first tape and
+  all other tapes blank.
+\end{definition}
+
+\begin{example}
+  To define the computability for partial functions $f: \N \rightharpoonup \N$,
+  we can represent numbers using words over $\Sigma_b = \{0,1\}$ and the
+  representation
+  \[
+	\gamma_\N(w) = \sum_{i=0}^{\abs{w}-1} 2^{\abs{w} -i -1} w_i.
+  \]
+  If we allow for leading zeros, every number is represented by an infinite
+  number of words.
+  Additionally, zero is also represented by the empty word $\varepsilon$.
+  A Turing machine $M$ computes $f: \N \rightharpoonup \N$ if it computes $g:
+  \Sigma_b^* \rightharpoonup \Sigma_b^*$ such that for all words $w$ for which
+  $\gamma_\N(g(w)) \simeq f(\gamma_\N(w))$.
+  We say that $f$ is \pojem{computable} if there is a Turing machine which
+  computes it.
+\end{example}
+
+We could also restrict our representation, for example requiring words to begin
+with a $1$ (we also allow the empty word).
+Alternatively, we could use e.g.~a unary representation.
+
+\begin{definition}
+  A \pojem{representation} of a set $X$ by words over an alphabet $\Sigma$ is a
+  surjective partial function $\gamma: \Sigma^* \rightharpoonup X$.
+\end{definition}
+
+\begin{remark}
+  Only countable sets can be represented.
+\end{remark}
+
+\begin{definition}
+  Given representations $\gamma_1: \Sigma_1^* \rightharpoonup X_1$ and
+  $\gamma_2: \Sigma_2^* \rightharpoonup X_2$, a partial function $f: X_1
+  \rightharpoonup X_2$ is \pojem{$(\gamma_1 \to \gamma_2)$-computable} if there
+  exists a computable partial function $g: \Sigma_1^* \rightharpoonup \Sigma_2^*$
+  such that for all words $w$ in the domain of $\gamma_1$, if $g(w)$ is defined,
+  then $\gamma_2(g(w)) \simeq f(\gamma_1(w))$.
+\end{definition}
+
+\begin{definition}
+  Two representations $\gamma_1$ and $\gamma_2$ of the same set $X$ are
+  \pojem{equivalent} if the identity function $\id_X$ is $(\gamma_1 \to
+  \gamma_2)$-computable and $(\gamma_2 \to \gamma_1)$-computable.
+\end{definition}
+
+Given representations $(\gamma_i : \Sigma_i^* \rightharpoonup X_i)_{i = 1,
+  \ldots, k}$, we construct a product representation $\gamma: \Sigma^*
+\rightharpoonup X_1 \times \cdots \times X_k$, where
+\[
+  \Sigma = (\Sigma_1 \cup \Sigma_2 \cup \ldots \cup \Sigma_k) \amalg \{,\}
+\]
+and
+\[
+  \gamma(w_1, \ldots, w_k) = (\gamma_1(w_1), \ldots, \gamma_k(w_k)).
+\]
+
+\begin{definition}
+  A partial function $f: \N \rightharpoonup \N$ is \pojem{computable} if it is
+  $(\gamma_\N \times \cdots \times \gamma_\N \to \gamma_\N)$-computable.
+\end{definition}
+
+\begin{definition}
+  Given a representation $\gamma: \Sigma^* \rightharpoonup X$, a subset $A
+  \subseteq X$ is \pojem{$\gamma$-decidable} if there exists a Turing machine
+  $M$ such that for all $w$ in the domain of $\gamma$, if $\gamma(w) \in A$,
+  then $M$ accepts $w$, and if $\gamma(w) \notin A$, then $M$ rejects $w$.
+  The same subset is \pojem{$\gamma$-semidecidable} if there exists a Turing
+  machine $M$ such that for all $w$ in the domain of $\gamma$, $M$ accepts $w$
+  if and only if $\gamma(w) \in A$.
+\end{definition}
+
+\begin{proposition}
+  Given a representation $\gamma$ of $X$ and $A \subseteq X$, $A$ is
+  $\gamma$-decidable if and only if its characteristic function is
+  $(\gamma \to \gamma_b)$-computable, and $A$ is $\gamma$-semidecidable if and
+  only if its partial characteristic function is $(\gamma \to
+  \gamma_b)$-computable.
+\end{proposition}
+
+\begin{remark}
+  Above, $\gamma_b$ is the representation of $\{0,1\}$ which maps $0 \mapsto 0$
+  and $1 \mapsto 1$.
+\end{remark}
