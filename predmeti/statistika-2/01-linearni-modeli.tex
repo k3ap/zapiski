@@ -1,0 +1,38 @@
+\naslov{Ocenjevanje v linearnih modelih}
+
+Splošni linearni model je oblike $X = Z \beta + \varepsilon$, kjer je $Z \in
+\R^{n \times d}$ znana konstantna matrika, $\beta \in \R^d$ neznani parameter,
+$\varepsilon$ pa je neopazljiv slučajni šum.
+Privzamemo, da velja $E(\varepsilon) = 0$.
+V splošnem za varianco $\varepsilon$ ne privzamemo ničesar, v standardnih
+linearnih regresijskih modelih pa privzamemo, da je diagonalna.
+
+Privzemimo splošni linearni model in naj bo $B$ vektorski podprostor v $\R^d$.
+Naj bo $x \in \R^n$ realizacija slučajnega vektorja $X$.
+\pojem{Restringirana ocena} za $\beta \in B$ na podlagi $x$ po metodi najmanjših
+kvadratov je tak vektor $\hat{\beta}_B$, za katerega je
+\[
+  \norm{x - Z \hat{\beta}_B}^2 = \min_{b \in B} \norm{x - Z b}^2.
+\]
+Pišimo $\hat{\beta} = \hat{\beta}_B$.
+Vemo, da je $Z \hat{\beta}$ ravno pravokotna projekcija vektorja $x$ na
+podprostor $Z B \subseteq \R^n$.
+Določena je z zahtevo $x - Z \hat{\beta} \bot Z B$.
+Za $B = \R^d$ to velja natanko v primeru $Z^T (X - Z \hat{\beta}) = 0$, torej
+$Z^T Z \hat{\beta} = Z^T x$.
+V primeru, ko je $Z$ polnega ranga, je $Z^T Z$ obrnljiva in $\hat{\beta} = (Z^T
+Z)^{-1} Z^T x$.
+Če pa je jedro $Z$ netrivialno, imamo rešitev več.
+
+Če na stolpcih $Z$ izvedemo prirejeno Gram-Schmidtovo ortogonalizacijo, lahko
+kljub temu poiščemo rešitev.
+Označimo s $S_i$ rezultat ortogonalizacije na $i$-tem stolpcu $Z$.
+V primeru, ko je ta stolpec v linearni ogrinjači prejšnjih, nastavimo $S_i = 0$.
+S tem dobimo ortogonalne vektorje $S_1, \ldots, S_d$.
+Dobimo razcep $Z = SP$, kjer je $S$ matrika iz zloženih stolpcev $S_i$, $P$ pa
+zgornje trikotna matrika s pozitivnimi števili na diagonali, in zato obrnljiva.
+Velja $Z^T Z = P^T J P$, kjer je $J$ diagonalna matrika, na diagonali katere so
+kvadrati norm stolpcev $S_i$.
+S tem lahko definiramo posplošen inverz $(Z^T Z)' = P^{-1} J P^{-T}$.
+
+% LocalWords:  Restringirana
