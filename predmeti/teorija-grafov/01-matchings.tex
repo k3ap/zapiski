@@ -237,4 +237,122 @@
 
 \vprasanje{Show that a regular bipartite graph has a perfect matching.}
 
-% LocalWords:  Egerváry König König's
+\begin{theorem}
+  Let $M$ be a matching in $G$.
+  Then there is an $M$-augmenting path in $G$ if and only if $M$ is not a
+  maximum matching in $G$.
+\end{theorem}
+
+\begin{proof}
+  We've already proved the right implication.
+  Suppose there is a matching $M'$ with $\abs{M'} > \abs{M}$.
+  Consider the symmetric difference $M \triangle M'$ and denote $G' = G[M
+  \triangle M']$.
+  Clearly the maximum degree $\Delta(G') \le 2$, from which we know that the
+  components of $G'$ are all paths or cycles.
+
+  Any cycle must alternate between edges from $M$ and $M'$, so it is an even
+  cycle, and contains the same number of edges from the two matchings.
+  In any path of even length, there must be the same number of edges in $M$ and
+  in $M'$.
+  And finally, in a path of odd length, one of the two sets has an extra edge
+  compared to the other.
+  Since $\abs{M'} > \abs{M}$, there must be a path with more edges in $M'$ than
+  in $M$.
+  Label it $G_1'$.
+
+  This component is an $M$-augmenting path in $G$, since if either of its
+  endpoints are covered by $M$, they must also be covered by the same edge in
+  $M'$, but then $M'$ wouldn't be a matching.
+\end{proof}
+
+We can find the maximum matching in polynomial time, with so-called
+\enquote{Blossom algorithms}, which find an augmenting path in $O(m \sqrt{n})$.
+This also means we can determine the edge-cover number $\beta'(G)$ in polynomial
+time.
+
+\podnaslov{Tutte's theorem}
+
+\begin{definition}
+  A component of a graph $G$ is \pojem{odd} if it has an odd number of vertices.
+  We denote the number of odd components in $G$ with $o(G)$.
+\end{definition}
+
+\begin{theorem}[Tutte]
+  A graph $G$ has a perfect matching if and only if for any $S \subseteq V(G)$,
+  $\abs{S} \ge o(G - S)$ holds.
+  This is called Tutte's condition.
+\end{theorem}
+
+\begin{proof}
+  Left to right: Let $S \subseteq V(G)$ and $M$ be a perfect matching in $G$.
+  Let $H_1, \ldots, H_k$ be the components of $G - S$.
+  If $H_i$ is an odd component, then there exists at least one $M$-edge between
+  $V(H_i)$ and $S$.
+  Therefore $\abs{S} \ge o(G-S)$.
+
+  Right to left:
+  Suppose that Tutte's condition holds for a graph $F$ but there is no perfect
+  matching in $F$.
+  Now add edges to $F$ so that this still holds after the addition, and let $G$
+  be a maximal such graph on $n(F)$ vertices.
+  If we consider Tutte's condition on $S = \varnothing$, we see that there are
+  no odd components in $G$, which means $n(G)$ is even.
+
+  Now take any edge in the complement of $G$.
+  Since $G$ is maximal, $G+e$ is not a counterexample, so it either has a
+  perfect matching, or Tutte's condition does not hold for it.
+  We know that for any $S \subseteq V(G)$, $\abs{S} \ge o(G-S)$.
+  After having added an edge, at most one pair of components in $G-S$ is joined.
+  If this was a pair of odd components, $o(G-S)$ has reduced, and in all other
+  cases, it has remained the same.
+  This means that $G+e$ must satisfy Tutte's condition, so it must have a
+  perfect matching as it is not a counterexample.
+
+  We will consider two cases.
+  Let $U$ be the set of universal vertices in $G$, that is, the vertices
+  adjacent to every other vertex, and let $H_1, \ldots, H_k$ be the components
+  of $G - U$.
+  In the first case, suppose every $H_i$ induces a complete graph.
+  We will construct a perfect matching.
+  For the even components, we may create a matching within the component, and
+  for the odd components, we may connect the one remaining vertex with $U$.
+  We are left over with an even number of vertices in $U$ (since $n$ is even),
+  which we may form a matching with, as $G[U]$ is a complete graph.
+  So in this case, $G$ is not a counterexample, which is a contradiction.
+
+  Now suppose there is a non-complete component $H_i$.
+  Then there exist vertices $x, y, z$ for which $xy \notin E(H_1)$ but both $xz$
+  and $yz$ are in $E(H_1)$.
+  There is also another vertex $w \in V(G)$ for which $zw \notin E(G)$, since
+  $z$ is not a universal vertex.
+  Let $G_1 = G + xy$ and $G_2 = G + zw$.
+  We know both these graphs have perfect matchings, which must include $xy$ and
+  $zw$ respectively.
+  Denote the perfect matchings with $M_1$ and $M_2$ and consider $G[M_1
+  \triangle M_2]$.
+  Note that every non-isolated vertex in this graph is of degree $2$, since it
+  is covered by both perfect matchings.
+  These vertices must of course appear in even cycles.
+
+  If $xy$ and $zw$ belong to different components, then we may choose edges in
+  each component, and the edges deleted by the symmetric difference, to form a
+  perfect matching, and we can avoid taking $xy$ or $zw$.
+  This is a contradiction.
+  Alternatively, if $xy$ and $zw$ belong to the same component, they appear in
+  the same cycle.
+  Without loss of generality they appear in the order $zwxy$ (but not
+  necessarily adjacent).
+  To form a new perfect matching, we will take the edge $xz$, and one edge set
+  from each side of the cycle.
+  This avoids both new edges $xy$ and $zw$, so we have a contradiction.
+\end{proof}
+
+We also have the Berge-Tutte formula, which states that a maximum matching in
+$G$ leaves uncovered exactly
+\[
+  \max_{S \subseteq V(G)} \{o(G - S) - \abs{S}\}
+\]
+vertices.
+
+% LocalWords:  Egerváry König König's Tutte's Tutte
