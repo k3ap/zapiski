@@ -1,0 +1,167 @@
+\naslov{Computability of natural numbers}
+
+\begin{definition}
+  The \pojem{computable partial functions} is the set
+  \[
+	\{f: \N^k \rightharpoonup \N \such k \ge 0, \text{$f$ is computable}\}.
+  \]
+\end{definition}
+
+\begin{definition}
+  The \pojem{primitive recursive functions} are the smallest collection
+  $\mathcal{F} \subseteq \{\N^k \rightharpoonup \N \such k \ge 0\}$ of partial
+  functions that satisfies the following properties:
+  \begin{itemize}
+  \item $\mathcal{F}$ contains the zero function $Z: \{()\} \to \N$,
+	which maps $Z() = 0$, the successor function $S: \N \to \N$, which maps $x
+	\mapsto x+1$ and the projection functions:
+	for any $k \ge 1$ and $1 \le i \le k$, $U_i^k: \N^k \to \N$ is defined as
+	\[
+	  U_i^k(x_1, \ldots, x_k) = x_i.
+	\]
+  \item $\mathcal{F}$ is closed under composition: if $f: \N^k \rightharpoonup
+	\N$ and $g_1, \ldots, g_k: \N^l \rightharpoonup \N$ are in $\mathcal{F}$,
+	then $f \circ (g_1, \ldots, g_k)$ is in $\mathcal{F}$.
+  \item Primitive recursion: If $f: \N^k \rightharpoonup \N$ and $g: \N^{k+2}
+	\rightharpoonup \N$ are both in $\mathcal{F}$, then so is $R_{fg}: \N^{k+1}
+	\rightharpoonup \N$, defined with $R_{rg}(x_1, \ldots, x_k, 0) \simeq f(x_1,
+	\ldots, x_k)$ and $R_{fg}(x_1, \ldots, x_k, x+1) \simeq g(x_1, \ldots, x_k,
+	x, R_{fg}(x_1, \ldots, x_k, x))$.
+  \end{itemize}
+\end{definition}
+
+\begin{remark}
+  Since all basic functions are total, every function in $\mathcal{F}$ is total.
+\end{remark}
+
+\begin{remark}
+  Not every total computable function is primitive recursive.
+  We can show for example that the Ackermann function grows faster than any
+  primitive recursive function.
+\end{remark}
+
+\begin{definition}
+  The \pojem{partial recursive functions} are the smallest collection of partial
+  functions $\mathcal{F} \subseteq \{\N^k \rightharpoonup \N\}_{k \ge 0}$, which
+  satisfies the axioms of partial recursive functions, with an additional one:
+  \begin{itemize}
+  \item Minimization: If $f: \N^{k+1} \rightharpoonup \N$ is in $\mathcal{F}$,
+	then so is $\mu f: \N^k \rightharpoonup \N$, with $\mu f(x_1, \ldots,
+	x_k)$ equal to the smallest number $n \in \N$ such that $f(x_1, \ldots, x_k,
+	n) = 0$ if it exists and $f(x_1, \ldots, x_k, m)$ is defined for all $m <
+	n$, and $\mu f(x_1, \ldots, x_k)$ undefined otherwise.
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  A partial function $f: \N^k \rightharpoonup \N$ is computable if and only if
+  there exists a $(k+1)$-tape Turing machine such that for all $x_1, \ldots, x_k
+  \in \N$ and binary words $w_1, \ldots, w_k$ of $x_1, \ldots, x_k$, if we run
+  the Turing machine with $w_1, \ldots, w_k$ on the first $k$ tapes, then it
+  halts if and only if $f(x_1, \ldots, x_k)$ is defined and it halts with the
+  representation of $f(x_1, \ldots, x_k)$ on the last tape, and $w_1, \ldots,
+  w_k$ on the first $k$ tapes.
+\end{proposition}
+
+\begin{theorem}
+  The partial recursive functions coincide with the computable partial functions.
+\end{theorem}
+
+\begin{proof}
+  A partial recursive function is computable:
+  We will show that the family of computable functions satisfies the properties
+  of partial computable functions.
+  Since the partial recursive functions are the smallest such family, every
+  partial recursive function is computable.
+
+  Clearly, computable partial functions satisfy composition and include the
+  basic functions.
+  Let's show they are closed under primitive recursion.
+  Suppose we have a $(k+1)$-tape Turing machine $M_f$ computing $f$ and a
+  $(k+3)$-tape Turing machine $M_g$ computing $g$.
+  We will find a $(k+4)$-tape Turing machine computing $R_{fg}$, which can then
+  be compressed.
+  On the first $k+1$ tapes, put the arguments to $R_{fg}$.
+  On the $(k+2)$-th tape, put a counter.
+  On the next tape, put the result of $R_{fg}$ on the current iteration, and
+  finally, on the last tape, put the result being computed.
+  The Turing machine then proceeds as follows:
+  \begin{enumerate}
+  \item initialize tape $k+2$ to $0$
+  \item use $M_f$ to compute $f(x_1, \ldots, x_k)$ and write the result on tape
+	$k+4$
+  \item \label{item:halt-if-equal} if the numbers on tapes $k+1$ and $k+2$ are equal, halt
+  \item copy tape $k+4$ to tape $k+3$
+  \item apply $M_g$ on tapes $1, \ldots, k, k+2, k+3$ and write the result on
+	tape $k+4$
+  \item increment tape $k+2$
+  \item go to step~\ref{item:halt-if-equal}
+  \end{enumerate}
+  We may similarly construct a machine which performs minimization, which
+  finishes this inclusion.
+
+  Before starting the proof of the other inclusion, consider the following.
+  We can encode $\N \times \N$ using $\N$ with the bijection $p(x,y) = \pol
+  (x+y)(x+y+1) + x$, which is also primitive recursive.
+  The functions $q_1, q_2: \N \to \N$ which reverse $p$ (such that $q_1(p(x,y))
+  = x$ and $q_2(p(x,y)) = y$) are also primitive recursive.
+
+  We can also encode finite sequences with $\ceil{\cdot} : \N^* \to \N$, defined
+  as $\ceil{n_0, \ldots, n_{k-1}} = 2^{n_0} + 2^{n_0 + n_1 + 1} + \ldots +
+  2^{n_0 + \ldots + n_{k-1} + k-1}$, so that numbers are encoded in a binary
+  sequence with the number of zeros between a pair of ones denoting the
+  sequence.
+  This is clearly a bijection.
+  Additionally, the functions $\sigma: \N^2 \to \N$ mapping
+  \[
+	\sigma(\ceil{w}, i) =
+	\begin{cases}
+	  0 & i \ge \abs{w} \\
+	  w_i+1 & i < \abs{w}
+	\end{cases}
+  \]
+  and $l: \N \to \N$ mapping
+  \[
+	l(\ceil{w}) = \abs{w}
+  \]
+  are primitive recursive.
+
+  Now we can prove the other inclusion.
+  Suppose $f: \N^k \rightharpoonup \N$ is computable and that it is computed by
+  a Turing machine $M$.
+  We assume $M$ is a single-tape machine computing $f$ via representations.
+  Suppose $M$ has a tape alphabet $\Gamma \supseteq \{\boxdot, 0, 1,
+  \mathtt{,}\}$ and state set $Q \supseteq \{\text{start}, \text{halt}\}$.
+  Choose injective functions $r: \Gamma \to \{\text{odd numbers}\}$ and $s: Q
+  \to \{\text{even numbers}\}$.
+  Now suppose we are in a configuration $C$ with a finitely many not necessarily
+  blank symbols $a_0, \ldots, a_{k-1}$, the tape head at $a_i$, and the current
+  state equal to $q$.
+  Define an encoding
+  \[
+	\ceil{C} = \ceil{r(a_0) \ldots r(a_{i-1}) s(q) r(a_i) \ldots r(a_{k-1})}.
+  \]
+  The following functions are primitive recursive:
+  \begin{itemize}
+  \item $\text{step}: \N \to \N$, mapping $\ceil{C}$ to $\ceil{C'}$, which is
+	the configuration we obtain by taking one step of $M$ on configuration $C$.
+	If the input of the function is not a valid configuration, it returns $0$.
+  \item $\text{run}: \N^2 \to \N$, mapping $(n,x)$ to $\text{step}^n(x)$.
+  \item $\text{extract}: \N \to \N$, mapping $\ceil{s(\text{halt}) r(w_0) \ldots
+	  r(w_k)}$ to $n$ if $w$ is a binary representation of $n$, and any other
+	input to $0$.
+  \item $\text{halt?}: \N \to \N$ mapping $\ceil{s(\text{halt}) r(w_0) \ldots
+	  r(w_{k+1})}$ to $0$ and all other inputs to $1$.
+  \item $\text{init}: \N^k \to \N$, mapping $(x_1, \ldots, x_k)$ to
+	$\ceil{s(\text{start}) y_1 \ldots y_m}$, where $y_i$ is equal to the result
+	of $r$ on the $i$-th character of the sequence $(\operatorname{bin}(x_1),
+	\ldots, \operatorname{bin}(x_k))$.
+  \end{itemize}
+  Then, $f$ is partial recursive because
+  \[
+	f(x_1, \ldots, x_n) \simeq \text{extract}(\text{run}(
+	\mu(n \mapsto \text{halt?}(\text{run}(n, \text{init}(x_1, \ldots, x_k)))),
+	\text{init}(x_1, \ldots, x_k)
+	))
+  \]
+\end{proof}
