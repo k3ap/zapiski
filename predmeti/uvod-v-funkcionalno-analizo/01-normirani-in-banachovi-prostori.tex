@@ -97,4 +97,56 @@ krogla.
 
 \podnaslov{Napolnitve normiranih prostorov}
 
+Naj bo $X$ normiran prostor, ki ni poln, in naj bo $\tilde{X}$ množica vseh
+Cauchyjevih zaporedij v $X$.
+To je vektorski prostor za operacije po komponentah.
+Definiramo
+\[
+  \norm{(x_n)_n} = \lim_{n \to \infty} \norm{x_n}.
+\]
+Ta izraz je dobro definiran, saj velja $\abs{\norm{x_n} - \norm{y_n}} \le
+\norm{x_n - y_n}$, torej je zaporedje norm Cauchyjevo in konvergira v $\R$.
+To pa ni norma, ker obstaja veliko zaporedij z limito norm enako $0$.
+Na $\tilde{X}$ zato vpeljemo ekvivalenčno relacijo
+\[
+  (x_n)_n \sim (y_n)_n \iff x_n - y_n \xrightarrow[n \to \infty]{} 0.
+\]
+Sedaj definiramo $\hat{X} = \tilde{X} / \sim$.
+V $\hat{X}$ potem vpeljemo operaciji seštevanja in množenja s skalarjem, ki
+delujeta na predstavnikih, ter podobno vpeljemo normo.
+
+\begin{izrek}
+  Prostor $(\hat{X}, \norm{\cdot})$ je Banachov in vsebuje $X$ kot gost
+  podprostor.
+\end{izrek}
+
+\begin{proof}
+  Dokaz o polnosti izpustimo.
+  Definiramo vložitev $j: X \to \hat{X}$ s predpisom $x \mapsto [(x)_n]$.
+  To je očitno linearna preslikava, za katero velja $\norm{j(x)} = \norm{x}$,
+  torej je tudi izometrija.
+  Pokazali bomo, da je $j(X)$ gost podprostor v $\hat{X}$.
+
+  Naj bo $[(x_n)_n] \in \hat{X}$.
+  Za poljuben $\varepsilon > 0$ obstaja $n_\varepsilon$, da za vse $n, m \ge
+  n_\varepsilon$ velja $\norm{x_n - x_m} < \varepsilon$.
+  Za $m = n_\varepsilon$ dobimo $j(x_{n_\varepsilon}) =
+  [(x_{n_\varepsilon})_n]$, in velja
+  \[
+	\norm{j(x_{n_\varepsilon}) - [(x_n)_n]} = \lim_{n \to \infty}
+	\norm{x_{n_\varepsilon} - x_n} \le \varepsilon.
+	\qedhere
+  \]
+\end{proof}
+
+\begin{posledica}
+  Prostor $X$ je Banachov natanko tedaj, ko je $j(X) = \hat{X}$.
+\end{posledica}
+
+\begin{proof}
+  Ideja.
+  Izometrije ohranjajo polnost, polni podprostori so zaprti.
+  Če so gosti, so enaki celoti.
+\end{proof}
+
 % LocalWords:  Banachovi
