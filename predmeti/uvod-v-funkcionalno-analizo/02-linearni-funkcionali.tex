@@ -1,0 +1,31 @@
+\naslov{Linearni funkcionali}
+
+\begin{izrek}
+  Naj bo $T: X \to Y$ linearna preslikava med normiranima prostoroma.
+  Naslednje trditve so ekvivalentne:
+  \begin{itemize}
+  \item $T$ je zvezna na $X$
+  \item $T$ je zvezna v $x_0 \in X$
+  \item $T$ je zvezna v $0$
+  \item obstaja $C > 0$, da za vse $x \in X$ velja $\norm{Tx} \le C \norm{x}$
+  \item $T$ je Lipschitzova
+  \item $T$ je enakomerno zvezna
+  \end{itemize}
+\end{izrek}
+
+Za omejen operator $T: X \to Y$ definiramo
+\[
+  \norm{T} = \inf \{ C > 0 \such \forall x . \norm{Tx} \le C \norm{x} \}.
+\]
+Ta infimum obstaja in je dejansko minimum.
+Potem velja
+\[
+  \norm{Tx} \le \norm{T} \norm{x}
+\]
+za vsak $x \in X$.
+Velja
+\[
+  \norm{T} = \sup_{\norm{x} = 1} \norm{Tx}
+  = \sup_{\norm{x} \le 1} \norm{Tx}
+  = \sup_{\norm{x} < 1} \norm{Tx}.
+\]
