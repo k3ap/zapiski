@@ -34,5 +34,174 @@ zgornje trikotna matrika s pozitivnimi števili na diagonali, in zato obrnljiva.
 Velja $Z^T Z = P^T J P$, kjer je $J$ diagonalna matrika, na diagonali katere so
 kvadrati norm stolpcev $S_i$.
 S tem lahko definiramo posplošen inverz $(Z^T Z)' = P^{-1} J P^{-T}$.
+Potem $\hat{\beta} = (Z^T Z)' Z^T x$ reši enačbo $Z^T Z \hat{\beta} = Z^T
+x$.
+
+\begin{opomba}
+  Vsaki matriki $M$, ki ustreza $Z^T Z M Z^T = Z^T$ pravimo \pojem{posplošen
+	inverz} matrike $Z^T Z$.
+\end{opomba}
+
+Izračunajmo
+\[
+  E(\hat{\beta}(X)) = (Z^T Z)' Z^T E(X) = (Z^T Z)' Z^T Z \beta = P^T J P^{-T}
+  \beta.
+\]
+Če $Z$ nima polnega ranga, potem $\hat{\beta}$ ni nepristranska cenilka za
+$\beta$.
+V tem primeru pravzaprav ne obstaja nepristranska linearna cenilka za $\beta$,
+namreč, če je $U: \R^n \to \R^d$ taka, mora veljati $E(U X) = \beta$, hkrati pa
+$E(UX) = U Z \beta$, iz česar sledi, da je $Z$ injektivna, torej matrika polnega
+ranga.
+
+\begin{trditev}
+  Naj bo $e(\beta, \varepsilon) = L \beta$ ocenjevana funkcija, kjer je $L: \R^n
+  \to \R^m$ linearna preslikava.
+  Dalje naj bo $U: \R^n \to \R^m$ nepristranska linearna cenilka za $L \beta$.
+  Tedaj je $L = UZ$ in je $U Z \hat{\beta}$ nepristranska linearna cenilka za $L
+  \beta$.
+\end{trditev}
+
+\begin{proof}
+  Kot zgoraj je $L \beta = U Z \beta$ za vse $\beta$.
+  Izračunajmo
+  \[
+	Z \hat{\beta}(X) = Z (Z^T Z)' Z^T X
+	= SJS^T X = S S^T X.
+  \]
+  Sledi
+  \[
+	E(U Z \hat{\beta}(X)) = U S S^T Z \beta
+	= U S S^T S P \beta = U S P \beta = U Z \beta.
+	\qedhere
+  \]
+\end{proof}
+
+\begin{izrek}[Gauss-Markov]
+  Privzemimo linearni regresijski model $X = Z \beta + \varepsilon$, kjer je
+  $\var(\varepsilon) = \sigma^2 I$.
+  Naj bo $U: \R^n \to \R^m$ linearna preslikava.
+  Tedaj ima $U Z \hat{\beta}$ med vsemi nepristranskimi linearnimi cenilkami za
+  $U Z \beta$ enakomerno najmanjšo disperzijo.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $W: \R^n \to \R^m$ druga nepristranska linearna cenilka za $U Z \beta$.
+  Po prejšnji trditvi je $WZ = UZ$.
+  Primerjati želimo $\var(WX)$ in $\var(UZ\hat{\beta}) = \var(W Z \hat{\beta})$
+  upoštevaje $UZ = WZ$.
+
+  Velja $\var(W X) = W \var(X) W^T = \sigma^2 W W^T$ in podobno kot v prejšnjem
+  dokazu
+  \[
+	\var(WZ\hat{\beta}) = \var(W S S^T X) = \sigma^2 W S S^T W^T.
+  \]
+  Trdimo, da za poljuben $\xi \in \R^m$ velja
+  \[
+	\sk{W W^T \xi, \xi} \ge \sk{W S S^T W^T \xi, \xi}.
+  \]
+  Upoštevaje $\sk{W W^T \xi, \xi} = \sk{W^T \xi, W^T \xi}$ in $\sk{W S S^T W^T
+	\xi, \xi} = \sk{S^T W^T \xi, S^T W^T \xi}$ je dovolj za poljuben $w$
+  pokazati
+  \[
+	\sk{w, w} \ge \sk{S^T w, S^T w}.
+  \]
+  To velja, ker je $\norm{S_i} \in \{0, 1\}$.
+\end{proof}
+
+\podnaslov{Ocenjevanje v normalnem linearnem regresijskem modelu}
+
+Privzamemo $X = Z \beta + \varepsilon$ za $\varepsilon \sim N(0, \sigma^2 I)$.
+To je parametričen model, vendar $\beta$ in $\sigma^2$ porazdelitve ne določata
+enolično, če $Z$ nima polnega ranga.
+
+Če dodatno zahtevamo $x - Z \hat{\beta}(x) \bot \im Z$, pa je vsaj $Z
+\hat{\beta}(x)$ enolično določen.
+Izračunajmo
+\[
+  \norm{x - Z \beta}^2
+  = \norm{x}^2 - 2 \sk{x, Z \beta} + \norm{Z \beta}^2
+  = \norm{x - Z \hat{\beta} + Z \hat{\beta}}^2 - 2 \sk{x, Z \beta} + \norm{Z
+	\beta}^2.
+\]
+Upoštevaje pravokotnost je to enako
+\[
+  \norm{x - Z \beta}^2
+  = \norm{x - Z \hat{\beta}}^2 + \norm{Z \hat{\beta}}^2 - 2 \sk{x, Z \beta} +
+  \norm{Z \beta}^2
+\]
+oziroma
+\[
+  \norm{x - Z \beta}^2
+  = \norm{x - Z \hat{\beta}}^2 + \norm{Z (Z^T Z)' Z^T x}^2 - 2 \sk{Z^T x, \beta}
+  + \norm{Z \beta}^2.
+\]
+Ker je gostota porazdelitve enaka
+\[
+  f_X(x) = \left( 2 \pi \sigma^2 \right)^{-n/2} \exp\!\left( \frac{-1}{2
+	  \sigma^2} \norm{x - Z \beta}^2 \right),
+\]
+torej $\norm{x - Z \hat{\beta}}^2$ in $Z^T x$ tvorita zadostno statistiko za
+dano porazdelitev.
+Označimo $T(x) = \left(Z^T x, \norm{x - Z \hat{\beta}}^2 \right)$.
+Drugemu členu dvojice označimo z $\operatorname{SSR}(x)$.
+
+\begin{posledica}
+  Statistike, ki so od vzorca odvisne le preko $T$, so avtomatično nepristranske
+  cenilke z enakomerno najmanjšo disperzijo za svojo pričakovano vrednost.
+\end{posledica}
+
+\begin{izrek}
+  Statistika $U(X) = (Z \hat{\beta}(X), \inv{n-r} \operatorname{SSR}(X))$, kjer
+  je $r = \rang Z$, je nepristranska cenilka za $(Z \beta, \sigma^2)$, ki ima
+  med vsemi nepristranskimi cenilkami enakomerno najmanjšo disperzijo.
+  Dalje sta $Z \hat{\beta}(X)$ in $\operatorname{SSR}(X)$ neodvisni, ter
+  $\operatorname{SSR}(X) / \sigma^2 \sim \chi_{n-r}^2$.
+\end{izrek}
+
+\begin{proof}
+  Vemo že, da je $Z \hat{\beta}$ nepristranska cenilka z enakomerno najmanjšo
+  disperzijo.
+  Če je $Y = (Y_1, \ldots, Y_n) \sim N(\nu, \sigma^2 I)$, potem je vsaka
+  funkcija $(Y_1, \ldots, Y_m)$ neodvisna od vsake funkcije $(Y_{m+1}, \ldots,
+  Y_n)$.
+  Če je še $\nu_1 = \cdots = \nu_m = 0$, je
+  \[
+	\inv{\sigma^2} \sum_{i=1}^m Y_i^2 \sim \chi_m^2.
+  \]
+  Konstruirajmo ortogonalno matriko $\tilde{S} \in O(n)$ na sledeči način.
+  Postavimo $\tilde{S}_i = S_i$ za tiste $i$, za katere je $\norm{S_i} = 1$, za
+  ostale stolpce pa te vrednosti dopolnimo do ortonormirane baze.
+  Velja
+  \[
+	\operatorname{SSR}(X)
+	= \norm{X - Z \hat{\beta}(X)}^2
+	= \norm{\tilde{S}^T X - \tilde{S}^T S S^T X}^2
+	= \norm{\tilde{S}^T X - \tilde{S}^T S S^T \tilde{S} \tilde{S}^T X}
+  \]
+  ker je $\tilde{S}$ ortogonalna.
+  Izračunamo
+  \[
+	\operatorname{SSR}(X)
+	= \norm{ (I -
+	  \begin{bmatrix}
+		J \\ 0
+	  \end{bmatrix}
+	  \begin{bmatrix}
+		J & 0
+	  \end{bmatrix}
+	  ) \tilde{S}^T X }^2
+	= \norm{
+	  \begin{bmatrix}
+		I-J & \\ & I
+	  \end{bmatrix}
+	  \tilde{S}^T X
+	}^2,
+  \]
+  torej je $\operatorname{SSR}(X) / \sigma^2 \sim \chi_{n-r}^2$.
+  Takoj se prepričamo, da je $Z \hat{\beta}(X) = S S^T X$ odvisen od preostalih
+  $r$ komponent vektorja $\tilde{S}^T X$, torej sta $Z \hat{\beta}(X)$ in
+  $\operatorname{SSR}(X)$ neodvisna slučajna vektorja.
+\end{proof}
 
 % LocalWords:  Restringirana
