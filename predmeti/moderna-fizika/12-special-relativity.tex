@@ -1,0 +1,106 @@
+\naslov{Special relativity}
+
+\podnaslov{The Michelson-Morley Experiment}
+
+Suppose there is some fluid medium at rest in a frame $S$.
+Now, we create a plane wave in this medium, traveling in the $\vec{e}_x$
+direction, with a velocity of $c_1$ as measured in $S$.
+If we switch to a different frame $S'$ with a Galilean transformation $\vec{x}'
+= \vec{x} + v t \vec{e}_x$, then we expect the plane wave to have a different
+velocity $c_1 - v$ in $S'$.
+This is true for waves in water, or sound waves in air, but, as famously
+measured by Michelson and Morley, it is not true for light.
+Their experiment, described below, showed that the speed of light $c$ is the
+same in any inertial reference frame --- a result that contradicts entirely with
+classical mechanics.
+
+The Michelson-Morley experiment splits a beam of light into two beams traveling
+orthogonally to each other, which then bounce off a pair of mirrors, before
+being recombined and the interference pattern of this recombination being
+measured.
+Assume that $S$ is the rest frame of the ether, in which light waves are
+traveling at $c$.
+Suppose that we now switch to a frame $S'$, with a relative velocity of $v$ as
+measured in $S$.
+If one of the arms is parallel to the relative velocity vector, then the time of
+flight of a wave of light should be
+\[
+  t_1 = \frac{L}{c + v} + \frac{L}{c-v} = \frac{2 c L}{c^2 - v^2},
+\]
+where $L$ is the distance between the beam splitter and the mirror.
+In $S$, the other beam of light travels a path that is not parallel to
+$\vec{e}_x$, as shown in figure~\ref{fig:michelson-morley-beam-path}.
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[>=Stealth]
+	
+	% Horizontal base line
+	\draw[dotted] (-3,0) -- (3,0);
+	\draw[thick] (-3.5,0) -- (-2.5,0);
+	\draw[thick] (2.5,0) -- (3.5,0);
+
+	% Wavy arrow for the beam of light
+	\draw[thick,decorate,decoration={snake,amplitude=1mm,segment length=3mm}] (-3,0) -- (-3,1);
+
+	% Vertical line in the center
+	\draw[thin,<->] (0,0.1) -- (0,2.4);
+	\node at (0.2,1.25) {$L$};
+
+	% Arrow for light reflection
+	\draw[dotted,-{Stealth[length=3mm]}] (0,2.5) -- (3,0);
+	\draw[dotted,{Stealth[length=3mm]}-] (0,2.5) -- (-3,0);
+
+	% Mirror at the top
+	\draw[thick] (-1.5,2.5) -- (1.5,2.5);
+	\node[above] at (0,2.5) {mirror};
+
+	% Formulas at the bottom
+	\draw[thin,<->] (-2.9,-0.2) -- (-0.1,-0.2);
+	\node at (-1.5,-0.6) {$\frac{vt_2}{2}$};
+	
+	\draw[thin,<->] (2.9,-0.2) -- (0.1,-0.2);
+	\node at (1.5,-0.6) {$\frac{vt_2}{2}$};
+  \end{tikzpicture}
+  \caption{Beam path in $S$}%
+  \label{fig:michelson-morley-beam-path}
+\end{figure}
+
+From Pythagoras' theorem, the length of the beam path is
+\[
+  c t_2 = 2 \sqrt{L^2 + v^2 t_2^2 / 4}
+\]
+so
+\[
+  t_2 = \frac{2 L}{\sqrt{c^2 - v^2}}.
+\]
+
+As mentioned, Michelson and Morley conducted this experiment, while using the
+Earth's rotation to perform many measurements in many directions.
+They found that their experiment always gave the same result, no matter the
+relative velocity of the second frame and no matter the orientation of the
+testbed.
+This demonstrated beyond any doubt that Max Planck's advisor Philipp von Jolly
+was very wrong when he stated to Planck in 1874 that there was essentially
+nothing left to discover in theoretical physics,%
+\footnote{Source: \url{https://hsm.stackexchange.com/questions/2129/}}
+since, as Feynman stated,
+\begin{quote}
+  \enquote{It doesn't matter how beautiful your theory is, it doesn't matter how smart
+  you are. If it doesn't agree with experiment, it's wrong.}
+\end{quote}
+Classical mechanics and electromagnetism, as complete as might seem, is wrong.
+
+\podnaslov{Lorentz, the new Galileo}
+
+Enter Einsten, who formulated special relativity with the following postulates:
+\begin{enumerate}
+\item The principle of relativity: The laws of physics are identical in all
+  inertial frames.
+  This is already a postulate of classical mechanics, but we now have an
+  additional one.
+\item The speed of light in vacuum is a law of physics, so it is also the same
+  in all inertial reference frames.
+\end{enumerate}
+
+% LocalWords:  von Philipp
