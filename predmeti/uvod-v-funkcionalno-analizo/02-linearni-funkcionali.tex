@@ -29,3 +29,205 @@ Velja
   = \sup_{\norm{x} \le 1} \norm{Tx}
   = \sup_{\norm{x} < 1} \norm{Tx}.
 \]
+Množico vseh omejenih linearnih operatorjev $X \to Y$ označimo z $B(X,Y)$, in jo
+opremimo z zgornjo normo.
+
+\begin{trditev}
+  Naj bodo $X, Y, Z$ normirani prostori.
+  \begin{itemize}
+  \item $B(X,Y)$ je normiran prostor.
+  \item Če $T \in B(X,Y)$ in $S \in B(Y,Z)$, potem je $ST \in B(X,Z)$ in
+	$\norm{ST} \le \norm{S} \norm{T}$.
+  \end{itemize}
+\end{trditev}
+
+\begin{proof}
+  Samo druga točka.
+  Ker je omejenost ekvivalentna zveznosti, je kompozitum v $B(X,Z)$.
+  Za vsak $x \in X$ velja
+  \[
+	\norm{STx} \le \norm{S} \norm{Tx} \le \norm{S} \norm{T} \norm{x}.
+	\qedhere
+  \]
+\end{proof}
+
+\begin{definicija}
+  \pojem{Dualni prostor} prostora $X$ je $X^* = B(X, \F)$.
+\end{definicija}
+
+\begin{izrek}
+  Naj bo $X$ normiran in $Y$ Banachov prostor.
+  Tedaj je $B(X,Y)$ Banachov prostor.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $(T_n)_n$ Cauchyjevo v $B(X,Y)$.
+  Izberimo $\varepsilon > 0$.
+  Obstaja $n_\varepsilon$, da za $m, n \ge n_\varepsilon$ velja
+  \[
+	\norm{(T_n - T_m) x} \le \norm{T_n - T_m} \norm{x} < \varepsilon \norm{x}
+  \]
+  za poljuben $x \in X$.
+  Zaporedje $(T_n x)_n$ je Cauchyjevo, zato obstaja $Tx = \lim T_nx \in Y$.
+  S tem dobimo po točkah definiran operator $T: X \to Y$.
+
+  Enostavno se prepričamo, da je $T$ linearen.
+  Ker je $\abs{\norm{T_n} - \norm{T_m}} \le \norm{T_n - T_m}$, je tudi zaporedje
+  norm Cauchyjevo, in zato omejeno.
+  Torej je $\norm{T_n x} \le \norm{T_n} \norm{x} \le M \norm{x}$, in je $T$
+  omejen.
+
+  Za konec za poljuben $x \in X$ in $n, m \ge n_\varepsilon$ dobimo $\norm{T_n x
+	- T_m x} < \varepsilon \norm{x}$, in če vzamemo limito $n \to \infty$,
+  \[
+	\norm{Tx - T_m x} \le \varepsilon \norm{x}.
+  \]
+  Torej je $\norm{T - T_m} \le \varepsilon$ za $m \ge n_\varepsilon$ in zato
+  $T_m \to T$.
+\end{proof}
+
+\begin{posledica}
+  Dualni prostor je vedno Banachov.
+\end{posledica}
+
+\begin{izrek}
+  Naj bo $X$ normiran prostor in $Y \le X$.
+  Naj bo $T: Y \to Z$ omejen operator in $Z$ poln.
+  Tedaj obstaja natanko en omejen linearen operator $S: \cl{Y} \to Z$, da je
+  $\left. S \right|_Y = T$.
+  Velja še $\norm{S} = \norm{T}$.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $x \in \cl{Y}$.
+  Radi bi definirali $Sx$.
+  Obstaja zaporedje $(x_n)_n$ v $Y$, da bo $x_n \to x$.
+  Definiramo $Sx = \lim T x_n$.
+
+  Če je tudi $(x_n')_n$ zaporedje, ki konvergira k $x$, je
+  \[
+	\lim (T x_n - T x_n') = \lim T(x_n - x_n') = 0,
+  \]
+  ker je $T$ zvezen.
+  Torej je $S$ dobro definiran.
+  Očitno je tudi linearen, in velja $\left. S \right|_Y = T$.
+  Za enoličnost predpostavimo, da je tudi $S'$ tak operator.
+  Potem za $x \in \cl{Y}$ velja $S x_n = S' x_n$, in sta limiti $Sx$ in $S' x$
+  posledično tudi enaki.
+
+  Velja
+  \[
+	\norm{Sx} = \norm{\lim T x_n} = \lim \norm{T x_n}
+	= \lim \norm{T} \norm{x_n} = \norm{T} \norm{x},
+  \]
+  torej je $S$ omejen in $\norm{S} \le \norm{T}$.
+  Obrat je očiten.
+\end{proof}
+
+\begin{posledica}
+  Naj bosta $S, T: X \to Y$ omejena operatorja, ki se ujemata na gostem
+  podprostoru.
+  Potem je $S = T$.
+\end{posledica}
+
+\begin{posledica}
+  Naj bo $X$ normiran prostor, ki je gost podprostor v Banachovem prostoru $Y$.
+  Tedaj sta $\hat{X}$ in $Y$ izometrično izomorfna.
+\end{posledica}
+
+\begin{proof}
+  Naj bosta $\iota_Y$ in $\iota_{\hat{X}}$ vložitvi.
+  \[\begin{tikzcd}
+	  X & {\hat{X}} \\
+	  & {\iota_Y(X)}
+	  \arrow["{\iota_{\hat{X}}}", hook, from=1-1, to=1-2]
+	  \arrow["{\iota_Y^{-1}}", from=2-2, to=1-1]
+	  \arrow[dashed, from=2-2, to=1-2]
+	\end{tikzcd}\]
+  Preslikavi $\iota_Y^{-1}$ in $\iota_{\hat{X}}$ sta izometriji, torej je tak
+  tudi njun kompozitum.
+  To preslikavo lahko enolično razširimo do izometrije prostorov $Y$ in
+  $\hat{X}$.
+\end{proof}
+
+\begin{definicija}
+  Naj bo $T: X \to X$ omejen operator med normiranima prostoroma.
+  Tedaj je $T$ \pojem{obrnljiv}, če je bijektiven in $T^{-1}$ omejen.
+\end{definicija}
+
+\begin{definicija}
+  Operator $T:X \to Y$ je \pojem{navzdol omejen}, če obstaja $c > 0$, da je
+  $\norm{Tx} \ge c \norm{x}$ za vsak $x \in X$.
+\end{definicija}
+
+\begin{opomba}
+  Vsak navzdol omejen operator je injektiven.
+\end{opomba}
+
+\begin{trditev}
+  Naj bo $T \in B(X,Y)$.
+  Naslednji trditvi sta ekvivalentni.
+  \begin{itemize}
+  \item Obstaja operator $T^{-1}: TX \to X$.
+  \item $T$ je navzdol omejen.
+  \end{itemize}
+\end{trditev}
+
+\podnaslov{Banachov izrek}
+
+\begin{definicija}
+  Naj bo $X$ vektorski prostor.
+  Preslikava $p: X \to \R$ je \pojem{sublinearni funkcional}, če je $p(x+y) \le
+  p(x) + p(y)$ in $p(\lambda x) = \lambda p(x)$ za poljubne $x, y \in X$ ter
+  $\lambda \ge 0$.
+\end{definicija}
+
+\begin{primer}
+  Vsaka polnorma je sublinearni funkcional.
+\end{primer}
+
+\begin{izrek}[realni Hahn-Banachov izrek]
+  Naj bo $Y \le X$ vektorski prostor in $p: X \to \R$ sublinearni funkcional.
+  Naj bo $f: Y \to \R$ tak linearni funkcional, da za vsak $y \in Y$ velja $f(y)
+  \le p(y)$.
+  Tedaj obstaja linearni funkcional $F: X \to \R$, da je $\left. F \right|_Y =
+  f$ in $F(x) \le p(x)$ za vsak $x \in X$.
+\end{izrek}
+
+\begin{proof}
+  Prvo obravnavajmo primer, kjer je $\dim X/Y = 1$.
+  Tedaj je $X = Y \oplus \R x_0$ za neki $x_0 \in X \setminus Y$.
+  Vse možne linearne razširitve $f$ do $F$ so oblike
+  \[
+	F(x) = F(y + \lambda x_0) = F(y) + \lambda F(x_0),
+  \]
+  torej je razširitev enolično določena z $F(x_0) =: \alpha$.
+  Za $y_1, y_2 \in Y$ velja
+  \[
+	f(y_1 + y_2) \le p(y_1 + y_2) = p(y_1 + y_2 + x_0 - x_0)
+	\le p(y_1 + x_0) + p(y_2 - x_0)
+  \]
+  oziroma
+  \[
+	f(y_2) - p(y_2 - x_0) \le p(y_1 + x_0) - f(y_1),
+  \]
+  torej je
+  \[
+	\sup_{y \in Y} \left( f(y) - p(y - x_0) \right)
+	\le \inf_{y \in Y} \left( p(y + x_0) - f(y) \right).
+  \]
+  Za $\alpha$ lahko izberemo katerokoli vrednost med tema številoma.
+  Potem definiramo $F(y + t x_0) = f(y) + t \alpha$ in ločimo primere.
+  \begin{itemize}
+  \item Če je $t = 0$, je $F(y) \le p(y)$ po predpostavki, saj je $F(y) = f(y)$.
+  \item Če je $t > 0$, je $\alpha \le p(\nicefrac{y}{t} + x_0) -
+	f(\nicefrac{y}{t})$, kar množimo s $t$, in dobimo $f(y) + t \alpha \le p(y +
+	t x_0)$.
+  \item Če je $t < 0$, je $\alpha \ge f(-\nicefrac{y}{t}) - p(-\nicefrac{y}{t} -
+	x_0)$, kar množimo z $(-t)$ in zaključimo kot zgoraj.
+  \end{itemize}
+
+  % TODO to ni konec dokaza
+\end{proof}
+
+% LocalWords:  Hahn-Banachov
