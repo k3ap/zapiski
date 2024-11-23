@@ -355,4 +355,68 @@ $G$ leaves uncovered exactly
 \]
 vertices.
 
-% LocalWords:  Egerváry König König's Tutte's Tutte
+\podnaslov{Factors}
+
+\begin{definition}
+  A \pojem{factor} is a spanning subgraph (it contains all vertices).
+  A \pojem{$k$-factor} is a $k$-regular spanning subgraph.
+\end{definition}
+
+\begin{definition}
+  A \pojem{cubic graph} is a $3$-regular graph.
+\end{definition}
+
+\begin{theorem}[Petersen]
+  Every bridgeless cubic graph has a $1$-factor.
+\end{theorem}
+
+\begin{proof}
+  We will prove that Tutte's condition holds.
+  Take $S \subseteq V(G)$.
+  Since the graph is $3$-regular, the number of edges between $S$ and $\comp{S}$
+  is $\abs{E(S,\comp{S})} \le 3 \abs{S}$.
+  If $H_i$ is an odd component in $G - S$, then $E(V(H_i), S)$ contains at least
+  one edge.
+  Note that
+  \[
+	2 m(H_i) + \abs{E(H_i, S)} = 3 n(H_i) = \sum_{v \in H_i} \deg_G(v)
+  \]
+  where $m(H_i)$ is the number of edges in $H_i$.
+  Since the RHS is odd, $\abs{E(H_i, S)}$ must be odd.
+  Also, $\abs{E(H_i, S)} \ne 1$, since that would be a cut edge (a bridge)
+  otherwise.
+  Therefore, $\abs{E(H_i, S)} \ge 3$.
+  Then $3 \abs{S} \ge \abs{E(S, \comp{S})} \ge 3 \sigma(G - S)$.
+\end{proof}
+
+We can also improve this theorem, for example allowing for precisely one bridge
+in the graph, and the statement still holds.
+Or we could require that all cut edges lie on the same path, and it would still
+hold.
+
+\begin{theorem}
+  If $G$ is a $k$-regular graph and $k$ is even, then $G$ has a $2$-factor.
+\end{theorem}
+
+\begin{proof}
+  We can limit ourselves to connected graphs.
+  By Euler's theorem, there exists an Eulerian circuit $C$ in $G$.
+  We can fix a direction for this $C$ and orient the edges according to it.
+  From this, we obtain a directed graph $\vec{G}$.
+  For every vertex $v$, $C$ enters and exits $v$ exactly $k/2$ times.
+
+  Define a bipartite graph $F_G$ with partite classes $A = \{a_1, \ldots, a_n\}$
+  and $B = \{b_1, \ldots, b_n\}$ for $n = n(G)$ and the edge set
+  \[
+	a_i b_j \in E(F_G) \iff v_i v_j \in E(\vec{G}).
+  \]
+  Clearly, $F_G$ is a $\frac{k}{2}$-regular graph, so it has a perfect matching
+  $M$.
+  Define a spanning subgraph in $G$ with the following edge set $Q$:
+  \[
+	v_i v_j \in Q \iff a_i b_j \in M \lor a_j b_i \in M.
+  \]
+  Every vertex $v_i$ is covered exactly twice by $Q$.
+\end{proof}
+
+% LocalWords:  Egerváry König König's Tutte's Tutte bridgeless Eulerian

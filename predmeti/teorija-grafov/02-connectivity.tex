@@ -1,0 +1,63 @@
+\naslov{Connectivity}
+
+\begin{definition}
+  The \pojem{connectivity number} $\kappa(G)$ is the minimum number of vertices
+  in $S \subseteq V(G)$ such that $G - S$ is either disconnected or contains
+  only one vertex.
+\end{definition}
+
+\begin{definition}
+  A graph $G$ is \pojem{$k$-connected} if $\kappa(G) \ge k$ or if the removal of
+  $k-1$ vertices always results in a connected graph with at least two vertices.
+\end{definition}
+
+\begin{remark}
+  In any graph, $\kappa(G) \le \delta(G)$.
+  If $G$ is complete, then $\delta(G) = n-1 = \kappa(G)$.
+\end{remark}
+
+\begin{remark}
+  If $A$ is an independent set, removing every other vertex gives a disconnected
+  graph, so $\kappa(G) \le n-\alpha(G) = \beta(G)$.
+\end{remark}
+
+\begin{theorem}
+  The minimum number of edges in a $k$-connected graph of order $n$ is
+  $\ceil{\frac{nk}{2}}$, if $n > k \ge 2$.
+\end{theorem}
+
+\begin{proof}
+  If the graph is $k$-connected, then $k \le \kappa(G) \le \delta(G)$, so
+  \[
+	m(G) = \pol \sum_{v \in V} \deg_G(v) \ge \frac{nk}{2}.
+  \]
+  We will show that there exists a $k$-connected graph of order $n$ with the
+  specified number of edges.
+  For this, we define Harary graphs $H_{n,k}$ as follows.
+  \begin{itemize}
+  \item If $k$ is even, $H_{n,k} = C_n^{k/2}$ (i.e.~the graph we get by
+	connecting all vertices from $C_n$ which are at a distance of at most $k/2$).
+  \item If $k$ is odd and $n$ is even, $H_{n,k}$ is $C_n^{(k-1)/2}$, along with
+	all edges between two opposing vertices of the cycle.
+  \item If both $n$ and $k$ are odd, then we again take $C_n^{(k-1)/2}$ and add
+	the edges between $i$ and $i + \frac{n-1}{2}$ (if we label the vertices $0,
+	1, \ldots, n-1$).
+  \end{itemize}
+  All these graphs have $m(H_{n,k}) = \ceil{\frac{nk}{2}}$.
+
+  We will show that all these graphs are $k$-connected.
+  For the first case, if $k$ is even, let $S$ be a vertex set with $\abs{S} =
+  k-1$.
+  We define a big gap as $\frac{k}{2}$ consecutive vertices in $S$, and claim
+  the following:
+  \begin{itemize}
+  \item If there is no big gap between $u$ and $v$ in a certain direction, then
+	we may find a $uv$-path in that direction.
+	This is clear from the construction.
+  \item For any $u,v \in V(G) \setminus S$, there is a $uv$-path in $G - S$.
+	Since there can be only one big gap between them, we can just avoid it by
+	going in the other direction, so this is also clear.
+  \end{itemize}
+\end{proof}
+
+% LocalWords:  Harary
