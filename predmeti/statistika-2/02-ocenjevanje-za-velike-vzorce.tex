@@ -12,3 +12,163 @@ verjetnostnem prostoru.
 \item $(X_n)_n$ konvergira k $X$ \pojem{v porazdelitvi}, če velja $\lim
   F_{X_n}(x) = F_X(x)$ za vsako točko $x$, v kateri je $F_X$ zvezna.
 \end{itemize}
+
+\begin{lema}
+  Naj bodo $X, X_1, X_2, \ldots$ slučajni $r$-vektorji.
+  Potem velja naslednje.
+  \begin{itemize}
+  \item $X_n$ konvergira k $X$ v verjetnosti natanko tedaj, ko ima vsako
+	podzaporedje zaporedja $(X_n)_n$ nadaljnje podzaporedje, ki konvergira
+	skoraj gotovo.
+  \item $X_n$ konvergira k $X$ v porazdelitvi natanko tedaj, ko za vsak $\xi \in
+	\R^r$ velja $\sk{X_n, \xi} \xrightarrow{d} \sk{X, \xi}$.
+  \end{itemize}
+\end{lema}
+
+\begin{trditev}
+  Z enakimi oznakami, če $X_n$ konvergira k $X$ skoraj gotovo ali v $L^2$
+  smislu, potem konvergira tudi v verjetnosti.
+  Če konvergira v verjetnosti, potem konvergira tudi v porazdelitvi.
+  Če je $X$ konstanten vektor, potem sta konvergenca v porazdelitvi in v
+  verjetnosti ekvivalentni.
+\end{trditev}
+
+\begin{trditev}
+  Naj bodo $X, X_1, X_2, \ldots$ slučajni $r$-vektorji in naj bo $g: \R^r \to
+  \R^s$ Borelova funkcija, ki je zvezna skoraj povsod glede na $P_X$.
+  Potem, če $X_n$ konvergira k $X$ skoraj gotovo, ali v verjetnosti, ali v
+  porazdelitvi, potem tudi $g(X_n)$ konvergira k $g(X)$ v enakem smislu.
+\end{trditev}
+
+\begin{trditev}[Slucki]
+  Naj bodo $X, X_1, X_2, \ldots$ in $Y_1, Y_2, \ldots$ slučajne spremenljivke.
+  Dalje naj bo $c \in \R$.
+  Privzemimo $X_n \xrightarrow{d} c$ in $Y_n \xrightarrow{d} c$.
+  Tedaj $X_n + Y_n \xrightarrow{d} X+c$, $X_n Y_n \xrightarrow{d} cX$ in, če $c
+  \ne 0$, $X_n / Y_n \xrightarrow{d} X/c$.
+\end{trditev}
+
+\begin{remark}
+  Trditev lahko posplošimo na slučajne vektorje.
+\end{remark}
+
+\begin{primer}
+  Naj bodo $X_1, X_2, \ldots$ neodvisne enako porazdeljene slučajne
+  spremenljivke z disperzijo $\sigma^2$ in pričakovano vrednostjo $\mu$.
+  Po centralnem limitnem izreku velja
+  \[
+	\frac{\cl{X} - \mu}{\sigma / \sqrt{n}} \xrightarrow[n \to \infty]{d} N(0,1).
+  \]
+  Potem po krepkem zakonu velikih števil
+  \[
+	\left(
+	  \inv{n} \sum_i X_i,
+	  \inv{n} \sum_i X_i^2
+	\right)
+	\xrightarrow[n \to \infty]{s.g.}
+	(\mu, \sigma^2 + \mu^2).
+  \]
+  Upoštevaje zveznost potem velja
+  \[
+	S^2 = \frac{n}{n-1} \left( \inv{n} \sum_i X_i^2 - \cl{X}^2 \right)
+	\xrightarrow[n \to \infty]{s.g.}
+	\sigma^2
+  \]
+  za
+  \[
+	S := \sqrt{\inv{n-1} \sum_i (X_i - \cl{X})^2}.
+  \]
+  Po izreku Sluckega je potem
+  \[
+	\frac{\cl{X} - \mu}{S / \sqrt{n}} \xrightarrow[n \to \infty]{d} N(0,1).
+  \]
+\end{primer}
+
+\begin{trditev}
+  Naj bodo $Y, X_1, X_2, \ldots$ slučajni $r$-vektorji, $c \in \R^r$ ter
+  $(a_n)_n$ zaporedje pozitivnih realnih števil z $a_n \to \infty$.
+  Naj bo $g: \R^r \to \R$ Borelova funkcija, diferenciabilna pri $c$.
+  Če velja
+  \[
+	a_n (X_n - c) \xrightarrow[n \to \infty]{d} Y
+  \]
+  in $dg(c) \ne 0$, potem velja tudi
+  \[
+	a_n (g(X_n) - g(c)) \xrightarrow[n \to \infty]{d} \sk{\grad g(c), Y} Y.
+  \]
+\end{trditev}
+
+\begin{proof}
+  Spomnimo se:
+  Za vsak $\varepsilon > 0$ obstaja $\delta > 0$, da iz $\norm{x -c} \le \delta$
+  sledi
+  \[
+	\abs{g(x) - g(c) - dg(c)(x-c)} \le \varepsilon \norm{x-c}.
+  \]
+  Izberimo neki $\varepsilon > 0$ in mu pridružimo $\delta$.
+  Pišimo $Z_n = a_n (g(X_n) - g(X)) - a_n dg(c) (X_n - c)$.
+  Pokazali bomo $Z_n \xrightarrow{p} 0$.
+  Ko to vemo, lahko $Z_n$ prištejemo $a_n dg(c) (X_n - c)$ in bo rezultat
+  sledil.
+
+  Pokažimo, da za poljuben $\eta > 0$ velja $\lim P(\abs{Z_n} > \eta) = 0$.
+  Velja
+  \begin{align*}
+	P(\abs{Z_n} > \eta)
+	&= P(\abs{Z_n} > \eta \land \norm{X_n - c} > \delta)
+	+ P(\abs{Z_n} > \eta \land \norm{X_n - c} \le \delta) \\
+	&\le P(\norm{X_n - c} > \delta) + P(\abs{Z_n} > \eta
+	  \land \abs{Z_n} \le a_n \varepsilon \norm{X_n - c}) \\
+	&\le P(\norm{X_n - c} > \delta) + P(a_n \varepsilon \norm{X_n - c} > \eta).
+  \end{align*}
+  Ker $a_n^{-1} \to 0$ in $a_n (X_n - c) \xrightarrow{d} Y$, po Sluckem velja
+  $X_n - c \xrightarrow{d} 0$.
+  Sledi $P(\norm{X_n - c} > \delta) \xrightarrow{p} 0$.
+  Ker je norma zvezna, velja tudi $\norm{a_n (X_n - c)} \xrightarrow{d}
+  \norm{Y}$, zato
+  \[
+	\limsup P(\abs{Z_n} > \eta)
+	\le 0 + \limsup P(\norm{a_n (X_n -c)} > \eta / \varepsilon).
+  \]
+  To je enako $1 - F_{\norm{Y}}(\eta / \varepsilon)$, če je $F_{\norm{Y}}$
+  zvezna v točki $\eta / \varepsilon$.
+
+  Točk nezveznosti je lahko največ števno mnogo.
+  Izberemo lahko torej tako zaporedje $(\varepsilon_i)_i$, ki pada proti $0$, za
+  katero je $\eta / \varepsilon_i$ točka zveznosti $F_{\norm{Y}}$.
+  Za vsak $\varepsilon_i$ potem velja
+  \[
+	\limsup P(\abs{Z_n} > \eta) \le P(\norm{Y} > \eta / \varepsilon_i)
+	\xrightarrow[i \to \infty]{} 0.
+  \]
+  Torej limita $\lim P(\abs{Z_n} > \eta)$ obstaja in je enaka $0$.
+\end{proof}
+
+\begin{posledica}[metoda $\delta$]
+  Z enakimi oznakami, če $a_n (X_n - c) \xrightarrow[n \to \infty]{d} N(0,
+  \Sigma)$,
+  potem $a_n(g(X_n) - g(c)) \xrightarrow[n \to \infty]{d} N(0, dg(c) \Sigma
+  dg(c)^T)$.
+\end{posledica}
+
+\begin{izrek}[krepki zakon velikih števil]
+  Naj bodo $X_1, X_2, \ldots$ neodvisni enako porazdeljeni slučajni
+  vektorji s pričakovano vrednostjo $\mu \in \R^r$.
+  Potem
+  \[
+	\inv{n} \sum_i X_i \xrightarrow[n \to \infty]{s.g.} \mu.
+  \]
+\end{izrek}
+
+\begin{izrek}[centralni limitni izrek]
+  Naj bodo $X_1, X_2, \ldots$ neodvisni enako porazdeljeni slučajni vektorji z
+  variančno matriko $\Sigma > 0$ ter pričakovano vrednostjo $\mu \in \R^r$.
+  Tedaj
+  \[
+	\sqrt{n} \left( \inv{n} \sum_i X_i - \mu \right)
+	\xrightarrow[n \to \infty]{d}
+	N(0, \Sigma).
+  \]
+\end{izrek}
+
+% LocalWords:  Borelova Sluckem
