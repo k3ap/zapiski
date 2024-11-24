@@ -58,7 +58,7 @@ $\vec{e}_x$, as shown in figure~\ref{fig:michelson-morley-beam-path}.
 	% Formulas at the bottom
 	\draw[thin,<->] (-2.9,-0.2) -- (-0.1,-0.2);
 	\node at (-1.5,-0.6) {$\frac{vt_2}{2}$};
-	
+
 	\draw[thin,<->] (2.9,-0.2) -- (0.1,-0.2);
 	\node at (1.5,-0.6) {$\frac{vt_2}{2}$};
   \end{tikzpicture}
@@ -93,7 +93,7 @@ Classical mechanics and electromagnetism, as complete as might seem, is wrong.
 
 \podnaslov{Lorentz, the new Galileo}
 
-Enter Einsten, who formulated special relativity with the following postulates:
+Enter Einstein, who formulated special relativity with the following postulates:
 \begin{enumerate}
 \item The principle of relativity: The laws of physics are identical in all
   inertial frames.
@@ -102,5 +102,142 @@ Enter Einsten, who formulated special relativity with the following postulates:
 \item The speed of light in vacuum is a law of physics, so it is also the same
   in all inertial reference frames.
 \end{enumerate}
+%
+Using these notions, we can find the expressions for the Lorentz
+transformations, the replacement of Galilean transformations in classical
+mechanics.
+Suppose we have two reference frames, one stationary and one moving with
+velocity $v \vec{e}_x$ relative to the first frame.
+Let $x' = f(x, t)$ be the position of an event in frame $S'$ and $t' = g(x,t)$
+be the time of that event, as measured by a clock in $S'$.
+Without loss of generality, we can limit our consideration to the case where $x
+= x' = 0$ at times $t = t' = 0$.
 
-% LocalWords:  von Philipp
+With some inspiration from dimensional analysis, we set $x' = \gamma(v) (x -
+vt)$ for some function $\gamma$.
+By the principle of relativity, rotating the system should have no effect on the
+value of $\gamma$, but if we rotate frame $S'$ around, the same expression gives
+$x' = \gamma(-v) (x + vt)$.
+So $\gamma$ must be an even function of $v$.
+
+Now consider a light wave in $S$, moving with speed $c$ towards the right.
+Then $x = ct$, and by Einstein's second principle, $x' = ct'$.
+The above transformation gives us
+\[
+  ct' = \gamma(v) (ct - vt).
+\]
+The same transformation formula should also work in reverse, $ct = \gamma(v)
+(ct' + vt')$.
+Solving these two equations gives us
+\[
+  \gamma(v) = \inv{\sqrt{1 - \frac{v^2}{c^2}}}.
+\]
+
+We still need to find $t'(x, t)$.
+For this, again solve the equations $x' = \gamma (x - vt)$ and $x = \gamma (x' +
+v t')$, but not for light.
+We get
+\[
+  t' = \gamma (t - \frac{v}{c^2} x),
+\]
+which is the second part of a Lorentz transformation.
+
+\begin{remark}
+  Note that if $v$ is small compared to $c$, then $\gamma \approx 1$, so we
+  recover Galilean transformations.
+\end{remark}
+
+\begin{remark}
+  The transformation of time can be tricky to understand.
+  Think about it this way:
+  Time is what is measured by a clock.
+  While in classical mechanics, every pair of clocks which ever agreed will
+  always agree, in special relativity, this only holds for pairs of clocks which
+  are stationary relative to each other (i.e.~there exists an inertial reference
+  frame $S$ in which both clocks are stationary).
+  Since the position of a clock doesn't matter, we can think of every reference
+  frame as having a clock at its center, which measures the frame's time.
+\end{remark}
+
+\begin{definition}
+  An \pojem{event} is a point $(t, \vec{x}) \in \R^{1+3}$.
+\end{definition}
+
+\begin{definition}
+  A \pojem{worldline} is a function $(t, \vec{x}): \R \to \R^{1+3}$, for which
+  $(t(\lambda), \vec{x}(\lambda))$ is an event for any $\lambda \in \R$.
+  We call $\lambda$ the \pojem{affine parameter}.
+\end{definition}
+
+\begin{example}[time dilation]
+  Let $S$ be a rest frame and $S'$ another frame moving with velocity $v$
+  relative to $S$.
+  Consider the time measured by a clock at $x' = 0$.
+  Since $x = vt$, the Lorentz transformation of time gives us
+  \[
+	t' = \gamma(v) \left(1 - \frac{v^2}{c^2} \right) t
+	= \inv{\gamma} t.
+  \]
+  Note that $\gamma > 1$, so in the moving system, the clock shows a lower time
+  than in the non-moving system.
+\end{example}
+
+\begin{example}[length contraction]
+  Consider a stick of length $l'$ in $S'$.
+  We consider the ends of the stick to be two worldlines with $x_1' = 0$ and
+  $x_2' = l'$.
+  We wish to measure the length of the stick in the non-moving frame $S$.
+  For this, we need to find two simultaneous events in $S$, one belonging to the
+  first worldline and one belonging to the second.
+
+  We'll take the measurement at $t=0$.
+  From the Lorentz transformation of space, we then get
+  \[
+	l' = \gamma l,
+  \]
+  so the stick is shorter in $S$ than in $S'$.
+\end{example}
+
+Note that the expression $s^2 = c^2 t^2 - \vec{x}^2$ is invariant under Lorentz
+transformations, as is the difference $\Delta s^2 = c^2 \Delta t^2 - \Delta
+\vec{x}^2$ between two events.
+This allows us to define $\Delta s^2$ as a sensible distance-like measure on
+$\R^{1+3}$, called the \pojem{Minkowski metric}, though it is not a metric.
+Depending on the value of $\Delta s^2$, we call a pair of events
+\begin{itemize}
+\item \pojem{timelike} if $\Delta s^2 > 0$,
+\item \pojem{null} or \pojem{lightlike} if $\Delta s^2 = 0$, and
+\item \pojem{spacelike} if $\Delta s^2 < 0$.
+\end{itemize}
+Lightlike events are those which can be connected with a light-speed signal.
+Two timelike events can then be causally connected, as there was enough time
+between them to transfer and process information.
+Spacelike events, on the other hand, cannot be causally connected, since no
+signal can travel faster than light, so there is no way for the information of
+the first event to reach the second.
+We can draw these events on a spacetime diagram, as shown in
+figure~\ref{fig:spacetime-diagram-events}.
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[scale=0.7]
+	\draw[dashed] (-5,-5) -- (5,5);
+	\draw[dashed] (-5,5) -- (5,-5);
+
+	\draw (-5,0) -- (5,0);
+	\draw (0,-5) -- (0,5);
+
+	\node[circle,fill,inner sep=1pt] (A) at (2, 3) {};
+	\node[circle,fill,inner sep=1pt] (B) at (4, 1) {};
+	\node[circle,fill,inner sep=1pt] (C) at (-3,3) {};
+
+	\node[above] at (A) {timelike};
+	\node[above] at (B) {spacelike};
+	\node[below left] at (C) {lightlike};
+  \end{tikzpicture}
+  \caption{Spacetime diagram}%
+  \label{fig:spacetime-diagram-events}
+\end{figure}
+
+% LocalWords:  von Philipp worldline worldlines Minkowski timelike spacelike
+% LocalWords:  lightlike
