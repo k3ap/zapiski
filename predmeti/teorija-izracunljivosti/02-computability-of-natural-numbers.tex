@@ -165,3 +165,104 @@
 	))
   \]
 \end{proof}
+
+We will consider number representations $\gamma: \N \rightharpoonup X$.
+There is a canonical representation of $\N$, $n \mapsto n$.
+Given two representations $\gamma_X$ of $X$ and $\gamma_Y$ of $Y$, we can define
+the product representation
+\[
+  \gamma_X \times \gamma_Y (n) = (\gamma_X(n_1), \gamma_Y(n_2)),
+\]
+where $n = p(n_1, n_2)$ for the projection function $p$.
+
+Given representations $\rho_X$ of $X$ and $\rho_Y$ of $Y$, we say that a
+function $f: X \to Y$ is $(\rho_X \to \rho_Y)$-computable if there is a
+computable partial function which computes between the representations.
+
+As there are only a countable many partial recursive functions of any arity $n$,
+we can enumerate them.
+We will use the label $\phi_i^n$ to mean the $i$-th partial recursive function
+$\N^n \rightharpoonup \N$ in this enumeration.
+We require that all functions on the list are computable, and that every partial
+recursive function occurs on the list, but not necessarily with a unique index.
+The following definition satisfies these properties.
+We say that $\phi_e^n(x_1, \ldots, x_n)$ is equal to $y$ if there is a
+Turing machine $M$ with $e = \ceil{M}$, which, when run on the input
+$\operatorname{bin}(x_1), \ldots, \operatorname{bin}(x_n)$, halts with
+$\operatorname{bin}(y)$ on the tape.
+Otherwise, we say that the expression is undefined.
+
+Note that the function $\N \to \operatorname{Comp}(\N^n \to \N)$, defined with
+the expression
+\[
+  e \mapsto \phi_e^n
+\]
+is a number representation of the set of all computable functions.
+
+\begin{proposition}
+  The function $h: \N \to \N$ defined below is not computable:
+  \[
+	h(e) =
+	\begin{cases}
+	  \phi_e(e) + 1, & \phi_e(e) \downarrow, \\
+	  0, & \text{otherwise}.
+	\end{cases}
+  \]
+\end{proposition}
+
+\begin{proof}
+  Suppose that $h$ is computable, so there is an index $e$ such that $h =
+  \phi_e$.
+  Then $\phi_e(e) = h(e) = \phi_e(e) + 1$, which is a contradiction.
+\end{proof}
+
+\begin{theorem}[the universal function]
+  For any $n \ge 1$, the $(n+1)$-arity function
+  \[
+	\phi_u^n(e, x_1, \ldots, x_n) \simeq \phi_e^n(x_1, \ldots, x_n)
+  \]
+  exists and is computable.
+\end{theorem}
+
+\begin{proposition}
+  The unary total function below is not computable.
+  \[
+	g(e) =
+	\begin{cases}
+	  1, & \text{if $\phi_e$ is a total function}, \\
+	  0, & \text{otherwise}.
+	\end{cases}
+  \]
+\end{proposition}
+
+\begin{proof}
+  Suppose that $g$ is computable and consider
+  \[
+	h(x) =
+	\begin{cases}
+	  \phi_x(x) + 1, & \text{if $\phi_x$ is total}, \\
+	  0, & \text{otherwise}.
+	\end{cases}
+  \]
+  Since $g$ is computable, so is $h$ (using the universal function).
+  Then $h = \phi_e$ for some $e$, but $\phi_e(e) + 1 = h(e) = \phi_e(e)$, which
+  is a contradiction.
+\end{proof}
+
+\begin{theorem}[S-M-N]
+  For every $n > m > 0$ there exists an $(m+1)$-ary primitive recursive function
+  $S_n^m: \N^{m+1} \to \N$ such that for all $e, x_1, \ldots, x_n$:
+  \[
+	\phi_{S_n^m(e, x_1, \ldots, x_n)}^{n-m} (x_{m+1}, \ldots, x_n)
+	\simeq \phi_e^n(x_1, \ldots, x_n).
+  \]
+\end{theorem}
+
+\begin{theorem}[Kleene's normal form]
+  There exists a primitive recursive function $U: \N \to \N$ and for each $n \ge
+  1$ an $(n+2)$-ary primitive recursive function $T^n: \N^{n+2} \to \N$ such
+  that for all $e, x_1, \ldots, x_n$:
+  \[
+	\phi_e^n(x_1, \ldots, x_n) \simeq U((\mu T^n)(e, x_1, \ldots, x_n)).
+  \]
+\end{theorem}
