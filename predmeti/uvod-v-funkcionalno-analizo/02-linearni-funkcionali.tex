@@ -227,7 +227,49 @@ opremimo z zgornjo normo.
 	x_0)$, kar množimo z $(-t)$ in zaključimo kot zgoraj.
   \end{itemize}
 
-  % TODO to ni konec dokaza
+  Za splošen primer tvorimo množico
+  \[
+	\mathcal{A} = \{
+	(Y_1, f_1) \such Y \le Y_1 \le X, \left. f_1 \right|_Y = f,
+	\forall y_1 \in Y_1 . f_1(y_1) \le p(y_1)
+	\}
+  \]
+  in definiramo relacijo
+  \[
+	(Y_1, f_1) \preccurlyeq (Y_2, f_2) \iff Y_1 \le Y_2 \land \left. f_2
+	\right|_{Y_1} = f_1.
+  \]
+  To je očitno delna urejenost.
+  Naj bo $\{(Y_i, f_i)\}_{i \in I}$ neka veriga v $\mathcal{A}$.
+  Vzemimo $Z = \bigcup_{i \in I} Y_i$.
+  To je podprostor, ker je veriga urejena.
+  Definiramo še preslikavo $g: Z \to \R$ z $g(z) = f_i(z)$ za nek $i \in I$, za
+  katerega je $z \in Y_i$.
+  To je dobro definiran funkcional, za katerega velja $g(z) \le p(z)$ za vse $z
+  \in Z$.
+
+  Očitno je $(Z, g)$ zgornja meja za verigo.
+  Po Zornovi lemi ima $\mathcal{A}$ maksimalen element $(\tilde{Y}, \tilde{f})$.
+  Če je $\tilde{Y} \ne X$, potem obstaja $x \in X \setminus \tilde{Y}$.
+  Po prvem koraku dokaza lahko $\tilde{f}$ razširimo na linearno ogrinjačo
+  množice $\{\tilde{Y}, x\}$, kar je protislovje z maksimalnostjo.
+  Torej $X = \tilde{Y}$.
 \end{proof}
 
-% LocalWords:  Hahn-Banachov
+\begin{lema}
+  Naj bo $X$ kompleksen vektorski prostor.
+  Potem veljajo naslednje točke.
+  \begin{itemize}
+  \item Če je $f: X \to \R$ $\R$-linearen funkcional, je $\tilde{f}: X \to \C$,
+	definiran z $\tilde{f}(x) = f(x) - i f(ix)$ $\C$-linearen funkcional, in
+	velja $\Real \tilde{f} = f$.
+  \item Če je $g: X \to \C$ $\C$-linearen funkcional in $\Real g = f$, potem je
+	$g = \tilde{f}$.
+  \item Če je $p$ polnorma, potem je $\abs{f(x)} \le p(x)$ za vse $x \in X$
+	natanko tedaj, ko za vse $x \in X$ velja $\abs{\tilde{f}(x)} \le p(x)$.
+  \item Če je $X$ normiran in $f: X \to \R$ omejen, je $\tilde{f}$ omejen in
+	$\norm{\tilde{f}} = \norm{f}$.
+  \end{itemize}
+\end{lema}
+
+% LocalWords:  Hahn-Banachov maksimalnostjo
