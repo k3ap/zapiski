@@ -171,4 +171,76 @@ verjetnostnem prostoru.
   \]
 \end{izrek}
 
-% LocalWords:  Borelova Sluckem
+\podnaslov{Doslednost}
+
+Naj bodo $X_1, X_2, \ldots$ neodvisne replikacije slučajne spremenljivke $\Omega
+\to \R$.
+Spomnimo se, da tako zaporedje $X_i$ lahko modeliramo na $S = \Omega^\N$ s
+predpisom $X_i(s) = X(\omega_i)$ za $s = (\omega_n)_n$.
+Seveda je $P$ na $S$ definirana s predpisom
+\[
+  P(A_1 \times A_2 \times \cdots \times A_k \times \Omega \times \Omega \times
+  \cdots)
+  = P(A_1) \cdots P(A_k).
+\]
+Porazdelitev $X_i$ pripada privzetemu modelu dopustnih (enorazsežnih)
+porazdelitev $\mathcal{P}$.
+Naj bo $e: \mathcal{P} \to \R^r$ ocenjevana funkcija.
+Zaporedje cenilk $T_n: \R^n \to \R^r$ je za $e$
+\begin{itemize}
+\item \pojem{krepko dosledno}, če $T_n(X_1, \ldots, X_n) \xrightarrow{s.g.}
+  e(P_X)$,
+\item \pojem{šibko dosledno}, če $T_n(X_1, \ldots, X_n) \xrightarrow{p} e(P_X)$,
+\item \pojem{$L^2$-dosledno} ali \pojem{SKN-dosledno}, če $E(\norm{T_n(X_1,
+	\ldots, X_n) - e(P_x)}^2) \to 0$
+\end{itemize}
+za vsako dopustno porazdelitev $P_X \in \mathcal{P}$ in vsako zaporedje $X_i
+\sim P_X$ neodvisnih cenilk.
+
+\begin{izrek}[šibki zakon velikih števil Markova]
+  Naj bo $X_1, X_2, \ldots$ zaporedje nekoreliranih slučajnih spremenljivk z
+  enako pričakovano vrednostjo $\mu$ in disperzijami $\sigma_i^2$, za katere je
+  $\sup \sigma_i^2 < \infty$.
+  Tedaj za vsak $\varepsilon > 0$ velja $\lim P(\abs{\cl{X} - \mu} >
+  \varepsilon) = 0$.
+\end{izrek}
+
+\begin{proof}
+  Velja
+  \[
+	P(\abs{\cl{X} - \mu}^2 > \varepsilon^2) \le \frac{E(\abs{\cl{X} -
+		\mu}^2)}{\varepsilon^2}
+	= \frac{D(\cl{X})}{\varepsilon^2}
+	= \frac{\sigma_1^2 + \cdots + \sigma_n^2}{n^2 \varepsilon^2}
+	\le \frac{n}{n^2 \varepsilon^2} \sup_i \sigma_i^2
+  \]
+  za disperzijo $D$.
+  To konvergira k $0$.
+\end{proof}
+
+Naj bodo $\mathcal{P}_1, \mathcal{P}_2, \ldots$ družine dopustnih
+porazdelitvenih zakonov na $B(\R), B(\R^2), \ldots$ za vektorje $X_1, (X_1,
+X_2), \ldots$, ki so med seboj usklajeni; če je $P_{(X_1, \ldots, X_{n+1})} \in
+\mathcal{P}_{n+1}$, je tudi $P_{(X_1, \ldots, X_n)} \in \mathcal{P}_n$.
+Model je parametričen, če obstajajo usklajene bijektivne korespondence $P_n \to
+\Theta$.
+
+\begin{definicija}
+  Naj bodo $e_n: \mathcal{P}_n \to \R^r$ ocenjevane funkcije in $T_n: \R^n \to
+  \R^r$ Borelove preslikave.
+  Zaporedje $(T_n)_n$ je za $(e_n)_n$
+  \begin{itemize}
+  \item \pojem{šibko dosledno}, če za vsak $\eta$
+	\[
+	  \lim_{n \to \infty} P(\norm{T_n(X^{(n)}) - e_n(P_n)} > \eta) = 0,
+	\]
+  \item \pojem{$L^2$ dosledno} ali \pojem{SKN dosledno}, če
+	\[
+	  \lim_{n \to \infty} E(\norm{T_n(X^{(n)}) - e_n(P_n)}^2) = 0
+	\]
+  \end{itemize}
+  za vsako zaporedje $(P_n \in \mathcal{P}_n)_n$ in vsak vektor $X = (X_1,
+  \ldots)$ z lastnostjo $P_{X^{(n)}} = P_n$ za vse $n$.
+\end{definicija}
+
+% LocalWords:  Borelova Sluckem replikacije Borelove
