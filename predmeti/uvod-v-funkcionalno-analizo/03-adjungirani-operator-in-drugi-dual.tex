@@ -1,0 +1,32 @@
+\naslov{Adjungirani operator in drugi dual}
+
+\begin{definicija}
+  Za normiran prostor $X$ in $f \in X^*$ definiramo $\hat{x}(f) = f(x)$.
+\end{definicija}
+
+\begin{trditev}
+  Velja $\hat{x} \in X^{**}$ in $\norm{\hat{x}} = \norm{x}$.
+\end{trditev}
+
+\begin{proof}
+  Velja $\abs{\hat{x}(f)} = \abs{f(x)} \le \norm{f} \norm{x}$, zato
+  $\norm{\hat{x}} \le \norm{x}$.
+  Po Hahn-Banachu velja $f$ z $\norm{f} = 1$ in $f(x) = \norm{x}$.
+  Tedaj $\hat{x}(f) = \norm{x}$, torej $\norm{\hat{x}} \ge \norm{x}$.
+\end{proof}
+
+Prostor $X$ vložimo v $X^{**}$ s preslikavo $i(x) = \hat{x}$.
+
+\begin{trditev}
+  Preslikava $i$ je linearna izometrična vložitev.
+\end{trditev}
+
+Naj bo $A: X \to Y$ omejen linearen operator.
+Za $f \in Y^*$ definiramo adjungirani operator operatorja $A$ v smislu
+Banachovih prostorov, $A^*$, z
+\[
+  A^* f = f \circ A.
+\]
+
+
+% LocalWords:  Hahn-Banachu Banachovih

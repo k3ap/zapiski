@@ -272,4 +272,125 @@ opremimo z zgornjo normo.
   \end{itemize}
 \end{lema}
 
-% LocalWords:  Hahn-Banachov maksimalnostjo
+\begin{proof}
+  Prva točka je enostavna.
+  Za drugo točko le pogledamo $g(x) = f(x) + i f_1(x)$ ter $i g(x) = g(ix)$, s
+  čimer pokažemo $f_1(x) = -f(ix)$.
+
+  Za tretjo točko opazimo
+  \[
+	\abs{f(x)} = \abs{\Real \tilde{f}(x)} \le \abs{\tilde{f}(x)} \le p(x),
+  \]
+  v drugo smer pa
+  \[
+	\abs{\tilde{f}(x)} = e^{i \varphi} \tilde{f}(x) = \tilde{f}(e^{i \varphi} x)
+	= \Real \tilde{f}(e^{i \varphi} x)
+  \]
+  za nek kot $\varphi$.
+  Potem
+  \[
+	\abs{\tilde{f}(x)} = f(e^{i \varphi} x) \le p(e^{i \varphi} x) = \abs{e^{i
+		\varphi}} p(x) = p(x).
+  \]
+
+  Za zadnjo točko poglejmo $\abs{f(x)} \le \norm{f} \norm{x}$.
+  Potem je $p(x) = \norm{f} \norm{x}$ polnorma na $X$, za katero velja
+  $\abs{f(x)} \le p(x)$.
+  Po prejšnji točki velja $\abs{\tilde{f}(x)} \le p(x)$, torej je $\tilde{f}$
+  omejen z $\norm{f}$.
+  Po drugi strani je $\norm{\tilde{f}(x)} \le q(x)$ za $q(x) = \norm{\tilde{f}}
+  \norm{x}$, in zato po prejšnji točki $\abs{f(x)} \le q(x)$ in $\norm{f} \le
+  \norm{\tilde{f}}$.
+\end{proof}
+
+\begin{izrek}[kompleksni Hahn-Banach]
+  Naj bo $X$ vektorski prostor nad $\F$, $Y \le X$ in $p$ polnorma na $X$.
+  Če je $f: Y \to \F$ linearni funkcional, da za vse $y \in Y$ velja $\abs{f(y)}
+  \le p(y)$, potem obstaja linearni funkcional $F: X \to \F$, za katerega je
+  $\left. F \right|_Y = f$ in $\abs{F(X)} \le p(x)$ za vsak $x \in X$.
+\end{izrek}
+
+\begin{proof}
+  Za $\F = \R$ po realni verziji izreka obstaja funkcional $F: X \to \R$, ki
+  razširja $f$ in za katerega je $F(x) \le p(x)$ za $x \in X$.
+  Velja $-F(x) = F(-x) \le p(-x) = p(x)$, torej $\abs{F(x)} \le p(x)$.
+
+  Če pa je $\F = \C$, vzemimo $\R$-linearen funkcional $f_1 = \Real f$, za
+  katerega po lemi velja $\abs{f_1(y)} \le p(y)$ za $y \in Y$.
+  Tega lahko razširimo do $F_1: X \to \R$, nato pa vzamemo funkcional
+  $\tilde{F}$, za katerega velja $\Real \tilde{F} = F$.
+  S pomočjo leme hitro vidimo, da $\tilde{F}$ razširja $f$ in
+  $\abs{\tilde{F}(x)} \le p(x)$.
+\end{proof}
+
+\begin{izrek}[Hahn-Banachov izrek za normirane prostore]
+  Naj bo $Y \le X$ podprostor normiranega prostora $X$ in $f: Y \to \F$ omejen.
+  Tedaj obstaja $f: X \to \F$, da je $\left. F \right|_Y = f$ ter $\norm{F} =
+  \norm{f}$.
+\end{izrek}
+
+\begin{posledica}
+  Naj bo $X$ normiran in $x \in X$ neničeln vektor.
+  Tedaj obstaja $F \in X^*$, da je $\norm{f} = 1$ in $f(x) = \norm{x}$.
+\end{posledica}
+
+\begin{proof}
+  Naj bo $Y = \F \cdot x$.
+  Funkcional $g(\lambda x) = \lambda \norm{x}$ je zvezen, linearen in definiran
+  na $Y$ z $\norm{g} = 1$.
+  Po Hahn-Banachu ga lahko razširimo na funkcional $X \to \F$.
+\end{proof}
+
+\begin{posledica}
+  Naj bo $X$ normiran in $x \in X$.
+  Tedaj je
+  \[
+	\norm{x} = \max \{\abs{f(x)} \such f \in X^*, \norm{f} = 1\}.
+  \]
+\end{posledica}
+
+\begin{posledica}
+  Naj bo $Y \le X$ zaprt podprostor normiranega prostora $X$.
+  Naj bo $x_0 \in X \setminus Y$ ter $d = d(x,Y)$.
+  Tedaj obstaja $f \in X^*$, da je $f(x_0) = 1$, $\left. f \right|_Y = 0$ in
+  $\norm{f} = \nicefrac{1}{d}$.
+\end{posledica}
+
+\begin{proof}
+  Naj bo $g \in (X/Y)^*$ tak, da je $\norm{g} = 1$ in $g(x_0 + Y) = \norm{x_0 +
+	Y} = d$.
+  Definirajmo $f = g \circ \pi$, kjer je $\pi$ kvocientna projekcija.
+  Za $y \in Y$ velja $f(y) = 0$, ker je $y + Y = 0$ in $g$ linearna.
+  Funkcional $f$ je omejen, ker je kompozitum omejenih funkcionalov, velja
+  $f(x_0) = d$.
+  Izračunamo
+  \[
+	\norm{f} = \sup_{\norm{x} < 1} \abs{f(x)}
+	= \sup_{\norm{x} < 1} \abs{g(\pi(x))}
+	= \sup_{\norm{x + Y} < 1} g(x + Y)
+	= \norm{g} = 1,
+  \]
+  torej je iskani funkcional $\inv{d} f$.
+\end{proof}
+
+\begin{izrek}
+  Naj bo $Y \le X$ podprostor normiranega prostora $X$.
+  Tedaj je
+  \[
+	\cl{Y} = \bigcap \{ \jedro f \such f \in X^*, Y \subseteq \jedro f \}.
+  \]
+\end{izrek}
+
+\begin{proof}
+  Naj bo $Z$ presek iz izreka.
+  Če je $Y \subseteq \jedro f$, je $\cl{Y} \subseteq \jedro f$, saj je jedro
+  zaprto.
+  Torej je $\cl{Y} \subseteq Z$.
+  Recimo, da $\cl{Y}$ ni enako $Z$.
+  Tedaj obstaja $z \in Z \setminus \cl{Y}$, torej po prejšnji posledici obstaja
+  $f \in X^*$, da je $f(z) = 1$ in $\left. f \right|_{\cl{Y}} = 0$.
+  Velja $Y \subseteq \jedro f$, torej $z \in \jedro f$, kar je protislovje z
+  $f(z) = 1$.
+\end{proof}
+
+% LocalWords:  Hahn-Banachov maksimalnostjo Hahn-Banach Hahn-Banachu
