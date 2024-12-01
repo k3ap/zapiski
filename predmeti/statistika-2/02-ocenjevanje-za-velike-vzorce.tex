@@ -236,11 +236,51 @@ Model je parametričen, če obstajajo usklajene bijektivne korespondence $P_n \t
 	\]
   \item \pojem{$L^2$ dosledno} ali \pojem{SKN dosledno}, če
 	\[
-	  \lim_{n \to \infty} E(\norm{T_n(X^{(n)}) - e_n(P_n)}^2) = 0
+	  \lim_{n \to \infty} E\left(\norm{T_n(X^{(n)}) - e_n(P_n)}^2\right) = 0
 	\]
   \end{itemize}
   za vsako zaporedje $(P_n \in \mathcal{P}_n)_n$ in vsak vektor $X = (X_1,
   \ldots)$ z lastnostjo $P_{X^{(n)}} = P_n$ za vse $n$.
 \end{definicija}
+
+\begin{izrek}
+  Naj $\lambda_{\text{min}}$ označuje najmanjšo lastno vrednost matrike.
+  Če $\lambda_{\text{min}}(Z^T Z) \xrightarrow[n \to \infty]{d}
+  \infty$, je zaporedje cenilk za regresijski parameter $\beta$ SKN dosledno.
+\end{izrek}
+
+\begin{trditev}
+  Naj bo $T: \R^n \to \R^m$ statistika in $X$ slučajni vektor z vrednostmi v
+  $\R^n$.
+  Tedaj je $E(\norm{TX - E(TX)}^2) = \sled(\var TX)$.
+\end{trditev}
+
+\begin{proof}
+  Račun.
+  Uporabimo dejstvo $\norm{t}^2 = \sled(t t^T)$.
+\end{proof}
+
+\begin{izrek}
+  Privzemimo naslednji linearni model:
+  \[
+	\mathcal{P}_n = \{ P_{X^{(n)}} \such X^{(n)} = Z^{(n)} \beta +
+	\varepsilon^{(n)}, \var \varepsilon^{(n)} < \infty \}.
+  \]
+  Naj bodo $L_n \in \R^{m \times d}$ fiksne realne matrike.
+  Če velja
+  \begin{itemize}
+  \item $\sup_n \lambda_{\text{max}}(\var \varepsilon^{(n)}) < \infty$,
+  \item $\lim \lambda_{\text{max}}((Z^T Z)') = 0$,
+  \item $\sup_n \max_i \norm{(L_n)_i} < \infty$,
+  \item $L_n = U_n Z^{(n)}$
+  \end{itemize}
+  za vse $n$, je zaporedje cenilk $T_n X^{(n)} = L_n(Z^T Z)' Z^T X$ SKN-dosledno
+  za $e_n(\beta, \varepsilon^{(n)}) = L_n (Z^T Z)' Z^T Z \beta$.
+\end{izrek}
+
+\begin{proof}
+  Račun.
+  Nujno naredi.
+\end{proof}
 
 % LocalWords:  Borelova Sluckem replikacije Borelove
