@@ -58,6 +58,174 @@
 	Since there can be only one big gap between them, we can just avoid it by
 	going in the other direction, so this is also clear.
   \end{itemize}
+
+  If $k$ is odd and $n$ even, we define a big gap as $\frac{k-1}{2}$ consecutive
+  missing vertices.
+  Similarly as before, if there is no big gap on a path from $u$ to $v$, we can
+  find a path after removing $S$.
+  But in this case, both paths may contain a big gap.
+  Let $P$ and $Q$ be the two paths along the cycle.
+  If there are big gaps along both, we know the length of both is at least
+  $\frac{k-1}{2} + 1$.
+  Let $u'$ and $v'$ be the opposite vertices of $u$ and $v$.
+  Suppose that $Q$ is longer than $P$, and split it into paths $Q_1$, $Q_2$ and
+  $Q_3$ by $v'$ and $u'$.
+
+  Note that by symmetry, the length of $Q_2$ (the center region) is also at
+  least $\frac{k+1}{2}$, so the big gap in $Q$ cannot cover both $u'$ and $v'$.
+  We can then find a $u,v$-path in $G - S$ using one of these vertices.
+
+  We can consider the case of odd $k$ and odd $n$ similarly, it's just more
+  annoying to write down.
+  In all cases, all graphs have precisely $\ceil{\frac{kn}{2}}$ edges.
+\end{proof}
+
+\begin{definition}
+  A set $F \subseteq E(G)$ is a \pojem{disconnecting set} if $G - F$ is
+  disconnected.
+\end{definition}
+
+\begin{definition}
+  An \pojem{edge cut} of $A$ is the set $E(A, \cl{A})$ of edges between $A$ and
+  $\cl{A}$.
+\end{definition}
+
+\begin{remark}
+  An edge cut is a disconnecting set.
+  A minimal disconnected set is an edge cut.
+\end{remark}
+
+\begin{definition}
+  The \pojem{edge-connectivity} number of $G$ is the minimum number of edges in
+  a disconnecting set.
+  We denote it by $\kappa'(G)$.
+  A graph is \pojem{$k$-edge-connected} if the removal of less than $k$ edges
+  always leaves a connected graph.
+\end{definition}
+
+\begin{theorem}
+  Suppose $G$ is a simple graph with $n(G) \ge 2$.
+  Then $\kappa(G) \le \kappa'(G) \le \delta(G)$.
+\end{theorem}
+
+\begin{proof}
+  The second inequality is clear.
+  Consider a minimum edge cut $E(A, \cl{A})$ in $G$.
+  By definition $\abs{E(A, \cl{A})} = \kappa'(G)$.
+  We will show that there is a vertex cut with at most $\kappa'(G)$ vertices.
+  For that, consider two cases.
+  If $E(A, \cl{A})$ forms a complete bipartite graph, then
+  \[
+	\abs{E(A, \cl{A})} =
+	\abs{A} \abs{\cl{A}} = \abs{A} (n - \abs{A}).
+  \]
+  Since $0 < \abs{A} < n$, we have $\abs{E(A, \cl{A})} \ge n-1$, so $\kappa'(G)
+  \ge n-1$, but $\kappa(G) \le n-1$ and $\kappa(G) \le \kappa'(G)$.
+
+  In the second case, if there are vertices $x \in A$ and $y \in \cl{A}$ which
+  are nonadjacent, then we may choose an endpoint different from $x$ and $y$ in
+  each edge in the edge cut.
+  This gives us a vertex cut with at most $\abs{E(A, \cl{A})}$ vertices, in
+  which $x$ and $y$ are not cut, and are disconnected.
+\end{proof}
+
+\begin{corollary}
+  If $G$ is $k$-connected, then $G$ is $k$-edge-connected.
+\end{corollary}
+
+\begin{corollary}
+  The minimum number of edges in a $k$-edge-connected graph on $n$ vertices is
+  $\ceil{\frac{kn}{2}}$.
+\end{corollary}
+
+\begin{proof}
+  We know that $k \le \kappa'(G) \le \delta(G)$, so
+  \[
+	m(G) = \pol \sum_{v \in V} \deg_G(v) \ge \pol n \delta(G)
+  \]
+  which means $m(G) \ge \ceil{\frac{nk}{2}}$.
+  For the other direction, note that the Harary graphs are $k$-edge-connected.
+\end{proof}
+
+\begin{theorem}[Whitney]
+  If $G$ is a $2$-connected graph, then for every $u, v \in V(G)$, there are two
+  internally disjoint $u,v$-paths.
+  The converse also holds.
+\end{theorem}
+
+\begin{proof}
+  For the left implication, suppose $u, v \in V(G - x)$ for some vertex $x$.
+  There are two disjoint paths from $u$ to $v$ in $G$, and at most one of them
+  includes $x$, so there is a path from $u$ to $v$ in $G - x$.
+  This means our graph has no cut vertex, so it is $2$-connected.
+
+  Now consider the right implication.
+  Let $u, v$ be vertices in $G$.
+  Induction on $d = d(u,v)$.
+  For $d = 1$, we know that $G$ is $2$-edge-connected (since it is
+  $2$-connected), so there is no bridge in $G$.
+  If we remove $uv$, then the graph must still be connected.
+  Therefore, there is another $u,v$-path in $G$.
+
+  For a general $d$, let $w$ be the neighbour of $v$ on the shortest $u,v$-path.
+  Then $d(u,w) = d-1$.
+  By the induction hypothesis, there are two internally disjoint paths $P, Q$
+  from $u$ to $w$.
+  Consider two cases.
+  If $v \in V(P)$ (or $Q$, symmetrically), then we have two internally disjoint
+  $u,v$-paths in
+  \begin{alignat*}{2}
+	u \xrightarrow{P} v,
+	& \qquad &
+			   u \xrightarrow{Q} w \to v.
+  \end{alignat*}
+
+  Otherwise, if $v$ is on neither path, then consider the graph $G - w$.
+  It is still connected, so there is at least one $u,v$-path $R$ in this graph.
+  If $R$ shares no internal vertex with $P$ or $Q$, then we may choose $u
+  \xrightarrow{P} w \to v$ and $R$ as the two paths.
+  Finally, if $R$ intersects $P$ and/or $Q$, identify the last intersection with
+  either, and label it $z$.
+  Without loss of generality, $z \in Q \cap R$.
+  Then we have two paths
+  \begin{alignat*}{2}
+	u \xrightarrow{P} w \to v,
+	& \qquad &
+			   u \xrightarrow{Q} z \xrightarrow{R} v.
+  \end{alignat*}
+\end{proof}
+
+\begin{theorem}[Expansion lemma]
+  If $G$ is $k$-connected and we add a new vertex $v$ and $k$ incident edges to
+  the graph, then we obtain a $k$-connected graph.
+\end{theorem}
+
+\begin{proof}
+  Call the new vertex $y$, and let $G'$ be the new graph.
+  We will prove that every vertex cut in $G'$ contains at least $k$ vertices.
+  For that, let $S$ be a vertex cut in $G'$.
+  Consider three cases.
+  \begin{itemize}
+  \item If $y \in S$, then let $V_1$ and $V_2$ be components of $G \setminus S$.
+	Every path from $V_1$ to $V_2$ passes $S$, which is also true in $G$, since
+	$y \in S$.
+	In $G$, every vertex cut contains at least $k$ vertices, so $S \setminus
+	\{y\}$ contains at least $k$ vertices, and $S$ contains at least $k+1$
+	vertices.
+
+  \item If $y \notin S$ and $N(y) \subseteq S$, then $y$ is its own component in
+	$G' \setminus S$.
+	This means $\abs{S} \ge k$.
+
+  \item Otherwise, there is a vertex $y'$ which is a neighbour of $y$ and
+	belongs to the same component in $G' \setminus S$.
+	If we remove $y$ from $G'$, $S$ remains a vertex cut in $G$, as no path
+	exists between the components which avoids $S$.
+	Note that we don't remove the component of $y$ if we delete the vertex, as
+	the component has at least one other vertex ($y'$).
+	Since $G$ is $k$-connected, every vertex cut contains at least $k$ vertices,
+	so $\abs{S} \ge k$.
+  \end{itemize}
 \end{proof}
 
 % LocalWords:  Harary
