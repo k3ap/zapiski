@@ -1,0 +1,20 @@
+\naslov{Temeljni izreki funkcionalne analize}
+
+\begin{izrek}[Baire]
+  Naj bo $(X, d)$ poln metrični prostor in $(U_n)_n$ števna družina odprtih
+  gostih množic v $X$.
+  Tedaj je presek $\bigcap_n U_n$ gost v $X$.
+\end{izrek}
+
+\begin{posledica}
+  Naj bo $X$ poln metrični prostor in $(A_n)_n$ zaporedje zaprtih množic, da je
+  $X = \bigcup_n A_n$.
+  Tedaj obstaja $m \in \N$, da je $\mathring{A}_m \ne \varnothing$.
+\end{posledica}
+
+\begin{proof}
+  Če je $\mathring{A}_j = \varnothing$ za vse $j$, potem je $A_j\complement$
+  odprta in gosta.
+  Potem je $\bigcap_j A_j\complement$ gost, torej $\bigcup_j A_j = \left(
+	\bigcap_j A_j\complement \right)\complement \ne X$.
+\end{proof}
