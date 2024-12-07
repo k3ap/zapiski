@@ -1,0 +1,197 @@
+\naslov{Computable and computably enunmerable sets}
+
+\begin{definition}
+  A subset $A \subseteq \N$ is \pojem{computable} if the characteristic function
+  $\chi_A: \N \to \N$ is computable.
+  It is \pojem{computably enumerable} if the partial characteristic function
+  $\chi_A^p: \N \to \N$ is computable as a partial function.
+\end{definition}
+
+\begin{definition}
+  \pojem{Kleene's halting set} is the set
+  \[
+	K = \{e \in \N \such \phi_e(e) \downarrow \}.
+  \]
+\end{definition}
+
+\begin{proposition}
+  Kleene's halting set $K$ is not computable.
+\end{proposition}
+
+\begin{proof}
+  Suppose it is.
+  Then so is the partial function
+  \[
+	h(e) \simeq
+	\begin{cases}
+	  \uparrow, & \chi_K(e) = 1, \\
+	  0, & \chi_K(e) = 0.
+	\end{cases}
+  \]
+  Therefore there exists an index $e$ such that $h = \phi_e$.
+  Then $\phi_e(e) \downarrow \iff e \in K \iff h(e) \uparrow \iff \phi_e(e)
+  \uparrow$.
+  This is a contradiction.
+\end{proof}
+
+\begin{proposition}
+  A set $A \subseteq \N$ is computably enumerable if and only if it is the
+  domain of some computable partial function.
+\end{proposition}
+
+\begin{proof}
+  If a set $A$ is computable enumerable, it is the domain of $\chi_A^p$.
+  Suppose that $A = \operatorname{dom}(f)$ for some computable $f: \N \to \N$.
+  We can compute $\chi_A^p$ by
+  \[
+	\chi_A^p(n) \simeq
+	\begin{cases}
+	  1, & f(n) \downarrow, \\
+	  \uparrow & \text{otherwise.} \qedhere
+	\end{cases}
+  \]
+\end{proof}
+
+\begin{proposition}
+  The halting set $K$ is computably enumerable.
+\end{proposition}
+
+\begin{proof}
+  It is the domain of the computable partial function $e \mapsto \phi_e(e) =
+  \psi_u(e,e)$.
+\end{proof}
+
+We can enumerate the computably enumerable sets by
+\[
+  W_e := \operatorname{dom}(\phi_e).
+\]
+
+\begin{lemma}
+  Suppose that $A \subseteq \N$ is a set for which there exists a total
+  computable function $t: \N^2 \to \N$ such that $x \in A$ if and only if there
+  exists $z \in \N$ with $t(x,z) = 0$.
+  Then $A$ is computably enumerable.
+  The reverse also holds.
+\end{lemma}
+
+\begin{proof}
+  Suppose that $A$ is computably enumerable, so by Kleene's normal form theorem,
+  $x \in A$ if and only if $T(e,x,z) = 0$ for some $z$, and for $A = W_e$.
+  We can take $t(x,z) = T(e,x,z)$.
+
+  As for the reverse, given a computable $t$, the partial function
+  $\mu t: \N \to \N$  has $A$ as its domain, so $A$ is computably enumerable.
+\end{proof}
+
+\begin{theorem}
+  A set $A \subseteq \N$ is computable if and only if both $A$ and $\cl{A}$ are
+  computably enumerable.
+\end{theorem}
+
+\begin{proof}
+  The left-to-right implication is trivial.
+  Suppose both $A$ and $\cl{A}$ are computably enumerable.
+  By the lemma, there exist total computable $s,s': \N \to \N$ such that $x \in
+  A$ if and only if there exists $z \in \N$ for which $s(x,z) = 0$, and
+  similarly $x \notin A$ if and only if there is a number $z$ such that $s'(x,z)
+  = 0$.
+
+  Then the following function is both computable and total:
+  \[
+	g := \mu ((x,z) \mapsto \min(s(x,z), s'(x,z))).
+  \]
+  So
+  \[
+	\chi_A(x) =
+	\begin{cases}
+	  1, & s(x,g(x)) = 0, \\
+	  0, & \text{otherwise},
+	\end{cases}
+  \]
+  is computable.
+\end{proof}
+
+\begin{corollary}
+  The set $\cl{K}$ is not computably enumerable.
+\end{corollary}
+
+\begin{theorem}
+  The following are equivalent for a set $A \subseteq \N$:
+  \begin{itemize}
+  \item $A$ is computably enumerable,
+  \item $A = \varnothing$ or $A$ is the range of a total computable function,
+  \item $A$ is the range of a computable partial function.
+  \end{itemize}
+\end{theorem}
+
+\begin{proof}
+  One to two:
+  Suppose $A \ne \varnothing$, and select any $a_0 \in A$.
+  By the above lemma, there exists a computable $s: \N^2 \to \N$ satisfying
+  \[
+	y \in A \iff \exists z. s(y,z) = 0.
+  \]
+  Using the pairing function $p: \N^2 \to \N$, we have that $A$ is the range of
+  the total computable
+  \[
+	x \mapsto
+	\begin{cases}
+	  y, & s(y,z) = 0, \\
+	  a_0 & \text{otherwise}.
+	\end{cases}
+  \]
+  We used $(y, z) = p^{-1}(x)$ above.
+
+  Two to three is trivial.
+  Three to one:
+  Suppose $A$ is the range of $\phi_e$.
+  Let $T$ and $U$ be as in Kleene's normal form theorem.
+  Then the total function $s: \N^2 \to \N$ is computable:
+  \[
+	s(w,y) =
+	\begin{cases}
+	  0 & T(e, x, z) = 0  \land w = U(z), \\
+	  1 & \text{otherwise},
+	\end{cases}
+  \]
+  where $y = p(x,z)$.
+  Then $w \in A$ if and only if there exists a $y$ such that $s(w,y) = 0$.
+\end{proof}
+
+\begin{theorem}
+  The following are equivalent for a set $A \subseteq \N$:
+  \begin{itemize}
+  \item $A$ is computable,
+  \item $A = \varnothing$ or $A$ is the range of an increasing total computable
+	function,
+  \item $A$ is finite or $A$ is the range of a strictly increasing computable
+	total function.
+  \end{itemize}
+\end{theorem}
+
+\begin{proof}
+  We will only prove the equivalence of the first and third statement.
+  One to three:
+  Suppose $A$ is computable and infinite.
+  Then $A$ is the image of the function which maps $n$ to the $n$-th smallest
+  element of $A$, by searching through $m = 0, 1, 2, \ldots$ using $\chi_A$.
+
+  Three to one:
+  Suppose $A$ is the range of $f: \N \to \N$, which is strictly increasing.
+  Then we can compute $\chi_A(n)$ by checking whether $n$ is in the image
+  of $f(x)$ for $x = 0, 1, 2, \ldots$, until we find either $n$ or a number
+  larger than it.
+\end{proof}
+
+\begin{corollary}
+  Every infinite computably enumerable set has an infinite computable subset.
+\end{corollary}
+
+\begin{proof}
+  Let $A$ be infinite and computably enumerable.
+  Then $A$ is the image of a computable total function $f$.
+  Define $g(0) = f(0)$ and $g(n+1) = f(m)$ where $m$ is the smallest number such
+  that $f(m) > g(n)$.
+\end{proof}
+
+% LocalWords:  Kleene's
