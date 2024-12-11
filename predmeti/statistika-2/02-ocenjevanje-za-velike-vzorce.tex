@@ -283,4 +283,98 @@ Model je parametričen, če obstajajo usklajene bijektivne korespondence $P_n \t
   Nujno naredi.
 \end{proof}
 
+\podnaslov{Pristranske cenilke}
+
+Privzemimo parametrični model s prostorom parametrov $\Theta \subseteq \R^d$ in
+naj bo $e: \Theta \to \R^r$ ocenjevana funkcija.
+\pojem{Pristranskost} cenilke $T: \R^n \to \R^r$ za $e$ je $b_\theta(T) =
+E_\theta(T(X)) - e(\theta)$.
+Kvaliteto take cenilke merimo s srednjo kvadratno napako
+$\operatorname{SKN}(\theta) = E_\theta(\norm{T(X) - e(\theta)}^2)$.
+Velja
+\begin{align*}
+  \operatorname{SKN}(\theta)
+  &= E_\theta(\norm{T(X) - E_\theta(T(X)) + E_\theta(T(X)) - e(\theta)}^2) \\
+  &= E_\theta(\norm{T(X) - E_\theta(T(X))}^2) \\
+  &+ E_\theta(\sk{T(X) - E_\theta(T(X)), E_\theta(T(X)) - e(\theta)}) \\
+  &+ E_\theta(\norm{E_\theta(T(X) - e(\theta))}^2).
+\end{align*}
+Ker je $E_\theta(T(X) - E_\theta(T(X))) = 0$, sledi
+\begin{align*}
+  \operatorname{SKN}(\theta)
+  &= E_\theta(\norm{T(X) - E_\theta(T(X))}^2)
+  + E_\theta(\norm{E_\theta(T(X) - e(\theta))}^2) \\
+  &= \sled \var_\theta(T(X)) + \norm{b_\theta(T)}^2.
+\end{align*}
+
+\begin{definicija}
+  \label{stat2:def:nepristransko-v-limiti}
+  Privzemimo model $(\mathcal{P}_n)_n$ za $x_1, x_2, \ldots$ in naj bo $e_n:
+  \mathcal{P}_n \to \R^r$ zaporedje ocenjevanih funkcij ter $T_n: \R^n \to \R^r$
+  zaporedje cenilk za $e_n$. To zaporedje je \pojem{nepristransko za $e_n$ v
+	limiti}, če velja
+  \[
+	\lim_{n \to \infty} E_{P_n}(T_n - e_n(P_n)) = 0
+  \]
+  za vsako dopustno porazdelitev $(P_n)_n \in (\mathcal{P}_n)_n$.
+\end{definicija}
+
+\begin{definicija}
+  Naj bo sedaj $Y_{(\mathcal{P}_n)_n}$ družina porazdelitev. Dalje naj bo
+  $(a_n)_n$ zaporedje pozitivnih realnih števil in $T_n: \R^n \to \R^r$
+  zaporedje statistik. Naj bo $e_n: \mathcal{P}_n \to \R^r$ zaporedje
+  ocenjevanih funkcij. Če velja $\lim a_n \in \oz{0, \infty}$ in
+  \[
+	a_n (T_n(X^{(n)}) - e_n(P_n)) \xrightarrow[n \to \infty]{d} Y_{(P_n)_n}
+  \]
+  za vse $(P_n)_n \in (\mathcal{P}_n)_n$ in vsak $X$ z $X^{(n)} \sim P_n$, potem
+  pravimo, da je $T_n$ \pojem{asimptotično nepristransko zaporedje cenilk} za
+  $(e_n)_n$.
+\end{definicija}
+
+\begin{primer}
+  Če so $T_n$ dosledne, velja $T_n(X^{(n)}) - e_n(P_n) \to 0$.
+\end{primer}
+
+\begin{primer}
+  Iz CLI dobimo $\sqrt{n} (\cl{X} - \mu) \to N(0, \Sigma)$.
+  V tem primeru so porazdelitve res odvisne od $(P_n)_n$ (zaradi $\Sigma$).
+\end{primer}
+
+\podnaslov{Asimptotična normalnost}
+
+V zgornjem kontekstu (definicija~\ref{stat2:def:nepristransko-v-limiti})
+pravimo, da je zaporedje $(T_n)_n$ \pojem{asimptotično normalno} zaporedje
+cenilk za $(e_n)_n$, če obstaja zaporedje funkcij $V_n: \mathcal{P}_n \to
+\operatorname{SPD}(r)$ (simetrične pozitivno definitne matrike $r \times r$), za
+katerega velja
+\[
+  V_n(P_n)^{-1/2} (T_n(X^{(n)} - e_n(P_n))) \xrightarrow[n \to \infty]{d} N(0,
+  I)
+\]
+za vsak $(P_n)_n \in (\mathcal{P}_n)_n$ in $X$ s to porazdelitvijo.
+
+Rečemo, da je $V_n(P_n)$ \pojem{asimptotična varianca} za $T_n(X^{(n)})$.
+Če je $V_n(P_n) = \inv{n} A((P_n)_n)$ za družino simetričnih pozitivno
+definitnih matrik $A: (\mathcal{P}_n)_n \to \R^{r \times r}$, je to
+\pojem{asimptotična varianca v ožjem smislu}.
+
+\begin{opomba}
+  Asimptotična varianca ni enolična, lahko jo npr.~pomnožimo s poljubnim
+  zaporedjem, ki konvergira k $1$.
+\end{opomba}
+
+\begin{izrek}
+  Privzamemo model linearne regresije $\mathcal{P}_n'$ od prej, $X = Z \beta +
+  \varepsilon$.
+  Privzemimo, da $\inv{v} Z^T Z$ konvergira k neki simetrični pozitivno
+  definitni matriki razsežnosti $d \times d$.
+  Tedaj imajo $Z^{(n)}$ poln rang za dovolj velika števila $n$ in za
+  $\hat{\beta} = (Z^T Z)^{-1} Z^T X$ velja
+  \[
+	\inv{\sigma} (Z^T Z) (\hat{\beta} - \beta) \xrightarrow[n \to \infty]{d}
+	N(0, I).
+  \]
+\end{izrek}
+
 % LocalWords:  Borelova Sluckem replikacije Borelove
