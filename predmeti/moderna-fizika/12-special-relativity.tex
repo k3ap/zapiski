@@ -89,7 +89,8 @@ since, as Feynman stated,
   \enquote{It doesn't matter how beautiful your theory is, it doesn't matter how smart
   you are. If it doesn't agree with experiment, it's wrong.}
 \end{quote}
-Classical mechanics and electromagnetism, as complete as might seem, is wrong.
+Classical mechanics and electromagnetism, as complete as they might seem, are
+wrong.
 
 \podnaslov{Lorentz, the new Galileo}
 
@@ -238,6 +239,64 @@ figure~\ref{fig:spacetime-diagram-events}.
   \caption{Spacetime diagram}%
   \label{fig:spacetime-diagram-events}
 \end{figure}
+
+\podnaslov{$4$-vector notation}
+
+Further on, we will use $4$-vectors to denote events and quantities derived from
+them.
+We will use the label $X^\mu$ to refer to either the $\mu$-th component of the
+$4$-vector $X$, or to the vector itself; it is generally defined as
+\[
+  X^\mu =
+  \begin{bmatrix}
+	ct \\ x \\ y \\ z
+  \end{bmatrix}
+\]
+for an event at time $t$ and coordinate $(x, y, z)$.
+We also use the convention that indexing $4$-vectors with Latin indices only
+refers to their space coordinates, ignoring the time coordinate.
+If we write $X_\mu$ with the index at the bottom, we mean
+\[
+  X_\mu = \eta_{\mu \nu} X^\nu
+\]
+where the double index $\nu$ implies a summation, as per the Einstein
+convention.
+Above, $\eta_{\mu \nu}$ is the matrix
+\[
+  \eta_{\mu \nu} =
+  \begin{bmatrix}
+	1 & & & \\ & -1 & & \\ & & -1 & \\ & & & -1
+  \end{bmatrix}.
+\]
+This allows us to write the Minkowski dot product simply as $X^\mu X_\mu = X^\mu
+\eta_{\mu \nu} X^\nu$, so
+\[
+  ds^2 = \eta_{\mu \nu} dX^\mu dX^\nu.
+\]
+
+We can now recognize Lorentz transformations as matrices ${\Lambda^\mu}_\nu$
+which allow for transformations
+\[
+  X'^\mu = {\Lambda^\mu}_\nu X^\nu.
+\]
+Not all matrices are correct here, as among other things, they need to satisfy
+\[
+  X^\rho X_\rho
+  = X'^\mu X'_\mu
+\]
+or
+\[
+  X^\rho \eta_{\rho \sigma} X^\sigma
+  = X'^\mu \eta_{\mu \nu} X'^\nu
+  = \eta_{\mu \nu} {\Lambda^\mu}_\rho X^\rho {\Lambda^\nu}_\sigma X^\sigma.
+\]
+This gives us the constraint
+\[
+  \eta_{\rho \sigma} = \eta_{\mu \nu} {\Lambda^\mu}_\rho {\Lambda^\nu}_\sigma
+\]
+which is what we will use for our definition of a Lorentz transformation, so a
+Lorentz transformation is any matrix ${\Lambda^\mu}_\nu$ which satisfies the
+property above.
 
 % LocalWords:  von Philipp worldline worldlines Minkowski timelike spacelike
 % LocalWords:  lightlike
