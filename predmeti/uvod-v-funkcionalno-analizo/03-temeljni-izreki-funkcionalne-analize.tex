@@ -154,7 +154,7 @@ Pravimo, da je $\mathcal{F}$ \pojem{omejena po točkah}.
 \end{proof}
 
 \begin{izrek}[o odprti preslikavi]
-  Naj bo $T$ omejen surjektiven linearen operator med Banchovima prostoroma $X$
+  Naj bo $T$ omejen surjektiven linearen operator med Banachovima prostoroma $X$
   in $Y$.
   Tedaj je $T$ odprta preslikava.
 \end{izrek}
@@ -207,6 +207,77 @@ Pravimo, da je $\mathcal{F}$ \pojem{omejena po točkah}.
   je unija odprtih množic in vsebuje $0$.
   Druga vključitev zgoraj velja, ker je funkcija $m: Y \times Y \to Y$, $m(y_1,
   y_2) = y_1 - y_2$, zvezna.
+
+  V tretjem koraku spet ob isti predpostavki pokažimo, da je $TU$ odprta okolica
+  za $0$.
+  Najprej pokažimo poseben primer, če je $U = \mathring{B}(0, \varepsilon)$.
+  Definiramo $\varepsilon_0 = \nicefrac{\varepsilon}{2}$ in zapišemo
+  \[
+	\varepsilon_0 = \sum_{i=1}^\infty \varepsilon_i
+  \]
+  za neko zaporedje $(\varepsilon_i)_i$ pozitivnih števil.
+  Po drugem koraku za vsak $i$ obstaja $\eta_i > 0$, da je $\mathring{B}(0,
+  \eta_i) \subseteq \cl{T(\mathring{B}(0, \varepsilon_i))}$.
+  Sedaj izberimo $y \in \mathring{B}(0, \eta_0)$ in pokažimo $y = Tx$ za neki $x
+  \in \mathring{B}(0, \varepsilon)$.
+
+  Če je $\norm{x} < \varepsilon_i$, velja $\norm{Tx} \le \norm{T}
+  \varepsilon_i$, torej je
+  \[
+	\mathring{B}(0, \eta_i)
+	\subseteq T(\mathring{B}(0, \varepsilon_i))
+	\subseteq \mathring{B}(0, \varepsilon_i \norm{T}).
+  \]
+  Sledi $\eta_i \le \varepsilon_i \norm{T}$ in zaporedje $\eta_i$ konvergira k
+  $0$.
+  Po predpostavki je $y \in \mathring{B}(0,\eta_i) \subseteq
+  \cl{T(\mathring{B}(0, \varepsilon_0))}$.
+  Po definiciji zaprtja $\eta_1$-okolica za $y$ seka $T(\mathring{B}(0,
+  \varepsilon_0))$, torej obstaja $x_0 \in X$, da je $\norm{x_0} <
+  \varepsilon_0$ in $\norm{y - Tx_0} < \eta_1$.
+  Sedaj velja $y - Tx_0 \in \mathring{B}(0, \eta_1) \subseteq
+  \cl{T(\mathring{B}(0, \varepsilon_1))}$, in spet po definiciji zaprtja
+  $\eta_2$-okolica za $y - Tx_0$ seka $\cl{T(\mathring{B}(0, \varepsilon_1))}$,
+  torej obstaja $x_1 \in X$ z $\norm{x_1} < \varepsilon_1$ ter $\norm{y - Tx_0 -
+	Tx_1} < \eta_2$.
+
+  Postopek ponavljamo, s čimer dobimo zaporedje $(x_n)_n$, za katerega velja
+  $\norm{x_n} < \varepsilon_n$ ter $\norm{y - T(x_1 + \cdots + x_n)} < \eta_{n+1}$.
+  Ker je $\sum \norm{x_n} < \sum \varepsilon_n < \infty$, vrsta $\sum x_n$
+  konvergira absolutno in zato v Banachovem prostoru $X$ konvergira proti nekemu
+  vektorju $x$.
+  Ker je $T$ omejen operator, konvergira tudi vrsta $\sum T x_n$ in velja $Tx =
+  \sum T x_n$.
+  To mora biti enako $y$, saj $\eta_i \to 0$.
+  Dodatno je $\norm{x} \le \sum \norm{x_n} < 2 \varepsilon_0 = \varepsilon$,
+  torej je $T(\mathring{B}(0, \varepsilon))$ okolica za $0$.
+
+  Če pa $U$ ni take oblike, obstaja $\varepsilon > 0$, da je $\mathring{B}(0,
+  \varepsilon) \subseteq U$, in po ravno dokazanem $T$-slike te množice vsebuje
+  odprto kroglo okoli $0$.
+  Zato jo vsebuje tudi $TU$.
+
+  V zadnjem koraku dokažimo, da je slika odprte $U \subseteq X$ odprta v $Y$.
+  Naj bo $y \in TU$.
+  Obstaja $x \in U$, da je $y = Tx$, torej je $V = U - x$ odprta okolica za $0$
+  in je po prejšnjem koraku $TV$ okolica za $0$ v $Y$.
+  Potem je $TU = TV + Tx$ okolica za $y$.
 \end{proof}
 
-% LocalWords:  Bairovega Banchovima Bairovem
+\begin{posledica}
+  Naj bo $T$ omejen linearen bijektiven operator med Banachovima prostoroma.
+  Potem je njegov inverz tudi omejen.
+\end{posledica}
+
+\begin{posledica}
+  Naj bo $X$ vektorski prostor in $\norm{\cdot}_1, \norm{\cdot}_2$ dve normi na
+  $X$, za kateri je $X$ Banachov prostor.
+  Potem sta normi bodisi ekvivalentni bodisi neprimerljivi.
+\end{posledica}
+
+\begin{proof}
+  Če je $\norm{x}_1 \le c_1 \norm{x_2}$, je identiteta $I: (X, \norm{\cdot}_2)
+  \to (X, \norm{\cdot}_1)$ omejena, in je njen inverz tudi omejen.
+\end{proof}
+
+% LocalWords:  Bairovega Bairovem Banachovima
