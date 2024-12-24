@@ -228,4 +228,148 @@
   \end{itemize}
 \end{proof}
 
+\begin{theorem}
+  If $G$ is a graph with $n(G) \ge 3$, then the following statements are
+  equivalent:
+  \begin{itemize}
+  \item $G$ is $2$-connected,
+  \item $G$ is connected and there is no cut vertex,
+  \item for every $u,v \in V(G)$, there are at least two internally disjoint
+	$u,v$-paths,
+  \item for every $u,v \in V(G)$, there is a cycle through $u$ and $v$,
+  \item $\delta(G) \ge 1$ and, for every two edges $e_1, e_2$ there is a cycle
+	containing $e_1$ and $e_2$.
+  \end{itemize}
+\end{theorem}
+
+\begin{proof}
+  We already know the first four statements are equivalent.
+  Suppose $G$ is $2$-connected.
+  Take edges $e, f \in E(G)$ and label $e = uv, f = u'v'$.
+  Now add two vertices $w, w'$ to $G$, $w$ connected to $u$ and $v$, and $w'$
+  connected to $u'$ and $v'$.
+  Let $G'$ be the resulting graph.
+  By the expansion lemma, $G'$ is $2$-connected, and satisfies the fourth
+  condition, so there is a cycle though $w$ and $w'$.
+  This cycle must contain all the new edges and the vertices $u,v,u'v'$.
+  We can now replace the added edges with $e$ and $f$.
+
+  Conversely, take vertices $u,v \in V(G)$.
+  Now let $e = uu'$ and $f = vv'$ be two different edges.
+  There is a cycle though $e$ and $f$ by assumption, so there is a cycle though
+  $u$ and $v$.
+\end{proof}
+
+\begin{proposition}[subdivision lemma]
+  Suppose $G'$ is obtained from $G$ by subdividing an edge $uv \in E(G)$ with a
+  vertex $w$.
+  Then $G$ is $2$-connected if and only if $G'$ is $2$-connected.
+\end{proposition}
+
+\begin{proof}
+  Left to right:
+  Consider two vertices $x, y \in V(G')$.
+  If neither is equal to $w$, then we can take the cycle though $xy$
+  in $G$.
+  If it contains $uv$, we can replace it with the path $uwv$.
+  If one of the vertices $x,y$ is $w$, then we find a cycle through $u$
+  and $v$, and subdivide the edge.
+
+  Right to left:
+  Any cycle in $G'$ that contains $w$ must also contain $u$ and $v$.
+\end{proof}
+
+\podnaslov{Ear decomposition of a graph}
+
+\begin{definition}
+  In a graph $G$, a path $P$ is an \pojem{(open) ear} if all internal vertices
+  of $P$ are of degree $2$ in $G$, and for the end vertices of the path, the
+  degree is at least $3$.
+\end{definition}
+
+\begin{definition}
+  An \pojem{(open) ear decomposition} of $G$ is a sequence $P_0, P_1, \ldots,
+  P_k$, where $P_0$ is a cycle in $G$, and every other $P_i$ is an ear in the
+  graph $G_i := P_0 \cup P_1 \cup \ldots \cup P_i$.
+  We also require $G_k = G$.
+\end{definition}
+
+\begin{theorem}
+  A graph $G$ is $2$-connected if and only if it has an ear decomposition.
+\end{theorem}
+
+\begin{proof}
+  Right to left:
+  We will prove that $G_i$ is $2$-connected for every $i$ by induction.
+  For $i=0$, we know that a cycle is $2$-connected.
+  For the induction step, let $u,v$ be the endpoints of $P_{i+1}$.
+  Add an edge $uv$ to $G_i$.
+  It is still $2$-connected, as adding an edge cannot decrease connectivity.
+  Now we can repeatedly subdivide this edge, and the resulting graph is still
+  $2$-connected by the subdivision lemma.
+
+  Left to right:
+  Since $G$ is $2$-connected, there exists a cycle $C$, which we can take as
+  $P_0$.
+  We will construct the decomposition inductively.
+  If $G_i$ is obtained from $P_0$ by adding the ears $P_1, \ldots, P_i$, then:
+  \begin{itemize}
+  \item If $G = G_i$, we're done.
+  \item If $G_i$ is not an induced subgraph of $G$, we may add an edge from
+	$E(G) \setminus E(G_i)$ with both endpoints in $V(G_i)$.
+	This is a valid ear (as since $G_i$ is $2$-connected, $\delta(G_i) \ge 2$),
+	so we can continue the decomposition.
+  \item If $G_i$ is an induced subgraph of $G$, then there exists a vertex $v
+	\in V(G) \setminus V(G_i)$ which is connected to a vertex $u \in V(G_i)$.
+	Since $G$ is $2$-connected, there is a cycle $C$ though the edge $uv$ and
+	some other edge $f \in E(G_i)$.
+	Let $u'$ be the first vertex on this cycle which is in $G_i$ on a $u \to v
+	\to \cdots$ path.
+	We can add this path between $u$ and $u'$ as $P_{i+1}$.
+	\qedhere
+  \end{itemize}
+\end{proof}
+
+\begin{proposition}
+  A graph $G$ is $2$-edge-connected if and only if $G$ is connected and there is
+  no cut edge in $G$.
+\end{proposition}
+
+\begin{definition}
+  A \pojem{closed ear} in a graph $G$ is a cycle for which all but one vertex
+  has degree $2$, and the exception has degree at least $4$.
+\end{definition}
+
+\begin{definition}
+  A \pojem{closed ear decomposition} of $G$ is a sequence $P_0, P_1, \ldots,
+  P_k$ such that $P_0$ is a cycle and $P_i$ is either an open or closed ear in
+  $G_i = P_0 \cup P_1 \cup \ldots \cup P_i$ for all $i \ge 1$.
+\end{definition}
+
+\begin{theorem}
+  A graph $G$ is $2$-edge-connected if any only if it has a closed ear decomposition.
+\end{theorem}
+
+\begin{proof}
+  Right to left:
+  Since $P_0$ is a cycle, it is $2$-edge-connected.
+  If $G_i$ is $2$-edge-connected, so is $G_{i+1}$:
+  Take any edge $uv \in E(G_{i+1})$.
+  If $uv \in E(G_i)$, then it is part of a cycle in $G_i$.
+  If $uv \in E(P_{i+1})$, then either $P_{i+1}$ is a closed ear, so a cycle
+  containing $uv$, or it is an open ear between some vertices $x,y$, in which
+  case there is an $x,y$-path in $G_i$, which forms a cycle with $P_{i+1}$.
+
+  Left to right:
+  Start the closed ear decomposition with a cycle $P_0$, and build inductively.
+  If $G_i$ is not an induced subgraph of $G$, then we can add edges with open
+  ears.
+  If it is, then let $v$ be a vertex in $V(G) \setminus V(G_i)$ connected to a
+  vertex $u \in V(G_i)$.
+  We know $uv$ is in a cycle in $G$.
+  If $u$ is the only vertex of the cycle in $G_i$, then we can add it as a
+  closed ear.
+  Otherwise, we can add it as an open ear as in the previous theorem.
+\end{proof}
+
 % LocalWords:  Harary
