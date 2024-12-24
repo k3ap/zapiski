@@ -1,0 +1,66 @@
+\naslov{Normirani prostori}
+
+Vektorski prostor $X$ nad poljem $\F \in \{\R, \C\}$ je \pojem{normiran}, če ima
+definirano normo, torej preslikavo $\norm{\cdot}: X \to \zo{0, \infty}$ z
+naslednjimi lastnostmi:
+\begin{itemize}
+\item $\norm{x} = 0 \iff x = 0$ za vsak $x \in X$,
+\item $\norm{\lambda x} = \abs{\lambda} x$ za vsak $\lambda \in \F$ in $x \in
+  X$,
+\item $\norm{x+y} \le \norm{x} + \norm{y}$ za vsaka $x, y \in \F$.
+\end{itemize}
+Prostor je \pojem{Banachov}, če je normiran in poln za metriko, porojeno z
+normo, $d(x,y) = \norm{x-y}$.
+
+Poznamo nekaj standardnih primerov normiranih prostorov:
+\begin{itemize}
+\item Za $1 \le p < \infty$ je
+  \[
+	l^p = \left\{ (x_n)_n \in \C^\N \such \sum_{n \in \N} \abs{x_n}^p < \infty
+	\right\},
+  \]
+  opremljen z normo
+  \[
+	\norm{(x_n)_n}_p = \left( \sum_{n \in \N} \abs{x_n}^p \right)^p
+  \]
+  Banachov prostor.
+\item Prostor
+  \[
+	l^\infty = \left\{ (x_n)_n \in \C^\N \such \sup_n \abs{x_n} < \infty \right\},
+  \]
+  opremljen z normo
+  \[
+	\norm{(x_n)_n}_\infty = \sup_n \abs{x_n},
+  \]
+  Banachov prostor.
+\end{itemize}
+
+Pri dokazovanju dejstev o $l^p$ prostorih prideta prav sledeči neenakosti.
+
+\begin{trditev}[Hölderjeva neenakost]
+  Če za $1 < p, q < \infty$ velja $p^{-1} + q^{-1} = 1$, potem za poljubna $x
+  \in l^p$ ter $y \in l^q$ velja
+  \[
+	\sum_{n=1}^\infty \abs{x_n y_n} \le \norm{x}_p \norm{y}_q.
+  \]
+\end{trditev}
+
+\begin{trditev}[Minkowski]
+  Če je $1 \le p < \infty$ ter $x, y \in l^p$, potem velja $\norm{x+y}_p =
+  \norm{x}_p + \norm{y}_p$.
+\end{trditev}
+
+Slednja trditev je seveda le trikotniška neenakost za $\norm{\cdot}_p$.
+Ker med drugim obravnavamo Banachove prostore, marsikaj delamo z zaporedji, in
+se je vredno spomniti naslednjega dejstva iz topologije: (topološki) podprostor
+je zaprt natanko tedaj, ko ima vsako konvergentno zaporedje z elementi iz tega
+podprostora tudi limito v tem podprostoru.
+Iz tega lahko enostavno pokažemo naslednjo trditev.
+
+\begin{trditev}
+  Naj bo $Y$ vektorski podprostor v normiranem prostoru $X$.
+  Če je $Y$ poln, je zaprt v $X$.
+  Če je $X$ Banachov, je $Y$ Banachov natanko tedaj, ko je zaprt v $X$.
+\end{trditev}
+
+% LocalWords:  Hölderjeva Minkowski Banachove

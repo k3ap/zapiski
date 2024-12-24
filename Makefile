@@ -1,5 +1,5 @@
 predmeti := moderna-fizika uvod-v-funkcionalno-analizo teorija-izracunljivosti teorija-grafov statistika-2
-ksl := moderna-fizika
+ksl := moderna-fizika uvod-v-funkcionalno-analizo
 
 latex-cmd := lualatex --shell-escape
 
