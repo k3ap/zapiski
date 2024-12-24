@@ -377,4 +377,69 @@ definitnih matrik $A: (\mathcal{P}_n)_n \to \R^{r \times r}$, je to
   \]
 \end{izrek}
 
-% LocalWords:  Borelova Sluckem replikacije Borelove
+\podnaslov{Konstrukcija cenilk}
+
+Obravnavamo neodvisne in enako porazdeljene slučajne spremenljivke $X$, s
+pripadajočim modelom, parametriziranim z $\Theta \odpp\R^d$.
+Privzemimo, da obstajajo momenti $\mu_j = \mu_j(\theta) = e_j(\theta) =
+E_\theta(X^j)$ za $1 \le j \le d$, in da je funkcija $e = (e_1, \ldots, e_d):
+\Theta \to \R^d$ obrnljiva z inverzom $g: \im e \to \Theta$.
+Za momente imamo standardne cenilke
+\[
+  \hat{\mu}_j = \inv{n} \sum_{i=1}^n X_k^j,
+\]
+ki so krepko dosledne cenilke za momente po krepkem zakonu velikih števil.
+Če je $g$ zvezna, je $g(\hat{\mu}_1, \ldots, \hat{\mu}_d)$ tudi krepko dosledna
+cenilka za $\theta$.
+
+Dodatno privzemimo obstoj momentov $E_\theta(X^j)$ za $j \le 2d$.
+Vektorji $(X_i, X_i^2, \ldots, X_i^d)$ so neodvisni in enako porazdeljeni s
+pričakovano vrednostjo $(\mu_1, \ldots, \mu_d)$ in variančno matriko $\Sigma =
+[\mu_{k+l} - \mu_k \mu_l]_{k,l}$.
+Privzemimo, da je $\Sigma$ neizrojena, da po CLI velja
+\[
+  \sqrt{n} \left( (\hat{\mu}_1, \ldots, \hat{\mu}_d) - (\mu_1, \ldots, \mu_d)
+  \right)
+  \xrightarrow[n \to \infty]{d} N(0, \Sigma).
+\]
+Če je $g$ diferenciabilna, potem
+\[
+  \sqrt{n} \left( g(\hat{\mu}_1, \ldots, \hat{\mu}_d) - g(\mu_1, \ldots, \mu_d)
+  \right)
+  \xrightarrow[n \to \infty]{d} N(0, Dg(\mu) \Sigma Dg^T(\mu)).
+\]
+To pomeni, da je $g(\hat{\mu}_1, \ldots, \hat{\mu}_d)$ asimptotično normalno
+zaporedje cenilk.
+
+Alternativno lahko poiščemo cenilko po metodi največjega verjetja.
+Naj bo $X: \Omega \to \R^m$ proučevani slučajni vektor z modelom,
+parametriziranim z odprto množico $\Theta \subseteq \R^d$.
+Privzemimo gostote $f(\cdot, \theta)$, da je
+\[
+  P_\theta(X \in B) = \int_B f(x, \theta) d\nu(x).
+\]
+Tu je $\nu$ neka $\sigma$-končna mera, ki dominira model $\{P_\theta \such
+\theta \in \Theta\} \ll \nu$.
+Funkciji $L: \R^n \times \Theta \to \zo{0, \infty}$, definirani z $L(x, \theta)
+= f(x, \theta)$, pravimo \pojem{verjetje}.
+Če za dano realizacijo $x$ vektorja $X$ obstaja $\hat{\theta} \in \R^d$, za
+katerega je $L(x, \hat{\theta})$ maksimum vrednosti $\{L(x, \theta) \such \theta
+\in \cl{\Theta}\}$, mu pravimo \pojem{ocena po MNV} za $x$.
+Če $\hat{\theta} = \hat{\theta}(x)$ obstaja za $\nu$-skoraj vse $x$, funkciji
+$\hat{\theta}: \R^d \to \cl{\Theta}$ pravimo \pojem{cenilka največjega verjetja
+  za $\theta$}.
+
+\begin{trditev}
+  Če obstaja enolična $\hat{\theta}$ in je $T: \R^n \to \R^m$ zadostna
+  statistika, velja $\hat{\theta}(x) = \hat{\theta}(Tx)$.
+\end{trditev}
+
+\begin{proof}
+  Po Fisher-Neymannu je $f(x, \theta) = g(Tx, \theta) h(x)$.
+  Brez škode za splošnost je $h(x) > 0$, sicer $\hat{\theta}$ ni enolična.
+  Maksimizacija se reducira na maksimizacijo funkcije $\theta \mapsto g(Tx,
+  \theta)$.
+\end{proof}
+
+% LocalWords:  Borelova Sluckem replikacije Borelove parametriziranim MNV
+% LocalWords:  Fisher-Neymannu
