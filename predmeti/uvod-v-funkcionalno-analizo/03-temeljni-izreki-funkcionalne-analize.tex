@@ -6,6 +6,45 @@
   Tedaj je presek $\bigcap_n U_n$ gost v $X$.
 \end{izrek}
 
+\begin{proof}
+  Dokazujemo, da za vsak $x \in X$ obstaja $r > 0$, da je presek
+  \[
+	\mathring{B}(x, r) \cap \bigcap_{n \in \N} U_n \ne \varnothing.
+  \]
+  Naj bosta $x \in X$ ter $r > 0$ poljubna.
+  Induktivno bomo konstruirali zaporedji $(x_n)_n$ in $(r_n)_n$ z naslednjimi
+  lastnostmi:
+  \begin{itemize}
+  \item $B(x_{n+1}, r_{n+1}) \subseteq U_n \cap \mathring{B}(x_n, r_n)$,
+  \item $r_n \le \nicefrac{1}{n}$.
+  \end{itemize}
+  Postavimo $x_1 = x$ in $r_1 = \min\{1, r\}$.
+  Recimo, da smo že konstruirali zaporedji do $n$-tega člena.
+  Ker je $U_n$ gosta odprta množica, je $U_n \cap \mathring{B}(x_n, r_n)$
+  neprazna odprta množica, zato obstajata $r_{n+1} \le \nicefrac{1}{n+1}$ in
+  $x_{n+1}$, da je $\mathring{B}(x_{n+1}, 2r_{n+1}) \subseteq U_n \cap
+  \mathring{B}(x_n, r_n)$.
+  Prva lastnost sedaj velja, ker je $B(x_{n+1}, r_{n+1}) \subseteq
+  \mathring{B}(x_{n+1}, 2 r_{n+1})$.
+
+  S tem smo konstruirali želeni zaporedji.
+  Ker je
+  \[
+	x_n \in B(x_n, r_n) \subseteq U_{n-1} \cap \mathring{B}(x_{n-1}, r_{n-1})
+	\subseteq \mathring{B}(x_{n-1}, r_{n-1}) \subseteq \mathring{B}(x_m, r_m)
+  \]
+  za $m < n$, je $d(x_m, x_n) \le r_m \le \nicefrac{1}{m}$.
+  Torej je zaporedje Cauchyjevo in obstaja limita $x_0$ v $X$.
+  Velja
+  \[
+	x_0 \in \bigcap_{n \in \N} B(x_{n+1}, r_{n+1})
+	\subseteq \bigcap_{n \in \N} U_n \cap \mathring{B}(x_n, r_n)
+	\subseteq \mathring{B}(x_1, r_1) \cap \bigcap_{n \in \N} U_n
+	= \mathring{B}(x, r) \cap \bigcap_{n \in \N} U_n,
+  \]
+  s čimer je dokaz zaključen.
+\end{proof}
+
 \begin{posledica}
   Naj bo $X$ poln metrični prostor in $(A_n)_n$ zaporedje zaprtih množic, da je
   $X = \bigcup_n A_n$.
@@ -18,3 +57,156 @@
   Potem je $\bigcap_j A_j\complement$ gost, torej $\bigcup_j A_j = \left(
 	\bigcap_j A_j\complement \right)\complement \ne X$.
 \end{proof}
+
+Naj bosta $X$ in $Y$ normirana prostora ter $\mathcal{F} \subseteq B(X,Y)$.
+Recimo, da obstaja $M \ge 0$, za katerega je $\norm{T} \le M$ za vse $T \in
+\mathcal{F}$.
+Tedaj za vsak $x \in X$ velja
+\[
+  \norm{Tx} \le \norm{T} \norm{x} \le M \norm{x},
+\]
+oziroma $\mathcal{F}x \subseteq B(0, M \norm{x})$.
+Pravimo, da je $\mathcal{F}$ \pojem{omejena po točkah}.
+
+\begin{izrek}[princip enakomerne omejenosti]
+  Naj bo $X$ Banachov in $Y$ normiran prostor.
+  Naj bo $\mathcal{F} \subseteq B(X,Y)$ po točkah omejena družina.
+  Potem je kot množica operatorjev enakomerno omejena v $B(X,Y)$.
+\end{izrek}
+
+\begin{proof}
+  Definiramo
+  \[
+	A_n = \{ x \in X \such \forall T \in \mathcal{F} . \norm{Tx} \le n \}
+	= \bigcap_{T \in \mathcal{F}} f_T^{-1}([0,n])
+  \]
+  za $f_T(x) = \norm{Tx}$.
+  Ker je $A_n$ presek zaprtih množic, je zaprt.
+  Ker je $\mathcal{F}$ omejena po točkah, za poljuben $x \in X$ obstaja $m \in
+  \N$, da je $\norm{Tx} \le m$ za poljuben $T \in \mathcal{F}$, oziroma $x \in
+  A_m$.
+  Torej je $X$ enak uniji množic $A_n$, in po posledici Bairovega izreka obstaja
+  tak $n_0 \in \N$, da ima $A_{n_0}$ notranjo točko, in posledično vsebuje
+  odprto kroglo $\mathring{B}(x_0, r)$.
+
+  Izberimo poljuben $x \in B(0,1)$ ter definirajmo $y = x_0 + \frac{r}{2} x$.
+  Velja $y \in \mathring{B}(x_0, r)$, torej je $\norm{Ty} \le n_0$ za poljuben
+  $T \in \mathcal{F}$.
+  Sledi
+  \[
+	\norm{Tx} = \norm{T \frac{2y - x_0}{r}}
+	\le \frac{2}{r} \norm{Ty} + \inv{r} \norm{T x_0}
+	\le \frac{2}{r} n_0 + \inv{r} \norm{T x_0}
+	=: M.
+  \]
+  Torej je $\norm{T} \le M$ za vsak $T \in \mathcal{F}$.
+\end{proof}
+
+\begin{izrek}[o šibki omejenosti]
+  Naj bo $A \subseteq X$ podmnožica normiranega prostora $X$.
+  Potem je $A$ omejena v $X$ natanko tedaj, ko je za vsak $f \in X^*$ množica
+  $\{f(x) \such x \in A\}$ omejena v $\F$.
+\end{izrek}
+
+\begin{proof}
+  V desno:
+  Ker je $A$ omejena, obstaja $M$, da je $\norm{x} \le M$ za vsak $x \in A$.
+  Potem je $\abs{f(x)} \le \norm{f} \norm{x} \le M \norm{f}$ za $f \in X^*$.
+
+  V levo:
+  Oglejmo si vložitev v drugi dual, $i(x) = \hat{x}$.
+  Množica $\{f(x) \such x \in A\}$ je omejena natanko tedaj, ko je omejena
+  množica $\{\hat{x}(f) \such \hat{x} \in i(A)\}$, ker pa je $i(A)$ omejena po
+  točkah, je po principu enakomerne omejenosti $i(A)$ tudi enakomerno omejena,
+  torej obstaja $M \ge 0$, da je $\norm{x} = \norm{\hat{x}} \le M$ za vse $x \in
+  A$.
+\end{proof}
+
+\begin{posledica}
+  Naj bo $X$ Banachov prostor in $Y$ normiran prostor.
+  Naj bo $A \subseteq B(X,Y)$ taka, da za vsak $f \in Y^*$ in vsak $x \in X$
+  obstaja $M_{f,x} \ge 0$, da je $\abs{f(Tx)} \le M_{f,x}$ za vsak $T \in A$.
+  Tedaj je $A$ omejena.
+\end{posledica}
+
+\begin{proof}
+  Po izreku o šibki omejenosti je množica $\{Ty \such T \in A\}$ omejena v $Y$.
+  Torej je $A$ omejena po točkah, ker pa je $X$ Banachov, je $A$ omejena po
+  principu enakomerne omejenosti.
+\end{proof}
+
+\begin{lema}
+  Naj bo $X$ Banachov prostor in $(x_n)_n$ zaporedje vektorjev, za katere velja
+  $\sum \norm{x_n} < \infty$.
+  Tedaj vrsta $\sum x_n$ konvergira v $X$.
+\end{lema}
+
+\begin{proof}
+  Označimo $s_n = \sum_{i=1}^n x_i$.
+  Za $n > m$ velja
+  \[
+	\norm{s_n - s_m} = \norm{x_n + x_{n-1} + \cdots + x_{m+1}}
+	\le \norm{x_{m+1}} + \cdots + \norm{x_n}
+	\le \sum_{k \ge m} \norm{x_k}
+	\xrightarrow[m \to \infty]{} 0.
+  \]
+  Torej je zaporedje $(s_n)_n$ Cauchyjevo in zato konvergentno.
+\end{proof}
+
+\begin{izrek}[o odprti preslikavi]
+  Naj bo $T$ omejen surjektiven linearen operator med Banchovima prostoroma $X$
+  in $Y$.
+  Tedaj je $T$ odprta preslikava.
+\end{izrek}
+
+\begin{proof}
+  Dokaz poteka v štirih korakih.
+  V prvem koraku dokažimo, da če odprta podmnožica $U \subseteq X$ vsebuje $0$,
+  ima $\cl{T(U)}$ notranjo točko.
+  Ker je $U$ odprta, obstaja $\delta > 0$, da je
+  \[
+	\delta \mathring{B}(0, 1) = \mathring{B}(0,\delta) \subseteq U.
+  \]
+  Poljuben $x \in X$ je v
+  \[
+	x \in 2 \norm{x} \mathring{B}(0,1)
+	= \frac{2 \norm{x}}{\delta} \delta \mathring{B}(0,1) \subseteq m U
+  \]
+  za $m \ge \frac{2 \norm{x}}{\delta}$, torej je
+  \[
+	X \subseteq \bigcup_{n \in \N} n U.
+  \]
+  Velja
+  \[
+	Y = TX = \bigcup_{n \in \N} T(n U)
+	= \bigcup_{n \in \N} \cl{T(n U)}
+  \]
+  in po Bairovem izreku obstaja $n_0$, da ima $\cl{T(n_0 U)}$ notranjo točko.
+  Množenje s skalarjem je homeomorfizem, zato velja $\cl{T(n_0 U)} = n_0
+  \cl{TU}$ in ima tudi $\cl{TU}$ notranjo točko.
+
+  V drugem koraku pokažimo, da je ob isti predpostavki točka $0$ notranja za
+  $\cl{TU}$.
+  Ker je $U$ odprta v $X$, obstaja $\mathring{B}(0,\varepsilon) \subseteq U$.
+  Vzemimo $V = \mathring{B}(0, \nicefrac{\varepsilon}{2})$.
+  Potem je množica $V - V \subseteq \mathring{B}(0, \varepsilon)$, kjer smo
+  vzeli definicijo
+  \[
+	A - B := \{ a - b \such a \in A, b \in B \}.
+  \]
+  Po dokazanem v prvem koraku ima $\cl{TV}$ notranjo točko, torej obstaja odprta
+  množica $W \subseteq \cl{TV}$.
+  Množica
+  \[
+	\bigcup_{w \in W} (W - \{w\}) = W - W
+	\subseteq \cl{TV} - \cl{TV}
+	\subseteq \cl{TV - TV}
+	= \cl{T(V - V)}
+	\subseteq \cl{TU}
+  \]
+  je unija odprtih množic in vsebuje $0$.
+  Druga vključitev zgoraj velja, ker je funkcija $m: Y \times Y \to Y$, $m(y_1,
+  y_2) = y_1 - y_2$, zvezna.
+\end{proof}
+
+% LocalWords:  Bairovega Banchovima Bairovem
