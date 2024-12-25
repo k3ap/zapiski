@@ -372,4 +372,138 @@
   Otherwise, we can add it as an open ear as in the previous theorem.
 \end{proof}
 
-% LocalWords:  Harary
+\begin{definition}
+  A \pojem{strong orientation} of an undirected graph $G$ is a digraph $\vec{G}$
+  which is strongly connected, and which you get from choosing an orientation
+  for each edge in $G$.
+\end{definition}
+
+\begin{theorem}[Robbins]
+  An undirected graph $G$ has a strong orientation if and only if it is
+  $2$-edge-connected.
+\end{theorem}
+
+\begin{proof}
+  Left to right:
+  Suppose that $G$ is not $2$-edge-connected, and consider two cases.
+  \begin{itemize}
+  \item If $G$ is not connected, then there can be no strong orientation.
+  \item If $G$ has a cut edge $e = xy$, then for whatever orientation of $e$ we
+	choose, there is no path between those vertices in the opposite direction.
+  \end{itemize}
+
+  Right to left:
+  If $G$ is $2$-edge-connected, then we have a closed ear decomposition $P_0,
+  \ldots, P_k$.
+  We can orient the edges in $P_0$ consistently to get a strongly connected
+  graph.
+  Whenever you add an ear (open or closed) to $\vec{G}_i$, orient the new edges
+  consistently.
+  You can show via simple casework that the new digraph is still strongly
+  connected.
+\end{proof}
+
+\podnaslov{$x,y$-cuts}
+
+\begin{definition}
+  If $x$ and $y$ are nonadjacent vertices in the graph $G$, then $S \subseteq
+  V(G)$ is an \pojem{$x,y$-cut} if $x$ and $y$ belong to different components in
+  $G - S$.
+  We label the minimum size of an $x,y$-cut in $G$ with $\kappa_G(x,y)$.
+\end{definition}
+
+\begin{definition}
+  The maximum number of internally vertex-disjoint $x,y$-paths in a graph $G$ is
+  labeled with $\lambda_G(x,y)$.
+\end{definition}
+
+\begin{theorem}[Menger's theorem for vertex cuts]
+  If $x$ and $y$ are nonadjacent vertices in $G$, then $\kappa_G(x,y) =
+  \lambda_G(x,y)$.
+\end{theorem}
+
+\begin{proof}
+  Denote $\kappa = \kappa_G(x,y)$ and $\lambda = \lambda_G(x,y)$.
+  We have $\lambda \le \kappa$ since, if there are $\lambda$ internally
+  vertex-disjoint $x,y$-paths in $G$, we have to remove at least $\lambda$
+  vertices to separate $x$ and $y$, one on each path.
+
+  For the other direction, use induction on $n(G)$.
+  If $n(G) = 2$, since $x$ and $y$ are not connected, they must be isolated, so
+  $\kappa = \lambda$.
+  For the induction step, consider two cases.
+  In the first case, if there is a minimum $x,y$-cut in $S$ such that $S \ne
+  N(x)$ and $S \ne N(y)$, then at least one neighbour of $x$ is not in $S$ (as
+  $N(x)$ is an $x,y$-cut and $S$ is minimal).
+  The same holds for $y$.
+
+  Consider $x,S$-paths (paths from $x$ to a vertex in $S$ which only hit $S$ in
+  one vertex).
+  Let $V_1$ be the union of the vertex sets of all these paths, and let $V_2$ be
+  the union of the vertex sets of all $y,S$-paths.
+  We will prove that $V_1 \cap V_2 = S$.
+  Let $X_1$ be the component of $G-S$ which includes $x$, and let $X_2$ be the
+  component of $G-S$ which includes $y$.
+  Note that every vertex in $S$ must be adjacent to a vertex in $X_1$ and to a
+  vertex in $X_2$, as otherwise we could remove the offending vertex from $S$
+  and get a smaller vertex cut.
+
+  Suppose that $w \in V_1 \cap V_2 \setminus S$.
+  Then we have an $x,w$-path which does not intersect $S$, and an $y,w$-path
+  which does not intersect $S$.
+  This can't happen as $S$ is a cut set, so $V_1 \cap V_2 \subseteq S$.
+  The other inclusion clearly holds.
+  As we've noted before, there is a neighbour of $x$ not in $S$, so $\abs{V_1
+	\setminus S} \ge 2$ and similarly $\abs{V_2 \setminus S} \ge 2$.
+
+  Let
+  \[
+	G_1 = G[V_1] \cup (\text{a vertex $y'$ adjacent to every vertex of $S$}).
+  \]
+  We know $n(G_1) < n(G)$.
+  It is easy to prove that $S$ is a minimum $x,y'$-cut in $G_1$, so
+  $\kappa_{G_1}(x,y') = \kappa_G(x,y) = \kappa$, but by the induction
+  hypothesis, $\lambda_{G_1}(x,y') = \kappa_{G_1}(x,y')$.
+  So we have $\kappa$ internally vertex-disjoint $x,y'$-paths in $G_1$.
+  We can similarly define $G_2$ as $G[V_2]$ with an added vertex $x'$, adjacent
+  to every vertex of $S$, and find $\kappa$ internally vertex-disjoint
+  $x',y$-paths.
+  This allows us to construct $\kappa$ internally vertex-disjoint $x,y$-paths in
+  $G$ by just connecting the $G_1$ and $G_2$ paths which share a common vertex
+  in $S$.
+
+  This concludes the first case, now consider the case where all minimum
+  $x,y$-cuts are either $N(x)$ or $N(y)$.
+  Consider three subcases.
+  \begin{itemize}
+  \item If there is a vertex $v \in N(x) \cap N(y)$, then $\kappa_{G - v}(x,y) =
+	\kappa-1$ and we can use the induction hypothesis for $G-v$.
+  \item If there is a vertex $v \notin N[x] \cup N[y]$, then $v$ does not belong
+	to any minimum $x,y$-cuts, so $\kappa_{G-v}(x,y) = \kappa_G(x,y) = \kappa$.
+	We can again use the induction hypothesis on $G-v$.
+  \item If neither of the above hold, then $V(G) = N[x] \cup N[y]$ and $N[x]
+	\cap N[y] = \varnothing$.
+	Let $F$ be the bipartite graph obtained by taking $V(F) = N(x) \cup N(y)$
+	and $E(F) = E(N(x), N(y))$.
+	We may find an $x,y$-path by taking an edge in $F$ and connecting $x$ and
+	$y$ to the endpoints.
+	If we have a matching in $F$, we can use it to construct that many
+	internally vertex-disjoint paths, so $\lambda \ge \alpha'(F)$.
+	To find an $x,y$-cut in $G$, we must remove all edges in $F$, so we need a
+	vertex cover $T$ of $F$.
+	By König's theorem, $\beta(F) = \alpha'(F)$, so $\kappa \le \beta(F) =
+	\alpha'(F) \le \lambda$, which is what we were trying to prove.
+	\qedhere
+  \end{itemize}
+\end{proof}
+
+\begin{definition}
+  For two vertices $x,y$ of $G$, a set $R \subseteq E(G)$ is an
+  \pojem{$x,y$-edge cut} if $G-R$ is disconnected and $x,y$ belong to different
+  components of $G-R$.
+  We denote the minimum size of an $x,y$-edge cut in $G$ by $\kappa_G'(x,y)$.
+  We also define $\lambda_G'(x,y)$ to be the maximum number of edge-disjoint
+  $x,y$-paths in $G$.
+\end{definition}
+
+% LocalWords:  Harary Menger's König's
