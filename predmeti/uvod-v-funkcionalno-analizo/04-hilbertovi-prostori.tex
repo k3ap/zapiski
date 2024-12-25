@@ -1,0 +1,34 @@
+\naslov{Hilbertovi prostori}
+
+Omejimo se na primer $\F \in \{\R, \C\}$.
+
+\begin{definicija}
+  Naj bo $X$ vektorski prostor nad $\F$.
+  Preslikava $\sk{\cdot, \cdot} : X \times X \to \F$ je \pojem{skalarni
+	produkt}, če zadošča
+  \begin{itemize}
+  \item $\sk{x,x} \ge 0$ (realno in nenegativno),
+  \item $\sk{x,x} = 0$ natanko tedaj, ko je $x = 0$,
+  \item $\sk{\alpha x + \beta y, z} = \alpha \sk{x,z} + \beta \sk{y,z}$,
+  \item $\sk{x,y} = \konj{\sk{y,x}}$.
+  \end{itemize}
+\end{definicija}
+
+\begin{trditev}[Paralelogramska enakost]
+  Naj bo $X$ prostor s polskalarnim produktom.
+  Za $x, y \in X$ velja
+  \[
+	\norm{x+y}^2 + \norm{x-y}^2 = 2 (\norm{x}^2 + \norm{y}^2).
+  \]
+\end{trditev}
+
+\begin{trditev}
+  Skalarni produkt je zvezna preslikava.
+\end{trditev}
+
+\begin{izrek}[Jordan, von Neumann]
+  Če v normiranem prostoru velja paralelogramska enakost, je norma porojena s
+  skalarnim produktom.
+\end{izrek}
+
+% LocalWords:  polskalarnim von paralelogramska

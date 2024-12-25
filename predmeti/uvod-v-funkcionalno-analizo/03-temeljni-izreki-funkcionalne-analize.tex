@@ -280,4 +280,38 @@ Pravimo, da je $\mathcal{F}$ \pojem{omejena po točkah}.
   \to (X, \norm{\cdot}_1)$ omejena, in je njen inverz tudi omejen.
 \end{proof}
 
+\begin{lema}
+  Naj bosta $X, Y$ normirana prostora in $f: X \to Y$ zvezna preslikava.
+  Tedaj je $\Gamma_f \zapp X \times Y$, če ta produkt opremimo z normo
+  $\norm{(x,y)}_\infty = \max \{\norm{x}, \norm{y}\}$.
+\end{lema}
+
+\begin{proof}
+  Naj gre $(x_n, f(x_n)) \to (x,y)$.
+  Velja $x_n \to x$ in $f(x_n) \to y$, ker pa je $f$ zvezna, tudi $f(x_n) \to
+  f(x)$.
+\end{proof}
+
+\begin{izrek}[o zaprtem grafu]
+  Naj bo $T: X \to Y$ linearna preslikava, $X$ in $Y$ Banachova prostora ter
+  $\Gamma_T$ zaprt v $X \times Y$.
+  Potem je $T$ omejena.
+\end{izrek}
+
+\begin{proof}
+  Graf je zaprt, torej je Banachov.
+  Oglejmo si spodnji diagram.
+  \[\begin{tikzcd}
+	  X & {\Gamma_T} \\
+	  & Y
+	  \arrow["{(x, Tx)}", from=1-1, to=1-2]
+	  \arrow["T"', from=1-1, to=2-2]
+	  \arrow["{\operatorname{pr}_2}", from=1-2, to=2-2]
+	\end{tikzcd}\]
+  Projekcija $\operatorname{pr}_1: \Gamma_T \to X$ je omejena in bijektivna,
+  torej je tudi njen inverz $x \mapsto (x, Tx)$ omejen po posledici izreka o
+  odprti preslikavi.
+  Velja $T = \operatorname{pr}_2 \circ \operatorname{pr}_1^{-1}$.
+\end{proof}
+
 % LocalWords:  Bairovega Bairovem Banachovima
