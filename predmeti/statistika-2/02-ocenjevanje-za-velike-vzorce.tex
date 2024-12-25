@@ -441,5 +441,58 @@ $\hat{\theta}: \R^d \to \cl{\Theta}$ pravimo \pojem{cenilka največjega verjetja
   \theta)$.
 \end{proof}
 
+Naj bo $\mathcal{P}$ parametrični model z gostotami (glede na neko
+$\sigma$-končno mero) $\{f(\cdot, \theta) \such \theta \in \Theta\}$, kjer je
+$\Theta \odpp\R^d$.
+Privzemimo dodatne regularnostne privzetke, med drugim da je množica $S = \{ x
+\such f(x,\theta) > 0 \}$ neodvisna od $\theta$.
+Velja
+\[
+  0 = \partial_{\theta_i} 1
+  = \partial_{\theta_i} \int f(x,\theta) d\nu(x)
+  = \int \frac{\partial(\log f)}{\partial \theta_i} f(x,\theta) d\nu(x)
+  = E_\theta(\partial_{\theta_i}(\log f(X,\theta))).
+\]
+Funkciji
+\[
+  V_\theta(x) = \operatorname{grad}_\theta(\log L)(x, \theta)
+\]
+pravimo \pojem{funkcija zbira}.
+Ker je $E_\theta(V_\theta(X)) = 0$ za vse $\theta$, velja
+\[
+  0 \le \var_\theta(V_\theta(X)) = E_\theta(V_\theta(X) V_\theta(X)^T),
+\]
+to matriko imenujemo \pojem{Fisherjeva informacija} in označimo s $\FI(\theta)$.
+Če zgornje še enkrat odvajamo po $\theta_j$, dobimo
+\[
+  0 = 
+  \int \frac{\partial^2(\log f)}{\partial \theta_i \partial \theta_j} f(x,
+  \theta) d\nu(x)
+  + \int \frac{\partial(\log f)}{\partial \theta_i} \frac{\partial(\log
+	f)}{\partial \theta_j} f(x, \theta) d\nu(x)
+\]
+kar je natanko
+\[
+  \FI(\theta) = -E_\theta(H(\log L)(X, \theta)).
+\]
+
+Če nam gostote $f$ dopuščajo faktorizacijo
+\[
+  f(x,\theta) = h(x) \exp\!\left( -\psi(\theta) + \sk{Q(\theta), T(x)} \right),
+\]
+kjer so $\psi: \Theta \to \R$, $Q: \Theta \to \R^m$, $T: \R^n \to \R^m$ in $h:
+\R^m \to \zo{0, \infty}$ primerne funkcije, potem pravimo, da je model
+\pojem{eksponenten}.
+Pravimo, da je model \pojem{naravno parametriziran}, če je $Q = \id$.
+
+Pod nekaterimi regularnostnimi privzetki lahko zagotovimo obstoj zaporedja
+slučajnih vektorjev $\hat{\theta}^{(n)}$ z naslednjimi lastnostmi:
+\begin{itemize}
+\item verjetnost, da $\hat{\theta}^{(n)}$ reši logaritemsko enačbo verjetja,
+  konvergira k $1$,
+\item zaporedje je dosledno za $\theta$,
+\item velja $\sqrt{n} (\hat{\theta}^{(n)} - \theta) \to N(0, \FI(\theta)^{-1})$.
+\end{itemize}
+
 % LocalWords:  Borelova Sluckem replikacije Borelove parametriziranim MNV
-% LocalWords:  Fisher-Neymannu
+% LocalWords:  Fisher-Neymannu regularnostne Fisherjeva
