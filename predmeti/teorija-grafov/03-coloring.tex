@@ -1,0 +1,22 @@
+\naslov{Coloring}
+
+\begin{remark}
+  In any graph,
+  $\omega(G) \le \chi(G) \le \Delta(G)+1$.
+\end{remark}
+
+\begin{remark}
+  As the color classes are independent sets, the number of vertices in a color
+  class is at most $\alpha(G)$, so
+  \[
+	\chi(G) \ge \frac{n(G)}{\alpha(G)}.
+  \]
+\end{remark}
+
+\begin{theorem}[Welsh-Powel]
+  If $d_1 \ge d_2 \ge \cdots \ge d_n$ is the degree sequence of the vertices of
+  $G$, then
+  \[
+	\chi(G) \le 1 + \max_{i=1, \ldots, n} \{ \min \{d_i, i-1\} \}.
+  \]
+\end{theorem}

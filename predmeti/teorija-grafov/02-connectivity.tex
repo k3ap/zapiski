@@ -506,4 +506,86 @@
   $x,y$-paths in $G$.
 \end{definition}
 
-% LocalWords:  Harary Menger's König's
+\begin{theorem}[Menger's theorem for edge cuts]
+  Let $x,y \in V(G)$.
+  Then $\kappa_G'(x,y) = \lambda_G'(x,y)$.
+\end{theorem}
+
+\begin{proof}
+  Let $G'$ be obtained by adding two vertices to $G$, $u$ and $v$, and edges
+  $xu$ and $yv$.
+  It is easy to see that a $ux,yv$-path in $L(G')$ corresponds to an $x,y$-path
+  in $G$.
+  By Menger's theorem for vertices,
+  \[
+	\lambda_G'(x,y) = \lambda_{L(G')}(ux,yv) = \kappa_{L(G')}(ux,yv).
+  \]
+  Clearly, a vertex cut in $L(G')$ that separates $ux$ and $yv$ corresponds to
+  an edge cut in $G$ that separates $x$ and $y$, which finishes the proof.
+\end{proof}
+
+\begin{lemma}
+  Let $e \in E(G)$.
+  Then $\kappa(G)-1 \le \kappa(G-e) \le \kappa(G)$.
+\end{lemma}
+
+\begin{proof}
+  Clearly $\kappa(G-e) \le \kappa(G)$.
+  Suppose that the strong inequality holds.
+  Then let $S$ be a minimum vertex cut in $G-e$ for $e=xy$, so $\abs{S} =
+  \kappa(G-e)$ and $G-e-S$ is disconnected.
+  Since $\abs{S} < \kappa(G)$, it is not a vertex cut in $G$, so $x$ and $y$
+  belong to different components of $G-e-S$.
+  Let $x$ be in the component $X$ and $y$ in the component $Y$.
+  Consider three cases:
+  \begin{itemize}
+  \item if $\abs{X} \ge 2$, then $S \cup \{x\}$ is a vertex cut in $G$,
+  \item if $\abs{Y} \ge 2$, then $S \cup \{y\}$ is a vertex cut in $G$,
+  \item If $\abs{X} = \abs{Y} = 1$, then $n(G)-2 = \kappa(G-e) = \abs{S}$.
+	We know $\kappa(G) \le n(G)-1$, so $\kappa(G-e) + 1 \ge \kappa(G)$.
+	\qedhere
+  \end{itemize}
+\end{proof}
+
+\begin{theorem}[Menger]
+  In every graph $G$,
+  \begin{alignat*}{2}
+	\kappa'(G) = \min_{x \ne y} \lambda_G'(x,y),
+	& \qquad &
+			   \kappa(G) = \min_{x \ne y} \lambda_G(x,y).
+  \end{alignat*}
+\end{theorem}
+
+\begin{proof}
+  For any $x,y \in V(G)$, if $S$ is an $x,y$-edge-cut, then it is an edge-cut in
+  $G$, so
+  \[
+	\min_{x \ne y} \kappa_G'(x,y) \ge \kappa'(G).
+  \]
+  If $S$ is an edge cut, then it separates two vertices, so
+  \[
+	\kappa'(G) \ge \min_{x\ne y} \kappa_G'(x,y).
+  \]
+  By Menger's theorem for edges, $\lambda_G'(x,y) = \kappa_G'(x,y)$.
+
+  For the second claim, we analogously show (if $G$ is not complete)
+  \[
+	\kappa(G) = \min_{x \ne y, xy \notin E(G)} \lambda_G(x,y).
+  \]
+  It suffices to prove that for any two adjacent vertices $x,y$ that
+  $\lambda_G(x,y) \ge \kappa(G)$.
+  For that, define $G' = G - xy$.
+  Then $\lambda_{G'}(x,y) = \lambda_G(x,y) - 1$ since the single edge was a
+  path.
+  By Menger's theorem for $G'$, we have
+  \[
+	\kappa_{G'}(x,y) = \lambda_{G'}(x,y) = \lambda_G(x,y)-1,
+  \]
+  and by the preceding lemma, $\kappa(G') \ge \kappa(G)-1$, so
+  \[
+	\lambda_G(x,y) = \kappa_{G'}(x,y)+1 \ge \kappa(G).
+	\qedhere
+  \]
+\end{proof}
+
+% LocalWords:  Harary Menger's König's Menger
