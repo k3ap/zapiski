@@ -62,4 +62,205 @@ Torej je Hilbertov prostor.
   \norm{x+y}^2$.
 \end{izrek}
 
-% LocalWords:  polskalarnim von paralelogramska paralelogramski
+\begin{izrek}
+  Naj bo $H$ Hilbertov prostor in $K$ neprazna zaprta konveksna množica v $H$.
+  Tedaj za vsak $x \in H$ obstaja natanko en $k \in K$, da je $d(x,K) =
+  \norm{x,k}$.
+\end{izrek}
+
+\begin{proof}
+  Brez škode za splošnost lahko privzamemo $x = 0$.
+  Označimo $d = \inf \{\norm{y} \such y \in K\}$.
+  Po definiciji infimuma obstaja zaporedje $(k_n)_n$, da $\norm{k_n} \to d$.
+  Izberimo $\varepsilon > 0$.
+  Potem obstaja $N \in \N$, da za $n \ge N$ velja $\norm{k_n}^2 \le d^2 +
+  \varepsilon^2 /4$.
+  Po paralelogramski enakosti velja
+  \[
+	\norm{k_n - k_m}^2 = 2 \norm{k_n}^2 + 2 \norm{k_m}^2 - 4 \norm{\frac{k_n +
+		k_m}{2}}^2
+	\le 4 d^2 + \varepsilon^2 - 4 d^2 = \varepsilon^2,
+  \]
+  torej je $(k_n)_n$ Cauchyjevo in ima limito $k \in \cl{K} = K$.
+  Velja $\norm{k} = d$.
+
+  Za enoličnost še enkrat uporabimo paralelogramsko enakost.
+  Če je $k' \in K$ še en vektor s $\norm{k'} = d$, potem
+  \[
+	\norm{k-k'}^2 = 2 \norm{k}^2 + 2 \norm{k'}^2 - 4 \norm{\frac{k+k'}{2}}^2 \le 0,
+  \]
+  saj je $K$ konveksna in $k, k' \in K$.
+\end{proof}
+
+\begin{izrek}
+  Naj bo $M$ zaprt podprostor Hilbertovega prostora $H$, $x \in H$ ter $x_0 \in
+  M$.
+  Tedaj velja
+  \[
+	x - x_0 \bot M \iff d(x,M) = \norm{x-x_0}.
+  \]
+\end{izrek}
+
+\begin{proof}
+  Recimo, da za $x_0 \in M$ velja $d(x,M) = \norm{x-x_0}$ in da $x - x_0$ ni
+  pravokoten na $M$.
+  Tedaj obstaja $y \in M$, da je $\sk{x - x_0, y} \ne 0$.
+  Brez škode za splošnost lahko privzamemo, da je ta skalarni produkt pozitiven,
+  sicer $y$ zavrtimo za potreben kot.
+  Potem je
+  \[
+	\norm{x - (x_0 + \varepsilon y)}^2 = \norm{x - x_0}^2 -
+	2 \varepsilon \Real \sk{x - x_0, y} + \abs{\varepsilon}^2 \norm{y}^2
+  \]
+  za poljuben $\varepsilon \in \C$, saj je $(x_0 + \varepsilon y) \in M$.
+  Če izberemo dovolj majhen $\varepsilon \in \R$, dobimo
+  \[
+	\norm{x - (x_0 + \varepsilon y)}^2 < \norm{x - x_0}^2,
+  \]
+  kar je protislovje, saj je $x_0$ najbližji vektor iz $M$.
+  Torej je $x - x_0 \bot M$.
+  Tedaj za vsak $y \in M$ velja
+  \[
+	\norm{x-y}^2 = \norm{x-x_0}^2 + \norm{x_0 - y}^2 \ge \norm{x - x_0}.
+	\qedhere
+  \]
+\end{proof}
+
+\begin{definicija}
+  Naj bo $X$ prostor s skalarnim produktom.
+  Za $x \in X$ definiramo $\{x\}^\bot = \{y \in X \such x \bot y\}$, za $A
+  \subseteq X$ pa
+  \[
+	A^\bot = \bigcap_{x \in A} \{x\}^\bot.
+  \]
+\end{definicija}
+
+\begin{lema}
+  Za $A \subseteq X$ je $A^\bot$ vedno zaprt podprostor v $X$.
+\end{lema}
+
+\begin{proof}
+  Dovolj je pokazati, da je $\{x\}^\bot$ zaprt podprostor za katerikoli $x \in
+  X$.
+  Očitno je podprostor.
+  Za zaprtost vzemimo zaporedje $(y_n)_n$ v $\{x\}^\bot$, ki konvergira k $y \in
+  \cl{\{x\}^\bot}$.
+  Potem je
+  \[
+	\sk{y,x} = \sk{y - y_n, x} + \sk{y_n, x} = \sk{y - y_n, x}
+  \]
+  in zato
+  \[
+	\abs{\sk{y, x}} \le \norm{y - y_n} \norm{x} \xrightarrow[n \to \infty]{} 0
+  \]
+  po Cauchy-Schwarzu.
+  Torej je $y \in \{x\}^\bot$.
+\end{proof}
+
+\begin{izrek}
+  Naj bo $M$ zaprt podprostor v Hilbertovem prostoru $H$.
+  Za $x \in H$ definiramo $Px \in M$ kot tisti vektor, ki je najbližji $x$ med
+  vektorji iz $M$.
+  Potem velja:
+  \begin{itemize}
+  \item $P$ je linearen operator $H \to M$,
+  \item $\norm{Px} \le \norm{x}$,
+  \item $P^2 = P$,
+  \item $\im P = M$ in $\ker P = M^\bot$,
+  \item $H = M \oplus M^\bot$ in $M^{\bot \bot} = M$.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Prva točka:
+  Vzemimo $z \in M$.
+  Potem je
+  \[
+	\sk{(\alpha x + \beta y) - (\alpha Px + \beta Py), z}
+	= \alpha \sk{x - Px, z} + \beta \sk{y - Py, z}
+	= 0,
+  \]
+  torej po prejšnjem izreku $P(\alpha x + \beta y) = \alpha P x + \beta P y$.
+
+  Za drugo točko izračunamo
+  \[
+	\norm{x}^2 = \norm{x - Px + Px}^2 = \norm{x - Px}^2 + \norm{Px}^2 \ge
+	\norm{Px}^2.
+  \]
+
+  Tretja točka je očitna.
+  Za četrto je seveda $\im P = M$, za $x \in \ker P$ velja $x - Px \in M^\bot$,
+  torej (ker $Px = 0$) tudi $x \in M^\bot$.
+  Če pa je $x \in M^\bot$, je $x = x - 0 \in M^\bot$, torej $Px = 0$ po
+  definiciji $P$.
+
+  Za zadnjo točko razcepimo $x = Px + (x -Px)$.
+  Ker za $A \subseteq H$ vedno velja $A \cap A^\bot \subseteq \{0\}$ in ker je
+  $0 \in M$, je $H = M \oplus M^\bot$.
+  Preslikava $I - P$ je pravokoten projektor na $M^\bot$.
+  Velja $M^{\bot \bot} = \jedro (I-P) = \im P = M$.
+\end{proof}
+
+Idempotent $P$ iz izreka je pravokotni projektor na $M$ vzdolž $M^\bot$.
+Množica $M^\bot$ se imenuje \pojem{ortogonalni komplement $M$}.
+
+\begin{posledica}
+  Za $A \subseteq H$ je $A^{\bot \bot} = \cl{\operatorname{Lin} A} =: [A]$.
+\end{posledica}
+
+\begin{proof}
+  Seveda je $A \subseteq [A]$.
+  Velja $[A]^\bot \subseteq A^\bot$ in $A^{\bot \bot} \subseteq [A]^{\bot \bot}
+  = [A]$ ter celo $[A]^\bot = A^\bot$, saj za $x \in A^\bot$ velja $x \bot A$
+  in bo $x$ pravokoten tudi na linearno ogrinjačo $A$ in njeno zaprtje.
+  Torej $A^{\bot \bot} = [A]^{\bot \bot}$.
+\end{proof}
+
+Naj bo $X$ prostor s skalarnim produktom in $y \in X$.
+Definiramo $f_y: X \to \F$ z
+\[
+  f_y(x) = \sk{x,y}.
+\]
+
+\begin{lema}
+  Preslikava $f_y$ je omejen linearen funkcional z $\norm{f_y} = \norm{y}$.
+\end{lema}
+
+\begin{proof}
+  Očitno je linearen.
+  Velja
+  \[
+	\norm{f_y(x)} = \abs{\sk{x,y}} \le \norm{x} \norm{y}
+  \]
+  po Cauchy-Schwarzu.
+  Če je $x$ linearno odvisen od $y$, velja enakost.
+\end{proof}
+
+\begin{izrek}[Riesz]
+  Naj bo $H$ Hilbertov prostor in $f \in H^*$.
+  Tedaj obstaja natanko en $y \in H$, da je $f(x) =\sk{x,y}$ in $\norm{f} =
+  \norm{y}$.
+\end{izrek}
+
+\begin{proof}
+  Za enoličnost: če je $f_y = f_z$, potem za vsak $x$
+  \[
+	\sk{x, y-z} = 0,
+  \]
+  torej $y = z$.
+
+  Če je $f = 0$, vzamemo $y = 0$.
+  Sicer $f \ne 0$, in je $\jedro f$ zaprt podprostor (praslika zaprte množice),
+  torej $H = \jedro f \oplus (\jedro f)^\bot$.
+  Obstaja $z \in (\jedro f)^\bot$, da je $f(z) = 1$.
+  Za $x \in H$ potem velja
+  \[
+	x = \underbrace{x - f(x) z}_{\in \jedro f} + \underbrace{f(x) z}_{\in
+	  (\jedro f)^\bot},
+  \]
+  torej $\sk{x,z} = \sk{f(x) z, z} = f(x) \sk{z,z}$.
+  Potem je $f(x) = \sk{x, z / \norm{z}^2}$.
+\end{proof}
+
+% LocalWords:  polskalarnim von paralelogramska paralelogramski paralelogramsko
+% LocalWords:  Riesz
