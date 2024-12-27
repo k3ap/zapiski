@@ -31,4 +31,35 @@ Omejimo se na primer $\F \in \{\R, \C\}$.
   skalarnim produktom.
 \end{izrek}
 
-% LocalWords:  polskalarnim von paralelogramska
+\begin{definicija}
+  Prostor $X$ s skalarnim produktom je \pojem{Hilbertov prostor}, če je za
+  porojeno normo Banachov prostor.
+\end{definicija}
+
+Naj bo $X$ prostor s skalarnim produktom in $\hat{X}$ napolnitev $X$ kot
+normiran prostor.
+Ker norma na $X$ ustreza paralelogramski enakosti, zaradi zveznosti norme to
+velja tudi na $\hat{X}$ in je norma na $\hat{X}$ porojena s skalarnim produktom.
+Torej je Hilbertov prostor.
+Če $x_n \to x$ in $y_n \to y$, velja
+\[
+  \sk{x,y} = \lim_{n \to \infty} \sk{x_n, y_n}.
+\]
+
+\begin{definicija}
+  Vektorja $x$ in $y$ sta \pojem{pravokotna}, če $\sk{x,y} = 0$.
+  Označimo $x \bot y$.
+\end{definicija}
+
+\begin{definicija}
+  Množici $A$ in $B$ sta \pojem{pravokotni}, če je $\sk{a,b} = 0$ za vsak $a \in
+  A$ ter $b \in B$.
+\end{definicija}
+
+\begin{izrek}[Pitagora]
+  Naj bo $X$ vektorski prostor s skalarnim produktom.
+  Če sta vektorja $x$ in $y$ pravokotna, je $\norm{x}^2 + \norm{y}^2 =
+  \norm{x+y}^2$.
+\end{izrek}
+
+% LocalWords:  polskalarnim von paralelogramska paralelogramski
