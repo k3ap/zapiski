@@ -20,3 +20,116 @@
 	\chi(G) \le 1 + \max_{i=1, \ldots, n} \{ \min \{d_i, i-1\} \}.
   \]
 \end{theorem}
+
+\begin{theorem}[Brooks]
+  If $G$ is connected and not a complete graph or odd cycle, then $\chi(G) \le
+  \Delta(G)$.
+\end{theorem}
+
+\begin{proof}
+  Let $k = \Delta(G)$.
+  Consider two cases.
+  First, if $G$ is not $k$-regular, then there is a vertex $v_n$ with degree at
+  most $k-1$.
+  Define the following vertex order for a greedy coloring.
+  Consider a breadth-first search tree, rooted in $v_n$.
+  Order the vertices such that every child of the tree precedes its parent.
+  This way, each vertex is preceded by at most $k-1$ of its neighbours, so we
+  can color the entire graph with at most $k$ colors.
+
+  In the second case, if $G$ is $k$-regular, we can quickly write off $k=1$ as
+  then $G = P_2$, which is a complete graph, and the case $k=2$, where $G$ must
+  be a cycle.
+  We have excluded odd cycles, and for even cycles, $\chi(G) = \Delta(G) = 2$.
+  So let $k \ge 3$.
+  We will consider three subcases.
+
+  If $\kappa(G) = 1$, then there exists a cut vertex $x \in V(G)$.
+  Let $V_1, V_2$ be disconnected vertex sets in $G - x$ such that $V_1 \cup V_2
+  = V(G-x)$, and let $G_i = G[V_i \cup \{x\}]$.
+  Since $x$ has neighbours in both $V_1$ and $V_2$, the degree of $x$ in either
+  $G_i$ is at most $k-1$ and $G_1, G_2$ are not regular.
+  So we can color them with at most $k$ colors.
+  We can permute the colors in one of the colorings so that $x$ has the same
+  color in both.
+
+  In the second subcase, suppose $\kappa(G) = 2$.
+  Then we have $x,y \in V(G)$ such that $G - \{x,y\}$ is disconnected.
+  Define $V_1$ and $V_2$ as before and $G_i = G[V_i \cup \{x,y\}]$.
+  We have $\deg_{G_i}(x) < \deg_G(x) = k$, so neither $G_i$ is regular.
+  Therefore, they are $k$-colorable, so we have colorings $\varphi_1,
+  \varphi_2$.
+  If $\varphi_1(x) = \varphi_1(y)$ and $\varphi_2(x) = \varphi_2(y)$, or if both
+  of these pairs are nonequal, then we can define a combined $k$-coloring.
+
+  If we cannot find such $\varphi_1, \varphi_2$ however, then without loss of
+  generality every $k$-coloring of $G_1$ assigns the same color to $x$ and $y$,
+  and every $k$-coloring of $G_2$ assigns different colors to those vertices.
+  Equivalently, $G_1 + xy$ is not $k$-colorable, and $G_2 + xy$ is.
+  So $G_1 + xy$ must be $k$-regular, in which case, we will prove that $G_2$ can
+  be $k$-colored with $\varphi_2(x) = \varphi_2(y)$.
+  Let $G_2' = G_2 - \{x,y\}$.
+  It is $k$-colorable.
+  Since $G_1 + xy$ is $k$-regular, $x$ and $y$ have precisely one neighbour each
+  in $G_2$, meaning we can choose a color different from the colors of those
+  neighbours (as $k \ge 3$) and find a $k$-coloring for $G_2$ with $\varphi_2(x)
+  = \varphi_2(y)$.
+
+  Finally, consider the case $\kappa(G) \ge 3$.
+  We have vertices $u,v \in V(G)$ for which $d(u,v) = 2$, since $G$ is not
+  complete.
+  Let $z$ be a common neighbour for them.
+  We want a vertex order such that in a greedy coloring, $\varphi(u) =
+  \varphi(v)$ and the last vertex in the ordering is $z$.
+  Let $G' = G - \{u,v\}$.
+  Consider a breadth-first search in $G'$, rooted in $z$.
+  Since $\kappa(G) \ge 3$, it will not stop immediately.
+  Again, take the order in which every vertex is preceded by at most $k-1$
+  children, and $z$ is at the end.
+  Now a greedy coloring $u, v, v_1, v_2, \ldots, v_{n-2}=z$ of $G$ will assign
+  $\varphi(u) = \varphi(v) = 1$, and for $v_1, \ldots, v_{n-3}$, at most $k-1$
+  neighbours are colored before $v_i$, so it is assigned a color $\le k$.
+  We know that $z$ has two neighbours with the same color, so we can find a
+  $k$-coloring for $G$.
+\end{proof}
+
+\podnaslov{Mycielski's construction}
+
+The Mycielskian $M(G)$ of a graph $G$ is a graph defined as follows:
+\begin{itemize}
+\item label the vertices of $G$ as $v_1, \ldots, v_n$,
+\item create $n+1$ new vertices $u_1, \ldots, u_n, z$,
+\item add connections $u_i v_j$ for all pairs $v_i v_j \in E(G)$,
+\item add connections $u_i z$ for all $i$.
+\end{itemize}
+Label $V = \{v_1, \ldots, v_n\}$ and $U = \{u_1, \ldots, u_n\}$.
+
+\begin{theorem}
+  If $G$ is a graph with at least one edge, then $\chi(M(G)) = \chi(G) + 1$ and
+  $\omega(M(G)) = \omega(G)$.
+\end{theorem}
+
+\begin{proof}
+  Since $G$ is a subgraph of $M(G)$, we have $\omega(G) \le \omega(M(G))$.
+  If $z$ is in a clique of $M(G)$, then this is a clique of order at most $2$,
+  which appears in $G$ as well.
+  If $u_i$ is in a clique of $M(G)$, then $v_i$ can't be in the same clique, so
+  we can replace $u_i$ with $v_i$, and find a clique in $G$ of the same size.
+  Therefore $\omega(M(G)) \le \omega(G)$.
+
+  If we have a coloring of $G$, then we can paint $u_i$ with the same color as
+  $v_i$, and use a new color for $z$.
+  So $\chi(M(G)) \le \chi(G)+1$.
+  Now suppose that there exists a $\chi(G)$-coloring of $M(G)$ and label it
+  $\varphi$.
+  Without loss of generality, $\varphi(z) = k := \chi(G)$.
+  Then this color does not appear in $U$, so $U$ is colored with $k-1$ colors.
+  But then since $\chi(G) = k$, the color $k$ must appear in $V$.
+  We can replace the colors for those $v_i$ which have $\varphi(v_i) = k$ with
+  the color of $u_i$, and get a proper $(k-1)$-coloring of $G$, which is
+  impossible as $\chi(G) = k$.
+  \protislovje{}
+\end{proof}
+
+% LocalWords:  neighbours colorings subcase colorable nonequal Mycielski's
+% LocalWords:  Mycielskian
