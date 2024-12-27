@@ -1,0 +1,74 @@
+\naslov{Preizkušanje domnev}
+
+Obravnavamo model $\mathcal{P}$ za slučajni vektor $X$.
+Privzemimo, da obstaja dekompozicija $\mathcal{P} = \mathcal{H} \cup
+\mathcal{A}$ na neprazni disjunktni množici.
+\pojem{Nerandomiziran poizkus domneve} $\mathcal{H}$ proti $\mathcal{A}$ je
+odločitveno pravilo $\phi: \R^n \to \{0,1\}$, ki ga izvedemo tako:
+\begin{itemize}
+\item če je $\phi(x) = 1$, domnevo $\mathcal{H}$ zavrnemo,
+\item če je $\phi(x) = 0$, domneve $\mathcal{H}$ ne zavrnemo.
+\end{itemize}
+Če je $\mathcal{P}$ parametriziran, torej v bijektivni korespondenci z množico
+$\Theta$, potem označimo sliki $\mathcal{H}$ in $\mathcal{A}$ pod to bijekcijo s
+$H$ in $A$.
+Pravimo, da preizkušamo $H$ proti $A$.
+
+Poznamo dve vrsti napake.
+Če je v resnici $P_X \in H$, mi pa domnevo vseeno zavržemo, temu pravimo
+\pojem{napaka prve vrste}, če pa $P_X \notin H$, a mi domneve ne zavržemo, je to
+\pojem{napaka druge vrste}.
+Pri primernih zveznostnih predpostavkah tipično velja
+\[
+  \sup \{ P_\theta(\text{napaka prve vrste}) \such \theta \in H \}
+  + \sup \{ P_\theta(\text{napaka druge vrste}) \such \theta \in A \}
+  = 1,
+\]
+torej popolnega preizkusa ni.
+V praksi odločitev o zavrnitvi napravimo na podlagi neke testne statistike $T$ v
+smislu
+\[
+  \phi(x) =
+  \begin{cases}
+	1, & T(x) \in B \\
+	0, & T(X) \notin B
+  \end{cases}
+\]
+za neko zavrnitveno območje $B$.
+
+Zaradi komplementarnosti maksimalnih vrednosti napak obeh vrst izberemo
+pomembnejšo in jo skušamo omejiti.
+Po potrebi zamenjamo $H$ in $A$, da je to napaka prve vrste.
+\pojem{Velikost preizkusa} je potem
+\[
+  \sup_{\theta \in H} P_\theta(\text{napaka prve vrste}).
+\]
+Pravimo, da ima preizkus \pojem{stopnjo značilnosti} ali \pojem{stopnjo
+  tveganja} $\alpha$, če je njegova velikost največ $\alpha$.
+Standardne izbire so $\alpha \in \{ 0.05, 0.1, 0.01 \}$.
+
+\podnaslov{Preizkušanje na podlagi razmerja verjetij}
+
+Privzamemo parametrični model s prostorom parametrov $\Theta \subseteq \R^d$ in
+gladka verjetja $L(x,\theta)$.
+Naj bo $H \subseteq \Theta$ preizkušana domneva.
+\pojem{Razmerje verjetij} je $H$ je funkcija $\lambda: \R^n \to [0,1]$,
+definirana z
+\[
+  \lambda(x) = \frac{
+	\sup \{ L(x,\theta) \such \theta \in H \}
+  }{
+	\sup \{ L(x,\theta) \such \theta \in \Theta \}
+  }.
+\]
+Vedno lahko potem konstruiramo preizkus oblike
+\[
+  \phi(x) =
+  \begin{cases}
+	1, & \lambda(x) < D \\
+	0, & \lambda(x) \ge D
+  \end{cases}
+\]
+za neko primerno konstanto $D$.
+
+% LocalWords:  Nerandomiziran zveznostnih preizkušana
