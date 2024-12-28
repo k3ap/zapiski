@@ -71,4 +71,19 @@ Vedno lahko potem konstruiramo preizkus oblike
 \]
 za neko primerno konstanto $D$.
 
-% LocalWords:  Nerandomiziran zveznostnih preizkušana
+\begin{izrek}[Wilksov izrek o asimptotični porazdelitvi razmerja verjetij]
+  Naj bodo $X_1, X_2, \ldots$ neodvisni enako porazdeljeni slučajni vektorji z
+  gostoto $f(x, \theta)$, kjer je $\theta \in \Theta$ in je $\Theta$ gladka
+  končnorazsežna mnogoterost.
+  Dalje privzemimo, da je $H$ zaprta gladka podmnogoterost brez roba, tako da je
+  $H \subseteq \Theta$ prava vložitev.
+  Naj veljajo primerni gladkostni privzetki na gostote, ki zagotavljajo
+  asimptotično normalnost cenilk največjega verjetja.
+  Če dejanski parameter $\theta$ pripada $H$, potem
+  \[
+	-2 \log \lambda(X_1, \ldots, X_n) \xrightarrow[n \to \infty]{d} \chi^2(\dim
+	\Theta - \dim H).
+  \]
+\end{izrek}
+
+% LocalWords:  Nerandomiziran zveznostnih preizkušana Wilksov gladkostni
