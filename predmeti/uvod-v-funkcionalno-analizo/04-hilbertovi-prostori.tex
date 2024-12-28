@@ -262,5 +262,59 @@ Definiramo $f_y: X \to \F$ z
   Potem je $f(x) = \sk{x, z / \norm{z}^2}$.
 \end{proof}
 
+\begin{posledica}
+  Za vsak $f \in (l^2)^*$ obstaja natanko en $y \in l^2$, da je
+  \[
+	f(x) = \sum_{n=1}^\infty x_n \cl{y_n}
+  \]
+\end{posledica}
+
+\begin{trditev}
+  Preslikava $J: H \to H^*$, podana s predpisom $Jy = f_y$ za $f_y(x) =
+  \sk{x,y}$, je poševno linearen izometrični izomorfizem.
+\end{trditev}
+
+\begin{proof}
+  Vemo $\norm{f_y} = \norm{y}$, torej je $J$ izometrija.
+  Po Rieszovem izreku je surjektivna in injektivna, poševna linearnost pa je
+  preprost račun.
+\end{proof}
+
+\begin{izrek}
+  Naj bo $H$ Hilbertov prostor.
+  Potem je tudi $H^*$ Hilbertov s skalarnim produktom $\sk{f,g}_{H^*} = \sk{y_g,
+  y_f}_H$.
+\end{izrek}
+
+\begin{proof}
+  Preprosto preverjanje.
+\end{proof}
+
+\begin{izrek}
+  Naj bo $H$ Hilbertov prostor in $K \le H$ podprostor.
+  Tedaj ima vsak $f \in K^*$ natanko eno Hahn-Banachovo razširitev na $H$.
+\end{izrek}
+
+\begin{proof}
+  Omejen funkcional $f: K \to \F$ lahko razširimo do $g: \cl{K} \to \F$, pri
+  čemer se ohrani norma.
+  Po Rieszovem izreku obstaja natanko en $y \in \cl{K}$, da je $g(x) =
+  \sk{x,y}$ za $x \in \cl{K}$.
+  Definiramo $F(x) = \sk{x,y}$ za $x \in H$.
+  Seveda je $\left. F \right|_K = f$ in $\norm{F} = \norm{y} = \norm{f}$.
+
+  Recimo, da je $F'$ še ena Hahn-Banachova razširitev $f$.
+  Po Rieszu obstaja natanko en $y' \in H$, da je $F'(x) = \sk{x,y'}$.
+  To velja tudi za $x \in \cl{K}$, torej $F'(x) = g(x)$,
+  oziroma $\sk{x,y'} = \sk{x,y}$ za vse $x \in \cl{K}$.
+  Sledi $y-y' \bot \cl{K}$.
+  Potem je
+  \[
+	\norm{F'}^2 = \norm{y}^2 = \norm{y' - y + y}^2
+	= \norm{y' - y}^2 + \norm{y}^2 = \norm{g}^2 + \norm{y - y'}^2.
+  \]
+  Torej $\norm{y'-y} = 0$.
+\end{proof}
+
 % LocalWords:  polskalarnim von paralelogramska paralelogramski paralelogramsko
-% LocalWords:  Riesz
+% LocalWords:  Riesz Rieszovem Hahn-Banachovo Hahn-Banachova Rieszu
