@@ -194,4 +194,119 @@ We can enumerate the computably enumerable sets by
   that $f(m) > g(n)$.
 \end{proof}
 
-% LocalWords:  Kleene's
+We define $E_e$ as the domain of $\phi_e$, and
+\[
+  \mathcal{C} = \{ f: \N \rightharpoonup \N \such \text{$f$ is computable} \}.
+\]
+
+\begin{definition}
+  A subset $B \subseteq \mathcal{C}$ is \pojem{decidable} if
+  \[
+	I_B = \{ e \in \N \such \phi_e \in B \}
+  \]
+  is a computable set.
+  Also, $B$ is \pojem{semidecidable} if $I_B$ is computably enumerable.
+\end{definition}
+
+\begin{lemma}[Reduction lemma]
+  If $A$ is reducible to $B$ and $B$ is computable, then so is $A$.
+  If $A$ is reducible to $B$ and $B$ is computably enumerable, then so it $A$.
+\end{lemma}
+
+\begin{theorem}[Rice]
+  A set $B \subseteq \mathcal{C}$ is decidable if and only if $B = \varnothing$
+  or $B = \mathcal{C}$.
+\end{theorem}
+
+\begin{proof}
+  The right-to-left implication is trivial.
+  Left-to-right:
+  Assume $B$ is neither $\varnothing$ nor $\mathcal{C}$.
+  We'll show that $I_B$ is not computable.
+  Without loss of generality, we assume the everywhere undefined partial
+  function $f_\varnothing$ is in $\mathcal{C} \setminus B$.
+
+  Choose some function $g \in B$.
+  Define
+  \[
+	f(x,y) \simeq
+	\begin{cases}
+	  g(y), & x \in K \\
+	  \uparrow, & \text{otherwise}
+	\end{cases}
+  \]
+  Clearly $f$ is computable.
+  By the s-m-n theorem, there is a total computable $S: \N \to \N$ such that
+  $\phi_{s(x)}(y) \simeq f(x,y)$.
+  Then for $x \in K$, $\phi_{s(x)}(y) \simeq g(y)$ and for $x \notin K$,
+  $\phi_{s(x)}(y) \downarrow$.
+  Since $g \in B$, we have $s(x) \in I_B$ for any $x \in K$.
+  As $f_\varnothing$ is in $\mathcal{C} \setminus B$, we have $\phi_{s(x)}
+  \notin I_B$ for any $x \notin K$.
+  So $s$ is a reduction of $K$ to $I_B$.
+  But $K$ is not computable, so $I_B$ isn't either.
+\end{proof}
+
+\begin{definition}
+  For partial functions $\N \rightharpoonup \N$, $f' \subseteq f$ if the graph
+  of $f'$ is a subset of the graph of $f$.
+  We say that $f$ is \pojem{finite} if its domain is finite.
+\end{definition}
+
+\begin{theorem}[Rice-Shapiro]
+  If $B \subseteq \mathcal{C}$ is semidecidable, then for all $f \in
+  \mathcal{C}$, then $f \in B$ if and only if there exists $f' \in B$ such that
+  $f'$ is finite and $f' \subseteq f$.
+\end{theorem}
+
+\begin{proof}
+  We prove that if either implication of the equivalence fails, then $B$ is not
+  semidecidable.
+
+  Suppose that the left-to-right implication fails, so there exists a function
+  $f \in B$ such that all finite subfunctions of $f$ aren't in $B$.
+  Note that $f$ is necessarily infinite.
+  Because $K$ is computably enumerable, there is some total computable $t: \N^2
+  \to \N$ such that $x \in K$ if and only if there exists a number $z$ for which
+  $t(x,z) = 0$.
+  Define
+  \[
+	g(x,z) \simeq
+	\begin{cases}
+	  f(z), & \text{if $t(x,y) \ne 0$ for all $0 \le y \le z$} \\
+	  \uparrow, & \text{otherwise}
+	\end{cases}
+  \]
+  By the s-m-n theorem, there is a total computable function $s: \N \to \N$ such
+  that $\phi_{s(x)}(z) \simeq g(x,z)$.
+  If $x \in K$, then $\phi_{s(x)}$ is finite and a subfunction of $f$, so by
+  assumption $s(x) \notin I_B$ (since $\phi_{s(x)} \notin B$).
+  If $x \notin K$, then $\phi_{s(x)} = f$, so $s(x) \in I_B$ because $f \in B$.
+  Then $s$ is a reduction of $\cl{K}$ to $I_B$.
+  By the reduction lemma, $I_B$ is not computably enumerable (as $\cl{K}$
+  isn't).
+
+  Now suppose that the right-to-left implication fails.
+  Let $f'$ be a finite subfunction of $f$ such that $f' \in B$ and $f \notin B$.
+  Define a computable partial function
+  \[
+	g(x,z) \simeq
+	\begin{cases}
+	  f(z), & \text{if $z \in \operatorname{dom}(f')$ or $x \in K$} \\
+	  \uparrow, & \text{otherwise}
+	\end{cases}
+  \]
+  By the s-m-n theorem, there is a total computable $s: \N \to \N$ such that
+  $\phi_{s(x)}(z) = g(x,z)$.
+  Since $f' \subseteq f$, we have:
+  \begin{itemize}
+  \item if $x \in K$, then $\phi_{s(x)} = f$, but $f \notin B$, so $s(x) \notin
+	I_B$,
+  \item if $x \notin K$, then $\phi_{s(x)} = f'$, but since $f' \in B$, so $s(x)
+	\in I_B$.
+  \end{itemize}
+  So $s$ is a reduction of $\cl{K}$ to $I_B$, and $I_B$ can't be computably
+  enumerable.
+\end{proof}
+
+% LocalWords:  Kleene's subfunctions subfunction
