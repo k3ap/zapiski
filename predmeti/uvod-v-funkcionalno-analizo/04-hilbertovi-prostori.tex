@@ -316,5 +316,209 @@ Definiramo $f_y: X \to \F$ z
   Torej $\norm{y'-y} = 0$.
 \end{proof}
 
+\begin{posledica}
+  Vsak Hilbertov prostor je refleksiven (vložitev v $H^{**}$ je surjektivna).
+\end{posledica}
+
+\podnaslov{Ortonormirani sistemi}
+
+\begin{definicija}
+  Naj bo $X$ prostor s skalarnim produktom.
+  Množica $E \subseteq X$ je \pojem{ortonormiran sistem}, če je $\norm{e} = 1$
+  za vsak $e \in E$ ter $e \bot f$ za vsaka $e,f \in E$.
+\end{definicija}
+
+\begin{opomba}
+  Če velja le druga zahteva, je $E$ \pojem{ortogonalna množica}.
+\end{opomba}
+
+\begin{lema}
+  Vsaka ortogonalna množica je linearno neodvisna.
+\end{lema}
+
+\begin{definicija}
+  Naj bo $H$ Hilbertov prostor. Ortonormiran sistem $E \subseteq H$ je
+  \pojem{kompleten} ali \pojem{baza} Hilbertovega prostora $H$, če je maksimalen
+  v množici vseh ortonormiranih sistemov (glede na $\subseteq$).
+\end{definicija}
+
+\begin{trditev}
+  Vsak ortonormiran sistem v Hilbertovem prostoru lahko dopolnimo do kompletnega
+  ortonormiranega sistema.
+\end{trditev}
+
+\begin{proof}
+  Če je $(F_\alpha)_\alpha$ veriga v množici vseh ortonormiranih sistemov, ki
+  vsebujejo $E$, je
+  \[
+	\bigcup_\alpha F_\alpha
+  \]
+  zgornja meja za to verigo, ki je očitno ortonormiran sistem.
+  Po Zornovi lemi obstaja kompleten ortonormiran sistem, ki vsebuje $E$.
+\end{proof}
+
+\begin{opomba}
+  Kaj je rumeno in ekvivalentno aksiomu izbire?
+  Zornova limona!
+\end{opomba}
+
+\begin{posledica}
+  Vsak Hilbertov prostor ima bazo.
+\end{posledica}
+
+\begin{trditev}
+  Naj bo $\{e_1, \ldots, e_n\}$ ortonormiran sistem v Hilbertovem prostoru $H$.
+  Naj bo $P_n$ ortogonalna projekcija na $M_n = \operatorname{Lin} \{e_1,
+  \ldots, e_n\}$.
+  Tedaj za $x \in H$ velja
+  \[
+	P_n x = \sum_{k=1}^n \sk{x, e_k} e_k.
+  \]
+\end{trditev}
+
+\begin{proof}
+  Naj bo $x_0$ ta vsota.
+  Tedaj za $1 \le j \le n$ velja
+  \[
+	\sk{x_0, e_j} = \sum_{k=1}^n \sk{x, e_k} \sk{e_k, e_j} = \sk{x, e_j},
+  \]
+  torej je $x - x_0 \bot M_n$.
+  Po definiciji je $x_0 = P_n x$.
+\end{proof}
+
+\begin{trditev}[Besselova neenakost]
+  Naj bo $(e_n)_n$ števen ortonormiran sistem v prostoru s skalarnim produktom
+  $X$.
+  Tedaj za vsak $x \in X$ velja
+  \[
+	\norm{x}^2 \ge \sum_{n=1}^\infty \abs{\sk{x, e_n}}^2.
+  \]
+\end{trditev}
+
+\begin{proof}
+  Definiramo
+  \[
+	x' = \sum_{k=1}^n \sk{x, e_k} e_k.
+  \]
+  Enostavno lahko preverimo $x - x' \bot x'$, torej po Pitagori
+  \[
+	\norm{x}^2 = \norm{x - x'}^2 + \norm{x'}^2 \ge \norm{x'}^2 = \sum_{k=1}^n
+	\abs{\sk{x, e_k}}^2.
+  \]
+  To velja za vsak $n$, torej tudi v limiti.
+\end{proof}
+
+\begin{posledica}
+  Naj bo $X$ prostor s skalarnim produktom in $E \subseteq X$ ortonormiran
+  sistem.
+  Naj bo $x \in X$.
+  Tedaj je $\{e \in E \such \sk{x,e} \ne 0\}$ kvečjemu števna.
+\end{posledica}
+
+\begin{proof}
+  Definiramo
+  \[
+	E_n = \left\{e \in E \such \abs{\sk{x,e}} \ge \inv{n}\right\}.
+  \]
+  Potem je $\sk{x,e} \ne 0$ natanko tedaj, ko je $e \in E_n$ za vsak $n \in \N$.
+  Trdimo, da so vsi $E_n$ končni.
+  Sicer obstaja $m \in \N$, da je $E_m$ neskončna, torej vsebuje števno
+  neskončno podmnožico $(e_k)_k$.
+  Potem je
+  \[
+	\norm{x}^2 \ge \sum_{k=1}^\infty \abs{\sk{x, e_k}}^2 = \infty,
+  \]
+  ker je $\abs{\sk{x,e_k}} \ge \nicefrac{1}{m}$ za vse $k$.
+\end{proof}
+
+\begin{posledica}
+  Če je $E \subseteq X$ kompleten ortonormiran sistem, za vsak $x \in X$ velja
+  \[
+	\norm{x}^2 \ge \sum_{e \in E} \abs{\sk{x, e}}^2.
+  \]
+\end{posledica}
+
+\begin{proof}
+  Po prejšnji posledici je $\sk{x, e} \ne 0$ za kvečjemu števno mnogo $e \in E$.
+  Na njih uporabimo Besselovo neenakost.
+\end{proof}
+
+\begin{izrek}
+  Za ortonormiran sistem $E \subseteq H$ so naslednje trditve ekvivalentne.
+  \begin{itemize}
+  \item $E$ je kompleten,
+  \item $E^\bot = \{0\}$,
+  \item $[E] = H$ (zaprta linearna ogrinjača),
+  \item za vsak $x \in H$ velja
+	\[
+	  x = \sum_{e \in E} \sk{x,e} e,
+	\]
+  \item za poljubna $x, y \in H$ velja
+	\[
+	  \sk{x,y} = \sum_{e \in E} \sk{x,e} \sk{y,e},
+	\]
+  \item (Parsevalova enakost) za vsak $x \in H$ velja
+	\[
+	  \norm{x}^2 = \sum_{e \in E} \abs{\sk{x, e}}^2.
+	\]
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  1 v 2:
+  Recimo, da $E^\bot \ne \{0\}$.
+  Vzamemo $x \in E^\bot \setminus \{0\}$ in definiramo $E \cup \{x /
+  \norm{x}\}$, kar je ortonormiran sistem, ki vsebuje $E$.
+  \protislovje{}
+
+  2 v 1:
+  Recimo, da $E$ ni KONS\@.
+  Potem obstaja KONS $E'$, ki vsebuje $E$, in obstaja $x \in E' \setminus E$.
+  Ampak $x \in E^\bot = \{0\}$.
+  \protislovje{}
+
+  Ekvivalentnost 2 in 3:
+  Velja $[E] = H \iff E^\bot = [E]^\bot = H^\bot = \{0\}$.
+
+  2 v 4:
+  Vzemimo $x \in H$.
+  Vemo, da obstaja kvečjemu števno mnogo $e \in E$, da je $\sk{x,e} \ne 0$.
+  Te vektorje oštevilčimo v $(e_n)_n$.
+  Dokažimo, da je
+  \[
+	x = \sum_{n=1}^\infty \sk{x, e_n} e_n.
+  \]
+  Vrsta res konvergira, saj za delne vsote $s_n$ in $m > n$ velja
+  \[
+	\norm{s_m - s_n}^2 = \norm{\sum_{k=n+1}^m \sk{e, e_k} e_k}^2
+	= \sum_{k=n+1}^m \abs{\sk{x, e_k}}^2
+	\le \sum_{k=n+1}^\infty \abs{\sk{x, e_k}}^2.
+  \]
+  Ker ta vrsta konvergira po Besselovi neenakosti, je zaporedje $(s_n)_n$
+  Cauchyjevo v $H$.
+  Zato $s_n \to x_0 \in H$.
+  Ker je
+  \[
+	\sk{x_0, e_j} = \sum_{k=1}^\infty \sk{x, e_k} \sk{e_k, e_j} = \sk{x, e_j},
+  \]
+  velja $x - x_0 \bot e_j$ za vsak $j$, torej $x = x_0$.
+
+  4 v 5:
+  Preprost račun.
+
+  5 v 6:
+  Preprost račun.
+
+  6 v 2:
+  Če je $E^\bot \ne \{0\}$, obstaja $x \in E^\bot$, različen od $0$.
+  Po Parsevalu za $x$ in $E$ velja
+  \[
+	0 \ne \norm{x}^2 = \sum_{e \in E} \abs{\sk{x, e}}^2 = 0,
+  \]
+  kar je protislovno.
+  \protislovje{}
+\end{proof}
+
 % LocalWords:  polskalarnim von paralelogramska paralelogramski paralelogramsko
-% LocalWords:  Riesz Rieszovem Hahn-Banachovo Hahn-Banachova Rieszu
+% LocalWords:  Riesz Rieszovem Hahn-Banachovo Hahn-Banachova Rieszu Besselova
+% LocalWords:  Besselovo KONS Besselovi Parsevalu
