@@ -309,4 +309,143 @@ We define $E_e$ as the domain of $\phi_e$, and
   enumerable.
 \end{proof}
 
+\podnaslov{Varieties of non-computable sets}
+
+Observe that the following are equivalent for a set $A \subseteq \N$:
+\begin{itemize}
+\item $A$ is not computably enumerable,
+\item for any $W_e \subseteq A$ there exists some $n \in A \setminus W_e$.
+\end{itemize}
+A set $A \subseteq \N$ is \pojem{productive} if there exists a computable total
+function $g: \N \to \N$ such that for all $e \in \N$, if $W_e \subseteq A$, then
+$g(e) \in A \setminus W_e$.
+We call $g$ an \pojem{outsider finder}.
+
+\begin{proposition}
+  Every productive set is not computably enumerable.
+\end{proposition}
+
+\begin{proposition}
+  The set $\cl{K}$ is productive.
+\end{proposition}
+
+\begin{proof}
+  We show that $g = \id_\N$ is an outsider finder for $\cl{K}$.
+  Suppose that $W_e \subseteq \cl{K}$.
+  Also suppose that $g(e) = e \notin \cl{K}$.
+  Then $e \in K$, so $\phi_e(e) \downarrow$, which means $e \in W_e \subseteq
+  \cl{K}$, which is a contradiction, meaning that $e \in \cl{K}$.
+  Now if $e \in \cl{K}$, then $e \in \{ f \such f \notin W_f \}$, so $e \notin
+  W_e$.
+  All this implies $g(e) \in \cl{K} \setminus W_e$.
+\end{proof}
+
+\begin{lemma}
+  If $A$ reduces to $B$ and $A$ is productive, then so is $B$.
+\end{lemma}
+
+\begin{proof}
+  Let $g$ be an outsider finder of $A$.
+  We claim that $f \circ g \circ h$ is an outsider finder for $B$, where $h$ is
+  defined in the following way.
+  Consider the map $(e,x) \mapsto \phi_e(f(x))$.
+  By the s-m-n theorem, there is a computable $h: \N \to \N$ for which
+  $\phi_{h(e)}(x) \simeq \phi_e(f(x))$.
+  To prove $f \circ g \circ h$ is an outsider finder for $B$, suppose $W_e
+  \subseteq B$.
+  Then $f^{-1}(W_e) \subseteq A$, but
+  \[
+	f^{-1}(W_e) = f^{-1}(\operatorname{dom} \phi_e) = \operatorname{dom} \phi_e
+	\circ f = \operatorname{dom} \phi_{h(e)} = W_{h(e)}.
+  \]
+  So $f(g(h(e))) \subseteq B \setminus W_e$ because $g(h(e)) \in A \setminus
+  W_{h(e)}$.
+\end{proof}
+
+\begin{definition}
+  A set $A$ is \pojem{creative} if it is computably enumerable and its
+  complement is productive.
+\end{definition}
+
+\begin{theorem}
+  If $\varnothing \subsetneq B \subsetneq \mathcal{C}$ and the everywhere
+  undefined function $f_\varnothing \in B$, then $I_B$ is productive.
+\end{theorem}
+
+\begin{proof}
+  In the proof of Rice's theorem, we reduced $K$ to $\cl{I_B}$, so $\cl{K}$ to
+  $I_B$.
+  Because $\cl{K}$ is productive, so is $I_B$.
+\end{proof}
+
+\begin{theorem}
+  If $\varnothing \subsetneq B \subsetneq \mathcal{C}$ is such that $I_B$ is
+  computably enumerable, then is it creative.
+\end{theorem}
+
+\begin{theorem}
+  Every productive set has an infinite computably enumerable subset.
+\end{theorem}
+
+\begin{proof}
+  Suppose that $A$ is productive with outsider finder $g$.
+  We will define a function $f: \N \to \N$ which satisfies $f(0) = e_0$ with
+  $W_{e_0} = \varnothing$, and $f(n+1) = e_{n+1}$ with $W_{e_{n+1}} = W_{e_n}
+  \cup \{g(e_n)\}$.
+  By the s-m-n theorem, there exists a computable total function $h: \N \to \N$
+  such that
+  \[
+	\phi_{h(x)}(y) = \simeq
+	\begin{cases}
+	  0 & y \in W_x \lor y = g(x), \\
+	  \uparrow & \text{otherwise.}
+	\end{cases}
+  \]
+  So $W_{h(e)} = W_e \cup \{g(e)\}$, and we can find an $f$ such that $W_{f(0)}
+  = \varnothing$ and $f(n+1) = h(f(n))$.
+
+  We then have $g \circ f$, a total computable function with an image that is an
+  infinite subset of $A$.
+  Then that image is a computably enumerable subset of $A$.
+\end{proof}
+
+\begin{definition}
+  A set $A \subseteq \N$ is \pojem{immune} if it is infinite and it has no
+  infinite computably enumerable subset.
+\end{definition}
+
+\begin{remark}
+  If $A$ is immune, it is not computably enumerable, and not productive.
+\end{remark}
+
+\begin{definition}
+  A set $A \subseteq \N$ is \pojem{simple} if it is computably enumerable and
+  its complement is immune.
+\end{definition}
+
+\begin{theorem}[Post]
+  There exists a simple set.
+\end{theorem}
+
+\begin{proof}
+  Consider a partial function $f: \N \to \N$, defined as follows:
+  $f(e) = \phi_e(z)$ if $z$ is the smallest number such that $\phi_e(x)
+  \downarrow$ for any $x \le z$ and $\phi_e(z) \ge 2e$, and $f(e)$ is undefined
+  if no such $z$ exists.
+  This is clearly computable, so its image is computably enumerable.
+  Define $A = \im f$.
+  We will prove that $A$ is simple.
+
+  When $f(e) = n$, we have $n \ge 2e$, so the numbers $\{0, 1, \ldots, 2m-1\}$
+  can only appear as values $f(e)$ when $e < m$.
+  So for every $m \ge 0$, at least $m$ distinct numbers from that set belong to
+  $\cl{A}$, meaning that $\cl{A}$ is infinite.
+
+  Let $B$ be an infinite computably enumerable set.
+  We know that $B$ must be the image of some total $\phi_e$.
+  Then $f(e) \downarrow$, since because $B$ is infinite, it must contain some
+  number larger than $2e$.
+  So indeed $B \nsubseteq A$.
+\end{proof}
+
 % LocalWords:  Kleene's subfunctions subfunction
