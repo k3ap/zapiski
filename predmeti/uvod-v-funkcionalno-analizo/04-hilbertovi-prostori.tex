@@ -519,6 +519,92 @@ Definiramo $f_y: X \to \F$ z
   \protislovje{}
 \end{proof}
 
+\begin{trditev}
+  Poljubni ortonormirani bazi Hilbertovega prostora imata isto kardinalnost.
+\end{trditev}
+
+\begin{proof}
+  Naj bosta $E, F \subseteq H$ bazi.
+  Če je $\abs{E} < \infty$, rezultat vemo iz linearne algebre.
+  Sicer za $e \in E$ tvorimo $F_e = \{f \in F \such \sk{e,f} \ne 0\}$.
+  Ta množica je kvečjemu števno neskončna, po drugi strani pa velja
+  \[
+	F = \bigcup_{e \in E} F_e,
+  \]
+  saj je $E$ baza.
+  Torej $\abs{F} \le \abs{E} \abs{\N} = \abs{E}$ in podobno v drugo smer.
+\end{proof}
+
+\begin{definicija}
+  \pojem{Dimenzija} Hilbertovega prostora je enaka kardinalnosti katerekoli
+  njene baze.
+\end{definicija}
+
+\begin{lema}
+  V separabilnem metričnem prostoru je vsaka družina paroma disjunktnih odprtih
+  krogel kvečjemu števno neskončna.
+\end{lema}
+
+\begin{proof}
+  Naj bo $\{ \mathring{B}(x_i, \varepsilon_i) \such i \in I \}$ družina paroma
+  disjunktnih odprtih krogel.
+  Naj bo $S$ števna gosta množica v danem metričnem prostoru.
+  Zaradi gostosti je $\mathring{B}(x_i, \varepsilon_i) \cap S \ne \varnothing$
+  za vse $i$.
+  Izberimo $y_i \in \mathring{B}(x_i, \varepsilon_i) \cap S$ in definiramo
+  $\varphi: I \to S$ z $\varphi(i) = y_i$.
+  Ker so krogle med seboj disjunktne, je $\varphi$ injekcija, torej $\abs{I} \le
+  \abs{\N}$.
+\end{proof}
+
+\begin{trditev}
+  Neskončnorazsežen Hilbertov prostor je separabilen natanko tedaj, ko je $\dim
+  H = \aleph_0$.
+\end{trditev}
+
+\begin{proof}
+  V desno:
+  Naj bo $E$ KONS v $H$.
+  Za $e, e' \in E$ velja
+  \[
+	\norm{e-e'}^2 = \sk{e-e', e-e'} = \norm{e}^2 - 2 \Real \sk{e, e'} +
+	\norm{e'}^2 = 2.
+  \]
+  Tvorimo $S = \{ \mathring{B}(e, \frac{\sqrt{2}}{2}) \such e \in E\}$.
+  Te krogle so paroma disjunktne, torej imamo injekcijo $\varphi: E \to S$.
+  Po prejšnji lemi je $S$ največ števna, torej $\abs{E} \le \aleph_0$.
+
+  V levo:
+  Ker je $\dim H = \aleph_0$, obstaja števen KONS $(e_n)_n$.
+  Vsak $x \in X$ lahko razvijemo v Fourierovo vrsto
+  \[
+	x = \sum_{n =1}^\infty \sk{x, e_n} e_n.
+  \]
+  Za poljuben $\varepsilon > 0$ potem obstaja $n_\varepsilon$, da za vse $n \ge
+  n_\varepsilon$ velja
+  \[
+	\norm{x - \sum_{k=1}^n \sk{x, e_k} e_k} < \varepsilon.
+  \]
+  Skalarne produkte $\sk{x, e_k}$ lahko aproksimiramo z $\lambda_k \in \Q$, če
+  je $\F = \R$, oziroma $\lambda_k \in \Q + i \Q$, če je $\F = \C$.
+  V obeh primerih zahtevamo $\abs{\sk{x, e_k} - \lambda_k} <
+  \nicefrac{\varepsilon}{n}$.
+  Tako dobimo števno gosto množico
+  \[
+	\left\{ \sum_{k=1}^n \lambda_k e_k \such n \in \N, \lambda_k \in \Q + i \Q
+	\right\}.
+	\qedhere
+  \]
+\end{proof}
+
+\begin{definicija}
+  Linearna preslikava $U: H \to K$ je \pojem{izomorfizem} Hilbertovih
+  prostorov (tudi \pojem{unitarni operator}), če je surjektivna in če velja
+  \[
+	\sk{Ux, Uy} = \sk{x,y}.
+  \]
+\end{definicija}
+
 % LocalWords:  polskalarnim von paralelogramska paralelogramski paralelogramsko
 % LocalWords:  Riesz Rieszovem Hahn-Banachovo Hahn-Banachova Rieszu Besselova
-% LocalWords:  Besselovo KONS Besselovi Parsevalu
+% LocalWords:  Besselovo KONS Besselovi Parsevalu separabilnem
