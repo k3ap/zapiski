@@ -605,6 +605,209 @@ Definiramo $f_y: X \to \F$ z
   \]
 \end{definicija}
 
+\begin{trditev}
+  Naj bo $U: X \to Y$ linearna izometrija med prostoroma s skalarnim produktom.
+  Tedaj $U$ ohranja skalarni produkt.
+\end{trditev}
+
+\begin{proof}
+  Računamo
+  \begin{gather*}
+	\norm{U(x+y)}^2 = \norm{Ux}^2 + \norm{Uy}^2 + 2 \Real \sk{Ux, Uy} \\
+	\norm{U(x+y)}^2 = \norm{x+y}^2 = \norm{x}^2 + \norm{y}^2 + 2 \Real \sk{Ux, Uy}
+  \end{gather*}
+  torej $\Real \sk{x,y} = \Real \sk{Ux, Uy}$.
+  Če namesto $x$ pišemo $ix$, dobimo še $- \Imag \sk{x,y} = - \Imag \sk{Ux,
+	Uy}$.
+\end{proof}
+
+\begin{lema}
+  Naj bo $U: H \to K$ izomorfizem Hilbertovih prostorov.
+  Potem $U$ slika KONS v KONS.
+\end{lema}
+
+\begin{proof}
+  Naj bo $\{e_i\}_{i \in I}$ KONS za $H$.
+  Potem je $\sk{Ue_i, U e_j} = \sk{e_i, e_j} = \delta_{ij}$.
+  Če je $y \in K$ tak, da je $y \bot U e_i$ za vse $i$, potem je $0 = \sk{y, U
+	e_i} = \sk{U^{-1} y, e_i}$, torej $y = 0$.
+\end{proof}
+
+\begin{izrek}
+  Hilbertova prostora $H$ in $K$ sta izomorfna natanko tedaj, ko je $\dim H =
+  \dim K$.
+\end{izrek}
+
+\begin{proof}
+  V desno sledi iz leme.
+  V levo:
+  Dokazali bomo, da je $H \cong l^2(I)$, kjer je $(e_i)_{i \in I}$ KONS za $H$.
+  Definiramo $U: H \to l^2(I)$ z $Ux = \hat{x}$, kjer je
+  \[
+	\hat{x}: i \mapsto \sk{x, e_i}.
+  \]
+  Potem je $U$ linearna izometrija, saj
+  \[
+	\norm{Ux}^2 = \sum_{i \in I} \abs{\hat{x}(i)}^2 = \sum_{i \in I} \abs{\sk{x,
+	  e_i}}^2 = \norm{x}^2
+  \]
+  po Parsevalovi enakosti, hkrati pa je $U$ tudi surjektivna, saj za $f \in
+  l^2(I)$ lahko definiramo
+  \[
+	x = \sum_{i \in I} f(i) e_i,
+  \]
+  kar konvergira, ker je $f \in l^2(I)$.
+  Seveda $\hat{x} = f$.
+  Bijekcijo med indeksnima množicama lahko razširimo do izomorfizma Hilbertovih
+  prostorov.
+\end{proof}
+
+\begin{posledica}
+  Neskončnorazsežen separabilen Hilbertov prostor je izomorfen $l^2$.
+\end{posledica}
+
+Naj bosta $H$ in $K$ Hilbertova prostora.
+Produkt $H \times K$ opremimo s skalarnim produktom
+\[
+  \sk{(x_1,y_1), (x_2, y_2)} = \sk{x_1, x_2} + \sk{y_1, y_2},
+\]
+s čimer je prostor $H \times K$ poln, torej Hilbertov.
+Označimo $H \times K = H \oplus K$, konstrukciji pravimo \pojem{ortogonalna
+  direktna vsota}.
+
+Za neskončne direktne vsote množico
+\[
+  \left\{ (x_n)_n \such x_n \in H_n, \sum_{n=1}^\infty \norm{x_n}^2 < \infty
+  \right\},
+\]
+kjer so $H_n$ Hilbertovi prostori, opremimo s skalarnim produktom
+\[
+  \sk{(x_n)_n, (y_n)_n} = \sum_{n=1}^\infty \sk{x_n, y_n}.
+\]
+Dobljen prostor označimo z
+\[
+  \bigoplus_{n=1}^\infty H_n,
+\]
+in ga imenujemo \pojem{ortogonalna direktna vsota} prostorov $(H_n)_n$.
+Je tudi Hilbertov prostor.
+
+\podnaslov{Stone-Weierstrassov izrek}
+
+\begin{lema}
+  Naj bo $X$ neprazna množica in $V$ vektorski prostor funkcij na $X$, ki loči
+  točke in vsebuje konstante.
+  Tedaj za vsaka različna $x, y \in X$ in $\alpha, \beta \in \R$ obstaja $f \in
+  V$, da je $f(x) = \alpha$ ter $f(y) = \beta$.
+\end{lema}
+
+\begin{lema}
+  Naj bo $K$ kompakten Hausdorffov prostor in $V \subseteq \zvezne{K}$ realen
+  vektorski prostor, ki je podmreža v $\zvezne{K}$.
+  Naj $V$ vsebuje konstante in loči točke na $K$.
+  Tedaj za vsak $g \in \zvezne{K}$, $a \in K$ ter $\varepsilon > 0$ obstaja $f
+  \in V$, da je $f(a) = g(a)$ in $f(x) > g(x) - \varepsilon$ za vse $x \in K$.
+\end{lema}
+
+\begin{proof}
+  Po prejšnji lemi za vsak $x \in K$ obstaja $f_x \in V$, da je $f_x(a) = g(a)$
+  in $f_x(x) = g(x)$.
+  Zaradi zveznosti zato obstaja odprta okolica $U_x \ni x$, da je $f_x(y) > g(y)
+  - \varepsilon$ za vse $y \in U_x$.
+  Dobimo odprto pokritje $K$, zaradi kompaktnosti obstaja končno podpokritje
+  $U_{x_1} \cup \ldots \cup U_{x_n} = K$.
+  Definiramo $f = \max\{f_{x_1}, \ldots, f_{x_n}\}$.
+\end{proof}
+
+\begin{izrek}[mrežni Stone-Weierstrass]
+  Naj bo $K$ kompakten Hausdorffov prostor ter $V$ realen vektorski podprostor
+  $\zvezne{K}$, ki je podmreža, loči točke $K$ in vsebuje konstante.
+  Tedaj je $V$ gost v $\zvezne{K}$ glede na supremum normo.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $g \in \zvezne{K}$ in $\varepsilon > 0$.
+  Iščemo $f \in V$, da je $\norm{f-g}_\infty < \varepsilon$, oziroma $f-g <
+  \varepsilon$ in $g-f < \varepsilon$.
+  Po prejšnji lemi za vsak $x \in K$ obstaja $f_x \in V$, da je $f_x > g -
+  \varepsilon$ in $f_x(x) = g(x)$.
+  Zaradi zveznosti obstaja odprta okolica $V_x$ za $x$, da je $\abs{f_x(y) -
+	g(y)} < \varepsilon$ za vse $y \in V_x$.
+  Množice $V_x$ tvorijo pokritje za $K$, torej obstaja končno podpokritje
+  $V_{x_1} \cup \ldots \cup V_{x_n}$.
+  Potem definiramo $f = \min \{ f_{x_1}, \ldots, f_{x_n} \}$.
+  Za vsak $m = 1, \ldots, n$ velja $f_{x_m} > g - \varepsilon$, torej $f > g -
+  \varepsilon$.
+  Za poljuben $y \in K$ obstaja $m$, da je $y \in V_m$, torej $f(y) \le
+  f_{x_m}(y) < g(y) + \varepsilon$.
+\end{proof}
+
+\begin{lema}
+  Obstaja zaporedje polinomov, ki na $[0,1]$ konvergira enakomerno proti
+  funkciji $\sqrt{x}$.
+\end{lema}
+
+\begin{proof}
+  Funkcijo $x \mapsto 1 - \sqrt{1-x}$ razvijemo v Taylorjevo vrsto na $\zo{0,1}$.
+  Velja
+  \[
+	1 - (1 - x)^{1/2} = 1 - \sum_{k=0}^\infty \binom{1/2}{k} (-1)^k x^k.
+  \]
+  S $S_n(x)$ označimo $n$-to delno vsoto zgornje vrste.
+  Za $x \in (0,1)$ je zaporedje $(S_n(x))_n$ strogo naraščajoče in velja $\lim
+  S_n(x) \le 1$, saj je $1 - (1 - x)^{1/2} \le 1$ za te $x$.
+  Ker so $S_n$ zvezni, je
+  \[
+	S_n(x) = \lim_{x \to 1} S_n(x) \le 1,
+  \]
+  torej je zaporedje $(S_n(1))_n$ naraščajoče in navzgor omejeno.
+  Definirajmo $f(x) = \lim S_n(x)$.
+
+  Na $\zo{0,1}$ se $f$ in $1 - \sqrt{1-x}$ ujemata, hkrati pa je za $x \in
+  [0,1]$ tudi
+  \[
+	0 \le f(x) - S_n(x) = \sum_{k=n+1}^\infty \binom{1/2}{k} (-1)^k x^k
+	\le \sum_{k=n+1}^\infty \binom{1/2}{k} (-1)^k
+	= f(1) - S_n(1) \xrightarrow[n \to \infty]{} 0.
+  \]
+  Torej $S_n$ konvergira k $f$ enakomerno na $[0,1]$, in je zato $f$ zvezna in
+  se na tem intervalu ujema z $1 - \sqrt{1-x}$.
+  Dokazali smo, da obstaja zaporedje polinomov, ki konvergirajo k $f$
+  enakomerno.
+  Enostavno ga lahko transformiramo v zaporedje, ki enakomerno konvergira k
+  $\sqrt{x}$.
+\end{proof}
+
+\begin{izrek}[Stone-Weierstrass, realna verzija]
+  Naj bo $K$ kompakten Hausdorffov prostor in $A \subseteq \zvezne{K}$
+  podalgebra, ki loči točke in vsebuje konstante.
+  Tedaj je $A$ gosta v $\zvezne{K}$.
+\end{izrek}
+
+\begin{proof}
+  Pokazali bomo, da je $\cl{A}$ podmreža v $\zvezne{K}$.
+  Potem bo po mrežni različici izreka gosta v $\zvezne{K}$.
+  Ker bo zaprta, bo $\cl{A} = \zvezne{K}$.
+
+  Očitno je $\cl{A}$ podalgebra.
+  Ker velja $\max\{f,g\} = \pol (f + g + \abs{f-g})$ in $\min\{f,g\} = \pol(f+g
+  - \abs{f-g})$, je dovolj pokazati, da je $\cl{A}$ zaprta za absolutne
+  vrednosti.
+  Naj bo $f \in \cl{A}$.
+  Oglejmo si $g = f / \norm{f}_\infty$.
+  Ker je $g^2 \le 1$, in ker po lemi obstaja zaporedje polinomov $(p_n)_n$, ki
+  konvergirajo enakomerno na $[0,1]$ proti $\sqrt{x}$, velja $(p_n \circ g^2)(x)
+  \to \abs{g(x)}$ enakomerno.
+  Torej $\abs{g} \in \cl{A}$, ampak $\abs{g} = \abs{f} / \norm{f}_\infty$, torej
+  tudi $\abs{f} \in \cl{A}$.
+\end{proof}
+
+\begin{izrek}[Weierstrass]
+  Naj bo $K \subseteq \R$ kompakt in $f: K \to \R$ zvezna.
+  Tedaj za vsak $\varepsilon > 0$ obstaja polinom $p$, da je $\abs{f(x) - p(x)}
+  < \varepsilon$ za vse $x \in K$.
+\end{izrek}
+
 % LocalWords:  polskalarnim von paralelogramska paralelogramski paralelogramsko
 % LocalWords:  Riesz Rieszovem Hahn-Banachovo Hahn-Banachova Rieszu Besselova
-% LocalWords:  Besselovo KONS Besselovi Parsevalu separabilnem
+% LocalWords:  Besselovo KONS Besselovi Parsevalu separabilnem Parsevalovi
+% LocalWords:  podmreža Weierstrass
