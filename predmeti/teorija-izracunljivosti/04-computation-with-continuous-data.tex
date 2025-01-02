@@ -1,0 +1,77 @@
+\naslov{Computation with continuous data}
+
+A type 2 Turing machine (T2M for short) with $k$ input tapes, $n$ working tapes
+and one output tape is a Turing machine with $k+n+1$ tapes where:
+\begin{itemize}
+\item Input tapes start with no blank symbols, are only infinite in ore
+  direction, and their heads are read-only and only move to the right.
+\item Working tapes start blank on all but a finite number of squares.
+  They are infinite in both directions, and have regular heads.
+\item The output tape is initially blank and has a write-only head that can only
+  move right.
+\end{itemize}
+
+Formally, a T2M is specified by
+\begin{itemize}
+\item the tape alphabet $\Gamma$ with $\boxdot \in \Gamma$,
+\item an input/output alphabet $\Sigma \subseteq \Gamma \setminus \{\boxdot\}$,
+\item a finite set $Q$ of control states,
+\item the transition function
+  \[
+	\delta: Q \times \Sigma^k \times \Gamma^n \rightharpoonup Q \times \{0,1\}^k
+	\times \Gamma^n \times \{-1,0,1\}^n \times \{\Sigma \cup \boxdot\}.
+  \]
+\end{itemize}
+
+We say that a T2M \pojem{computes} an infinite word $p \in \Sigma^\omega$ given
+input $(p^1, \ldots, p^k) \in (\Sigma^\omega)^k$ if when we run the machine on
+input tapes containing $p^1, \ldots, p^k$, it outputs $p$ on the output tape.
+An $\omega$-word is \pojem{computable} if it is computed by some T2M with not
+input tapes.
+
+A T2M $M$ \pojem{computes} a partial function $f: (\Sigma^\omega)^k
+\rightharpoonup \Sigma^\omega$ if:
+\begin{itemize}
+\item for any $(p^1, \ldots, p^k) \in \operatorname{dom} f$, $M$ computes
+  $f(p^1, \ldots, p^k)$ given input $(p^1, \ldots, p^k)$,
+\item if $M$ is given $(p^1, \ldots, p^k)$ as input, it will compute some $p \in
+  \Sigma^\omega$ only if $(p^1, \ldots, p^k) \in \operatorname{dom} f$.
+\end{itemize}
+
+For any recognition machines for an $\omega$-language, we assume distinguished
+halting states \texttt{accept} and \texttt{reject}.
+A single input tape T2M \pojem{accepts} $p \in \Sigma^\omega$ if, when run on
+input $p$, it halts in the accepting state.
+Similarly, it rejects $p$, if it halts in the rejecting state.
+
+Given a word $p \in \Sigma^\omega$, we can define $\operatorname{Prefix}(p)
+\subseteq \Sigma^*$ as the set of all prefixes of $p$.
+
+\begin{theorem}
+  The following are equivalent:
+  \begin{itemize}
+  \item $p$ is computable via a T2M,
+  \item $\operatorname{Prefix}(p)$ is decidable,
+  \item $\operatorname{Prefix}(p)$ is semidecidable.
+  \end{itemize}
+\end{theorem}
+
+\begin{proof}
+  1 to 2:
+  Suppose that there is a T2M $M$ computing $p$.
+  To decide whether $w$ is in $\operatorname{Prefix}(p)$ for some word $w$, we
+  may run $M$ until it produces $\abs{w}$ characters, then compare that result
+  to $w$.
+
+  2 to 3:
+  Trivial.
+
+  3 to 1:
+  Suppose $S$ is an ordinary TM that semidecides $\operatorname{Prefix}(p)$.
+  We build a T2M that computes $p$ as follows.
+  Suppose we have already output $n$ symbols of $p$.
+  To find the next symbol, for each of the $m$ symbols $b_1, \ldots, b_m \in
+  \Sigma$, we run $S$ (in parallel) on the input $p_0 \ldots p_{n-1} b_i$.
+  Exactly one of these will halt in the accepting state, so when it does, output
+  that symbol.
+\end{proof}
