@@ -41,7 +41,7 @@
 
 \begin{proof}
   If a set $A$ is computable enumerable, it is the domain of $\chi_A^p$.
-  Suppose that $A = \operatorname{dom}(f)$ for some computable $f: \N \to \N$.
+  Suppose that $A = \dom(f)$ for some computable $f: \N \to \N$.
   We can compute $\chi_A^p$ by
   \[
 	\chi_A^p(n) \simeq
@@ -63,7 +63,7 @@
 
 We can enumerate the computably enumerable sets by
 \[
-  W_e := \operatorname{dom}(\phi_e).
+  W_e := \dom(\phi_e).
 \]
 
 \begin{lemma}
@@ -292,7 +292,7 @@ We define $E_e$ as the domain of $\phi_e$, and
   \[
 	g(x,z) \simeq
 	\begin{cases}
-	  f(z), & \text{if $z \in \operatorname{dom}(f')$ or $x \in K$} \\
+	  f(z), & \text{if $z \in \dom(f')$ or $x \in K$} \\
 	  \uparrow, & \text{otherwise}
 	\end{cases}
   \]
@@ -355,8 +355,8 @@ We call $g$ an \pojem{outsider finder}.
   \subseteq B$.
   Then $f^{-1}(W_e) \subseteq A$, but
   \[
-	f^{-1}(W_e) = f^{-1}(\operatorname{dom} \phi_e) = \operatorname{dom} \phi_e
-	\circ f = \operatorname{dom} \phi_{h(e)} = W_{h(e)}.
+	f^{-1}(W_e) = f^{-1}(\dom \phi_e) = \dom \phi_e
+	\circ f = \dom \phi_{h(e)} = W_{h(e)}.
   \]
   So $f(g(h(e))) \subseteq B \setminus W_e$ because $g(h(e)) \in A \setminus
   W_{h(e)}$.

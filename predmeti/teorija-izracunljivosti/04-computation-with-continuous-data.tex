@@ -32,10 +32,10 @@ input tapes.
 A T2M $M$ \pojem{computes} a partial function $f: (\Sigma^\omega)^k
 \rightharpoonup \Sigma^\omega$ if:
 \begin{itemize}
-\item for any $(p^1, \ldots, p^k) \in \operatorname{dom} f$, $M$ computes
+\item for any $(p^1, \ldots, p^k) \in \dom f$, $M$ computes
   $f(p^1, \ldots, p^k)$ given input $(p^1, \ldots, p^k)$,
 \item if $M$ is given $(p^1, \ldots, p^k)$ as input, it will compute some $p \in
-  \Sigma^\omega$ only if $(p^1, \ldots, p^k) \in \operatorname{dom} f$.
+  \Sigma^\omega$ only if $(p^1, \ldots, p^k) \in \dom f$.
 \end{itemize}
 
 For any recognition machines for an $\omega$-language, we assume distinguished
@@ -75,3 +75,138 @@ Given a word $p \in \Sigma^\omega$, we can define $\operatorname{Prefix}(p)
   Exactly one of these will halt in the accepting state, so when it does, output
   that symbol.
 \end{proof}
+
+\podnaslov{Topological aspects of computing with $\omega$-words}
+
+\begin{theorem}%
+  \label{thm:tizr:topology-1}
+  If $L \subseteq \Sigma^\omega$ is semidecidable, then for any $p \in L$, there
+  exists $n \ge 0$ such that for any infinite word $q \in \Sigma^\omega$, if
+  $\left. q \right|_n = \left. p \right|_n$.
+\end{theorem}
+
+\begin{proof}
+  Let $M$ be a T2M that semidecides $L$.
+  Consider any $p \in L$, and let $n$ be $1$ plus the position of the read head
+  when $M$ enters the accept state if run on $p$.
+  Note that the read head can only move right, so $M$ could only access the
+  first $n$ characters during its execution.
+  If we give it another $\omega$-word with the same $n$-prefix, it will take the
+  same actions and accept.
+\end{proof}
+
+\begin{theorem}%
+  \label{thm:tizr:topology-2}
+  If a partial function $f: \Sigma^\omega \rightharpoonup \Sigma^\omega$ is
+  computable, then for every $p \in \dom f$ and for every $n \ge
+  0$ there exists an $m \ge 0$ such that for all $q \in \dom f$,
+  if $\left. q \right|_m = \left. p \right|_m$, then $\left. f(q) \right|_n =
+  \left. f(p) \right|_n$.
+\end{theorem}
+
+\begin{proof}
+  Let $M$ be a T2M that computes $f$.
+  Consider any $p \in \dom f$ and $n \ge 0$.
+  Let $m$ be $1$ plus the position of the input head at the time $M$ writes the
+  $n$-th symbol to the output tape.
+
+  Now consider any $q \in \dom f$ which agrees with $p$ on the first $m$
+  characters.
+  Then the execution of $M$ on $q$ follows the same steps as on $p$, so it
+  produces the same first $n$ characters of output.
+\end{proof}
+
+We introduce a topology on $\Sigma^\omega$, which is just the infinite product
+topology of $\Sigma$ (which is discrete).
+This topology is metrizable for the metric
+\[
+  d(p,q) = 2^{-i},
+\]
+where $i$ is the smallest number such that $p_i \ne q_i$.
+We of course take $d(p,p) = 0$.
+Also, for a word $p \in \Sigma^\omega$ and number $n \ge 0$, define the
+\pojem{cylinder set} $\sk{\left. p \right|_n}$, where for a finite word $w$,
+\[
+  \sk{w} = \{ q \in \Sigma^\omega \such \left. q \right|_{\abs{w}} = w \}.
+\]
+Note that the collection of cylinder sets is a countable basis for
+$\Sigma^\omega$.
+
+\begin{remark}
+  Theorem~\ref{thm:tizr:topology-1} states:
+  A semidecidable language is an open set.
+\end{remark}
+
+\begin{remark}
+  Theorem~\ref{thm:tizr:topology-2} states:
+  Computable functions are continuous with respect to the subspace topology on
+  $\dom f$.
+\end{remark}
+
+\begin{proposition}
+  If $L \subseteq \Sigma^\omega$ is decidable, it is clopen.
+\end{proposition}
+
+\begin{proof}
+  The complement is semidecidable.
+\end{proof}
+
+\begin{theorem}
+  An $\omega$-language $L$ is decidable if and only if it is clopen.
+\end{theorem}
+
+\begin{definition}
+  A subset $Z \subseteq \Sigma^\omega$ is $G_\delta$ if it is a countable
+  intersection of open sets.
+\end{definition}
+
+\begin{theorem}
+  If a partial function $f: \Sigma^\omega \rightharpoonup \Sigma^\omega$ is
+  computable, then its domain of definition is a $G_\delta$-subset of
+  $\Sigma^\omega$.
+\end{theorem}
+
+\begin{proof}
+  Suppose that $M$ is a T2M which computes $f$.
+  For every $n \ge 0$, define
+  \[
+	D_n = \{ p \in \Sigma^\omega \such \text{$M$ produces $\ge n$ output
+	  characters when run on $p$} \}.
+  \]
+  Note that $\dom f \subseteq D_n$ and that $D_n$ is semidecidable (and hence
+  open).
+  Clearly $\dom f$ is the intersection of all $D_n$.
+\end{proof}
+
+\begin{theorem}
+  The topological space $\Sigma^\omega$ is compact.
+\end{theorem}
+
+\begin{proof}
+  Tychonoff.
+\end{proof}
+
+\begin{corollary}
+  The compact subsets of $\Sigma^\omega$ are exactly the closed sets.
+\end{corollary}
+
+\begin{lemma}
+  Every clopen set is decidable.
+\end{lemma}
+
+\begin{proof}
+  Let $L$ be a clopen set.
+  Since the cylinder sets form a basis and $L$ is open, we have
+  \[
+	L = \bigcup \{ \sk{w} \such w \in \Sigma^*, \sk{w} \subseteq L \}.
+  \]
+  So this family of cylinders is an open cover of $L$.
+  Because $L$ is closed, it is compact, so there is a finite subcover
+  \[
+	L = \sk{w_1} \cup \ldots \cup \sk{w_k}.
+  \]
+  We can decide $L$ by checking whether the prefix of a word is equal to any of
+  $w_1, \ldots, w_k$.
+\end{proof}
+
+% LocalWords:  subcover
