@@ -209,4 +209,97 @@ $\Sigma^\omega$.
   $w_1, \ldots, w_k$.
 \end{proof}
 
-% LocalWords:  subcover
+\podnaslov{Computing with real numbers}
+
+We can represent real numbers as $\omega$-words via infinite decimal expansions
+(or representations in other bases), so with the alphabet $\{0,1, \ldots, 9, -,
+.\}$, with at most one $-$ at the start, and exactly one decimal point.
+The problem is that this is a poor representation, as many useful algorithms
+cannot be written with it.
+
+\begin{definition}
+  A \pojem{type 2 representation} of a set $X$ is a surjective partial function
+  $\gamma: \Sigma^\omega \rightharpoonup X$.
+  We say that $p$ is a \pojem{name} for an element $x \in X$ if $\gamma(p) = x$,
+  and that $x$ is \pojem{computable} if it has a computable name.
+\end{definition}
+
+We now introduce the Cauchy representation of $\R$.
+First, give a type $1$ representation of the dyadic rationals $\Q_d$, which we
+represent by a finite word $\pm d_{m-1} \ldots d_0 . d_{-1} \ldots d_{-n}$
+with every $d_i \in \{0, 1\}$ and $m, n \ge 0$.
+For a word $u$ representing a dyadic rational, define $q_d(u)$ as its rational
+value, interpreted as we usually interpret binary numbers.
+
+We can now define the Cauchy representation $\gamma_c: \Sigma_c^\omega
+\rightharpoonup \R$ for $\Sigma_c = \{ -, ., 0, 1, ; \}$.
+The domain of $\gamma_c$ consists of $\omega$-words of the form
+\[
+  p = u_0; u_1; u_2; \ldots,
+\]
+where $u_i \in \dom q_d$ and the sequence $(q_d(u_i))_i$ is a fast Cauchy
+sequence, i.e.~it satisfies
+\[
+  \abs{q_d(u_m) - q_d(u_n)} \le \inv{2^n}
+\]
+for all $m \ge n \ge 0$.
+For such a name $p$, we define $\gamma_c(p) = \lim q_d(u_n)$.
+
+\begin{proposition}
+  The representation $\gamma_c$ is surjective, and if $p \in \dom \gamma_c$ is
+  as above, then for any $n \ge 0$, $\abs{q_d(u_n) - \gamma_c(p)} \le 2^{-n}$.
+\end{proposition}
+
+\begin{proposition}
+  A real number is $\gamma_c$-computable if and only if it is computable with
+  respect to the decimal or binary representation.
+\end{proposition}
+
+\begin{definition}
+  A name $p$ is \pojem{close} if for every $n \ge 0$, we have $\abs{q_d(u_n) -
+	\gamma_c(p)} \le 2^{-(n+1)}$.
+\end{definition}
+
+\begin{lemma}
+  Every $x \in \R$ has a close name.
+  If $p$ is a close name for $x$, then for every $n \ge 0$, every $x'$ with
+  $\abs{x'-x} < 2^{-(n+1)}$ has a name of the form
+  \[
+	u_0; u_1; u_2; \ldots; u_n; u_{n+1}'; u_{n+2}'; \ldots
+  \]
+\end{lemma}
+
+\begin{theorem}[continuity theorem]
+  If $f: \R \rightharpoonup \R$ is computable with respect to $\gamma_c$, then
+  $f$ is continuous on its domain.
+\end{theorem}
+
+\begin{proof}
+  Suppose $f$ is computable, so it has a realiser $g: \Sigma_c^\omega
+  \rightharpoonup \Sigma_c^\omega$.
+  Let $x \in \dom f$ and $\varepsilon > 0$.
+  We are searching for a suitable $\delta$.
+  Let $p = u_0; u_1; \ldots$ be a close name for $x$, and let $r = g(p)$.
+  Since $g$ is a realiser for $f$, $r$ is a name for $f(x)$.
+  Therefore $r$ has the form $r = v_0; v_1; \ldots$.
+
+  Let $N$ be such that $2^{-N} < \nicefrac{\varepsilon}{2}$.
+  We have $\abs{q_d(v_N) - f(x)} \le 2^{-N} < \nicefrac{\varepsilon}{2}$ by one
+  of the preceding propositions.
+  Let $n$ be the length of the string $v_0; v_1; \ldots; v_N;$.
+  By the topological continuity theorem, there exists an $m \ge 0$ such that for
+  all $p' \in \dom g$, if $\left. p' \right|_m = \left. p \right|_m$, then
+  $\left. g(p') \right|_n = v_0; v_1; \ldots, v_N;$.
+  Now take $M \ge 0$ such that the prefix $u_0; u_1; \ldots; u_M;$ of $p$ has
+  length $m' \ge n$, and define $\delta = 2^{-(M+1)}$.
+
+  Then for $x' \in \dom f$ with $\abs{x' - x} < \delta$, we have a name for $x'$
+  of the form $p' = u_0; \ldots; u_M; u_{M+1}'; \ldots$, since $p$ is a close
+  name for $x$.
+  Since $x' \in \dom f$, $g(p')$ is a name for $f(x')$, and $\left. g(p')
+  \right|_n = v_0; v_1; \ldots; v_N;$, so $\abs{q_d(v_N) - f(x')} \le 2^{-N} <
+  \nicefrac{\varepsilon}{2}$.
+  Then $\abs{f(x) - f(x')} < \varepsilon$.
+\end{proof}
+
+% LocalWords:  subcover realiser
