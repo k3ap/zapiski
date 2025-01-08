@@ -131,5 +131,130 @@ Label $V = \{v_1, \ldots, v_n\}$ and $U = \{u_1, \ldots, u_n\}$.
   \protislovje{}
 \end{proof}
 
+\begin{theorem}
+  If $G$ is a graph on $n$ vertices and $\chi(G) = k$, then $m(G) \ge
+  \binom{k}{2}$.
+  This is sharp for any $n \ge k$.
+\end{theorem}
+
+\begin{proof}
+  There is a partition of $G$ into $k$ color classes.
+  Since $\chi(G) = k$, there must be at least one edge between any pair of color
+  classes.
+  This bound is sharp, as we can take $K_k$ and add isolated vertices as
+  required.
+\end{proof}
+
+\podnaslov{Turàn's theorem}
+
+\begin{definition}
+  A graph $G$ is \pojem{$k$-partite} if the vertex set can be partitioned into
+  $k$ classes $V_1, V_2, \ldots, V_k$ such that every edge is between different
+  classes.
+\end{definition}
+
+\begin{remark}
+  A graph $G$ is $k$-partite if and only if $G$ is $k$-colorable.
+\end{remark}
+
+\begin{definition}
+  $G$ is a \pojem{complete $k$-partite graph} if every edge between the partite
+  classes is present in $G$.
+\end{definition}
+
+\begin{definition}
+  \pojem{The Turàn graph} $T_{n,k}$ is the complete $k$-partite graph on $n$
+  vertices such that the partite classes are of nearly equal size, i.e.~if
+  $\abs{\abs{V_i} - \abs{V_j}} \le 1$ for all $i, j$.
+\end{definition}
+
+\begin{theorem}[Turàn]
+  If $G$ is a graph of order $n$ and $\omega(G) \le r$, then the number of edges
+  in $G$ is at most the number of edges in $T_{n,r}$.
+\end{theorem}
+
+\begin{proof}
+  Induction on $r$.
+  If $r = 1$, there are no edges, so $G = T_{n,1}$.
+  For $r > 1$, let $k = \Delta(G)$ and let $v$ be a vertex with degree $k$.
+  Let $G' = G[N(v)]$.
+  We know $\omega(G') \le r-1$, so by the induction hypothesis, $m(G') \le
+  m(T_{k,r-1})$.
+
+  Consider the following construction.
+  Let $H$ be the graph obtained by a complete join of a graph with $n-k$
+  independent vertices and the graph $T_{k,r-1}$.
+  Clearly, $n(H) = n$ and $\omega(H) = r$, since $\omega(T_{k,r-1}) = r-1$.
+  Compute
+  \[
+	m(H) = m(T_{k,r-1}) + (n-k)k \ge m(G') + (n-k)k
+  \]
+  and $m(G) \le m(G') + k(n-k)$, noting that in the remainder of the graph,
+  every vertex has degree at most $k$, and there are $n-k$ vertices there.
+
+  We see that $H$ is an $r$-partite graph.
+  We claim that among the $r$-partite graphs on $n$ vertices, $T_{n,r}$ has the
+  most edges.
+  Suppose that $F$ is an $r$-partite graph with $n(F) = n$.
+  If it is not a complete $r$-partite graph, then we may add edges until it is.
+  If the sizes of the partite classes in $F$ differ by at least $2$, then take a
+  vertex $u$ from the larger class $V_i$ and put it into the smaller class
+  $V_j$.
+  For this, we break $\abs{V_j}$ edges and add $\abs{V_i}-1$ edges, so we have
+  increased their total number.
+\end{proof}
+
+\begin{remark}
+  As $T_{n,r}$ satisfies the theorem's conditions, the bound is sharp.
+  It is actually the unique graph with the maximum number of edges.
+\end{remark}
+
+\begin{remark}
+  A similar result holds for graphs with $\chi(G) = r$.
+\end{remark}
+
+\podnaslov{Chordal graphs}
+
+\begin{definition}
+  A graph $G$ is \pojem{chordal} if there is no induced subgraph that is
+  isomorphic to a cycle $C_n$ for $n \ge 4$.
+\end{definition}
+
+\begin{definition}
+  A vertex $v$ is a \pojem{simplicial} vertex in $G$ if $N_G[v]$ induces a
+  clique.
+\end{definition}
+
+\begin{lemma}[Voloshin]
+  If $G$ is a chordal graph, then for every $x \in V(G)$ there exists a
+  simplicial vertex among the vertices farthest from $x$.
+\end{lemma}
+
+\begin{proof}
+  Induction on $n(G)$.
+  If $n(G) = 1$, the statement is obvious.
+  Let $n(G) > 1$.
+  If $x$ is a universal vertex in $G$, then remove $x$ and apply the induction
+  hypothesis to $G-x$.
+  Otherwise, let $T$ be the set of vertices farthest from $x$, and let $H$ be a
+  component in $T$.
+  Take $S$ to be the neighbours of vertices in $H$ which are not themselves in
+  $H$, so $S = N(H) \setminus H$.
+  Finally, let $Q$ be the vertices in the component of $G-S$ which contains $x$.
+
+  We will prove that $S$ induces a clique.
+  Take $u, v \in S$.
+  Then both vertices have neighbours in $H$ and in $Q$, so there exist two
+  $u,v$-paths through $H$ and $Q$, respectively.
+  Consider the shortest such paths $P_H, P_Q$.
+  Combined, they form a cycle of order at least $4$.
+  There cannot be a chord in $\{u/v\} \cup H$ or $\{u/v\} \cup Q$, since that
+  would give a shorter path, and there is also no edge between $Q$ and $H$, so
+  there must be a cord $uv \in E(G)$.
+  So any two vertices in $S$ are connected, meaning $S$ is a clique.
+  By the induction hypothesis on $G[S \cup H]$ with a vertex from $S$, there is
+  a simplicial vertex in $H$.
+\end{proof}
+
 % LocalWords:  neighbours colorings subcase colorable nonequal Mycielski's
-% LocalWords:  Mycielskian
+% LocalWords:  Mycielskian Turàn's Turàn simplicial Voloshin
