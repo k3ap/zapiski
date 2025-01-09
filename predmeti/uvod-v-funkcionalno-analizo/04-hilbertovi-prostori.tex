@@ -807,6 +807,32 @@ Je tudi Hilbertov prostor.
   < \varepsilon$ za vse $x \in K$.
 \end{izrek}
 
+\begin{izrek}[Stone-Weierstrass, kompleksna verzija]
+  Naj bo $K$ kompakten Hausdorffov prostor in $A \subseteq \zvezne{K}$
+  podalgebra v algebri kompleksnih funkcij, ki
+  \begin{itemize}
+  \item loči točke $K$,
+  \item vsebuje konstante,
+  \item je sebi-adjungirana: $f \in A$ pomeni $\konj{f} \in A$.
+  \end{itemize}
+  Tedaj je $A$ gosta v $\zvezne{K}$.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $A_0$ algebra realnih funkcij, ki so vsebovane v $A$.
+  Očitno $A_0$ vsebuje konstante.
+  Za $x, y \in K$ obstaja $f \in A$, da je $f(x) \ne f(y)$, torej ena od realnih
+  funkcij $\frac{f+\konj{f}}{2}, \frac{f-\konj{f}}{2i} \in A$ loči točki $x, y$.
+  Torej $A$ loči točke.
+  Po realni verziji izreka je $A_0$ gosta v $\zvezne{K, \R}$.
+
+  Naj bo $f \in \zvezne{K, \C}$ poljubna in $\varepsilon >0$.
+  Pišimo $f = g + ih$ za realni $g, h$.
+  Po razno dokazanem obstajata $g_1, h_1 \in A_0$, da je $\norm{g - g_1} <
+  \nicefrac{\varepsilon}{2}$ in $\norm{h-h_1} < \nicefrac{\varepsilon}{2}$.
+  Potem je $\norm{f - (g_1 + i h_1)} < \varepsilon$.
+\end{proof}
+
 % LocalWords:  polskalarnim von paralelogramska paralelogramski paralelogramsko
 % LocalWords:  Riesz Rieszovem Hahn-Banachovo Hahn-Banachova Rieszu Besselova
 % LocalWords:  Besselovo KONS Besselovi Parsevalu separabilnem Parsevalovi
