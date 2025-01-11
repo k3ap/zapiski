@@ -1,0 +1,187 @@
+\naslov{Omejeni operatorji med Hilbertovimi prostori}
+
+\begin{definicija}
+  Naj bosta $H, K$ Hilbertova prostora.
+  Preslikava $u: H \times K \to \F$ se imenuje \pojem{seskvilinearna forma}, če
+  velja
+  \begin{itemize}
+  \item $u(\alpha x + \beta y, z) = \alpha u(x, z) + \beta u(y, z)$,
+  \item $u(x, \alpha y + \beta z) = \konj{\alpha} u(x,y) + \konj{\beta} u(x,z)$.
+  \end{itemize}
+\end{definicija}
+
+\begin{definicija}
+  Seskvilinearna forma je \pojem{zvezna} (ali \pojem{omejena}), če obstaja $M
+  \ge 0$, da $\abs{u(x,y)} \le M \norm{x} \norm{y}$.
+\end{definicija}
+
+\begin{primer}
+  Za $A \in B(H, K)$ definiramo $u(x,y) = \sk{Ax,y}$.
+  To je seskvilinearna forma, velja $\abs{u(x,y)} \le \norm{A} \norm{x}
+  \norm{y}$.
+\end{primer}
+
+\begin{izrek}
+  Naj bo $u: H \times K \to \F$ omejena seskvilinearna forma.
+  Potem obstajata natanko določeni $A \in B(H,K)$ in $B \in B(K,H)$, da
+  \[
+	u(x,y) = \sk{Ax,y} = \sk{x, By}.
+  \]
+\end{izrek}
+
+\begin{proof}
+  Fiksiramo $x \in H$ in definiramo $f_x: K \to \F$ z $f_x(y) = \konj{u(x,y)}$.
+  To je očitno omejen linearen funkcional na $K$.
+  Po Rieszovem izreku obstaja natanko določen $z_x \in K$, da je
+  \[
+	\konj{u(x,y)} = f_x(y) = \sk{y, z_x}
+  \]
+  za vsak $y \in K$.
+  Definiramo $z_x = Ax$.
+  To nam da preslikavo $A: H \to K$, da je $\konj{u(x,y)} = \sk{y, Ax} =
+  \konj{Ax, y}$.
+  Enostavno lahko preverimo, da je $A$ linearna, ker velja
+  \[
+	\norm{Ax} = \norm{z_x} = \norm{f_x} \le M \norm{x},
+  \]
+  pa je tudi omejena (tu $M$ pride iz definicije omejene seskvilinearne forme).
+  Če je $\sk{Ax, y} = \sk{A' x, y}$, potem velja $\sk{Ax - A'x, y} = 0$ za vsak
+  $y$, torej $Ax = A'x$ za vse $x$.
+  Sledi, da je $A$ enolično določena.
+  Podobno za $B$.
+\end{proof}
+
+\begin{definicija}
+  Naj bo $A$ omejen operator $H \to K$.
+  Tedaj operatorju $B: H \to K$, za katerega velja $\sk{Ax,y} = \sk{x,By}$,
+  pravimo \pojem{adjungirani operator} operatorja $A$.
+  Označimo ga z $A^*$.
+\end{definicija}
+
+\begin{trditev}
+  Preslikava $U \in B(H,K)$ je izomorfizem Hilbertovih prostorov natanko tedaj,
+  ko je $U$ obrnljiv in $U^* = U^{-1}$.
+\end{trditev}
+
+\begin{proof}
+  V levo:
+  Če je $U$ obrnljiv, je surjektiven.
+  Potem je
+  \[
+	\sk{Ux,Uy} = \sk{x, U^*U y} = \sk{x, U^{-1} U y} = \sk{x,y},
+  \]
+  torej $U$ ohranja skalarni produkt in je zato izomorfizem.
+
+  V desno:
+  Če je $U$ izomorfizem, je obrnljiv.
+  Velja
+  \[
+	\sk{x,y} = \sk{Ux, Uy} = \sk{x, U^* U y}
+  \]
+  za poljubna $x, y$, torej je $U^* = U^{-1}$.
+\end{proof}
+
+\begin{opomba}
+  Če sta $A, B \in B(H,K)$, potem velja
+  \begin{itemize}
+  \item $(A + B)^* = A^* + B^*$,
+  \item $(\alpha A)^* = \konj{\alpha} A^*$,
+  \item $A^{**} = A$.
+  \end{itemize}
+  Zadnje je res, ker je
+  \[
+	\sk{Ax,y} = \sk{x, A^* y} = \konj{\sk{A^* y, x}} = \konj{\sk{y, A^{**} x}} =
+	\sk{A^{**}x, y}.
+  \]
+\end{opomba}
+
+\begin{opomba}
+  Preslikava $i: A \mapsto A^*$ je involucija.
+\end{opomba}
+
+\begin{trditev}
+  Naj bosta $A \in B(H,K)$ in $B \in B(K,L)$ omejena operatorja.
+  Tedaj $(BA)^* = A^* B^*$.
+\end{trditev}
+
+\begin{proof}
+  Preprost račun.
+\end{proof}
+
+\begin{posledica}
+  Operator $A \in B(H,K)$ je obrnljiv natanko tedaj, ko je $A^* \in B(K,H)$
+  obrnljiv.
+  Če je $A$ obrnljiv, velja $(A^*)^{-1} = (A^{-1})^*$.
+\end{posledica}
+
+\begin{proof}
+  Operator $A$ je obrnljiv natanko tedaj, ko obstaja $B \in B(K,H)$, da velja
+  $AB = I_K$ in $BA = I_H$.
+  Potem je
+  \begin{gather*}
+	(AB)^* = B^* A^* = I_K, \\
+	(BA)^* = A^* B^* = I_H,
+  \end{gather*}
+  torej je $A^*$ obrnljiv in $(A^*)^{-1} = B^* = (A^{-1})^*$.
+  Podobno v drugo smer, kjer upoštevamo še $A^{**} = A$.
+\end{proof}
+
+\begin{trditev}
+  Če je $A \in B(H,K)$, je $\jedro A^* = (\im A)^\bot$.
+\end{trditev}
+
+\begin{proof}
+  Velja
+  \[
+	x \in \jedro A^*
+	\iff A^* x = 0
+	\iff \forall y. \sk{A^* x, y} = 0
+	\iff \forall y. \sk{x, Ay} = 0
+	\iff x \in (\im A)^\bot.
+	\qedhere
+  \]
+\end{proof}
+
+\begin{posledica}
+  Za $A \in B(H,K)$ velja
+  \begin{itemize}
+  \item $\jedro A = (\im A^*)^\bot$,
+  \item $(\jedro A)^\bot = \cl{\im A^*}$,
+  \item $(\jedro A^*)^\bot = \cl{\im A}$.
+  \end{itemize}
+\end{posledica}
+
+\begin{proof}
+  Prva točka je očitna.
+  Če na njej uporabimo komplement in upoštevamo $X^{\bot \bot} =
+  \cl{\operatorname{Lin} X}$, dobimo drugo točko.
+  Podobno za tretje.
+\end{proof}
+
+\begin{definicija}
+  Operator $A \in B(H)$ je \pojem{sebi adjungiran}, če je $A^* =A$.
+  Je \pojem{normalen}, če je $A^* A = A A^*$.
+  Je \pojem{unitaren}, če je $A^* A = A A^* = I$.
+\end{definicija}
+
+\begin{opomba}
+  Operator $A$ je unitaren natanko tedaj, ko je $A$ izomorfizem prostora $H$.
+\end{opomba}
+
+\begin{opomba}
+  Vsak unitaren operator je normalen.
+\end{opomba}
+
+\begin{opomba}
+  Sebi adjungiran operator je vedno normalen.
+\end{opomba}
+
+Če je $A \in B(H)$, lahko definiramo
+\begin{gather*}
+  \Real A = \frac{A+A^*}{2}, \\
+  \Imag A = \frac{A - A^*}{2i},
+\end{gather*}
+tako dobimo $A = \Real A + i \Imag A$.
+Oba ta operatorja sta sebi adjungirana.
+
+% LocalWords:  seskvilinearna seskvilinearne involucija
