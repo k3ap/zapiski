@@ -184,4 +184,105 @@
 tako dobimo $A = \Real A + i \Imag A$.
 Oba ta operatorja sta sebi adjungirana.
 
+\begin{trditev}
+  Naj bo $H$ kompleksen Hilbertov prostor in $A \in B(H)$.
+  Tedaj je $A = A^*$ natanko tedaj, ko je $\sk{Ax,x} \in \R$ za vsak $x \in H$.
+\end{trditev}
+
+\begin{proof}
+  V desno: $\sk{Ax,x} = \sk{x,Ax}= \konj{\sk{Ax, x}}$.
+
+  V levo:
+  Po predpostavki je $\sk{A(x+y), x+y} \in \R$.
+  Velja
+  \[
+	\sk{A(x+y), x+y} = \sk{Ax, x} + \sk{Ay,y} + \sk{Ax,y} + \sk{Ay,x},
+  \]
+  torej $\sk{Ax,y} + \sk{Ay,x} \in \R$ za vsaka $x,y$.
+  Pišimo $\sk{Ax,y} = \alpha + i \beta$ in $\sk{Ay,x} = \gamma - i \beta$.
+
+  Če menjamo $y \to i y$, dobimo $i \sk{Ay, x} - i \sk{Ax,y} \in \R$.
+  To je enako
+  \[
+	i \sk{Ay, x} - i \sk{Ax,y}
+	= i(\gamma - i \beta - \alpha - i \beta)
+	= i(\gamma - \alpha) + 2 \beta,
+  \]
+  torej $\gamma = \alpha$.
+\end{proof}
+
+\begin{izrek}
+  Naj bo $H$ Hilbertov prostor in $A \in B(H)$ sebi adjungiran operator.
+  Tedaj velja
+  \[
+	\norm{A} = w(A) := \sup_{\norm{x} = 1} \abs{\sk{Ax,x}}.
+  \]
+\end{izrek}
+
+\begin{proof}
+  Velja $\abs{\sk{Ax,x}} \le \norm{Ax} \norm{x} \le \norm{A} \norm{x}^2$, torej
+  je $w(A) \le \norm{A}$.
+  Računamo
+  \begin{align*}
+	\sk{A(x+y), x+y} - \sk{A(x-y), x-y}
+	&= 2 \sk{Ax,y} + 2 \sk{Ay,x} \\
+	&= 2 \sk{y,Ax} + 2 \sk{Ax,y} \\
+	&= 4 \Real \sk{Ax,y},
+  \end{align*}
+  torej
+  \begin{align*}
+	4 \abs{\Real \sk{Ax,y}}
+	&\le \abs{\sk{A(x+y), x+y}} - \abs{\sk{A(x-y), x-y}} \\
+	&\le w(A) \left( \norm{x+y}^2 + \norm{x-y}^2 \right) \\
+	&= 2 w(A) \left( \norm{x}^2 + \norm{y}^2 \right)
+  \end{align*}
+  oziroma
+  \[
+	\abs{\Real \sk{Ax,y}} \le \pol w(A) \left( \norm{x}^2 + \norm{y}^2 \right).
+  \]
+  Izberemo $x$ z $\norm{x} = 1$.
+  Če je $A = 0$, izrek velja, sicer pa lahko vzamemo tak $x$, da $Ax \ne 0$.
+  Potem nastavimo $y = \frac{Ax}{\norm{Ax}}$, in dobimo
+  \[
+	\abs{\Real \sk{Ax, \frac{Ax}{\norm{Ax}}}} \le w(A),
+  \]
+  zato $\norm{Ax}^2 \le w(A)$ za vsak $x$ z $\norm{x} = 1$ in $Ax \ne 0$.
+  Sedaj lahko naredimo supremum po enotski sferi.
+\end{proof}
+
+\begin{trditev}
+  Naj bo $H$ kompleksen Hilbertov prostor in $A \in B(H)$ tak, da je $\sk{Ax,x}
+  = 0$ za vsak $x \in H$.
+  Tedaj je $A = 0$.
+\end{trditev}
+
+\begin{proof}
+  Ker je $H$ kompleksen, je $A = A^*$.
+  Po izreku je
+  \[
+	\norm{A} = \sup_{\norm{x} = 1} \abs{\sk{Ax,x}} = 0.
+	\qedhere
+  \]
+\end{proof}
+
+\begin{izrek}
+  Za $A \in B(H)$ velja $\norm{A^* A} = \norm{A}^2$.
+\end{izrek}
+
+\begin{proof}
+  Računamo
+  \[
+	\norm{A^* A}
+	= \sup_{\norm{x} = 1} \abs{\sk{A^* Ax, x}}
+	= \sup_{\norm{x} = 1} \abs{\sk{Ax, Ax}}
+	= \sup_{\norm{x} = 1} \norm{Ax}^2
+	= \norm{A}^2.
+	\qedhere
+  \]
+\end{proof}
+
+\begin{opomba}
+  Tej enakosti pravimo $C^*$-aksiom.
+\end{opomba}
+
 % LocalWords:  seskvilinearna seskvilinearne involucija
