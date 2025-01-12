@@ -285,4 +285,281 @@ Oba ta operatorja sta sebi adjungirana.
   Tej enakosti pravimo $C^*$-aksiom.
 \end{opomba}
 
-% LocalWords:  seskvilinearna seskvilinearne involucija
+\begin{trditev}
+  Za $A \in B(H)$ so naslednje trditve ekvivalentne:
+  \begin{itemize}
+  \item $A$ je normalen,
+  \item $\norm{A^* x} = \norm{Ax}$ za vsak $x \in H$,
+  \item če je $\F = \C$, potem je $\Real A \Imag A = \Imag A \Real A$.
+  \end{itemize}
+\end{trditev}
+
+\begin{proof}
+  Ekvivalenca 1 in 2:
+  Velja
+  \[
+	\norm{A^* x} = \norm{A x}
+	\iff \sk{A^*x, A^* x} = \sk{Ax, Ax}
+	\iff \sk{A A^* x, x} = \sk{A^* A x, x}
+	\iff \sk{B x, x} = 0
+  \]
+  za $B = A A^* - A^* A$.
+  Zgornje velja za vse $x \in H$ natanko tedaj, ko je $B = 0$.
+
+  Ekvivalenca 1 in 3:
+  Pišimo $A = H + iK$ za $H = \Real A$ in $K = \Imag A$.
+  Potem je $A$ normalen natanko tedaj, ko je $(H - i K)(H + iK) = (H + iK)(H -
+  iK)$, oziroma $HK = KH$.
+\end{proof}
+
+\begin{posledica}
+  Naj bo $A \in B(H)$ normalen in $\lambda \in \F$.
+  Tedaj je $\jedro (A^* - \lambda I) = \jedro (A - \konj{\lambda} I)$.
+\end{posledica}
+
+\begin{definicija}
+  Operator $A \in B(H)$ je \pojem{pozitivno semidefiniten}, če je sebi
+  adjungiran in $\sk{Ax,x} \ge 0$ za vsak $x \in H$.
+\end{definicija}
+
+\begin{opomba}
+  Če je $A$ pozitivno definiten, je injektiven in zato
+  \[
+	\jedro A = \jedro A^* = (\im A)^\bot,
+  \]
+  torej $\cl{\im A} = (\im A)^{\bot \bot} = (\jedro A)^\bot = H$,
+  torej je $\im A$ gost v $H$.
+\end{opomba}
+
+\begin{lema}
+  Naj bosta $A, B \in B(H)$ pozitivno semidefinitna.
+  Potem je $A+B \ge 0$.
+  Če je $A > 0$, je $A+B > 0$.
+\end{lema}
+
+Definiramo množici
+\begin{itemize}
+\item $B(H)_{\text{sa}} = \{ A \in B(H) \such A = A^* \}$,
+\item $B(H)_{\text{sa}}^+ = \{ A \in B(H)_{\text{sa}} \such A \ge 0 \}$.
+\end{itemize}
+
+\begin{trditev}
+  Relacija $A \ge B \iff A-B \ge 0$ je delna urejenost na $B(H)_{\text{sa}}$.
+\end{trditev}
+
+\begin{definicija}
+  Podmnožica $C \subseteq X$ realnega vektorskega prostora $X$ je
+  \pojem{stožec}, če velja
+  \begin{itemize}
+  \item $C + C \subseteq C$,
+  \item $\lambda C \subseteq C$za vsak $\lambda \ge 0$,
+  \item $C \cap (-C) = \{0\}$.
+  \end{itemize}
+\end{definicija}
+
+\begin{trditev}
+  Množica $B(H)_{\text{sa}}^+$ je stožec v $B(H)_{\text{sa}}$.
+\end{trditev}
+
+\begin{trditev}
+  Naj bo $A \in B(H)$ sebi adjungiran in $B \in B(K,H)$.
+  \begin{itemize}
+  \item če $A \ge 0$, potem $B^* A B \in B(K)_{\text{sa}}^+$,
+  \item velja $-\norm{A} I \le A \le \norm{A} I$,
+  \item $B^* B \in B(K)_{\text{sa}}^+$ in $BB^* \in B(H)_{\text{sa}}^+$.
+  \end{itemize}
+\end{trditev}
+
+\begin{izrek}
+  Naj bo $A \in B(H)$.
+  Tedaj obstaja natanko en $B \in B(H)_{\text{sa}}^+$, da je $A = B^2$.
+\end{izrek}
+
+\podnaslov{Idempotenti in invariantni podprostori}
+
+Če je $P$ idempotent, velja
+\[
+  x = \underbrace{x - Px}_{\in \jedro P} + \underbrace{Px}_{\in \im P}.
+\]
+Ker sta $\jedro P$ in $\im P$ zaprta v $H$, velja $H = \im P \oplus \jedro P$.
+
+\begin{definicija}
+  Idempotent $P \in B(H)$ je \pojem{ortogonalni projektor}, če je $\jedro P =
+  (\im P)^\bot$.
+\end{definicija}
+
+\begin{izrek}
+  Naj bo $P \in B(H)$ neničelni idempontent.
+  Naslednje trditve so ekvivalentne:
+  \begin{itemize}
+  \item $P$ je ortogonalni projektor,
+  \item $\norm{P} = 1$,
+  \item $P^* = P$,
+  \item $P$ je normalen,
+  \item $\sk{Px, x} \ge 0$ za vsak $x \in H$.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  1 v 2:
+  Vemo že, da je $\norm{Px} \le \norm{x}$ za vsak $x \in H$.
+  Če izberemo $x \in \im P$, je $Px = x$, torej $\norm{P} = 1$.
+
+  2 v 1:
+  Vzemimo $x \in (\jedro P)^\bot$, da je $x - Px \in \jedro P$.
+  Sledi $\sk{x - Px, x} = 0$, oziroma $\sk{Px,x} = \norm{x}^2$.
+  Torej
+  \[
+	\norm{x}^2 = \sk{Px, x} \le \norm{Px} \norm{x} \le \norm{P} \norm{x}^2 =
+	\norm{x}^2,
+  \]
+  iz česar sledi $\norm{x} = \norm{Px} = \sqrt{\sk{Px,x}}$.
+  Potem je
+  \[
+	\norm{x - Px}^2 = \norm{x}^2 + \norm{Px}^2 - 2 \Real \sk{x, Px}
+	= \norm{x}^2 + \norm{Px}^2 - 2 \sk{Px,x} = 0.
+  \]
+  Torej $x = Px \in \im P$, oziroma $(\jedro P)^\bot \subseteq \im P$.
+
+  Za drugo inkluzijo vzemimo $y \in \im P$ in zapišimo $y = y_1 + y_2$ za $y_1
+  \in \jedro P$, $y_2 \in (\jedro P)^\bot$.
+  Potem je
+  \[
+	y = Py = P(y_1 + y_2) = P y_2 = y_2 \in (\jedro P)^\bot,
+  \]
+  torej $\im P \subseteq (\jedro P)^\bot$.
+
+  1 v 3:
+  Za $x, y \in H$ zapišimo $x = x_1 + x_2$, $y = y_1 + y_2$, kjer sta $x_1, y_1
+  \in \jedro P$ ter $x_2, y_2 \in (\jedro P)^\bot$.
+  Računamo
+  \begin{gather*}
+	\sk{P^* x, y} = \sk{x, Py} = \sk{x_1 + x_2, P y_2} = \sk{x_1 + x_2, y_2} =
+	\sk{x_2, y_2} \\
+	\sk{Px, y} = \sk{Px_2, y_1 + y_2} = \sk{x_2, y_1 + y_2} = \sk{x_2, y_2}.
+  \end{gather*}
+
+  3 v 4 je očitno.
+  4 v 1:
+  Operator $P$ je normalen, torej je $(\im P)^\bot = (\jedro P)^* = \jedro P$.
+  Torej $\im P = P^\bot$.
+
+  3 v 5:
+  Računamo
+  \[
+	\sk{Px,x} = \sk{P^2 x, x} = \sk{Px, P^* x} = \sk{Px, Px} \ge 0.
+  \]
+  5 v 1 izpustimo.
+\end{proof}
+
+\begin{definicija}
+  Zaprt podprostor $M$ normiranega prostora $X$ je \pojem{invarianten} za $A \in
+  B(X)$, če je $AM \subseteq M$.
+\end{definicija}
+
+\begin{trditev}
+  Zaprt podprostor $M$ je invarianten za $A \in B(H)$ natanko tedaj, ko je
+  $M^\bot$ invarianten za $A^*$.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $M$ invarianten za $A$.
+  Če je $y \in M^\bot$, potem je $\sk{A^* y, x} = \sk{y, Ax} = 0$, in zato $A^*
+  y \in M^\bot$.
+  Drugo implikacijo dobimo, ko zamenjamo vlogi $M$ in $M^\bot$ ter $A$ in $A^*$.
+\end{proof}
+
+\begin{posledica}
+  Naj bo $A \in B(H)_{\text{sa}}$.
+  Potem je zaprt podprostor $M$ invarianten za $A$ natanko tedaj, ko je $M^\bot$
+  invarianten za $A$.
+\end{posledica}
+
+\podnaslov{Kompaktni operatorji}
+
+\begin{definicija}
+  Naj bo $T: X \to Y$ linearna preslikava med normiranima prostoroma.
+  Operator $T$ je \pojem{kompakten}, če je $\cl{T(B_X)}$ kompakt v $Y$.
+\end{definicija}
+
+\begin{opomba}
+  $B_X = \{ x \in X \such \norm{x} = 1 \}$
+\end{opomba}
+
+\begin{opomba}
+  Vsak kompakten operator je omejen.
+\end{opomba}
+
+Označimo $K(X,Y) = \{ T: X \to Y \such \text{$T$ kompakten} \}$.
+
+\begin{izrek}
+  Za metrični prostor $M$ so naslednje trditve ekvivalentne:
+  \begin{itemize}
+  \item $M$ je kompakten,
+  \item vsako neskončno zaporedje v $M$ ima stekališče,
+  \item $M$ je poln in povsem omejen (za vsak $\varepsilon > 0$ lahko $M$
+	pokrijemo s končno mnogo kroglami polmera $\varepsilon$).
+  \end{itemize}
+\end{izrek}
+
+\begin{izrek}
+  Naj bo $T: X \to Y$ linearen operator.
+  Naslednje trditve so ekvivalentne:
+  \begin{itemize}
+  \item $T$ je kompakten,
+  \item $T$ preslika omejene množice v relativno kompaktne množice,
+  \item če je $(x_m)_m$ omejeno zaporedje v $X$, potem ima $(Tx_m)_m$ stekališče
+	v $Y$.
+  \end{itemize}
+\end{izrek}
+
+\begin{trditev}
+  Naj bosta $X, Y$ Banachova prostora.
+  Potem velja:
+  \begin{itemize}
+  \item $K(X,Y)$ je zaprt podprostor v $B(X,Y)$,
+  \item za vsake $K \in K(X,Y)$, $A \in B(X)$ ter $B \in B(Y)$ sta $KA, BK \in
+	K(X,Y)$.
+  \end{itemize}
+\end{trditev}
+
+\begin{proof}
+  Samo prva točka.
+  Naj bosta $K_1, K_2 \in K(X,Y)$ ter $\lambda, \mu \in \F$.
+  Naj bo $(x_m)_m$ omejeno zaporedje v $X$.
+  Ker je $K_1$ kompakten, obstaja podzaporedje $(x_{n_k})_k$, da $(K_1
+  x_{n_k})_k$ konvergira.
+  Podobno imamo podzaporedje $(x_{n_{k_j}})_j$, da je $(K_2 x_{n_{k_j}})_j$
+  konvergentno.
+  Potem $(\mu K_1 x_{n_{k_j}} + \lambda K_2 x_{n_{k_j}})_j$ konvergira v $Y$.
+
+  Naj bo sedaj $(K_n)_n$ zaporedje kompaktnih operatorjev, ki konvergira k $K$.
+  Pokažimo, da je $K$ kompakten.
+  Ker je $Y$ Banachov, je $\cl{K(B_X)}$ kompakt natanko tedaj, ko je
+  $\cl{K(B_X)}$ povsem omejena, oziroma ko je $K(B_X)$ povsem omejena.
+  Naj bo $\varepsilon > 0$.
+  Obstaja $n \in \N$, da je $\norm{K - K_n} < \nicefrac{\varepsilon}{3}$.
+  Ker je $K_n$ kompakten, obstajajo $x_1, \ldots, x_m \in B_X$, da je
+  \[
+	K_n(B_X) \subseteq \bigcup_{i=1}^m \mathring{B}(Kx_i,
+	\nicefrac{\varepsilon}{3}).
+  \]
+  Pokažimo še, da je
+  \[
+	K(B_X) \subseteq \bigcup_{i=1}^m \mathring{B}(x_i, \varepsilon).
+  \]
+
+  Če je $x \in B_X$, potem obstaja $j$, da je $\norm{K_n x_j - K_n x} <
+  \nicefrac{\varepsilon}{3}$.
+  Velja
+  \begin{align*}
+	\norm{K x_j - K x}
+	&\le \norm{K x_j - K_n x_j} + \norm{K_n x_j - K_n x} + \norm{K_n x - Kx} \\
+	&\le \norm{K - K_n} (\norm{x_j} + \norm{x}) + \norm{K_n(x_j - x)} \\
+	&< \varepsilon.
+	  \qedhere
+  \end{align*}
+\end{proof}
+
+% LocalWords:  seskvilinearna seskvilinearne involucija semidefiniten
+% LocalWords:  Idempotenti
