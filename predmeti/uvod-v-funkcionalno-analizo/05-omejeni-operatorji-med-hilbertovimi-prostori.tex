@@ -561,5 +561,49 @@ Označimo $K(X,Y) = \{ T: X \to Y \such \text{$T$ kompakten} \}$.
   \end{align*}
 \end{proof}
 
-% LocalWords:  seskvilinearna seskvilinearne involucija semidefiniten
+\begin{trditev}
+  Naj bo $A \in B(X)$ operator z $\dim \im A < \infty$.
+  Potem je $A$ kompakten.
+\end{trditev}
+
+\begin{proof}
+  Velja $A(B_X) \subseteq \im A$.
+  Ker je množica omejena v končnorazsežnem prostoru, je relativno kompaktna.
+\end{proof}
+
+\begin{definicija}
+  Operator $A \in B(X,Y)$ je \pojem{končnega ranga}, če je $\dim \im A <
+  \infty$.
+  V tem primeru je $\rang A = \dim \im A$.
+\end{definicija}
+
+\begin{definicija}
+  Množico vseh operatorjev končnega ranga $X \to Y$ označimo z $F(X,Y)$.
+\end{definicija}
+
+\begin{izrek}
+  Naj bo $X$ normiran prostor.
+  Tedaj je $B_X$ kompakt natanko tedaj, ko je $\dim X < \infty$.
+\end{izrek}
+
+\begin{posledica}
+  Identiteta $\id: X \to X$ je kompakten operator natanko tedaj, ko je $\dim X <
+  \infty$.
+\end{posledica}
+
+Naj bo $X$ neskončnorazsežen Banachov prostor.
+Tedaj je $\id \in B(X) \setminus K(X)$.
+Tvorimo prostor $B(X) / K(X)$.
+Ker je $X$ Banachov, je $B(X)/K(X)$ Banachov, ker pa je $K(X)$ zaprti ideal v
+Banachovi algebri $B(X)$, je tudi $B(X) / K(X)$ Banachova algebra.
+Pravimo ji \pojem{Calkinova algebra}.
+
+\begin{trditev}
+  Naj bo $X$ normiran in $Y$ Banachov.
+  Naj bo $A \in K(X,Y)$ ter $\cl{A}$ enolična razširitev $A$ na $\cl{X}$ po
+  zveznosti.
+  Tedaj je $\cl{A} \in K(\cl{X}, \cl{Y})$.
+\end{trditev}
+
+% LocalWords:  seskvilinearna seskvilinearne involucija semidefiniten Calkinova
 % LocalWords:  Idempotenti
