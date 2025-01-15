@@ -256,5 +256,172 @@ Label $V = \{v_1, \ldots, v_n\}$ and $U = \{u_1, \ldots, u_n\}$.
   a simplicial vertex in $H$.
 \end{proof}
 
+\begin{theorem}
+  A graph $G$ is chordal if and only if there is a simplicial elimination
+  ordering of the vertices of $G$.
+\end{theorem}
+
+\begin{proof}
+  Right-to-left:
+  If $G$ is not chordal, then we will show there is no simplicial elimination
+  ordering.
+  Suppose there is one, $v_1, v_2, \ldots, v_n$.
+  Since $G$ is not chordal, it has a cycle $C_k$ with $k \ge 4$.
+  Let $v_i$ be the first vertex of this cycle in the ordering.
+  Then $v_i$ has two neighbours along the cycle with no edge between them, which
+  contradicts the definition of the simplicial elimination ordering.
+
+  Left-to-right:
+  By Voloshin's lemma, there is a simplicial vertex $v_1$ in $G$.
+  Then $G - v_1$ is also a chordal graph, so it has a simplicial vertex $v_2$.
+  Then $G - v_1 - v_2$ is a chordal graph, and we keep going.
+  We get a simplicial elimination ordering $v_1, \ldots, v_n$.
+\end{proof}
+
+\begin{theorem}
+  If $G$ is chordal, then $\chi(G) = \omega(G)$.
+\end{theorem}
+
+\begin{proof}
+  In general $\omega(G) \le \chi(G)$.
+  Let $v_1, \ldots, v_n$ be a simplicial elimination ordering in $G$.
+  Consider the greedy coloring in the reverse of that order.
+  When we color a vertex $v_i$, then the neighbours that are already covered are
+  $R_i = N(v_i) \cap \{ v_{i+1}, \ldots, v_n \}$.
+  As it is a simplicial elimination ordering, $R_i$ is a clique, and $R_i \cup
+  \{v_i\}$ is also a clique.
+  Since $\abs{R_i \cup \{v_i\}} \le \omega(G)$, at most $\omega(G) - 1$
+  neighbours of $v_i$ are colored before $v_i$, so we can color $v_i$ with one
+  of $\{1, 2, \ldots, \omega(G)\}$.
+  Since this is true for any $v_i$, we have $\chi(G) \le \omega(G)$.
+\end{proof}
+
+\podnaslov{Perfect graphs}
+
+\begin{definition}
+  A graph $G$ is a \pojem{perfect graph} if $\chi(H) = \omega(H)$ holds for
+  every induced subgraph $H$ of $G$.
+\end{definition}
+
+\begin{theorem}
+  Chordal graphs are perfect.
+\end{theorem}
+
+\begin{proof}
+  An induced subgraph of a chordal graph is chordal.
+\end{proof}
+
+\begin{theorem}
+  Bipartite graphs are perfect.
+\end{theorem}
+
+\begin{proof}
+  If $G$ is bipartite, then either $E(G) = \varnothing$, in which case
+  $\omega(G) = \chi(G) = 1$, or $E(G) \ne \varnothing$, in which case $\chi(G) =
+  \omega(G) = 2$.
+  Every subgraph of a bipartite graph is bipartite.
+\end{proof}
+
+\begin{theorem}[Vizing]
+  For every graph $G$, we have $\Delta(G) \le \chi'(G) \le \Delta(G)+1$.
+\end{theorem}
+
+\begin{theorem}
+  If $G$ is bipartite, then $\chi'(G) = \Delta(G)$.
+\end{theorem}
+
+\begin{proof}
+  Let $k = \Delta(G)$.
+  Consider the following two cases.
+  First, if $G$ is $k$-regular, there exists a perfect matching $M_1$ in $G$.
+  The graph $G - M_1$ is $(k-1)$-regular and bipartite, so there exists a perfect
+  matching $M_2$ in $G - M_1$.
+  We can continue this procedure to find matchings $M_1, \ldots, M_k$.
+  Now assign color $i$ to $M_i$.
+
+  In the second case, if $G$ is not $k$-regular, we will construct a $k$-regular
+  bipartite graph which has $G$ as a subgraph.
+  We add edges to $G$ such that the maximum degree remains $k$ and the graph
+  remains bipartite.
+  If this is not possible but there are still vertices of degree $< k$, then we
+  can follow the following construction.
+  \begin{itemize}
+  \item Create a copy $G'$ of $G$, except it has partite classes switched.
+  \item Create a new graph by combining $G$ and $G'$, and adding connections $u
+	\sim u'$ for $u \in G$ with $\deg(u) < k$.
+  \end{itemize}
+  This increases the minimum degree of $G$ by at least one, and we still have a
+  bipartite graph.
+  If we continue this process, we will get a $k$-regular bipartite graph.
+\end{proof}
+
+\begin{theorem}
+  If $G$ is bipartite, then its line graph $L(G)$ is perfect.
+\end{theorem}
+
+\begin{proof}
+  For every graph, $\chi'(G) = \chi(L(G))$, as every edge coloring of $G$
+  corresponds to a vertex coloring of $L(G)$.
+  If $G$ is bipartite, $\chi'(G) = \Delta(G)$.
+  The maximal cliques in $L(G)$ corresponds to the vertices of $G$ (since there
+  are no triangles).
+  If a vertex is of degree $k$, then the corresponding clique in $L(G)$ is also
+  of size $k$, so $\Delta(G) = \omega(L(G))$.
+  This means $\chi(L(G)) = \omega(L(G))$.
+
+  The induced subgraphs of $L(G)$ are still line graphs of bipartite graphs, as
+  if $H = L(G)[S]$, then $H$ is the line graph of the subgraph of $G$ obtained
+  by only keeping the edges corresponding to the vertices in $S$.
+\end{proof}
+
+\begin{theorem}[Perfect graph theorem]
+  A graph $G$ is perfect if and only if its complement $\cl{G}$ is perfect.
+\end{theorem}
+
+\begin{theorem}[Strong perfect graph theorem]
+  A graph $G$ is perfect if and only if neither $G$ nor $\cl{G}$ have an induced
+  odd cycle of size at least $5$.
+\end{theorem}
+
+\begin{definition}
+  A \pojem{$(\beta, \alpha')$-perfect graph} is a graph for which $\beta(H) =
+  \alpha'(H)$ for every induced subgraph $H$.
+\end{definition}
+
+\begin{theorem}
+  A graph is $(\beta, \alpha')$-perfect if and only if it is bipartite.
+\end{theorem}
+
+\podnaslov{Gallai-Roy-Vitaver theorem}
+
+\begin{theorem}
+  If $G$ is a simple graph and $\vec{D}$ is an orientation of $G$, and
+  $l(\vec{D})$ is the longest path in $\vec{D}$, then $\chi(G) \le l(\vec{D}) +
+  1$.
+  Further, there is an orientation for which the equality holds.
+\end{theorem}
+
+\begin{proof}
+  Consider an arbitrary orientation $\vec{D}$ of $G$.
+  Let $\pvec{D}'$ be a maximal subdigraph of $\vec{D}$ that does not contain any
+  directed cycles.
+  Define a vertex coloring $c$ for $G$ with $c(v)$ being one plus the length of
+  the longest directed path in $\pvec{D}'$ that ends in $v$.
+  This is a proper vertex coloring; consider an edge $\overrightarrow{uv} \in
+  \vec{D}$.
+  Consider two cases.
+  \begin{itemize}
+  \item If $\overrightarrow{uv} \in \pvec{D}'$, then $l'(u) < l'(v)$, since $v$
+	cannot be on the longest path ending at $u$ (as there are no directed cycles).
+  \item If $\overrightarrow{uv} \notin \pvec{D'}$, then there is a directed path
+	in $\pvec{D}'$ between $v$ and $u$ (which forms a cycle with
+	$\overrightarrow{uv}$).
+	Then the coloring $c$ gives increasing colors to the vertices along this
+	path, and $c(u) > c(v)$.
+  \end{itemize}
+  We skip the proof of the second statement.
+\end{proof}
+
 % LocalWords:  neighbours colorings subcase colorable nonequal Mycielski's
-% LocalWords:  Mycielskian Turàn's Turàn simplicial Voloshin
+% LocalWords:  Mycielskian Turàn's Turàn simplicial Voloshin Voloshin's Vizing
+% LocalWords:  Gallai Vitaver subdigraph
