@@ -1,0 +1,169 @@
+\naslov{Planar graphs}
+
+\begin{definition}
+  If $G$ is a graph, then the \pojem{drawing} of $G$ into the plane is a
+  function $h(x)$ defined on $V(G) \cup E(G)$ such that for every vertex $v$,
+  $h(v)$ is a point and for every edge $uv$, $h(uv)$ is a $h(u),h(v)$-curve.
+\end{definition}
+
+\begin{remark}
+  We can assume without loss of generality that the image of an edge is a
+  polygonal curve, so composed of finitely many line segments.
+\end{remark}
+
+\begin{definition}
+  The \pojem{planar embedding} of a graph $G$ is a drawing where the curves
+  corresponding to the edges of $G$ do not intersect, except in common end
+  vertices.
+\end{definition}
+
+\begin{definition}
+  A \pojem{plane graph} is a particular embedding of a planar graph.
+\end{definition}
+
+\begin{theorem}[Jordan]
+  Every closed simple curve in the plane divides it into exactly two regions, a
+  bounded inside region and an unbounded outside region.
+\end{theorem}
+
+\begin{definition}
+  If $G$ is a plane graph, then a \pojem{face} of $G$ is a maximal region that
+  does not contain any points from the image of the embedding function $f$.
+\end{definition}
+
+\begin{definition}
+  The \pojem{dual graph} $G^*$ of a plane graph $G$ is obtained by switching the
+  role of the vertices and faces of $G$, with two faces being connected if and
+  only if they share a common border.
+  If there are multiple common edges on the boundary between two faces, make
+  that many edges.
+  If there is an edge which borders twice on the same face, add a loop.
+\end{definition}
+
+\begin{remark}
+  Two different embeddings of a planar graph may have non-isomorphic dual
+  graphs.
+\end{remark}
+
+\begin{proposition}
+  Dual graphs are always connected.
+\end{proposition}
+
+\begin{proposition}
+  If $G$ is a connected plane graph, then $(G^*)^* \cong G$.
+\end{proposition}
+
+\begin{remark}
+  Note that dual graphs are always planar.
+\end{remark}
+
+\begin{definition}
+  The \pojem{length} $l(F)$ of a face $F$ in a plane graph $G$ is the total
+  length of the walk(s) along the boundary of $F$, in units of number of edges.
+\end{definition}
+
+\begin{remark}
+  With this definition, cut edges are counted twice.
+\end{remark}
+
+\begin{remark}
+  For any plane graph,
+  \[
+	\sum_{\text{$F$ face}} l(F) = 2 m(G).
+  \]
+\end{remark}
+
+\begin{theorem}
+  Suppose $G$ is a plane graph.
+  The following statements are equivalent:
+  \begin{itemize}
+  \item $G$ is bipartite,
+  \item every face of $G$ has an even length,
+  \item $G^*$ is Eulerian (connected and all vertices are of even degree).
+  \end{itemize}
+\end{theorem}
+
+\begin{proof}
+  1 to 2:
+  The length of a face is the length of a cycle in $G$, and possibly some cut
+  edges, which are counted twice.
+
+  2 to 1:
+  Suppose $G$ is not bipartite, so there is an odd cycle $C$.
+  Consider the sum of the lengths of faces inside $C$.
+  Every edge inside $C$ (but not part of $C$) is counted twice, but every edge
+  of $C$ is counted only once.
+  So the sum is odd.
+  Then there must be a face $F$ in the cycle with an odd length, which is a
+  contradiction.
+
+  Equivalence between 2 and 3:
+  Note that $G^*$ is connected and $\deg_{G^*}(x) = l(x)$.
+\end{proof}
+
+\begin{theorem}
+  If $G$ is a plane graph and $D \subseteq E(G)$, then $D$ is a set of edges of
+  a cycle if and only if the corresponding dual edge set $D^*$ is a minimal edge
+  cut in $G^*$.
+\end{theorem}
+
+\begin{proof}
+  Consider three cases.
+  \begin{itemize}
+  \item If $D$ is exactly the edge set of a cycle $C$, then $D^*$ contains all
+	edges between the inside and outside faces of $C$, so it is an edge cut in
+	$G^*$ and it is minimal, as the faces inside $C$ are all connected in $G^*$.
+  \item If $D$ is a proper subset of the set of edges of a cycle, we can prove
+	that $D^*$ is an edge cut, but not minimal.
+  \item If $D$ does not contain the edge set of a cycle, we can show that $D^*$
+	is not an edge cut. \qedhere
+  \end{itemize}
+\end{proof}
+
+\begin{definition}
+  A planar graph $G$ is \pojem{outerplanar} if there exists an embedding such
+  that the boundary of the outer face contains all vertices.
+\end{definition}
+
+\begin{theorem}
+  If $G$ is a simple outerplanar graph, then $\delta(G) \le 2$.
+\end{theorem}
+
+\begin{proof}
+  If $n \le 4$, then this is simple casework.
+  For $n \ge 4$, we will prove that additionally, there are at least two
+  nonadjacent such vertices.
+  Induction on $n = n(G)$.
+  We covered the base case $n=4$ before, just do the induction step, in which we
+  consider two cases.
+
+  In the first case, if there is a cut vertex $v$, then $G-v$ splits into two
+  graphs $G_1, G_2$.
+  Both $G_1 + v$ and $G_2 + v$, with the original edges from $v$, are
+  outerplanar graphs.
+  By the induction hypothesis, there are two nonadjacent vertices in $G_1 + v$
+  of degree at most $2$, so there is a vertex $z_1 \ne v$ in $G_1 + v$ with
+  degree at most $2$ in $G_1 + v$.
+  Similarly, there is a vertex $z_2$ in $G_2 + v$ for which the same holds.
+  These vertices are of the same degree in $G$.
+
+  In the second case, if there is no cut vertex, then there is no cut edge, and
+  the boundary of the outer face is a Hamiltonian cycle.
+  If there is no chord in this cycle, the statement is proven.
+  Otherwise, let $xy$ be a chord.
+  Consider the two cycles $H_1, H_2$ that the chord divides our Hamiltonian
+  cycle into.
+  Both are outerplanar, so using the induction hypothesis on each, we can find
+  two nonadjacent vertices of degree at most $2$.
+  They can't be adjacent to a vertex in the other part of the Hamiltonian cycle,
+  as that edge would cross $xy$.
+\end{proof}
+
+\begin{theorem}[Euler]
+  If $G$ is a connected plane graph, then
+  \[
+	n(G) + f(G) - m(G) = 2.
+  \]
+\end{theorem}
+
+% LocalWords:  Eulerian outerplanar
