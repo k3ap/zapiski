@@ -605,5 +605,194 @@ Pravimo ji \pojem{Calkinova algebra}.
   Tedaj je $\cl{A} \in K(\cl{X}, \cl{Y})$.
 \end{trditev}
 
+\podnaslov{Izrek Arzela-Ascoli}
+
+\begin{definicija}
+  Naj bo $K$ kompakten Hausdorffov prostor. Množica $H \subseteq \zvezne{K}$ je
+  \pojem{enakozvezna}, če za vsaka $x \in K$ in $\varepsilon > 0$ obstaja odprta
+  množica $U_x \ni x$, da je $\abs{f(y) - f(x)} < \varepsilon$ za vse $y \in
+  U_x$ in $f \in H$.
+\end{definicija}
+
+\begin{izrek}[Arzela-Ascoli]
+  Naj bo $K$ kompakten Hausdorffov prostor in $H \subseteq \zvezne{K}$ družina
+  funkcij.
+  Tedaj je $H$ relativno kompaktna natanko tedaj, ko je enakozvezna in po točkah
+  omejena.
+\end{izrek}
+
+\begin{izrek}
+  Naj bo $(f_n)_n \subseteq \zvezne{[a,b]}$ tako zaporedje, da za vse
+  $\varepsilon > 0$ obstaja $\delta > 0$, da za vsak $n$ velja
+  \[
+	\abs{y-x} < \delta \implies \abs{f_n(x) - f_n(y)} < \varepsilon.
+  \]
+  Če je $(f_n)_n$ omejeno zaporedje, je relativno kompaktno.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $(f_n)_n$ kot v izreku.
+  Naj bo $(x_n)_n$ množica racionalnih števil na $[a,b]$, postavljena v
+  zaporedje.
+  Zaporedje $(f_n(x_1))_n$ je omejeno v $\C$, torej ima konvergentno
+  podzaporedje $(f_n^{(1)}(x_1))_n$.
+  Zaporedje $(f_n^{(1)}(x_2))_n$ je omejeno, torej ima konvergentno podzaporedje
+  $(f_n^{(2)}(x_2))_n$.
+  Postopek ponavljamo, da dobimo neskončno zaporedij $(f_n^{(k)}(x_k))_n$.
+  Tvorimo $\tilde{f}_n = f_n^{(n)}$.
+  Po konstrukciji $(\tilde{f}_n(x_j))_n$ konvergira za poljuben $j \in \N$.
+
+  Naj bo $\varepsilon > 0$.
+  Obstaja $\delta > 0$, da velja
+  \[
+	\abs{y-x} < \delta \implies \abs{f_n(y) - f_n(x)} < \frac{\varepsilon}{3}.
+  \]
+  Ker je $[a,b]$ kompakt, obstaja $p \in \N$, da je
+  \[
+	[a,b] \subseteq \bigcup_{j=1}^p (x_j - \delta, x_j + \delta).
+  \]
+  Obstaja $n_\varepsilon \in \N$, da za vse $m,n \ge n_\varepsilon$ velja
+  $\abs{\tilde{f}_m(x_j) - \tilde{f}_m(x_j)} < \nicefrac{\varepsilon}{3}$ za vse
+  $j=1, \ldots, p$.
+  Za $x \in [a,b]$ potem obstaja $j$, da $\abs{x_j -x} < \delta$, torej
+  \[
+	\abs{\tilde{f}_n(x) - \tilde{f}_m(x)}
+	\le \abs{\tilde{f}_n(x) - \tilde{f}_n(x_j)} + \abs{\tilde{f}_m(x) -
+	  \tilde{f}_m(x_j)} + \abs{\tilde{f}_n(x_j) - \tilde{f}_m(x_j)} <
+	\varepsilon,
+  \]
+  torej je $\norm{\tilde{f}_n - \tilde{f}_m} \le \varepsilon$ za $m, n \ge
+  n_\varepsilon$.
+  Torej je zaporedje $(\tilde{f}_n)_n$ Cauchyjevo in zato konvergira.
+  Limita je stekališče $(f_n)_n$.
+\end{proof}
+
+\begin{trditev}
+  Naj bo $H \subseteq \zvezne{[a,b]}$ družina zvezno odvedljivih funkcij.
+  Če je $\sup \{ \norm{f}_\infty \such f \in H \} < \infty$, potem je $H$
+  enakozvezna.
+\end{trditev}
+
+\begin{proof}
+  Za $f \in H$ je
+  \[
+	\abs{f(y) - f(x)} = \abs{f'(\xi) (y-x)} \le \sup_{g \in H} \norm{g}_\infty
+	\abs{y-x}
+  \]
+  po Lagrangeovem izreku, za neki $\xi$.
+\end{proof}
+
+\begin{izrek}
+  Naj bo $k \in \zvezne{[a,b] \times [a,b]}$ in $K$ integralski operator, dan s
+  predpisom
+  \[
+	(Kf)(x) = \int_a^b k(x,y) f(y) dy.
+  \]
+  Tedaj sta $K: (\zvezne{[a,b]}, \norm{\cdot}_\infty) \to (\zvezne{[a,b]},
+  \norm{\cdot}_\infty)$ in $K: (\zvezne{[a,b]}, \norm{\cdot}_2) \to
+  (\zvezne{[a,b]}, \norm{\cdot}_2)$ kompaktna operatorja.
+\end{izrek}
+
+\begin{proof}
+  Ker je $k$ enakomerno zvezna, za vsak $\varepsilon > 0$ obstaja $\delta > 0$,
+  da iz $\abs{(x,y) - (z,w)} < \delta$ sledi $\abs{k(x,y) - k(z,w)} <
+  \varepsilon$.
+  Potem je
+  \begin{align*}
+	\abs{Kf(x) - Kf(y)}
+	&\le \int_a^b \abs{k(x,z) - k(y,z)} \abs{f(z)} dz \\
+	&< \varepsilon \int_a^b \abs{f(z)} dz \\
+	&= \varepsilon \sk{1, f}_{L^2} \\
+	&\le \varepsilon \sqrt{b-a} \norm{f}_2,
+  \end{align*}
+  torej je $K(B_{\zvezne{[a,b]}})$ je enakozvezna.
+  Je tudi omejena:
+  \[
+	\abs{Kf(x)}
+	\le \int_a^b \abs{k(x,y) f(y)} dy
+	\le \norm{k}_\infty \norm{f}_\infty (b-a).
+  \]
+  Po izreku Arzela-Ascoli je slika krogle relativno kompaktna glede na
+  $\norm{\cdot}_\infty$ normo.
+  Za drugo normo vzemimo omejeno zaporedje $(f_n)_n \subseteq \zvezne{[a,b]}$.
+  Od prej vemo, da je $(Kf_n)_n$ enakozvezna, podobno pokažemo tudi, da je
+  omejena.
+\end{proof}
+
+\podnaslov{Kompaktnost adjungiranega operatorja}
+
+\begin{izrek}
+  Naj bo $T \in B(H,K)$.
+  Naslednje trditve so ekvivalentne:
+  \begin{itemize}
+  \item $T$ je kompakten,
+  \item $T^*$ je kompakten,
+  \item obstaja zaporedje $(T_n)_n \subseteq F(H,K)$, da $T_n \to T$.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  3 v 1 je jasno.
+  1 v 3:
+  Množica $\cl{T(B_H)}$ je kompaktna v $K$, torej je separabilna in velja
+  \[
+	\cl{\im T} \subseteq \bigcup_{n \in \N} n \cl{T(B_H)}.
+  \]
+  Torej je tudi $\cl{\im T}$ separabilen Hilbertov prostor, in ima števen KONS
+  $(e_n)_n$.
+  Naj bo $P_n$ ortogonalni projektor na linearno ogrinjačo prvih $n$ vektorjev
+  $e_i$.
+  Projektor je končnega ranga in zato kompakten.
+  Definiramo $T_n = P_n T$.
+
+  Če je $y \in \cl{\im T}$, potem je $y = \sum_m \sk{y,e_m} e_m$.
+  Velja $P_n y \xrightarrow[n \to \infty]{} y$, torej za $x \in H$ velja $Tx \in
+  \im T$, torej $T_n x \xrightarrow[n \to \infty]{} Tx$.
+  Torej $T_n \to T$ po točkah.
+
+  Pokazati moramo še, da $T_n \to T$ v $B(H,K)$.
+  Ker je $T$ kompakten, za vsak $\varepsilon > 0$ obstajajo $x_1, \ldots, x_m
+  \in B_H$. da je
+  \[
+	T(B_H) \subseteq \bigcup_{j=1}^m \mathring{B}(T x_j, \frac{\varepsilon}{3}).
+  \]
+  Za $x \in B_H$ obstaja $x_j$, da je $\norm{Tx - Tx_j} <
+  \nicefrac{\varepsilon}{3}$.
+  Potem je
+  \[
+	\norm{Tx - T_n x}
+	\le \norm{Tx - T x_j} + \norm{T x_j - T_n x_j} + \norm{T_n x_j - T_n x}
+	< \varepsilon,
+  \]
+  saj
+  \[
+	\norm{T_n x_j - T_n x} \le \norm{P_n} \norm{T x_j - Tx} <
+	\frac{\varnothing}{3}.
+  \]
+
+  1 v 2:
+  Najprej izračunamo
+  \[
+	\norm{T^* x}^2
+	= \sk{T^* x, T^* x}
+	= \sk{T T^* x, x}
+	\le \norm{T T^* x} \norm{x}.
+  \]
+  Ker je $T$ kompakten, je $T T^*$ kompakten.
+  Naj bo $(x_n)_n$ omejeno v $K$, torej obstaja konvergentno podzaporedje
+  $(x_{n_k})_k$.
+  Velja
+  \[
+	\norm{T^* x_{n_k} - T^* x_{n_j}}^2
+	\le \norm{T T^* (x_{n_k} - x_{n_j})} \norm{x_{n_k} - x_{n_j}}.
+  \]
+  Prvi člen konvergira k $0$ za $k, j \to \infty$, drugi člen pa je omejen.
+  Torej je zaporedje $(T^* x_{n_k})_k$ Cauchyjevo v $H$, ki je poln, zato
+  konvergira, in je $T^*$ kompakten.
+
+  2 v 1:
+  Velja $T^{**} = T$.
+\end{proof}
+
 % LocalWords:  seskvilinearna seskvilinearne involucija semidefiniten Calkinova
-% LocalWords:  Idempotenti
+% LocalWords:  Idempotenti Arzela-Ascoli enakozvezna Lagrangeovem KONS

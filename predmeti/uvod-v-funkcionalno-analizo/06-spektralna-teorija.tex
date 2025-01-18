@@ -1,0 +1,319 @@
+\naslov{Spektralna teorija}
+
+Naj bo $A$ kompleksna Banachova algebra z enoto.
+Naj bo $a \in A$.
+Definiramo
+\[
+  \rho(a) = \{ \lambda \in \C \such \text{$\lambda - a$ obrnljiv v $A$} \}.
+\]
+
+\begin{opomba}
+  Identificiramo $\lambda - a = \lambda \cdot 1 - a$.
+\end{opomba}
+
+Pravimo, da je $\rho(a)$ \pojem{resolventa} elementa $a$.
+Označimo
+\[
+  R(\lambda, a) = (\lambda - a)^{-1}.
+\]
+Preslikava $\lambda \mapsto R(\lambda, a)$ je \pojem{resolventna funkcija}.
+Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$.
+
+\begin{trditev}
+  Naj bo $A \in B(H)$.
+  Tedaj je $\sigma(A^*) = \{ \konj{\lambda} \such \lambda \in \sigma(A) \}$.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $B$ tak, da je $(\lambda I - A) B = B(\lambda I - A) = I$.
+  Če obe strani adjungiramo, dobimo $B^* (\konj{\lambda} I - A^*) =
+  (\konj{\lambda} I - A^*) B^* = I$.
+\end{proof}
+
+\begin{definicija}
+  Naj bo $X$ kompleksen Banachov prostor in $A$ omejen operator na $X$.
+  Potem je $\lambda$ v \pojem{zveznem} delu spektra ($\lambda \in \sigma_c(A)$),
+  če je $\lambda I - A$ injektiven in $\cl{\im(\lambda I - A)} = X$ ter
+  $\im(\lambda I - A) \ne X$.
+  Pravimo, da je $\lambda$ v \pojem{residualnem} delu spektra ($\lambda \in
+  \sigma_r(A)$), če je $\lambda I - A$ injektiven in $\im (\lambda I - A)$ ni
+  gosta.
+  Pravimo, da je $\lambda$ v \pojem{točkastem} delu spektra ($\lambda \in
+  \sigma_p(A)$), če je $\lambda$ lastna vrednost za $A$.
+\end{definicija}
+
+\begin{trditev}
+  Naj bo $A \in B(H)$.
+  Če je $A = A^*$, je $\sigma_p(A) \subseteq \R$.
+  Če je $A$ normalen, so lastni vektorji medseboj pravokotni.
+\end{trditev}
+
+\begin{trditev}
+  Naj bo $H$ Hilbertov prostor in $A \in B(H)$.
+  Če je $\lambda \in \sigma_r(A)$, je $\konj{\lambda} \in \sigma_p(A^*)$.
+  Če je $\lambda \in \sigma_p(A)$, je $\konj{\lambda} \in \sigma_p(A^*) \cup
+  \sigma_r(A^*)$.
+\end{trditev}
+
+\begin{proof}
+  Če $\im(A - \lambda I)$ ni gost v $H$, potem je
+  \[
+	\jedro (A^* - \konj{\lambda} I)
+	= \jedro (A - \lambda I)^*
+	= \im (A - \lambda I)^\bot
+	\ne \{0\},
+  \]
+  torej obstaja lastni vektor za $\konj{\lambda}$ za $A^*$.
+
+  Za drugo trditev velja $\jedro (\lambda I -A) \ne \{0\}$, če vzamemo
+  pravokotni komplement obeh strani, dobimo $\cl{\im (\konj{\lambda} I - A^*)}
+  \ne H$.
+\end{proof}
+
+\begin{posledica}
+  Če je $A \in B(H)$ normalen, je $\sigma_r(A) = \varnothing$.
+\end{posledica}
+
+\begin{proof}
+  Če je $\lambda \in \sigma_r(A)$, potem je $\konj{\lambda} \in \sigma_p(A^*)$
+  in zato
+  \[
+	\jedro (A - \lambda I) = \jedro(A - \konj{\lambda} I)^*
+	= \jedro(A^* - \lambda I) \ne \{0\},
+  \]
+  kjer smo v prvem koraku uporabili normalnost.
+  Sledi $\lambda \in \sigma_p(A)$.
+  \protislovje{}
+\end{proof}
+
+\begin{lema}
+  Naj bo $X$ kompleksen Banachov prostor in $A \in B(X)$.
+  Naj bo $\lambda \in \sigma_c(A)$.
+  Tedaj obstaja $(x_n)_n$ z $\norm{x_n} = 1$, da $A x_n - \lambda x_n \to 0$.
+\end{lema}
+
+\begin{izrek}
+  Naj bo $A \in B(H)$ sebi adjungiran operator.
+  Tedaj $\sigma(A) \subseteq \R$.
+\end{izrek}
+
+\begin{proof}
+  Ker je $A$ sebi adjungiran, je normalen, zato $\sigma_r(A) = \varnothing$.
+  Dokazati moramo torej le še $\sigma_c(A) \subseteq \R$.
+  Če je $\lambda in \sigma_c(a)$, obstaja zaporedje $(x_n)_n$ z $\norm{x_n} = 1$
+  in $A x_n - \lambda x_n \to 0$.
+  Pišimo $\lambda = \alpha + i \beta$.
+  Potem velja
+  \[
+	\abs{\sk{(\lambda I - A) x_n, x_n}}
+	\le \norm{x_n} \norm{(\lambda I - A) x_n}
+	\xrightarrow[n \to \infty]{} 0,
+  \]
+  skalarni produkt pa je enak
+  \[
+	\sk{(\lambda I - A) x_n, x_n}
+	= \sk{\alpha x_n - A x_n, x_n} + i \beta \sk{x_n, x_n}
+	= \sk{\alpha x_n - A x_n, x_n} + i \beta,
+  \]
+  torej $\beta = 0$.
+\end{proof}
+
+\begin{izrek}
+  Naj bo $A$ Banachova algebra z enico in naj bo $\norm{a} < 1$ za nek $a \in
+  A$.
+  Tedaj je $1 - a$ obrnljiv in
+  \[
+	(1 - a)^{-1} = \sum_{n=0}^\infty a^n.
+  \]
+\end{izrek}
+
+\begin{proof}
+  Označimo delne vsote z $s_n$.
+  Če je $n > m$, velja
+  \[
+	\norm{s_n - s_m}
+	= \norm{a^{m+1} + \cdots + a^n}
+	\le \norm{a}^{m+1} + \cdot + \norm{a}^n
+	\le \norm{a}^{m+1} \sum_{k=0}^\infty \norm{a}^k
+	= \frac{\norm{a}^{m+1}}{1 - \norm{a}},
+  \]
+  kar konvergira k $0$ za $n, m \to \infty$.
+  Torej je zaporedje Cauchyjevo, in obstaja limita $s$.
+  Velja $(1 - a) s_n = 1 - a^{n+1}$.
+  Leva stran konvergira k $(1-a)s$, desna pa k $1$.
+\end{proof}
+
+\begin{lema}
+  Naj bosta $\lambda, \mu \in \rho(a)$.
+  Velja $R(\mu, a) - R(\lambda, a) = (\lambda - \mu) R(\lambda, a) R(\mu, a) =
+  (\lambda - \mu) R(\mu,a) R(\lambda, a)$.
+\end{lema}
+
+\begin{proof}
+  Ker $(\lambda - a)$ in $(\mu - a)$ komutirata, komutirata tudi njuna inverza.
+  Preostalo je preprost račun.
+\end{proof}
+
+\begin{trditev}
+  Naj bo $a \in A$, kjer je $A$ kompleksna Banachova algebra z enico.
+  Potem je $\rho(a)$ odprta v $\C$, $\sigma(a)$ pa kompaktna in vsebovana v
+  $B(0, \norm{a})$.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $\lambda_0 \in \rho(a)$.
+  Iščemo $\varepsilon > 0$, da iz $\abs{\lambda - \lambda_0} < \varepsilon$
+  sledi $\lambda \in \rho(a)$.
+  Izrazimo lahko
+  \[
+	\lambda - a = (\lambda_0 - a)(1 + (\lambda - \lambda_0)(\lambda_0 - a)^{-1}).
+  \]
+  Če je $\norm{(\lambda - \lambda_0)(\lambda_0 -a)^{-1}} \le \varepsilon
+  \norm{(\lambda_0 - a)^{-1}} < 1$, potem je
+  \[
+	1 + (\lambda - \lambda_0)(\lambda_0 - a)^{-1}
+  \]
+  obrnljiv, torej $\lambda - a$ produkt dveh obrnljivih elementov.
+
+  Za drugo trditev je $\sigma(a) = \C \setminus \rho(a)$ zaprta množica.
+  Če je $\abs{\lambda} > \norm{a}$, je
+  \[
+	\lambda - a = \lambda (1 - \frac{a}{\lambda}),
+  \]
+  ampak potem $\norm{\nicefrac{a}{\lambda}} < 1$, in je $\lambda \in \rho(a)$.
+  Torej je $\sigma(a) \subseteq B(0, \norm{a})$.
+\end{proof}
+
+\begin{opomba}
+  Če je $\abs{\lambda} > \norm{a}$, je $\lambda \in \rho(a)$ in
+  \[
+	(\lambda - a)^{-1} = \sum_{n=0}^\infty \frac{a^n}{\lambda^{n+1}}.
+  \]
+\end{opomba}
+
+\begin{opomba}
+  Če je $\lambda_0 \in \rho(a)$ in $\abs{\lambda - \lambda_0} < \norm{(\lambda_0
+	- a)^{-1}}^{-1}$, potem je $\lambda \in \rho(a)$ in velja
+  \[
+	(\lambda - a)^{-1} = (\lambda_0 - a)^{-1} \sum_{n=0}^\infty (\lambda_0 -
+	\lambda)^n (\lambda_0 - a)^{-n}.
+  \]
+\end{opomba}
+
+\begin{trditev}
+  Naj bo $\mu \in \rho(a)$.
+  Tedaj velja
+  \[
+	\lim_{\lambda \to \mu} \frac{(\lambda - a)^{-1} - (\mu - a)^{-1}}{\lambda -
+	  \mu}
+	= -(\mu - a)^{-2}.
+  \]
+\end{trditev}
+
+\begin{trditev}
+  Resolventna funkcija je zvezna.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $\lambda_0 \in \rho(a)$ in $\abs{\lambda - \lambda_0} <
+  \norm{R(\lambda_0, a)}^{-1}$.
+  Potem velja
+  \[
+	R(\lambda,a) = \sum_{n=0}^\infty (\lambda - \lambda_0)^n R(\lambda_0,
+	a)^{n+1},
+  \]
+  torej je
+  \[
+	R(\lambda, a) - R(\lambda_0, a) = \sum_{n=1}^\infty (\lambda_0 - \lambda)^n
+	R(\lambda_0, a)^{n+1}.
+  \]
+  Iz tega sledi
+  \begin{align*}
+	\norm{R(\lambda, a) - R(\lambda_0, a)}
+	&\le \abs{\lambda - \lambda_0} \norm{R(\lambda_0, a)}^2 \sum_{n=0}^\infty \abs{\lambda - \lambda_0}^n \norm{R(\lambda_0, a)}^n \\
+	&= \frac{\abs{\lambda_0 - \lambda} \norm{R(\lambda_0, a)}^2}{1 - \abs{\lambda_0 - \lambda} \norm{R(\lambda_0, a)}} \\
+	&\xrightarrow[\lambda \to \lambda_0]{} 0.
+	  \qedhere
+  \end{align*}
+\end{proof}
+
+\begin{izrek}
+  Naj bo $a \in A$ in $A$ kompleksna Banachova algebra z enico.
+  Tedaj je $\sigma(a) \ne \varnothing$.
+\end{izrek}
+
+\begin{proof}
+  Recimo $\sigma(a) = \varnothing$.
+  Potem je $\rho(a) = \C$, ker pa velja
+  \[
+	\lim_{\lambda \to \mu} \frac{R(\lambda, a) - R(\mu, a)}{\lambda - \mu} =
+	-R(\mu, a)^2,
+  \]
+  imamo za vsak $\varphi \in A^*$
+  \[
+	\varphi\!\left( \lim_{\lambda \to \mu} \frac{R(\lambda, a) - R(\mu,
+		a)}{\lambda - \mu} \right)
+	= \lim_{\lambda \to \mu} \frac{\varphi(R(\lambda, a)) - \varphi(R(\mu,
+	  a))}{\lambda - \mu}
+	= - \varphi(R(\mu, a)^2),
+  \]
+  torej je $\varphi \circ R(\cdot, a)$ cela holomorfna funkcija.
+
+  Če je $\abs{\lambda} > \norm{a}$, je
+  \[
+	\norm{R(\lambda, a)} \le \sum_{n=0}^\infty
+	\frac{\norm{a}^n}{\abs{\lambda}^{n+1}}
+	= \inv{\abs{\lambda}} \inv{1 - \nicefrac{\norm{a}}{\abs{\lambda}}},
+  \]
+  to pa konvergira k $0$ za $\abs{\lambda} \to \infty$.
+  Torej je $R(\cdot, a)$ omejena, zato je tudi $\varphi \circ R(\cdot, a)$
+  omejena.
+  Ker je cela holomorfna, je konstantna in velja $\varphi(R(\lambda, a)) = 0$ za
+  vsak $\lambda \in \C$.
+  Za $\lambda \in \rho(a)$ velja $(\lambda - a)R(\lambda, a) = 1$, torej
+  $R(\lambda, a) \ne 0$, in smo prišli v protislovje s Hahn-Banachom.
+\end{proof}
+
+\begin{definicija}
+  Naj bo $a \in A$.
+  Definirajmo
+  \[
+	r(a) = \sup_{\lambda \in \sigma(a)} \abs{\lambda} = \max_{\lambda \in
+	  \sigma(a)} \abs{\lambda}.
+  \]
+  To število imenujemo \pojem{spektralni radij} elementa $a$.
+\end{definicija}
+
+\begin{lema}
+  če je $\lambda \in \sigma(a)$, je $\lambda^n \in \sigma(a^n)$.
+\end{lema}
+
+\begin{proof}
+  Dokažemo obratno; če je $\lambda^n \in \rho(a^n)$, je $\lambda \in \rho(a)$.
+  Računamo
+  \[
+	\lambda^n - a^n = (\lambda -a)(\lambda^{n-1} + \cdots + a^{n-1})
+  \]
+  in desni člen produkta označimo z $b$.
+  Obstaja $c \in A$, da je $(\lambda^n - a^n)c = c(\lambda^n - a^n) =1$, torej
+  $(\lambda - a)bc = 1$ in ima $\lambda - a$ desni inverz.
+  Podobno pokažemo, da ima levi inverz.
+\end{proof}
+
+\begin{trditev}
+  Naj bo $a \in A$ in $p$ polinom.
+  Tedaj je $\sigma(p(a)) = p(\sigma(a))$.
+\end{trditev}
+
+\begin{proof}[Gelfandova formula]
+  Naj bo $a \in A$.
+  Potem je
+  \[
+	r(a) = \lim_{n \to \infty} \norm{a^n}^{1/n} = \liminf_{n \to \infty}
+	\norm{a^n}^{1/n}
+	= \inf_{n \in \N} \norm{a^n}^{1/n}.
+  \]
+\end{proof}
+
+% LocalWords:  resolventa resolventna adjungiramo medseboj residualnem
+% LocalWords:  Hahn-Banachom Gelfandova
