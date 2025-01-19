@@ -1,0 +1,304 @@
+\naslov{Matchings}
+
+We define the following:
+\begin{itemize}
+\item $\alpha(G)$ is the maximum cardinality of an independent set,
+\item $\beta(G)$ is the maximum cardinality of a vertex cover (subset $T
+  \subseteq V$ which covers all edges),
+\item $\alpha'(G)$ is the cardinality of the largest matching in $G$,
+\item $\beta'(G)$ is the maximum cardinality of an edge cover.
+\end{itemize}
+
+We note the following easy relations:
+\begin{alignat*}{2}
+  \alpha(G) + \beta(G) = n(G) & \qquad & \alpha'(G) \le \beta(G) \\
+  \alpha'(G) \le \beta'(G) & & \alpha(G) \le \beta'(G)
+\end{alignat*}
+
+\begin{theorem}[Gallai]
+  If $\delta(G) \ge 1$, then $\alpha'(G) + \beta'(G) = n(G)$.
+\end{theorem}
+
+There is much we can say about matchings.
+Let $M$ be a matching in $G$.
+We say that a path $P$ is an \pojem{$M$-augmenting path} if it alternates
+between edges in $M$ and in $\konj{M}$, and if the end vertices are not covered
+by $M$.
+It is worth noting that there is an $M$-augmenting path if and only if $M$ is
+not a maximum matching.
+
+\begin{theorem}[Tutte]
+  A graph $G$ has a perfect matching if and only if Tutte's condition holds, so
+  if for any $S \subseteq V$, we have $\abs{S} > o(G-S)$, where $o(G-S)$ is the
+  number of odd components in $G-S$.
+\end{theorem}
+
+This is a special case of the Berge-Tutte formula
+\[
+  \alpha'(G) = \pol \left(n - \max_{S \subseteq V} (o(G-S) - \abs{S})\right).
+\]
+
+\podnaslov{Bipartite graphs}
+
+\begin{theorem}[König]
+  Let $G$ be a bipartite graph. Then $\alpha'(G) = \beta(G)$.
+  Additionally, if $M$ is a matching in $G$ and there is no $M$-augmenting path,
+  $M$ is a maximum matching.
+\end{theorem}
+
+As a corollary, if $G$ is bipartite, then $\alpha(G) = \beta'(G)$.
+We can say more about bipartite graphs, as the next theorem states.
+
+\begin{theorem}[Hall]
+  If $G$ is bipartite with partite classes $A, B$, then there exists a matching
+  that covers $A$ if and only if Hall's condition holds for $A$, so if for every
+  $S \subseteq A$, $\abs{S} \le \abs{N(S)}$.
+\end{theorem}
+
+So in a bipartite graph, there is a perfect matching if and only if $\abs{A} =
+\abs{B}$ and Hall's condition holds.
+Also,
+\[
+  \alpha'(G) = \abs{A} - \max_{S \subseteq A} (\abs{S} - \abs{N(S)}).
+\]
+We may also say the following.
+
+\begin{theorem}
+  If $G$ is a regular bipartite graph, then $G$ has a perfect matching.
+\end{theorem}
+
+\podnaslov{Factors}
+
+A \pojem{$k$-factor} is a $k$-regular spanning subgraph (so a $k$-regular
+subgraph which contains all vertices).
+Note that a $1$-factor corresponds to a perfect matching.
+
+\begin{theorem}[Petersen]
+  Every bridgeless cubic graph has a $1$-factor.
+\end{theorem}
+
+We also have the following result.
+
+\begin{theorem}
+  If $G$ is a $k$-regular graph for an even $k$, then $G$ has a $2$-factor.
+\end{theorem}
+
+\naslov{Connectivity}
+
+The (vertex) connectivity of a graph $G$ is the minimum number of vertices $S$
+such that $G-S$ is either isomorphic to $K_1$ or is disconnected.
+We denote it by $\kappa(G)$.
+Note that $\kappa(G) \le \delta(G)$ and $\kappa(G) \le \beta(G)$.
+Similarly, we can define the edge-connectivity number $\kappa'(G)$ as the
+minimum number of edges $F$ such that $G -F$ is disconnected.
+If $G$ has at least $2$ vertices, then $\kappa(G) \le \kappa'(G) \le \delta(G)$.
+
+If we have a $k$-connected graph, then we may build new graphs with the
+following result.
+
+\begin{theorem}[expansion lemma]
+  If $G$ is a $k$-connected graph and we add a new vertex $v$ and $k$ incident
+  edges to the graph, then we obtain a $k$-connected graph.
+\end{theorem}
+
+We have several results about $2$-connected and $2$-edge-connected graphs.
+
+\begin{theorem}[Whitney]
+  If $G$ is a $2$-connected graph, then for every $u, v \in V(G)$, there are two
+  internally disjoint $u,v$-paths.
+  The converse also holds.
+\end{theorem}
+
+\begin{proposition}[subdivision lemma]
+  Suppose $G'$ is obtained from $G$ by subdividing an edge $uv \in E(G)$ with a
+  vertex $w$.
+  Then $G$ is $2$-connected if and only if $G'$ is $2$-connected.
+\end{proposition}
+
+An (open) ear decomposition of $G$ is a sequence $P_0, P_1, \ldots, P_k$, where
+$P_0$ is a cycle in $G$ and every other $P_i$ is an ear in the graph $G_i = P_0
+\cup P_1 \cup \ldots \cup P_i$.
+We also require $G_k = G$.
+Here, an ear is a path where all internal vertices are of degree $2$, but end
+vertices are of degree at least $3$.
+
+\begin{theorem}
+  A graph $G$ is $2$-connected if and only if it has an ear decomposition.
+\end{theorem}
+
+Similarly, we can define a closed ear as a cycle in which all but one vertex
+have degree $2$, with the exceptional vertex having degree at least $4$.
+A closed ear decomposition then is a sequence $P_0, P_1, \ldots, P_k$ where
+$P_i$ is either an open or closed ear in $G_i$ (defined as before), and $G_k =
+G$.
+
+\begin{theorem}
+  A graph $G$ is $2$-edge-connected if and only if it has a closed ear
+  decomposition.
+\end{theorem}
+
+\begin{theorem}[Robbins]
+  An undirected graph $G$ is $2$-edge-connected if and only if it has a strong
+  orientation, so if we can choose the orientation of each edge in such a way
+  that we get a strongly connected digraph.
+\end{theorem}
+
+A set $S \subseteq V(G)$ is an \pojem{$x,y$-cut} if $x$ and $y$ belong to
+different components in $G - S$.
+We label the minimum size of such a cut with $\kappa_G(x,y)$.
+We also define $\lambda_G(x,y)$ as the maximum number of internally
+vertex-disjoint $x,y$-paths in $G$.
+We then have the following result.
+
+\begin{theorem}[Menger's theorem for vertex cuts]
+  If $x$ and $y$ are nonadjacent vertices in $G$, then $\kappa_G(x,y) =
+  \lambda_G(x,y)$.
+\end{theorem}
+
+We can also define an $x,y$-edge cut as an edge set $R$ such that $G - R$ is
+disconnected and $x$ and $y$ are in different components.
+The minimum size of such a set is denoted by $\kappa_G'(x,y)$.
+Also, the maximum number of edge-disjoint $x,y$-paths is denoted by
+$\lambda_G'(x,y)$.
+
+\begin{theorem}[Menger's theorem for edge cuts]
+  Let $x,y \in V(G)$.
+  Then $\kappa_G'(x,y) = \lambda_G'(x,y)$.
+\end{theorem}
+
+\naslov{Coloring}
+
+The chromatic number of $G$ is the minimum number of colors in a proper coloring
+of $G$.
+It is denoted by $\chi(G)$.
+We can remark that in any graph, the following holds:
+\[
+  \omega(G) \le \chi(G) \le \Delta(G) + 1,
+  \qquad
+  \chi(G) \ge \frac{n(G)}{\alpha(G)}.
+\]
+We can use the greedy coloring algorithm to find a proper coloring of a graph,
+but depending on the choice of vertex order, the result may be arbitrarily bad.
+A slightly better idea than an arbitrary order is to order vertices by their
+degrees, decreasing.
+We then find
+\[
+  \chi(G) \le 1 + \max_{i=1, \ldots, n} \{ \min \{ d_i, i-1 \} \}.
+\]
+We gave a higher bound $\chi(G) \le \Delta(G) + 1$, but we can improve it
+slightly.
+
+\begin{theorem}[Brooks]
+  If $G$ is connected and not a complete graph or odd cycle, then $\chi(G) \le
+  \Delta(G)$.
+\end{theorem}
+
+We also gave a lower bound of $\omega(G)$, which is sharp, but the difference
+between $\chi$ and $\omega$ can be arbitrarily large, as can be shown from the
+following.
+
+\begin{theorem}[Mycielski’s construction]
+  If $G$ is a graph with at least one edge, then $\chi(M(G)) = \chi(G) + 1$ and
+  $\omega(M(G)) = \omega(G)$, where $M(G)$ is a graph derived from $G$ by the
+  following construction:
+  \begin{itemize}
+  \item label the vertices of $G$ as $v_1, \ldots, v_n$,
+  \item create $n+1$ new vertices $u_1, \ldots, u_n, z$,
+  \item add connections $u_i v_j$ for all pairs $v_i v_j \in E(G)$,
+  \item add connections $u_i z$ for all $i$.
+  \end{itemize}
+\end{theorem}
+
+A graph is \pojem{chordal} if there is no induced subgraph isomorphic to a cycle
+of size $\ge 4$.
+In a chordal graph, $\chi(G) = \omega(G)$.
+
+\begin{theorem}
+  A graph $G$ is chordal if and only if there is a simplicial elimination
+  ordering of the vertices of $G$, so if there exists an ordering $v_1, v_2,
+  \ldots, v_n$ such that the closed neighbourhood of $v_i$ in $G - \{v_1,
+  \ldots, v_{i-1}\}$ is a clique.
+\end{theorem}
+
+A graph $G$ is \pojem{perfect} if $\chi(H) = \omega(H)$ holds for every induced
+subgraph $H$ of $G$.
+All chordal graphs are perfect, as are bipartite graphs.
+We also know that the line graph of a bipartite graph is perfect.
+
+\begin{theorem}[Perfect graph theorem]
+  A graph is perfect if and only if its complement is perfect.
+\end{theorem}
+
+There is also a stronger result:
+
+\begin{theorem}[Strong perfect graph theorem]
+  A graph is perfect if and only if neither it nor its complement have an
+  induced cycle of size $5$ or greater.
+\end{theorem}
+
+\podnaslov{Edge coloring}
+
+The edge colour number $\chi'(G)$ is the smallest number of colors in a proper
+edge coloring.
+By Vizing's theorem, $\Delta(G) \le \chi'(G) \le \Delta(G) + 1$ for any graph
+$G$.
+
+\begin{proposition}
+  If $G$ is bipartite, $\chi'(G) = \Delta(G)$.
+\end{proposition}
+
+\naslov{Planar graphs}
+
+Simply put, a graph is planar if you can draw it on a plane without edges
+intersecting.
+If we have a plane graph (that is, a planar graph which is embedded into the
+plane), we can form a dual graph by switching the role of vertices and faces,
+with two former faces being connected once for each component of their common
+boundary.
+Dual graphs are always connected, and a double dual of a connected plane graph
+is isomorphic to the original.
+
+The length of a face is the number of edges along a walk at the face's boundary,
+where we count an edge twice if we must go through it twice.
+We denote the length by $l(F)$.
+In any plane graph,
+\[
+  \sum_{\text{$F$ face}} l(F) = 2 m(G).
+\]
+
+\begin{theorem}
+  Let $G$ be a plane graph.
+  Then the following are equivalent:
+  \begin{itemize}
+  \item $G$ is bipartite,
+  \item every face of $G$ has an even length,
+  \item $G^*$ is Eulerian (connected and all vertices are of even degree).
+  \end{itemize}
+\end{theorem}
+
+A planar graph is \pojem{outerplanar} if there is an embedding in which all
+vertices are on the boundary of the outside face.
+It turns out that a simple outerplanar graph has $\delta(G) \le 2$.
+
+\begin{theorem}[Euler]
+  If $G$ is a plane graph, then $n(G) + f(G) - m(G) = 2$.
+\end{theorem}
+
+As an easy corollary, in a planar graph, $m(G) \le 3n(G) - 6$.
+
+\begin{theorem}[Kuratowski]
+  A graph is planar if and only if it contains no Kuratowski subgraph (a
+  subgraph which is a subdivision of $K_{3,3}$ or $K_5$).
+\end{theorem}
+
+\begin{theorem}[Wagner]
+  A graph $G$ is planar if and only if neither $K_5$ nor $K_{3,3}$ are minors of
+  $G$ (so if we cannot obtain either by deleting or contracting edges of $G$).
+\end{theorem}
+
+\begin{theorem}[four-colour theorem]
+  If $G$ is planar, then $\chi(G) \le 4$.
+\end{theorem}
+
+% LocalWords:  Gallai König Tutte's Berge Tutte bridgeless Menger's simplicial
+% LocalWords:  Vizing's Eulerian outerplanar
