@@ -395,5 +395,241 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   \end{itemize}
 \end{primer}
 
-% LocalWords:  resolventa resolventna adjungiramo medseboj residualnem
-% LocalWords:  Hahn-Banachom Gelfandova
+\begin{lema}[Rieszova lema o pravokotnici]
+  Naj bo $X$ normiran prostor in $Y$ zaprt podprostor v $X$.
+  Tedaj za vsak $\varepsilon \in (0,1)$ obstaja $x \in X$, da velja $\norm{x} =
+  1$ in $d(x,Y) \ge \varepsilon$.
+\end{lema}
+
+\begin{opomba}
+  Če je $X$ končnorazsežen, obstaja $x \in X$ z $\norm{x} = 1$ in $d(x,Y) = 1$.
+  Skličemo se lahko na kompaktnost.
+\end{opomba}
+
+\begin{trditev}
+  Naj bo $Y$ končnorazsežen podprostor v normiranem prostoru $X$.
+  Tedaj obstaja zaprt podprostor $Z \subseteq X$, da je $X = Y \oplus Z$.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $\{e_1, \ldots, e_n\}$ baza za $Y$ in $\{f_1, \ldots, f_n\}$ dualna
+  baza.
+  Ker je dimenzija $Y$ končna, je $f_i$ omejen za vse $i=1, \ldots, n$.
+  Naj bo $F_i$ katerakoli Hahn-Banachova razširitev funkcije $f_i$.
+  Definiramo
+  \[
+	Z = \bigcap_{n=1}^n \jedro F_i.
+  \]
+  Ker je $F_i$ omejen, je $\jedro F_i$ zaprta množica, torej je presek zaprt.
+
+  Če je $x \in X$, lahko izrazimo
+  \[
+	x = \underbrace{ F_1(x) e_1 + \cdots + F_n(x) e_n }_{\in Y}
+	+ \underbrace{ x - F_1(x) e_1 - \cdots - F_n(x) e_n }_{\in Z}.
+  \]
+  Če je $x \in Y \cap Z$, velja $x = \alpha_1 e_1 + \cdots + \alpha_n e_n$,
+  ampak tudi $F_i(x) = 0 = \alpha_i$ za vse $i$, torej $x = 0$.
+\end{proof}
+
+\begin{trditev}
+  Naj bo $X$ Banachov prostor in $K \in K(X)$.
+  Če je $\lambda \ne 0$, je $\dim \jedro (K - \lambda I) < \infty$.
+  Dodatno je $\im(K - \lambda I)$ zaprta v $X$.
+\end{trditev}
+
+\begin{proof}
+  Izrazimo lahko $K - \lambda I = \lambda (\inv{\lambda} K - I)$, torej je
+  $\jedro (K - \lambda I) = \jedro (\inv{\lambda} K - I)$.
+  Označimo drugo preslikavo z $S$.
+  Velja $x \in \jedro (S - I) \iff Sx = x$, torej je $\left. S \right|_{\jedro
+	(S-I)}$ identiteta, in hkrati kompakten operator.
+  Torej je jedro končnorazsežno.
+
+  Za drugo trditev zapišemo $X = \jedro(K - \lambda I) \oplus Y$, kjer je $Y$
+  zaprt podprostor $X$.
+  Velja
+  \[
+	\im (K - \lambda I)
+	= (K - \lambda I) (\jedro (K - \lambda I) \oplus Y)
+	= (K - \lambda I) Y
+	= \im (\left. K - \lambda I \right|_Y).
+  \]
+  Označimo $T = K - \lambda I$.
+
+  Dovolj je dokazati, da je $\left. T \right|_Y$ navzdol omejen, saj bo potem
+  topološki izomorfizem $Y \to \im T$.
+  Ker je $Y$ zaprt, je Banachov, zato bo $\im T$ Banachov, polni prostori pa so
+  vedno zaprti.
+
+  Recimo, da $\left. T \right|_Y$ ni navzdol omejen.
+  Tedaj za vsak $n \in \N$ obstaja $y_n \in Y$, da $\norm{y_n} = 1$ in $\norm{T
+	y_n} \le \nicefrac{1}{n}$.
+  Ker je $K$ kompakten, obstaja podzaporedje $(y_{n_k})_k$, da $(K
+  y_{n_k})_k$ konvergira.
+  Velja
+  \[
+	y_{n_k} = \lambda \inv{\lambda} y_{n_K} = \inv{\lambda} \left( \lambda
+	  y_{n_k} - K y_{n_k} + K y_{n_k} \right) \to y
+  \]
+  za nek $y \in Y$ z $\norm{y} = 1$ saj sta prva dva člena vsote del zaporedja
+  $T y_n$, ki konvergira.
+  Enostavno lahko pokažemo, da velja $Ky = \lambda y$.
+  To pomeni, da je $y \in \jedro (K - \lambda I) \cap Y = \{0\}$, ampak
+  $\norm{y} = 1$.
+  \protislovje{}
+\end{proof}
+
+\begin{lema}
+  Naj bo $K$ kompakten operator na kompleksnem Banachovem prostoru $X$.
+  Tedaj ima $K$ za vsak $\varepsilon > 0$ le končno mnogo linearno neodvisnih
+  lastnih vektorjev za lastne vrednosti $\lambda$ z $\abs{\lambda} \ge
+  \varepsilon$.
+\end{lema}
+
+\begin{proof}
+  Recimo, da imamo $\varepsilon > 0$ in zaporedje $(x_n)_n$ linearno neodvisnih
+  lastnih vektorjev, ki zaporedoma pripadajo lastnim vrednostim $\lambda_n$ z
+  $\abs{\lambda_n} \ge \varepsilon$.
+  Definirajmo $X_n$ kot linearno ogrinjačo prvih $n$ lastnih vektorjev.
+  Velja $\dim X_n < \infty$, torej so ti prostori zaprti, hkrati pa velja\
+  \[
+	\{0\} \subsetneq X_1 \subsetneq X_2 \subsetneq X_3 \subsetneq \cdots
+  \]
+  Po Rieszovi lemi o pravokotnici obstaja $y_n \in X_n \setminus X_{n-1}$ z
+  $\norm{y_n} = 1$, da velja $d(y_n, X_{n-1}) \ge \pol$ za vse $n \ge 2$.
+  Pišimo $y_n = \alpha_1 x_1 + \cdots + \alpha_n x_n$ in $z_n = y_n /
+  \lambda_n$.
+  Potem velja $\norm{z_n} = \abs{\lambda_n}^{-1} \le \inv{\varepsilon}$ ter
+  \[
+	K z_n - y_n
+	= \alpha_1\left(\frac{\lambda_1}{\lambda_n} - 1\right) x_1
+	+ \cdots + \alpha_{n-1} \left(\frac{\lambda_{n-1}}{\lambda_n} - 1\right)
+	x_{n-1} \in X_{n-1}.
+  \]
+  Za $m < n$ izračunamo
+  \[
+	\norm{K z_n - K z_m}
+	= \| \underbrace{y_n}_{\in X_n} - \underbrace{(y_n - K z_n + K z_m)}_{\in
+	  X_{n-1}} \|
+	\ge \pol
+  \]
+  torej $(K z_n)_n$ nima Cauchyjevega podzaporedja, zato nima stekališča.
+  To je protislovje s kompaktnostjo $K$.
+\end{proof}
+
+\begin{izrek}
+  Za kompakten operator $K$ na kompleksnem Banachovem prostoru $X$ veljajo
+  naslednje trditve:
+  \begin{itemize}
+  \item če je $\dim X = \infty$, je $0 \in \sigma(K)$,
+  \item če je $\lambda \in \sigma(K) \setminus \{0\}$, je $\lambda$ lastna
+	vrednost $K$,
+  \item $\sigma(K)$ je končen ali števno neskončen,
+  \item če je $\sigma(K)$ neskončen in so $(\lambda_n)_n$ lastne vrednosti,
+	štete z geometrijsko večkratnostjo, potem $\lambda_n \to 0$.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Prva točka:
+  Če $0 \notin \sigma(K)$, je $K$ obrnljiv in je zato $\id = K K^{-1}$
+  kompaktna, torej je $\dim X < \infty$.
+
+  Tretja točka:
+  Računamo
+  \[
+	\sigma(K) \setminus \{0\}
+	= \bigcup_{n \in \N} \sigma(K) \cap \left\{ \lambda \in \C \such \abs{\lambda}
+	\ge \inv{n} \right\}.
+  \]
+  To je števna unija končnih množic.
+
+  Četrta točka:
+  Iz leme dobimo, da za vsak $\varepsilon > 0$ obstaja $n_\varepsilon$, za
+  katerega za poljuben $n \ge n_\varepsilon$ velja $\abs{\lambda_n} <
+  \varepsilon$.
+  Torej $\lambda_n \to 0$.
+
+  Tretja točka:
+  Recimo, da je $0 \ne \lambda \in \sigma(K)$.
+  Recimo, da je $K - \lambda I$ injektiven.
+  Če dokažemo, da je $K - \lambda I$ surjektiven, bo sledilo, da je obrnljiv z
+  omejenim inverzom, oziroma $\lambda \in \rho(K)$.
+
+  Pokažimo prvo, da je $\im (K - \lambda I)^n$ zaprta za vsak $n$.
+  Trditev pove, da ima $K - \lambda I$ zaprto sliko.
+  Izrazimo lahko
+  \[
+	(K - \lambda I)^n
+	= \sum_{n=0}^\infty \binom{n}{k} (-\lambda)^k K^{n-k}
+	=: \tilde{K} + (-\lambda)^n I.
+  \]
+  Operator $\tilde{K}$ je kompakten, torej ima $(K - \lambda I)^n$ zaprto sliko.
+
+  Definirajmo $X_n = \jedro (K - \lambda I)^n$ za $n \in \N_0$.
+  Velja $X_0 = X \supseteq X_1 \supseteq X_2 \supseteq \cdots$.
+  Recimo, da so vse inkluzije stroge.
+  Po Rieszovi lemi o pravokotnici za vsak $n \in \N$ obstaja $x_n \in X_{n-1}
+  \setminus X_n$ z $\norm{x_n} = 1$ in $d(x_n, X_n) \ge \pol$.
+  Za $m > n$ je
+  \[
+	\norm{K x_m - K x_n}
+	= \norm{\lambda x_n + K x_n - \lambda x_n - K x_m}
+	= \abs{\lambda} \norm{x_n + \inv{\lambda} (K - \lambda I) x_n -
+	  \inv{\lambda} K x_m}.
+  \]
+  Velja $x_m \in X_{m-1}$, torej $K x_m \in X_{m-1}$, iz česar sledi $K x_m \in
+  X_n$, saj je $m > n$.
+  Hkrati je $(K - \lambda I) x_n \in (K - \lambda I) X_{n-1} =X_n$, torej
+  $\inv{\lambda}((K - \lambda I) x_n - K x_m) \in X_{n-1}$.
+  Velja torej $\norm{K x_n - K x_m} ge \pol \abs{\lambda}$.
+  Kot prej pridemo v protislovje s kompaktnostjo operatorja $K$.
+  Torej mora obstajati $n$, za katerega je $X_n = X_{n+1}$.
+
+  Za konec recimo, da $K - \lambda I$ ni surjektiven.
+  Potem $X \ne (K - \lambda I) X$, velja pa $(K - \lambda I)^n X = (K - \lambda
+  I)^{n+1} X$.
+  To je protislovje z injektivnostjo $(K - \lambda I)^n$.
+\end{proof}
+
+\begin{izrek}
+  Naj bo $K: H \to H$ kompakten sebi adjungiran operator na kompleksnem
+  Hilbertovem prostoru $H$.
+  Potem obstajata zaporedje $(\lambda_n)_n \subseteq \R$ in ortonormiran sistem
+  $(e_n)_n$ (lahko sta oba končna) z
+  \begin{itemize}
+  \item $\abs{\lambda_1} \ge \abs{\lambda_2} \ge \cdots$, $\lambda_n \ne 0$, in
+	če je zaporedje neskončno, velja $\lambda_n \to 0$,
+  \item $K e_n = \lambda_n e_n$,
+  \item če je $\lambda \in \sigma_p(K) \setminus \{0\}$, se $\lambda$ pojavi v
+	$(\lambda_n)_n$ natanko tolikokrat, kot je $\dim \jedro (K - \lambda I)$,
+  \item $Kx = \sum \lambda_n \sk{x, e_n} e_n$.
+  \end{itemize}
+\end{izrek}
+
+\begin{proof}
+  Ker je $K$ sebi adjungiran, velja $r(K) = \norm{K}$ in $\sigma(K) \subseteq
+  [-\norm{K}, \norm{K}]$.
+  Če je $K = 0$, nimamo nič za dokazati.
+  Sicer lahko razvrstimo lastne vrednosti $K$ v padajoče zaporedje po absolutni
+  vrednosti, pri čemer jih štejemo glede na geometrijske večkratnosti.
+  Če je $\lambda \in \sigma_p(K) \setminus \{0\}$, lahko izberemo ortonormirano
+  bazo za $\jedro (K - \lambda I)$.
+  Če je $\mu \ne \lambda$ tudi neničelna lastna vrednost, bo njena ONB
+  pravokotna na ONB za $\lambda$.
+  Postopek ponovimo za vsako lastno vrednost v zaporedju.
+  Dobljene vektorje zložimo v $(e_n)_n$, da je $K e_n = \lambda_n e_n$.
+  Definiramo $Y$ kot zaprtje linearne ogrinjače teh vektorjev.
+  Potem je $(e_n)_n$ ONB za $Y$ in $H = Y \oplus Y^\bot$.
+
+  Ker je $K e_n = \lambda_n e_n$, je linearna ogrinjača $(e_n)_n$ invariantna na
+  $K$, ki je zvezen, torej enako velja za $Y$.
+  Iz sebi adjungiranosti sledi $K(Y^\bot) \subseteq Y^\bot$.
+  Če je $\left. K \right|_{Y^\bot} \ne 0$, je njegova norma neničeln lastni
+  vektor za $K$, kar je nemogoče, ker smo že našli vse lastne vrednosti.
+  Torej za $x \in H$ velja $Kx = \sum \lambda_n \sk{x, e_n} e_n$.
+\end{proof}
+
+% LocalWords:  resolventa resolventna adjungiramo medseboj residualnem Rieszova
+% LocalWords:  Hahn-Banachom Gelfandova Hahn-Banachova Rieszovi Cauchyjevega
+% LocalWords:  večkratnostjo večkratnosti
