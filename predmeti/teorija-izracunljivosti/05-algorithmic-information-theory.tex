@@ -1,0 +1,163 @@
+\naslov{Algorithmic information theory}
+
+A computable partial function $u: \{0,1\}^* \rightharpoonup \{0,1\}^*$ is
+\pojem{universal} if for any computable partial function $f: \{0,1\}^*
+\rightharpoonup \{0,1\}^*$ there exists a word $v_f \in \{0,1\}^*$ such that for
+all $w \in \{0,1\}^*$ we have $f(w) \simeq u(v_f w)$.
+
+\begin{proposition}
+  A universal computable partial function exists.
+\end{proposition}
+
+Given a universal function $u$, the \pojem{Kolmogorov complexity} $C_u(w)$ of a
+word $w$ is
+\[
+  C_u(w) = \min \{ \abs{v} \such u(v) = w \}.
+\]
+
+\begin{proposition}
+  Suppose $u,u'$ are universal computable functions.
+  Then for all words $w$, $C_{u'}(w) \le C_u(w) + C$ for some constant $C$,
+  equal for all words.
+\end{proposition}
+
+\begin{proposition}
+  For any $n \ge 0$, there exists a word $w$ of length $n$ such that $C_u(w) \ge
+  n$.
+\end{proposition}
+
+\begin{proof}
+  There are only at most $2^{n-1}$ words with complexity $< n$, but there are
+  $2^n$ words of length $n$.
+\end{proof}
+
+\begin{definition}
+  An infinite word $p \in \{0,1\}^\omega$ is \pojem{K-incompressible} if for all
+  $n \ge 0$, we have $C(\left. p \right|_n) \ge n - O(1)$.
+\end{definition}
+
+\begin{theorem}
+  No infinite sequence is K-incompressible.
+\end{theorem}
+
+\begin{proof}
+  Define a map
+  \[
+	\ceil{w} = \sum_{i=0}^{\abs{w}-1} w_i 2^i + 2^{\abs{w}} - 1
+  \]
+  which has an inverse $\operatorname{word}: \N \to \{0,1\}^*$.
+  Let $p \in \{0,1\}^\omega$.
+  Consider any $d \ge 0$ and let $m = \ceil{\left. p\right|_d}$.
+  Define $h: \{0,1\}^* \to \{0,1\}^*$ by $h(w) = \operatorname{word}(\abs{w})
+  w$.
+  Note that
+  \[
+	p_0 p_1 \ldots p_{d-1} p_d \ldots p_{d+m-1} = \left. p \right|_{d+m}
+	= h(p_d \ldots p_{d+m-1}) = u(v_h p_d \ldots p_{d+m-1}),
+  \]
+  so $C_u(\left. p \right|_{d+m}) \le \abs{v_h} + \ceil{\left. p \right|_d}$.
+\end{proof}
+
+\begin{definition}
+  A partial function $f: \{0,1\}^* \rightharpoonup \{0,1\}^*$ is
+  \pojem{prefix-free} if $\dom f \subseteq \{0,1\}^*$ satisfies the following
+  property:
+  for all $w, w' \in \dom f$, $w$ is not a proper prefix of $w'$.
+\end{definition}
+
+\begin{definition}
+  A computable prefix-free function $u: \{0,1\}^* \rightharpoonup \{0,1\}^*$ is
+  \pojem{universal} if for any computable prefix-free function $f: \{0,1\}^*
+  \rightharpoonup \{0,1\}^*$ there exists $v_f \in \{0,1\}^*$ such that for all
+  $w$, $f(w) \simeq u(v_f w)$.
+\end{definition}
+
+\begin{definition}
+  The \pojem{prefix-free complexity} $K(w)$ is defined as
+  \[
+	K(w) = \min \{ \abs{v} \such u(v) = w \}
+  \]
+  for a universal prefix-free function $u$.
+\end{definition}
+
+\begin{proposition}
+  For any $d > 1$, there exists a constant $C$ such that $K(w) \le d \abs{w} +
+  C$ for any word $w$.
+\end{proposition}
+
+\begin{proof}
+  Outline.
+  For any large $N$, we work with an encoding of $\{0,1\}^*$ as words $\Sigma^*$
+  where $\abs{\Sigma} = 2^N -1$.
+  We map $w$ to $\ceil{w}$, then represent $\Sigma$ with binary words of length
+  $N$.
+  We are left with one non-represented word, which is $0^N$ without loss of
+  generality.
+  Then we assign to $w$ the representation $\sk{\ceil{w}}$ followed by $N$
+  zeros.
+\end{proof}
+
+\begin{definition}
+  An infinite word $p$ is \pojem{prefix-free incompressible} if there exists a
+  constant $c$ such that for all $n$, $K(\left. p \right|_n) \ge n - c$.
+\end{definition}
+
+\begin{definition}
+  Chaitin's halting probability $\Omega$ is the probability that $u$ halts if
+  given an input generated randomly by throwing coins, so
+  \[
+	\Omega = \sum_{w \in \dom u} 2^{-\abs{w}}.
+  \]
+  Then take $p^\Omega$ as the binary representation of $\Omega$.
+  If there are multiple options, choose the one with infinite ones.
+\end{definition}
+
+\begin{theorem}
+  Chaitin's halting probability $p^\Omega$ is prefix-free incompressible.
+\end{theorem}
+
+\begin{proof}
+  Note that
+  \[
+	\Omega = \sum_{i=0}^\infty p_i^\Omega 2^{-(i+1)}.
+  \]
+  We will define a computable function $f: \{0,1\}^* \rightharpoonup \{0,1\}^*$
+  satisfying $f(\left. p^\Omega \right|_n) \downarrow$ and $K(f(\left. p^\Omega
+  \right|_n)) > n$ for all $n$.
+  If we do, then there is a number $c$ such that for all $n \ge 0$,
+  \[
+	K(f(\left. p^\Omega \right|_n)) \le K(\left. p^\Omega \right|_n) + c,
+  \]
+  so $K(\left. p^\Omega \right|_n) > n-c$.
+
+  Let $w_0, w_1, \ldots$ be a computable enumeration of $\dom u$ without
+  repetitions.
+  Given an input word $p_0 p_1 \ldots p_{n-1}$, the algorithm of $f$ finds the
+  smallest $N \ge 0$ (if it exists) with the property
+  \[
+	\sum_{i=0}^{N-1} 2^{-\abs{w_i}} \ge \sum_{i=0}^{n-1} p_i 2^{-(i+1)}.
+  \]
+  Then the algorithm returns the first $v \in \{0,1\}^*$ such that $v \notin \{
+  u(w_0), \ldots, u(w_{N-1})\}$.
+  Define $f(p_0 \ldots p_{n-1}) = v$.
+
+  Clearly $f(\left. p^\Omega \right|_n)$ is defined for any $n \in \N$, as we
+  have chosen a representation of $p^\Omega$ with infinite ones.
+  From
+  \[
+	\sum_{i=0}^{n-1} p_i^\Omega 2^{-(i+1)}
+	\le \sum_{i=0}^{N-1} 2^{-\abs{w_i}}
+	< \Omega
+	< \sum_{i=0}^{n-1} p_i^\Omega 2^{-(i+1)} + 2^{-n}
+  \]
+  we have
+  \[
+	\Omega - \sum_{i=0}^{n-1} 2^{-\abs{w_i}} < 2^{-n},
+  \]
+  so every word $w_i$ for $i \ge N$ is such that $\abs{w_i} > n$.
+  This means that for every finite word $v \notin \{ u(w_0), \ldots, u(w_{N-1})
+  \}$, the smallest $w \in \dom u$ with $u(w) = v$ has $\abs{w} > n$ or $K(v) >
+  n$.
+\end{proof}
+
+% LocalWords:  Kolmogorov incompressible
