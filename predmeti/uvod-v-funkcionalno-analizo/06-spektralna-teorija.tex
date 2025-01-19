@@ -305,7 +305,7 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   Tedaj je $\sigma(p(a)) = p(\sigma(a))$.
 \end{trditev}
 
-\begin{proof}[Gelfandova formula]
+\begin{izrek}[Gelfandova formula]
   Naj bo $a \in A$.
   Potem je
   \[
@@ -313,7 +313,87 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
 	\norm{a^n}^{1/n}
 	= \inf_{n \in \N} \norm{a^n}^{1/n}.
   \]
+\end{izrek}
+
+\begin{proof}
+  Naj bo $\lambda \in \sigma(a)$, da je $\abs{\lambda} = r(a)$.
+  Potem je $\lambda^n \in \sigma(a^n)$, torej $\abs{\lambda}^n \le \norm{a^n}$
+  in velja $r(a) = \abs{\lambda} \le \norm{a^n}^{1/n}$ za vsak $n \in \N$.
+  Zaporedje je navzdol omejeno, torej ima infimum, ki je
+  \[
+	r(a) \le \inf_{n \in \N} \norm{a^n}^{1/n} \le \liminf_{n \to \infty}
+	\norm{a^n}^{1/n}.
+  \]
+  Če pokažemo, da je $\limsup \norm{a^n}^{1/n} \le r(a)$, potem bo dokaz končan.
+
+  Naj bo $f \in A^*$.
+  Definiramo $f\tilde{f}(\lambda) = f(R(\lambda, a))$ kot preslikavo $\rho(a)
+  \to \C$.
+  To je holomorfna funkcija.
+  Če je $\abs{\lambda} > \norm{a}$, lahko $R(\lambda, a)$ eksplicitno izrazimo
+  in zato velja
+  \[
+	\tilde{f}(\lambda) = \sum_{n=0}^\infty \frac{f(a^n)}{\lambda^{n+1}}.
+  \]
+  To je Laurantov razvoj $\tilde{f}$ v okolici $0$ na komplement krogle $B(0,
+  \norm{a})$.
+  Razvoj lahko naredimo tudi na $B(0, r(a))\complement$.
+  Ker je enoličen, zgornji predpis velja za vsak $\lambda > r(a)$.
+  Za $\varepsilon > 0$ in $\lambda = r(a) + \varepsilon$ torej konvergira vrsta
+  \[
+	\sum_{n=0}^\infty \frac{f(a^n)}{(r(a) + \varepsilon)^{n+1}},
+  \]
+  torej obstaja $M > 0$, da je $\abs{f(a^n) / (r(a) + \varepsilon)^{n+1}} \le M$
+  za vse $n \in \N$.
+  Po principu šibke omejenosti je potem množica
+  \[
+	\left\{ \frac{a^n}{(r(a) + \varepsilon)^{n+1}} \such n \in \N\right\}
+  \]
+  omejena in obstaja $\tilde{M} > 0$, da
+  \[
+	\norm{\frac{a^n}{(r(a) + \varepsilon)^{n+1}}} \le \tilde{M}
+  \]
+  za vse $n \in \N$.
+  Sledi
+  \[
+	\limsup_{n \to \infty} \norm{a^n}^{1/n} \le \lim_{n \to \infty} (\tilde{M}
+	(r(a) + \varepsilon))^{1/n} (r(a) + \varepsilon)
+	= r(a) + \varepsilon,
+  \]
+  saj prvi člen produkta konvergira k $1$.
+  Torej je $\limsup \norm{a^n}^{1/n} \le r(a)$.
 \end{proof}
+
+\begin{posledica}
+  Naj bo $A$ sebi adjungiran operator na Hilbertovem prostoru.
+  Tedaj velja $r(A) = \norm{A}$.
+\end{posledica}
+
+\begin{proof}
+  Po izreku velja $r(A) = \lim \norm{A^n}^{1/n}$.
+  Ker je $\norm{A^2} = \norm{A^* A} = \norm{A}^2$, lahko z indukcijo pokažemo,
+  da velja $\norm{A^{2^n}} = \norm{A}^{2^n}$.
+  S tem dobimo podzaporedje zaporedja v limiti, ki bo konvergiralo k $\norm{A}$.
+\end{proof}
+
+\podnaslov{Spekter kompaktnega operatorja}
+
+\begin{primer}
+  Če je $H = l^2$ in $(e_n)_n$ neka ortonormirana baza.
+  Naj bo $(d_n)_n$ zaporedje omejenih števil.
+  Definiramo diagonalni operator $D: l^2 \to l^2$ z
+  \[
+	Dx = \sum_{n=0}^\infty d_n \sk{x, e_n} e_n.
+  \]
+  Preverimo lahko naslednja dejstva:
+  \begin{itemize}
+  \item $\norm{D} = \sup_n \abs{d_n}$,
+  \item $D$ je sebi adjungiran natanko tedaj, ko je $d_n \in \R$ za vsak $n$,
+  \item $D$ je normalen,
+  \item $D$ je unitaren natanko tedaj, ko je $\abs{d_n} = 1$ za vsak $n$,
+  \item $D$ je kompakten natanko tedaj, ko je $d_n \to 0$.
+  \end{itemize}
+\end{primer}
 
 % LocalWords:  resolventa resolventna adjungiramo medseboj residualnem
 % LocalWords:  Hahn-Banachom Gelfandova
