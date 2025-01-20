@@ -77,10 +77,15 @@ Note that a $1$-factor corresponds to a perfect matching.
   Every bridgeless cubic graph has a $1$-factor.
 \end{theorem}
 
-We also have the following result.
+We also have the following results about $k$-regular graphs.
 
 \begin{theorem}
   If $G$ is a $k$-regular graph for an even $k$, then $G$ has a $2$-factor.
+\end{theorem}
+
+\begin{theorem}
+  If $G$ is a $k$-regular bipartite graph, then $G$ can be decomposed into
+  $1$-factors.
 \end{theorem}
 
 \naslov{Connectivity}
@@ -92,6 +97,8 @@ Note that $\kappa(G) \le \delta(G)$ and $\kappa(G) \le \beta(G)$.
 Similarly, we can define the edge-connectivity number $\kappa'(G)$ as the
 minimum number of edges $F$ such that $G -F$ is disconnected.
 If $G$ has at least $2$ vertices, then $\kappa(G) \le \kappa'(G) \le \delta(G)$.
+
+We know that $\kappa(K_n) = n-1$ and $\kappa(K_{a,b}) = \min\{a,b\}$.
 
 If we have a $k$-connected graph, then we may build new graphs with the
 following result.
