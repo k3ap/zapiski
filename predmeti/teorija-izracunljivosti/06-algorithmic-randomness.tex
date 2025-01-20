@@ -1,0 +1,135 @@
+\naslov{Algorithmic randomness}
+
+The law of large numbers states that for a sequence, generated randomly by coin
+tosses,
+\[
+  P\!\left( \lim_{n \to \infty} \inv{n} \sum_{i=0}^{n-1} q_i = \pol \right)
+  = 1.
+\]
+We say that a sequence $q$ satisfies the law of large numbers if
+\[
+  \lim_{n \to \infty} \inv{n} \sum_{i=0}^{n-1} q_i = \pol.
+\]
+If $q$ does not satisfy the law, then there exists a $\delta > 0$ such that
+$\abs{m_n(q) - \pol} < \delta$ for infinitely many $n$, where
+\[
+  m_n(q) = \inv{n} \sum_{i=0}^{n-1} q_i.
+\]
+Given $\delta$, we then have the following non-randomness test.
+Define $T_n$ as the set of all sequences $q \in \{0,1\}^\omega$ for which there
+are at least $n$ different values of $i$ where $\abs{m_n(q) - \pol} > \delta$.
+Note that we can semidecide $T_n$.
+
+\begin{definition}
+  A \pojem{naive non-randomness test} is a sequence $(T_n)_n$ of subsets of
+  $\{0,1\}^\omega$ such that
+  \begin{itemize}
+  \item every $T_n$ is open,
+  \item $\lim \lambda(T_n) = 0$ where $\lambda(T_n)$ is the probability that a
+	fair randomly generated sequence lands in $T_n$.
+  \end{itemize}
+  Then $q \in 2^\omega$ \pojem{satisfies $(T_n)_n$} if $q \in \bigcap T_n$.
+\end{definition}
+
+\begin{definition}
+  A \pojem{Martin-Löf non-randomness test} is a sequence $(T_n)_n$ of subsets of
+  $2^\omega$ such that
+  \begin{itemize}
+  \item $(T_n)_n$ is a computable sequence of computably open sets,
+  \item $\lim \lambda(T_n) = 0$ with a computable rate of convergence.
+  \end{itemize}
+  A sequence $q$ is \pojem{Martin-Löf random} if it fails every ML test.
+\end{definition}
+
+\begin{proposition}
+  Computable sequences are not ML random.
+\end{proposition}
+
+\begin{proof}
+  Let $p$ be a computable sequence.
+  Then $(\sk{\left. p \right|_n})_n$ is an ML test which $p$ satisfies.
+\end{proof}
+
+\begin{definition}
+  An ML test $(T_n^u)_n$ is \pojem{universal} if any non-ML random $p$ satisfies
+  $(T_n^u)_n$.
+\end{definition}
+
+It holds that every open set $U \subseteq 2^\omega$ can be written as a disjoint
+union of cylinder sets $\sk{w_i}$ for some $(w_i)_{i \in I}$.
+Define $\lambda(\sk{w}) = 2^{-\abs{w}}$-
+Then the probability of an open set is
+\[
+  \lambda(U) = \sum_{i \in I} \lambda(w_i)
+\]
+for the disjoint union above.
+We can prove that $\lambda(U)$ is well-defined.
+
+We represent open sets as infinite sequences $w_0, w_1, \ldots$ where every
+$w_i$ is either a word in $2^*$ or the symbol $\varnothing$.
+We say that an open set is \pojem{computable} if it is represented by some
+computable infinite sequence $w_0, w_1, \ldots$.
+Note that this definition coincides with the semidecidable sets.
+
+Then a sequence of open sets $(T_n)_n$ is represented by a sequence of
+sequences, $T_i \sim (w_{ij})_j$.
+We say that $(T_n)_n$ is a \pojem{computable sequence of computable opens} if
+the single sequence representing $w_{ij}$ above, using the pairing function, is
+computable.
+
+A computable total function $r: \N \to \N$ is a \pojem{computable rate of
+  convergence} for a Cauchy sequence $(x_n)_n \subseteq [0,1]$ converging to $0$
+if for any $n$ and $m \ge r(n)$, we have $x_m \le 2^{-n}$.
+
+\begin{theorem}[Martin-Löf]
+  There exists a universal ML test.
+\end{theorem}
+
+\begin{proof}
+  Outline.
+  We can show the following:
+  \begin{itemize}
+  \item There is a computable function from $\N$ to the representations of
+	computable sequences of computably open sets, and it finds some
+	representation of any sequence.
+  \item There is a function from the computable sequences of computably open
+	sets to ML tests, which preserves rapid ML tests in its domain
+	(an ML test is rapid if $\lambda(T_n) \le 2^{-n}$).
+  \item There is a function from ML tests to rapid decreasing ML tests which
+	preserves the set of sequences that satisfy the test
+	(an ML test is decreasing if $T_{n+1} \subseteq T_n$ for all $n$).
+  \end{itemize}
+  So a sequence $p$ is ML random if and only if it fails every rapid decreasing
+  test.
+  From all three points above, we have a computable enumeration of the rapid
+  decreasing ML tests.
+  It is surjective in the sense that for every rapid decreasing ML test, at
+  least one representation is found.
+  Let $(T_n^0)_n, (T_n^1)_n, \ldots$ be this enumeration.
+  Take
+  \[
+	T_n^u = \bigcup_{i=0}^\infty T_{n+i+1}^i.
+  \]
+  This is clearly a rapid decreasing sequence, and it is computable.
+\end{proof}
+
+\begin{corollary}
+  The set $R_{\text{ML}}$ of all ML random sequences is a countable union of
+  closed sets ($F_\sigma$).
+  Additionally, $\lambda(R_{\text{ML}}) = 1$ and $\abs{R_{\text{ML}}} \ge
+  2^{\aleph_0}$.
+\end{corollary}
+
+\begin{proof}
+  The complement of $R_{\text{ML}}$ is exactly the intersection of all $T_n^u$.
+\end{proof}
+
+\begin{theorem}
+  The following are equivalent for any infinite sequence $q \in 2^\omega$.
+  \begin{itemize}
+  \item $q$ is ML random,
+  \item $q$ is prefix-free incompressible.
+  \end{itemize}
+\end{theorem}
+
+% LocalWords:  semidecide Löf incompressible
