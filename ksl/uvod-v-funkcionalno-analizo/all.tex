@@ -76,4 +76,397 @@ Iz tega lahko enostavno pokažemo naslednjo trditev.
   Če je $X$ Banachov, je $Y$ Banachov natanko tedaj, ko je zaprt v $X$.
 \end{trditev}
 
-% LocalWords:  Hölderjeva Minkowski Banachove
+Če imamo normiran prostor $X$ in zaprt podprostor $Y \subseteq X$, lahko tvorimo
+kvocient $X/Y$, ki ga opremimo z normo
+\[
+  \norm{x + Y} = \inf \{ \norm{x + y} \such y \in Y \}.
+\]
+Potem je $X$ Banachov natanko tedaj, ko sta $X/Y$ in $Y$ Banachova.
+Kvocientna preslikava $q: X \to X/Y$ je omejena z $\norm{q} \le 1$, hkrati pa je
+surjektivna in odprta.
+Če je $X$ še Banachov in $T: X \to Y$ omejen operator, potem je $\tilde{T}:
+X/\jedro T \to Y$, definiran s $\tilde{T}(x + \jedro T) = Tx$, tudi omejen in
+velja $\norm{\tilde{T}} = \norm{T}$.
+
+Za linearen operator $T: X \to Y$ definiramo normo z
+\[
+  \norm{T} = \inf \{ C > 0 \such \forall x. \norm{Tx} \le C \norm{x} \},
+\]
+če ta infimum obstaja.
+Izkaže se
+\[
+  \norm{T} = \sup_{\norm{x} = 1} \norm{Tx} = \sup_{\norm{x} \le 1} \norm{Tx}
+  = \sup_{\norm{x} < 1} \norm{Tx}.
+\]
+Potem z $B(X,Y)$ označimo množico vseh omejenih operatorjev med $X$ in $Y$.
+Operatorska norma je submultiplikativna.
+Če je $Y$ Banachov, je tudi $B(X,Y)$ Banachov; obratno velja le, če je $\dim X
+\ge 1$.
+
+\podnaslov{Dualni prostor}
+
+Če je $X$ normiran prostor, je $X^* = B(X, \F)$ njegov dualni prostor.
+Ta je vedno Banachov.
+V splošnem je dualni prostor težko določiti, vemo pa naslednje:
+\begin{itemize}
+\item $c_0^* \cong l^1$,
+\item $(l^1)^* \cong l^\infty$
+\item $(l^p)^* \cong l^q$ za $p^{-1} + q^{-1} =1$,
+\item $(l^2)^* \cong l^2$.
+\end{itemize}
+Tukaj $\cong$ označuje izometrično izomorfnost.
+
+Za normiran prostor $X$ in $f \in X^*$ lahko definiramo $\hat{x}(f) = f(x)$.
+Potem je $\hat{x} \in X^{**}$ in velja $\norm{\hat{x}} =\norm{x}$.
+
+Če je $A: X \to Y$ omejen linearen operator, lahko za $f \in Y^*$ definiramo
+adjungirani operator (v smislu Banachovih prostorov) $A^* f = f \circ A$.
+Tudi ta je omejen z $\norm{A^*} = \norm{A}$.
+
+\naslov{Temeljni izreki}
+
+\podnaslov{Hahn-Banachov izrek}
+
+Imamo več njih.
+Pick your poison.
+
+\begin{izrek}[realni Hahn-Banach]
+  Naj bo $Y \le X$ vektorski prostor in $p: X \to \R$ sublinearni funkcional.
+  Naj bo $f: Y \to \R$ tak linearni funkcional, da za vsak $y \in Y$ velja $f(y)
+  \le p(y)$.
+  Tedaj obstaja linearni funkcional $F: X \to \R$, da je $\left. F \right|_Y =
+  f$ in $F(x) \le p(x)$ za vsak $x \in X$.
+\end{izrek}
+
+\begin{izrek}[kompleksni Hahn-Banach]
+  Naj bo $X$ vektorski prostor nad $\F$, $Y \le X$ in $p$ polnorma na $X$.
+  Če je $f: Y \to \F$ linearni funkcional, da za vse $y \in Y$ velja $\abs{f(y)}
+  \le p(y)$, potem obstaja linearni funkcional $F: X \to \F$, za katerega je
+  $\left. F \right|_Y = f$ in $\abs{F(X)} \le p(x)$ za vsak $x \in X$.
+\end{izrek}
+
+\begin{izrek}[Hahn-Banachov izrek za normirane prostore]
+  Naj bo $Y \le X$ podprostor normiranega prostora $X$ in $f: Y \to \F$ omejen.
+  Tedaj obstaja $f: X \to \F$, da je $\left. F \right|_Y = f$ ter $\norm{F} =
+  \norm{f}$.
+\end{izrek}
+
+\podnaslov{Bairov izrek}
+
+\begin{izrek}[Baire]
+  Naj bo $(X, d)$ poln metričen prostor in $(U_n)_n$ števna družina odprtih
+  gostih množic v $X$.
+  Tedaj je presek $\bigcap_n U_n$ gost v $X$.
+\end{izrek}
+
+\begin{posledica}
+  Naj bo $X$ poln metrični prostor in $(A_n)_n$ zaporedje zaprtih množic, da je
+  $X = \bigcup_n A_n$.
+  Tedaj obstaja $m \in \N$, da je $\mathring{A}_m \ne \varnothing$.
+\end{posledica}
+
+Kot posledico imamo tudi dejstvo, da noben neskončnorazsežen Banachov prostor
+nima števne algebraične baze.
+Iz tega npr.~sledi, da $\F[X]$ ni Banachov v nobeni normi, ker ima vedno števno
+bazo.
+
+\podnaslov{Izrek o odprti preslikavi}
+
+\begin{izrek}[o odprti preslikavi]
+  Naj bo $T$ omejen surjektiven linearen operator med Banachovima prostoroma $X$
+  in $Y$.
+  Tedaj je $T$ odprta preslikava.
+\end{izrek}
+
+\begin{posledica}
+  Naj bo $T$ omejen linearen bijektiven operator med Banachovima prostoroma.
+  Potem je njegov inverz tudi omejen.
+\end{posledica}
+
+To je povezano z naslednjima dejstvoma za linearen operator $T$ med Banachovima
+prostoroma:
+\begin{itemize}
+\item $T$ je injektiven in ima zaprto zalogo vrednosti natanko tedaj, ko je
+  navzdol omejen, torej ko obstaja $C > 0$, da za vsak $x$ velja $C \norm{x} \le
+  \norm{Tx}$,
+\item $T$ ima zaprto zalogo vrednosti natanko tedaj, ko obstaja $C > 0$, da za
+  vsak $x$ velja
+  \[
+	\norm{Tx} \ge C \inf_{z \in \jedro T} \norm{x - z}.
+  \]
+\end{itemize}
+
+\podnaslov{Princip enakomerne omejenosti}
+
+\begin{izrek}[princip enakomerne omejenosti]
+  Naj bo $X$ Banachov, $Y$ normiran prostor in $\mathcal{A} \subseteq B(X,Y)$.
+  Če je za vsak $x \in X$ množica $\{ \norm{Ax} \such A \in \mathcal{A} \}$
+  omejena, potem je množica $\{ \norm{A} \such A \in \mathcal{A} \}$ omejena.
+\end{izrek}
+
+\podnaslov{Izrek o zaprtem grafu}
+
+\begin{izrek}[o zaprtem grafu]
+  Naj bo $T: X \to Y$ linearna preslikava, ter $X$ in $Y$ Banachova prostora.
+  Potem je $T$ omejena natanko tedaj, ko je graf $\Gamma_T$ zaprt v $X \times Y$.
+\end{izrek}
+
+Za zaprtost grafa je dovolj preveriti, da za poljubno zaporedje $(x_n)_n$ v $X$,
+ki konvergira k $x$, velja $\lim T x_n = Tx$.
+
+\podnaslov{Stone-Weierstrass}
+
+\begin{izrek}[Stone-Weierstrass]
+  Naj bo $K$ kompakten Hausdorffov prostor in $A \subseteq \zvezne{K}$
+  podalgebra, ki loči točke in vsebuje konstante.
+  Tedaj je $A$ gosta v $\zvezne{K}$.
+\end{izrek}
+
+\naslov{Hilbertovi prostori}
+
+Prostor je Hilbertov, če je norma porojena s skalarnim produktom, torej
+predpisom $\sk{\cdot, \cdot}$, za katero velja
+\begin{itemize}
+\item $\sk{x,x} \ge 0$ (realno in nenegativno),
+\item $\sk{x,x} = 0$ natanko tedaj, ko je $x = 0$,
+\item $\sk{\alpha x + \beta y, z} = \alpha \sk{x,z} + \beta \sk{y,z}$,
+\item $\sk{x,y} = \konj{\sk{y,x}}$.
+\end{itemize}
+Imamo nekaj pomembnih lastnosti:
+\begin{itemize}
+\item Cauchy-Schwarz: $\sk{\sk{x,y}} \le \norm{x} \norm{y}$;
+  enakost velja natanko tedaj, ko sta $x$ in $y$ linearno odvisna,
+\item paralelogramska enakost: $\norm{x-y}^2 + \norm{x+y}^2 = 2 (\norm{x}^2 +
+  \norm{y}^2)$,
+\item $\norm{x+y} = \norm{x} + \norm{y}$ natanko tedaj, ko sta $x$ in $y$
+  linearno odvisna in je $\sk{x,y} \ge 0$,
+\item $x \bot y$ natanko tedaj, ko je $\norm{x+\lambda y} \ge \norm{x}$ za vsak
+  $\lambda \in \F$.
+\end{itemize}
+
+Če je $H$ Hilbertov prostor in $M \subseteq H$ zaprt podprostor, potem za vsak
+$x \in H$ obstaja enolično določen $x_0 \in M$, za katerega velja $d(x,M) = d(x,
+x_0)$.
+Pravimo mu \pojem{pravokotna projekcija $x$ na $M$}, velja $x - x_0 \in M^\bot$.
+Potem lahko definiramo preslikavo $P: H \to M$, ki slika vektor v pravokotno
+projekcijo, in ima naslednje lastnosti:
+\begin{itemize}
+\item $P$ je linearen operator $H \to M$,
+\item $\norm{Px} \le \norm{x}$,
+\item $P^2 = P$,
+\item $\im P = M$, $\jedro P = M^\bot$,
+\item $H = M \oplus M^\bot$ in $M^{\bot \bot} = M$.
+\end{itemize}
+
+\begin{izrek}[Riesz]
+  Naj bo $H$ Hilbertov prostor in $f \in H^*$.
+  Tedaj obstaja natanko en $y \in H$, da je $f(x) = \sk{x,y}$ in $\norm{f} =
+  \norm{y}$.
+\end{izrek}
+
+\begin{izrek}
+  Naj bo $H$ Hilbertov prostor in $K \le H$ podprostor.
+  Tedaj ima vsak $f \in K^*$ natanko eno Hahn-Banachovo razširitev na $H$.
+\end{izrek}
+
+Če je $H$ Hilbertov prostor, je $E \subseteq H$ ortogonalen sistem, če je
+$\norm{e} = 1$ za vsak $e \in E$ ter $e \bot f$ za vsak par $e,f \in E$.
+Sistem je kompleten, če je maksimalen v množici vseh ortonormiranih sistemov
+glede na inkluzijo.
+Imamo tudi naslednjo karakterizacijo.
+
+\begin{izrek}
+  Za ONS $E \subseteq H$ v Hilbertovem prostoru $H$ so naslednje trditve
+  ekvivalentne:
+  \begin{itemize}
+  \item $E$ je KONS,
+  \item $E^\bot = \{0\}$,
+  \item $\cl{\operatorname{Lin} E} = H$,
+  \item za vsak $x \in H$ velja
+	\[
+	  x = \sum_{e \in E} \sk{x,e} e,
+	\]
+  \item Parsevalova enakost: za vsak $x \in H$ velja
+	\[
+	  \norm{x}^2 = \sum_{e \in E} \abs{\sk{x,e}}^2.
+	\]
+  \end{itemize}
+\end{izrek}
+
+Poljubna KONS-a Hilbertovega prostora imata isto kardinalnost, tako da lahko
+enolično definiramo dimenzijo.
+Hilbertova prostora sta izomorfna natanko tedaj, ko imata enako dimenzijo.
+
+\podnaslov{Adjungirani operator}
+
+Če je $A: H \to K$ omejen operator, potem operatorju $A^*$, za katerega velja
+$\sk{Ax,y} = \sk{x, A^*y}$, pravimo \pojem{adjungirani operator}.
+Tak operator vedno obstaja, velja naslednje:
+\begin{itemize}
+\item $I^* = I$ (identiteta),
+\item $0^* = 0$,
+\item $(A+B)^* = A^* + B^*$,
+\item $(\alpha A)^* = \konj{\alpha} A^*$,
+\item $A^{**} = A$,
+\item $(BA)^* = A^* B^*$,
+\item $A$ je obrnljiv natanko tedaj, ko je $A^*$ obrnljiv,
+\item če je $A$ obrnljiv, je $(A^*)^{-1} = (A^{-1})^*$,
+\item $\jedro A^* = (\im A)^\bot$,
+\item $(\jedro A)^\bot = \cl{\im A^*}$.
+\end{itemize}
+
+Pravimo, da je $A \in B(H)$
+\begin{itemize}
+\item \pojem{sebi adjungiran}, če je $A^* = A$,
+\item \pojem{normalen}, če je $A^* A = A A^*$,
+\item \pojem{unitaren}, če je $A^* A = A A^* = I$.
+  To je natanko tedaj, ko je izomorfizem prostora $H$.
+\end{itemize}
+
+Če je $A$ sebi adjungiran, potem je
+\[
+  \norm{A} = w(A) = \sup_{\norm{x} = 1} \abs{\sk{Ax,x}}.
+\]
+
+\naslov{Kompaktni operatorji}
+
+Operator $T: X \to Y$ med normiranima prostoroma je \pojem{kompakten}, če slika
+(zaprto) enotsko kroglo v relativno kompaktno množico, torej množico, katere
+zaprtje je kompaktno.
+To je ekvivalentno naslednjima točkama:
+\begin{itemize}
+\item $T$ slika omejene množice v relativno kompaktne množice,
+\item če je $(x_m)_m$ omejeno zaporedje v $X$, ima $(Tx_m)_m$ stekališče v $Y$.
+\end{itemize}
+V splošnem je kompaktnost težko dokazati.
+Poznamo pa naslednja dejstva:
+\begin{itemize}
+\item če je $A \in B(X)$ operator s končnorazsežno sliko, je kompakten,
+\item $K(X)$, tj.~množica vseh kompaktnih operatorjev $X \to X$, je ideal v
+  $B(X)$,
+\item identiteta $I: X \to X$ je kompaktna natanko tedaj, ko je $X$
+  končnorazsežen,
+\item diagonalen operator z diagonalo $(d_n)_n$ je kompakten natanko tedaj, ko
+  je $\lim d_n = 0$.
+\end{itemize}
+
+\begin{izrek}
+  Naj bo $T \in B(H,K)$.
+  Naslednje trditve so ekvivalentne:
+  \begin{itemize}
+  \item $T$ je kompakten,
+  \item $T^*$ je kompakten,
+  \item obstaja zaporedje $(T_n)_n$ v $F(H,K)$, da $T_n \to T$.
+  \end{itemize}
+\end{izrek}
+Tu je $F(H,K)$ množica operatorjev $H \to K$ končnega ranga.
+
+Naj bo $K$ kompakten Hausdorffov prostor.
+Pravimo, da je množica $H \subseteq \zvezne{K}$ \pojem{enakozvezna}, če za vsak
+$x \in K$ in $\varepsilon > 0$ obstaja odprta okolica $U_x \ni x$, da je
+$\abs{f(y) - f(x)} < \varepsilon$ za vse $y \in U_x$ ter $f \in H$.
+
+\begin{izrek}[Arzela-Ascoli]
+  Naj bo $K$ kompakten Hausdorffov prostor in $H \subseteq \zvezne{K}$ družina
+  funkcij.
+  Tedaj je $H$ relativno kompaktna natanko tedaj, ko je enakozvezna in po točkah
+  omejena.
+\end{izrek}
+
+\naslov{Spektralna teorija}
+
+Za kompleksno Banachovo algebro $A$ in $a \in A$ definiramo \pojem{resolvento}
+\[
+  \rho(a) = \{ \lambda \in \C \such \text{$\lambda - a$ je obrnljiv v $A$} \}.
+\]
+Potem je \pojem{spekter} $\sigma(a) = \C \setminus \rho(a)$.
+
+Omejimo se na algebro $B(X)$ za kompleksen Banachov prostor $X$.
+Če je $A \in B(X)$, lahko spekter razdelimo na tri dele:
+\begin{itemize}
+\item točkasti spekter $\sigma_p(A)$ vsebuje lastne vrednosti $A$,
+\item zvezni spekter $\sigma_c(A)$ vsebuje tiste $\lambda$, za katere je
+  $\lambda I - A$ injektiven in njegova slika gosta v $X$,
+\item residualni spekter $\sigma_r(A)$ vsebuje tiste $\lambda$, za katere je
+  $\lambda I - A$ injektiven, a njegova slika ni gosta.
+\end{itemize}
+
+Če je $X$ Hilbertov, lahko nekaj povemo o adjungiranem operatorju.
+Vemo, da je $\sigma(A^*) = \{ \konj{\lambda} \such \lambda \in \sigma(A) \}$.
+Če je $A$ normalen, so lastni vektorji med seboj pravokotni in velja
+$\sigma_r(A) = \varnothing$, če pa je še sebi adjungiran, je $\sigma(A)
+\subseteq \R$.
+V splošnem imamo naslednje:
+\begin{itemize}
+\item če je $\lambda \in \sigma_r(A)$, je $\konj{\lambda} \in \sigma_p(A^*)$,
+\item če je $\lambda \in \sigma_p(A)$, je $\konj{\lambda} \in \sigma_p(A^*) \cup
+  \sigma_r(A^*)$.
+\end{itemize}
+
+Za diagonalen operator $D \in B(l^2)$ z diagonalo $(d_n)_n$ velja naslednje:
+\begin{itemize}
+\item $\norm{D} = \sup \abs{d_n}$,
+\item $D$ je sebi adjungiran natanko tedaj, ko so vsi $d_n \in \R$,
+\item $D$ je normalen,
+\item $D$ je unitaren natanko tedaj, ko velja $\abs{d_n} = 1$ za vse $n$,
+\item $D$ je kompakten natanko tedaj, ko $d_n \xrightarrow[n \to \infty]{} 0$,
+\item $\sigma(D) = \cl{\{ d_n \such n \in \N \}}$.
+\end{itemize}
+
+Če je $X$ Banachov in $K \in K(X)$, potem velja
+\begin{itemize}
+\item če $\lambda \ne 0$, je $\dim \jedro(K - \lambda I) < \infty$,
+\item $\im (K - \lambda I)$ je zaprta v $X$,
+\item za vsak $\varepsilon > 0$ ima $K$ le končno mnogo linearno neodvisnih
+  lastnih vektorjev za lastne vrednosti $\lambda$ z $\abs{\lambda} \ge
+  \varepsilon$,
+\item če $\dim X = \infty$, je $0 \in \sigma(K)$,
+\item če $\lambda \in \sigma(K) \setminus \{0\}$, je $\lambda$ lastna vrednost
+  $K$,
+\item $\sigma(K)$ je kvečjemu števen,
+\item če je $\sigma(K)$ neskončen in so $(\lambda_n)_n$ lastne vrednosti, velja
+  $\lim \lambda_n = 0$.
+\end{itemize}
+
+Če je $X$ Hilbertov in je $K$ kompakten in sebi adjungiran, potem obstaja
+zaporedje $(\lambda_n)_n \subseteq \R$ in ONS $(e_n)_n$ (lahko sta končna) z
+\begin{itemize}
+\item $\abs{\lambda_1} \ge \abs{\lambda_2} \ge \cdots$, $\lambda_n \ne 0$ in če
+  je zaporedje neskončno, $\lim \lambda_n = 0$,
+\item $K e_n = \lambda_n e_n$,
+\item če je $\lambda \in \sigma_p(K) \setminus \{0\}$, se $\lambda$ pojavi v
+  $(\lambda_n)_n$ natanko tolikokrat, kot je $\dim \jedro (K - \lambda I)$,
+\item $Kx = \sum_n \lambda_n \sk{x, e_n} e_n$.
+\end{itemize}
+
+\podnaslov{Spekter v kompleksni Banachovi algebri}
+
+Naj bo $A$ kompleksna Banachova algebra in $a \in A$.
+Potem je $\rho(a)$ odprta v $\C$, torej je $\sigma(a)$ kompakt, saj je vsebovana
+v $B(0, \norm{a})$.
+Če je $\abs{\lambda} > \norm{a}$, je potem $\lambda \in \rho(a)$, torej
+\[
+  (\lambda - a)^{-1} = \sum_{n=0}^\infty \frac{a^n}{\lambda^{n+1}}.
+\]
+Izrek pravi, da je spekter vedno neprazen.
+
+Definiramo lahko \pojem{spektralni radij}
+\[
+  r(a) = \sup_{\lambda \in \sigma(a)} \abs{\lambda} = \max_{\lambda \in
+	\sigma(a)} \abs{\lambda},
+\]
+za katerega Geldandova formula pravi, da je
+\[
+  r(a) = \lim_{n \to \infty} \norm{a^n}^{1/n}
+  = \liminf_{n \to \infty} \norm{a^n}^{1/n}
+  = \inf_{n \in \N} \norm{a^n}^{1/n}.
+\]
+
+Če je $A$ sebi adjungiran operator na Hilbertovem prostoru, velja $r(A) =
+\norm{A}$.
+
+% LocalWords:  Hölderjeva Minkowski Banachove končnorazsežnih Hahn-Banachov ONS
+% LocalWords:  Hahn-Banach Bairov Banachovima Cauchy-Schwarz paralelogramska
+% LocalWords:  Riesz submultiplikativna Banachovih Hahn-Banachovo KONS KONS-a
+% LocalWords:  enotsko enakozvezna Arzela-Ascoli resolvento residualni
+% LocalWords:  Geldandova adjungiranem
