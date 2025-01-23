@@ -101,10 +101,12 @@
   Note that $G^*$ is connected and $\deg_{G^*}(x) = l(x)$.
 \end{proof}
 
+\vprasanje{When is a plane graph bipartite? State two equivalences.}
+
 \begin{theorem}
-  If $G$ is a plane graph and $D \subseteq E(G)$, then $D$ is a set of edges of
-  a cycle if and only if the corresponding dual edge set $D^*$ is a minimal edge
-  cut in $G^*$.
+  If $G$ is a plane graph and $D \subseteq E(G)$, then $D$ is the set of edges
+  of a cycle if and only if the corresponding dual edge set $D^*$ is a minimal
+  edge cut in $G^*$.
 \end{theorem}
 
 \begin{proof}
@@ -159,6 +161,8 @@
   as that edge would cross $xy$.
 \end{proof}
 
+\vprasanje{Show that a simple outerplanar graph has $\delta(G) \le 2$.}
+
 \begin{theorem}[Euler]
   If $G$ is a connected plane graph, then
   \[
@@ -194,6 +198,9 @@
   of the sphere, and taking the intersection of that line with the new plane.
 \end{proof}
 
+\vprasanje{Show that for any edge $e$ of a planar graph, there is an embedding
+  with $e$ on the boundary of the outer face.}
+
 \begin{lemma}
   \label{lemma:tg-kuratowski-2}
   If $G$ is a minimal nonplanar graph, then it is $2$-connected.
@@ -203,13 +210,15 @@
   If $G$ is disconnected, it cannot be minimal nonplanar, as components are
   proper subgraphs, which would all be planar if $G$ was minimal.
   If $G$ has a cut vertex $v$, then consider the $v$-lobes (the subgraphs of $G$
-  induced by each of the components, components of $G-v$, combined with $v$).
+  induced by each of the components of $G-v$, combined with $v$).
   By the minimality of $G$, all $v$-lobes are planar subgraphs.
   Lemma~\ref{lemma:tg-kuratowski-1} states that these graphs can be embedded in
   such a way that $v$ is on the outer face.
   We can transform each picture such that they all fit in a portion of the
   plane, so we can combine the drawings to find $G$ is planar.
 \end{proof}
+
+\vprasanje{Show that a minimal nonplanar graph is $2$-connected.}
 
 \begin{lemma}
   \label{lemma:tg-kuratowski-3}
@@ -232,6 +241,9 @@
   \end{itemize}
   So $G + xy$ is planar, and $G$ must be too.
 \end{proof}
+
+\vprasanje{Show that in a nonplanar graph with a cut set $S = \{x,y\}$, there
+  is a lobe $H$ in $G - S$ such that $H + xy$ is nonplanar.}
 
 \begin{lemma}
   \label{lemma:tg-kuratowski-4}
@@ -258,6 +270,10 @@
   We can replace $xy$ in $H_i + xy$ with that path, and get a Kuratowski graph.
   But this is a subgraph of $G$.
 \end{proof}
+
+\vprasanje{Suppose that $G$ is the graph with the smallest number of edges among
+  all nonplanar graphs without a Kuratowski subgraph. Show that $G$ is
+  $3$-connected.}
 
 \begin{theorem}
   \label{theorem:tg-kuratowski-5}
@@ -289,7 +305,7 @@
   \{u,v\}$.
   Consider three cases.
   \begin{itemize}
-  \item If $z^* \in V(H)$ and $H - z^*$ is disconnected, then $G - \{z,z*\}$ is
+  \item If $z^* \in V(H)$ and $H - z^*$ is disconnected, then $G - \{z,z^*\}$ is
 	disconnected, as at least one component of $H - z^*$ has edges only to $z$,
 	not $u$ or $v$.
 	But $G$ is $3$-connected, so this can't happen.
@@ -301,6 +317,9 @@
   \end{itemize}
   In each case, we got a contradiction.
 \end{proof}
+
+\vprasanje{Show that in any $3$-connected graph on at least $5$ vertices, there
+  is an edge which we can contract and still have a $3$-connected graph.}
 
 \begin{lemma}
   \label{lemma:tg-kuratowski-6}
@@ -342,6 +361,9 @@
   \end{itemize}
 \end{proof}
 
+\vprasanje{Show that edge contraction preserves the property that a graph has no
+  Kuratowski subgraphs.}
+
 \begin{theorem}
   \label{theorem:tg-kuratowski-7}
   If $G$ is a $3$-connected graph without Kuratowski subgraphs, then there
@@ -374,11 +396,15 @@
 	subdivision of $K_5$ along with $x$ and $y$.
   \item If there are two neighbours $x_1', x_2'$ of $x$ and two neighbours of
 	$y$, $y_1, y_2$, which are four different vertices such that the cyclic
-	order is $x_1' y_1 x_2' y_2$.
-	This induces a subdivision of $K_{3,3}$, which is a Kuratowski subgraph.
+	order is $x_1' y_1 x_2' y_2$, this induces a subdivision of $K_{3,3}$, which
+	is a Kuratowski subgraph.
 	\qedhere
   \end{itemize}
 \end{proof}
+
+\vprasanje{Show that a $3$-connected graph without Kuratowski subgraphs can be
+  embedded into the plane such that all interior faces are convex and no $3$
+  vertices are on a line.}
 
 \begin{theorem}[Kuratowski]
   A graph is planar if and only if it contains no Kuratowski subgraph.
@@ -393,6 +419,8 @@
   previous theorem, it is planar.
   This is a contradiction.
 \end{proof}
+
+\vprasanje{State and prove Kuratowski's theorem.}
 
 \begin{definition}
   A graph $H$ is a \pojem{minor} in $G$ if we can obtain $H$ after deleting and
@@ -415,10 +443,15 @@
   $K_5$.
 \end{remark}
 
+\vprasanje{Show that if $G$ contains a subdivision of $F$ as a subgraph, then
+  $F$ is a minor in $G$, but that the reverse doesn't hold.}
+
 \begin{theorem}[Wagner]
   A graph $G$ is planar if and only if neither $K_5$ nor $K_{3,3}$ are a minor
   of $G$.
 \end{theorem}
+
+\vprasanje{State Wagner's theorem.}
 
 \begin{theorem}[four-colour theorem]
   If $G$ is a planar graph, then $\chi(G) \le 4$.
@@ -457,6 +490,8 @@
 	\qedhere
   \end{itemize}
 \end{proof}
+
+\vprasanje{Prove the $5$-color theorem.}
 
 \begin{definition}
   A graph $G$ is a \pojem{maximal planar graph} if $G$ is planar and for any $e
@@ -497,4 +532,7 @@
   (it may be a degenerate cycle).
 \end{proof}
 
+\vprasanje{Characterize maximal planar graphs.}
+
 % LocalWords:  Eulerian outerplanar nonplanar neighbours uncontract
+% LocalWords:  Kuratowski's

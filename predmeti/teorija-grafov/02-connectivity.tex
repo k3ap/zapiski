@@ -21,6 +21,8 @@
   graph, so $\kappa(G) \le n-\alpha(G) = \beta(G)$.
 \end{remark}
 
+\vprasanje{Define $k$-connected graphs. Explain why $\kappa(G) \le \beta(G)$.}
+
 \begin{theorem}
   The minimum number of edges in a $k$-connected graph of order $n$ is
   $\ceil{\frac{nk}{2}}$, if $n > k \ge 2$.
@@ -80,6 +82,9 @@
   In all cases, all graphs have precisely $\ceil{\frac{kn}{2}}$ edges.
 \end{proof}
 
+\vprasanje{What is the minimum number of edges in a $k$-connected graph on $n$
+  vertices? Prove the bound.}
+
 \begin{definition}
   A set $F \subseteq E(G)$ is a \pojem{disconnecting set} if $G - F$ is
   disconnected.
@@ -132,6 +137,8 @@
 \begin{corollary}
   If $G$ is $k$-connected, then $G$ is $k$-edge-connected.
 \end{corollary}
+
+\vprasanje{Show that a $k$-connected graph is always $k$-edge-connected.}
 
 \begin{corollary}
   The minimum number of edges in a $k$-edge-connected graph on $n$ vertices is
@@ -195,6 +202,8 @@
   \end{alignat*}
 \end{proof}
 
+\vprasanje{State and prove Whitney's theorem.}
+
 \begin{theorem}[Expansion lemma]
   If $G$ is $k$-connected and we add a new vertex $v$ and $k$ incident edges to
   the graph, then we obtain a $k$-connected graph.
@@ -225,8 +234,11 @@
 	the component has at least one other vertex ($y'$).
 	Since $G$ is $k$-connected, every vertex cut contains at least $k$ vertices,
 	so $\abs{S} \ge k$.
+	\qedhere
   \end{itemize}
 \end{proof}
+
+\vprasanje{State and prove the expansion lemma.}
 
 \begin{theorem}
   If $G$ is a graph with $n(G) \ge 3$, then the following statements are
@@ -260,6 +272,9 @@
   $u$ and $v$.
 \end{proof}
 
+\vprasanje{Show that a graph is $2$-connected if and only if it has no isolated
+  vertices and there is a cycle through any pair of edges.}
+
 \begin{proposition}[subdivision lemma]
   Suppose $G'$ is obtained from $G$ by subdividing an edge $uv \in E(G)$ with a
   vertex $w$.
@@ -278,6 +293,8 @@
   Right to left:
   Any cycle in $G'$ that contains $w$ must also contain $u$ and $v$.
 \end{proof}
+
+\vprasanje{State the subdivision lemma.}
 
 \podnaslov{Ear decomposition of a graph}
 
@@ -330,6 +347,9 @@
   \end{itemize}
 \end{proof}
 
+\vprasanje{What is an open ear decomposition? Show that a graph is $2$-connected
+  if and only if it has one.}
+
 \begin{proposition}
   A graph $G$ is $2$-edge-connected if and only if $G$ is connected and there is
   no cut edge in $G$.
@@ -372,6 +392,9 @@
   Otherwise, we can add it as an open ear as in the previous theorem.
 \end{proof}
 
+\vprasanje{What is a closed ear decomposition? Show that a graph is
+  $2$-edge-connected if and only if it has one.}
+
 \begin{definition}
   A \pojem{strong orientation} of an undirected graph $G$ is a digraph $\vec{G}$
   which is strongly connected, and which you get from choosing an orientation
@@ -402,6 +425,8 @@
   You can show via simple casework that the new digraph is still strongly
   connected.
 \end{proof}
+
+\vprasanje{State and prove Robbins' theorem.}
 
 \podnaslov{$x,y$-cuts}
 
@@ -497,6 +522,8 @@
   \end{itemize}
 \end{proof}
 
+\vprasanje{State and prove Menger's theorem for vertex cuts.}
+
 \begin{definition}
   For two vertices $x,y$ of $G$, a set $R \subseteq E(G)$ is an
   \pojem{$x,y$-edge cut} if $G-R$ is disconnected and $x,y$ belong to different
@@ -524,6 +551,8 @@
   an edge cut in $G$ that separates $x$ and $y$, which finishes the proof.
 \end{proof}
 
+\vprasanje{State and prove Menger's theorem for edge cuts.}
+
 \begin{lemma}
   Let $e \in E(G)$.
   Then $\kappa(G)-1 \le \kappa(G-e) \le \kappa(G)$.
@@ -546,6 +575,9 @@
 	\qedhere
   \end{itemize}
 \end{proof}
+
+\vprasanje{Show that for any $e \in E(G)$, we have $\kappa(G)-1 \le \kappa(G-e)
+  \le \kappa(G)$.}
 
 \begin{theorem}[Menger]
   In every graph $G$,
@@ -587,5 +619,7 @@
 	\qedhere
   \]
 \end{proof}
+
+\vprasanje{State Menger's theorem.}
 
 % LocalWords:  Harary Menger's König's Menger
