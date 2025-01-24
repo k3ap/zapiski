@@ -7,7 +7,7 @@
 \end{izrek}
 
 \begin{proof}
-  Dokazujemo, da za vsak $x \in X$ obstaja $r > 0$, da je presek
+  Dokazujemo, da za vsak $x \in X$ in $r > 0$ velja
   \[
 	\mathring{B}(x, r) \cap \bigcap_{n \in \N} U_n \ne \varnothing.
   \]
@@ -45,6 +45,8 @@
   s čimer je dokaz zaključen.
 \end{proof}
 
+\vprasanje{Povej in dokaži Bairov izrek.}
+
 \begin{posledica}
   Naj bo $X$ poln metrični prostor in $(A_n)_n$ zaporedje zaprtih množic, da je
   $X = \bigcup_n A_n$.
@@ -57,6 +59,8 @@
   Potem je $\bigcap_j A_j\complement$ gost, torej $\bigcup_j A_j = \left(
 	\bigcap_j A_j\complement \right)\complement \ne X$.
 \end{proof}
+
+\vprasanje{Povej in dokaži posledico Bairovega izreka z zaprtimi množicami.}
 
 Naj bosta $X$ in $Y$ normirana prostora ter $\mathcal{F} \subseteq B(X,Y)$.
 Recimo, da obstaja $M \ge 0$, za katerega je $\norm{T} \le M$ za vse $T \in
@@ -102,6 +106,8 @@ Pravimo, da je $\mathcal{F}$ \pojem{omejena po točkah}.
   Torej je $\norm{T} \le M$ za vsak $T \in \mathcal{F}$.
 \end{proof}
 
+\vprasanje{Povej in dokaži princip enakomerne omejenosti.}
+
 \begin{izrek}[o šibki omejenosti]
   Naj bo $A \subseteq X$ podmnožica normiranega prostora $X$.
   Potem je $A$ omejena v $X$ natanko tedaj, ko je za vsak $f \in X^*$ množica
@@ -121,6 +127,8 @@ Pravimo, da je $\mathcal{F}$ \pojem{omejena po točkah}.
   torej obstaja $M \ge 0$, da je $\norm{x} = \norm{\hat{x}} \le M$ za vse $x \in
   A$.
 \end{proof}
+
+\vprasanje{Povej in dokaži izrek o šibki omejenosti.}
 
 \begin{posledica}
   Naj bo $X$ Banachov prostor in $Y$ normiran prostor.
@@ -253,7 +261,7 @@ Pravimo, da je $\mathcal{F}$ \pojem{omejena po točkah}.
   torej je $T(\mathring{B}(0, \varepsilon))$ okolica za $0$.
 
   Če pa $U$ ni take oblike, obstaja $\varepsilon > 0$, da je $\mathring{B}(0,
-  \varepsilon) \subseteq U$, in po ravno dokazanem $T$-slike te množice vsebuje
+  \varepsilon) \subseteq U$, in po ravno dokazanem $T$-slika te množice vsebuje
   odprto kroglo okoli $0$.
   Zato jo vsebuje tudi $TU$.
 
@@ -264,10 +272,14 @@ Pravimo, da je $\mathcal{F}$ \pojem{omejena po točkah}.
   Potem je $TU = TV + Tx$ okolica za $y$.
 \end{proof}
 
+\vprasanje{Povej in dokaži izrek o odprti preslikavi.}
+
 \begin{posledica}
   Naj bo $T$ omejen linearen bijektiven operator med Banachovima prostoroma.
   Potem je njegov inverz tudi omejen.
 \end{posledica}
+
+\vprasanje{Povej posledico izreka o odprti preslikavi.}
 
 \begin{posledica}
   Naj bo $X$ vektorski prostor in $\norm{\cdot}_1, \norm{\cdot}_2$ dve normi na
@@ -279,6 +291,9 @@ Pravimo, da je $\mathcal{F}$ \pojem{omejena po točkah}.
   Če je $\norm{x}_1 \le c_1 \norm{x_2}$, je identiteta $I: (X, \norm{\cdot}_2)
   \to (X, \norm{\cdot}_1)$ omejena, in je njen inverz tudi omejen.
 \end{proof}
+
+\vprasanje{Dokaži: dve normi, za kateri je $X$ Banachov prostor, sta bodisi
+  ekvivalentni bodisi neprimerljivi.}
 
 \begin{lema}
   Naj bosta $X, Y$ normirana prostora in $f: X \to Y$ zvezna preslikava.
@@ -314,4 +329,6 @@ Pravimo, da je $\mathcal{F}$ \pojem{omejena po točkah}.
   Velja $T = \operatorname{pr}_2 \circ \operatorname{pr}_1^{-1}$.
 \end{proof}
 
-% LocalWords:  Bairovega Bairovem Banachovima
+\vprasanje{Povej in dokaži izrek o zaprtem grafu.}
+
+% LocalWords:  Bairovega Bairovem Banachovima Bairov

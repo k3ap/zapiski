@@ -15,6 +15,8 @@
   \ge 0$, da $\abs{u(x,y)} \le M \norm{x} \norm{y}$.
 \end{definicija}
 
+\vprasanje{Kaj je seskvilinearna forma? Kdaj je omejena?}
+
 \begin{primer}
   Za $A \in B(H, K)$ definiramo $u(x,y) = \sk{Ax,y}$.
   To je seskvilinearna forma, velja $\abs{u(x,y)} \le \norm{A} \norm{x}
@@ -39,7 +41,7 @@
   za vsak $y \in K$.
   Definiramo $z_x = Ax$.
   To nam da preslikavo $A: H \to K$, da je $\konj{u(x,y)} = \sk{y, Ax} =
-  \konj{Ax, y}$.
+  \konj{\sk{Ax, y}}$.
   Enostavno lahko preverimo, da je $A$ linearna, ker velja
   \[
 	\norm{Ax} = \norm{z_x} = \norm{f_x} \le M \norm{x},
@@ -50,6 +52,9 @@
   Sledi, da je $A$ enolično določena.
   Podobno za $B$.
 \end{proof}
+
+\vprasanje{Pokaži, da lahko vsako omejeno seskvilinearno formo izrazimo s
+  skalarnim produktom.}
 
 \begin{definicija}
   Naj bo $A$ omejen operator $H \to K$.
@@ -80,6 +85,9 @@
   \]
   za poljubna $x, y$, torej je $U^* = U^{-1}$.
 \end{proof}
+
+\vprasanje{Pokaži: $U$ je izomorfizem Hilbertovih prostorov natanko tedaj, ko je
+  obrnljiv in $U^* = U^{-1}$.}
 
 \begin{opomba}
   Če sta $A, B \in B(H,K)$, potem velja
@@ -141,6 +149,8 @@
 	\qedhere
   \]
 \end{proof}
+
+\vprasanje{Kaj je $\jedro A^*$?}
 
 \begin{posledica}
   Za $A \in B(H,K)$ velja
@@ -211,6 +221,9 @@ Oba ta operatorja sta sebi adjungirana.
   torej $\gamma = \alpha$.
 \end{proof}
 
+\vprasanje{Pokaži: če je $\sk{Ax, x} \in \R$ za vsak $x$, je $A$ sebi
+  adjungiran.}
+
 \begin{izrek}
   Naj bo $H$ Hilbertov prostor in $A \in B(H)$ sebi adjungiran operator.
   Tedaj velja
@@ -250,6 +263,8 @@ Oba ta operatorja sta sebi adjungirana.
   Sedaj lahko naredimo supremum po enotski sferi.
 \end{proof}
 
+\vprasanje{Kako lahko izraziš normo sebi adjungiranega operatorja? Dokaži.}
+
 \begin{trditev}
   Naj bo $H$ kompleksen Hilbertov prostor in $A \in B(H)$ tak, da je $\sk{Ax,x}
   = 0$ za vsak $x \in H$.
@@ -285,6 +300,8 @@ Oba ta operatorja sta sebi adjungirana.
   Tej enakosti pravimo $C^*$-aksiom.
 \end{opomba}
 
+\vprasanje{Pokaži, da v $B(H)$ velja $C^*$-aksiom.}
+
 \begin{trditev}
   Za $A \in B(H)$ so naslednje trditve ekvivalentne:
   \begin{itemize}
@@ -311,6 +328,8 @@ Oba ta operatorja sta sebi adjungirana.
   Potem je $A$ normalen natanko tedaj, ko je $(H - i K)(H + iK) = (H + iK)(H -
   iK)$, oziroma $HK = KH$.
 \end{proof}
+
+\vprasanje{Karakteriziraj normalnost operatorja in dokaži karakterizacijo.}
 
 \begin{posledica}
   Naj bo $A \in B(H)$ normalen in $\lambda \in \F$.
@@ -352,10 +371,12 @@ Definiramo množici
   \pojem{stožec}, če velja
   \begin{itemize}
   \item $C + C \subseteq C$,
-  \item $\lambda C \subseteq C$za vsak $\lambda \ge 0$,
+  \item $\lambda C \subseteq C$ za vsak $\lambda \ge 0$,
   \item $C \cap (-C) = \{0\}$.
   \end{itemize}
 \end{definicija}
+
+\vprasanje{Kaj je stožec v realnem vektorskem prostoru?}
 
 \begin{trditev}
   Množica $B(H)_{\text{sa}}^+$ je stožec v $B(H)_{\text{sa}}$.
@@ -452,6 +473,9 @@ Ker sta $\jedro P$ in $\im P$ zaprta v $H$, velja $H = \im P \oplus \jedro P$.
   5 v 1 izpustimo.
 \end{proof}
 
+\vprasanje{Kdaj je idempotent $P \in B(H)$ ortogonalni projektor? Karakteriziraj
+  in dokaži.}
+
 \begin{definicija}
   Zaprt podprostor $M$ normiranega prostora $X$ je \pojem{invarianten} za $A \in
   B(X)$, če je $AM \subseteq M$.
@@ -513,6 +537,8 @@ Označimo $K(X,Y) = \{ T: X \to Y \such \text{$T$ kompakten} \}$.
   \end{itemize}
 \end{izrek}
 
+\vprasanje{Definiraj in karakteriziraj kompaktnost linearnega operatorja.}
+
 \begin{trditev}
   Naj bosta $X, Y$ Banachova prostora.
   Potem velja:
@@ -533,7 +559,8 @@ Označimo $K(X,Y) = \{ T: X \to Y \such \text{$T$ kompakten} \}$.
   konvergentno.
   Potem $(\mu K_1 x_{n_{k_j}} + \lambda K_2 x_{n_{k_j}})_j$ konvergira v $Y$.
 
-  Naj bo sedaj $(K_n)_n$ zaporedje kompaktnih operatorjev, ki konvergira k $K$.
+  Naj bo sedaj $(K_n)_n$ zaporedje kompaktnih operatorjev, ki konvergira k
+  nekemu $K$.
   Pokažimo, da je $K$ kompakten.
   Ker je $Y$ Banachov, je $\cl{K(B_X)}$ kompakt natanko tedaj, ko je
   $\cl{K(B_X)}$ povsem omejena, oziroma ko je $K(B_X)$ povsem omejena.
@@ -561,6 +588,8 @@ Označimo $K(X,Y) = \{ T: X \to Y \such \text{$T$ kompakten} \}$.
   \end{align*}
 \end{proof}
 
+\vprasanje{Pokaži, da je $K(X,Y)$ zaprt podprostor $B(X,Y)$.}
+
 \begin{trditev}
   Naj bo $A \in B(X)$ operator z $\dim \im A < \infty$.
   Potem je $A$ kompakten.
@@ -580,6 +609,8 @@ Označimo $K(X,Y) = \{ T: X \to Y \such \text{$T$ kompakten} \}$.
 \begin{definicija}
   Množico vseh operatorjev končnega ranga $X \to Y$ označimo z $F(X,Y)$.
 \end{definicija}
+
+\vprasanje{Pokaži, da je $F(X,Y) \subseteq K(X,Y)$.}
 
 \begin{izrek}
   Naj bo $X$ normiran prostor.
@@ -620,6 +651,8 @@ Pravimo ji \pojem{Calkinova algebra}.
   Tedaj je $H$ relativno kompaktna natanko tedaj, ko je enakozvezna in po točkah
   omejena.
 \end{izrek}
+
+\vprasanje{Povej izrek Arzela-Ascoli.}
 
 \begin{izrek}
   Naj bo $(f_n)_n \subseteq \zvezne{[a,b]}$ tako zaporedje, da za vse
@@ -666,6 +699,10 @@ Pravimo ji \pojem{Calkinova algebra}.
   Torej je zaporedje $(\tilde{f}_n)_n$ Cauchyjevo in zato konvergira.
   Limita je stekališče $(f_n)_n$.
 \end{proof}
+
+\vprasanje{Pokaži: če za omejeno zaporedje $(f_n)_n$ zveznih funkcij za poljuben
+  $\varepsilon > 0$ obstaja $\delta > 0$, da za vsak $n$ iz $\abs{x-y} < \delta$
+  sledi $\abs{f_n(x) - f_n(y)} < \varepsilon$, potem ima zaporedje stekališče.}
 
 \begin{trditev}
   Naj bo $H \subseteq \zvezne{[a,b]}$ družina zvezno odvedljivih funkcij.
@@ -719,6 +756,9 @@ Pravimo ji \pojem{Calkinova algebra}.
   omejena.
 \end{proof}
 
+\vprasanje{Pokaži, da je integralski operator z zveznih jedrom kompakten na
+  $\zvezne{[a,b]}$ za drugo ali neskončno normo.}
+
 \podnaslov{Kompaktnost adjungiranega operatorja}
 
 \begin{izrek}
@@ -767,7 +807,7 @@ Pravimo ji \pojem{Calkinova algebra}.
   saj
   \[
 	\norm{T_n x_j - T_n x} \le \norm{P_n} \norm{T x_j - Tx} <
-	\frac{\varnothing}{3}.
+	\frac{\varepsilon}{3}.
   \]
 
   1 v 2:
@@ -793,6 +833,10 @@ Pravimo ji \pojem{Calkinova algebra}.
   2 v 1:
   Velja $T^{**} = T$.
 \end{proof}
+
+\vprasanje{Pokaži: omejen operator $T$ je kompakten natanko tedaj, ko je $T^*$
+  kompakten, kar je natanko tedaj, ko obstaja zaporedje $(T_n)_n$ operatorjev
+  končnega ranga, ki konvergira k $T$.}
 
 % LocalWords:  seskvilinearna seskvilinearne involucija semidefiniten Calkinova
 % LocalWords:  Idempotenti Arzela-Ascoli enakozvezna Lagrangeovem KONS

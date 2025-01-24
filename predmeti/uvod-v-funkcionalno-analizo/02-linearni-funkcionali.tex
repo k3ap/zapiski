@@ -13,6 +13,9 @@
   \end{itemize}
 \end{izrek}
 
+\vprasanje{Karakteriziraj zveznost linearnih preslikav med normiranima
+  prostoroma.}
+
 Za omejen operator $T: X \to Y$ definiramo
 \[
   \norm{T} = \inf \{ C > 0 \such \forall x . \norm{Tx} \le C \norm{x} \}.
@@ -31,6 +34,9 @@ Velja
 \]
 Množico vseh omejenih linearnih operatorjev $X \to Y$ označimo z $B(X,Y)$, in jo
 opremimo z zgornjo normo.
+
+\vprasanje{Kako definiraš normo na (omejenem) linearnem operatorju? Povej še
+  vsaj eno izražavo.}
 
 \begin{trditev}
   Naj bodo $X, Y, Z$ normirani prostori.
@@ -86,6 +92,8 @@ opremimo z zgornjo normo.
   $T_m \to T$.
 \end{proof}
 
+\vprasanje{Pokaži: če je $Y$ Banachov, je $B(X,Y)$ Banachov.}
+
 \begin{posledica}
   Dualni prostor je vedno Banachov.
 \end{posledica}
@@ -123,6 +131,9 @@ opremimo z zgornjo normo.
   torej je $S$ omejen in $\norm{S} \le \norm{T}$.
   Obrat je očiten.
 \end{proof}
+
+\vprasanje{Dokaži: linearen operator $T: Y \to Z$, ki slika v poln prostor,
+  lahko enolično razširimo do operatorja $\cl{Y} \to Z$.}
 
 \begin{posledica}
   Naj bosta $S, T: X \to Y$ omejena operatorja, ki se ujemata na gostem
@@ -181,6 +192,8 @@ opremimo z zgornjo normo.
   p(x) + p(y)$ in $p(\lambda x) = \lambda p(x)$ za poljubne $x, y \in X$ ter
   $\lambda \ge 0$.
 \end{definicija}
+
+\vprasanje{Kaj je sublinearni funkcional?}
 
 \begin{primer}
   Vsaka polnorma je sublinearni funkcional.
@@ -256,6 +269,8 @@ opremimo z zgornjo normo.
   Torej $X = \tilde{Y}$.
 \end{proof}
 
+\vprasanje{Povej in dokaži realni Hahn-Banachov izrek.}
+
 \begin{lema}
   Naj bo $X$ kompleksen vektorski prostor.
   Potem veljajo naslednje točke.
@@ -303,6 +318,10 @@ opremimo z zgornjo normo.
   \norm{\tilde{f}}$.
 \end{proof}
 
+\vprasanje{Pokaži, da lahko $\R$-linearni funkcional iz kompleksnega vektorskega
+  prostora $X$ enolično razširimo do $\C$-linearnega funkcionala, in da
+  razširitev ohranja normo.}
+
 \begin{izrek}[kompleksni Hahn-Banach]
   Naj bo $X$ vektorski prostor nad $\F$, $Y \le X$ in $p$ polnorma na $X$.
   Če je $f: Y \to \F$ linearni funkcional, da za vse $y \in Y$ velja $\abs{f(y)}
@@ -323,11 +342,15 @@ opremimo z zgornjo normo.
   $\abs{\tilde{F}(x)} \le p(x)$.
 \end{proof}
 
+\vprasanje{Povej in dokaži kompleksni Hahn-Banachov izrek.}
+
 \begin{izrek}[Hahn-Banachov izrek za normirane prostore]
   Naj bo $Y \le X$ podprostor normiranega prostora $X$ in $f: Y \to \F$ omejen.
   Tedaj obstaja $f: X \to \F$, da je $\left. F \right|_Y = f$ ter $\norm{F} =
   \norm{f}$.
 \end{izrek}
+
+\vprasanje{Povej Hahn-Banachov izrek za normirane prostore.}
 
 \begin{posledica}
   Naj bo $X$ normiran in $x \in X$ neničeln vektor.
@@ -348,6 +371,9 @@ opremimo z zgornjo normo.
 	\norm{x} = \max \{\abs{f(x)} \such f \in X^*, \norm{f} = 1\}.
   \]
 \end{posledica}
+
+\vprasanje{Pokaži, da je $\norm{x} = \max \{ \abs{f(x)} \such f \in X^*,
+  \norm{f} = 1 \}$.}
 
 \begin{posledica}
   Naj bo $Y \le X$ zaprt podprostor normiranega prostora $X$.
@@ -373,6 +399,9 @@ opremimo z zgornjo normo.
   torej je iskani funkcional $\inv{d} f$.
 \end{proof}
 
+\vprasanje{Pokaži, da lahko z linearnim funkcionalom ločiš točko od zaprtega
+  podprostora.}
+
 \begin{izrek}
   Naj bo $Y \le X$ podprostor normiranega prostora $X$.
   Tedaj je
@@ -393,6 +422,9 @@ opremimo z zgornjo normo.
   $f(z) = 1$.
 \end{proof}
 
+\vprasanje{Kako lahko izraziš zaprtje podprostora z jedri linearnih
+  funkcionalov? Dokaži enakost.}
+
 \podnaslov{Adjungirani operator in drugi dual}
 
 \begin{definicija}
@@ -406,7 +438,7 @@ opremimo z zgornjo normo.
 \begin{proof}
   Velja $\abs{\hat{x}(f)} = \abs{f(x)} \le \norm{f} \norm{x}$, zato
   $\norm{\hat{x}} \le \norm{x}$.
-  Po Hahn-Banachu velja $f$ z $\norm{f} = 1$ in $f(x) = \norm{x}$.
+  Po Hahn-Banachu obstaja $f$ z $\norm{f} = 1$ in $f(x) = \norm{x}$.
   Tedaj $\hat{x}(f) = \norm{x}$, torej $\norm{\hat{x}} \ge \norm{x}$.
 \end{proof}
 
@@ -439,11 +471,14 @@ Banachovih prostorov, $A^*$, z
   \norm{A}$.
   Vemo pa
   \[
-	\norm{Ax} = \norm{\widehat{A x}} = \norm{A^{*+} \hat{x}} \le \norm{A^{**}}
+	\norm{Ax} = \norm{\widehat{A x}} = \norm{A^{**} \hat{x}} \le \norm{A^{**}}
 	\norm{\hat{x}} = \norm{A^{**}} \norm{x}
   \]
   torej je $\norm{A} \le \norm{A^{**}}$ in so norme enake.
 \end{proof}
+
+\vprasanje{Kako je definiran adjungiran operator v smislu Banachovih prostorov?
+  Pokaži, da adjungiranje ohranja normo operatorja.}
 
 \begin{definicija}
   Normiran prostor je \pojem{refleksiven}, če je $i_X$ surjekcija.
@@ -454,3 +489,4 @@ Banachovih prostorov, $A^*$, z
 \end{opomba}
 
 % LocalWords:  Hahn-Banachov maksimalnostjo Hahn-Banach Hahn-Banachu
+% LocalWords:  adjungiranje

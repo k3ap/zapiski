@@ -65,7 +65,7 @@ Torej je Hilbertov prostor.
 \begin{izrek}
   Naj bo $H$ Hilbertov prostor in $K$ neprazna zaprta konveksna množica v $H$.
   Tedaj za vsak $x \in H$ obstaja natanko en $k \in K$, da je $d(x,K) =
-  \norm{x,k}$.
+  \norm{x-k}$.
 \end{izrek}
 
 \begin{proof}
@@ -91,6 +91,9 @@ Torej je Hilbertov prostor.
   \]
   saj je $K$ konveksna in $k, k' \in K$.
 \end{proof}
+
+\vprasanje{Pokaži: v Hilbertovem prostoru obstaja enolična projekcija točke na
+  konveksno zaprto množico.}
 
 \begin{izrek}
   Naj bo $M$ zaprt podprostor Hilbertovega prostora $H$, $x \in H$ ter $x_0 \in
@@ -126,6 +129,10 @@ Torej je Hilbertov prostor.
   \]
 \end{proof}
 
+\vprasanje{Če je $M$ zaprt podprostor v Hilbertovem prostoru in $x_0 \in M$,
+  potem je $x - x_0$ pravokoten na $M$ natanko tedaj, ko je $d(x,M) =
+  \norm{x-x_0}$.}
+
 \begin{definicija}
   Naj bo $X$ prostor s skalarnim produktom.
   Za $x \in X$ definiramo $\{x\}^\bot = \{y \in X \such x \bot y\}$, za $A
@@ -156,6 +163,8 @@ Torej je Hilbertov prostor.
   po Cauchy-Schwarzu.
   Torej je $y \in \{x\}^\bot$.
 \end{proof}
+
+\vprasanje{Pokaži: $A^\bot$ je vedno zaprt podprostor.}
 
 \begin{izrek}
   Naj bo $M$ zaprt podprostor v Hilbertovem prostoru $H$.
@@ -201,6 +210,10 @@ Torej je Hilbertov prostor.
   Velja $M^{\bot \bot} = \jedro (I-P) = \im P = M$.
 \end{proof}
 
+\vprasanje{Definiraj ortogonalni projektor na zaprt podprostor $M$ v Hilbertovem
+  prostoru $H$. Dokaži, da je linearen, idempotent, da velja $\norm{Px} \le
+  \norm{x}$ in da velja $H = M \oplus M^\bot$.}
+
 Idempotent $P$ iz izreka je pravokotni projektor na $M$ vzdolž $M^\bot$.
 Množica $M^\bot$ se imenuje \pojem{ortogonalni komplement $M$}.
 
@@ -215,6 +228,8 @@ Množica $M^\bot$ se imenuje \pojem{ortogonalni komplement $M$}.
   in bo $x$ pravokoten tudi na linearno ogrinjačo $A$ in njeno zaprtje.
   Torej $A^{\bot \bot} = [A]^{\bot \bot}$.
 \end{proof}
+
+\vprasanje{Kaj je $A^{\bot \bot}$ za $A \subseteq H$?}
 
 Naj bo $X$ prostor s skalarnim produktom in $y \in X$.
 Definiramo $f_y: X \to \F$ z
@@ -261,6 +276,8 @@ Definiramo $f_y: X \to \F$ z
   torej $\sk{x,z} = \sk{f(x) z, z} = f(x) \sk{z,z}$.
   Potem je $f(x) = \sk{x, z / \norm{z}^2}$.
 \end{proof}
+
+\vprasanje{Povej in dokaži Rieszov izrek.}
 
 \begin{posledica}
   Za vsak $f \in (l^2)^*$ obstaja natanko en $y \in l^2$, da je
@@ -320,6 +337,8 @@ Definiramo $f_y: X \to \F$ z
   Vsak Hilbertov prostor je refleksiven (vložitev v $H^{**}$ je surjektivna).
 \end{posledica}
 
+\vprasanje{Pokaži, da je vsak Hilbertov prostor refleksiven.}
+
 \podnaslov{Ortonormirani sistemi}
 
 \begin{definicija}
@@ -341,6 +360,8 @@ Definiramo $f_y: X \to \F$ z
   \pojem{kompleten} ali \pojem{baza} Hilbertovega prostora $H$, če je maksimalen
   v množici vseh ortonormiranih sistemov (glede na $\subseteq$).
 \end{definicija}
+
+\vprasanje{Definiraj kompleten ortonormiran sistem.}
 
 \begin{trditev}
   Vsak ortonormiran sistem v Hilbertovem prostoru lahko dopolnimo do kompletnega
@@ -408,6 +429,8 @@ Definiramo $f_y: X \to \F$ z
   To velja za vsak $n$, torej tudi v limiti.
 \end{proof}
 
+\vprasanje{Povej in dokaži Besselovo neenakost.}
+
 \begin{posledica}
   Naj bo $X$ prostor s skalarnim produktom in $E \subseteq X$ ortonormiran
   sistem.
@@ -430,6 +453,9 @@ Definiramo $f_y: X \to \F$ z
   \]
   ker je $\abs{\sk{x,e_k}} \ge \nicefrac{1}{m}$ za vse $k$.
 \end{proof}
+
+\vprasanje{Naj bo $\{e_i\}_i$ ONS in $x \in X$. Pokaži, da je kvečjemu števno
+  mnogo vektorjev $e_i$ pravokotnih na $x$.}
 
 \begin{posledica}
   Če je $E \subseteq X$ kompleten ortonormiran sistem, za vsak $x \in X$ velja
@@ -519,6 +545,9 @@ Definiramo $f_y: X \to \F$ z
   \protislovje{}
 \end{proof}
 
+\vprasanje{Povej 5 trditev, ekvivalentnih dejstvu, da je $E \subseteq H$ KONS.
+  Dokaži ekvivalence. Kaj je Parsevalova enakost?}
+
 \begin{trditev}
   Poljubni ortonormirani bazi Hilbertovega prostora imata isto kardinalnost.
 \end{trditev}
@@ -534,6 +563,8 @@ Definiramo $f_y: X \to \F$ z
   saj je $E$ baza.
   Torej $\abs{F} \le \abs{E} \abs{\N} = \abs{E}$ in podobno v drugo smer.
 \end{proof}
+
+\vprasanje{Pokaži: če sta $E, F$ neskončna KONS-a, imata isto kardinalnost.}
 
 \begin{definicija}
   \pojem{Dimenzija} Hilbertovega prostora je enaka kardinalnosti katerekoli
@@ -597,6 +628,9 @@ Definiramo $f_y: X \to \F$ z
   \]
 \end{proof}
 
+\vprasanje{Karakteriziraj separabilnost neskončnorazsežnega Hilbertovega
+  prostora in dokaži karakterizacijo.}
+
 \begin{definicija}
   Linearna preslikava $U: H \to K$ je \pojem{izomorfizem} Hilbertovih
   prostorov (tudi \pojem{unitarni operator}), če je surjektivna in če velja
@@ -620,6 +654,8 @@ Definiramo $f_y: X \to \F$ z
   Če namesto $x$ pišemo $ix$, dobimo še $- \Imag \sk{x,y} = - \Imag \sk{Ux,
 	Uy}$.
 \end{proof}
+
+\vprasanje{Pokaži: linearna izometrija ohranja skalarni produkt.}
 
 \begin{lema}
   Naj bo $U: H \to K$ izomorfizem Hilbertovih prostorov.
@@ -662,6 +698,9 @@ Definiramo $f_y: X \to \F$ z
   prostorov.
 \end{proof}
 
+\vprasanje{Pokaži: Hilbertova prostora sta izomorfna natanko tedaj, ko imata
+  isto dimenzijo.}
+
 \begin{posledica}
   Neskončnorazsežen separabilen Hilbertov prostor je izomorfen $l^2$.
 \end{posledica}
@@ -690,6 +729,8 @@ Dobljen prostor označimo z
 \]
 in ga imenujemo \pojem{ortogonalna direktna vsota} prostorov $(H_n)_n$.
 Je tudi Hilbertov prostor.
+
+\vprasanje{Definiraj neskončno direktno vsoto Hilbertovih prostorov.}
 
 \podnaslov{Stone-Weierstrassov izrek}
 
@@ -741,6 +782,8 @@ Je tudi Hilbertov prostor.
   f_{x_m}(y) < g(y) + \varepsilon$.
 \end{proof}
 
+\vprasanje{Povej in dokaži mrežni Stone-Weierstrassov izrek.}
+
 \begin{lema}
   Obstaja zaporedje polinomov, ki na $[0,1]$ konvergira enakomerno proti
   funkciji $\sqrt{x}$.
@@ -786,7 +829,7 @@ Je tudi Hilbertov prostor.
 \begin{proof}
   Pokazali bomo, da je $\cl{A}$ podmreža v $\zvezne{K}$.
   Potem bo po mrežni različici izreka gosta v $\zvezne{K}$.
-  Ker bo zaprta, bo $\cl{A} = \zvezne{K}$.
+  Ker je zaprta, bo $\cl{A} = \zvezne{K}$.
 
   Očitno je $\cl{A}$ podalgebra.
   Ker velja $\max\{f,g\} = \pol (f + g + \abs{f-g})$ in $\min\{f,g\} = \pol(f+g
@@ -801,11 +844,15 @@ Je tudi Hilbertov prostor.
   tudi $\abs{f} \in \cl{A}$.
 \end{proof}
 
+\vprasanje{Povej in pokaži realni Stone-Weierstrassov izrek.}
+
 \begin{izrek}[Weierstrass]
   Naj bo $K \subseteq \R$ kompakt in $f: K \to \R$ zvezna.
   Tedaj za vsak $\varepsilon > 0$ obstaja polinom $p$, da je $\abs{f(x) - p(x)}
   < \varepsilon$ za vse $x \in K$.
 \end{izrek}
+
+\vprasanje{Povej Weierstrassov izrek.}
 
 \begin{izrek}[Stone-Weierstrass, kompleksna verzija]
   Naj bo $K$ kompakten Hausdorffov prostor in $A \subseteq \zvezne{K}$
@@ -828,12 +875,14 @@ Je tudi Hilbertov prostor.
 
   Naj bo $f \in \zvezne{K, \C}$ poljubna in $\varepsilon >0$.
   Pišimo $f = g + ih$ za realni $g, h$.
-  Po razno dokazanem obstajata $g_1, h_1 \in A_0$, da je $\norm{g - g_1} <
+  Po ravno dokazanem obstajata $g_1, h_1 \in A_0$, da je $\norm{g - g_1} <
   \nicefrac{\varepsilon}{2}$ in $\norm{h-h_1} < \nicefrac{\varepsilon}{2}$.
   Potem je $\norm{f - (g_1 + i h_1)} < \varepsilon$.
 \end{proof}
 
+\vprasanje{Povej in dokaži kompleksni Stone-Weierstrassov izrek.}
+
 % LocalWords:  polskalarnim von paralelogramska paralelogramski paralelogramsko
 % LocalWords:  Riesz Rieszovem Hahn-Banachovo Hahn-Banachova Rieszu Besselova
 % LocalWords:  Besselovo KONS Besselovi Parsevalu separabilnem Parsevalovi
-% LocalWords:  podmreža Weierstrass
+% LocalWords:  podmreža Weierstrass Rieszov KONS-a

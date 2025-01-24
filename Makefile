@@ -22,7 +22,7 @@ zapiski-%.tex: zbt-templates predmeti/%/*.tex
 	cat predmeti/$*/all.tex >> $@
 	cat templates/predmet-3.tex >> $@
 
-zapiski.pdf: zapiski.tex $(predmeti-filenames)
+zapiski.pdf: zapiski.tex predmeti.tex $(predmeti-filenames)
 	$(latex-cmd) $^
 
 $(ksl-filenames): ksl-%.pdf: ksl-%.tex

@@ -42,6 +42,9 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   \sigma_p(A)$), če je $\lambda$ lastna vrednost za $A$.
 \end{definicija}
 
+\vprasanje{Kaj je resolventa in kaj je spekter? Na katere tri dele se razdeli
+  spekter omejenega operatorja na kompleksnem Banachovem prostoru?}
+
 \begin{trditev}
   Naj bo $A \in B(H)$.
   Če je $A = A^*$, je $\sigma_p(A) \subseteq \R$.
@@ -70,6 +73,9 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   \ne H$.
 \end{proof}
 
+\vprasanje{Kako sta povezana točkast in residualni spekter operatorja s spektrom
+  adjungiranega operatorja? Dokaži.}
+
 \begin{posledica}
   Če je $A \in B(H)$ normalen, je $\sigma_r(A) = \varnothing$.
 \end{posledica}
@@ -86,6 +92,8 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   \protislovje{}
 \end{proof}
 
+\vprasanje{Pokaži: normalen operator ima prazen residualni spekter.}
+
 \begin{lema}
   Naj bo $X$ kompleksen Banachov prostor in $A \in B(X)$.
   Naj bo $\lambda \in \sigma_c(A)$.
@@ -100,7 +108,7 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
 \begin{proof}
   Ker je $A$ sebi adjungiran, je normalen, zato $\sigma_r(A) = \varnothing$.
   Dokazati moramo torej le še $\sigma_c(A) \subseteq \R$.
-  Če je $\lambda in \sigma_c(a)$, obstaja zaporedje $(x_n)_n$ z $\norm{x_n} = 1$
+  Če je $\lambda \in \sigma_c(a)$, obstaja zaporedje $(x_n)_n$ z $\norm{x_n} = 1$
   in $A x_n - \lambda x_n \to 0$.
   Pišimo $\lambda = \alpha + i \beta$.
   Potem velja
@@ -117,6 +125,8 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   \]
   torej $\beta = 0$.
 \end{proof}
+
+\vprasanje{Pokaži: spekter sebi adjungiranega operatorja je realen.}
 
 \begin{izrek}
   Naj bo $A$ Banachova algebra z enico in naj bo $\norm{a} < 1$ za nek $a \in
@@ -142,6 +152,9 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   Velja $(1 - a) s_n = 1 - a^{n+1}$.
   Leva stran konvergira k $(1-a)s$, desna pa k $1$.
 \end{proof}
+
+\vprasanje{Pokaži: če je $a$ element Banachove algebre in $\norm{a} < 1$, je
+  $1-a$ obrnljiv.}
 
 \begin{lema}
   Naj bosta $\lambda, \mu \in \rho(a)$.
@@ -183,6 +196,9 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   ampak potem $\norm{\nicefrac{a}{\lambda}} < 1$, in je $\lambda \in \rho(a)$.
   Torej je $\sigma(a) \subseteq B(0, \norm{a})$.
 \end{proof}
+
+\vprasanje{Pokaži: če je $a$ element Banachove algebre, je $\sigma(a)$ kompakt,
+  vsebovan v $B(0, \norm{a})$.}
 
 \begin{opomba}
   Če je $\abs{\lambda} > \norm{a}$, je $\lambda \in \rho(a)$ in
@@ -237,6 +253,8 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   \end{align*}
 \end{proof}
 
+\vprasanje{Pokaži: resolventna funkcija je zvezna.}
+
 \begin{izrek}
   Naj bo $a \in A$ in $A$ kompleksna Banachova algebra z enico.
   Tedaj je $\sigma(a) \ne \varnothing$.
@@ -273,6 +291,9 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   Za $\lambda \in \rho(a)$ velja $(\lambda - a)R(\lambda, a) = 1$, torej
   $R(\lambda, a) \ne 0$, in smo prišli v protislovje s Hahn-Banachom.
 \end{proof}
+
+\vprasanje{Dokaži: spekter elementa Banachove algebre z enico je vedno
+  neprazen.}
 
 \begin{definicija}
   Naj bo $a \in A$.
@@ -327,7 +348,7 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   Če pokažemo, da je $\limsup \norm{a^n}^{1/n} \le r(a)$, potem bo dokaz končan.
 
   Naj bo $f \in A^*$.
-  Definiramo $f\tilde{f}(\lambda) = f(R(\lambda, a))$ kot preslikavo $\rho(a)
+  Definiramo $\tilde{f}(\lambda) = f(R(\lambda, a))$ kot preslikavo $\rho(a)
   \to \C$.
   To je holomorfna funkcija.
   Če je $\abs{\lambda} > \norm{a}$, lahko $R(\lambda, a)$ eksplicitno izrazimo
@@ -364,6 +385,8 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   Torej je $\limsup \norm{a^n}^{1/n} \le r(a)$.
 \end{proof}
 
+\vprasanje{Povej in dokaži Gelfandovo formulo.}
+
 \begin{posledica}
   Naj bo $A$ sebi adjungiran operator na Hilbertovem prostoru.
   Tedaj velja $r(A) = \norm{A}$.
@@ -376,10 +399,12 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   S tem dobimo podzaporedje zaporedja v limiti, ki bo konvergiralo k $\norm{A}$.
 \end{proof}
 
+\vprasanje{Pokaži, da za sebi adjungiran operator velja $\norm{A} = r(A)$.}
+
 \podnaslov{Spekter kompaktnega operatorja}
 
 \begin{primer}
-  Če je $H = l^2$ in $(e_n)_n$ neka ortonormirana baza.
+  Naj bo $H = l^2$ in $(e_n)_n$ neka ortonormirana baza.
   Naj bo $(d_n)_n$ zaporedje omejenih števil.
   Definiramo diagonalni operator $D: l^2 \to l^2$ z
   \[
@@ -400,6 +425,8 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   Tedaj za vsak $\varepsilon \in (0,1)$ obstaja $x \in X$, da velja $\norm{x} =
   1$ in $d(x,Y) \ge \varepsilon$.
 \end{lema}
+
+\vprasanje{Povej Rieszovo lemo o pravokotnici.}
 
 \begin{opomba}
   Če je $X$ končnorazsežen, obstaja $x \in X$ z $\norm{x} = 1$ in $d(x,Y) = 1$.
@@ -430,6 +457,9 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   Če je $x \in Y \cap Z$, velja $x = \alpha_1 e_1 + \cdots + \alpha_n e_n$,
   ampak tudi $F_i(x) = 0 = \alpha_i$ za vse $i$, torej $x = 0$.
 \end{proof}
+
+\vprasanje{Dokaži: za končnorazsežen podprostor $Y \le X$ obstaja zaprt
+  podprostor $Z \le X$, da je $X = Y \oplus Z$.}
 
 \begin{trditev}
   Naj bo $X$ Banachov prostor in $K \in K(X)$.
@@ -468,7 +498,7 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   y_{n_k})_k$ konvergira.
   Velja
   \[
-	y_{n_k} = \lambda \inv{\lambda} y_{n_K} = \inv{\lambda} \left( \lambda
+	y_{n_k} = \lambda \inv{\lambda} y_{n_k} = \inv{\lambda} \left( \lambda
 	  y_{n_k} - K y_{n_k} + K y_{n_k} \right) \to y
   \]
   za nek $y \in Y$ z $\norm{y} = 1$ saj sta prva dva člena vsote del zaporedja
@@ -478,6 +508,9 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   $\norm{y} = 1$.
   \protislovje{}
 \end{proof}
+
+\vprasanje{Pokaži: če je $K$ kompakten operator in $\lambda \ne 0$, je jedro $K
+  - \lambda I$ končnorazsežno, slika $K - \lambda I$ pa je zaprta.}
 
 \begin{lema}
   Naj bo $K$ kompakten operator na kompleksnem Banachovem prostoru $X$.
@@ -517,6 +550,10 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   To je protislovje s kompaktnostjo $K$.
 \end{proof}
 
+\vprasanje{Pokaži, da ima kompakten operator le končno mnogo linearno neodvisnih
+  lastnih vektorjev, ki pripadajo lastnim vrednostim z $\abs{\lambda} >
+  \varepsilon$.}
+
 \begin{izrek}
   Za kompakten operator $K$ na kompleksnem Banachovem prostoru $X$ veljajo
   naslednje trditve:
@@ -550,7 +587,7 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   \varepsilon$.
   Torej $\lambda_n \to 0$.
 
-  Tretja točka:
+  Druga točka:
   Recimo, da je $0 \ne \lambda \in \sigma(K)$.
   Recimo, da je $K - \lambda I$ injektiven.
   Če dokažemo, da je $K - \lambda I$ surjektiven, bo sledilo, da je obrnljiv z
@@ -582,7 +619,7 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   X_n$, saj je $m > n$.
   Hkrati je $(K - \lambda I) x_n \in (K - \lambda I) X_{n-1} =X_n$, torej
   $\inv{\lambda}((K - \lambda I) x_n - K x_m) \in X_{n-1}$.
-  Velja torej $\norm{K x_n - K x_m} ge \pol \abs{\lambda}$.
+  Velja torej $\norm{K x_n - K x_m} \ge \pol \abs{\lambda}$.
   Kot prej pridemo v protislovje s kompaktnostjo operatorja $K$.
   Torej mora obstajati $n$, za katerega je $X_n = X_{n+1}$.
 
@@ -591,6 +628,9 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   I)^{n+1} X$.
   To je protislovje z injektivnostjo $(K - \lambda I)^n$.
 \end{proof}
+
+\vprasanje{Kaj lahko poveš o spektru kompaktnega operatorja na kompleksnem
+  Banachovem prostoru? Dokaži.}
 
 \begin{izrek}
   Naj bo $K: H \to H$ kompakten sebi adjungiran operator na kompleksnem
@@ -630,6 +670,10 @@ Množici $\sigma(a) = \C \setminus \rho(a)$ pravimo \pojem{spekter} elementa $a$
   Torej za $x \in H$ velja $Kx = \sum \lambda_n \sk{x, e_n} e_n$.
 \end{proof}
 
+\vprasanje{Kaj lahko poveš o spektru kompaktnega sebi adjungiranega operatorja
+  na kompleksnem Hilbertovem prostoru? Dokaži.}
+
 % LocalWords:  resolventa resolventna adjungiramo medseboj residualnem Rieszova
 % LocalWords:  Hahn-Banachom Gelfandova Hahn-Banachova Rieszovi Cauchyjevega
-% LocalWords:  večkratnostjo večkratnosti
+% LocalWords:  večkratnostjo večkratnosti residualni Banachove Gelfandovo
+% LocalWords:  Rieszovo
