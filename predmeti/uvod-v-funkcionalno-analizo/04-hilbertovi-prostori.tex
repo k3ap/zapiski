@@ -113,7 +113,7 @@ Torej je Hilbertov prostor.
   Potem je
   \[
 	\norm{x - (x_0 + \varepsilon y)}^2 = \norm{x - x_0}^2 -
-	2 \varepsilon \Real \sk{x - x_0, y} + \abs{\varepsilon}^2 \norm{y}^2
+	2 \Real (\varepsilon \sk{x - x_0, y}) + \abs{\varepsilon}^2 \norm{y}^2
   \]
   za poljuben $\varepsilon \in \C$, saj je $(x_0 + \varepsilon y) \in M$.
   Če izberemo dovolj majhen $\varepsilon \in \R$, dobimo
@@ -124,13 +124,13 @@ Torej je Hilbertov prostor.
   Torej je $x - x_0 \bot M$.
   Tedaj za vsak $y \in M$ velja
   \[
-	\norm{x-y}^2 = \norm{x-x_0}^2 + \norm{x_0 - y}^2 \ge \norm{x - x_0}.
+	\norm{x-y}^2 = \norm{x-x_0}^2 + \norm{x_0 - y}^2 \ge \norm{x - x_0}^2.
 	\qedhere
   \]
 \end{proof}
 
-\vprasanje{Če je $M$ zaprt podprostor v Hilbertovem prostoru in $x_0 \in M$,
-  potem je $x - x_0$ pravokoten na $M$ natanko tedaj, ko je $d(x,M) =
+\vprasanje{Pokaži: Če je $M$ zaprt podprostor v Hilbertovem prostoru in $x_0 \in
+  M$, potem je $x - x_0$ pravokoten na $M$ natanko tedaj, ko je $d(x,M) =
   \norm{x-x_0}$.}
 
 \begin{definicija}
@@ -327,17 +327,18 @@ Definiramo $f_y: X \to \F$ z
   Sledi $y-y' \bot \cl{K}$.
   Potem je
   \[
-	\norm{F'}^2 = \norm{y}^2 = \norm{y' - y + y}^2
+	\norm{F'}^2 = \norm{y'}^2 = \norm{y' - y + y}^2
 	= \norm{y' - y}^2 + \norm{y}^2 = \norm{g}^2 + \norm{y - y'}^2.
   \]
   Torej $\norm{y'-y} = 0$.
 \end{proof}
 
+\vprasanje{Pokaži, da so Hahn-Banachove razširitve v Hilbertovem prostoru
+  enolične.}
+
 \begin{posledica}
   Vsak Hilbertov prostor je refleksiven (vložitev v $H^{**}$ je surjektivna).
 \end{posledica}
-
-\vprasanje{Pokaži, da je vsak Hilbertov prostor refleksiven.}
 
 \podnaslov{Ortonormirani sistemi}
 
@@ -516,7 +517,7 @@ Definiramo $f_y: X \to \F$ z
   \]
   Vrsta res konvergira, saj za delne vsote $s_n$ in $m > n$ velja
   \[
-	\norm{s_m - s_n}^2 = \norm{\sum_{k=n+1}^m \sk{e, e_k} e_k}^2
+	\norm{s_m - s_n}^2 = \norm{\sum_{k=n+1}^m \sk{x, e_k} e_k}^2
 	= \sum_{k=n+1}^m \abs{\sk{x, e_k}}^2
 	\le \sum_{k=n+1}^\infty \abs{\sk{x, e_k}}^2.
   \]
@@ -648,7 +649,7 @@ Definiramo $f_y: X \to \F$ z
   Računamo
   \begin{gather*}
 	\norm{U(x+y)}^2 = \norm{Ux}^2 + \norm{Uy}^2 + 2 \Real \sk{Ux, Uy} \\
-	\norm{U(x+y)}^2 = \norm{x+y}^2 = \norm{x}^2 + \norm{y}^2 + 2 \Real \sk{Ux, Uy}
+	\norm{U(x+y)}^2 = \norm{x+y}^2 = \norm{x}^2 + \norm{y}^2 + 2 \Real \sk{x, y}
   \end{gather*}
   torej $\Real \sk{x,y} = \Real \sk{Ux, Uy}$.
   Če namesto $x$ pišemo $ix$, dobimo še $- \Imag \sk{x,y} = - \Imag \sk{Ux,
@@ -800,7 +801,7 @@ Je tudi Hilbertov prostor.
   S_n(x) \le 1$, saj je $1 - (1 - x)^{1/2} \le 1$ za te $x$.
   Ker so $S_n$ zvezni, je
   \[
-	S_n(x) = \lim_{x \to 1} S_n(x) \le 1,
+	S_n(1) = \lim_{x \to 1} S_n(x) \le 1,
   \]
   torej je zaporedje $(S_n(1))_n$ naraščajoče in navzgor omejeno.
   Definirajmo $f(x) = \lim S_n(x)$.
@@ -870,7 +871,7 @@ Je tudi Hilbertov prostor.
   Očitno $A_0$ vsebuje konstante.
   Za $x, y \in K$ obstaja $f \in A$, da je $f(x) \ne f(y)$, torej ena od realnih
   funkcij $\frac{f+\konj{f}}{2}, \frac{f-\konj{f}}{2i} \in A$ loči točki $x, y$.
-  Torej $A$ loči točke.
+  Torej $A_0$ loči točke.
   Po realni verziji izreka je $A_0$ gosta v $\zvezne{K, \R}$.
 
   Naj bo $f \in \zvezne{K, \C}$ poljubna in $\varepsilon >0$.
