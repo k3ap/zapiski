@@ -142,12 +142,12 @@ Pick your poison.
   Naj bo $X$ vektorski prostor nad $\F$, $Y \le X$ in $p$ polnorma na $X$.
   Če je $f: Y \to \F$ linearni funkcional, da za vse $y \in Y$ velja $\abs{f(y)}
   \le p(y)$, potem obstaja linearni funkcional $F: X \to \F$, za katerega je
-  $\left. F \right|_Y = f$ in $\abs{F(X)} \le p(x)$ za vsak $x \in X$.
+  $\left. F \right|_Y = f$ in $\abs{F(x)} \le p(x)$ za vsak $x \in X$.
 \end{izrek}
 
 \begin{izrek}[Hahn-Banachov izrek za normirane prostore]
   Naj bo $Y \le X$ podprostor normiranega prostora $X$ in $f: Y \to \F$ omejen.
-  Tedaj obstaja $f: X \to \F$, da je $\left. F \right|_Y = f$ ter $\norm{F} =
+  Tedaj obstaja $F: X \to \F$, da je $\left. F \right|_Y = f$ ter $\norm{F} =
   \norm{f}$.
 \end{izrek}
 
@@ -234,7 +234,7 @@ predpisom $\sk{\cdot, \cdot}$, za katero velja
 \end{itemize}
 Imamo nekaj pomembnih lastnosti:
 \begin{itemize}
-\item Cauchy-Schwarz: $\sk{\sk{x,y}} \le \norm{x} \norm{y}$;
+\item Cauchy-Schwarz: $\abs{\sk{x,y}} \le \norm{x} \norm{y}$;
   enakost velja natanko tedaj, ko sta $x$ in $y$ linearno odvisna,
 \item paralelogramska enakost: $\norm{x-y}^2 + \norm{x+y}^2 = 2 (\norm{x}^2 +
   \norm{y}^2)$,

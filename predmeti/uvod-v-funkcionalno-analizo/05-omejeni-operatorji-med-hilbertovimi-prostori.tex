@@ -588,7 +588,7 @@ Označimo $K(X,Y) = \{ T: X \to Y \such \text{$T$ kompakten} \}$.
   \end{align*}
 \end{proof}
 
-\vprasanje{Pokaži, da je $K(X,Y)$ zaprt podprostor $B(X,Y)$.}
+\vprasanje{Pokaži, da je $K(X,Y)$ zaprt podprostor $B(X,Y)$ za Banachova $X, Y$.}
 
 \begin{trditev}
   Naj bo $A \in B(X)$ operator z $\dim \im A < \infty$.
@@ -685,7 +685,7 @@ Pravimo ji \pojem{Calkinova algebra}.
 	[a,b] \subseteq \bigcup_{j=1}^p (x_j - \delta, x_j + \delta).
   \]
   Obstaja $n_\varepsilon \in \N$, da za vse $m,n \ge n_\varepsilon$ velja
-  $\abs{\tilde{f}_m(x_j) - \tilde{f}_m(x_j)} < \nicefrac{\varepsilon}{3}$ za vse
+  $\abs{\tilde{f}_n(x_j) - \tilde{f}_m(x_j)} < \nicefrac{\varepsilon}{3}$ za vse
   $j=1, \ldots, p$.
   Za $x \in [a,b]$ potem obstaja $j$, da $\abs{x_j -x} < \delta$, torej
   \[
@@ -700,9 +700,10 @@ Pravimo ji \pojem{Calkinova algebra}.
   Limita je stekališče $(f_n)_n$.
 \end{proof}
 
-\vprasanje{Pokaži: če za omejeno zaporedje $(f_n)_n$ zveznih funkcij za poljuben
-  $\varepsilon > 0$ obstaja $\delta > 0$, da za vsak $n$ iz $\abs{x-y} < \delta$
-  sledi $\abs{f_n(x) - f_n(y)} < \varepsilon$, potem ima zaporedje stekališče.}
+\vprasanje{Pokaži: če za omejeno zaporedje $(f_n)_n$ zveznih funkcij na
+  kompaktnem intervalu za poljuben $\varepsilon > 0$ obstaja $\delta > 0$, da za
+  vsak $n$ iz $\abs{x-y} < \delta$ sledi $\abs{f_n(x) - f_n(y)} < \varepsilon$,
+  potem ima zaporedje stekališče.}
 
 \begin{trditev}
   Naj bo $H \subseteq \zvezne{[a,b]}$ družina zvezno odvedljivih funkcij.
