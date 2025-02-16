@@ -1,4 +1,4 @@
-predmeti := uvod-v-funkcionalno-analizo teorija-izracunljivosti teorija-grafov statistika-2
+predmeti := uvod-v-funkcionalno-analizo teorija-izracunljivosti teorija-grafov statistika-2 simetrije-grafov komutativna-algebra diferencialna-geometrija dinamicni-sistemi logika
 ksl := uvod-v-funkcionalno-analizo teorija-grafov
 
 latex-cmd := lualatex --shell-escape
