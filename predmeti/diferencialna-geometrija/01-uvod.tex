@@ -1,0 +1,140 @@
+\naslov{Osnovni pojmi}
+
+Naj bo $X$ topološka mnogoterost ($2$-števen lokalno evklidski Hausdorffov
+prostor).
+
+\begin{definicija}
+  \pojem{Gladek atlas} na $X$ je družina $U = \{ (U_\alpha, \varphi_\alpha)
+  \such \alpha \in A \}$ kjer je $A$ neka indeksna množica,
+  $\varphi_\alpha : U_\alpha \to V_\alpha \subseteq \R^n$ homomorfizmi,
+  $\bigcup_\alpha U_\alpha = X$ in kjer je za poljubna $\alpha, \beta$ z
+  $U_\alpha \cap U_\beta \ne \varnothing$ preslikava $\varphi_\beta \circ
+  \varphi_\alpha^{-1}$ difeomorfizem $\varphi_\alpha(U_\alpha \cap U_\beta) \to
+  \varphi_\beta(U_\alpha \cap U_\beta)$.
+\end{definicija}
+
+\begin{definicija}
+  Naj bosta $U = \{(U_\alpha, \varphi_\alpha)\}_{\alpha \in A}$ ter $V =
+  \{(V_\beta, \psi_\beta)\}_{\beta \in B}$ dva atlasa na $X$. Atlasa sta
+  \pojem{ekvivalentna}, če je $\psi_\beta \circ \varphi_\alpha^{-1}$
+  difeomorfizem $\varphi_\alpha(U_\alpha \cap V_\beta) \to \psi_\beta(U_\alpha
+  \cap V_\beta)$ za vsak par $\alpha, \beta$, za katera je $U_\alpha \cap
+  V_\beta$.
+\end{definicija}
+
+\begin{definicija}
+  Naj bo $U$ atlas na $X$.
+  Ekvivalenčni razred $[U]$ glede na relacijo ekvivalentnosti atlasov se imenuje
+  \pojem{gladka struktura} na $X$.
+  Mnogoterost, opremljena z gladko strukturo, je \pojem{gladka mnogoterost}.
+\end{definicija}
+
+\begin{opomba}
+  Obstajajo topološke mnogoterosti, na katerih je več neekvivalentnih gladkih
+  struktur.
+\end{opomba}
+
+Naj bo sedaj $X \subseteq \R^N$ (gladka) mnogoterost, vložena v $\R^N$, za
+katero velja $\dim X = n < N$.
+Dodatno naj bo $m \in X$ ter $\gamma: (-\varepsilon, \varepsilon) \to X$ gladka
+krivulja z $\gamma(0) = m$.
+Potem je
+\[
+  V = \left. \frac{d}{dt} \right|_{t=0} \gamma(t)
+\]
+eden od tangentnih vektorjev na $X$ v točki $m$.
+
+\begin{definicija}
+  \pojem{Tangentni prostor} $T_m X$ na $X$ v točki $m$ je množica
+  \[
+	T_m X = \left\{ \left. \frac{d}{dt} \right|_{t=0} \gamma(t) \such \gamma:
+	  (-\varepsilon, \varepsilon) \to X, \gamma(0) = m \right\}.
+  \]
+  To je vektorski podprostor dimenzije $n$ v $\R^N$.
+\end{definicija}
+
+Naj bo sedaj $X$ ponovno abstraktna gladka mnogoterost.
+
+\begin{definicija}
+  Krivulja $\gamma: (a,b) \to X$ je \pojem{gladka}, če je vsak kompozitum
+  $\varphi_\alpha \circ \gamma$ gladka preslikava za vsak $\alpha$ (na primernem
+  definicijskem območju).
+\end{definicija}
+
+\begin{definicija}
+  Krivulji $\gamma_1, \gamma_2: (-\varepsilon, \varepsilon) \to X$, za kateri
+  velja $\gamma_1(0) = \gamma_2(0) = m$ sta \pojem{ekvivalentni}, če velja
+  \[
+	\left. \frac{d}{dt} \varphi_\alpha \right|_{t=0} \varphi_\alpha(\gamma_1(t))
+	= \left. \frac{d}{dt} \varphi_\alpha \right|_{t=0} \varphi_\alpha(\gamma_2(t))
+  \]
+  za poljuben $\alpha$, za katerega je $m \in U_\alpha$.
+  Označimo $\gamma_1 \sim \gamma_2$.
+\end{definicija}
+
+\begin{definicija}
+  \pojem{Tangentni vektor} na $X$ v točki $m$ je eden od ekvivalenčnih razredov
+  za zgornjo relacijo.
+  \pojem{Tangentni prostor} $T_m X$ je prostor vseh tangentnih vektorjev na $X$
+  v točki $m$.
+\end{definicija}
+
+\begin{opomba}
+  Izkaže se, da je ekvivalenčna relacija $\sim$ neodvisna od karte.
+\end{opomba}
+
+Predstavnik tangentnega vektorja $[\gamma]$ označimo z
+\[
+  \tangentni{\varphi_\alpha(\gamma)} = \left. \frac{d}{dt} \right|_{t=0}
+  \varphi_\alpha(\gamma(t)).
+\]
+To je vektor v $\R^n$.
+Poglejmo si, kaj se zgodi z $\tangentni{\varphi_\alpha(\gamma)}$, če zamenjamo karto.
+Naj bo $(U_\beta, \varphi_\beta)$ še ena karta, ki vsebuje $m$.
+Potem je
+\[
+  \tangentni{\varphi_\beta(\gamma)}
+  = \left. \frac{d}{dt} \right|_{t=0} \varphi_\beta(\gamma(t))
+  = \left. \frac{d}{dt} \right|_{t=0} (\varphi_\beta \varphi_\alpha^{-1}
+  \varphi_\alpha)(\gamma(t))
+  = D_{\varphi_\alpha(m)} (\varphi_\beta \varphi_\alpha^{-1}) \left.
+	\frac{d}{dt} \right|_{t=0} \varphi_\alpha(\gamma(t))
+\]
+po verižnem pravilu za odvajanje, kar pa je enako
+\[
+  \tangentni{\varphi_\beta(\gamma)}
+  = D_{\varphi_\alpha(m)} (\varphi_\beta \varphi_\alpha^{-1})
+  \tangentni{\varphi_\alpha(\gamma)}
+\]
+Preslikava $D_{\varphi_\alpha(m)}$ je linearni izomorfizem $\R^n \to \R^n$.
+
+V tangentnem prostoru so nam na voljo običajni operaciji vektorskih prostorov:
+\begin{itemize}
+\item Seštevanje: $[\gamma_1] + [\gamma_2] = [ t \mapsto
+  \varphi_\alpha^{-1}(\varphi_\alpha(m) + t
+  (\tangentni{\varphi_\alpha(\gamma_1)} + \tangentni{\varphi_\alpha(\gamma_2)}
+  )) ]$.
+\item Množenje s skalarjem: $a [\gamma] = [\gamma^a]$ za $\gamma^a(t) =
+  \gamma(at)$.
+\end{itemize}
+
+Vsakemu tangentnemu vektorju lahko priredimo diferencialni operator prvega reda.
+Naj bo $f: X \to \R$ gladka funkcija.
+V smeri $[\gamma]$ ga odvajamo s smernim odvodom
+\[
+  (Vf)_{(m)} [\gamma] = \left. \frac{d}{dt} \right|_{t=0} (f \circ \gamma)(t).
+\]
+To je neodvisno od izbire predstavnika $\gamma$:
+če sta $\gamma_1, \gamma_2 \in [\gamma]$, velja
+\begin{align*}
+  \left. \frac{d}{dt} \right|_{t=0} (f \circ \gamma_i)(t)
+  &= \left. \frac{d}{dt} \right|_{t=0} (f \varphi_\alpha^{-1} \varphi_\alpha
+  \gamma_i)(t) \\
+  &= \grad(f \varphi_\alpha^{-1}) \left. \frac{d}{dt} \right|_{t=0}
+  (\varphi_\alpha \gamma_i)(t) \\
+  &= \grad(f \varphi_\alpha^{-1}) \tangentni{\varphi_\alpha(\gamma_i)}.
+\end{align*}
+Ker sta $\gamma_1$ in $\gamma_2$ ekvivalentna, je dobljeni izraz neodvisen od
+izbire $i$.
+
+% LocalWords:  neekvivalentnih
