@@ -78,7 +78,7 @@
   \begin{subfigure}{0.4\linewidth}
 	\centering
 	\begin{tikzpicture}
-	  \node[draw,circle,minimum size=0.6cm,inner sep=0pt] (1) at (0,4) {1};
+	  \node[draw,circle,minimum size=0.6cm,inner sep=0pt] (1) at (0,3.8) {1};
 	  \node[draw,circle,minimum size=0.6cm,inner sep=0pt] (2) at (2,2) {2};
 	  \node[draw,circle,minimum size=0.6cm,inner sep=0pt] (3) at (1,0) {3};
 	  \node[draw,circle,minimum size=0.6cm,inner sep=0pt] (4) at (-1,0) {4};
@@ -99,7 +99,7 @@
   \begin{subfigure}{0.4\linewidth}
 	\centering
 	\begin{tikzpicture}
-	  \node[draw,circle,minimum size=0.6cm,inner sep=0pt] (1) at (0,4) {\footnotesize 1,3};
+	  \node[draw,circle,minimum size=0.6cm,inner sep=0pt] (1) at (0,3.8) {\footnotesize 1,3};
 	  \node[draw,circle,minimum size=0.6cm,inner sep=0pt] (2) at (2,2) {\footnotesize 2,4};
 	  \node[draw,circle,minimum size=0.6cm,inner sep=0pt] (3) at (1,0) {\footnotesize 3,5};
 	  \node[draw,circle,minimum size=0.6cm,inner sep=0pt] (4) at (-1,0) {\footnotesize 1,4};
@@ -119,3 +119,99 @@
   \end{subfigure}
   \caption{The Petersen graph}
 \end{figure*}
+
+\begin{definition}
+  Let $\Omega$ be a nonempty finite set.
+  A \pojem{permutation} on $\Omega$ is a bijection $\Omega \to \Omega$.
+  We denote the set of all permutations of $\Omega$ with $\Sym \Omega$, or
+  $S_n$, if $\Omega = [n]$.
+\end{definition}
+
+\begin{definition}
+  If $g \in \Sym \Omega$ and $\omega \in \Omega$, then $\omega^g = g(\omega)$
+  denotes the application of $g$ on $\omega$.
+\end{definition}
+
+\begin{definition}
+  The composition of two permutations $g, h \in \Sym \Omega$ is defined as the
+  permutation which acts as
+  \[
+	g \circ h: \omega \to g(h(\omega)) = {(\omega^h)}^g.
+  \]
+\end{definition}
+
+We introduce the inverse composition as our product operation on $\Sym \Omega$,
+defined as
+\[
+  gh = h \circ g.
+\]
+Then $\omega^{(g h)} = {(\omega^g)}^h =: \omega^{gh}$.
+Note that both $(\Sym \Omega, \circ)$ and $(\Sym \Omega, \cdot)$ are groups, and
+they are different groups, but they are isomorphic.
+
+\begin{definition}
+  We denote the set of all transpositions of $\Omega$ with $T_\Omega$.
+\end{definition}
+
+\begin{remark}
+  Note that $\sk{T_\Omega} = \Sym \Omega$.
+\end{remark}
+
+\begin{definition}
+  Denote by $\Alt \Omega$ the set of all even permutations of $\Omega$.
+\end{definition}
+
+\begin{remark}
+  This is an index-$2$ normal subgroup in $\Sym \Omega$.
+\end{remark}
+
+\begin{definition}
+  The \pojem{cyclic} group of order $n$ is $\Cyc(n) =
+  \sk{(1\,2\,3\,\ldots\,n)} \le S_n$.
+\end{definition}
+
+\begin{definition}
+  The \pojem{dihedral} group of order $n$ is
+  \[
+	\Dih(n) =
+	\begin{cases}
+	  \sk{(1\,2\,3\,\ldots\,n), (1) (2,n) (3,n-1) \ldots
+	  (\frac{n}{2},\frac{n+2}{2})} & \text{$n$ even} \\
+	  \sk{ (1\,2\,3\,\ldots\,n), (1) (2,n-1) \ldots
+	  (\frac{n+1}{2},\frac{n+3}{2}) } & \text{$n$ odd}
+	\end{cases}
+  \]
+  as a subgroup of $S_n$.
+\end{definition}
+
+\begin{remark}
+  This is the automorphism group of a cyclic graph on $n$ vertices.
+\end{remark}
+
+\begin{definition}
+  Let $G$ be an abstract group and $\Omega$ a set.
+  A \pojem{group action} is a group homomorphism $\rho: G \to \Sym \Omega$.
+\end{definition}
+
+\begin{remark}
+  We often write $\omega^g$ when we really mean $\omega^{\rho(g)}$.
+\end{remark}
+
+\begin{remark}
+  As a shorthand, we can write $\rho(g) = g^\Omega$, and $G^\Omega = \rho(G) =
+  \{ g^\Omega \such g \in G \}$.
+\end{remark}
+
+\begin{definition}
+  An action is \pojem{faithful} if the kernel of the action is trivial.
+\end{definition}
+
+\begin{remark}
+  Note that $G^\Omega = \im \rho \cong G / \jedro \rho$.
+\end{remark}
+
+\begin{remark}
+  Any faithful action is an isomorphism $G \to G^\Omega$, so we may view $G$ as
+  a subgroup in $\Sym \Omega$.
+  So $G$ becomes a permutation group.
+\end{remark}
