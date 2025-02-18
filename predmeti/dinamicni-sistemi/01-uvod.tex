@@ -1,0 +1,64 @@
+\naslov{Uvod}
+
+Dinamični sistem je kombinacija množice možnih stanj in evolucijskega pravila.
+Obravnavamo delec v množici možnih stanj, pravilo pa nam pove, kaj se z njim
+dogaja \enquote{v naslednjem trenutku.}
+Pravilo je \pojem{deterministično}, kar pomeni, da je naslednji \enquote{korak}
+odvisen le od trenutnega stanja delca.
+
+Dinamične sisteme delimo na \pojem{diskretne} in \pojem{zvezne}.
+Prvi so rekurzivne zveze $x_{n+1} = F(x_n)$ za neko funkcijo $F: S \to S$ in
+evklidski prostor $S$, drugi pa so (nelinearni) sistemi navadnih diferencialnih
+enačb $\dot{x} = F(x)$.
+V obeh primerih gre za t.i.~\pojem{avtonomne sisteme}, v katerih pravilo ni
+odvisno od časa.
+
+\begin{opomba}
+  Vsak sistem lahko prevedemo na avtonomen sistem, če zapakiramo čas kot dodatno
+  spremenljivko.
+\end{opomba}
+
+\begin{primer}
+  Sherlock Holmes najde truplo v jezeru, in izmeri njegovo temperaturo.
+  Ob prihodu izmeri $\qty{9}{\celsius}$, eno uro kasneje $\qty{7}{\celsius}$,
+  temperatura jezera pa je $\qty{5}{\celsius}$.
+  Vprašanje je, kdaj je prišlo do umora.
+
+  Fizikalni zakon pravi, da telesna temperatura pada sorazmerno z razliko do
+  temperature jezera.
+  Uporabimo lahko diskretni model,
+  \[
+	T_{n+1} = T_n - k (T_n - T_J),
+  \]
+  kjer je $T_J$ temperatura jezera, $k$ konstanta, $T_n$ pa temperatura ob
+  $n$-tem trenutku.
+  Če vstavimo meritve v to enačbo, dobimo $k = \pol$.
+  Sistem lahko potem rešimo eksplicitno, in sicer dobimo
+  \[
+	T_n = \frac{C}{2^n} + \qty{5}{\celsius}
+  \]
+  za neko konstanto $C$.
+  Če je $T_0 = \qty{37}{\celsius}$, izračunamo $C = \qty{32}{\celsius}$, iz
+  česar dobimo, da je $T_3 = \qty{9}{\celsius}$, torej se je umor zgodil pred
+  tremi urami.
+  \boxdot{}
+\end{primer}
+
+\begin{primer}
+  Zgornji problem lahko rešujemo tudi z zveznim modelom,
+  \[
+	\dot{T} = -k (T - T_J)
+  \]
+  za nek drug $k$ kot prej.
+  Rešitev te diferencialne enačbe je $T = T_J + (T_0 - T_J) \exp(-kt)$, kjer smo
+  že upoštevali začetni pogoj.
+  Uporabiti moramo še meritve, za katere dobimo
+  \begin{gather*}
+	T(n) = (37 - 5) e^{-kn} + 5 = 9, \\
+	T(n+1) = (37 - 5) e^{-k(n+1)} + 5 = 7,
+  \end{gather*}
+  oziroma $k = \log 2$ in $n = 3$.
+  Enako kot prej torej sklepamo, da se je umor zgodil $3$ ure pred začetkom
+  opazovanja.
+  \boxdot{}
+\end{primer}

@@ -1,0 +1,136 @@
+\naslov{Dinamika realnih funkcij}
+
+\podnaslov{Osnovni pojmi}
+
+Za začetek se bomo omejili na funkcije $f: I \to I$, kjer je $I$ interval v
+$\R$.
+Obravnavali bomo zaporedja $x_{n+1} = f(x_n)$ pri različnih začetnih pogojih
+$x_0 \in I$.
+Uvedimo oznako
+\[
+  f^n = \underbrace{f \circ f \circ \cdots \circ f}_{\text{$n$ pojavitev $f$}}.
+\]
+
+\begin{definicija}
+  \pojem{Orbita} točke $x_0$ pri funkciji $f$ je množica
+  $O_f(x_0) = \{ f^n(x_0) \such n \in \N_0 \}$.
+  Množici vseh orbit za $x_0 \in I$ pravimo \pojem{dinamika funkcije $f$}.
+\end{definicija}
+
+\begin{primer}
+  Za $x_{n+1} = x_n^2 + 1$ je orbita točke $1$ enaka $\{ 1, 2, 5, 26, \ldots \}$.
+\end{primer}
+
+Orbite lahko (za funkcije ene spremenljivke) vizualiziramo s
+\pojem{pajčevinastim diagramom} (angl.~\textit{cobweb diagram}), prikazan na
+sliki~\ref{fig:ds-02-pajcevinasti-diagram}.
+
+\begin{figure}[h!]
+  \centering
+  {
+  \newcommand{\startv}{.8}
+  \begin{tikzpicture}[scale=5,declare function={f(\x)=\x*\x*\x;}]
+	\draw[<->](0,1.1)|-(1.1,0);
+	\draw[green!70!black] (0,0)--(1,1);
+	\draw[blue, domain=0:1, smooth] plot (\x,{f(\x)});
+	\foreach \t[evaluate=\t as \newv using f(\startv)] in {1,...,4}{
+	  \draw[red] (\startv,\startv)|-(\newv,\newv);
+	  \xdef\startv{\newv}
+	}
+  \end{tikzpicture}
+  }
+  \caption[Pajčevinasti diagram]{Pajčevinasti diagram za $f(x) = x^3$ z začetno
+	točko $x_0 = 0.8$.\footnotemark{}}%
+  \label{fig:ds-02-pajcevinasti-diagram}
+\end{figure}
+
+\footnotetext{Prirejeno po:
+  \href{https://tex.stackexchange.com/questions/640022/how-to-draw-a-cobweb-graph-like-this-one}{stackexchange}}
+
+\begin{definicija}
+  Točka $x_0$ je \pojem{periodična} s periodo $n \in \N$ za $f$, če zanjo velja
+  $f^n(x_0) = x_0$ in je $n$ najmanjše število s to lastnostjo.
+  Če je $n = 1$, taki točki pravimo \pojem{fiksna točka}.
+\end{definicija}
+
+\begin{primer}
+  Funkcija $f(x) = -x^3$ ima le eno fiksno točko, $0$.
+  Izračunamo lahko, da imamo tudi dve točki periode $2$, to sta $1$ in $-1$.
+\end{primer}
+
+\begin{definicija}
+  Orbiti $n$-periodične točke pravimo \pojem{$n$-cikel}.
+\end{definicija}
+
+\begin{definicija}
+  Naj bo $x_0 \in I$ fiksna točka za $f: I \to I$.
+  \begin{itemize}
+  \item Točka $x_0$ je \pojem{šibko privlačna}, če obstaja okolica $U \ni x$, da
+	za vsak $y_0 \in U$ velja $y_n = f^n(x_0) \to x_0$.
+	Okolici $U$ pravimo \pojem{območje privlaka} za $x_0$, največjemu intervalu
+	znotraj $U$ pa \pojem{neposredno območje privlaka} za $x_0$.
+  \item Točka $x_0$ je \pojem{šibko odbojna}, če obstaja okolica $U \ni x$, da
+	za vsak $y_0 \in U \setminus \{x_0\}$ obstaja $m \in \N$, da $f^m(y_0)
+	\notin U$.
+  \end{itemize}
+\end{definicija}
+
+\begin{definicija}
+  Če je $f$ zvezno odvedljiva, uvedemo dodatne pojme. Točka $x_0$ je
+  \pojem{privlačna}, če je $\abs{f'(x_0)} < 1$, \pojem{odbojna}, če je
+  $\abs{f'(x_0)} > 1$, oziroma \pojem{nevtralna}, če je $\abs{f'(x_0)} = 1$.
+\end{definicija}
+
+\begin{primer}
+  Funkcije $f_1(x) = x+x^3$, $f_2(x) = x - x^3$ in $f(x) = x + x^2$ imajo vse
+  fiksno točko v $0$, a se obnaša drugače.
+  V prvem primeru je $0$ šibko odbojna točka, v drugem šibko privlačna, v zadnjem pa
+  niti ena niti druga.
+  Preverimo lahko, da je v vseh primerih $\abs{f_i'(0)} = 1$, torej so vse točke
+  odbojne.
+\end{primer}
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.3\textwidth}
+	\centering
+	\begin{tikzpicture}[scale=1.9,declare function={f(\x)=\x*\x*\x+\x;}]
+	  \draw[<->](0,1.1)|-(1.1,0);
+	  \draw[<->](0,-1.1)|-(-1.1,0);
+	  \draw[green!70!black] (-1,-1)--(1,1);
+	  \draw[blue, domain=-0.7:0.7, smooth] plot (\x,{f(\x)});
+	\end{tikzpicture}
+	\caption{$f_1(x) = x + x^3$}
+  \end{subfigure}
+  \begin{subfigure}{0.3\textwidth}
+	\centering
+	\begin{tikzpicture}[scale=1.9,declare function={f(\x)=-\x*\x*\x+\x;}]
+	  \draw[<->](0,1.1)|-(1.1,0);
+	  \draw[<->](0,-1.1)|-(-1.1,0);
+	  \draw[green!70!black] (-1,-1)--(1,1);
+	  \draw[blue, domain=-0.9:0.9, smooth] plot (\x,{f(\x)});
+	\end{tikzpicture}
+	\caption{$f_2(x) = x - x^3$}
+  \end{subfigure}
+  \begin{subfigure}{0.3\textwidth}
+	\centering
+	\begin{tikzpicture}[scale=1.9,declare function={f(\x)=\x*\x+\x;}]
+	  \draw[<->](0,1.1)|-(1.1,0);
+	  \draw[<->](0,-1.1)|-(-1.1,0);
+	  \draw[green!70!black] (-1,-1)--(1,1);
+	  \draw[blue, domain=-0.9:0.7, smooth] plot (\x,{f(\x)});
+	\end{tikzpicture}
+	\caption{$f_3(x) = x + x^2$}
+  \end{subfigure}
+  \caption{Funkcije iz primera}%
+  \label{fig:ds-02-primer}
+\end{figure}
+
+\begin{izrek}
+  Naj bo $f \in \zvodv{1}{I}$ in $x_0 \in I$ fiksna točka.
+  Potem velja:
+  \begin{enumerate}
+  \item Če je $\abs{f'(x_0)} < 1$, je $x_0$ šibko privlačna.
+  \item Če je $\abs{f'(x_0)} > 1$, je $x_0$ šibko odbojna.
+  \end{enumerate}
+\end{izrek}
