@@ -1,0 +1,188 @@
+\naslov{Introduction}
+
+First-order logic is a formal language for expressing properties of mathematical
+statements.
+The language is determined by a \enquote{signature.}
+
+\begin{example}
+  Consider the following arithmetic signature, consisting of:
+  \begin{itemize}
+  \item two constants $0$, $1$,
+  \item two binary function symbols $+$, $\cdot$.
+  \end{itemize}
+  Given the signature, we have a derived notions of \enquote{terms} and
+  \enquote{formulas.}
+  In this case, terms represent numbers, for example $0, 1, x, x \cdot (y+z),
+  x \cdot x \cdot x + 1 \cdot 0, \ldots$ are all terms of this language.
+  On the other hand, formulas represent properties of their free variables.
+  As an example, the formula $\exists z. y = x + z$ expresses the property $x
+  \le y$.
+  Here, $z$ is a bound variable, and $x, y$ are free variables.
+  \boxdot{}
+\end{example}
+
+A formula with free variables is called a \enquote{sentence}.
+When a sentence is interpreted in a structure, it is either true or false.
+
+\begin{example}
+  Fermat's last theorem can be expressed as
+  \[
+	\forall n. n > 2 \implies \lnot \left(
+	  \exists x, y, z. x > 0 \land y > 0 \land z > 0
+	  \land x^n + y^n = z^n
+	\right)
+  \]
+  This uses exponentiation, which we can expresses in the arithmetic language,
+  as was shown by Gödel.
+  The sentence above is true, and the proof is left as an exercise for the
+  reader.
+  \boxdot{}
+\end{example}
+
+\begin{example}
+  The sentence
+  \[
+	x > 1 \land \forall y, z . x = y \cdot z \implies x = y \lor x = z
+  \]
+  encodes \enquote{$x$ is prime.}
+  We can use this for example to express some open problems, such as the twin
+  prime conjecture,
+  \[
+	\forall x . \exists y. y > x \land \operatorname{Prime}(y) \land
+	\operatorname{Prime}(y+2).
+  \]
+  I need some text to put a boxdot here.
+  \boxdot{}
+\end{example}
+
+The richness of the examples suggests that the following is a difficult
+question:
+\begin{quote}
+  Given an input sentence $\phi$, decide whether $\phi$ is true or false in
+  $\N$, i.e.~if $\N \models \phi$.
+\end{quote}
+
+\begin{theorem}[Church, Turing]
+  The above question is undecidable.
+\end{theorem}
+
+We can interpret our arithmetic signature in any ring with a unit, such as in
+the real numbers.
+Then, a formula with $n$ free variables describes an $n$-dimensional geometric
+shape (actually, a subset of $\R^n$).
+This signature, interpreted in $\R$, gives a language for Euclidean geometry.
+But more important is the following.
+
+\begin{theorem}[Tarski]
+  The problem, \enquote{given a sentence $\phi$, decide if $\R \models \phi$,}
+  is decidable.
+\end{theorem}
+
+\begin{definition}
+  A \pojem{signature} is a combination of a set of predicate (or relation)
+  symbols $\mathcal{P}$ and function symbols $\mathcal{F}$, together with an
+  arity function $\Ar: \mathcal{P} \dcup \mathcal{F} \to \N$, which returns the
+  number of arguments that a symbol takes.
+\end{definition}
+
+\begin{example}
+  The signature discussed above has $\mathcal{P} = \varnothing$, $\mathcal{F} =
+  \{ 0, 1, \cdot, + \}$, and $\Ar$ defined with
+  \begin{equation*}
+	0 \mapsto 0 \qquad
+	1 \mapsto 0 \qquad
+	+ \mapsto 2 \qquad
+	\cdot \mapsto 2
+  \end{equation*}
+\end{example}
+
+\begin{definition}
+  A function symbol of arity $0$ is called a \pojem{constant}.
+\end{definition}
+
+\begin{example}
+  Another important signature is $(\{E\}, \varnothing)$ with $\Ar(E) = 2$.
+  This is the signature for interpreting in graphs.
+\end{example}
+
+\begin{example}
+  Yet another important signature is $(\{\in\}, \varnothing)$ with
+  $\Ar(\in) = 2$.
+  This is the signature of set theory.
+  Note that this is just the same signature as above.
+\end{example}
+
+\begin{definition}
+  \pojem{Terms} are defined by the following two rules:
+  \begin{itemize}
+  \item a variable is a term,
+  \item if $t_1, \ldots, t_n$ are terms and $f \in \mathcal{F}$ is a function
+	symbol of arity $n$, then $f(t_1, \ldots, t_n)$ is a term.
+  \end{itemize}
+\end{definition}
+
+\begin{definition}
+  \pojem{Formulas} are defined by the following rules:
+  \begin{itemize}
+  \item if $t_1, t_2$ are terms, then $t_1 = t_2$ is a formula,
+  \item if $t_1, \ldots, t_n$ are terms and $p \in \mathcal{P}$ is a predicate
+	symbol of arity $n$, then $p(t_1, \ldots, t_n)$ is a formula,
+  \item if $\phi, \psi$ are formulas, then so are
+	$\lnot \phi$, $\phi \land \psi$, $\phi \lor \psi$ and $\phi \implies \psi$,
+  \item if $\phi$ is a formula, then so are $\exists x . \phi$ and $\forall x . \phi$.
+  \end{itemize}
+  Formulas of the first two types are called \pojem{atomic formulas}.
+\end{definition}
+
+\begin{definition}
+  A \pojem{structure} for a signature $(\mathcal{P}, \mathcal{F})$ is a triple
+  \[
+	\mathcal{M} = \left( M, (p^{\mathcal{M}})_{p \in \mathcal{P}},
+	  (f^{\mathcal{M}})_{f \in \mathcal{F}} \right),
+  \]
+  where $M$ is the underlying set, $p^{\mathcal{M}}: M^{\Ar p} \to \{\top,
+  \bot\}$ is the interpretation of predicate $p$, and $f^{\mathcal{M}}: M^{\Ar
+	f} \to M$ is the interpretation of function symbol $f$.
+\end{definition}
+
+A term $t$ is interpreted in a structure $\mathcal{M}$ as follows.
+We assume an \pojem{environment} $\rho: \Vars \to M$, then define
+$t_{\mathcal{M}}^\rho$ by
+\begin{itemize}
+\item a variable is interpreted as $x^\rho = \rho(x)$,
+\item a function symbol is interpreted as $\left( f(t_1, \ldots, t_n)
+  \right)^\rho = f^{\mathcal{M}}(t_1^\rho, \ldots, t_n^\rho)$.
+\end{itemize}
+
+The \pojem{satisfaction relation} $\mathcal{M} \models_\rho \phi$ then states
+that formula $\phi$ is true in $\mathcal{M}$ under environment $\rho$.
+We define it with
+\begin{itemize}
+\item $\mathcal{M} \models_\rho t_1 = t_2$ if and only if $t_1^\rho = t_2^\rho$,
+\item for a predicate $p$, $\mathcal{M} \models_\rho p(t_1, \ldots, t_n)$ if and
+  only if $p^{\mathcal{M}}(t_1^\rho, \ldots, t_n^\rho) = \top$,
+\item the logical operations are interpreted as usual, so for example
+  \[
+	(\mathcal{M} \models_\rho \phi \implies \psi)
+	:\iff \left(
+	  \mathcal{M} \nvDash_\rho \phi \lor \mathcal{M} \models_\rho \psi
+	\right)
+  \]
+\item The universal quantifier is interpreted as
+  \[
+	(\mathcal{M} \models_\rho \forall x. \phi)
+	:\iff \forall d \in M . \mathcal{M} \models_{\rho[x \mapsto d]} \phi
+  \]
+  where $\rho[x \mapsto d]$ means that we use the environment $\rho$, except we
+  replace the value of $x$ with $d$, so
+  \[
+	\rho[x \mapsto d](y) =
+	\begin{cases}
+	  \rho(y) & \text{if $y$ is not $x$}, \\
+	  d & \text{if $y$ is $x$}
+	\end{cases}
+  \]
+  We define the interpretation of the existential quantifier similarly.
+\end{itemize}
+
+% LocalWords:  Gödel Tarski
