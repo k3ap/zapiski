@@ -41,6 +41,9 @@ Note that we can semidecide $T_n$.
   A sequence $q$ is \pojem{Martin-Löf random} if it fails every ML test.
 \end{definition}
 
+\vprasanje{What is a naive non-randomness test and what is a Martin-Löf
+  non-randomness test?}
+
 \begin{proposition}
   Computable sequences are not ML random.
 \end{proposition}
@@ -49,6 +52,8 @@ Note that we can semidecide $T_n$.
   Let $p$ be a computable sequence.
   Then $(\sk{\left. p \right|_n})_n$ is an ML test which $p$ satisfies.
 \end{proof}
+
+\vprasanje{Show that computable sequences are not ML random.}
 
 \begin{definition}
   An ML test $(T_n^u)_n$ is \pojem{universal} if any non-ML random $p$ satisfies
@@ -112,6 +117,8 @@ if for any $n$ and $m \ge r(n)$, we have $x_m \le 2^{-n}$.
   \]
   This is clearly a rapid decreasing sequence, and it is computable.
 \end{proof}
+
+\vprasanje{Show that there exists a universal ML test.}
 
 \begin{corollary}
   The set $R_{\text{ML}}$ of all ML random sequences is a countable union of

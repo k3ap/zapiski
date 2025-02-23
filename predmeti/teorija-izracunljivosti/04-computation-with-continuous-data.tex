@@ -44,6 +44,8 @@ A single input tape T2M \pojem{accepts} $p \in \Sigma^\omega$ if, when run on
 input $p$, it halts in the accepting state.
 Similarly, it rejects $p$, if it halts in the rejecting state.
 
+\vprasanje{Define type 2 Turing machines.}
+
 Given a word $p \in \Sigma^\omega$, we can define $\operatorname{Prefix}(p)
 \subseteq \Sigma^*$ as the set of all prefixes of $p$.
 
@@ -95,6 +97,8 @@ Given a word $p \in \Sigma^\omega$, we can define $\operatorname{Prefix}(p)
   same actions and accept.
 \end{proof}
 
+\vprasanje{Show that a semidecidable language is an open set.}
+
 \begin{theorem}%
   \label{thm:tizr:topology-2}
   If a partial function $f: \Sigma^\omega \rightharpoonup \Sigma^\omega$ is
@@ -115,6 +119,8 @@ Given a word $p \in \Sigma^\omega$, we can define $\operatorname{Prefix}(p)
   Then the execution of $M$ on $q$ follows the same steps as on $p$, so it
   produces the same first $n$ characters of output.
 \end{proof}
+
+\vprasanje{Show that computable functions are continuous on their domain.}
 
 We introduce a topology on $\Sigma^\omega$, which is just the infinite product
 topology of $\Sigma$ (which is discrete).
@@ -178,6 +184,9 @@ $\Sigma^\omega$.
   Clearly $\dom f$ is the intersection of all $D_n$.
 \end{proof}
 
+\vprasanje{Show that the domains of computable partial functions are
+  $G_\delta$.}
+
 \begin{theorem}
   The topological space $\Sigma^\omega$ is compact.
 \end{theorem}
@@ -208,6 +217,8 @@ $\Sigma^\omega$.
   We can decide $L$ by checking whether the prefix of a word is equal to any of
   $w_1, \ldots, w_k$.
 \end{proof}
+
+\vprasanje{Show that clopen sets are decidable.}
 
 \podnaslov{Computing with real numbers}
 
@@ -255,6 +266,8 @@ For such a name $p$, we define $\gamma_c(p) = \lim q_d(u_n)$.
   respect to the decimal or binary representation.
 \end{proposition}
 
+\vprasanje{What is the Cauchy representation?}
+
 \begin{definition}
   A name $p$ is \pojem{close} if for every $n \ge 0$, we have $\abs{q_d(u_n) -
 	\gamma_c(p)} \le 2^{-(n+1)}$.
@@ -301,5 +314,7 @@ For such a name $p$, we define $\gamma_c(p) = \lim q_d(u_n)$.
   \nicefrac{\varepsilon}{2}$.
   Then $\abs{f(x) - f(x')} < \varepsilon$.
 \end{proof}
+
+\vprasanje{State and prove the continuity theorem.}
 
 % LocalWords:  subcover realiser

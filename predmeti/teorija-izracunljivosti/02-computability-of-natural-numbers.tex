@@ -40,6 +40,8 @@
   primitive recursive function.
 \end{remark}
 
+\vprasanje{What are the primitive recursive functions? Why are they total?}
+
 \begin{definition}
   The \pojem{partial recursive functions} are the smallest collection of partial
   functions $\mathcal{F} \subseteq \{\N^k \rightharpoonup \N\}_{k \ge 0}$, which
@@ -52,6 +54,8 @@
 	n$, and $\mu f(x_1, \ldots, x_k)$ undefined otherwise.
   \end{itemize}
 \end{definition}
+
+\vprasanje{Define partial recursive functions.}
 
 \begin{proposition}
   A partial function $f: \N^k \rightharpoonup \N$ is computable if and only if
@@ -166,6 +170,9 @@
   \]
 \end{proof}
 
+\vprasanje{Show that the partial recursive functions coincide with the
+  computable partial functions.}
+
 We will consider number representations $\gamma: \N \rightharpoonup X$.
 There is a canonical representation of $\N$, $n \mapsto n$.
 Given two representations $\gamma_X$ of $X$ and $\gamma_Y$ of $Y$, we can define
@@ -199,6 +206,8 @@ the expression
 \]
 is a number representation of the set of all computable functions.
 
+\vprasanje{How is $\phi^n_e(x_1, \ldots, x_n)$ defined?}
+
 \begin{proposition}
   The function $h: \N \to \N$ defined below is not computable:
   \[
@@ -219,7 +228,7 @@ is a number representation of the set of all computable functions.
 \begin{theorem}[the universal function]
   For any $n \ge 1$, the $(n+1)$-arity function
   \[
-	\phi_u^n(e, x_1, \ldots, x_n) \simeq \phi_e^n(x_1, \ldots, x_n)
+	\psi_u^n(e, x_1, \ldots, x_n) \simeq \phi_e^n(x_1, \ldots, x_n)
   \]
   exists and is computable.
 \end{theorem}
@@ -249,6 +258,9 @@ is a number representation of the set of all computable functions.
   is a contradiction.
 \end{proof}
 
+\vprasanje{Give two examples of non-computable total functions and show they
+  aren't computable.}
+
 \begin{theorem}[S-M-N]
   For every $n > m > 0$ there exists an $(m+1)$-ary primitive recursive function
   $S_n^m: \N^{m+1} \to \N$ such that for all $e, x_1, \ldots, x_n$:
@@ -266,3 +278,7 @@ is a number representation of the set of all computable functions.
 	\phi_e^n(x_1, \ldots, x_n) \simeq U((\mu T^n)(e, x_1, \ldots, x_n)).
   \]
 \end{theorem}
+
+\vprasanje{State the S-M-N and Kleene's normal form theorems.}
+
+% LocalWords:  Kleene's

@@ -34,13 +34,16 @@
   This is a contradiction.
 \end{proof}
 
+\vprasanje{What are computable and what are computably enumerable sets? Define
+  Kleene's halting set and show it is not computable.}
+
 \begin{proposition}
   A set $A \subseteq \N$ is computably enumerable if and only if it is the
   domain of some computable partial function.
 \end{proposition}
 
 \begin{proof}
-  If a set $A$ is computable enumerable, it is the domain of $\chi_A^p$.
+  If a set $A$ is computably enumerable, it is the domain of $\chi_A^p$.
   Suppose that $A = \dom(f)$ for some computable $f: \N \to \N$.
   We can compute $\chi_A^p$ by
   \[
@@ -51,6 +54,9 @@
 	\end{cases}
   \]
 \end{proof}
+
+\vprasanje{Show that a set is computably enumerable if and only if it is the
+  domain of some computable partial function.}
 
 \begin{proposition}
   The halting set $K$ is computably enumerable.
@@ -111,6 +117,9 @@ We can enumerate the computably enumerable sets by
   is computable.
 \end{proof}
 
+\vprasanje{Show that a set is computable if and only if both it and its
+  complement are computably enumerable.}
+
 \begin{corollary}
   The set $\cl{K}$ is not computably enumerable.
 \end{corollary}
@@ -158,6 +167,9 @@ We can enumerate the computably enumerable sets by
   Then $w \in A$ if and only if there exists a $y$ such that $s(w,y) = 0$.
 \end{proof}
 
+\vprasanje{Characterize computably enumerable sets and prove the
+  characterization.}
+
 \begin{theorem}
   The following are equivalent for a set $A \subseteq \N$:
   \begin{itemize}
@@ -182,6 +194,8 @@ We can enumerate the computably enumerable sets by
   of $f(x)$ for $x = 0, 1, 2, \ldots$, until we find either $n$ or a number
   larger than it.
 \end{proof}
+
+\vprasanje{Characterize the computable sets and prove the characterization.}
 
 \begin{corollary}
   Every infinite computably enumerable set has an infinite computable subset.
@@ -212,6 +226,9 @@ We define $E_e$ as the domain of $\phi_e$, and
   If $A$ is reducible to $B$ and $B$ is computable, then so is $A$.
   If $A$ is reducible to $B$ and $B$ is computably enumerable, then so it $A$.
 \end{lemma}
+
+\vprasanje{When is a subset of $\mathcal{C}$ decidable or semidecidable? State
+  the reduction lemma.}
 
 \begin{theorem}[Rice]
   A set $B \subseteq \mathcal{C}$ is decidable if and only if $B = \varnothing$
@@ -246,6 +263,8 @@ We define $E_e$ as the domain of $\phi_e$, and
   So $s$ is a reduction of $K$ to $I_B$.
   But $K$ is not computable, so $I_B$ isn't either.
 \end{proof}
+
+\vprasanje{State and prove Rice's theorem.}
 
 \begin{definition}
   For partial functions $\N \rightharpoonup \N$, $f' \subseteq f$ if the graph
@@ -309,6 +328,8 @@ We define $E_e$ as the domain of $\phi_e$, and
   enumerable.
 \end{proof}
 
+\vprasanje{State and prove the Rice-Shapiro theorem.}
+
 \podnaslov{Varieties of non-computable sets}
 
 Observe that the following are equivalent for a set $A \subseteq \N$:
@@ -340,6 +361,8 @@ We call $g$ an \pojem{outsider finder}.
   All this implies $g(e) \in \cl{K} \setminus W_e$.
 \end{proof}
 
+\vprasanje{Define productive sets. Show that $\cl{K}$ is productive.}
+
 \begin{lemma}
   If $A$ reduces to $B$ and $A$ is productive, then so is $B$.
 \end{lemma}
@@ -362,10 +385,8 @@ We call $g$ an \pojem{outsider finder}.
   W_{h(e)}$.
 \end{proof}
 
-\begin{definition}
-  A set $A$ is \pojem{creative} if it is computably enumerable and its
-  complement is productive.
-\end{definition}
+\vprasanje{Show that if a productive set $A$ reduces to $B$, then $B$ is also
+  productive.}
 
 \begin{theorem}
   If $\varnothing \subsetneq B \subsetneq \mathcal{C}$ and the everywhere
@@ -377,6 +398,11 @@ We call $g$ an \pojem{outsider finder}.
   $I_B$.
   Because $\cl{K}$ is productive, so is $I_B$.
 \end{proof}
+
+\begin{definition}
+  A set $A$ is \pojem{creative} if it is computably enumerable and its
+  complement is productive.
+\end{definition}
 
 \begin{theorem}
   If $\varnothing \subsetneq B \subsetneq \mathcal{C}$ is such that $I_B$ is
@@ -408,6 +434,9 @@ We call $g$ an \pojem{outsider finder}.
   infinite subset of $A$.
   Then that image is a computably enumerable subset of $A$.
 \end{proof}
+
+\vprasanje{Show that every productive set has an infinite computably enumerable
+  subset.}
 
 \begin{definition}
   A set $A \subseteq \N$ is \pojem{immune} if it is infinite and it has no
@@ -447,5 +476,7 @@ We call $g$ an \pojem{outsider finder}.
   number larger than $2e$.
   So indeed $B \nsubseteq A$.
 \end{proof}
+
+\vprasanje{State and prove Post's theorem.}
 
 % LocalWords:  Kleene's subfunctions subfunction
