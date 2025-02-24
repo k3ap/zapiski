@@ -215,3 +215,176 @@ they are different groups, but they are isomorphic.
   a subgroup in $\Sym \Omega$.
   So $G$ becomes a permutation group.
 \end{remark}
+
+\begin{definition}
+  The \pojem{point stabiliser} of an element $\omega \in \Omega$ is the subgroup
+  $G_\omega = \{ g \in G \such \omega^g = \omega \}$.
+\end{definition}
+
+\begin{definition}
+  The \pojem{set stabiliser} $G_\Delta$ of a subset $\Delta \subseteq \Omega$ is
+  the subgroup $G_\Delta = \{ g \in G \such \Delta^g = \Delta \}$.
+\end{definition}
+
+\begin{definition}
+  The \pojem{point-wise stabiliser} $G_{(\Delta)}$ of a subset $\Delta \subseteq
+  \Omega$ is the subgroup $G_{(\Delta)} = \bigcap_{\omega \in \Delta} G_\omega$.
+\end{definition}
+
+\begin{remark}
+  Note that $G_\Delta$ has an induced action on $\Delta$.
+  But even if the action of $G$ on $\Delta$ is faithful, $G_\Delta$ might act on
+  $\Delta$ unfaithfully.
+  If we label the induced permutation group with $G_\Delta^\Delta$, then we have
+  \[
+	G_\Delta^\Delta \cong G_\Delta / G_{(\Delta)}.
+  \]
+\end{remark}
+
+\begin{definition}
+  The \pojem{orbit} of a point $\omega \in \Omega$ is the set $\omega^G = \{
+  \omega^g \such g \in G \}$.
+  We label $\Omega / G = \{ \omega^g \such \omega \in \Omega \}$.
+\end{definition}
+
+\begin{remark}
+  The set $\Omega / G$ is a partition of $\Omega$ into disjoint sets.
+\end{remark}
+
+\begin{definition}
+  A group $G$ acts \pojem{transitively} on $\Omega$ if $\abs{\Omega / G} = 1$.
+\end{definition}
+
+\begin{lemma}
+  Let $G$ act on $\Omega$ faithfully and let $\Omega_1, \ldots, \Omega_r$ be the
+  orbits of this action.
+  Then we can embed $G$ into the group $G^{\Omega_1} \times \cdots \times
+  G^{\Omega_r}$.
+  Additionally, if $\pi_i : G^{\Omega_1} \times \cdots \times G^{\Omega_r} \to
+  G^{\Omega_i}$ is the canonical projection, then the composition of $\pi_i$ and
+  the embedding is surjective.
+\end{lemma}
+
+\begin{remark}
+  We call $G^{\Omega_1}, \ldots, G^{\Omega_r}$ the \pojem{transitive
+	constituents}.
+\end{remark}
+
+\begin{remark}
+  In this case, we say that $G$ is a \pojem{subdirect product} of $G^{\Omega_1},
+  \ldots, G^{\Omega_r}$ (it is a subset of a direct product).
+\end{remark}
+
+\begin{lemma}[orbit-stabiliser]
+  If $G$ acts on $\Omega$ and $\omega \in \Omega$, then $\abs{G} =
+  \abs{G_\omega} \cdot \abs{\omega^G}$.
+\end{lemma}
+
+\begin{definition}
+  Let $g \in G$.
+  Then $\Fix_\Omega(g) = \{ \omega \in \Omega \such \omega^g = \omega \}$ is the
+  set of fixed points of $g$, and $\Supp_\Omega(g) = \Omega \setminus
+  \Fix_\Omega(g)$.
+\end{definition}
+
+\begin{lemma}[Cauchy-Frobenius / the lemma that is not Burnside's]
+  Let $G$ act on $\Omega$.
+  Then
+  \[
+	\abs{\Omega / G} = \inv{\abs{G}} \sum_{g \in G} \Fix_\Omega(g).
+  \]
+\end{lemma}
+
+\begin{corollary}
+  If $G$ acts transitively on $\Omega$, then it contains an element that fixes
+  no points.
+\end{corollary}
+
+\begin{remark}
+  We call such elements \pojem{derangements}.
+\end{remark}
+
+\begin{definition}
+  An action $\rho$ is \pojem{regular} if it is transitive and the stabiliser of
+  a point is trivial.
+\end{definition}
+
+\begin{remark}
+  If an action is regular, then the stabiliser of every point is trivial.
+\end{remark}
+
+\begin{example}[action by right multiplication]
+  Let $G$ be a group.
+  Define $\Omega = G$ and for $g, h \in G$, $h^g := h g$.
+  This is a regular action.
+\end{example}
+
+\begin{example}[action by left multiplication]
+  Let $G$ be a group.
+  Define $\Omega = G$ and for $g, h \in G$, $h^g := g^{-1} h$.
+  This is also a regular action.
+\end{example}
+
+\begin{remark}
+  All regular actions are isomorphic to one another.
+\end{remark}
+
+\begin{example}[action by conjugation]
+  Again set $\Omega = G$ and for $g, h \in G$, define $h^g = g^{-1} h g$.
+  The stabiliser of a point $h$ is precisely the centraliser of $h$ in the
+  group, i.e.~the elements of $G$ which commute with $h$.
+  The kernel of this action is
+  \[
+	\bigcap_{h \in G} G_h = \bigcap_{h \in G} C_G(h) = Z(G).
+  \]
+  This action is then faithful if and only if the center is trivial.
+\end{example}
+
+\begin{example}[action on subgroups]
+  Let $\Omega = S(G) = \{ H \such H \le G \}$ be the set of all subgroups of
+  $G$.
+  Then define $H^g = g^{-1} H g$.
+  The centraliser of $H$ is precisely the normaliser of $H$ in $G$.
+\end{example}
+
+\begin{example}[action on Sylow subgroups]
+  Let $G$ be a group with $\abs{G} = p^e m$ where $p \in \Prime$, $e \in \N$ and
+  $p$ does not divide $m$.
+  Let $\Syl_p(G)$ be the set of all Sylow $p$-subgroups of $G$.
+  If we take $\Omega = \Syl_p(G)$, then we can introduce $P^g = g^{-1} P g$.
+  This action is transitive.
+\end{example}
+
+\begin{example}[action on cosets]
+  Let $H \le G$ be a subgroup of $G$.
+  Take $\Omega = G / H$ be the set of left cosets of $H$, and introduce the
+  action $(Hh)^g = H(hg)$.
+  If $Hh = Hk$, then $hk^{-1} \in H$, so also $hgg^{-1}k \in H$, which means
+  this action is well-defined.
+  We can compute that the stabiliser of a coset $H x$ is precisely $x^{-1} H x$.
+
+  The kernel of the action is the intersection of all the stabilisers, which is
+  the largest subgroup of $H$ that is normal in $G$.
+  This is called the \pojem{core} of $H$.
+  So the action is faithful if and only if the core of $H$ is trivial, so if and
+  only if $H$ contains no nontrivial normal subgroups of $G$.
+\end{example}
+
+\begin{lemma}
+  Let $G$ act on $\Omega$ and let $\omega \in \Omega, x \in G$.
+  Then
+  \[
+	G_{\omega^x} = (G_\omega)^x,
+  \]
+  where the superscript on the left denotes the action on $\Omega$, and the
+  superscript on the right is the conjugation by $x$.
+\end{lemma}
+
+\begin{proof}
+  Let $g \in G_{\omega^x}$.
+  Then $(\omega^x)^g = \omega^x$, which is equivalent to $\omega^{xg} =
+  \omega^x$, which is again equivalent to $\omega^{x g x^{-1}} = \omega$, so $xg
+  x^{-1} \in G_\omega$ or $g \in (G_\omega)^x$.
+\end{proof}
+
+% LocalWords:  subdirect Frobenius Sylow
