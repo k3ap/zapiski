@@ -137,4 +137,74 @@ To je neodvisno od izbire predstavnika $\gamma$:
 Ker sta $\gamma_1$ in $\gamma_2$ ekvivalentna, je dobljeni izraz neodvisen od
 izbire $i$.
 
+\setmainlanguage{english}
+
+Tangent vectors can be considered to be first order partial differential
+operators.
+Let $[\gamma] = V_m \in T_m X$ be a tangent vector.
+The partial differential operator associated with $V$ is the directional
+derivative; let $f: X \to \R$ be a smooth function.
+We define
+\[
+  V_m(f) = \left. \frac{d}{dt} \right|_{t=0} f(\gamma(t)).
+\]
+In local coordinates given by a chart $(U_\alpha, \varphi_\alpha)$, we can
+write
+\[
+  V_m(f) = \left. \frac{d}{dt} \right|_{t=0} f(\gamma(t))
+  = \left. \frac{d}{dt} \right|_{t=0} f \circ \varphi_\alpha^{-1} \circ
+  \varphi_\alpha \circ \gamma(t)
+  = \sum_{i=1}^n \frac{\partial (f \varphi_\alpha^{-1})}{\partial x_i}
+  v_i
+\]
+where $\frac{d}{dt}(\varphi_\alpha \gamma)(0) = (v_1, \ldots, v_n)$ and $x_1,
+\ldots, x_n$ are the chosen coordinates in $\R^n$.
+This is obviously a linear operator, and $V(fg) = V(f) g + f V(g)$ holds.
+
+\podnaslov{Vector bundles}
+
+Consider an ODE $\dot{\vec{x}} = V(\vec{x})$, where $V$ is a vector field on
+some subset of $\R^n$.
+We know that for a given initial value problem, we can find an integral curve
+$\gamma$ which satisfies $\dot{\gamma} = V(\gamma)$.
+
+Now let $X$ be a manifold.
+A vector field on $X$ is defined as a map
+\[
+  V: X \to \bigsqcup_{m \in X} T_m X
+\]
+to the disjoint union of the tangent spaces on $X$.
+
+\begin{definition}
+  Let $X$ and $E$ be smooth manifolds such that there exists a projection map
+  $\pi: E \to X$ with the following properties:
+  \begin{itemize}
+  \item For every $b \in X$, $\pi^{-1}(b) \subseteq E$ is linearly isomorphic to
+	$\F^k$.
+  \item For every $b \in X$, there exists an open set $b \in U \subseteq X$ and
+	diffeomorphism $T_U: \pi^{-1}(U) \to U \times \F^k$ such that every
+	restriction of $T_U$ to $\pi^{-1}(b)$ is a linear isomorphism $\pi^{-1}(b)
+	\to b \times \F^k$.
+	We call $T_U$ a \pojem{local trivialization}.
+  \end{itemize}
+\end{definition}
+
+\begin{definition}
+  A bundle $\pi: E \to X$ is \pojem{trivial} if it is diffeomorphic to $E = X
+  \times V$.
+\end{definition}
+
+We introduce the following terminology:
+\begin{itemize}
+\item $\pi$ is the \pojem{bundle projection},
+\item $V(\F^k)$ is the \pojem{fiber},
+\item $X$ is the \pojem{base space},
+\item $E$ is the \pojem{total space},
+\item $T_U$ is the \pojem{trivialization}.
+\end{itemize}
+
+We can construct a smooth atlas on $E$.
+Let $U = \{ (U_\alpha, \varphi_\alpha) \}_{\alpha \in A}$ be a smooth atlas on
+$X$ such that the restricted bundle $E/U_\alpha$ is trivial.
+
 % LocalWords:  neekvivalentnih
