@@ -1,0 +1,65 @@
+\naslov{Graphs}
+
+It is implied that every graph is finite, simple and undirected.
+
+\begin{definition}
+  The \pojem{arc set} of a graph $\Gamma$ is $A(\Gamma) = \{ (u,v) \such uv
+  \in E(\Gamma)\}$.
+\end{definition}
+
+\begin{definition}
+  A \pojem{morphism} from a graph $\Gamma$ to another graph $\Lambda$ is a
+  mapping $\varphi: V(\Gamma) \to V(\Lambda)$ such that for each edge $uv \in
+  E(\Gamma)$, there is an edge $\varphi(u) \varphi(v) \in E(\Lambda)$.
+
+\end{definition}
+
+\begin{remark}
+  A morphism $\varphi: \Gamma \to \Lambda$ induces a map $E(\Gamma) \to
+  E(\Lambda)$ with $uv \in E(\Gamma) \mapsto \varphi(u) \varphi(v) \in
+  E(\Lambda)$.
+\end{remark}
+
+\begin{definition}
+  If $\varphi$ is injective, it is a \pojem{monomorphism}.
+  If it is surjective both as a vertex map and an edge map, then it is an
+  \pojem{epimorphism}.
+\end{definition}
+
+\begin{definition}
+  If $\varphi$ is bijective as a vertex map, and $\varphi^{-1}$ is also a graph
+  morphism, then $\varphi$ is an \pojem{isomorphism}.
+\end{definition}
+
+\begin{definition}
+  If $\varphi$ is an isomorphism $\Gamma \to \Gamma$, then $\varphi$ is an
+  \pojem{automorphism} of $\Gamma$.
+  We denote the set of all automorphisms of $\Gamma$ with $\Aut\Gamma$.
+\end{definition}
+
+\begin{lemma}
+  Let $\Gamma$ and $\Lambda$ be graphs and let $\varphi: V(\Gamma) \to
+  V(\Lambda)$ be a map.
+  Then $\varphi$ is an isomorphism if and only if it is bijective and
+  $\phi(E(\Gamma)) = E(\Lambda)$.
+\end{lemma}
+
+\begin{remark}
+  If $g$ is a permutation of $V(\Gamma)$, it is enough to check that $u \sim v$
+  implies $u^g \sim v^g$, since the sets $E(\Gamma)$ and $E(\Gamma)^g$ are of
+  the same cardinality.
+\end{remark}
+
+\begin{remark}
+  A permutation $g$ of $V(\Gamma)$ is an automorphism if and only if $g$ is in
+  the stabilizer of $E(\Gamma)$ in the action of $\Sym(V(\Gamma))$ on the power
+  set of $V(\Gamma)^{\{2\}}$.
+  So $\Aut \Gamma = \Sym(V(\Gamma))_{E(\Gamma)}$ in this particular action.
+  The orbit-stabiliser theorem then gives us $\abs{\Sym(V)} = \abs{\Aut \Gamma}
+  \abs{E(\Gamma)^{\Sym(V)}}$, or for $n = \abs{V(\Gamma)}$,
+  \[
+	\abs{\Aut \Gamma} = \frac{n!}{\abs{E(\Gamma)^{\Sym V}}}.
+  \]
+  The number in the denominator is then precisely the number of graphs on vertex
+  set $V$ that are isomorphic to $\Gamma$.
+\end{remark}
