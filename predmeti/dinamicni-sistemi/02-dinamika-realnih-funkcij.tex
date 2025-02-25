@@ -134,3 +134,194 @@ sliki~\ref{fig:ds-02-pajcevinasti-diagram}.
   \item Če je $\abs{f'(x_0)} > 1$, je $x_0$ šibko odbojna.
   \end{enumerate}
 \end{izrek}
+
+\begin{opomba}
+  Če je točka privlačna, je šibko privlačna.
+  Če je odbojna, je šibko odbojna.
+\end{opomba}
+
+\begin{proof}
+  Naj bo $\lambda$ tak, da je $\abs{f'(x_0)} < \lambda < 1$.
+  Potem obstaja $\delta > 0$, da je $\abs{f'(x)} < \lambda$ za vse $x \in (x_0 -
+  \delta, x_0 + \delta)$.
+  Po Lagrangeovem izreku obstaja $c \in (x, x_0)$, da velja
+  \[
+	\frac{f(x) - f(x_0)}{x - x_0} = f'(c).
+  \]
+  Velja $f(x_0) = x_0$, torej je $\abs{f(x) - x_0} = \abs{f'(c)} \abs{x - x_0} <
+  \lambda \abs{x - x_0}$ in posledično $f(x) \in (x_0 - \delta, x_0 + \delta)$.
+  Induktivno potem $\abs{f^n(x) - f(x_0)} < \lambda^n \abs{x - x_0}$, kar
+  konvergira k $0$ za $n \to \infty$.
+
+  Podobno za drugo točko.
+\end{proof}
+
+\begin{definition}
+  Fiksna točka $x_0 \in I$ je \pojem{stabilna} za $f: I \to I$, če za vsako
+  njeno okolico $U \subseteq I$ obstaja manjša okolica $U' \subseteq U$, da za
+  vsak $x \in U'$ velja $O_f(x) \subseteq U$.
+\end{definition}
+
+\begin{opomba}
+  Vse privlačne točke so stabilne (glej zgornji dokaz).
+\end{opomba}
+
+\begin{opomba}
+  Stabilne šibke privlačne točke imenujemo \pojem{asimptotstko stabilne}.
+\end{opomba}
+
+\begin{primer}
+  Poglejmo si $f(x) = 1 - x$.
+  Ker je $f^2(x) = x$, ima $f$ fiksno točko v $x_0 = \pol$, vse ostale točke pa
+  so periodične s periodo $2$.
+  Točka $\pol$ je nevtralna (ni privlačna/odbojna), je pa stabilna.
+  \begin{center}
+	\renewcommand{\startv}{.8}
+	\begin{tikzpicture}[scale=3,declare function={f(\x)=1-\x;}]
+	  \draw[<->](0,1.1)|-(1.1,0);
+	  \draw[green!70!black] (0,0)--(1,1);
+	  \draw[blue, domain=0:1, smooth] plot (\x,{f(\x)});
+
+	  \foreach \t[evaluate=\t as \newv using f(\startv)] in {1,...,3}{
+		\draw[red] (\startv,\startv)|-(\newv,\newv);
+		\xdef\startv{\newv}
+	  }
+	  \xdef\startv{0.6}
+	  \foreach \t[evaluate=\t as \newv using f(\startv)] in {1,...,3}{
+		\draw[red] (\startv,\startv)|-(\newv,\newv);
+		\xdef\startv{\newv}
+	  }
+	\end{tikzpicture}
+  \end{center}
+\end{primer}
+
+\begin{opomba}
+  Če je $f$ zvezna in gre $f^n(x) \to x_0$, je $x_0$ nujno fiksna točka.
+\end{opomba}
+
+\begin{definicija}
+  Naj bo $x_0$ $n$-periodična točka zvezne funkcije $f$.
+  Pripadajoči $n$-cikel je \pojem{šibko privlačen}, če je vsak njegov element
+  šibko privlačna točka za $f^n$ in \pojem{šibko obojen}, če je vsak njegov
+  element šibko odbojna točka za $f^n$.
+  Podobno definiramo privlačnost, odbojnost in nevtralnost cikla za zvezno
+  odvedljivo $f$.
+\end{definicija}
+
+\begin{izrek}
+  Če je $f \in \zvodv{1}{I}$, so vse periodične točke $n$-cikla istega tipa za
+  $f^n$.
+\end{izrek}
+
+\begin{proof}
+  Naj bo $\{x_1, \ldots, x_n\}$ cikel funkcije $f$.
+  Recimo, da je $x_n$ šibko privlačna za $f^n$, torej obstaja okolica $U_n \ni
+  x_n$, da za $x \in U$ velja $f^{nk}(x) \xrightarrow[k \to \infty]{} x_n$.
+  Definiramo $U_{n-j}$ kot tisto povezano komponento praslike $f^{-j}(U_n)$, ki
+  vsebuje $x_j$.
+
+  Vemo, da za vsak $x \in U_{n-j}$ po konstrukciji velja $f^j(x) \in U_n$, torej
+  $f^{nk+j}(x) \xrightarrow[k \to \infty]{} x_n$, iz česar sledi $f^{nk}(x)
+  \xrightarrow[k \to \infty]{} x_{n-j}$ (uporabimo $f^{n-j}$ na prejšnji
+  limiti).
+
+  Dokaz za šibko odbojnost izpustimo.
+  Za preostale tri lastnosti računamo
+  \begin{align*}
+	\abs{(f^n)'(x_n)}
+	&= \abs{(f \circ f \circ \cdots \circ f)'(x_n)} \\
+	&= \abs{f'(f^{n-1}(x_n))} \abs{f'(f^{n-2}(x_n))} \cdots \abs{f'(x_n)} \\
+	&= \abs{f'(x_1)} \abs{f'(x_2)} \cdots \abs{f'(x_n)}.
+  \end{align*}
+  Podoben razvoj lahko naredimo v poljubni točki cikla, in dobimo enak rezultat.
+\end{proof}
+
+\begin{primer}
+  Poglejmo si $f(x) = x^2 - 1$.
+  Opazimo, da je $f(0) = -1$ in $f(-1) = 0$, torej imamo $2$-cikel.
+  Izračunamo lahko $(f^2)'(0) = 0$, torej je cikel privlačen.
+  Iz slike pa lahko vidimo, da se bližnje točke ne obnašajo kot cikel;
+  privlačnost cikla ne pomeni, da privlači orbite.
+
+  \begin{center}
+	\renewcommand{\startv}{-0.9}
+	\begin{tikzpicture}[scale=2,declare function={f(\x)=\x*\x-1;}]
+	  \draw[<->](0,1.5)|-(1.5,0);
+	  \draw[<->](0,-1.5)|-(-1.5,0);
+	  \draw[green!70!black] (-1.5,-1.5)--(1.5,1.5);
+	  \draw[blue, domain=-1.3:1.3, smooth] plot (\x,{f(\x)});
+
+	  \foreach \t[evaluate=\t as \newv using f(\startv)] in {1,...,10}{
+		\draw[red] (\startv,\startv)|-(\newv,\newv);
+		\xdef\startv{\newv}
+	  }
+	\end{tikzpicture}
+  \end{center}
+
+  Zanimiva je tudi točka $x = 1$, za katero je $f(1) = 0$, torej po prvi
+  iteraciji postane ciklična.
+  Takim točkam rečemo \pojem{predperiodične}.
+  \boxdot{}
+\end{primer}
+
+\begin{opomba}
+  Ta primer ravno nasprotno pokaže?
+  Morda je treba vzeti polinome višje stopnje?
+\end{opomba}
+
+\podnaslov{Definicija kaosa}
+
+\begin{definicija}[Devaney]
+  Dinamični sistem, podan z $f: I \to I$ je \pojem{kaotičen}, če zanj veljajo
+  naslednje lastnosti:
+  \begin{enumerate}
+  \item[(C1)] Množica periodičnih točk je gosta v $I$,
+  \item[(C2)] Tranzitivnost: za poljubna odprta intervala $U_1, U_2 \subseteq I$
+	obstajata $x_0 \in U_1$ ter $n \in \N$, da je $f^n(x_0) \in U_2$.
+  \item[(C3)] Občutljivostna konstanta: Obstaja $\beta > 0$, da v poljubni
+	okolici $U$ poljubne točke $x_0$ najdemo tudi točko $y_0 \in U$, za katero
+	je $\abs{f^n(x_0) - f^n(y_0)} > \beta$ za nek $n \in \N$.
+  \end{enumerate}
+\end{definicija}
+
+\begin{opomba}
+  Tretja točka definicije je zanimiva pri izbiri majhnih okolic $U$, saj pomeni,
+  da lahko vsaki točki poljubno blizu najdemo točko s popolnoma drugačno
+  dinamiko.
+  Temu pravimo \enquote{metuljev pojav.}
+  Pomeni, da je orbita občutljiva na začetne pogoje.
+\end{opomba}
+
+\begin{opomba}
+  Izkaže se, da je druga točka ekvivalentna obstoju goste orbite.
+\end{opomba}
+
+\begin{opomba}
+  Če je $I$ kompakt, se izkaže, da prvi dve točki implicirata tretjo.
+\end{opomba}
+
+\begin{primer}[Podvojitvena preslikava]
+  Definiramo $D: \zo{0,1} \to \zo{0,1}$ z
+  \[
+	D(x) = 2x - \lfloor 2x \rfloor
+	=
+	\begin{cases}
+	  2x & x < \pol \\
+	  2x-1 & x \ge \pol
+	\end{cases}
+  \]
+  Za dokaz kaotičnosti uporabimo dvojiški zapis, kjer dodatno prepovemo
+  neskončen niz enic.
+  Naša preslikava potem število $0.x_1 x_2 x_3 \ldots$ slika v $0.x_2 x_3 x_4
+  \ldots$, zato tej preslikavi pravimo tudi \enquote{operator zamika.}
+
+  Naj bo $x \in \zo{0,1}$ poljubna.
+  Potem je za dovolj velik $N \in \N$ točka
+  \[
+	\tilde{x} = 0. x_1 x_2 \ldots x_N x_1 x_2 \ldots x_N \ldots
+  \]
+  periodična in se nahaja v majhni okolici točke $x$.
+  \boxdot{}
+\end{primer}
+
+% LocalWords:  predperiodične Devaney Podvojitvena
