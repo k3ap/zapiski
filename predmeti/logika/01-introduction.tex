@@ -15,8 +15,8 @@ The language is determined by a \enquote{signature.}
   In this case, terms represent numbers, for example $0, 1, x, x \cdot (y+z),
   x \cdot x \cdot x + 1 \cdot 0, \ldots$ are all terms of this language.
   On the other hand, formulas represent properties of their free variables.
-  As an example, the formula $\exists z. y = x + z$ expresses the property $x
-  \le y$.
+  As an example, the formula $\exists z \velja y = x + z$ expresses the property
+  $x \le y$.
   Here, $z$ is a bound variable, and $x, y$ are free variables.
   \boxdot{}
 \end{example}
@@ -27,8 +27,8 @@ When a sentence is interpreted in a structure, it is either true or false.
 \begin{example}
   Fermat's last theorem can be expressed as
   \[
-	\forall n. n > 2 \implies \lnot \left(
-	  \exists x, y, z. x > 0 \land y > 0 \land z > 0
+	\forall n \velja n > 2 \implies \lnot \left(
+	  \exists x, y, z \velja x > 0 \land y > 0 \land z > 0
 	  \land x^n + y^n = z^n
 	\right)
   \]
@@ -42,13 +42,13 @@ When a sentence is interpreted in a structure, it is either true or false.
 \begin{example}
   The sentence
   \[
-	x > 1 \land \forall y, z . x = y \cdot z \implies x = y \lor x = z
+	x > 1 \land \forall y, z \velja x = y \cdot z \implies x = y \lor x = z
   \]
   encodes \enquote{$x$ is prime.}
   We can use this for example to express some open problems, such as the twin
   prime conjecture,
   \[
-	\forall x . \exists y. y > x \land \operatorname{Prime}(y) \land
+	\forall x \exists y \velja y > x \land \operatorname{Prime}(y) \land
 	\operatorname{Prime}(y+2).
   \]
   I need some text to put a boxdot here.
@@ -58,8 +58,8 @@ When a sentence is interpreted in a structure, it is either true or false.
 The richness of the examples suggests that the following is a difficult
 question:
 \begin{quote}
-  Given an input sentence $\phi$, decide whether $\phi$ is true or false in
-  $\N$, i.e.~if $\N \models \phi$.
+  Given an input sentence $A$, decide whether $A$ is true or false in
+  $\N$, i.e.~if $\N \models A$.
 \end{quote}
 
 \begin{theorem}[Church, Turing]
@@ -74,7 +74,7 @@ This signature, interpreted in $\R$, gives a language for Euclidean geometry.
 But more important is the following.
 
 \begin{theorem}[Tarski]
-  The problem, \enquote{given a sentence $\phi$, decide if $\R \models \phi$,}
+  The problem, \enquote{given a sentence $A$, decide if $\R \models A$,}
   is decidable.
 \end{theorem}
 
@@ -127,9 +127,10 @@ But more important is the following.
   \item if $t_1, t_2$ are terms, then $t_1 = t_2$ is a formula,
   \item if $t_1, \ldots, t_n$ are terms and $p \in \mathcal{P}$ is a predicate
 	symbol of arity $n$, then $p(t_1, \ldots, t_n)$ is a formula,
-  \item if $\phi, \psi$ are formulas, then so are
-	$\lnot \phi$, $\phi \land \psi$, $\phi \lor \psi$ and $\phi \implies \psi$,
-  \item if $\phi$ is a formula, then so are $\exists x . \phi$ and $\forall x . \phi$.
+  \item if $A, B$ are formulas, then so are
+	$\lnot A$, $A \land B$, $A \lor B$ and $A \implies B$,
+  \item if $A$ is a formula, then so are $\exists x \velja A$ and $\forall x
+	\velja A$.
   \end{itemize}
   Formulas of the first two types are called \pojem{atomic formulas}.
 \end{definition}
@@ -154,8 +155,8 @@ $t_{\mathcal{M}}^\rho$ by
   \right)^\rho = f^{\mathcal{M}}(t_1^\rho, \ldots, t_n^\rho)$.
 \end{itemize}
 
-The \pojem{satisfaction relation} $\mathcal{M} \models_\rho \phi$ then states
-that formula $\phi$ is true in $\mathcal{M}$ under environment $\rho$.
+The \pojem{satisfaction relation} $\mathcal{M} \models_\rho A$ then states
+that formula $A$ is true in $\mathcal{M}$ under environment $\rho$.
 We define it with
 \begin{itemize}
 \item $\mathcal{M} \models_\rho t_1 = t_2$ if and only if $t_1^\rho = t_2^\rho$,
@@ -163,15 +164,15 @@ We define it with
   only if $p^{\mathcal{M}}(t_1^\rho, \ldots, t_n^\rho) = \top$,
 \item the logical operations are interpreted as usual, so for example
   \[
-	(\mathcal{M} \models_\rho \phi \implies \psi)
+	(\mathcal{M} \models_\rho A \implies B)
 	:\iff \left(
-	  \mathcal{M} \nvDash_\rho \phi \lor \mathcal{M} \models_\rho \psi
+	  \mathcal{M} \nmodels_\rho A \lor \mathcal{M} \models_\rho B
 	\right)
   \]
 \item The universal quantifier is interpreted as
   \[
-	(\mathcal{M} \models_\rho \forall x. \phi)
-	:\iff \forall d \in M . \mathcal{M} \models_{\rho[x \mapsto d]} \phi
+	(\mathcal{M} \models_\rho \forall x \velja A)
+	:\iff \forall d \in M \pvelja \mathcal{M} \models_{\rho[x \mapsto d]} A
   \]
   where $\rho[x \mapsto d]$ means that we use the environment $\rho$, except we
   replace the value of $x$ with $d$, so
@@ -185,4 +186,208 @@ We define it with
   We define the interpretation of the existential quantifier similarly.
 \end{itemize}
 
-% LocalWords:  Gödel Tarski
+\begin{example}
+  The structure discussed above is $\mathcal{N} = (\N, 0, +, 1, \cdot)$.
+  We also have a related structure, $\mathcal{R} = (\R, 0, +, 1, \cdot)$.
+\end{example}
+
+\begin{lemma}
+  Let $A$ be formula in structure $\mathcal{M}$ and $\FV(A)$ the set of free
+  variables in $A$.
+  If $\left. \rho \right|_{\FV(A)} = \left. \rho' \right|_{\FV(A)}$, then
+  $\mathcal{M} \models_\rho A$ if and only if $\mathcal{M} \models_{\rho'} A$.
+\end{lemma}
+
+\begin{corollary}
+  If $A$ is a sentence, then $\mathcal{M} \models_\rho A$ is independent of
+  $\rho$.
+  In this case, we write $\mathcal{M} \models A$.
+\end{corollary}
+
+\begin{definition}
+  The \pojem{theory} $\Th(\mathcal{M})$ of a structure $\mathcal{M}$ is the set
+  of all sentences that $\mathcal{M}$ satisfies.
+\end{definition}
+
+\begin{remark}
+  We can restate the Church-Turing theorem to \enquote{$\Th(\mathcal{N})$ is
+	undecidable,} and Tarski's theorem to \enquote{$\Th(\mathcal{R})$ is
+	decidable.}
+\end{remark}
+
+\begin{proposition}[law of the excluded middle]
+  For any sentence $A$, either $M \models A$ or $M \models \lnot A$.
+\end{proposition}
+
+\begin{remark}
+  This says that the theory of an individual structure is \pojem{complete}.
+\end{remark}
+
+\begin{example}
+  Consider the signature $(e, m)$, where $e$ is a constant and $m$ is a function
+  symbol of arity $2$.
+  We have several interesting classes of structures on this signature:
+  $\cls{Group}$ (the class of groups), $\cls{AbGroup}$ (the class of Abelian
+  groups), \ldots
+\end{example}
+
+\begin{example}
+  For the signature $(\le)$, where $\le$ is a binary relation, we also have
+  several classes of structures: $\cls{PartOrd}$ (the partial orderings),
+  $\cls{LinOrd}$ (the linear orderings), \ldots
+\end{example}
+
+\begin{definition}
+  Let $\cls{M}$ be a class of structures.
+  Then $\cls{M} \models A$ if and only if for every $\mathcal{M} \in \cls{M}$,
+  we have $\mathcal{M} \models A$.
+  We say that $A$ is \pojem{valid} in $\cls{M}$.
+\end{definition}
+
+\begin{definition}
+  The \pojem{theory} $\Th(\cls{M})$ of a collection of structures $\cls{M}$ is
+  the set of all valid sentences in $\cls{M}$.
+\end{definition}
+
+\begin{example}
+  For $\cls{Group}$, the sentence $\forall x \exists y \velja m(x,y) = e \land
+  m(y,x) = e$ is valid, but the sentence $\exists x \velja x \ne e \land m(x,x)
+  = e$ is not valid, and neither is its negation.
+\end{example}
+
+So for the theory of a collection, it is in general not (necessarily) true that
+either $A$ is valid or $\lnot A$ is valid.
+The theory of a collection is not complete.
+
+\begin{theorem}[Szmielew]
+  The theory $\Th(\cls{AbGroup})$ is decidable.
+\end{theorem}
+
+\begin{theorem}[Novikov]
+  The theory $\Th(\cls{Group})$ is undecidable.
+\end{theorem}
+
+\begin{remark}
+  Novikov proved that even a simple case, the \enquote{word problem for groups}
+  is undecidable.
+\end{remark}
+
+A set of \pojem{axioms} is a set $S$ of sentences which determine a class of
+structures
+\[
+  \cls{Mod}(S) = \{ \mathcal{M} \such \forall A \in S \pvelja \mathcal{M}
+  \models A \}
+\]
+called the \pojem{collection of models} of $S$.
+
+\begin{example}
+  If
+  \[
+	S_G =
+	\begin{Bmatrix}
+	  \forall x \velja  m(x,e) = x \land m(e,x) = x, \\
+	  \forall x, y, z \velja m(x, m(y,z)) = m(m(x,y), z), \\
+	  \forall x \exists y \velja  m(x,y) = e \land m(y,x) = e
+	\end{Bmatrix},
+  \]
+  then $\cls{Mod}(S) = \cls{Group}$.
+\end{example}
+
+\begin{definition}
+  A sentence $A$ is a \pojem{logical consequence} if
+  \[
+	S \models A \iff \forall \mathcal{M} \in \cls{Mod}(S) \pvelja \mathcal{M}
+	\models A
+  \]
+  holds.
+  We say that $S$ \pojem{entails} $A$.
+\end{definition}
+
+\begin{remark}
+  A sentence $A$ is a logical consequence of $S$ if and only if $A \in
+  \Th(\cls{Mod}(S))$.
+\end{remark}
+
+\begin{remark}
+  For a set of axioms $S$, we define $\Th(S)$ to be $\Th(\cls{Mod}(S))$.
+\end{remark}
+
+\begin{definition}
+  A sentence $A$ is \pojem{logically valid} if it satisfies the empty set of
+  axioms, $\varnothing \models A$, so if $\mathcal{M} \models A$ for every
+  $\mathcal{M}$.
+  We label this with $\models A$.
+\end{definition}
+
+\begin{definition}
+  A set of sentences $T$ is a \pojem{theory} if it is closed under logical
+  consequence, i.e.~if for all sentences $A$, if $T \models A$, then $A \in T$.
+\end{definition}
+
+\begin{definition}
+  A theory $T$ is \pojem{complete} if for every sentence $A$ either $A \in T$ or
+  $\lnot A \in T$.
+\end{definition}
+
+\begin{definition}
+  A theory $T$ is \pojem{consistent} if for every sentence $A$ at most one of
+  $A, \lnot A$ belong to $T$.
+\end{definition}
+
+\begin{remark}
+  A theory $T$ is inconsistent if and only if $T$ is the set of all sentences.
+\end{remark}
+
+A great contribution of logic is the notion of formal proof.
+Using this we write precise finite proofs showing that a sentence $A$ follows
+from an agreed set of axioms.
+We define the provability relation $S \vdash A$ which states that \enquote{$A$
+  is derivable from the axioms $S$.}
+
+\begin{theorem}[soundness theorem]
+  For all axioms $S$ and sentences $A$, if $S \vdash A$, then $S \models A$.
+\end{theorem}
+
+\begin{theorem}[completeness theorem]
+  For all axioms $S$ and sentences $A$, if $S \models A$, then $S \vdash A$.
+\end{theorem}
+
+\begin{remark}
+  This is the completeness of the proof system; it means that we haven't
+  forgotten any means of proof.
+  It is different than the incompleteness theorem (both are Gödel's).
+\end{remark}
+
+\begin{remark}
+  As an application, to verify a sentence $A$ for $\Th(\cls{Group})$, we just
+  need to construct a formal proof showing that $S_G \vdash A$.
+  We know that such a proof exists.
+\end{remark}
+
+We've seen that the theory of natural numbers is undecidable.
+Can we at least find a complete set of axioms like we did for groups?
+There is a natural set of axioms $\mathit{PA}$ (Peano's) for $\Th(\mathcal{N})$,
+which axiomatises Peano arithmetic.
+In practice, many known theorems of number theory are provable in $\mathit{PA}$,
+for example that there are infinitely many primes, or the prime number theorem.
+
+\begin{theorem}[Gödel's first incompleteness theorem]
+  One can find a sentence $G$ such that
+  \begin{itemize}
+  \item $\mathcal{N} \models G$,
+  \item $PA \nvdash G$,
+  \item $PA \nvdash \lnot G$.
+  \end{itemize}
+\end{theorem}
+
+\begin{remark}
+  The theory $\Th(\mathit{PA})$ is incomplete.
+\end{remark}
+
+One possible interpretation of this is that perhaps we've just missed some
+necessary axioms.
+But as it turns out, whatever axioms $S$ we end up with, if $S$ is decidable,
+then we can repeat the theorem.
+
+% LocalWords:  Gödel Tarski Tarski's Szmielew Novikov Gödel's Peano's Peano
+% LocalWords:  axiomatises axiomatise
