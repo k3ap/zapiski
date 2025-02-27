@@ -649,6 +649,7 @@ These have the usual (universal) properties.
 \end{remark}
 
 \begin{lemma}
+  \label{lemma:koma-01-ses}
   For a short exact sequence $0 \to M \xrightarrow{f} N \xrightarrow{g} P \to 0$
   the following are equivalent:
   \begin{itemize}
@@ -796,6 +797,163 @@ Then we have a functor $M \otimes \cdot: X \mapsto M \otimes X$, which maps $X
   We can construct an isomorphism using the universal properties of direct sums
   and tensor products.
 \end{proof}
+
+\begin{example}
+  If $I \trianglelefteq A$ and $M$ is an $A$-module, then $M / IM \cong M
+  \otimes_A A/I$.
+  We have a short exact sequence $0 \to I \to A \to A/I \to 0$ with the
+  inclusion and projection maps, so we get
+  $I \otimes M \to A \otimes M \to A/I \otimes M \to 0$.
+  Now we take the map $\mu: A \otimes M \to M$ defined by $a \otimes m \mapsto
+  am$, which has inverse $m \mapsto 1 \otimes m$.
+  Since $\im \left. \mu \right|_{I \otimes M} = IM$, this gives us
+  \[
+	M / IM \cong (A \otimes M) / (I \otimes M) \cong A / (I \otimes M).
+  \]
+\end{example}
+
+\begin{proposition}
+  If $A \ne \underline{0}$ and $A^{(I)} \cong A^{(J)}$ for sets $I, J$, then
+  $\abs{I} = \abs{J}$.
+\end{proposition}
+
+\begin{proof}
+  Let $M \in \Max(A)$, then $A / M$ is a field, call it $K$.
+  Then
+  \[
+	A^{(I)} \otimes_A A/M \cong (A \otimes A/M)^{(I)} \cong (A/M)^{(I)} =
+	K^{(I)},
+  \]
+  so these are $K$-vector spaces.
+  From $A^{(I)} \cong A^{(J)}$ we get $K^{(I)} \cong K^{(J)}$, and since the
+  dimension of a vector space is well-defined, this concludes the proof.
+\end{proof}
+
+\begin{definition}
+  Let $A \ne \underline{0}$.
+  If $M$ is a finitely generated free $A$-module, its \pojem{rank} is the unique
+  $n \in \N_0$ such that $M \cong A^n$.
+\end{definition}
+
+\podnaslov{Projective, injective and flat modules}
+
+Let $M$ be a module over some ring $A$.
+Note the following:
+\begin{itemize}
+\item $\cdot \otimes M$ is not exact, as it doesn't preserve the short exact
+  sequence $0 \to 2 \Z \to \Z \to \Z / 2 \Z \to 0$ for $M = \Z$,
+\item $\Hom(M, \cdot)$ and $\Hom(\cdot, M)$ are not right exact, as they don't
+  preserve that sequence for $M = \Z / 2 \Z$.
+\end{itemize}
+
+\begin{definition}
+  A module $M$ is called \pojem{projective} if $\Hom(M, \cdot)$ is exact.
+  It is \pojem{injective} if $\Hom(\cdot, M)$ is exact.
+  It is \pojem{flat} if $M \otimes \cdot$ is exact.
+\end{definition}
+
+\begin{theorem}
+  For an $A$-module $P$, the following are equivalent:
+  \begin{enumerate}
+  \item $P$ is projective,
+  \item for every epimorphism $g: M_A \to N_A$, the induced $g_*: \Hom(P, M) \to
+	\Hom(P, N)$ is an epimorphism,
+  \item for every diagram with an exact row of the form below, there exists a
+	$\psi$ such that the diagram commutes:
+	\[\begin{tikzcd}
+		& P \\
+		M & N & 0
+		\arrow["{\exists \psi}"', dashed, from=1-2, to=2-1]
+		\arrow["\varphi", from=1-2, to=2-2]
+		\arrow["f"', from=2-1, to=2-2]
+		\arrow[from=2-2, to=2-3]
+	  \end{tikzcd}\]
+  \item every epimorphism $g: M \to P$ splits, i.e.~there exists $s: P \to M$
+	such that $g \circ s = \id_P$,
+  \item there exists an $A$-module $M$ such that $M \oplus P$ is free.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  1 to 2 is clear.
+  2 to 3:
+  By assumption, $f_*: \Hom(P, M) \to \Hom(P, N)$ is an epimorphism.
+  Since $f_*$ is surjective, there exists $\psi \in \Hom(P, M)$ such that
+  $\varphi = f_*(\psi) = f \circ \psi$.
+  This is precisely the commutativity of the diagram.
+
+  3 to 4:
+  Consider the following diagram.
+  \[\begin{tikzcd}
+	  & P \\
+	  M & P & 0
+	  \arrow["{\exists s}"', dashed, from=1-2, to=2-1]
+	  \arrow["\id", from=1-2, to=2-2]
+	  \arrow["g"', from=2-1, to=2-2]
+	  \arrow[from=2-2, to=2-3]
+	\end{tikzcd}\]
+  Since $g$ is surjective, by assumption, there exists a map $s$ for which the
+  diagram commutes.
+  This is the splitting map.
+
+  4 to 5:
+  Let $g: A^{(I)} \to P$ be an epimorphism for some index set $I$.
+  This gives us a short exact sequence
+  \[
+	0 \to \jedro g \to A^{(I)} \xrightarrow{g} P \to 0.
+  \]
+  By assumption, this sequence splits, so $A^{(I)} \cong P \oplus \jedro g$ by
+  lemma~\ref{lemma:koma-01-ses}.
+
+  5 to 1:
+  Let
+  \[
+	0 \to M \xrightarrow{f} N \xrightarrow{g} Q \to 0
+  \]
+  be exact.
+  Consider the sequence
+  \[
+	0 \to \Hom(P, M) \xrightarrow{f_*} \Hom(P, N) \xrightarrow{g_*} \Hom(Q, N)
+	\to 0.
+  \]
+  By left exactness of $\Hom(P, \cdot)$, we only have to check surjectivity of
+  $g_*$.
+  Let $\varphi \in \Hom(P, Q)$.
+  We need to show that there exists $\psi: P \to N$ such that $g_*(\psi) =
+  g\circ \psi = \varphi$.
+
+  Fix a module $C_A$ and an index set $I$ such that $P \oplus C \cong A^{(I)}$,
+  let $\pi: A^{(I)} \to P$ be the canonical projection and $\varepsilon: P \to
+  A^{(I)}$ the embedding such that $\pi \circ \varepsilon = \id_P$.
+  For each standard basis vector $e_i \in A^{(I)}$, choose $n_i \in N$ such that
+  $g(n_i) = \varphi \circ \pi(e_i)$ (we can do this since $g$ is surjective).
+  Then there exists a map $\Psi \in \Hom(A^{(I)}, N)$ such that $\Psi(e_i) =
+  n_i$ for each $i \in I$.
+  By construction, $g \circ \Psi = \varphi \circ \pi$.
+  We define $\psi = \Psi \circ \varepsilon$.
+  Then the diagram below commutes.
+  \[\begin{tikzcd}
+	  & {A^{(I)}} \\
+	  & P \\
+	  N & Q & 0
+	  \arrow["\pi", from=1-2, to=2-2]
+	  \arrow["\Psi"', curve={height=12pt}, from=1-2, to=3-1]
+	  \arrow["\varepsilon", shift left=3, from=2-2, to=1-2]
+	  \arrow["\psi"', dashed, from=2-2, to=3-1]
+	  \arrow["\varphi", from=2-2, to=3-2]
+	  \arrow["g"', two heads, from=3-1, to=3-2]
+	  \arrow[from=3-2, to=3-3]
+	\end{tikzcd}\]
+\end{proof}
+
+\begin{example}
+  Free modules are projective.
+\end{example}
+
+\begin{example}
+  For $A = \Z / 6 \Z \cong \Z / 2 \Z \oplus \Z / 3 \Z$.
+  Then $\Z / 2 \Z$ is a projective $A$-module, but not free.
+\end{example}
 
 % LocalWords:  nilradical nilpotents primality Nakayama Hom multilinear adjoint
 % LocalWords:  adjunction
