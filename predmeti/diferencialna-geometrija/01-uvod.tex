@@ -137,19 +137,15 @@ To je neodvisno od izbire predstavnika $\gamma$:
 Ker sta $\gamma_1$ in $\gamma_2$ ekvivalentna, je dobljeni izraz neodvisen od
 izbire $i$.
 
-\setmainlanguage{english}
-
-Tangent vectors can be considered to be first order partial differential
-operators.
-Let $[\gamma] = V_m \in T_m X$ be a tangent vector.
-The partial differential operator associated with $V$ is the directional
-derivative; let $f: X \to \R$ be a smooth function.
-We define
+Tangentne vektorje lahko obravnavamo kot parcialne diferencialne operatorje
+prvega reda.
+Naj bo $[\gamma] = V_m \in T_m X$ tangentni vektor.
+PDO, ki ga pripišemo temu vektorju, je smerni odvod; če je $f: X \to \R$ gladka
+funkcija, definiramo
 \[
   V_m(f) = \left. \frac{d}{dt} \right|_{t=0} f(\gamma(t)).
 \]
-In local coordinates given by a chart $(U_\alpha, \varphi_\alpha)$, we can
-write
+V lokalnih koordinatah, danih z atlasom $(U_\alpha, \varphi_\alpha)$, lahko zapišemo
 \[
   V_m(f) = \left. \frac{d}{dt} \right|_{t=0} f(\gamma(t))
   = \left. \frac{d}{dt} \right|_{t=0} f \circ \varphi_\alpha^{-1} \circ
@@ -157,54 +153,173 @@ write
   = \sum_{i=1}^n \frac{\partial (f \varphi_\alpha^{-1})}{\partial x_i}
   v_i
 \]
-where $\frac{d}{dt}(\varphi_\alpha \gamma)(0) = (v_1, \ldots, v_n)$ and $x_1,
-\ldots, x_n$ are the chosen coordinates in $\R^n$.
-This is obviously a linear operator, and $V(fg) = V(f) g + f V(g)$ holds.
+kjer je $\frac{d}{dt}(\varphi_\alpha \gamma)(0) = (v_1, \ldots, v_n)$ in $x_1,
+\ldots, x_n$ izbrane koordinate v $\R^n$.
+To je očitno linearen operator, velja $V(fg) = V(f) g + f V(g)$.
 
-\podnaslov{Vector bundles}
+\podnaslov{Vektorski svežnji}
 
-Consider an ODE $\dot{\vec{x}} = V(\vec{x})$, where $V$ is a vector field on
-some subset of $\R^n$.
-We know that for a given initial value problem, we can find an integral curve
-$\gamma$ which satisfies $\dot{\gamma} = V(\gamma)$.
-
-Now let $X$ be a manifold.
-A vector field on $X$ is defined as a map
+Oglejmo si navadno diferencialno enačbo $\dot{\vec{x}} = V(\vec{x})$, kjer je
+$V$ vektorsko polje na neki podmnožici $\R^n$.
+Vemo:
+Za dan Cauchyjev problem lahko najdemo krivuljo $\gamma$, za katero velja
+$\dot{\gamma} = V(\gamma)$.
+Naj bo sedaj $X$ gladka mnogoterost.
+Vektorsko polje na $X$ je definirano kot preslikava
 \[
-  V: X \to \bigsqcup_{m \in X} T_m X
+  V: X \to \bigsqcup_{m \in X} T_m X,
 \]
-to the disjoint union of the tangent spaces on $X$.
+ki slika v disjunktno unijo tangentnih prostorov na $X$.
 
-\begin{definition}
-  Let $X$ and $E$ be smooth manifolds such that there exists a projection map
-  $\pi: E \to X$ with the following properties:
+\begin{definicija}
+  Naj bosta $X$ in $E$ taki gladki mnogoterosti, da obstaja projekcija
+  $\pi: E \to X$ z naslednjimi lastnostmi:
   \begin{itemize}
-  \item For every $b \in X$, $\pi^{-1}(b) \subseteq E$ is linearly isomorphic to
+  \item Za vsak $b \in X$ je $\pi^{-1}(b) \subseteq E$ linearno izomorfna
 	$\F^k$.
-  \item For every $b \in X$, there exists an open set $b \in U \subseteq X$ and
-	diffeomorphism $T_U: \pi^{-1}(U) \to U \times \F^k$ such that every
-	restriction of $T_U$ to $\pi^{-1}(b)$ is a linear isomorphism $\pi^{-1}(b)
+  \item Za vsak $b \in X$ obstaja odprta okolica $b \in U \subseteq X$ in
+	difeomorfizem $T_U: \pi^{-1}(U) \to U \times \F^k$, za katerega je vsaka
+	skrčitev $T_U$ na $\pi^{-1}(b)$ linearen izomorfizem $\pi^{-1}(b)
 	\to b \times \F^k$.
-	We call $T_U$ a \pojem{local trivialization}.
+	Potem je $T_U$ \pojem{lokalna trivializacija}.
   \end{itemize}
-\end{definition}
+\end{definicija}
 
 \begin{definition}
-  A bundle $\pi: E \to X$ is \pojem{trivial} if it is diffeomorphic to $E = X
+  Sveženj $\pi: E \to X$ je \pojem{trivialen}, če je difeomorfen $E = X
   \times V$.
 \end{definition}
 
-We introduce the following terminology:
+Vpeljemo še naslednjo terminologijo:
 \begin{itemize}
-\item $\pi$ is the \pojem{bundle projection},
-\item $V(\F^k)$ is the \pojem{fiber},
-\item $X$ is the \pojem{base space},
-\item $E$ is the \pojem{total space},
-\item $T_U$ is the \pojem{trivialization}.
+\item $\pi$ je \pojem{projekcija na sveženj},
+\item $V(\F^k)$ je \pojem{vlakno},
+\item $X$ je \pojem{osnovni prostor},
+\item $E$ je \pojem{celoten prostor},
+\item $T_U$ je \pojem{trivializacija}.
 \end{itemize}
 
-We can construct a smooth atlas on $E$.
-Let $U = \{ (U_\alpha, \varphi_\alpha) \}_{\alpha \in A}$ be a smooth atlas on
-$X$ such that the restricted bundle $E/U_\alpha$ is trivial.
+Na $E$ lahko konstruiramo gladek atlas.
+Naj bo $U = \{ (U_\alpha, \varphi_\alpha) \}_{\alpha \in A}$ tak gladek atlas na
+$X$, da je restringiran sveženj $E/U_\alpha = \pi^{-1}(U_\alpha)$ trivialen.
+Za odprte množice v novem atlasu $\tilde{U}$ vzamemo množice
+$\pi^{-1}(U_\alpha)$ za $\alpha \in A$, karte pa so dane s preslikavami
+\begin{gather*}
+  \tilde{\tau}_\alpha: \pi^{-1}(U_\alpha) \to \F^{n+k} \\
+  \tilde{\tau}_\alpha(v)
+  = ( \varphi_\alpha(\pi(v)), v_1, \ldots, v_k )
+  = ( \varphi_\alpha(\pi(v)), \operatorname{pr}_2(\tau_\alpha(v)) ),
+\end{gather*}
+kjer je $\tau_\alpha$ difeomorfizem $\pi^{-1}(U_\alpha) \to U_\alpha \times
+\F^k$, ki slika $v \mapsto (\pi(v), (v_1, \ldots, v_k))$.
+Včasih pišemo tudi
+\[
+  \tau_\alpha(m) = (\pi(m), v_1(\pi(m)), \ldots, v_k(\pi(m)))
+  = (b, v_1(b), \ldots, v_k(b)).
+\]
+Oglejmo si prehodno preslikavo
+\[
+  \tau_\beta \circ \tau_\alpha^{-1}
+  : (b, v_1(b), \ldots, v_k(b)) \mapsto (b, w_1(b), \ldots, w_k(b)).
+\]
+Zapišemo jo lahko v obliki
+\[
+  \tau_\beta \circ \tau_\alpha^{-1}
+  \left(
+	b,
+	\begin{bmatrix}
+	  v_1(b) \\ \vdots \\ v_k(b)
+	\end{bmatrix}
+  \right)
+  = \left(
+	b,
+	g_{\beta \alpha}(b)
+	\begin{bmatrix}
+	  v_1(b) \\ \vdots \\ v_k(b)
+	\end{bmatrix}
+  \right)
+\]
+oziroma $\tau_\beta \circ \tau_\alpha^{-1} = (\id, g_{\beta \alpha}(b))$.
+Za vsak par $\alpha, \beta$, za katera je $U_\alpha \cap U_\beta \ne
+\varnothing$, torej dobimo gladko preslikavo $g_{\beta \alpha} \in \GL(k, \F)$.
+Dodano velja $g_{\gamma \beta} g_{\beta \alpha} = g_{\gamma \alpha}$.
 
-% LocalWords:  neekvivalentnih
+\begin{definicija}
+  \pojem{Kocikel}, prirejen atlasu $U = \{(U_\alpha, \varphi_\alpha)\}_\alpha$,
+  z vrednostmi v $\GL(k, \F)$, je družina preslikav $g_{\beta \alpha}: U_\alpha
+  \cap U_\beta \to \GL(k, \F)$, za katere za vsak primeren $b$ velja
+  \begin{itemize}
+  \item $g_{\alpha \gamma}(b) g_{\gamma \beta}(b) g_{\beta \alpha}(b) = I$,
+  \item $g_{\alpha \beta}(b) = g_{\beta \alpha}(b)^{-1}$.
+  \end{itemize}
+\end{definicija}
+
+\begin{opomba}
+  Če imamo dan $X$ in kocikel, lahko do izomorfizma natančno konstruiramo
+  pripadajoči sveženj.
+\end{opomba}
+
+\begin{definicija}
+  Naj bo $\pi: E \to X$ sveženj.
+  \pojem{Gladek lokalni prerez} svežnja $E$ nad $U_\alpha$ je gladka preslikava
+  $s: U_\alpha \to E/U_\alpha$.
+\end{definicija}
+
+\begin{opomba}
+  Ker je $E/U_\alpha = \pi^{-1}(b)$, je $\pi \circ s(b) = b$.
+\end{opomba}
+
+\begin{definicija}
+  \pojem{Lokalno ogrodje} svežnja $\pi: E \to M$ nad $U_\alpha$ je $k$-terica
+  prerezov $(s_1, \ldots, s_k): U_\alpha \to E/U_\alpha$, ki so med seboj
+  linearno neodvisni, torej da so za vsak $b \in U_\alpha$ vektorji $s_1(b),
+  \ldots, s_k(b)$ linearno neodvisni v $\pi^{-1}(b) \cong \F^k$.
+\end{definicija}
+
+\begin{definicija}
+  \pojem{Tangentni sveženj} $TX$ gladke mnogoterosti $X$ je disjunktna unija
+  \[
+	TX = \bigsqcup_{m \in X} T_m X.
+  \]
+\end{definicija}
+
+Opremimo $TX$ z gladko strukturo.
+Naj bo $U = \{ (U_\alpha, \varphi_\alpha) \}_\alpha$ atlas za $X$.
+Potem definiramo
+\[
+  T U_\alpha = \bigsqcup_{b \in U_\alpha} T_b X := TX / U_\alpha.
+\]
+Naj bo $U_\alpha$ kontraktibilna.
+Vpeljemo lokalno trivializacijo $\tau_\alpha: TU_\alpha \to V_\alpha \times
+\R^n$,
+\[
+  \tau_\alpha(v(b)) = (\varphi_\alpha(b), D_b \varphi_\alpha (v(b)))
+  = (\varphi_\alpha(b), v_1(b), \ldots, v_n(b)).
+\]
+Torej imamo atlas $TU = \{ (TU_\alpha, \tau_\alpha) \}_\alpha$.
+Za bazo lokalnih prerezov v točki $b_0 = \varphi_\alpha^{-1}(x_0)$ vzamemo
+vektorje $[\gamma_i]_{b_0}$, pri katerih so reprezentativne krivulje koordinatne
+premice $t \mapsto \varphi_\alpha^{-1}(x_1^0, \ldots, x_i^0  + t, \ldots,
+x_n^0)$ za $x_0 = (x_1^0, \ldots, x_n^0)$.
+Tak tangentni vektor označimo z $\frac{\partial}{\partial x_i^\alpha}(b)$.
+
+\podnaslov{Frobeniusov izrek}
+
+Naj bo $X$ gladka mnogoterost in $TX$ njen tangentni sveženj.
+Naj bodo $V_1, \ldots, V_r$ lokalna gladka vektorska polja v $TX$ in $r < n =
+\dim TX$.
+Označimo z $D_V X$ lokalni vektorski podsveženj v $TX$.
+Polja $V_1, \ldots, V_r$ naj bodo v vsaki točki, kjer so definirana, linearno
+neodvisna.
+Zanimalo nas bo, kdaj obstajajo integralske podmnogoterosti v $X$, ki
+\enquote{pointegrirajo} $D_V X$.
+
+\begin{definicija}
+  Podmnogoterost $N \subseteq X$ dimenzije $r$ je \pojem{integralska
+	podmnogoterost} za distribucijo $D_V X$, če za vsako točko $m = (b, \ldots)
+  \in D_V(X)$ velja $T_b N = \operatorname{Lin} \{ V_1(b), \ldots, V_r(b) \}$.
+\end{definicija}
+
+% LocalWords:  neekvivalentnih trivializacija restringiran Kocikel kocikel
+% LocalWords:  kontraktibilna trivializacijo Frobeniusov podsveženj
+% LocalWords:  pointegrirajo
