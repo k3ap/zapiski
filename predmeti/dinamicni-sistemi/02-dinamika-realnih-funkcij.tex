@@ -293,7 +293,7 @@ sliki~\ref{fig:ds-02-pajcevinasti-diagram}.
 \end{opomba}
 
 \begin{opomba}
-  Izkaže se, da je druga točka ekvivalentna obstoju goste orbite.
+  Druga točka je ekvivalentna obstoju goste orbite.
 \end{opomba}
 
 \begin{opomba}
@@ -321,7 +321,176 @@ sliki~\ref{fig:ds-02-pajcevinasti-diagram}.
 	\tilde{x} = 0. x_1 x_2 \ldots x_N x_1 x_2 \ldots x_N \ldots
   \]
   periodična in se nahaja v majhni okolici točke $x$.
+
+  Za točko (C2) je dovolj pokazati, da obstaja gosta orbita.
+  To bo natanko orbita točke
+  \[
+	x = 0.0100011011000001010011100\ldots
+  \]
+  To število vsebuje vse končne dvojiške zapise.
+  Posledično je orbita gosta, saj za poljuben $\tilde{x} \in [0,1]$, ki ima
+  dvojiški zapis $\tilde{x} = 0.\tilde{x}_1 \tilde{x}_2 \ldots$.
+  Potem za $N \in \N$ obstaja $m \in \N$, da je $f^m(x) = 0.\tilde{x}_1 \ldots
+  \tilde{x}_N$.
+
+  Za točko (C3) bomo pokazali, da za $x \in [0,1]$ poljubno blizu obstaja
+  $\tilde{x}$, da za nek $m$ velja $\abs{f^m(x) - f^m(\tilde{x})} = \pol$.
+  Konkretno za $x = 0.x_1 x_2 \ldots$ vzamemo
+  \[
+	\tilde{x} = 0.x_1 x_2 \ldots x_N \tilde{x}_{N+1} x_{N+2} \ldots,
+  \]
+  kjer je $\tilde{x}_{N+1} \ne x_{N+1}$.
+  Potem je $\abs{x - \tilde{x}} < 2^{-N}$, ampak $\abs{f^N(x) -
+	f^{N}(\tilde{x})} = \pol$.
   \boxdot{}
 \end{primer}
 
-% LocalWords:  predperiodične Devaney Podvojitvena
+\begin{primer}[Šotorska preslikava]
+  Tudi preslikava
+  \[
+	T(x) =
+	\begin{cases}
+	  2x & x \le \pol \\
+	  2 - 2x & x \ge \pol
+	\end{cases}
+  \]
+  je kaotična.
+  Graf $T^n$ ima $2^n$ enako razporejenih šotorov, vsi od katerih so visoki
+  $1$, torej imamo $2^n$ fiksnih točk, torej imamo na vsakem intervalu oblike
+  $[\frac{j}{2^n}, \frac{j+1}{2^n}]$ periodično točko.
+  Potem (C1) očitno velja.
+  Sledi tudi (C2), saj se pri uporabi $T$ vsak interval zgornje oblike slika v
+  dvakrat večji interval, torej bomo po nekem številu korakov prekrili celoten
+  $[0,1]$.
+  Točka (C3) sledi iz prvih dveh, saj je $[0,1]$ kompakten.
+\end{primer}
+
+\podnaslov{Konjugacije in semikonjugacije}
+
+\begin{definicija}
+  Pravimo, da sta $f: I \to I$ in $g: J \to J$ \pojem{konjugirani}, če obstaja
+  homeomorfizem $h: I \to J$, da spodnji diagram komutira:
+  \[
+	\begin{tikzcd}
+	  I & I \\
+	  J & J
+	  \arrow["f", from=1-1, to=1-2]
+	  \arrow["h"', from=1-1, to=2-1]
+	  \arrow["h", from=1-2, to=2-2]
+	  \arrow["g", from=2-1, to=2-2]
+	\end{tikzcd}
+  \]
+\end{definicija}
+
+\begin{opomba}
+  Že iz pogoja $h \circ f = g \circ h$ sledi $h(O_f(x)) = O_g(h(x))$ za poljuben
+  $x \in I$.
+  Iz zahteve, da je $h$ homeomorfizem, dobimo še $f^n = h^{-1} \circ g^n \circ
+  h$, in obstaja homeomorfna korespondenca med orbitama $f$ in $g$.
+\end{opomba}
+
+\begin{primer}
+  Oglejmo si $f(x) = x^2 - 2x + 2$ na $\zo{1, \infty}$ ter $g(x) = x^2$ na
+  $\zo{0, \infty}$.
+  Potem za $h(x) = x-1$ dobimo $h(f(x)) = g(h(x))$ za poljuben $x$.
+\end{primer}
+
+\begin{opomba}
+  Vsaka kvadratna funkcija $f(x) = ax^2 + bx+c$ je konjugirana neki funkciji
+  $q_C(x) = x^2 + C$ za $C \in \R$.
+\end{opomba}
+
+\begin{opomba}
+  V primeru se je ohranil tudi karakter fiksnih točk.
+  Še več; če sta $h, h^{-1}$ tudi odvedljivi, za fiksno točko $x$ velja $f'(x) =
+  g'(h(x))$ po verižnem pravilu.
+\end{opomba}
+
+\begin{definicija}
+  Pravimo, da je $g: J \to J$ \pojem{semikonjugirana} funkciji $f: I \to I$, če
+  obstaja zvezna surjektivna preslikava $h: I \to J$, za katero velja
+  \begin{itemize}
+  \item $h \circ f = g \circ h$,
+  \item obstaja $m \in \N$, da ima za vsak $x \in J$ praslika $h^{-1}(x)$ največ
+	$m$ elementov.
+  \end{itemize}
+\end{definicija}
+
+\begin{opomba}
+  Definicija semikonjugacije lahko variira glede na literaturo.
+\end{opomba}
+
+\begin{opomba}
+  Znova velja $h(O_f(x)) = O_g(h(x))$, vendar pa ta relacija ni več bijektivna.
+\end{opomba}
+
+\begin{primer}
+  Vzemimo $h: [-1,1] \to [0,1]$, $h(x) = x^2$ ter funkciji $f: [-1, 1] \to [-1,
+  1]$, $f(x) = \sqrt{1-x^2}$ in $g:[0,1] \to [0,1]$, $g(x) = 1-x$.
+  Funkcija $f$ ima eno fiksno točko, vse ostale pa so bodisi predperiodične
+  bodisi del $2$-cikla.
+  Podobno ima funkcija $g$ eno fiksno točko, vse ostale točke pa so $2$-cikli.
+  Dinamiki torej nista ekvivalentni, funkciji pa sta semikonjugirani.
+  V tem primeru smo sklopili predperiodične in periodične točke.
+\end{primer}
+
+\begin{trditev}
+  Naj bo $g$ semikonjugirana $f$ preko $h$.
+  Če je $x_0 \in I$ periodična za $f$, je tudi $h(x_0)$ periodična za $g$, a se
+  perioda ne ohrani nujno.
+\end{trditev}
+
+\begin{proof}
+  Naj bo $n \in \N$ najmanjše število, da velja $f^n(x_0) = x_0$ in $n \in \N$.
+  Potem velja $g^n(h(x_0)) = g^{n-1}(g(h(x_0))) = g^{n-1}(h(f(x_0))) = \cdots =
+  h(f^n(x_0)) = h(x_0)$.
+\end{proof}
+
+\begin{opomba}
+  Da se pokazati, da je nova perioda delitelj stare.
+\end{opomba}
+
+\begin{izrek}
+  Naj bo $g$ semikonjugirana $f$ preko $h$ in naj bosta $I,J$ kompaktna
+  intervala.
+  Če je $f$ kaotična, je $g$ kaotična.
+\end{izrek}
+
+\begin{proof}
+  Točka (C1) sledi iz prejšnje trditve: če vzamemo poljubno $U \odpp J$, je tudi
+  $h^{-1}(U)$ odprta v $I$ in vsebuje periodično točko $x_0$, torej je $h(x_0)$
+  periodična v $U$.
+  Na enak način dobimo tudi gosto orbito.
+  Za (C3) si oglejmo preslikavo $d: I \times I \to \R$, podano s predpisom
+  $d(x,y) = \abs{h(x) - h(y)}$.
+  To je zvezna preslikava iz kompakta v $\R$.
+  Definiramo še
+  \[
+	\Lambda_\beta = \{ (x,y) \in I \times I \such \abs{x-y} \ge \beta \}.
+  \]
+  Ker je $d$ zvezna, slika $\Lambda_\beta$ v kompakten interval v $\R$, ki ne
+  vsebuje $0$.
+  % TODO Zakaj?
+  Obstaja $\beta' > 0$, da iz pogoja $\abs{f^n(x) - f^n(y)} > \beta$ sledi
+  $\abs{g^n(h(x)) - g^n(h(y))} > \beta'$.
+  % TODO Zakaj?
+  To je občutljivostna konstanta za $g$.
+  % TODO Zakaj?
+\end{proof}
+
+\begin{primer}
+  Kompaktnost intervalov je pomembna.
+  Če vzamemo $f(x) = 2x$ na $(0, \infty)$ in $g(x) = x + \log 2$ na $\R$, potem
+  $f$ očitno izpolnjuje pogoj (C3), saj je razširitev.
+  Po drugi strani je očitno, da $g$ ne izpolnjuje (C3), saj je razlika
+  $\abs{g^n(x) - g^n(y)}$ konstantna za vse $n \in \N$.
+  Vseeno pa sta $f$ in $g$ konjugirani preko $h(x) = \log x$.
+\end{primer}
+
+\begin{primer}
+  Velja $T(D(x)) = T^2(x)$, torej je $T$ semikonjugirana $D$ preko $h = T$.
+  Ker je podvojitvena preslikava kaotična, je tudi $T$ kaotična.
+\end{primer}
+
+% LocalWords:  predperiodične Devaney Podvojitvena Konjugacije semikonjugacije
+% LocalWords:  semikonjugirana semikonjugirani podvojitvena semikonjugacija
