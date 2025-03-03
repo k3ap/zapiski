@@ -955,5 +955,362 @@ Note the following:
   Then $\Z / 2 \Z$ is a projective $A$-module, but not free.
 \end{example}
 
+\begin{corollary}
+  Let $\{P_i\}_{i \in I}$ be a family of $A$-modules.
+  Then all $P_i$ are projective if and only if their direct sum $\bigoplus_i
+  P_i$ is projective.
+\end{corollary}
+
+\begin{definition}
+  An $A$-module $E$ is \pojem{injective} if $\Hom(\cdot, E)$ is exact.
+\end{definition}
+
+\begin{theorem}
+  For an $A$-module $E$, the following are equivalent:
+  \begin{enumerate}
+  \item $P$ is injective,
+  \item for every monomorphism $f: M \to N$, $f_*$ is an epimorphism,
+  \item for every diagram with exact row of the below form, there exists a
+	homomorphism $\psi$ such that $\varphi = \psi \circ f$,
+	\[\begin{tikzcd}
+		0 & M & N \\
+		& E
+		\arrow[from=1-1, to=1-2]
+		\arrow["f", from=1-2, to=1-3]
+		\arrow["\varphi", from=1-2, to=2-2]
+		\arrow["\exists \psi", dashed, from=1-3, to=2-2]
+	  \end{tikzcd}\]
+  \item every monomorphism $f: E \to M$ splits, i.e.~there exists $r: M \to N$
+	such that $r \circ f = \id_E$,
+  \item (Baer's criterion) for every $I \trianglelefteq A$, the inclusion map
+	$j: I \to A$, and every diagram of the below form, there exists a $\psi$
+	such that $\varphi = \psi \circ j$,
+	\[\begin{tikzcd}
+		0 & I & A \\
+		& E
+		\arrow[from=1-1, to=1-2]
+		\arrow["j"', hook, from=1-2, to=1-3]
+		\arrow["\varphi"', from=1-2, to=2-2]
+		\arrow["{\exists \psi}", dashed, from=1-3, to=2-2]
+	  \end{tikzcd}\]
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  The equivalence of 1 and 2 is clear, since $\Hom(\cdot, E)$ is left-exact in
+  any case, so we need only check right exactness.
+  2 and 3 are equivalent, since $f_*$ is surjective if and only if for every
+  $\varphi \in \Hom(M, E)$ there is a homomorphism $\psi$ such that $\varphi =
+  \psi \circ f$, but this is exactly 3.
+
+  3 to 4:
+  Consider
+  \[\begin{tikzcd}
+	  0 & E & M \\
+	  & E
+	  \arrow[from=1-1, to=1-2]
+	  \arrow["f", from=1-2, to=1-3]
+	  \arrow["{\id_E}"', from=1-2, to=2-2]
+	  \arrow["{\exists r}", dashed, from=1-3, to=2-2]
+	\end{tikzcd}\]
+  Then by 3, we have the existence of $r$.
+
+  4 to 3:
+  Let $K = \{ (\varphi(m), -f(m)) \in E \times N \such m \in M \}$ and $Q = E
+  \times N / K$.
+  There are homomorphisms $j_E: E \to Q$, which maps $e \mapsto (e, 0) + K$ and
+  $j_N: N \to Q$, which maps $n \mapsto (0,n) + K$.
+  We can check that $j_E$ is a monomorphism: if $e \in E$ such that $j_E(e) =
+  0$, then $(e,0) \in K$, so there exists $m \in M$ such that $e = \varphi(m)$
+  and $0 = f(m)$, but since $f$ is a monomorphism, $m = 0$ and $e = 0$.
+
+  \[\begin{tikzcd}
+	  0 & M & N \\
+	  & E & Q
+	  \arrow[from=1-1, to=1-2]
+	  \arrow["f", from=1-2, to=1-3]
+	  \arrow["\varphi"', from=1-2, to=2-2]
+	  \arrow["{j_N}", from=1-3, to=2-3]
+	  \arrow["{j_E}", from=2-2, to=2-3]
+	  \arrow["r", shift left=3, from=2-3, to=2-2]
+	\end{tikzcd}\]
+
+  Then by assumption, there exists $r \in \Hom(Q,E)$ such that $r \circ j_E =
+  \id_E$.
+  Define $\psi = r \circ j_N$.
+  Then for $m \in M$, we have
+  \begin{align*}
+	\varphi(m)
+	&= r \circ j_E \circ \varphi(m)
+	= r((\varphi(m), 0) + K)
+	= r( (\varphi(m), 0) - (\varphi(m), -f(m)) + K ) \\
+	&= r((0, f(m)) + K)
+	= r \circ j_N(f(m))
+	= \psi \circ f(m).
+  \end{align*}
+  Which proves the implication.
+
+  3 to 5 is easy.
+  5 to 3:
+  Let $\Omega := \{ (N', \psi') \such f(M) \le N' \le N, \psi \in \Hom(N', E),
+  \psi \circ f = \varphi \}$.
+  There is a partial order on $\Omega$, given by
+  \[
+	(N', \psi') \le (N'', \psi'') \iff N' \subseteq N'' \land \left. \psi''
+	\right|_{N'} = \psi'.
+  \]
+  Clearly $\Omega \ne \varnothing$, as $(f(M), \varphi \circ f^{-1}) \in
+  \Omega$.
+  If $\Omega_0 \subseteq \Omega$ is a chain, then
+  \[
+	\left( \bigcup_{(N', \psi') \in \Omega_0}\!\!N'\,,\,\psi_0 \right)
+  \]
+  is an upper bound for $\Omega_0$ for $\psi_0$ defined by $\left. \psi_0
+  \right|_{N'} = \psi'$ for all $(N', \psi') \in \Omega_0$.
+  Then by Zorn's lemma, there exists a maximal $(N', \psi') \in \Omega$.
+
+  We claim that $N' = N$.
+  Suppose that $N' \subsetneq N$ and let $x \in N \setminus N'$.
+  Then $I = \{ a \in A \such ax \in N' \}$ is an ideal of $A$.
+  Define $\mu_I : I \to E$ by $a \mapsto \psi'(ax)$.
+  This is an $A$-homomorphism, so by assumption, we can extend it to $\mu:
+  A_A \to E_A$.
+  Then $N'' := N' + Ax$ is a module with $N'' \supsetneq N'$, and there is a
+  homomorphism $\psi'': N'' \to E$, defined with $n + ax \mapsto \psi'(n) +
+  \mu(a)$.
+
+  We need to check $\psi''$ is well defined.
+  Suppose that $n + ax = n' + a' x$ with $n, n' \in N'$ and $a, a' \in A$.
+  Then $n - n' = (a'-a)x$, so $a' - a \in I$ by definition of $I$, so
+  \[
+	\mu(a') - \mu(a)
+	= \mu(a' - a)
+	= \mu_I(a' - a)
+	= \psi'((a'-a)x)
+	= \psi'(n - n')
+	= \psi'(n) - \psi'(n')
+  \]
+  meaning $\psi'(n) + \mu(a) = \psi'(n') + \mu(a')$, so $\psi''$ is
+  well-defined.
+  Then $(N'', \psi'') \in \Omega$, which contradicts the maximality of $(N',
+  \psi')$.
+\end{proof}
+
+\begin{example}
+  For $A = \Z$, we see that $\Z_\Z$ is not injective, as for $n \ne \pm 1$ and
+  $f(x + n \Z) = 1$, the map does not extend to $\Z$.
+  \[\begin{tikzcd}
+	  0 & {n\Z} & \Z \\
+	  & \Z
+	  \arrow[from=1-1, to=1-2]
+	  \arrow[hook, from=1-2, to=1-3]
+	  \arrow["f"', from=1-2, to=2-2]
+	  \arrow["\nexists", dashed, from=1-3, to=2-2]
+	\end{tikzcd}\]
+\end{example}
+
+\begin{example}
+  The module $\Q_\Z$ is injective, as we can extend $f: n \mapsto q$ with $g: 1
+  \mapsto f / q$.
+  \[\begin{tikzcd}
+	  0 & {n \Z} & \Z \\
+	  & \Q
+	  \arrow[from=1-1, to=1-2]
+	  \arrow[hook, from=1-2, to=1-3]
+	  \arrow["f"', from=1-2, to=2-2]
+	  \arrow["g", dashed, from=1-3, to=2-2]
+	\end{tikzcd}\]
+\end{example}
+
+\begin{definition}
+  Let $A$ be a domain.
+  An $A$-module $M$ is \pojem{divisible} if for all $m \in M$ and for all $a \in
+  A^*$, there exists an element $m_0 \in M$ such that $m = a m_0$.
+\end{definition}
+
+\begin{example}
+  The $\Z$-modules $\Q$ and $\Q / \Z$ are divisible, but $\Z / n \Z$ is not.
+\end{example}
+
+\begin{proposition}
+  Let $A$ be a principal ideal domain.
+  Then $M_A$ is injective if and only if $M_A$ is divisible.
+\end{proposition}
+
+\begin{corollary}
+  Let $\{E_i\}_{i \in I}$ be a family of modules.
+  Then all $E_i$ are injective if and only if their product $\prod_i E_i$ is
+  injective.
+\end{corollary}
+
+\begin{lemma}[snake lemma]
+  Given a diagram of $A$-modules
+  \[\begin{tikzcd}
+	  & M & N & P & 0 \\
+	  0 & {M'} & {N'} & {P'}
+	  \arrow["i", from=1-2, to=1-3]
+	  \arrow["f", from=1-2, to=2-2]
+	  \arrow[from=1-3, to=1-4]
+	  \arrow["g", from=1-3, to=2-3]
+	  \arrow[from=1-4, to=1-5]
+	  \arrow["h", from=1-4, to=2-4]
+	  \arrow[from=2-1, to=2-2]
+	  \arrow[from=2-2, to=2-3]
+	  \arrow["p", from=2-3, to=2-4]
+	\end{tikzcd}\]
+  with exact rows, there is a an exact sequence
+  \[
+	\jedro f \to \jedro g \to \jedro h \to \cojedro f \to \cojedro g \to
+	\cojedro h.
+  \]
+  If $i$ is mono, so is $\left. i \right|_{\jedro f}$.
+  If $p$ is an epi, then so is $\bar{p}: \cojedro g \to \cojedro h$.
+\end{lemma}
+
+\begin{lemma}
+  Let $E$ be an $A$-module and $0 \to M \xrightarrow{f} N \xrightarrow{g} P \to
+  0$ be a split short exact sequence.
+  Then $0 \to E \otimes M \xrightarrow{E \otimes f} E \otimes N \xrightarrow{E
+	\otimes g} E \otimes P \to 0$ is also a short exact sequence.
+\end{lemma}
+
+\begin{proof}
+  Sketch.
+  Apply $E \otimes \cdot$ to
+  \[\begin{tikzcd}
+	  0 & M & N & P & 0 \\
+	  0 & M & {M \oplus P} & P & 0
+	  \arrow[from=1-1, to=1-2]
+	  \arrow["f", from=1-2, to=1-3]
+	  \arrow["{\id_M}", from=1-2, to=2-2]
+	  \arrow["g", from=1-3, to=1-4]
+	  \arrow["\sim", from=1-3, to=2-3]
+	  \arrow[from=1-4, to=1-5]
+	  \arrow["{\id_P}", from=1-4, to=2-4]
+	  \arrow[from=2-1, to=2-2]
+	  \arrow[from=2-2, to=2-3]
+	  \arrow[from=2-3, to=2-4]
+	  \arrow[from=2-4, to=2-5]
+	\end{tikzcd}\]
+  Then note that $E \otimes \cdot$ preserves direct sums.
+\end{proof}
+
+\begin{remark}
+  The functors $\Hom(M, \cdot)$ and $\Hom(\cdot, M)$ have the same property.
+\end{remark}
+
+\begin{theorem}
+  For an $A$-module $E$, the following are equivalent:
+  \begin{enumerate}
+  \item $E$ is flat (i.e.~$E \otimes_A \cdot$ is exact),
+  \item for every monomorphism $f: M \to N$, also $E \otimes f: e \otimes m
+	\mapsto e \otimes f(m)$ is a monomorphism,
+  \item for every finitely generated ideal $I \trianglelefteq A$, the
+	homomorphism $\mu_I : I \otimes E \to E$, mapping $x \otimes e \mapsto xe$,
+	is a monomorphism, and hence induces an isomorphism $I \otimes E \to IE$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  The equivalence of 1 and 2 is easy, as we know $E \otimes \cdot$ is
+  left-exact.
+  2 to 3:
+  Apply the assumption to the inclusion $I \to A$ and use $A \otimes_A E \cong
+  E$ by $a \otimes e = ae$.
+
+  3 to 2:
+  Let $f: M \to N$ be a monomorphism.
+  Observe that if $\varphi: N \to N'$ is an isomorphism, then it suffices to show
+  the claim for the inclusion map $j: M' := \varphi(f(M)) \to N' := \varphi(N)$.
+  If we apply $E \otimes \cdot$ to
+  \[\begin{tikzcd}
+	  0 & M & N \\
+	  & {M'} & {N'}
+	  \arrow[from=1-1, to=1-2]
+	  \arrow["f", hook, from=1-2, to=1-3]
+	  \arrow["{\varphi \circ f}"', from=1-2, to=2-2]
+	  \arrow["\varphi", from=1-3, to=2-3]
+	  \arrow["j"', hook, from=2-2, to=2-3]
+	\end{tikzcd}\]
+  then we get
+  \[\begin{tikzcd}
+	  {E \otimes M} & {E \otimes N} \\
+	  {E \otimes M'} & {E \otimes N'}
+	  \arrow["{E \otimes f}", from=1-1, to=1-2]
+	  \arrow["{E \otimes (\varphi \circ f)}"', from=1-1, to=2-1]
+	  \arrow["{E \otimes \varphi}", from=1-2, to=2-2]
+	  \arrow["{E \otimes j}"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+  so $\jedro (E \otimes M) \cong \jedro (E \otimes M')$ via $E \otimes (\varphi
+  \circ f)$.
+
+  Also observe the following:
+  Let $M \le N$ and $j: M \to N$ be the inclusion map.
+  If for every finitely generated $M' \le M$ and the inclusion map
+  $j': M' \to N$, we have that $E \otimes j'$ is mono, then also $E \otimes j$
+  is a mono.
+  Let
+  \[
+	x = \sum_{i=1}^s e_i \otimes m_i \in \jedro (E \otimes j)
+  \]
+  with $s \ge 0$, $e_i \in E$ and $m_i \in M$.
+  Let $M' = \sk{m_1, \ldots, m_s} \le M$ be a finitely generated submodule of
+  $M$, and let $j': M' \to N, \varepsilon: M' \to N$ be inclusions.
+  Then the following diagram commutes:
+  \[\begin{tikzcd}
+	  {E \otimes M'} & {E \otimes M} & {E \otimes N}
+	  \arrow["{E \otimes \varepsilon}", from=1-1, to=1-2]
+	  \arrow["{E \otimes j'}"', curve={height=16pt}, from=1-1, to=1-3]
+	  \arrow["{E \otimes j}", from=1-2, to=1-3]
+	\end{tikzcd}\]
+  Let
+  \[
+	x' = \sum_{i=1}^s e_i \otimes m_i \in E \otimes M'.
+  \]
+  We can see that $(E \otimes \varepsilon)(x') = x$, and by assumption, $(E
+  \otimes j) \circ (E \otimes \varepsilon) (x') = 0$, but then $(E \otimes
+  j')(x') = 0$, which means $x' = 0$, since $E \otimes j'$ is a monomorphism.
+  This means $x = 0$, so $E \otimes j$ is injective.
+
+  Let $f: M \to N$ be a monomorphism.
+  Consider the following special case: $M \le N$ and $N$ is finitely generated
+  free module.
+  Let $j: M \to N$ be the inclusion.
+  Use induction on $r = \dim N$.
+  If $r = 0$, there is nothing to check.
+  If $r = 1$, then $N \cong A_A$, so the claim holds by assumption and the above
+  observations.
+  For the induction step, suppose $r \ge 2$.
+  Then write $N = F_1 \oplus F_2$ with $\dim F_1 = r-1$ and $\dim F_2 = 1$.
+  We have canonical epimorphisms $\pi_i: N \to F_i$ and canonical embeddings
+  $\varepsilon_i: F_i \to N$.
+  Let $M_1 = M \cap F_1 = \varepsilon_1^{-1}(M)$ and $M_2 = \pi_2(M) \cong M /
+  M_1$.
+  Then the following diagram has exact rows, with the bottom row being split
+  exact:
+  \[\begin{tikzcd}
+	  0 & {M_1} & M & {M_2} & 0 \\
+	  0 & {F_1} & N & {F_2} & 0
+	  \arrow[from=1-1, to=1-2]
+	  \arrow["{\left. \varepsilon_1 \right|_{M_1}}", from=1-2, to=1-3]
+	  \arrow["j_1", hook, from=1-2, to=2-2]
+	  \arrow["{\left. \pi_2 \right|_M}", from=1-3, to=1-4]
+	  \arrow["j", hook, from=1-3, to=2-3]
+	  \arrow[from=1-4, to=1-5]
+	  \arrow["{j_2}", hook, from=1-4, to=2-4]
+	  \arrow[from=2-1, to=2-2]
+	  \arrow["{\varepsilon_1}", from=2-2, to=2-3]
+	  \arrow["{\pi_2}", from=2-3, to=2-4]
+	  \arrow[from=2-4, to=2-5]
+	\end{tikzcd}\]
+  We obtained $j_1 = \left. j \right|_{M_1}$ and $j_2$ by factoring $\pi_2 \circ
+  j$ through $M_1$.
+  We then use $E \otimes \cdot$ on the diagram above, and use the resulting
+  diagram in the snake lemma.
+  We can use the induction hypothesis on $F_1$ and $F_2$, so $\jedro(E \otimes
+  j_1) = 0$ and $\jedro (E \otimes j_2) = 0$.
+  Then $\jedro (E \otimes j) = 0$, which is exactly what we wanted to prove.
+\end{proof}
+
 % LocalWords:  nilradical nilpotents primality Nakayama Hom multilinear adjoint
-% LocalWords:  adjunction
+% LocalWords:  adjunction monomorphism Baer's
