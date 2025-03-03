@@ -63,3 +63,210 @@ It is implied that every graph is finite, simple and undirected.
   The number in the denominator is then precisely the number of graphs on vertex
   set $V$ that are isomorphic to $\Gamma$.
 \end{remark}
+
+\podnaslov{Finding graphs with prescribed automorphisms}
+
+Consider the following problem.
+Given a permutation group $G \le \Sym \Omega$, determine for which sets $E
+\subseteq \binom{\Omega}{2}$ does $G \le \Aut (\Omega, E)$ hold.
+Or, in particular, how many such sets are there.
+Label this number with $\gamma(G)$.
+
+\begin{lemma}
+  Let $\Gamma$ be a graph, $V = V(\Gamma)$, $E = E(\Gamma)$ and let $G \le \Sym
+  \Omega$.
+  Then $G \le \Aut \Gamma$ if and only if $E$ is a union of some orbits of $G$
+  in its induced action on $\binom{V}{2}$.
+\end{lemma}
+
+\begin{corollary}
+  Let $G \le \Sym \Omega$.
+  Then
+  \[
+	\gamma(G) = 2^{\operatorname{orb}_2(G)},
+  \]
+  where $\operatorname{orb}_2(G)$ is the number of orbits of $G$ on its induced
+  action on $\binom{\Omega}{2}$.
+\end{corollary}
+
+By the Cauchy-Frobenius lemma, we have
+\[
+  \operatorname{orb}_2(G) = \inv{\abs{G}} \sum_{g \in G} \abs{\Fix_2(g)},
+\]
+where $\Fix_2(g)$ is the number of unordered pairs of elements of $\Omega$ fixed
+by $g$.
+
+Suppose that $G = \sk{g}$ is cyclic.
+Then the above reduces to
+\[
+  \operatorname{orb}_2(G) = \inv{\abs{g}} \sum_{i=0}^{\abs{g}-1}
+  \abs{\Fix_2(g^i)},
+\]
+where $\abs{g}$ is the order of $g$.
+Now consider several cases.
+For the first case, suppose $\Omega = \{1, 2, \ldots, m\}$ and $g =
+(1\,2\,\ldots\,m)$.
+Then a pair $e = \{x,y\} \subseteq \Omega$ is fixed by $g^i$ if either $g^i$
+fixes both $x$ and $y$, which happens only in the case $i=0$, or if $g^i$ maps
+$x$ to $y$ and vice versa, but this happens only if $m$ is even, $i =
+\frac{m}{2}$ and $x$ and $y$ are opposite.
+We thus have
+\[
+  \abs{\Fix_2(g^i)} =
+  \begin{cases}
+	\binom{m}{2} & i = 0 \\
+	\frac{m}{2} & \text{$m$ even, $i = \frac{m}{2}$} \\
+	0 & \text{otherwise}
+  \end{cases}
+\]
+so
+\[
+  \operatorname{orb}_2(\sk{g})
+  = \inv{m} \left(
+	\binom{m}{2} + \operatorname{even}(m)\,\frac{m}{2}
+  \right)
+  = \left\lfloor \frac{m}{2} \right\rfloor,
+\]
+where $\operatorname{even}(m)$ is either $1$ or $0$ if $m$ is even or odd,
+respectively.
+
+For the second case, suppose $\Omega = \{ 1, 2, \ldots, m, 1', 2', \ldots, k'
+\}$, so $\abs{\Omega} = m+k'$, and $g = (1\,2\,\ldots\,m) (1'\,2'\,\ldots\,k')$.
+Note that $\abs{g} = \operatorname{lcm}(m, k)$.
+Now choose some $e = \{i, j'\}$ for $1 \le i \le m$ and $1 \le j \le k$.
+We can estimate
+\[
+  \abs{e^{\sk{g}}}
+  = \frac{\abs{\sk{g}}}{\abs{\sk{g}_e}}
+  = \operatorname{lcm}(m, k)
+\]
+since if $g^r$ fixes $e$, then it also fixes $i$ and $j'$ (since $g$ cannot map
+a non-primed element to a primed element), so $g^r \in \sk{g}_e$ implies $g^r
+\in \sk{g}_i$.
+Then by the following lemma, since a cyclic group is Abelian, $g^r$ fixes all
+points $1, \ldots, m$.
+Similarly, it fixes all points $1', \ldots, k'$.
+So $g^r$ is the identity (since a permutation group always acts faithfully).
+
+\begin{lemma}
+  Suppose $G$ is an Abelian group acting on $\Omega$.
+  Then every $g \in G_\omega$ fixes all points in $\omega^G$.
+  In other words, $G_\omega$ acts trivially on $\omega^G$.
+\end{lemma}
+
+\begin{proof}
+  Take $g \in G_\omega$ and $\delta \in \omega^G$.
+  Then $\delta = \omega^ĥ$ for some $h \in G$, so
+  \[
+	\delta^g = \omega^{hg} = \omega^{gh} = \omega^h = \delta
+  \]
+  which we were trying to prove.
+\end{proof}
+
+\begin{remark}
+  If $G$ is Abelian and acts transitively and faithfully, then it acts
+  regularly.
+  Since all regular actions are isomorphic, this means Abelian groups are
+  boring.
+\end{remark}
+
+Continuing the previous discussion, this implies we have precisely
+\[
+  \frac{mk}{\operatorname{lcm}(m,k)} = \operatorname{gcd}(m, k)
+\]
+orbits containing a pair of the form $\{i, j'\}$.
+
+For the general case, suppose $g$ consists of $k$ fixed points $K = \Fix(g)$ and
+$r$ cycles $M_1, \ldots, M_r$ of lengths $m_1, \ldots, m_r \ge 2$.
+Label $n = k + m_1 + \cdots + m_k$.
+If $g \ne \id$, then $k < n$, $r \ge 1$ and $r \le \frac{n}{2}$.
+Let $E$ be an orbit of $\sk{g}$ on $\binom{\Omega}{2}$.
+Then $E$ is of one of the following types:
+\begin{enumerate}
+\item $E$ contains a pair $e \subseteq \binom{K}{2}$.
+  Then $E = \{e\}$.
+  There are $\binom{k}{2}$ orbits of this type.
+\item $E$ contains a pair $e = \{x,y\}$, where $x \in K$ and $y \in M_i$ for
+  some $i$.
+  Then $E = \{ \{x, z\} \such z \in M_i \}$, and there are $rk$ orbits of this
+  type.
+\item $E$ contains a pair $e \subseteq \binom{M_i}{2}$ for some $i$.
+  Then by the first case, there are
+  \[
+	\left\lfloor \frac{m_1}{2} \right\rfloor
+	+ \left\lfloor \frac{m_2}{2} \right\rfloor
+	+ \cdots
+	+ \left\lfloor \frac{m_r}{2} \right\rfloor
+  \]
+  such orbits.
+\item $E$ contains a pair $e = \{x,y\}$ with $x \in M_i, y \in M_j$ and $i \ne
+  j$.
+  By the second case above, there are $\operatorname{gcd}(m_i, m_j)$ of these
+  orbits for fixed $i$, $j$, so in total
+  \[
+	\sum_{1 \le i < j \le r} \operatorname{gcd}(m_i, m_j)
+  \]
+  orbits of this type.
+\end{enumerate}
+We counted
+\[
+  \operatorname{orb}_2(\sk{g})
+  = \binom{k}{2} + kr + \sum_{i=1}^r \left\lfloor \frac{m_i}{2} \right\rfloor
+  + \sum_{1 \le i < j \le r} \operatorname{gcd}(m_i, m_j).
+\]
+This is an exact formula, but it's horrendous, so we will use it to derive some
+less exact bounds.
+We can estimate
+\[
+  \sum_{i=1}^r \left\lfloor \frac{m_i}{2} \right\rfloor
+  \le \sum_{i=1}^r \frac{m_i}{2}
+  = \frac{n-k}{2}
+\]
+and, since the minimum is always less than the average,
+\begin{align*}
+  \sum_{i<j} \operatorname{gcd}(m_i, m_J)
+  &\le \sum_{i<j} \min(m_i, m_j)
+  \le \sum_{i<j} \frac{m_i+m_j}{2}
+  = \pol (r-1) \sum_{i=0}^r m_i \\
+  &= \frac{(r-1)(n-k)}{2}.
+\end{align*}
+We thus see that
+\[
+  \operatorname{orb}_2(\sk{g})
+  \le \binom{k}{2} + kr + \frac{n-k}{2} + \frac{(r-1)(n-k)}{2}
+  = \binom{k}{2} + \frac{r(n+k)}{2}.
+\]
+This is further equal to
+\begin{align*}
+  \operatorname{orb}_2(\sk{g})
+  &= \binom{k}{2} + \frac{r(n+k)}{2} \\
+  &\le \binom{n}{2} + \frac{k(k-1)-n(n-1)}{2} + \frac{r(n+k)}{2} \\
+  &= \binom{n}{2} - \frac{(n-r-1)(n-k)}{2}.
+\end{align*}
+
+Now let us find some useful lower bounds for $(n-r-1)(n-k)$.
+Since $n = k + m_1 + \cdots + m_r$, we have $1 \le r \le \frac{n}{2}$ and $n-k
+\ge 2r$.
+Plugging this into the expression above yields us
+\[
+  \operatorname{orb}_2(\sk{g})
+  \le \binom{n}{2} - r(n - r - 1).
+\]
+The second term on the right is a quadratic function $r \mapsto -r(n-r-1)$,
+with a minimum at $\frac{n-1}{2}$.
+In the bounds $1 \le r \le \frac{n}{2}$, the maximum value of this quadratic
+function is achieved at $r = 1$, and it is equal to $-(n-2)$.
+So
+\[
+  \operatorname{orb}_2(\sk{g})
+  \le \binom{n}{2} - (n-2).
+\]
+
+We can similarly show an alternate bound
+\[
+  \operatorname{orb}_2(\sk{g})
+  \le \binom{n}{2} - \frac{(n-2)(n-k)}{4}
+\]
+by considering $(n-r-1)(n-k)$ and the inequality $n-r \ge \frac{n}{2}$.
+
+% LocalWords:  Frobenius
