@@ -175,14 +175,15 @@ ki slika v disjunktno unijo tangentnih prostorov na $X$.
   Naj bosta $X$ in $E$ taki gladki mnogoterosti, da obstaja projekcija
   $\pi: E \to X$ z naslednjimi lastnostmi:
   \begin{itemize}
-  \item Za vsak $b \in X$ je $\pi^{-1}(b) \subseteq E$ linearno izomorfna
-	$\F^k$.
+  \item Za vsak $b \in X$ je $\pi^{-1}(b) \subseteq E$ vektorski prostor,
+	izomorfen $\F^k$.
   \item Za vsak $b \in X$ obstaja odprta okolica $b \in U \subseteq X$ in
 	difeomorfizem $T_U: \pi^{-1}(U) \to U \times \F^k$, za katerega je vsaka
-	skrčitev $T_U$ na $\pi^{-1}(b)$ linearen izomorfizem $\pi^{-1}(b)
-	\to b \times \F^k$.
+	skrčitev $T_U$ na $\pi^{-1}(a)$ (lokalen) linearen izomorfizem $\pi^{-1}(a)
+	\to \{a\} \times \F^k$ za poljuben $a \in U$.
 	Potem je $T_U$ \pojem{lokalna trivializacija}.
   \end{itemize}
+  Potem je $(E, X, \pi)$ \pojem{vektorski sveženj} ranga $k$.
 \end{definicija}
 
 \begin{definicija}
@@ -303,6 +304,138 @@ premice $t \mapsto \varphi_\alpha^{-1}(x_1^0, \ldots, x_i^0  + t, \ldots,
 x_n^0)$ za $x_0 = (x_1^0, \ldots, x_n^0)$.
 Tak tangentni vektor označimo z $\frac{\partial}{\partial x_i^\alpha}(b)$.
 
+\podnaslov{Liejev odvod}
+
+Spomnimo se:
+Nad lokalno karto $(U_\alpha, \varphi_\alpha)$, nad katero je $T U_\alpha
+\subseteq TX$ trivialen, imamo odlikovana bazo prerezov $T U_\alpha$, ki jo
+označimo z
+\[
+  \frac{\partial}{\partial x_1^\alpha}, \frac{\partial}{\partial x_2^\alpha},
+  \ldots, \frac{\partial}{\partial x_n^\alpha}.
+\]
+Velja $\frac{\partial}{\partial x_i^\alpha} = [c_i^\alpha]_m$, kjer je
+$c_i^\alpha$ $i$-ta koordinatna krivulja na $U_\alpha$.
+Vsako vektorsko polje $V$ lahko lokalno zapišemo v obliki
+\[
+  V(m) = \sum_{i=1}^n a_i^\alpha(m) \frac{\partial}{\partial x_i^\alpha}(m)
+\]
+za neke $a_i^\alpha$.
+
+\begin{definicija}
+  \pojem{Smerni odvod} funkcije $f: X \to \R$ v smeri vektorskega polja $V$ je
+  funkcija $V(f): X \to \R$, podana s predpisom
+  \[
+	V(f)(m) = \left. \frac{d}{dt} \right|_{t=0} f(\gamma(t)),
+  \]
+  kjer je $\gamma$ integralska krivulja $V$ skozi točko $\gamma(0) = m$.
+\end{definicija}
+
+Velja potem
+\[
+  V(f)(a) = \sum_{i=1}^n \frac{\partial f}{\partial x_i^\alpha}(x)
+  a_i^\alpha(x).
+\]
+
+Naj bosta $V$ in $W$ gladki vektorski polji na $U \subseteq \R^n$.
+Opazujemo vrednosti $W$ vzdolž integralske krivulje $\gamma^V(t)$ polja $V$.
+Naj bo $\phi^V_t: U_\alpha \to \phi^V_t(U_\alpha)$ tok vektorskega polja $V$.
+Definiramo
+\[
+  \mathcal{L}_V W(m)
+  = \left. \frac{d}{dt} \right|_{t=0} \left( D_{\phi^V_t(m)} \phi^V_t
+  \right)^{-1} W(\gamma^V(t))
+\]
+kjer je $\gamma^V(0) = m$.
+
+Izračunajmo $\mathcal{L}_V W$ v koordinatah.
+Če označimo $\phi^V_t(x) = ((\phi^V_t)_1, \ldots, (\phi^V_t)_n)(x_1, \ldots,
+x_n)$, potem je
+\[
+  D \phi^V_t =
+  \begin{bmatrix}
+	\frac{\partial (\phi^V_t)_1}{\partial x_1} & \cdots & \frac{\partial
+														  (\phi^V_t)_1}{\partial
+														  x_n} \\
+	\vdots & \ddots & \vdots \\
+	\frac{\partial (\phi^V_t)_n}{\partial x_1} & \cdots & \frac{\partial
+														  (\phi^V_t)_n}{\partial
+														  x_n} \\
+  \end{bmatrix}.
+\]
+Če na definiciji $\mathcal{L}_V W$ uporabimo produktno pravilo za odvajanje,
+dobimo
+\[
+  \mathcal{L}_V W(m)
+  = \left( \left. \frac{d}{dt} \right|_{t=0} \left( D \phi_t^V \right)^{-1}
+  \right) W(\gamma^V(0))
+  + \left. \left( D \phi_t^V \right)^{-1} \right|_{t=0}
+  \left. \frac{d}{dt} \right|_{t=0} W(\gamma^V(t))
+\]
+V našem primeru je $\phi^V_t = \id$ pri $t = 0$.
+Potem je
+\[
+  \left.\frac{d}{dt} \right|_{t=0} D \phi^V_t =
+  \begin{bmatrix}
+	\frac{\partial V_1}{\partial x_1} & \cdots & \frac{\partial V_1}{\partial
+												 x_n} \\
+	\vdots & \ddots & \vdots \\
+	\frac{\partial V_n}{\partial x_1} & \cdots & \frac{\partial V_n}{\partial
+												 x_n} \\
+  \end{bmatrix}(m),
+\]
+saj odvod po času in po $x_i$ komutirata.
+Potem imamo, upoštevaje $\partial_t (A^{-1}) = -A^{-1} \dot{A} A^{-1}$,
+\[
+  \mathcal{L}_V W =
+  -
+  \begin{bmatrix}
+	\frac{\partial V_1}{\partial x_1} & \cdots & \frac{\partial V_1}{\partial
+												 x_n} \\
+	\vdots & \ddots & \vdots \\
+	\frac{\partial V_n}{\partial x_1} & \cdots & \frac{\partial V_n}{\partial
+												 x_n} \\
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+	W_1 \\ \vdots \\ W_n
+  \end{bmatrix}
+  +
+  \begin{bmatrix}
+	\sum_{j=1}^n \frac{\partial W_1}{\partial x_j} V_j \\
+	\vdots \\
+	\sum_{j=1}^n \frac{\partial W_n}{\partial x_j} V_j \\
+  \end{bmatrix},
+\]
+kjer so vsa polja evaluirana v točki $m$.
+Potem je $i$-ta komponenta tega vektorja enaka
+\[
+  - \sum_{j=1}^n \frac{\partial V_i}{\partial x_j} W_j + \sum_{j=1}^n
+  \frac{\partial W_i}{\partial x_j} V_j,
+\]
+torej je zapis $\mathcal{L}_V W$ antisimetričen v $V$ in $W$.
+
+Rezultat nas navede na drugo definicijo Liejevega odvoda.
+Naj bo $f: X \to \R$ poljubna funkcija.
+Potem
+\[
+  (\mathcal{L}_V W) (f) = \left[ V, W \right] (f)
+  = V(W(f)) - W(V(f))
+  = \sum_{i,j} \left( V_j \frac{\partial W_i}{\partial x_j} - W_j \frac{\partial
+	V_i}{x_j} \right) \left( \frac{\partial f}{\partial x_i} \right).
+\]
+
+Naj bosta $\phi_t^V$ in $\phi_t^W$ tokova $V$ in $W$.
+Pričakovali bi, da mora veljati $\phi_s^W \circ \phi_t^V = \phi_t^V \circ
+\phi_s^W$, vendar to ni nujno res.
+Izračunamo lahko
+\[
+  \left. \frac{d^2}{dt ds} \right|_{s=t=0} f(\phi_t^V(\phi_s^W(m))) -
+  f(\phi_s^W(\phi_t^V(m)))
+  = \left[ W, V \right](f) (m).
+\]
+Če tokova komutirata, potem torej velja $\mathcal{L}_V W = 0$.
+
 \podnaslov{Frobeniusov izrek}
 
 Naj bo $X$ gladka mnogoterost in $TX$ njen tangentni sveženj.
@@ -320,6 +453,70 @@ Zanimalo nas bo, kdaj obstajajo integralske podmnogoterosti v $X$, ki
   \in D_V(X)$ velja $T_b N = \operatorname{Lin} \{ V_1(b), \ldots, V_r(b) \}$.
 \end{definicija}
 
+\begin{izrek}[Frobenius]
+  Naj bo $X$ mnogoterost dimenzije $n$ in $V_1, \ldots, V_r$ vektorska polja, ki
+  so v vsaki točki linearno neodvisna.
+  Naj za ta polja velja
+  \[
+	\left[ V_i, V_j \right](m)
+	= \sum_{k=1}^n c_{i,j}^k(m) V_k,
+  \]
+  kjer so $C_{i,j}^k: X \to \R$ gladke funkcije.
+  Potem za vsak $p \in X$ obstaja podmnogoterost $N \subseteq X$, da
+  je $p \in N$ in da za vsak $q \in N$ velja $T_q N = \operatorname{Lin}
+  \{V_1(q), \ldots, V_r(q)\}$.
+\end{izrek}
+
+\begin{proof}
+  Ideja.
+  Z Gaussovim postopkom nadomestimo polja $V_1, \ldots, V_r$ s polji
+  $\tilde{V}_1, \ldots, \tilde{V}_r$, za katera velja $\left[ \tilde{V}_i,
+	\tilde{V}_j \right] = 0$.
+  Definiramo preslikavo
+  \[
+	\varphi(t_1, \ldots, t_r)
+	= \phi_{t_r}^{\tilde{V}_r} \circ \phi_{t_{r-1}}^{\tilde{V}_{r-1}} \circ \cdots \circ
+	\phi_{t_2}^{\tilde{V}_2} \circ \phi_{t_1}^{\tilde{V}_1}(p).
+  \]
+  Potem moramo pokazati, da za vsako točko $q \in N$ velja $T_q N =
+  \operatorname{Lin}\{ \tilde{V}_1(q), \ldots, \tilde{V}_r(q) \}$.
+  Izberimo $i = \{1, \ldots, r\}$ in si oglejmo
+  \[
+	\left. \frac{d}{ds} \right|_{s=0} \varphi(t_1^0, \ldots, t_{i-1}^0, t_i^0 +
+	s, t_{i+1}^0, \ldots, t_r^0)
+	= \left. \frac{d}{ds} \right|_{s=0} \phi_s^{\tilde{V}_i} \circ
+	\phi_{t_r^0}^{\tilde{V}_r} \circ \cdots \circ \phi_{t_1^0}^{\tilde{V}_1}(p)
+	= \tilde{V}_1(q).
+  \]
+\end{proof}
+
+\podnaslov{Liejeve grupe}
+
+Če je $G$ hkrati mnogoterost in grupa, ter sta množenje in invertiranje gladki
+preslikavi, je $G$ Liejeva grupa.
+Grupna struktura nam poda veliko poceni difeomorfizmov, na primer leve in desne
+translacije
+\begin{gather*}
+  L_g: h \mapsto gh \\
+  R_g: h \mapsto hg
+\end{gather*}
+
+\begin{definicija}
+  Vektorsko polje $X_\xi$ je \pojem{levo invariantno vektorsko polje}, če je
+  podano s predpisi
+  \[
+	X_\xi(g) = D_e L_g (\xi),
+  \]
+  kjer je $\xi \in T_e G$ in $e$ enota grupe.
+\end{definicija}
+
+Naj bo $\{\xi_1, \ldots, \xi_n\}$ neka baza $T_e G$.
+Ker je za vsak $g \in G$ preslikava $D_e L_g: T_e G \to T_g G$ linearni
+izomorfizem, je $\{ D_e L_g(\xi_1), \ldots, D_e L_g(\xi_n) \} = \{ g \xi_1,
+\ldots, g \xi_n \}$ baza $T_g G$.
+Iz tega sledi, da je tangentni sveženj $T G$ trivialen.
+
 % LocalWords:  neekvivalentnih trivializacija restringiran Kocikel kocikel
-% LocalWords:  kontraktibilna trivializacijo Frobeniusov podsveženj
-% LocalWords:  pointegrirajo
+% LocalWords:  kontraktibilna trivializacijo Frobeniusov podsveženj Liejev
+% LocalWords:  pointegrirajo evaluirana Liejevega Frobenius Liejeve Liejeva
+% LocalWords:  invertiranje difeomorfizmov
