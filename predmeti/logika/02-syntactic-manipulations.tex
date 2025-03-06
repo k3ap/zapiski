@@ -1,0 +1,173 @@
+\naslov{Syntactic Manipulations}
+
+Consider the language of natural numbers.
+We use the following abbreviations:
+\begin{itemize}
+\item $\exists x > t \velja A$ abbreviates $\exists x \velja x > t \land A$,
+\item $\forall x > t \velja A$ abbreviates $\forall x \velja x > t \implies A$
+\end{itemize}
+Here, $t$ is not a logical variable, but rather a meta-variable; that is, we can
+substitute it for any term.
+You can of course use meta-variables in different situations, for example, to be
+substituted by formulas or just regular variables.
+We will use $s, t, u, \ldots$ as meta-variables for terms, $A, B, C, \ldots$ for
+formulas, $x, y, z, \ldots$ for variables, $P, Q, R, \ldots$ for relation
+symbols, $f, g, \ldots$ for function symbols etc.
+Note that $y > x$ is itself an abbreviation of $\exists z \velja y = x+z+1$.
+
+Let $A$ be a formula, $t$ a term and $x$ a free variable.
+By $A[t/x]$, we denote the formula we get from substituting $t$ for $x$
+in $A$.
+Similarly, if $s$ is a term, then $s[t/x]$ denotes the term we get by
+substituting $t$ for the variable $x$ in $s$.
+
+\begin{example}
+  The abbreviation $\operatorname{Prime}(y)$ means $\lnot(y=1) \land \forall x
+  \forall z \velja y = x \cdot z \implies (x = 1 \lor z = 1)$.
+  We can substitute $\operatorname{Prime}(y)[y+2/y]$, but we must be careful
+  to rename the bound variable $x$ when substituting
+  $\operatorname{Prime}(y)[x/y]$.
+\end{example}
+
+More formally, we define $s[t/x]$ as the term we get when we literally replace
+all occurrences of the variable $x$ with the term $t$.
+For $A[t/x]$, we rename all bound variables in $A$ so that no bound
+variable occurs in the set $\Vars(t) \cup \{x\}$.
+Then we replace all remaining occurrences of $x$ by $t$.
+
+Even more formally, for a variable $y$, we define
+\[
+  y[t/x] :=
+  \begin{cases}
+	t & \text{if $y$ is syntactically equal to $x$} \\
+	y & \text{otherwise}
+  \end{cases}
+\]
+and for a function symbol,
+\[
+  (f(s_1, \ldots, s_k))[t/x] := f(s_1[t/x], \ldots, s_k[t/x]),
+\]
+which covers $s[t/x]$ for any term $s$.
+For a formula $A$, we can write a similar recursive definition of $A[t/x]$.
+The only interesting part of the definition are the quantifiers,
+\[
+  (\forall y \velja A)[t/x] := \forall y \velja A[t/x]
+\]
+assuming we've already renamed the bound variables.
+If we haven't, we can use the following definition:
+\[
+  (\forall y \velja A)[t/x]
+  :=
+  \begin{cases}
+	\forall y \velja A & \text{if $y$ is literally $x$} \\
+	\forall y \velja A[t/x] & \text{if $y \notin \Vars(t)$ and $y$ is not $x$} \\
+	\forall w \velja A[w/y][t/x] & \text{otherwise}
+  \end{cases}
+\]
+where $w$ is some chosen fresh $w$ (that isn't $x$ or used in $A$ or $t$).
+
+Substitution has a semantic interpretation,
+\[
+  \left( S[t/x] \right)^\rho_{\mathcal{M}}
+  = S^{\rho[x \mapsto t^\rho]}_{\mathcal{M}},
+\]
+and
+\[
+  \mathcal{M} \models_\rho A[t/x]
+  \iff \mathcal{M} \models_{\rho[x \mapsto t^\rho]} A.
+\]
+
+\begin{definition}
+  Two formulas $A, B$ are \pojem{logically equivalent} ($A \equiv B$) if the
+  formula $A \iff B$ is valid.
+  Equivalently, if for all $\mathcal{M}$ and $\rho$, $\mathcal{M} \models_\rho
+  A$ if and only if $\mathcal{M} \models_\rho B$.
+\end{definition}
+
+\begin{example}
+  For any formula $A$, $\top \equiv A \lor \lnot A$ and $\bot \equiv A \land
+  \lnot A$.
+\end{example}
+
+\begin{example}
+  For any formulas $A, B$, we have $A \iff B \equiv (A \implies B) \land (B
+  \implies A)$.
+\end{example}
+
+\begin{example}
+  If we have negation, then we need only one of $\land, \lor, \implies$, we can
+  express one with another.
+  We also only need one quantifier.
+\end{example}
+
+As discussed above, combining $\lnot$ with one of $\land, \lor, \implies$ and
+one of $\forall, \exists$, will give us a \pojem{sufficient set of connectives
+  and quantifiers}.
+
+\podnaslov{Normal forms}
+
+A formula is in \pojem{prenex normal form} (PNF) if it has the form $Q_1 x_1 Q_2
+x_2 \ldots Q_k x_k B$, where $Q_i$ are quantifiers and $B$ is quantifier free.
+We include the possibility of $k = 0$.
+
+\begin{proposition}
+  Every formula $A$ is equivalent to a formula $A^{\text{PNF}}$ in prenex normal
+  form.
+\end{proposition}
+
+\begin{proof}
+  We restrict to formulas over the sufficient set $\lnot, \lor, \exists$ (for
+  the input only).
+  We will describe a recursive algorithm that computes an equivalent formula in
+  prenex formal form.
+
+  For $(A \lor A')^{\text{PNF}}$, first recursively compute $A^{\text{PDF}} = Q_1 x_1
+  \ldots Q_k x_K B$ and $A'^{\text{PNF}} = Q_1' x_1' \ldots Q_{k'}' x_{k'}' B'$,
+  then return $Q_1 x_1 \ldots Q_k x_k Q_1' x_1' \ldots Q_{k'}' x_{k'}' (B \lor
+  B')$.
+  We of course assume there is no overlap in bound variables.
+
+  The PNF of $\exists x \velja A$ is $\exists x \velja A^{\text{PNF}}$.
+  Finally, for negation $\lnot A$, recursively compute $A^{\text{PNF}} = Q_1 x_1
+  \ldots Q_k x_k B$, then switch each quantifier to $\bar{Q}_1 x_1 \ldots
+  \bar{Q}_k x_k (\lnot B)$.
+\end{proof}
+
+For quantifier free formulas, we consider normal forms with connectives $\land,
+\top, \lor, \bot, \lnot$.
+Recall that an atomic formula is one of $t_1 = t_2$ or $P(t_1, \ldots, t_n)$.
+We say that a \pojem{literal} is either an atomic formula or its negation.
+
+A formula is in \pojem{negation normal form} if it is built from literals
+using only conjunctions and disjunctions, i.e.~if $\lnot$ occurs only before an
+atomic formula.
+We consider $\top$ as a conjunction and $\bot$ as a disjunction.
+
+\begin{proposition}
+  Every quantifier free formula $A$ is equivalent to a formula $A^{\text{NNF}}$
+  in negation normal form.
+\end{proposition}
+
+\begin{proof}
+  Use De Morgan's laws.
+\end{proof}
+
+A formula is in \pojem{conjunctive normal form} if it is a conjunction of
+disjunctions of literals, i.e.~of the form $D_1 \land \ldots \land D_k$, where
+$k \ge 0$ and each $D_i$ is of the form $L_{i1} \lor \ldots \lor L_{i l_i}$,
+with $L_{ij}$ being literals.
+Similarly, a formula is in \pojem{disjunctive normal form} if it is a
+disjunction of conjunctions of literals.
+
+\begin{proposition}
+  Every quantifier free formula $A$ is equivalent to formulas $A^{\text{DNF}}$
+  and $A^{\text{CNF}}$ in disjunctive and conjunctive normal forms,
+  respectively.
+\end{proposition}
+
+\begin{remark}
+  While the negation normal form can be found efficiently, finding conjunctive
+  and disjunctive normal forms is an NP-complete problem.
+\end{remark}
+
+% LocalWords:  prenex PNF disjunctions disjunction
