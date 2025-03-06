@@ -1273,7 +1273,7 @@ Note the following:
   This means $x = 0$, so $E \otimes j$ is injective.
 
   Let $f: M \to N$ be a monomorphism.
-  Consider the following special case: $M \le N$ and $N$ is finitely generated
+  Consider the following special case: $M \le N$ and $N$ is a finitely generated
   free module.
   Let $j: M \to N$ be the inclusion.
   Use induction on $r = \dim N$.
@@ -1310,7 +1310,106 @@ Note the following:
   We can use the induction hypothesis on $F_1$ and $F_2$, so $\jedro(E \otimes
   j_1) = 0$ and $\jedro (E \otimes j_2) = 0$.
   Then $\jedro (E \otimes j) = 0$, which is exactly what we wanted to prove.
+
+  Now consider the case where $N$ is free, but not necessarily finitely
+  generated.
+  By the second observation, we can assume without loss of generality that $M$
+  is finitely generated.
+  Write $N = \bigoplus_i A e_i$, where $\{e_i\}_{i \in I}$ is an $A$-basis for
+  $N$.
+  Since $M$ is finitely generated, there exists a finite $I_0 \subseteq I$ such
+  that $M \subseteq \bigoplus_{i \in I_0} A e_i := N_0$.
+  Let $\varepsilon_M: M \to N_0$ and $\varepsilon_0 : N_0 \to N$ be the
+  inclusions.
+  Now $j = \varepsilon_0 \circ \varepsilon_M$.
+  Then $E \otimes j = (E \otimes \varepsilon_0) \circ (E \otimes
+  \varepsilon_M)$.
+  The right term is a monomorphism by case 1, and the left is a monomorphism
+  since $\varepsilon_0$ is split.
+  Then $E \otimes j$ is a monomorphism.
+
+  In the third case, suppose $j: M \to N$ is an inclusion and $N$ is arbitrary.
+  Let $\pi: F \to N$ be an epimorphism with $F$ free.
+  For $K = \jedro \pi$, the following diagram commutes and has exact rows:
+  \[\begin{tikzcd}
+	  0 & K & {\pi^{-1}(M)} & M & 0 \\
+	  0 & K & F & N & 0
+	  \arrow[from=1-1, to=1-2]
+	  \arrow[from=1-2, to=1-3]
+	  \arrow["{\id_K}"', from=1-2, to=2-2]
+	  \arrow["{\left. \pi \right|_{\pi^{-1}(M)}}", from=1-3, to=1-4]
+	  \arrow[hook, from=1-3, to=2-3]
+	  \arrow[from=1-4, to=1-5]
+	  \arrow["j", hook, from=1-4, to=2-4]
+	  \arrow[from=2-1, to=2-2]
+	  \arrow[hook, from=2-2, to=2-3]
+	  \arrow[from=2-3, to=2-4]
+	  \arrow[from=2-4, to=2-5]
+	\end{tikzcd}\]
+  Using $E \otimes \cdot$, we find
+  \[\begin{tikzcd}
+	  & 0 \\
+	  {E \otimes K} & {E \otimes \pi^{-1}(M)} & {E \otimes M} & 0 \\
+	  {E \otimes K} & {E \otimes F} & {E \otimes j} & 0
+	  \arrow[from=1-2, to=2-2]
+	  \arrow[from=2-1, to=2-2]
+	  \arrow["{E \otimes \id}"', from=2-1, to=3-1]
+	  \arrow[from=2-2, to=2-3]
+	  \arrow[from=2-2, to=3-2]
+	  \arrow[from=2-3, to=2-4]
+	  \arrow[from=2-3, to=3-3]
+	  \arrow[from=3-1, to=3-2]
+	  \arrow[from=3-2, to=3-3]
+	  \arrow[from=3-3, to=3-4]
+	\end{tikzcd}\]
+  where the second column is exact by the second case, as is the sequence $0 \to
+  E \otimes K \to E \otimes F$.
+  By the snake lemma, then $\jedro E \otimes j = 0$.
 \end{proof}
+
+\begin{corollary}
+  Let $\{E_i\}_{i \in I}$ be a family of modules.
+  Then they are all flat if and only if their direct sum is flat.
+\end{corollary}
+
+\begin{proof}
+  Easy exercise.
+  Use that the tensor product distributes over direct sums.
+\end{proof}
+
+\begin{corollary}
+  Projective modules are flat.
+\end{corollary}
+
+\begin{proof}
+  Projective modules are direct summands of free modules.
+  By the previous corollary, flat modules are closed under direct sums and
+  summands, so it suffices to show that $A_A$ is flat.
+  Note that for any $A$-module $M$, we have $A \otimes M \cong M$.
+  If $f: M \to N$ is a monomorphism, then
+  \[\begin{tikzcd}
+	  {A \otimes M} & {A \otimes N} \\
+	  M & N
+	  \arrow["{A \otimes f}", from=1-1, to=1-2]
+	  \arrow["\sim"', from=1-1, to=2-1]
+	  \arrow["\sim", from=1-2, to=2-2]
+	  \arrow["f"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+  commutes and $A \otimes f$ is a monomorphism.
+\end{proof}
+
+\begin{example}
+  The module $\Q_\Z$ is flat but not projective.
+  It is not projective since it is injective (divisible, but $\Z$ is not a
+  field).
+  It is flat:
+  Take the map $\mu_n : n \Z \otimes \Q \to \Q$,
+  \[
+	\mu_n : nx \otimes q \mapsto nxq.
+  \]
+  It has inverse $\mu_n^{-1}(q) = 1 \otimes q$.
+  \boxdot{}
+\end{example}
 
 % LocalWords:  nilradical nilpotents primality Nakayama Hom multilinear adjoint
 % LocalWords:  adjunction monomorphism Baer's

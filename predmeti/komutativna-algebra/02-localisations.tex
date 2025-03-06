@@ -1,0 +1,62 @@
+\naslov{Localisations}
+
+Given a ring $A$, we wish to adjoin some inverses (fractions), but not all of
+them.
+
+\begin{definition}
+  A subset $S \subseteq A$ is a \pojem{multiplicatively closed set} (or
+  \pojem{mc set}) if $1 \in S$ and for any $s, s' \in S$, their product $s s'
+  \in S$.
+\end{definition}
+
+\begin{example}
+  For $a \in A$, $S = \{1, a, a^2, \ldots\}$ is an mc set.
+\end{example}
+
+\begin{example}
+  The set $S = A \setminus P$, where $P \in \Spec(A)$ is multiplicatively
+  closed.
+\end{example}
+
+\begin{example}
+  The set of all non-zero divisors of $A$ is multiplicatively closed.
+\end{example}
+
+\begin{example}
+  If $I \trianglelefteq A$ is an ideal, then $S = 1 + I$ is multiplicatively
+  closed.
+\end{example}
+
+\begin{definition}
+  Given an mc set $S \subseteq A$, the \pojem{localisation} $S^{-1} A$ of $S$ is
+  defined as follows:
+  \begin{itemize}
+  \item As a set, $S^{-1} A = A \times S / \sim$, where
+	\[
+	  (a, s) \sim (b, t) :\iff \exists u \in S . atu = bsu.
+	\]
+  \item We introduce the notation
+	\[
+	  \frac{a}{s} = [(a,s)]_\sim.
+	\]
+  \item We introduce the operations
+	\[
+	  \frac{a}{s} \cdot \frac{a'}{s'} = \frac{aa'}{ss'},
+	  \qquad
+	  \frac{a}{s} + \frac{a'}{s'} = \frac{as' + sa'}{ss'},
+	\]
+	which makes $S^{-1} A$ a ring with zero $\frac{0}{1}$ and one $\frac{1}{1}$.
+  \end{itemize}
+\end{definition}
+
+We need to check that $\sim$ defined above is an equivalence relation.
+It is clearly reflexive and symmetric.
+If $(a,s) \sim (a', s')$ and $(a', s') \sim (a'', s'')$.
+Then there exist $u, v \in S$ such that $as'u = a'su$ and $a's''v = a''s'v$, but
+then
+\[
+  (a s'') s'uv = as'u s''v = a'su s''v = a'' s s' v u = (a'' s) s'uv,
+\]
+so $(a, s) \sim (a'', s'')$ and $\sim$ is an equivalence relation.
+
+% LocalWords:  multiplicatively mc
