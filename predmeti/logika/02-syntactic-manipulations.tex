@@ -119,9 +119,9 @@ We include the possibility of $k = 0$.
   We restrict to formulas over the sufficient set $\lnot, \lor, \exists$ (for
   the input only).
   We will describe a recursive algorithm that computes an equivalent formula in
-  prenex formal form.
+  prenex normal form.
 
-  For $(A \lor A')^{\text{PNF}}$, first recursively compute $A^{\text{PDF}} = Q_1 x_1
+  For $(A \lor A')^{\text{PNF}}$, first recursively compute $A^{\text{PNF}} = Q_1 x_1
   \ldots Q_k x_K B$ and $A'^{\text{PNF}} = Q_1' x_1' \ldots Q_{k'}' x_{k'}' B'$,
   then return $Q_1 x_1 \ldots Q_k x_k Q_1' x_1' \ldots Q_{k'}' x_{k'}' (B \lor
   B')$.
