@@ -610,9 +610,108 @@ To formalizira spodnji izrek.
   $(f_{c_0}^2)'(x_0) = 1$, torej se lahko zgodi bifurkacija.
   Če se zgodi, potem iz fiksne točke dobimo eno fiksno točko in $2$-cikel
   (fiksne točke namreč ne moremo izgubiti in ne moremo dobiti).
-  Primer take presliakve je $q_c(x) = x^2 + c$ pri $c = -\frac{3}{4}$.
+  Primer take preslikave je $q_c(x) = x^2 + c$ pri $c = -\frac{3}{4}$.
+\end{primer}
+
+\podnaslov{Simbolična dinamika}
+
+Oglejmo si preslikavo $T_3(x) = 3 \min \{x, 1-x\}$.
+Funkcija slika le podintervala $[0, \inv{3}]$ in $[\frac{2}{3}, 1]$ slika nazaj
+v $[0,1]$.
+Podobno se za $T_3^2$ še manjši del intervala slika nazaj v $[0,1]$.
+Če nadaljujemo induktivno, ugotovimo, da $T_3^n$ v $[0,1]$ nese ravno množice
+$I_n = \inv{3} I_{n-1} \cup (1 - \inv{3} I_{n-1})$.
+Torej se v $[0,1]$ za vse $n \in \N$ preslikajo natanko elementi Cantorjeve
+množice.
+Radi bi pokazali, da $T_3: C \to [0,1]$ deluje kaotično.
+
+Uvedemo prostor indeksov
+\[
+  S = \{ \bar{s} = (s_1, s_2, \ldots) \such s_j \in \{0,1\} \} = \{0,1\}^\infty
+\]
+in metriko
+\[
+  d(\bar{s}, \bar{t}) = \sum_{j=1}^\infty \frac{\abs{s_j - t_j}}{2^j}.
+\]
+Vsakemu elementu $x \in C$ priredimo $\bar{s} \in S$ tako, da vzamemo tretjiški
+zapis $x$, in zamenjamo dvojke z enicami.
+Preverimo lahko, da je ta preslikava $h: C \to S$ homeomorfizem.
+Opazimo, da je $T_3(C) \subseteq C$, torej jo lahko obravnavamo kot preslikavo
+$C \to C$.
+Potem lahko $h$ obravnavamo kot konjugacijo
+\[\begin{tikzcd}
+	C & C \\
+	S & S
+	\arrow["{T_3}", from=1-1, to=1-2]
+	\arrow["h", from=1-1, to=2-1]
+	\arrow["h", from=1-2, to=2-2]
+	\arrow["f"', from=2-1, to=2-2]
+  \end{tikzcd}\]
+Na intervalu $[0,\inv{3}]$ preslikava $T_3$ deluje kot $x \mapsto 3x$, torej
+$f = h \circ T_3 \circ h^{-1}$ na tem intervalu slika $(0, s_2, s_3, \ldots)$ v
+$(s_2, s_3, \ldots)$.
+Podobno, če je $x \in [\frac{2}{3}, 1]$, slikamo $(1, s_2, s_3, \ldots)$ v
+$(1 - s_2, 1 - s_3, \ldots)$ (modulo $2$).
+Enostavno se lahko prepričamo, da je $f$ kaotična.
+
+Podobno bi lahko obravnavali preslikave, ki na vsakem koraku razdelijo interval
+na $N > 2$ podintervalov.
+Tedaj definiramo $h$ tako, da slika $x$ v $(a_1, a_2, \ldots) \in S$, kjer je
+$a_i$ enak zaporedni številki intervala, v katerem je $i$-ta komponirana slika
+$x$.
+
+\podnaslov{Izrek Šarkovskega}
+
+\begin{izrek}
+  Naj bo $I \subseteq \R$ kompakten interval in $f: I \to I$ zvezna.
+  Če obstaja $3$-cikel za $f$, obstajajo tudi $n$-cikli za vse ostale $n \in
+  \N$.
+\end{izrek}
+
+Dokaz je osnovan na dveh preprostih dejstvih za kompaktna intervala $I, J$ in
+zvezno $f$:
+\begin{itemize}
+\item Če je $I \subseteq f(J)$, obstaja interval $J_0 \subseteq J$, da je
+  $f(J_0) = I$.
+\item Če je $J \subseteq f(J)$, obstaja fiksna točka v $J$.
+\end{itemize}
+
+Naj bodo $a < b < c$ točke v $3$-ciklu.
+Brez škode za splošnost naj velja $f(a) = b$, $f(b) = c$ in $f(c) = a$ (sicer
+imamo simetrični primer).
+Začnemo z $J_0 = [b,c]$.
+Vidimo, da $f(J_0)$ pokriva $[a,c]$.
+Potem obstaja interval $J_1 \subseteq J_0$, da je $f(J_1) = J_0$.
+Potem $f(J_1)$ pokriva $J_0$, in nadaljujemo induktivno.
+Tako dobimo zaporedje intervalov
+\[
+  [b, c] = J_0 \supseteq J_1 \supseteq J_2 \supseteq \cdots
+\]
+za katere velja $f(J_k) = J_{k-1}$, oziroma $f^n(J_n) = J_0 \supseteq J_n$.
+
+Naj bo $n \in \N$.
+Ker je $f^{n-1}(J_{n-2}) = f(J_0) \supseteq [a,c]$, obstaja podinterval $I_{n-1}
+\subseteq J_{n-2}$, za katerega je $f^{n-1}(I_{n-1}) = [a,b]$.
+Če to slikamo z $f$, dobimo $f^n(I_{n-1}) \supseteq J_0$.
+Torej obstaja $I_n \subseteq I_{n-1}$, da je $f(I_n) = J_0$.
+To pa pomeni, da je $I_n \subseteq f^n(I_n)$ in imamo fiksno točko $x$
+preslikave $f^n$.
+Vemo, da je $f^k(x) \in J_0$ za $1 \le k \le n-2$, ter $f^{n-1}(x) \in
+\zo{a,b}$ (lahko preverimo, da $x \ne b$).
+Torej mora imeti $x$ periodo $n$, in ne manjše periode.
+
+\begin{primer}
+  Pri družini šotorskih preslikav $T_c(x)$ se $3$-cikel prvič pojavi pri $c =
+  \phi$.
+  Za vse večje $c$ imamo dva $3$-cikla, in cikle vseh ostalih dolžin.
+\end{primer}
+
+\begin{primer}
+  Zveznost je potreben pogoj: za funkcijo $f(x) = 1 - \inv{x}$ velja $f^3(x) =
+  x$.
 \end{primer}
 
 % LocalWords:  predperiodične Devaney Podvojitvena Konjugacije semikonjugacije
 % LocalWords:  semikonjugirana semikonjugirani podvojitvena semikonjugacija
-% LocalWords:  Bairovem Bifurkacije predfiksne bifurkacije bifurkacija
+% LocalWords:  Bairovem Bifurkacije predfiksne bifurkacije bifurkacija modulo
+% LocalWords:  podintervala Cantorjeve tretjiški podintervalov podinterval
