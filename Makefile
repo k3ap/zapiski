@@ -1,7 +1,7 @@
 predmeti := uvod-v-funkcionalno-analizo teorija-izracunljivosti teorija-grafov statistika-2 simetrije-grafov komutativna-algebra diferencialna-geometrija dinamicni-sistemi logika
 ksl := uvod-v-funkcionalno-analizo teorija-grafov
 
-latex-cmd := lualatex --shell-escape
+latex-cmd := lualatex --shell-escape -interaction batchmode
 
 predmeti-filenames := $(foreach predmet,$(predmeti),zapiski-$(predmet).pdf)
 ksl-filenames := $(foreach predmet,$(ksl),ksl-$(predmet).pdf)
@@ -23,7 +23,7 @@ zapiski-%.tex: zbt-templates predmeti/%/*.tex
 	cat templates/predmet-3.tex >> $@
 
 zapiski.pdf: zapiski.tex predmeti.tex $(predmeti-filenames)
-	$(latex-cmd) $^
+	$(latex-cmd) zapiski.tex
 
 $(ksl-filenames): ksl-%.pdf: ksl-%.tex
 	$(latex-cmd) $^

@@ -245,8 +245,8 @@ Model je parametričen, če obstajajo usklajene bijektivne korespondence $P_n \t
 
 \begin{izrek}
   Naj $\lambda_{\text{min}}$ označuje najmanjšo lastno vrednost matrike.
-  Če $\lambda_{\text{min}}(Z^T Z) \xrightarrow[n \to \infty]{d}
-  \infty$, je zaporedje cenilk za regresijski parameter $\beta$ SKN dosledno.
+  Če $\lambda_{\text{min}}(Z^T Z)$ v porazdelitvi konvergira k $\infty$, je
+  zaporedje cenilk za regresijski parameter $\beta$ SKN dosledno.
 \end{izrek}
 
 \begin{trditev}
@@ -289,7 +289,7 @@ Privzemimo parametrični model s prostorom parametrov $\Theta \subseteq \R^d$ in
 naj bo $e: \Theta \to \R^r$ ocenjevana funkcija.
 \pojem{Pristranskost} cenilke $T: \R^n \to \R^r$ za $e$ je $b_\theta(T) =
 E_\theta(T(X)) - e(\theta)$.
-Kvaliteto take cenilke merimo s srednjo kvadratno napako
+Kvaliteto take cenilke merimo s srednjo kvadratno napako, ki je tu enaka
 $\operatorname{SKN}(\theta) = E_\theta(\norm{T(X) - e(\theta)}^2)$.
 Velja
 \begin{align*}
