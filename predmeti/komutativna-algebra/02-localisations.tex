@@ -23,7 +23,7 @@ them.
 \end{example}
 
 \begin{example}
-  If $I \trianglelefteq A$ is an ideal, then $S = 1 + I$ is multiplicatively
+  If $I \ideal A$ is an ideal, then $S = 1 + I$ is multiplicatively
   closed.
 \end{example}
 
@@ -58,5 +58,350 @@ then
   (a s'') s'uv = as'u s''v = a'su s''v = a'' s s' v u = (a'' s) s'uv,
 \]
 so $(a, s) \sim (a'', s'')$ and $\sim$ is an equivalence relation.
+
+We introduce the ring homomorphism $j = j_S: A \to S^{-1} A$, defined with $a
+\mapsto \frac{a}{1}$.
+Note that $j(S) \subseteq (S^{-1} A)^x$.
+Then we have the following universal property:
+For any $\varphi: A \to B$ with $\varphi(S) \subseteq B^x$, there exists a
+unique ring homomorphism $\bar{\varphi}: S^{-1} A \to B$ such that $\varphi =
+\bar{\varphi} \circ j$.
+
+\begin{proof}[Sketch of the proof]
+  For uniqueness, note that
+  \[
+	\bar{\varphi}\left( \frac{a}{s} \right)
+	= \bar{\varphi}\left( \frac{a}{1} \right) \varphi\left( \inv{s} \right).
+  \]
+  We can multiply both sides with $\bar{\varphi}(s)$ to find $\varphi(a) =
+  \bar{\varphi}\left( \frac{a}{s} \right) \varphi(s)$.
+  This also leads us to define $\bar{\varphi}(\nicefrac{a}{s}) = \varphi(a)
+  \varphi(s)^{-1}$.
+\end{proof}
+
+Note that $\varphi(a) \varphi(s)^{-1} = 0$ if and only if $\varphi(a) = 0$, so
+\[
+  \jedro \bar{\varphi} = \{ \frac{a}{s} \such a \in \jedro \varphi, s \in S \}.
+\]
+Similarly, $j(a) = 0$ if and only if $\frac{a}{1} = 0$, or if there exists an $s
+\in S$ for which $as = 0$.
+Then
+\[
+  \jedro j = \{ a \in A \such \exists s \in S \velja as = 0 \}
+\]
+can be nontrivial.
+
+\begin{definition}
+  If $S$ is the set of non-zero-divisors of $A$, then $S^{-1} A =
+  \mathcal{F}(A)$ is the \pojem{total ring of fractions} of $A$.
+  If $A$ is a domain, we also call it the \pojem{field of fractions} or
+  \pojem{quotient field}.
+\end{definition}
+
+If $S$ does not contain zero-divisors, then $S^{-1} A \to \mathcal{F}(A)$ embeds
+canonically by the universal property.
+
+\begin{definition}
+  If $S = A \setminus P$ for a prime ideal $P$, write $A_P = S^{-1} A$.
+  If $S = \{1, a, a^2, \ldots\}$ for some $a \in A$, we write $A_a = S^{-1} A$.
+\end{definition}
+
+\begin{example}
+  If $p$ is a prime number, then
+  \[
+	\Z_{(p)} = \left\{ \frac{a}{b} \such a \in \Z, p \nshortmid b \right\}
+  \]
+  but
+  \[
+	\Z_p = \left\{
+	  \frac{a}{p^k} \in \Q \such a \in \Z, k \ge 0
+	\right\}
+  \]
+\end{example}
+
+Recall:
+An $A$-algebra is a ring $B$ that is simultaneously an $A$-module (with the same
+addition), for which there is a ring homomorphism $A \to B$.
+
+\begin{example}
+  The polynomial ring $A[X]$ is an $A$-algebra.
+\end{example}
+
+\begin{example}
+  Rings are precisely $\Z$-algebras.
+\end{example}
+
+\begin{example}
+  If $I \ideal A$, then $A \to A/I$ gives an $A$-algebra.
+\end{example}
+
+\begin{example}
+  If $S \subseteq A$ is an mc set, then $j: A \to S^{-1} A$ gives an
+  $A$-algebra.
+\end{example}
+
+\begin{remark}
+  We say that the homomorphism \emph{is} an algebra, even though is only gives
+  us an algebra.
+\end{remark}
+
+If $f: A \to B$ is an $A$-algebra, we can
+\begin{itemize}
+\item extend ideals: $I \ideal A \mapsto f(I) B = \sk{f(I)}_B$,
+\item contract ideals: $J \ideal B \mapsto f(J)^{-1} \ideal A$.
+\end{itemize}
+
+For the localisation $j: A \to S^{-1} A$ and an ideal $I \ideal A$,
+we write
+\[
+  I \cdot S^{-1} A = j(I) S^{-1} A = \left\{ \frac{a}{s} \such s \in S, a \in I
+  \right\}.
+\]
+
+\begin{definition}
+  Let $I \ideal A$ and $X \subseteq A$, define the \pojem{colon ideal}
+  \[
+	(I:X) = \{ a \in A \such a X \subseteq I \}.
+  \]
+\end{definition}
+
+\begin{remark}
+  It is easy to check that this is an ideal.
+\end{remark}
+
+\begin{proposition}
+  Let $S \subseteq A$ be an mc set and $j: A \to S^{-1} A$ the localisation.
+  Then
+
+  \begin{itemize}
+  \item For all $J \ideal S^{-1} A$, we have $J = j(j^{-1}(J)) S^{-1}A$.
+	In particular, every ideal of $S^{-1} A$ is an extension of an ideal of $A$.
+  \item For any $I \ideal A$,
+	\[
+	  j^{-1}(j(I) S^{-1} A) = j^{-1}(I S^{-1} A) = \bigcup_{s \in S} (I:s)
+	  \supseteq I.
+	\]
+  \item $I \cdot S^{-1} A = S^{-1} A$ if and only if $I \cap S^{-1} A \ne
+	\varnothing$.
+  \end{itemize}
+\end{proposition}
+
+\begin{proof}
+  For the first point, the inclusion $\supseteq$ is clear.
+  The second inclusion:
+  If $\nicefrac{a}{s} \in J$, then $j(a) = \frac{a}{1} \in J$, meaning $a \in
+  j^{-1}(J)$, so $\frac{a}{1} \in j(j^{-1}(J))$ and $\frac{a}{s} \in
+  j(j^{-1}(J)) S^{-1}A$.
+
+  For the second point, consider
+  \begin{align*}
+	a \in j^{-1}(I \cdot S^{-1} A)
+	&\iff \exists x \in I, s \in S \velja \frac{a}{1} = \frac{x}{s} \\
+	&\iff \exists x \in I, s, t \in S \velja ast = xt \\
+	&\iff \exists s' \in S \velja as' \in I \\
+	&\iff \exists s' \in S \velja a \in (I : s')
+  \end{align*}
+  and the inclusion holds since $1 \in S$ and $(I:1) = I$.
+
+  For the third point, the right-to-left implication holds because $j(S)
+  \subseteq (S^{-1} A)^x$, and for the left-to-right implication, $\frac{1}{1} =
+  \frac{x}{s}$ with $x \in I$, $s \in S$, so there exists $t \in S$ such that
+  $st = xt \in S \cap I$.
+\end{proof}
+
+\begin{corollary}
+  If $P \in \Spec(A)$, then $A_P$ is a local ring with unique maximal ideal $P
+  A_P$.
+\end{corollary}
+
+\begin{proof}
+  By the first and third point of the proposition, with $S = A \setminus P$.
+\end{proof}
+
+\begin{example}
+  Let $p \in \Prime$.
+  Then $\Z_{(p)}$ has a maximal ideal
+  \[
+	\left\{ \frac{a}{b} \in \Q \such p \nshortmid b, p \shortmid a \right\}
+  \]
+\end{example}
+
+\begin{example}
+  If $K$ is a field and $P =(x,y) \ideal K[x,y]$, then
+  \[
+	K[x,y]_{(x,y)} = \left\{ \frac{f}{g} \such f, g \in K[x,y], g(0,0) \ne 0
+	\right\}
+  \]
+  is local, and has maximal ideal
+  \[
+	(x,y) K[x,y]_{(x,y)} = \left\{ \frac{f}{g} \such g(0,0) \ne 0, f(0,0) = 0
+	\right\}.
+  \]
+\end{example}
+
+\begin{example}
+  Different ideals can localise to the same ideal.
+  For example, $2 \Z_{(2)} = 6 \Z_{(2)}$, because $3 \in \Z_{(2)}^x$.
+\end{example}
+
+\begin{corollary}
+  There is a bijection
+  \[
+	\{ P \in \Spec(A) \such P \cap S = \varnothing \}
+	\to \Spec(S^{-1}A),
+  \]
+  given with $P \mapsto P \cdot S^{-1} A$.
+\end{corollary}
+
+\begin{proof}
+  The inverse of this map is $Q \mapsto j^{-1}(Q)$.
+  We need to check that this inverse actually maps into $\Spec A$, which is true
+  since the preimages of prime ideals under ring homomorphisms are prime,
+  and by the previous proposition, $j^{-1}(Q) S^{-1} A = Q$ and $j^{-1}(Q) \cap
+  S = \varnothing$.
+  For the other direction, let $P \in \Spec A$ be such that $P \cap S =
+  \varnothing$.
+  Then $P S^{-1} A$ is prime:
+  It is equal to
+  \[
+	P S^{-1} A = \left\{ \frac{x}{s} \such x \in P, s \in S \right\}.
+  \]
+  Suppose that $\frac{a}{s} \cdot \frac{b}{t} \in P S^{-1} A$, so $\frac{ab}{st}
+  = \frac{x}{s'}$ with $x \in P$, $s' \in S$.
+  Then there exists $u \in S$ such that $abs'u = xstu \in P$, but since $s'u
+  \notin P$, we have $ab \in P$, so $a \in P$ or $b \in P$.
+  Therefore $\frac{a}{s} \in P S^{-1} A$ or $\frac{b}{t} \in PS^{-1} A$.
+
+  Now,
+  \[
+	j^{-1} (P S^{-1} A) = \bigcup_{s \in S} (P:s) = P
+  \]
+  since $(P:s) = P$ for any $s$, as $s \notin P$.
+\end{proof}
+
+\begin{corollary}
+  The following statements hold:
+  \begin{itemize}
+  \item the nilradical is equal to
+	\[
+	  N(A) = \bigcap_{P \in \Spec(A)} P,
+	\]
+  \item if $I \ideal A$, then
+	\[
+	  \sqrt{I} = \bigcap_{P \in \Spec(A), I \subseteq P} P.
+	\]
+  \end{itemize}
+\end{corollary}
+
+\begin{proof}
+  For the first point, the $\subseteq$ inclusion holds since for $P \in
+  \Spec(A)$ and $a \in N(A)$, so there exists $n \in \N$ such that $a^n = 0 \in
+  P$ and $a \in P$.
+
+  The other inclusion:
+  Let $a$ be in the intersection.
+  Then $A_a$ is a ring with $\Spec(A) = \varnothing$, meaning $A_a =
+  \underline{0}$ (since otherwise, we have maximal ideals), so $1 \in \jedro (j:
+  A \to A_a)$, meaning there exists $n \in \N_0$ for which $a^n 1 = 0$, so $a
+  \in N(A)$.
+
+  For the second point, apply the first to $A/I$, noting that $N(A/I) =
+  \sqrt{I}/I$.
+\end{proof}
+
+\podnaslov{Localisation of modules}
+
+Let $M$ be an $A$-module and $S \subseteq A$ an mc set.
+Define
+\[
+  (m, s) \sim (m', s') \iff \exists t \in S \velja ms't = m'st.
+\]
+This is an equivalence relation on $M \times S$, which induces the set
+\[
+  S^{-1} M = \left\{ \frac{m}{s} := [(m,s)]_\sim \such m \in M, s \in S \right\}.
+\]
+This is an $S^{-1}A$-module via
+\[
+  \frac{a}{s} \frac{m}{s'} = \frac{am}{ss'}.
+\]
+
+As before, we have an $A$-homomorphism $j: M \to S^{-1} M$, defined with $m
+\mapsto \frac{m}{1}$.
+It has kernel $\jedro j = \{ m \in M \such \exists s \in S \velja sm = 0 \}$.
+
+If $f: M \to N$ is an $A$-homomorphism, then $S^{-1} f: S^{-1}M \to S^{-1}N$ is
+an $S^{-1}A$-homomorphism for $\frac{m}{s} \mapsto \frac{f(m)}{s}$.
+This means that localisation is a functor from the category of $A$-modules to
+the category of $S^{-1}A$-modules.
+
+\begin{proposition}
+  Localisation is an exact functor.
+  If $M \xrightarrow{f} N \xrightarrow{g} P$ is exact, then so is $S^{-1} M
+  \xrightarrow{S^{-1}f} S^{-1}N \xrightarrow{S^{-1}g} S^{-1} P$.
+\end{proposition}
+
+\begin{proof}
+  Since $g \circ f = 0$, we have $0 = S^{-1}(g \circ f) = S^{-1} g \circ S^{-1}
+  f$, so $\im S^{-1} f \subseteq \jedro S^{-1} g$.
+  Let $\frac{n}{s} \in \jedro S^{-1} g$.
+  Then $\frac{g(n)}{s} = 0$ in $S^{-1} P$, so there exists $t \in S$ for which
+  $0 = g(n) t = g(nt)$, meaning $nt \in \jedro g = \im f$.
+  So we have $nt = f(m)$ for some $m \in M$.
+  Then
+  \[
+	\frac{n}{s} = \frac{nt}{st} = \frac{f(m)}{st} = S^{-1} f (\frac{m}{st}).
+  \]
+  This shows the exactness of the sequence.
+\end{proof}
+
+In particular, if $M \le N$, then without loss of generality, $S^{-1} M \le
+S^{-1} N$ and we can think of it as
+\[
+  S^{-1} M = \left\{ \frac{m}{s} \in S^{-1} N \such m \in M \right\}.
+\]
+Also, if $I \ideal A$, then $S^{-1} I = I S^{-1} A \ideal S^{-1} A$.
+
+\begin{corollary}
+  If $N$ is an $A$-module and $M, M' \le N$, then
+  \begin{itemize}
+  \item $S^{-1} (M + M') = S^{-1} M + S^{-1} M'$,
+  \item $S^{-1}(M \cap M') = S^{-1} M \cap S^{-1} M'$,
+  \item $S^{-1}(M/N) \cong S^{-1} N / S^{-1} M$ as $S^{-1}A$-modules.
+  \end{itemize}
+\end{corollary}
+
+\begin{proof}
+  The first point is trivial.
+  For the second point, $\subseteq$ is easy, and for the other inclusion:
+  Let $\frac{m}{s} = \frac{m'}{t}$ with $s, t \in S$, $m \in M$ and $m' \in M'$.
+  There exists $u \in S$ for which $mtu = m'su \in M \cap M'$, so $\frac{m}{s} =
+  \frac{mtu}{stu} qin S^{-1}(M \cap M')$.
+
+  For the third point, the exactness of $0 \to M \to N \to N/M \to 0$ induces
+  the short exact sequence $0 \to S^{-1} M \to S^{-1} N \to S^{-1}(N/M) \to 0$,
+  meaning $S^{-1} (N/M) \cong S^{-1}N / S^{-1}M$.
+\end{proof}
+
+\begin{remark}
+  If $I \ideal A$, then $S^{-1} \sqrt{I} = \sqrt{S^{-1} I} \ideal S^{-1} A$ and
+  in particular $S^{-1} N(A) = N(S^{-1} A)$.
+\end{remark}
+
+\begin{lemma}
+  Let $I \ideal A$ and $\pi: A \to A/I$ the canonical epimorphism.
+  Let $S \subseteq A$ be an mc set.
+  Then $T = \pi(S)$ is an mc set and $S^{-1} M \cong T^{-1} M$ canonically.
+\end{lemma}
+
+\begin{proof}
+  Define $\varphi: S^{-1} M \to T^{-1} M$ mapping $\frac{m}{s} \mapsto
+  \frac{m}{\pi(s)}$.
+  We can easily show that this is an $A$-module epimorphism.
+  It is also injective:
+  Suppose $\frac{m}{\pi(s)} = \frac{0}{1} \in T^{-1} M$, so there exists $t \in
+  T$ such that $mt = 0$, and $s' \in S$ for which $t = \pi(s')$.
+  This means $0 = m \pi(s') = m(s' + I) = ms' + MI$, so $ms' \in MI = 0$.
+  So $\frac{m}{s} = 0$.
+\end{proof}
 
 % LocalWords:  multiplicatively mc

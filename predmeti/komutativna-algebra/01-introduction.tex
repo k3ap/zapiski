@@ -98,7 +98,7 @@
 \begin{definition}
   A subset $I \subseteq A$ is an \pojem{ideal} if $I \ne \varnothing$ and $I$
   is closed under addition and (left) multiplication with elements of $A$.
-  We denote $I \trianglelefteq A$.
+  We denote $I \ideal A$.
 \end{definition}
 
 \begin{remark}
@@ -122,21 +122,21 @@
 \end{example}
 
 \begin{example}
-  The ideal $(x,y) \trianglelefteq K[x,y]$ is not principal.
+  The ideal $(x,y) \ideal K[x,y]$ is not principal.
 \end{example}
 
 \begin{remark}
-  If $I \trianglelefteq A$, then $A = I$ if and only if $1 \in I$.
+  If $I \ideal A$, then $A = I$ if and only if $1 \in I$.
   This is also equivalent to $I \cap A^x \ne \varnothing$.
 \end{remark}
 
 \begin{definition}
-  An ideal $I \trianglelefteq A$ is
+  An ideal $I \ideal A$ is
   \begin{itemize}
   \item a \pojem{prime ideal} if $I$ is proper and for any $a, b \in A$, if $ab
 	\in I$, then $a \in I$ or $b \in I$,
   \item a \pojem{maximal ideal} if $I$ is proper and if for all $J
-	\trianglelefteq A$, $I \subseteq J$ implies $J = A$.
+	\ideal A$, $I \subseteq J$ implies $J = A$.
   \end{itemize}
   The spectrum $\Spec(A)$ is the set of all prime ideals.
   The set of all maximal ideals is denoted by $\Max(A)$.
@@ -171,7 +171,7 @@
 \end{remark}
 
 \begin{definition}
-  If $I, J \trianglelefteq A$, then the following are also ideals:
+  If $I, J \ideal A$, then the following are also ideals:
   \begin{itemize}
   \item $I + J = \{ a + b \such a \in I, b \in J \} = (I,J)$,
   \item $I \cap J$,
@@ -278,13 +278,13 @@
 \end{proof}
 
 \begin{remark}
-  If $f: A \to B$ is a ring homomorphism, then $\jedro f \trianglelefteq A$.
-  More generally, if $I \trianglelefteq B$, then $f^{-1}(I) \trianglelefteq A$.
+  If $f: A \to B$ is a ring homomorphism, then $\jedro f \ideal A$.
+  More generally, if $I \ideal B$, then $f^{-1}(I) \ideal A$.
   Also, if $P \in \Spec(B)$, then $f^{-1}(P) \in \Spec(A)$.
 \end{remark}
 
 \begin{proposition}[universal property for quotients]
-  Let $I \trianglelefteq A$ and $\pi : A \to A/I$ be the canonical epimorphism.
+  Let $I \ideal A$ and $\pi : A \to A/I$ be the canonical epimorphism.
   For every ring homomorphism $f: A \to B$ with $I \subseteq \jedro f$, there
   exists a unique ring homomorphism $\hat{f}: A/I \to B$ such that $f = \hat{f}
   \circ \pi$.
@@ -295,20 +295,20 @@
 \end{corollary}
 
 \begin{theorem}[isomorphism theorems]
-  Let $I \trianglelefteq A$.
+  Let $I \ideal A$.
   Then
   \begin{itemize}
-  \item $\{ J \trianglelefteq A \such I \subseteq J \subseteq A \}$ is in a
+  \item $\{ J \ideal A \such I \subseteq J \subseteq A \}$ is in a
 	bijective correspondence with the ideals of $A/I$, with the map
 	\[
 	  J \mapsto J/I = \{ a + I \such a \in J \},
 	\]
-  \item if $J \trianglelefteq A$ is such that $I \subseteq J \subseteq A$,
+  \item if $J \ideal A$ is such that $I \subseteq J \subseteq A$,
 	\[
 	  A/J \cong \frac{A/I}{J/I},
 	\]
   \item if $B \subseteq A$ is a subring, then $B+I$ is a subring of $A$, $B \cap
-	I \trianglelefteq B$, and
+	I \ideal B$, and
 	\[
 	  \frac{B+I}{I} \cong \frac{B}{B \cap I}.
 	\]
@@ -316,7 +316,7 @@
 \end{theorem}
 
 \begin{theorem}[Chinese remainder theorem]
-  If $I_1, \ldots, I_n \trianglelefteq A$ are pairwise comaximal (so $I_i + I_j
+  If $I_1, \ldots, I_n \ideal A$ are pairwise comaximal (so $I_i + I_j
   = A$ for any $i, j$), then
   \[
 	A / I_1 \cap \ldots \cap I_n \cong A/I_1 \times \cdots \times A / I_n
@@ -391,7 +391,7 @@ $N_i$ is a submodule, as is
   \sum_{i \in I} M_i = \sk{\bigcup_{i \in I} M_i}.
 \]
 
-If $I \trianglelefteq A$, then
+If $I \ideal A$, then
 \[
   IM = \left\{
 	\sum_{i=1}^n a_i m_i \such a_i \in I, m_i \in M
@@ -409,7 +409,7 @@ is also a submodule of $M$.
 \end{remark}
 
 \begin{remark}
-  In particular, if $M$ is an $A$-module and $I \trianglelefteq A$, then $M /
+  In particular, if $M$ is an $A$-module and $I \ideal A$, then $M /
   IM$ is an $A/I$-module via $(a+I)(m + IM) = am + IM$.
 \end{remark}
 
@@ -799,7 +799,7 @@ Then we have a functor $M \otimes \cdot: X \mapsto M \otimes X$, which maps $X
 \end{proof}
 
 \begin{example}
-  If $I \trianglelefteq A$ and $M$ is an $A$-module, then $M / IM \cong M
+  If $I \ideal A$ and $M$ is an $A$-module, then $M / IM \cong M
   \otimes_A A/I$.
   We have a short exact sequence $0 \to I \to A \to A/I \to 0$ with the
   inclusion and projection maps, so we get
@@ -982,7 +982,7 @@ Note the following:
 	  \end{tikzcd}\]
   \item every monomorphism $f: E \to M$ splits, i.e.~there exists $r: M \to N$
 	such that $r \circ f = \id_E$,
-  \item (Baer's criterion) for every $I \trianglelefteq A$, the inclusion map
+  \item (Baer's criterion) for every $I \ideal A$, the inclusion map
 	$j: I \to A$, and every diagram of the below form, there exists a $\psi$
 	such that $\varphi = \psi \circ j$,
 	\[\begin{tikzcd}
@@ -1205,7 +1205,7 @@ Note the following:
   \item $E$ is flat (i.e.~$E \otimes_A \cdot$ is exact),
   \item for every monomorphism $f: M \to N$, also $E \otimes f: e \otimes m
 	\mapsto e \otimes f(m)$ is a monomorphism,
-  \item for every finitely generated ideal $I \trianglelefteq A$, the
+  \item for every finitely generated ideal $I \ideal A$, the
 	homomorphism $\mu_I : I \otimes E \to E$, mapping $x \otimes e \mapsto xe$,
 	is a monomorphism, and hence induces an isomorphism $I \otimes E \to IE$.
   \end{enumerate}
