@@ -495,10 +495,11 @@ Zanimalo nas bo, kdaj obstajajo integralske podmnogoterosti v $X$, ki
 Če je $G$ hkrati mnogoterost in grupa, ter sta množenje in invertiranje gladki
 preslikavi, je $G$ Liejeva grupa.
 Grupna struktura nam poda veliko poceni difeomorfizmov, na primer leve in desne
-translacije
+translacije ter adjungiranje
 \begin{gather*}
   L_g: h \mapsto gh \\
-  R_g: h \mapsto hg
+  R_g: h \mapsto hg \\
+  \tilde{A}_g: h \mapsto ghg^{-1}
 \end{gather*}
 
 \begin{definicija}
@@ -516,7 +517,138 @@ izomorfizem, je $\{ D_e L_g(\xi_1), \ldots, D_e L_g(\xi_n) \} = \{ g \xi_1,
 \ldots, g \xi_n \}$ baza $T_g G$.
 Iz tega sledi, da je tangentni sveženj $T G$ trivialen.
 
+Za $x \in T_h G$ pišemo $g \cdot x := D_h L_g(x)$ in podobno $x \cdot g$.
+
+Oglejmo si preslikavo $\tilde{A}: (g, h) \mapsto ghg^{-1}$.
+Če nadomestimo $h$ s krivuljo $h(t)$, za katero je $h(0) = e$ in posledično
+\[
+  \left. \frac{d}{dt} \right|_{t=0} h(t) = \xi \in T_e G,
+\]
+lahko definiramo preslikavo $\operatorname{Ad}_g: T_e G \to T_e G$ s predpisom
+\[
+  \xi \mapsto \left. \frac{d}{dt} \right|_{t=0} \tilde{A}_g(h(t)).
+\]
+Opazimo
+\[
+  \operatorname{Ad}_g(\xi) = (D_e R_g)^{-1} (D_e L_g) (\xi)
+  = g \cdot \xi \cdot g^{-1}.
+\]
+
+Integralske krivulje levo invariantnih vektorskih polj so rešitve začetnih
+problemov $\dot{\gamma}(t) = X_\xi (\gamma(t)) = \gamma(t) \cdot \xi$ z
+$\gamma(0) = e$.
+Podobno za desno invariantna polja rešujemo $\dot{\gamma}(t) = \xi \cdot
+\gamma(t)$.
+Če je $G$ matrična Liejeva grupa (torej $\xi$ matrika), so rešitve teh enačb
+oblike
+\[
+  \gamma(t) = \sum_{n=0}^\infty \frac{t^n}{n!} \xi^n = \exp(t \xi).
+\]
+
+Običajno pišemo $\varphi_\xi(t) := \gamma(t)$.
+Potem so preslikave $\varphi_\xi : (-\varepsilon, \varepsilon) \mapsto G$
+homomorfizmi, kar sledi iz izrekov o tokovih za sisteme NDE\@.
+Slike $\im \varphi_\xi$ so torej enodimenzionalne podgrupe v $G$.
+
+\begin{definicija}
+  Splošna eksponentna preslikava $\exp: T_e G \to G$ je podana s predpisom
+  $\exp(\xi) = \varphi_\xi(1)$.
+\end{definicija}
+
+\begin{opomba}
+  Velja $\exp(t \xi) = \varphi_{t \xi}(1) = \varphi_\xi(t)$.
+\end{opomba}
+
+V prostor $\mathfrak{g} = T_e G$ bomo vpeljali operacijo
+\[
+  \llbracket \xi, \eta \rrbracket
+  = \mathcal{L}_{X_\xi} (X_\eta)(e).
+\]
+
+\begin{trditev}
+  Naj bosta $\xi, \eta \in \mathfrak{g}$ poljubna.
+  Potem velja
+  \[
+	\llbracket \xi, \eta \rrbracket
+	= \left. \frac{d}{dt} \right|_{t=0}
+	\operatorname{Ad}_{\varphi_\eta(t)}(\xi).
+  \]
+\end{trditev}
+
+\begin{proof}
+  Integralska krivulja polja $X_\xi$ skozi $g$ je podana s predpisom
+  \[
+	\gamma_g^{X_\xi}(t) = g \cdot \varphi_\xi(t), \quad \gamma^{X_\xi}(0) = g.
+  \]
+  Definirajmo $Y_\eta = X_\eta$.
+  Potem je $Y_\eta(g \cdot \varphi_\xi(t)) = g \cdot \varphi_\xi(t) \cdot \eta$
+  in
+  \[
+	\phi_t^{X_\xi}(h) = \gamma_h^{X_\xi}(t) = h \cdot \varphi_\xi(t),
+  \]
+  torej
+  \[
+	(\phi_t^{X_\xi})^{-1} (gh) = gh \cdot \varphi_\xi(-t)
+	= gh \varphi_\xi(t)^{-1}.
+  \]
+  Sedaj lahko izračunamo
+  \begin{align*}
+	\mathcal{L}_{X_\xi} (Y_\eta)(g)
+	&= \left. \frac{d}{dt} \right|_{t=0} \left( g \cdot \varphi_\xi(t) \eta \varphi_\xi(t)^{-1} \right) \\
+	&= \left. \frac{d}{dt} \right|_{t=0} g \operatorname{Ad}_{\varphi_\xi(t)} (\eta).
+  \end{align*}
+  Vstavimo $g = e$ in dobimo
+  \[
+	\llbracket \xi, \eta \rrbracket
+	= \left. \frac{d}{dt} \right|_{t=0} \operatorname{Ad}_{\varphi_\xi(t)}
+	(\eta).
+	\qedhere
+  \]
+\end{proof}
+
+Zgornji dokaz nam tudi pove
+\[
+  [X_\xi, Y_\eta](g)
+  = g \left. \frac{d}{dt} \right|_{t=0} \operatorname{Ad}_{\varphi_\xi(t)}(\eta)
+  = g \llbracket \xi, \eta \rrbracket.
+\]
+Spotoma smo torej dokazali, da je Liejev produkt levo invariantnih vektorskih
+polj levo invariantno vektorsko polje.
+
+Kako pa ta formula izgleda v primeru matričnih Liejevih grup?
+Za matrične grupe velja
+\[
+  \varphi_\xi(t) = \exp(t\xi) = I + t \xi + \cdots + \frac{t^n}{n!} \xi^n + \cdots,
+\]
+iz česar sledi
+\[
+  \llbracket \xi, \eta \rrbracket
+  = [X_\xi, X_\eta](e)
+  = \left. \frac{d}{dt} \right|_{t=0} \exp(t\xi) \eta \exp(-t \xi)
+  = \left. \frac{d}{dt} \right|_{t=0} (I + t \xi) \eta (I - t \xi),
+\]
+to pa je enako
+\[
+  \llbracket \xi, \eta \rrbracket
+  = \xi \eta - \eta \xi
+  = [\xi, \eta].
+\]
+
+\begin{primer}
+  Če je $G = SU(n)$, je tangentni prostor enak
+  \[
+	\mathfrak{su}(n) = \left\{ \xi \in \mathfrak{gl}(n, \C) \such \xi^* = -\xi,
+	  \sled(\xi) = 0 \right\}.
+  \]
+  Res; naj bo $g(t)$ krivulja z $g(0) = I$.
+  Potem za vsak $t$ velja $g^*(t)g(t) = I$, kar odvajamo v
+  \[
+	\frac{d}{dt}(g^*(t)) g(t) + (g(t))^* \frac{d}{dt} (g(t)) = 0,
+  \]
+  kar pa še evaluiramo v $0$, in dobimo.
+\end{primer}
+
 % LocalWords:  neekvivalentnih trivializacija restringiran Kocikel kocikel
 % LocalWords:  kontraktibilna trivializacijo Frobeniusov podsveženj Liejev
 % LocalWords:  pointegrirajo evaluirana Liejevega Frobenius Liejeve Liejeva
-% LocalWords:  invertiranje difeomorfizmov
+% LocalWords:  invertiranje difeomorfizmov invariantnih evaluiramo

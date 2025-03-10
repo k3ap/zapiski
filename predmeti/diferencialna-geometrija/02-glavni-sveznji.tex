@@ -1,0 +1,84 @@
+\naslov{Glavni svežnji}
+
+Glavni svežnji so objekti, sorodne vektorskim svežnjem.
+Vlakna v glavnih svežnjih so Liejeve grupe in ne vektorski prostori.
+
+\begin{definicija}
+  Gladka mnogoterost $P$, skupaj s preslikavo $\pi: P \to M$, je \pojem{glavni
+	$G$-sveženj}, če velja:
+  \begin{itemize}
+  \item grupa $G$ gladko deluje na $P$ z desne z $\rho: P \times G \to P$,
+	$\rho(p, g) = p \cdot g = \rho_g(p)$,
+  \item prostor orbit $M = P/G$ je gladka mnogoterost in naravna projekcija
+	\[
+	  \pi: P \to P/G =M
+	\]
+	je gladka,
+  \item sveženj $P$ je lokalno trivialen.
+	To pomeni, za vsako točko $m \in M$ obstaja odprta okolica $m \in U
+	\subseteq M$, da obstaja difeomorfizem $\varphi: \pi^{-1}(U) \subseteq P \to
+	U \times G$ oblike $\varphi(p) = (\pi(p), s(p))$, kjer je $s$ ekvivariantna
+	preslikava; $s(\rho_g(p)) = s(p) \cdot g$.
+  \end{itemize}
+\end{definicija}
+
+\begin{primer}
+  Naj bo $M$ mnogoterost in $G$ Liejeva grupa.
+  Potem je $P = M \times G$ glavni sveženj.
+\end{primer}
+
+\begin{primer}
+  Naj bo $P = S^3 = \{ (z_1, z_2) \in \C^2 \such \abs{z_1}^2 + \abs{z_2}^2 = 1
+  \}$.
+  Liejeva grupa $U(1) = \{ e^{i \varphi} \such \varphi \in [0, 2 \pi] \}$ deluje
+  na $S^3$ z
+  \[
+	\rho_{e^{i \varphi}} (z_1, z_2) = (z_1 e^{i \varphi}, z_2 e^{i \varphi}).
+  \]
+  Prostor orbit $S^3 / U(1)$ je tedaj
+  \[
+	M = \{ [z_1, z_2] \such (z_1, z_2) \in S^3 \}
+	= \CP{1} \approx S^2.
+  \]
+\end{primer}
+
+\begin{opomba}
+  Velja $S^3 \approx SU(2)$.
+\end{opomba}
+
+Naj bo $\{U_\alpha\}_\alpha$ atlas na $M$ in naj bo $\pi^{-1}(U_\alpha)$ za vsak
+$\alpha$ trivialen.
+Potem je $\varphi_\alpha: \pi^{-1}(U_\alpha) \to U_\alpha \times G$
+\[
+  p \mapsto (\pi(p), s_\alpha(p))
+\]
+trivializacija.
+Recimo, da je $\pi(p) \in U_\alpha \cap U_\beta$.
+Definiramo lahko preslikavo
+\[
+  g_{\beta \alpha}: U_\alpha \cap U_\beta \to G,
+\]
+podano s predpisom $g_{\beta \alpha}(m) = s_\beta(p) s_\alpha^{-1}(p)$ za
+poljuben $p \in \pi^{-1}(m)$.
+Ta je res neodvisna od izbire $p$:
+Če je tudi $q \in \pi^{-1}(m)$, obstaja $g \in G$, da je $q = p \cdot g$, zaradi
+ekvivariantnosti $s$ pa je potem $s_\beta(p) s_{\alpha}^{-1}(p) = s_\beta(q)
+s_\alpha^{-1}(q)$.
+Očitno za $g_{\beta \alpha}$ veljata lastnosti kocikla.
+
+Kakor pri vektorskih svežnjih tudi tu velja:
+Če imamo gladko mnogoterost $M$ z atlasom $\{(U_\alpha,
+\varphi_\alpha)\}_\alpha$, Liejevo grupo $G$ kocikel $\{g_{\beta
+  \alpha}\}_{\beta, \alpha}$, lahko konstruiramo glavni sveženj.
+Definiramo lahko namreč
+\[
+  \tilde{P} = \prod_{\alpha \in A} (U_\alpha \times G)
+\]
+in $P = \tilde{P} / \sim$ za
+\[
+  (\alpha, m_1, h) \sim (\beta, m_2, g)
+  \iff m_1 = m_2 \land g_{\beta \alpha}(m_1) h = g.
+\]
+
+% LocalWords:  Liejeve ekvivariantna Liejeva trivializacija ekvivariantnosti
+% LocalWords:  kocikla Liejevo kocikel
