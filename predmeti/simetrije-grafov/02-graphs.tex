@@ -269,4 +269,122 @@ We can similarly show an alternate bound
 \]
 by considering $(n-r-1)(n-k)$ and the inequality $n-r \ge \frac{n}{2}$.
 
+\podnaslov{Graph counting}
+
+Consider the following question:
+How many non-isomorphic graphs on $n$ vertices are there?
+First, how many graphs with vertex set $[n]$ can we find?
+The answer is of course precisely the size of the power set of $\binom{[n]}{2}$,
+so $2$ to that power.
+But some of those graphs are isomorphic, so we've counted them too many times.
+
+Let $F(n)$ denote the number of non-isomorphic graphs on $n$ vertices.
+We're interested in
+\[
+  \lim_{n \to \infty} \frac{F(n)}{2^{\binom{n}{2}}},
+\]
+if the limit even exists.
+
+Let $\Gamma, \Delta$ be graphs with vertex set $[n]$.
+A permutation $g \in \Sym(n)$ is an isomorphism between $\Gamma$ and $\Delta$ if
+and only if $E(\Gamma)$ and $E(\Delta)$ are in the same orbit of $\sk{g}$ in its
+action on $P(\binom{[n]}{2})$.
+Then the number of all graphs $[n]$, isomorphic to $\Gamma$ is
+\[
+  \abs{[\Gamma]} = \abs{E(\Gamma)^{\Sym(n)}}
+  = \frac{\abs{\Sym(n)}}{\abs{\Sym(n)_{E(\Gamma)}}}
+  = \frac{n!}{\abs{\Aut \Gamma}}.
+\]
+So, since $\Aut \Gamma \ge 1$, we find
+\[
+  \frac{2^{\binom{n}{2}}}{n!} \le F(n) \le 2^{\binom{n}{2}}.
+\]
+By the Cauchy-Frobenius lemma, we have
+\[
+  F(n) = \inv{n!} \sum_{g \in \Sym(n)} \abs{\Fix_2(g)},
+\]
+where $\abs{\Fix_2(g)}$ is the number of fixed points of $g$ in the action on
+$P(\binom{[n]}{2})$.
+Note that $g$ fixes a point $E \in P(\binom{[n]}{2})$ if and only if the graph
+$([n], E)$ has $g$ in its automorphism group.
+We know that
+\[
+  \abs{\Fix_2(g)} = 2^{\operatorname{orb}_2(\sk{g})},
+\]
+which gives us a formula for $F(n)$:
+\[
+  F(n) = \inv{n!} \sum_{g \in \Sym(n)} 2^{\operatorname{orb}_2(\sk{g})}.
+\]
+
+\begin{theorem}[Erdös, Renyi]
+  There exists a function $f: \N \to \N$ with $\lim f(n) = 0$ such that
+  \[
+	F(n) = (1 + f(n)) \frac{2^{\binom{n}{2}}}{n!},
+  \]
+  i.e.~$F(n) = (1 + o(1)) 2^{\binom{n}{2}} / {n!}$
+\end{theorem}
+
+\begin{proof}
+  We estimate $\operatorname{orb}_2(\sk{g})$ for a given $g \in \Sym(n)$.
+  Fix some $m \in \{1, \ldots, n\}$.
+  Then split the set $\Sym(n)$ into the following classes:
+  \begin{gather*}
+	A = \{\id\} \\
+	B = \{ g \in \Sym(n) \such \text{$g$ moves more than $m$ points} \} \\
+	C = \Sym(n) \setminus A \setminus B.
+  \end{gather*}
+  We've shown that
+  \[
+	n! F(n) = \sum_{g \in \Sym(n)} 2^{\operatorname{orb}_2(\sk{g})}.
+  \]
+  If $g = \id$, then $\operatorname{orb}_2(\{\id\}) = \binom{n}{2}$.
+  For $g \in B$, we use
+  \[
+	\operatorname{orb}_2(\sk{g})
+	\le \binom{n}{2} - \frac{(n-2)(n-k)}{4}
+	\le \binom{n}{2} - \frac{(n-2) m}{4}.
+  \]
+  Since $\abs{B} \le n! \le n^n$, the contribution of all elements of $B$ to the
+  sum is at most
+  \[
+	n^n 2^{\binom{n}{2} - \frac{(n-2)m}{4}}.
+  \]
+  Similarly, for $g \in C$, we use the estimates $\operatorname{orb}_2(\sk{g})
+  \le \binom{n}{2} - (n-2)$ and $\abs{C} \le \binom{n}{m} m! \le n^m$.
+  We then have
+  \[
+	n! F(n) \le 2^{\binom{n}{2}} \left(
+	  1 + \underbrace{n^n 2^{\displaystyle -(n-2)m / 4} + n^m 2^{\displaystyle
+		  -(n-2)}}_{f_m(n)}
+	\right).
+  \]
+  Note that
+  \[
+	f_m(n) = 2^{\displaystyle n \log_2 n - (n-2)m / 4} + 2^{\displaystyle m \log_2 n - (n-2)}
+  \]
+  We can choose $m = \lfloor 6 \log_2(n) \rfloor$.
+  Then for large enough $n$, we have $5 \log_2(n) \le m \le 6 \log_2(m)$, so
+  \[
+	f(n) = f_m(n)
+	\le 2^{\displaystyle n \log_2(n) - 5 (n-2) \log_2(n) / 4}
+	+ 2^{\displaystyle 6 \log_2^2(n) - (n-2)}
+  \]
+  but this converges to $0$ for $n \to \infty$.
+\end{proof}
+
+Fix a number $n \in \N$.
+Then let $\mathcal{G}(n)$ be the set of isomorphism classes of graphs on $n$
+vertices, so $\abs{\mathcal{G}(n)} = F(n)$.
+Also introduce $\mathcal{A}(n)$ as the set of all isomorphisms classes for which
+the isomorphism group is trivial.
+Denote $A(n) = \abs{\mathcal{A}(n)}$.
+
+\begin{theorem}
+  The limit
+  \[
+	\lim_{n \to \infty} \frac{A(n)}{F(n)} = 1,
+  \]
+  so most graphs have trivial isomorphism groups.
+\end{theorem}
+
 % LocalWords:  Frobenius
