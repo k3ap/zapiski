@@ -378,6 +378,8 @@ vertices, so $\abs{\mathcal{G}(n)} = F(n)$.
 Also introduce $\mathcal{A}(n)$ as the set of all isomorphisms classes for which
 the isomorphism group is trivial.
 Denote $A(n) = \abs{\mathcal{A}(n)}$.
+Finally, introduce $\mathcal{B}(n) = \mathcal{G}(n) \setminus \mathcal{A}(n)$
+and $B(n) = \abs{\mathcal{B}(n)}$, so $A(n) + B(n) = F(n)$.
 
 \begin{theorem}
   The limit
@@ -386,5 +388,32 @@ Denote $A(n) = \abs{\mathcal{A}(n)}$.
   \]
   so most graphs have trivial isomorphism groups.
 \end{theorem}
+
+\begin{proof}
+  Recall $F(n) = (1 + f(n)) 2^{\binom{n}{2}} / n!$ where $f(n) \to 0$.
+  Observe
+  \[
+	2^{\binom{n}{2}}
+	= \sum_{[\Gamma] \in \mathcal{G}(n)} \abs{[\Gamma]}
+	= \sum_{[\Gamma] \in \mathcal{A}(n)} \abs{[\Gamma]}
+	+ \sum_{[\Gamma] \in \mathcal{B}(n)} \abs{[\Gamma]}
+  \]
+  but $\abs{[\Gamma]} = \abs{\Sym(n)} / \abs{\Aut \Gamma} = n! / \abs{\Aut
+	\Gamma}$.
+  Then
+  \[
+	2^{\binom{n}{2}}
+	\le \sum_{[\Gamma] \in \mathcal{A}(n)} n!
+	+ \sum_{[\Gamma] \in \mathcal{B}(n)} \frac{n!}{2}
+	= n! \left( A(n) + \pol B(n) \right)
+	= n! \left( F(n) - \pol B(n) \right)
+  \]
+  so, dividing this by $n!$ and $F(n)$,
+  \[
+	\inv{1 + f(n)} \le 1 - \pol \frac{B(n)}{F(n)}
+	< 1.
+  \]
+  By the sandwich theorem, $\frac{B(n)}{F(n)} \to 0$.
+\end{proof}
 
 % LocalWords:  Frobenius
