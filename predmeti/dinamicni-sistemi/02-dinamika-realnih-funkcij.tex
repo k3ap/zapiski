@@ -167,7 +167,7 @@ na sliki~\ref{fig:ds-02-pajcevinasti-diagram}.
 \end{opomba}
 
 \begin{opomba}
-  Stabilne šibke privlačne točke imenujemo \pojem{asimptotstko stabilne}.
+  Stabilne šibke privlačne točke imenujemo \pojem{asimptotsko stabilne}.
 \end{opomba}
 
 \begin{primer}
@@ -711,7 +711,157 @@ Torej mora imeti $x$ periodo $n$, in ne manjše periode.
   x$.
 \end{primer}
 
+Imamo še splošnejši izrek.
+Oglejmo si naslednjo ureditev naravnih števil:
+\begin{align*}
+  & 3 \triangleright 5 \triangleright 7 \triangleright 9 \triangleright \cdots \\
+  \triangleright\;& 2 \cdot 3 \triangleright 2 \cdot 5 \triangleright 2 \cdot 7 \triangleright 2 \cdot 9 \triangleright \cdots \\
+  \triangleright\;& 4 \cdot 3 \triangleright 4 \cdot 5 \triangleright 4 \cdot 7 \triangleright 4 \cdot 9 \triangleright \cdots \\
+  \triangleright\;& 8 \cdot 3 \triangleright 8 \cdot 5 \triangleright 8 \cdot 7 \triangleright 8 \cdot 9 \triangleright \cdots \\
+  \triangleright\;& \cdots \\
+  \triangleright\;& \cdots \triangleright 8 \triangleright 4 \triangleright 2 \triangleright 1
+\end{align*}
+
+\begin{izrek}[Šarkovski]
+  Naj bo $I \subseteq \R$ kompakten interval in $f: I \to I$ zvezna.
+  Če obstaja $p$-cikel za $f$, obstajajo tudi vsi $q$-cikli za števila $p
+  \triangleright q$.
+\end{izrek}
+
+\begin{izrek}[komplement Šarkovskega]
+  Za vsaka $q \triangleright p$ obstaja funkcija s $p$-ciklom in brez $q$-cikla.
+\end{izrek}
+
+\begin{posledica}
+  Če ima $f$ le končno mnogo periodičnih točk, so vse njihove periode dolžine
+  potence $2$.
+\end{posledica}
+
+\podnaslov{Realna dinamika v višjih dimenzijah}
+
+Obravnavane pojme lahko uporabimo tudi za funkcije $F: U \subseteq \R^m \to U$
+za $m \ge 2$.
+
+\begin{primer}[Pekova preslikava]
+  Imamo naslednjo preslikavo $F: \zo{0,1} \times \zo{0,1} \to \zo{0,1} \times
+  \zo{0,1}$:
+  \[
+	F(x,y) = (2x - \lfloor 2x \rfloor, \pol y + \pol \lfloor 2x \rfloor).
+  \]
+  Oglejmo si to preslikavo v dvojiškem zapisu (brez neskončnega zaporedja enic).
+  Pišimo $x = 0.x_1x_2x_3\ldots$ in $y=0.y_1y_2y_3\ldots$, kar se transformira v
+  \[
+	F(x,y) = (0.x_2x_3x_4\ldots, 0.x_1y_1y_2y_3\ldots).
+  \]
+  To lahko predstavimo tudi kot operator zamika v zaporedjih z indeksi, ki gredo
+  proti $\infty$ in $-\infty$:
+  \[
+	\ldots x_3 x_2 x_1 | y_1 y_2 y_3 \ldots
+	\mapsto \ldots x_4 x_3 x_2 | x_1 y_1 y_2 \ldots
+  \]
+  Iz tega ni težko dokazati, da je $F$ kaotična.
+
+  Za $x < \pol$ velja $F(x,y) = (2x, \nicefrac{y}{2})$.
+  V $y$ smeri je preslikava torej privlačna, v $x$ smeri pa odbojna.
+  Izhodišče ni stabilna točka in ni niti šibko privlačna niti šibko odbojna
+  točka.
+  Takim točkam pravimo \pojem{sedla}.
+  \boxdot{}
+\end{primer}
+
+\begin{primer}
+  Definiramo preslikavo
+  \[
+	F(x,y) = \inv{12}
+	\begin{bmatrix}
+	  5 & 3 \\
+	  3 & 5
+	\end{bmatrix}
+	\cdot
+	\begin{bmatrix}
+	  x \\ y
+	\end{bmatrix}.
+  \]
+  Dinamiko lahko analiziramo v lastnih koordinatah (tj.~koordinate, ki jih
+  razpenjata lastna vektorja matrike), potem pa jo transformiramo v običajne
+  koordinate.
+  V tem primeru je izhodišče asimptotsko stabilna fiksna točka.
+\end{primer}
+
+\begin{primer}
+  Za preslikavo
+  \[
+	F(x,y) =
+	\begin{bmatrix}
+	  0 & -2 \\ 2 & 0
+	\end{bmatrix}
+	\cdot
+	\begin{bmatrix}
+	  x \\ y
+	\end{bmatrix}
+  \]
+  imamo kompleksni lastni vrednosti.
+  Če pogledamo lastna vektorja, vidimo, da se povsod v spirali oddaljujemo od
+  izhodišča.
+\end{primer}
+
+\begin{primer}
+  Imejmo Fibonaccijevo zaporedje $a_{n+2} = a_{n+1} + a_n$.
+  Za $x_n = a_{n-1}$ in $y_n = a_n$ lahko to prevedemo na sitem
+  \[
+	\begin{bmatrix}
+	  x_{n+1} \\ y_{n+1}
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	  0 & 1 \\
+	  1 & 1
+	\end{bmatrix}
+	\cdot
+	\begin{bmatrix}
+	  x_n \\ y_n
+	\end{bmatrix}.
+  \]
+  Obe lastni vrednosti matrike sta večji od $1$ po absolutni vrednosti.
+\end{primer}
+
+\begin{trditev}
+  Naj bo $A \in \R^{n \times n}$ obrnljiva matrika, katere lastne vrednosti so
+  manjše od $1$ po absolutni vrednosti.
+  Potem je izhodišče asimptotsko stabilna fiksna točka preslikave $F(x) = Ax$.
+  Podobno, če so vse lastne vrednosti večje od $1$ po absolutni vrednosti, je
+  izhodišče šibko odbojna točka.
+\end{trditev}
+
+\begin{opomba}
+  Primere z $\lambda = 0$ smo izvzeli, ker lahko pri takih primerih zmanjšaš
+  dimenzijo.
+\end{opomba}
+
+Izkaže se, da linearna teorija pove veliko tudi o lokalnih lastnostih
+nelinearnih sistemov v okolici fiksnih točk.
+
+\begin{definicija}
+  Naj bo $F: U \subseteq \R^m \to U$ razreda $\zvodvi{1}$.
+  Točka $x_0 \in U$ je \pojem{hiperbolična}, če za vse lastne vrednosti
+  Jacobijeve matrike v tej točki velja $0 < \abs{\lambda} \ne 1$.
+\end{definicija}
+
+\begin{izrek}[Hartman-Grobman]
+  Naj bo $F: U \subseteq \R^m \to U$ razreda $\zvodvi{1}$ in $x_0 \in U$ njena
+  hiperbolična točka.
+  Potem obstaja homeomorfizem $\varphi$, ki neko okolico izhodišča slika v
+  okolico $x_0$, ter za katerega velja $\varphi \circ DF(x_0) = F \circ
+  \varphi$.
+\end{izrek}
+
+\begin{opomba}
+  Blizu točke $x_0$ se do zvezne preslikave natančno preslikava $F$ obnaša kot
+  linearni sistem za $A = DF(x_0)$.
+\end{opomba}
+
 % LocalWords:  predperiodične Devaney Podvojitvena Konjugacije semikonjugacije
 % LocalWords:  semikonjugirana semikonjugirani podvojitvena semikonjugacija
 % LocalWords:  Bairovem Bifurkacije predfiksne bifurkacije bifurkacija modulo
 % LocalWords:  podintervala Cantorjeve tretjiški podintervalov podinterval
+% LocalWords:  Hartman-Grobman
