@@ -1,0 +1,135 @@
+\naslov{Quantifier elimination}
+
+\begin{definition}
+  A theory $T$ is \pojem{decidable} if there exists an algorithm that takes as
+  input a sequence $A$ and returns true if $T \models A$ (equivalently, if $A
+  \in T$), and it returns false if $T \nmodels A$.
+\end{definition}
+
+\begin{definition}
+  We say that quantifiers are \pojem{eliminable} from a formula $A(x_1, \ldots,
+  x_k)$ relative to a theory $T$ if there exists a quantifier-free formula
+  $A^{\text{QF}}(x_1, \ldots, x_k)$ such that
+  \[
+	T \models \forall x_1, \ldots, x_k \velja A \iff A^{\text{QF}}.
+  \]
+  We denote this condition with $A \equiv A^{\text{QF}}$.
+\end{definition}
+
+\begin{remark}
+  It is important that $A^{\text{QF}}$ uses the same (or a subset of) free
+  variables as $A$ does.
+\end{remark}
+
+\begin{definition}
+  A theory $T$ \pojem{enjoys quantifier elimination} if quantifiers are
+  eliminable relative to $T$ from every formula.
+\end{definition}
+
+Up to logical equivalence, only $\top$ and $\bot$ are quantifier-free sentences
+in the theory of valid sentences $V_\varnothing$ over the empty signature.
+So since we have sentences that are not equivalent to either (such as $\forall x
+\forall y \velja x = y$), this theory does not enjoy quantifier elimination.
+
+For every $n \in \N$, consider the sentence
+\[
+  \operatorname{Card}_{\ge n} := \exists x_1, \ldots, x_n \velja
+  \bigwedge_{i=1}^n \bigwedge_{j = i+1}^n x_i \ne x_j
+\]
+We will consider a new theory, called \pojem{finite cardinal bounds}, with
+signature $(C_{\ge n})_{n \in \N}$, where all $C_n$ are propositional constants
+($0$-ary logical predicates), and the theory given by axioms $C_n \iff
+\operatorname{Card}_{\ge n}$ for all $n \in \N$.
+We claim the following.
+
+\begin{theorem}
+  \label{theorem:log-03-fcb-elimination}
+  FCB enjoys quantifier elimination.
+\end{theorem}
+
+\begin{proposition}
+  A theory $T$ enjoys quantifier elimination if and only if quantifiers are
+  eliminable from formulas of the form $\exists x \velja (L_1 \land \ldots \land
+  L_k)$ where $k \ge 0$ and all $L_i$ are literals.
+\end{proposition}
+
+\begin{proof}
+  The left-to-right implication is trivial.
+  Right-to-left:
+  We will first show that quantifiers are eliminable from formulas of the form
+  $\exists x \velja A$, where $A$ is quantifier-free.
+  We can write $A$ in disjunctive normal form to get $\exists x \velja C_1 \lor
+  \ldots \lor C_n$, where $C_i$ are conjunctions of literals.
+  This is equivalent to
+  \[
+	(\exists x \velja C_1) \lor (\exists x \velja C_2) \lor \ldots \lor (\exists
+	x \velja C_n),
+  \]
+  where we can use the assumption.
+  For a general formula, replace the universal quantifiers with existential
+  ones, then eliminate them one by one from the inside out.
+\end{proof}
+
+\begin{remark}
+  It is enough to consider formulas of the form in the theorem, but with the
+  additional requirement that each $L_i$ contains $x$, as we can simply move
+  every other literal before the quantifier.
+\end{remark}
+
+\begin{proof}[Proof of Theorem~\ref{theorem:log-03-fcb-elimination}]
+  Consider a formula $\exists x \velja L_1 \land \ldots \land L_k$.
+  Each $L_i$ can be of the form $x = y_i$, $x \ne y_i$, $x = x$ or $x \ne x$.
+  There's no need to consider the last two forms, as they are equivalent to
+  $\top$ and $\bot$, respectively.
+  So we can assume $y_i$ are different from $x$ and pairwise distinct.
+
+  Suppose that one of $L_i$ is an equality, say $L_k$.
+  Then we have an equivalent formula $(L_1 \land \ldots \land L_k)[y_k / x]$, as
+  we require that $x = y_k$.
+  We're left with the case of $\exists x \velja x \ne y_1 \land \ldots \land x
+  \ne y_k$, so all literals are negations of equality.
+  The equivalent formula is then
+  \[
+	\bigvee_{P \in \mathcal{P}_n} \left(
+	  \left(
+		\bigwedge_{X \in P}
+		\bigwedge_{i \in X} \bigwedge_{j \in X, j > i} y_i = y_j
+	  \right)
+	  \land C_{\abs{P}+1}
+	\right),
+  \]
+  where $\mathcal{P}(n)$ is the set of all partitions of the set $\{1, \ldots,
+  n\}$.
+\end{proof}
+
+Implicit in the proof above is an algorithm that given $A(x_1, \ldots, x_k)$,
+computes its quantifier-free equivalent $A^{\text{QF}}(x_1, \ldots, x_k)$.
+As an additional remark, this algorithm has a horrendously high time complexity.
+
+\begin{theorem}
+  The theory of valid sentences over the empty signature is decidable.
+\end{theorem}
+
+\begin{proof}
+  Given an input sentence $A$, compute $A^{\text{QF}}$ in FCB as above.
+  We then convert $A^{\text{QF}}$ to conjunctive normal form.
+  We get $D_1 \land \ldots \land D_n$, where $D_i$ are disjunctions of literals.
+  Note that the formula is valid if and only if each $D_i$ is valid.
+
+  A disjunction of literals has the form
+  \[
+	C_{m_1} \lor \ldots \lor C_{m_l} \lor \lnot C_{n_1} \lor \ldots \lor \lnot
+	C_{n_k},
+  \]
+  which is the same as
+  \[
+	C_{\min(m_1, \ldots, m_l)} \lor \lnot C_{\max(n_1, \ldots, n_k)}.
+  \]
+  This is valid if and only if $\min(m_1, \ldots, m_l) \le \max(n_1, \ldots,
+  n_k)$.
+  If this test passes for all $D_i$, we return true; otherwise, we return false.
+\end{proof}
+
+\todo{Include section 4.4 from the published lecture notes}
+
+% LocalWords:  eliminable FC
